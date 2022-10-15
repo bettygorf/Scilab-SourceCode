@@ -1,0 +1,27 @@
+
+varargout(1)                    Scilab keyword                   varargout(1)
+NAME
+  varargout -  variable numbers of arguments in an output argument list
+
+SYNTAX
+  varargout must be the rightmost  argument of the function definition output
+  list.
+
+DESCRIPTION
+  A function whose output argument list contains  varargout must be called
+  with more output arguments than indicated in the output argument list. The
+  calling arguments passed form varargout keyword onwards are extracted out
+  of the varargout list defined in the function
+
+  varagout = function ex() may be called with any number of output arguments.
+  Within function  ex output arguments may be stored in in varargout(i).
+
+EXAMPLE
+  deff('varargout=exampl()','varargout=list(1,2,3,4)')
+
+  x=exampl()
+  [x,y]=exampl()
+  [x,y,z]=exampl()
+
+SEE ALSO
+  function, varargin, list

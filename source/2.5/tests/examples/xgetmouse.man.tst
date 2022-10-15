@@ -1,0 +1,13 @@
+clear;lines(0);
+xselect(); xbasc(); xsetech([0 0 1 1],[0 0 100 100])
+xset("alufunction",6)
+xtitle(" drawing a rectangle ")
+[b,x0,y0]=xclick(); rep=[x0,y0,-1]; x=x0; y=y0;
+xrect(x0,y0,x-x0,y-y0)
+while rep(3)==-1 then
+    rep=xgetmouse(0)
+    xrect(x0,y0,x-x0,y0-y)
+    x=rep(1); y=rep(2);
+    xrect(x0,y0,x-x0,y0-y)
+end
+xset("alufunction",3)

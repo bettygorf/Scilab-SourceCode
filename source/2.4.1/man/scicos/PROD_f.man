@@ -1,0 +1,12 @@
+.TH PROD_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+PROD_f - Scicos element wise product block
+.SH DESCRIPTION
+The output is the element wize product of the inputs.
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+.TH xgetech 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME 
+xgetech - get the current graphics scale
+.SH CALLING SEQUENCE
+.nf
+[wrect,frect,logflag]=xgetech()
+.fi
+.SH PARAMETERS
+.TP 13
+wrect,frect
+: real vectors.
+.TP 13
+logflag
+: string of size 2 "xy".
+.SH DESCRIPTION
+\fVxgetech\fR returns the current graphics scale.
+The rectangle [xmin,ymin,xmax,ymax] given by
+\fVfrect\fR is the size of the whole graphics window. 
+The plotting will be made in
+the region of the current graphics window specified by \fVwrect\fR.
+.LP
+\fVwrect=[x,y,w,h]\fR (upper-left point, width, height) describes a region 
+inside 
+the graphics window. The values in \fVwrect\fR are specified using proportion
+of the width and height of the graphics window:
+.LP
+\fVwrect=[0 0 1 1]\fR means that the whole graphics window is used.
+.LP
+\fVwrect=[0.5 0 0.5 1]\fR means that the graphics region is the right 
+half of the graphics window.
+
+\fVlogflag\fR is a string of size 2 "xy", where x and y can be "n" or "l". 
+"n" stands for 
+normal and "l" stands for logscale. x stands for the x-axis and y stands
+for the y-axis.
+.SH SEE ALSO
+xsetech 
+.SH AUTHOR
+J.Ph.C.

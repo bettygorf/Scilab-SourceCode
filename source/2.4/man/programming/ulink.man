@@ -1,0 +1,14 @@
+.TH ulink 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ulink - unlink a dynamically linked shared object
+.SH CALLING SEQUENCE
+.nf
+ulink(x)
+.fi
+.SH DESCRIPTION
+see \fVlink\fR
+.SH SEE ALSO
+link
+
+

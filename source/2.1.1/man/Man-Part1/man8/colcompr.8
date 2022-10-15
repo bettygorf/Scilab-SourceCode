@@ -1,0 +1,34 @@
+.TH colcompr 8 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+colcompr - column compression of polynomial matrix
+.SH CALLING SEQUENCE
+.nf
+[Y,rk,ac]=colcompr(A);
+.fi
+.SH PARAMETERS
+.TP
+A
+: polynomial matrix
+.TP
+Y 
+: square polynomial matrix (right unimodular basis)
+.TP
+rk 
+: normal rank of \fVA\fR
+.TP
+Ac 
+: \fVAc=A*Y\fR, polynomial matrix
+.SH DESCRIPTION
+column compression of polynomial matrix \fVA\fR (compression to the left)
+.SH EXAMPLE
+.nf
+s=poly(0,'s');
+p=[s;s*(s+1)^2;2*s^2+s^3];
+[Y,rk,ac]=colcompr(p*p');
+p*p'*Y
+.fi
+.SH SEE ALSO
+rowcompr
+
+

@@ -1,0 +1,18 @@
+.TH iserror 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+iserror - error test
+.SH CALLING SEQUENCE
+.nf
+iserror([n])
+.fi
+.SH DESCRIPTION
+tests if error number \fVn\fR has occurred (after a call to
+\fVerrcatch\fR). \fViserror\fR returns \fV1\fR if the error occurred a
+nd \fV0\fR otherwise
+.LP
+\fVn>0\fR is the error number ; all errors are tested with \fVn<0\fR.
+.SH SEE ALSO
+error, errcatch
+
+

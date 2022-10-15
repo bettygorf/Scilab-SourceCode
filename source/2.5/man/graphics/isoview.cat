@@ -1,0 +1,34 @@
+
+isoview(2)                     Scilab Function                     isoview(2)
+NAME
+  isoview - set scales for isometric plot (do not change the size of the win-
+  dow)
+
+CALLING SEQUENCE
+  isoview(xmin,xmax,ymin,ymax)
+
+PARAMETERS
+
+  xmin,xmax,ymin,ymax  : four real values
+
+DESCRIPTION
+  isoview is used to have isometric scales on the x and y axes.  It does not
+  change the size of the graphics window. The rectangle xmin, xmax, ymin,
+  ymax will be contained in the computed frame of the graphics window. iso-
+  view set the current graphics scales and can be used in conjunction with
+  graphics routines which request the current graphics scale (for instance
+  strf="x0z" in plot2d).
+
+EXAMPLE
+  t=[0:0.1:2*%pi]';
+  plot2d(sin(t),cos(t))
+  xbasc()
+  isoview(-1,1,-1,1)
+  plot2d(sin(t),cos(t),1,"001")
+  xset("default")
+
+SEE ALSO
+  square, xsetech
+
+AUTHOR
+  Steer S.

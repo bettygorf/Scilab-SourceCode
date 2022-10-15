@@ -1,0 +1,43 @@
+.TH time_id 4 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+time_id - SISO least square identification
+.SH CALLING SEQUENCE
+.nf
+[H [,err]]=time_id(n,u,y)
+.fi
+.SH PARAMETERS
+.TP 10
+n 
+: order of transfer
+.TP 10
+u  
+: one of the following
+.RS
+.TP 12
+u1 
+:a vector of inputs to the system
+.TP
+"impuls"
+: if y is an impulse response
+.TP
+"step"
+: if y is a step response.
+.RE
+.TP 10
+y 
+: vector of response.
+.TP
+H 
+: rational function with degree n denominator and 
+degree n-1 numerator.
+.TP
+err
+: \fV||y - impuls(H,npt)||^2\fR, where \fVimpuls(H,npt)\fR are
+the \fVnpt\fR first coefficients of impulse response of \fVH\fR
+.SH DESCRIPTION
+identification of discrete time response (least square). 
+.SH AUTHOR
+Serge Steer INRIA
+.SH SEE ALSO
+imrep2ss , arl2 , armax, frep2tf

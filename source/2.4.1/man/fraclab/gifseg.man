@@ -1,0 +1,70 @@
+.TH "gifseg" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+gifseg - Replaces nodes of the diadic tree by a ceratin unique value. 
+.sp
+Author: Khalid Daoudi
+.sp
+Replaces at each scale the left (resp. right) nodes of the diadic tree,
+associated to the GIFS coefficients, that belong to \f(CR[\fPcmin,cmax\f(CR]\fP by a ceratin unique value. 
+.sp
+.sp
+.SH Usage
+\f(CR[\fPCi_new, marks, L\f(CR]\fP=gifseg(Ci,\f(CR[\fPcmin,cmax,epsilon\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBCi\fP : Real matrix  
+Contains the GIFS coefficients (obtained using FWT)
+
+.TP
+o 
+\fBcmin\fP : Real scalar \f(CR[\fP1,n\f(CR]\fP
+Specifies the minimal value of the Ci's to be considered (cmin=0 by default)
+ 
+
+.TP
+o 
+\fBcmax\fP : Real scalar \f(CR[\fP1,n\f(CR]\fP
+Specifies the maximal value of the Ci's to be considered (cmin=0 by default)
+
+.TP
+o 
+\fBepsilon\fP :  real scalar 
+Specifies the maximal error desied on the Ci's approximation.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBCi_new\fP : Real matrix 
+Contains the the new GIFS coefficients.
+
+.TP
+o 
+\fBmarks\fP : Real vector
+Contains the segmentation marques. length(marks)-1 is the number of segmented
+parts.
+
+.TP
+o 
+\fBL\fP : Real matrix 
+A structure containing the left and right lambda_i's corresponding to each
+segmented part.
+.RE
+
+.SH Description
+.SH Parameters
+.SH Algorithm details
+.SH See also:
+ 
+hist, wave2gifs.
+.SH Example:

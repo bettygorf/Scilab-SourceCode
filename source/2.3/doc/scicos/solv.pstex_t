@@ -1,0 +1,18 @@
+\begin{picture}(0,0)%
+\epsfig{file=solv.pstex}%
+\end{picture}%
+\setlength{\unitlength}{0.00058600in}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined%
+\gdef\SetFigFont#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(5264,1889)(474,-3008)
+\put(2026,-1501){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}all blocks called with flag 5}}}
+\put(496,-2221){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}from}}}
+\put(496,-2491){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}simulation}}}
+\put(4366,-2671){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}back to}}}
+\put(4366,-2941){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}Scicos}}}
+\end{picture}

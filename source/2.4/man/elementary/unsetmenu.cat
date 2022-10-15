@@ -1,0 +1,30 @@
+
+unsetmenu(3)                   Scilab Function                   unsetmenu(3)
+NAME
+  unsetmenu - interactive button or menu or submenu de-activation
+
+CALLING SEQUENCE
+  unsetmenu(button,[nsub])
+  unsetmenu(gwin,button,[nsub])
+
+PARAMETERS
+
+  button
+       : a character string. The button name
+
+  gwin : integer. The number of graphic window where the button is installed
+
+  nsub : integer. The number of submenu to de-activate (if any). If button
+       has no sub-menu, nsub is ignored
+
+DESCRIPTION
+  The function allows the user to desactivate  buttons or menus created by
+  addmenu in the main or graphics windows command panels.
+
+EXAMPLE
+  //addmenu('foo')
+  //unsetmenu('foo')
+  //unsetmenu('File',2)
+
+SEE ALSO
+  delmenu, setmenu, addmenu

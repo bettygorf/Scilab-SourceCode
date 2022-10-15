@@ -1,0 +1,66 @@
+
+
+
+predef(1)                      Scilab Function                      predef(1)
+
+
+
+
+
+
+NAME
+  predef - variable protection
+
+CALLING SEQUENCE
+  predef([n])
+
+DESCRIPTION
+  Utility function used for defining "predefined" variables.  Predefined
+  variables are protected and cannot be killed. They are not saved by the
+  'save' command.
+
+  predef() sets all the current variables to predefined ones.
+
+  predef(n) sets the max(n,7) last defined variables as predefined.
+
+REMARK
+  A number of predefined variables are set in the start-up file scilab.star.
+  These variables are seen by typing who when entering in Scilab.
+
+  User may in particular set its own predefined variables in user's startup
+  file home/.scilab
+
+SEE ALSO
+  clear, save
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

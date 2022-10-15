@@ -1,0 +1,37 @@
+.TH horner 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+horner - polynomial/rational evaluation
+.SH CALLING SEQUENCE
+.nf
+horner(P,x) 
+.fi
+.SH PARAMETERS
+.TP
+P
+: polynomial or rational matrix
+.TP
+x
+: real number or polynomial or rational
+.SH DESCRIPTION
+evaluates the polynomial or rational 
+matrix \fVP = P(s)\fR when the variable \fVs\fR of the 
+polynomial is replaced by \fVx\fR:
+.LP
+\fVhorner(P,x)\fR=\fVP(x)\fR
+.LP
+Example (Bilinear transform): Assume \fVP = P(s)\fR is 
+a rational matrix  then the rational matrix 
+\fVP((1+s)/(1-s))\fR is obtained by \fVhorner(P,(1+s)/(1-s))\fR.
+.LP
+To evaluate a rational matrix at given frequencies use 
+preferably the \fVfreq\fR primitive.
+.SH EXAMPLES
+.nf
+s=poly(0,'s');M=[s,1/s];
+horner(M,1)
+horner(M,%i)
+horner(M,1/s)
+.fi
+.SH SEE ALSO
+freq, repfreq, evstr

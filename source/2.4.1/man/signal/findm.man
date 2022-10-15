@@ -1,0 +1,16 @@
+.TH findm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+findm - for elliptic filter design
+.SH CALLING SEQUENCE
+.nf
+[m]=findm(chi)
+.fi
+.SH DESCRIPTION
+Search for \fVm\fR such that \fVchi = %k(1-m)/%k(m)\fR
+(For use with \fVfind_freq\fR).
+.SH SEE ALSO
+%k
+.SH AUTHOR
+F. D.
+

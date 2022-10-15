@@ -1,0 +1,52 @@
+\documentclass[11pt]{report}
+
+\usepackage{makeidx}
+             \textheight=660pt 
+             \textwidth=15cm
+             \topmargin=-27pt 
+             \oddsidemargin=0.7cm
+             \evensidemargin=0.7cm
+             \marginparwidth=60pt
+
+\def\Figdir{figures/}
+
+\title{Introduction to Scilab}
+
+\author{INRIA Meta2 Project \and ENPC Cergrene}
+
+\date{Meta2 Project\\INRIA Rocquencourt\\
+Domaine de Voluceau - Rocquencourt - B.P. 105\\
+78153 Le Chesnay C\'edex\\
+France\\\ \\
+E-mail: scilab@inria.fr}
+
+\makeindex
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\tableofcontents
+\pagestyle{headings}
+\pagenumbering{arabic}
+
+\input{chap1}
+
+\input{datatypes}
+
+\input{programming}
+
+\input{basicprimitives}
+
+\input{graphics}
+
+\input{maple2scilab}
+
+\input{appendices}
+
+\listoffigures
+
+\printindex
+
+\end{document}

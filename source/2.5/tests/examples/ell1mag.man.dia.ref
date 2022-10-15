@@ -1,0 +1,49 @@
+ 
+clear;lines(0);
+ 
+deff('[alpha,beta]=alpha_beta(n,m,m1)',...
+'if 2*int(n/2)=n then, beta=K1; else, beta=0;end;...
+alpha=%k(1-m1)/%k(1-m);')
+ Warning: obsolete use of = instead of ==
+if 2*int(n/2)=n then, beta=K1; else, beta=0;end;alpha=%k(1-m1)/%k(1-m);
+               !       
+at line       2 of function alpha_beta               called by :  
+beta=0;end;alpha=%k(1-m1)/%k(1-m);'
+ 
+ 
+ 
+epsilon=0.1;A=10;  //ripple parameters
+ 
+m1=(epsilon*epsilon)/(A*A-1);n=5;omegac=6;
+ 
+m=find_freq(epsilon,A,n);omegar = omegac/sqrt(m)
+ omegar  =
+ 
+    6.8315017  
+ 
+%k(1-m1)*%k(m)/(%k(m1)*%k(1-m))-n   //Check...
+ ans  =
+ 
+    1.776D-15  
+ 
+[alpha,beta]=alpha_beta(n,m,m1)
+ beta  =
+ 
+    0.  
+ alpha  =
+ 
+    3.5754638  
+ 
+alpha*%asn(1,m)-n*%k(m1)      //Check
+ ans  =
+ 
+    3.553D-15  
+ 
+sample=0:0.01:20;
+ 
+//Now we map the positive real axis into the contour...
+ 
+z=alpha*%asn(sample/omegac,m)+beta*ones(sample);
+ 
+plot(sample,ell1mag(epsilon,m1,z))
+ 

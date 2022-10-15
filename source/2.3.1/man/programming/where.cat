@@ -1,0 +1,24 @@
+
+where(1)                       Scilab Function                       where(1)
+NAME
+  where - get current instruction calling tree
+
+CALLING SEQUENCE
+  [linenum,mac]=where()
+
+PARAMETERS
+
+  linenum   : column vector of integer
+
+  mac       : column vector of strings
+
+DESCRIPTION
+  returns linenum and mac such as current instruction has been called by the
+  linenum(1) line of function mac(1), mac(1) has been called by the line-
+  num(2) line of function mac(2) and so on
+
+  mac(i) is in general the name of a function but it may also be "exec" or
+  "execstr" if instruction lies in ans exec file or an execstr instruction
+
+SEE ALSO
+  whereami, pause

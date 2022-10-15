@@ -1,0 +1,19 @@
+.TH case 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+case - keyword used in select
+.SH DESCRIPTION
+Keyword used in \fVselect ... case\fR
+
+Use it in the following way:
+.nf
+select expr0,
+ case expr1 then instructions1,
+ case expr2 then instructions2,
+ ...
+ case exprn then instructionsn,
+ [else instructions],
+end
+.fi
+.SH SEE ALSO
+select, while, end, for

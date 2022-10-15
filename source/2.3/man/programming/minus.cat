@@ -1,0 +1,37 @@
+
+minus(1)                       Scilab Function                       minus(1)
+NAME
+  minus (+) -  substraction operator, sign changes
+
+CALLING SEQUENCE
+  X-Y
+  -Y
+
+PARAMETERS
+
+  X    : scalar or vector or matrix of numbers, polynomials or rationals. It
+       may also be a syslin list
+
+  Y    : scalar or vector or matrix of numbers, polynomials or rationals. It
+       may also be a syslin list
+
+DESCRIPTION
+  Substraction
+
+  For numeric operands substraction as its usual meaning.  If one of the
+  operands is a matrix and the other one a scalar the the operation is per-
+  formed element-wise. if Y==[] X  is returned; if X==[] -Y  is returned.
+
+  Substraction may also be defined for other data types through "soft-coded"
+  operations.
+
+EXAMPLE
+  [1,2]-1
+  []-2
+
+  %s-2
+  1/%s-2
+  "cat"+"enate"
+
+SEE ALSO
+  addf, mtlb_mode

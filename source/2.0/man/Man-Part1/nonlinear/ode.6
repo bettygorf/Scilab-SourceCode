@@ -1,0 +1,235 @@
+.TH ode G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+ode - ordinary differential equation solver
+.SH CALLING SEQUENCE
+.nf
+[yt]=ode(y0,t0,t,f)
+[yt,w,iw]=ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
+[yt,rd,w,iw]=ode('root',y0,t0,t [,rtol  [,atol]],f  [,jac],ng,g [,w,iw])
+[yt]=ode('discrete',y0,k0,k0n,f)
+.fi
+.SH PARAMETERS
+.TP 10
+y0 
+: real vector or matrix (initial conditions).
+.TP
+t0 
+: real scalar (initial time).
+.TP
+t  
+: real (row) vector. 
+.TP
+f  
+: Scilab "external" i.e. function or character string or list.
+.TP
+type 
+: one of the following character string:
+   \fV'adams' 'stiff' 'rgk' 'discrete' 'roots'\fR
+.TP
+rtol,atol 
+: real constants or real vector of the same size
+as \fVy\fR.
+.TP
+jac 
+: external i.e. function or character string or list.
+.TP
+w,iw 
+: real vectors.
+.TP
+ng 
+: integer.
+.TP
+g 
+: external i.e. function or character string or list.
+.SH DESCRIPTION
+\fB1.Simple call\fR
+.LP
+\fVy=ode(y0,t0,t,f)\fR
+computes the solution to the system of
+differential equations
+.LP
+ dy/dt=f(t, y) , y(t0)=y0.
+.LP
+\fVt\fR is a vector of instants where the solution \fVy\fR is computed.
+.LP
+\fVy\fR is the vector \fVy=[y(t(1)),y(t(2)),...]\fR.
+.LP
+The input \fVf\fR to \fVode\fR is an external i.e. a function with
+specified syntax or the name a fortran subroutine (character
+string) with specified  calling sequence or a list.
+.LP
+If \fVf\fR is a function, its syntax must be as follows:
+.nf
+ydot = f(t,y)
+.fi
+Where \fVt\fR is a real scalar and \fVy\fR a real vector or matrix.
+.LP
+This function evaluates dy/dt as a function of the scalar
+\fVt\fR and the real vector or matrix \fVy\fR (f is the RHS of the
+differential equation dy/dt=f(t,y)).
+.LP
+If \fVf\fR is a character string, it refers to the name of a Fortran
+subroutine i.e. if \fVode(y0,t0,t,'fex')\fR is the command, then
+the subroutine \fVfex\fR is called. See the source code of 
+subroutine \fVfydot\fR for an example.
+.LP
+The \fVf\fR argument can also be a list::
+.LP
+if \fVode(y0,t0,t,lst)\fR
+is the command, then \fVlst\fR must be a list with the following
+structure:
+.nf
+lst=list(f,u1,u2,...un)
+.fi
+where \fVf\fR is a function with syntax:
+.nf
+ydot = f(t,y,u1,u2,...,un)
+.fi
+\fB2.Extended call\fR
+.LP
+This command allows to integrate the differential system
+.nf
+dy/dt=f(t,y,u1,u2,...,un)
+.fi
+the \fVui\fR's can be any Scilab object e.g. vectors or matrices or functions...
+.TP 10
+type 
+: is the character string which indicates the method used by the integration routine:
+.RS
+.TP
+"adams" 
+: Adams method
+.TP
+"stiff"
+:  BDF method
+.TP
+"rgk"   
+: Runge Kutta method
+.RE
+.TP
+rtol, atol 
+:  are threshold for relative and absolute estimated errors. 
+The estimated error on \fVy(i)\fR is \fVrtol(i)*abs(y(i)) + 0.01*atol(i)\fR
+and integration is carried out as far as this error is small
+for all components of the state.
+If \fVrtol\fR and/or \fVatol\fR is a constant \fVrtol(i)\fR and/or \fVatol(i)\fR are
+set to this constant value. Default values for \fVatol\fR and \fVrtol\fR
+are respectively \fVrtol=1.d-5\fR and \fVatol=1.d-7\fR.
+.TP
+jac
+: is a function or character string or list which returns the Jacobian
+of the RHS function.
+.LP
+If \fVjac\fR is function the syntax should be as follows:
+.nf
+J=jac(t,y)
+.fi
+Matrix \fVJ\fR must evaluate to df/dx i.e. \fVJ(k,i) = d fk /d xi\fR
+with \fVfk\fR = kth component of f.
+.LP
+If \fVjac\fR is a character string it refers to the name of a Fortran
+subroutine (see source code \fVfjac.f\fR for an example)
+.LP
+If \fVjac\fR is a list the same conventions as for \fVf\fR apply.
+.TP
+w,iw 
+: vectors for storing information returned by the
+integration routine. When these vectors are provided in RHS
+of ode the integration re-starts with the same  parameters as
+in its previous stop.
+.LP
+\fB3.Integration with a stopping time\fR
+.LP
+\fV[yt,rd]=ode('root',y0,t0,t,f,ng,g)\fR
+.LP
+computes the solution
+of the differential equation \fVdy/dt=f(t,y)\fR until the state
+\fVy(t)\fR traverses the surface 
+.nf
+g(t,y)=0.
+.fi
+Here \fVg\fR can be a function or a list or character string (which
+refers to the name of a Fortran subroutine). \fVg\fR should give
+the equation of the surface.
+If \fVg\fR is a function its syntax must be surface = \fVg(t,y)\fR
+and it returns a vector of size \fVng\fR which corresponds to 
+the \fVng\fR constraints. Conventions concerning Fortran routine
+are found in \fVfsurf.f\fR. Conventions concerning \fVg\fR as a list
+are the usual ones (see \fVf\fR above).
+Ouput \fVrd\fR is a vector which contains the stopping time and
+the component number of \fVg\fR where the surface is traversed.
+.LP
+
+\fV4.Discrete time simulation\fR
+.LP
+\fVyt=ode('discrete',y0,k0,k0+1n,f)\fR
+.LP
+computes recursively  \fVy(k+1)=f(k,y(k)\fR)  from an initial state
+\fVy(k0)\fR and returns  \fVy\fR for \fVk\fR in \fV(k0+1,n)\fR.
+.LP
+
+\fB5.Other calling sequence\fR
+.LP  
+y=ode('discrete',y1,1,2n,function);y=[y1,y]
+y evaluates to y=[y1,y2,....,y_n];
+.SH EXAMPLES
+.TP
+[1]
+Computation of exp(A) with A=[1,1;0,2];
+.nf
+deff('[xdot]=f(t,x)','xdot=A*x');
+ode(eye(A),0,1,f)
+.fi
+Same example integrated with Adams integration routine
+.nf
+ode('adams',0,1,f)
+.fi
+Same example with stiff f (Jacobian provided) A=[10,0;0,-1]
+.nf
+deff('[J]=Jacobian(t,y)','J=A')
+ode('stiff',[0;1],0,1,f,Jacobian)
+.fi
+.TP
+[2]
+Integration of the Riccati differential equation
+Xdot=A'*X + X*A - X'*B*X + C ,  X(0)=Identity
+Solution at t=[1,2] 
+.nf
+deff('[Xdot]=ric(t,X)','Xdot=A''*X+X*A-X''*B*X+C')   
+A=[1,1;0,2]; B=[1,0;0,1]; C=[1,0;0,1];
+X=ode(eye(A),0,t,ric)
+.fi
+.TP
+[3]
+Simulation of dx/dt = A x(t) + B u(t) with u(t)=sin(omega*t),
+x0=[1;0] ; solution x(t) desired at t=0.1, 0.2, 0.5 ,1.
+Here the \fVA\fR matrix and the \fVu\fR function are passed to the RHS 
+function in a list. \fVB\fR and \fVomega\fR are passed through the 
+environment.
+.nf
+deff('[xdot]=linear(t,x,A,u)','xdot=A*x+B*u(t)')
+deff('[ut]=u(t)','ut=sin(omega*t)')
+A=[1 1;0 2];B=[1;1];omega=5;
+ode([1;0],0,[0.1,0.2,0.5,1],list(linear,A,u))
+.fi
+.TP
+[4]
+Stopping time Integration of the differential equation
+ydot = y , y(0)= y0=1; and finds To=inf{t such that y(t)=2}
+.nf
+deff('[ydot]=f(t,y)','ydot=y')
+deff('[surface]=g(t,y)','surface=y-2')
+ng=1;
+[y,rd]=ode('roots',y0,0,2,f,ng,g)
+.fi
+.TP
+[5]
+Fortran called (see source code of fydot.f and fjac.f)
+.nf
+y0=[1;0;0]; t0=0; t=[0.4,4]
+ode('stiff',y0,t0,t,'fex','jex')
+.fi
+.SH SEE ALSO
+impl, ltitr, rtitr, exp, csim, external.
+

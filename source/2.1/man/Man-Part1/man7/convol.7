@@ -1,0 +1,36 @@
+.TH convol 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+convol - convolution (overlap add method)
+.SH CALLING SEQUENCE
+.nf
+[y,y1]=convol(h,x,y0)
+[y]=convol(h,x)
+.fi
+.SH PARAMETERS
+.TP 10
+x,h
+:input sequences (\fVh\fR is a "short" sequence, \fVx\fR a "long" one)
+.TP
+y0
+: old piece to overlap add
+.TP
+y
+: output of convolution
+.TP
+y1
+: new piece to overlap add
+.SH DESCRIPTION
+calculates the convolution \fVy= h*x\fR of two
+discrete sequences by the overlap add method (fft).
+.SH EXAMPLE
+.nf
+For x=[x1,x2,...,]
+First call : [y,y1]=convol(h,x1)
+Subsequent calls : [y,y1]=convol(h,xk,y1).
+.fi
+.SH SEE ALSO
+corr,fft,pspec and polynomial product.
+.SH AUTHOR
+F. D , C. Bunks Date 3 Oct. 1988
+

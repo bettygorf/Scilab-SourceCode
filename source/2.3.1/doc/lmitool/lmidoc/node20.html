@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<!--Converted with LaTeX2HTML 96.1 (Feb 5, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>How lmisolver works</TITLE>
+<META NAME="description" CONTENT="How lmisolver works">
+<META NAME="keywords" CONTENT="lmidoc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="lmidoc.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html289" HREF="node21.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www-rocq.inria.fr/scilab/icons/next_motif.gif"></A> <A NAME="tex2html287" HREF="lmidoc.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www-rocq.inria.fr/scilab/icons/up_motif.gif"></A> <A NAME="tex2html281" HREF="node19.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www-rocq.inria.fr/scilab/icons/previous_motif.gif"></A> <A NAME="tex2html291" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www-rocq.inria.fr/scilab/icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html290" HREF="node21.html">Other versions</A>
+<B>Up:</B> <A NAME="tex2html288" HREF="lmidoc.html">LMITOOL: a Package  for </A>
+<B> Previous:</B> <A NAME="tex2html282" HREF="node19.html">Example</A>
+<BR> <P>
+<H1><A NAME="SECTION00050000000000000000">How <TT>lmisolver</TT> works</A></H1>
+<P>
+<A NAME="slmisolverworks">&#160;</A>
+The function <TT>lmisolver</TT> works essentially in four steps:
+<OL><LI>
+<EM>Initial set-up.</EM>  The sizes and structure of the initial guess are
+used to set up the problem, and in particular the size of the unknown
+vector.<LI>
+<EM>Elimination of equality constraints.</EM>  Making repeated calls
+to the evaluation function, <TT>lmisolver</TT> generates 
+a canonical representation of the form
+<P> <IMG WIDTH=445 HEIGHT=38 ALIGN=BOTTOM ALT="displaymath886" SRC="img63.gif"  > <P>
+where <I>z</I> contains the coefficients of all matrix variables. 
+This step uses extensively  sparse matrices to speed up
+the computation and reduce memory requirement.<LI>
+<EM>Elimination of variables.</EM> Then, <TT>lmisolver</TT> 
+eliminates the redundant variables.  The equality
+constraints are eliminated by computing the null space <I>N</I> of <I>A</I> and
+a solution  <IMG WIDTH=14 HEIGHT=14 ALIGN=MIDDLE ALT="tex2html_wrap_inline898" SRC="img64.gif"  >  (if any) of <I>Ax</I>+<I>b</I>=0.  At this stage, all solutions
+of the equality constraints are parametrized by 
+<P> <IMG WIDTH=297 HEIGHT=14 ALIGN=BOTTOM ALT="displaymath887" SRC="img65.gif"  > <P>
+where <I>x</I> is a vector containing the independent variables.  The
+computation of  <IMG WIDTH=35 HEIGHT=22 ALIGN=MIDDLE ALT="tex2html_wrap_inline904" SRC="img66.gif"  >  is done using sparse LU functions of Scilab.
+<P>
+Once the equality constraints are eliminated, the problem is
+reformulated as
+<P> <IMG WIDTH=399 HEIGHT=37 ALIGN=BOTTOM ALT="displaymath888" SRC="img67.gif"  > <P>
+where <I>c</I> is a vector, and  <IMG WIDTH=76 HEIGHT=22 ALIGN=MIDDLE ALT="tex2html_wrap_inline908" SRC="img68.gif"  >  are symmetric matrices,
+and <I>x</I> contains the <EM>independent</EM> elements in the matrix
+variables  <IMG WIDTH=85 HEIGHT=22 ALIGN=MIDDLE ALT="tex2html_wrap_inline572" SRC="img3.gif"  > .  (If the  <IMG WIDTH=14 HEIGHT=22 ALIGN=MIDDLE ALT="tex2html_wrap_inline914" SRC="img69.gif"  > 's are dependent, a column
+compression is performed.)<LI>
+<EM>Optimization.</EM>
+Finally, <TT>lmisolver</TT> makes a call to the function <TT>semidef</TT>
+(an interface to <B>SP</B> [<A HREF="node22.html#sp">1</A>]). This phase is itself divided into a
+feasibility phase and a minimization phase (only if the linear
+objective function is not empty).  The feasibility phase is avoided if
+the initial guess is found to be feasible.
+<P>
+The function <TT>semidef</TT> is called with the optimization
+parameters <TT>abstol</TT>, <TT>nu</TT>, <TT>maxiters</TT>, <TT>reltol</TT>.  The
+parameter <TT>M</TT> is set above the value
+<PRE>Mbnd*max(sum(abs([F0 ... Fm])))</PRE>
+For details about the optimization phase, and the meaning of the above
+optimization parameters see manual page for <TT>semidef</TT>.
+</OL><BR> <HR>
+<P><ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

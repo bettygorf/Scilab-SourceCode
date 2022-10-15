@@ -1,0 +1,21 @@
+.TH invsysli 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+invsysli - system inversion
+.SH CALLING SEQUENCE
+.nf
+[sl2]=invsysli(sl1) 
+.fi
+.SH PARAMETERS
+.TP
+sl1,sl2
+: \fVsyslin\fR lists (linear systems in state space representation)
+.SH DESCRIPTION
+computes the state form of the inverse \fVsl2\fR of the linear 
+system \fVsl1\fR (which is also given in state form). 
+.LP
+The \fVD\fR-matrix is supposed to be full rank.
+.SH SEE ALSO
+rowregul, inv
+
+

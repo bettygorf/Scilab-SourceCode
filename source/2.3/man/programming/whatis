@@ -1,0 +1,157 @@
+abort - interrupt evaluation.
+addinter - new functions interface incremental linking at run time
+and (&) - logical and
+ans - answer
+apropos - searches keywords in Scilab help 
+argn - number of arguments in a function call
+backslash (\\) - left matrix division.
+binary - binary file management
+boolean - Scilab Objects, boolean variables and operators & | ~
+brackets ([,]) - left and right brackets
+break - keyword to interrupt loops
+case - keyword used in select
+ceil - rounding up
+clear - kills variables
+clearfun - remove primitive.
+code2str - returns character string associated with Scilab integer codes.
+coeff - coefficients of matrix polynomial
+colon (:) - colon operator
+comma (,) - column, instruction, argument separator
+comments - comments
+comp -  function compilation
+deff - on-line definition of function
+degree - degree of polynomial matrix
+delbpt - delete breakpoint
+diary - diary of session
+disp - displays variables 
+dispbpt - display breakpoints
+else - keyword in if-then-else
+elseif - keyword in if-then-else
+empty ([]) - empty matrix
+end - end keyword
+equal (=) - affectation, comparison equal sign
+errcatch - error trapping
+errclear - error clearing
+error - error messages 
+evstr - evaluation of expressions
+exec - script file execution
+exists - checks variable  existence
+exit -  Scilab quit
+external - Scilab Object, external function or routine
+extraction - matrix and list entry extraction
+eye - identity matrix
+feval - multiple evaluation
+file - file management
+find - find indices of  boolean vector or matrix true elements
+fix - rounding towards zero
+floor - rounding down
+for - language keyword for loops
+format - printing format
+fort - Fortran or C user routines call
+fprintf - Emulator of C language fprintf function
+fscanf - Converts formatted input read on a file
+funcprot - switch scilab functions protection mode
+function - Scilab procedure and Scilab object
+funptr - coding of  primitives ( wizard stuff )
+getenv - get the value of an environment variable
+getf - loading function
+getpid - get Scilab process identificator
+hat (^) - exponentiation
+help - on-line help command
+host - shell (sh) command execution
+if then else - conditional execution
+imag - imaginary part
+insertion - matrix and list insertion or modification
+int - integer part
+intersci - scilab tool to interface C of Fortran functions with scilab
+iserror - error test
+keyboard - keyboard commands
+left ([) - left bracket
+length - length of object
+less (<) - lower than comparison
+lib - library definition
+lines - rows and columns used for display
+link - dynamic link
+list - Scilab object and list function definition
+load - load saved variable
+lsslist - Scilab linear state space t function definition
+macro - Scilab procedure and Scilab object
+matrices - Scilab object, matrices in Scilab
+matrix - vector to matrix conversion
+max - maximum
+maxi - maximum
+min - minimum 
+mini - minimum 
+minus (+) -  substraction operator, sign changes
+mode - select a mode in exec file
+mtlb_mode - switch Matlab like operations
+newfun - add a name in the table of functions
+not (~) - logical not
+null - delete an element in a list
+ones - matrix made of ones
+or | - logical or
+parents ( ) - left and right parenthesis
+part - extraction of strings
+pause - pause mode, invoke keyboard
+percent (%) - special character
+plus (+) -  addition operator
+poly - polynomial definition
+power (^) - power operation 
+predef - variable protection
+print - prints variables  in a file 
+printf - Emulator of C language printf function
+printf_conversion - printf, sprintf, fprintf conversion specifications
+quit - decrease the pause level or exit
+quote (') - transposition operator, string deleimiter
+rand - random number generator
+rat - Floating point rational approximation 
+rational - Scilab objects, rational in Scilab
+read - matrices read
+readb - binary read 
+real - real part
+resume - return or resume 
+return - return or resume 
+rlist - Scilab rational fraction function definition
+round - rounding
+save - saving variables
+scanf - Converts formatted input on standard input
+scanf_conversion - scanf, sscanf, fscanf conversion specifications
+scilab - Major unix script to execute Scilab and miscellaneous tools
+scilink - Unix script to relink Scilab
+select - select keyword 
+semicolumn (;) -  ending expression and row separator
+setbpt - setting breakpoints 
+sign - sign function
+signm - matrix sign function
+size - size of objects
+slash (/) - right division and feed back
+sprintf - Emulator of C language sprintf function
+sscanf - Converts formatted input given by a string
+stacksize - set scilab stack size 
+star (*) - multiplication operator
+startup - startup file 
+str2code - return scilab integer codes associated with a character string
+string - conversion to string
+strings - Scilab Object, character strings
+then - keyword in if-then-else
+tilda (~) - logical not
+tlist - Scilab object and typed list definition.
+type - variable type
+ulink - unlink a dynamically linked shared object
+unix - shell (sh) command execution
+unix_g - shell (sh) command execution, output redirected to a variable
+unix_s - shell (sh) command execution, no output
+unix_w - shell (sh) command execution, output redirected to scilab window
+unix_x - shell (sh) command execution, output redirected to a window
+user - interfacing a fortran routine
+varn - symbolic variable of a polynomial
+warning - warning messages 
+what - list the Scilab primitives
+where - get current instruction calling tree
+whereami - display current instruction calling tree
+whereis - name of library containing a function
+while - while keyword 
+who - listing of variables
+whos - listing of variables in long form
+writb - binary write
+write -  write in a formatted file

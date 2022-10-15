@@ -1,0 +1,37 @@
+.TH WFILE_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+WFILE_f - Scicos "write to file" block
+.SH DIALOGUE PARAMETERS
+.TP 20
+input size
+: a scalar. This fixes the input size
+.TP
+Output file name
+: a character string defining the path of the file 
+.TP
+Output Format
+: a character string defining the Fortran format to use or nothing for
+an unformatted (binary) write
+.TP
+Buffer size
+: To improve efficiency it is possible to buffer the input data. write
+on the file is only done after each \fVBuffer size\fR calls to the block.
+.SH DESCRIPTION
+This block allows user to save data in a file, in formatted and binary
+mode.
+Each call to the block corresponds to a record in the file. Each
+record has the following form:
+\fV[t,V1,...,Vn]\fR where \fVt\fR is the value of time when block is
+called  and \fVVi\fR is the ith input value
+.SH SEE ALSO
+RFILE_f
+
+
+
+
+
+
+
+
+

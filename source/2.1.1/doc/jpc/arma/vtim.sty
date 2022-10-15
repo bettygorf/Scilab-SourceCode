@@ -1,0 +1,8 @@
+\def\verbatiminput{\begingroup
+  \@ifstar\sverbatim@input\verbatim@input}
+\def\verbatim@input#1{\small\@verbatim
+  \frenchspacing \@vobeyspaces
+  \@input{#1}\endtrivlist\endgroup\@doendpe}
+\def\verbatim@input#1{\small\@verbatim
+  \frenchspacing \@vobeyspaces
+  \@input{#1}\endtrivlist\endgroup\@doendpe}

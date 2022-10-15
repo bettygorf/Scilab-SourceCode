@@ -1,0 +1,52 @@
+.TH "nextpowQ" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+nextpowQ - Rounds a number  to the up-nearest power of an integer
+.sp
+Author: Paulo Goncalves
+.sp
+Rounds a number \fIx\fP to the up-nearest power of an integer \fIQ\fP
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+[xup2Q,powQ] = nextpowQ(x[,Q])
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : Real positive number 
+
+.TP
+o 
+\fBQ\fP : Positive integer. 
+Default value is \fIQ = 2\fP
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBxup2Q\fP : Positive integer 
+\fIx\fP rounded to the closest power of \fIQ\fP 
+
+.TP
+o 
+\fBpowQ\fP :  Positive integer 
+\fIxup2Q = powQ\(haQ\fP.
+.RE
+
+.SH See also:
+log, log2

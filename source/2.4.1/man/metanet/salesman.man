@@ -1,0 +1,40 @@
+.TH salesman 1 "September 1996" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+salesman - solves the travelling salesman problem
+.SH CALLING SEQUENCE
+.nf
+cir = salesman(g,[nstac])
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph list
+.TP 6
+nstac
+: integer
+.TP 4
+cir
+: integer row vector
+.SH DESCRIPTION
+\fVsalesman\fR solves the travelling salesman problem. \fVg\fR is a directed 
+graph; \fVnstac\fR is an optional integer which is a given bound for
+the allowed memory size for solving this problem. Its value is 100*n*n by 
+default where n is the number of nodes.
+.SH EXAMPLE
+.nf
+ta=[2  1 3 2 2 4 4 5 6 7 8 8 9 10 10 10 10 11 12 13 13 14 15 16 16 17 17];
+he=[1 10 2 5 7 3 2 4 5 8 6 9 7 7 11 13 15 12 13  9 14 11 16 1 17 14 15];
+g=make_graph('foo',0,17,ta,he);
+g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+g('node_diam')=[1:(g('node_number'))]+20;
+show_graph(g);
+g1=make_graph('foo1',1,17,[ta he],[he ta]);
+m=arc_number(g1);
+g1('edge_length')=5+round(30*rand(1,m));
+cir = salesman(g1);
+ii=find(cir > edge_number(g)); 
+if(ii <> []) then cir(ii)=cir(ii)-edge_number(g);end;
+show_arcs(cir);
+.fi

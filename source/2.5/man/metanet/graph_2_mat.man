@@ -1,0 +1,55 @@
+.TH graph_2_mat 1 "September 1995" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+graph_2_mat - node-arc or node-node incidence matrix of a graph
+.SH CALLING SEQUENCE
+.nf
+a = graph_2_mat(g,mat)
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph list
+.TP 4
+mat
+: optional string, 'node-arc' or 'node-node' matrix
+.TP 2
+a
+: sparse node-arc or node-node incidence matrix
+.SH DESCRIPTION
+\fVgraph_2_mat\fR computes the node-arc or the node-node incidence matrix 
+corresponding
+to the graph \fVg\fR. 
+
+If the optional argument \fVmat\fR is omitted or is the string 
+\fV'node-arc'\fR, the node-arc matrix is computed. If \fVmat\fR is the string
+\fV'node-node'\fR, the node-node matrix is computed.
+
+If \fVn\fR is the number of nodes of the graph and 
+\fVm\fR is the number of edges of the graph, the node-arc matrix is a Scilab 
+sparse matrix of size \fV(n,m)\fR.
+
+It is defined as follows. If the graph is directed:
+
+\fVa(i,j) = +1\fR if node \fVi\fR is the tail of arc \fVj\fR
+
+\fVa(i,j) = -1\fR if node \fVi\fR is the head of arc \fVj\fR
+
+If the graph is undirected:
+
+\fVa(i,j) = 1\fR if node \fVi\fR is the tail or the head of arc \fVj\fR
+
+If \fVn\fR is the number of nodes of the graph, the node-node matrix is a 
+Scilab sparse matrix of size \fV(n,n)\fR.
+
+It is defined as follows:
+
+\fVa(i,j) = 1\fR if there is an arc from node \fVi\fR to node \fVj\fR
+.SH EXAMPLE
+.nf
+g=load_graph(SCI+'/demos/metanet/colored');
+a=graph_2_mat(g)
+a=graph_2_mat(g,'node-node')
+.fi
+.SH SEE ALSO
+mat_2_graph

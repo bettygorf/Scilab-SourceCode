@@ -1,0 +1,25 @@
+#include "../Imake.incl"
+
+SCILAB=$(SCIDIR)/bin/scilab
+OBJS=  bezout.dia break.dia breakpoints.dia calpol.dia clause.dia corr.dia display.dia dmrdsp.dia elemlib.dia evans.dia flts.dia fort.dia intg.dia macro.dia matnew.dia matode.dia matopt.dia matqz.dia matric.dia pause.dia polops.dia pow.dia residu.dia rtitr.dia scilab.dia colnew.dia feval.dia auto.dia
+
+AllTarget(info)
+
+info	:
+	@echo "Type make tests in tests directory "
+	@echo "  to test the  distribution"
+
+tests: $(OBJS)
+
+DependTarget()
+
+/* ScilabTestTarget() */
+.tst.dia :
+	@$(SCIDIR)/util/scidem $(SCIDIR)/bin/scilab $*.tst $*.dia
+
+clean ::
+	$(RM) $(OBJS)
+
+distclean:: clean 
+
+

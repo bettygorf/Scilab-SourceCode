@@ -1,0 +1,24 @@
+
+xs2fig(2)                      Scilab Function                      xs2fig(2)
+NAME
+  xs2fig - send graphics to a file in Xfig syntax
+
+CALLING SEQUENCE
+  xs2fig(win_num,filen,[color])
+
+PARAMETERS
+
+  win_num  : integer scalar or vector .
+
+  filen     : string, file name.
+
+  color     : optional integer. 0 means black and white and 1 means color.
+            The default value is to use a value compatible with the screen
+            status.
+
+DESCRIPTION
+  xs2fig sends the recorded graphics of the window win_num in the file filen
+  in Xfig syntax.  This function works only if the selected driver is "Rec".
+
+SEE ALSO
+  xbasimp

@@ -1,0 +1,27 @@
+.TH trianfml 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+trianfml - symbolic triangularization
+.SH CALLING SEQUENCE
+.nf
+[f [,sexp]]=trianfml(f [,sexp])
+.fi
+.SH DESCRIPTION
+Triangularization of the symbolic matrix \fVf\fR ; triangularization 
+is performed by elementary row operations;
+\fVsexp\fR is a set of common expressions stored by the algorithm.
+.SH EXAMPLE
+.nf
+A=['1','2';'a','b']
+W=trianfml([A,string(eye(2,2))])
+U=W(:,3:4)
+a=5;b=6;
+A=evstr(A)
+U=evstr(U)
+U*A
+evstr(W(:,1:2))
+.fi
+.SH SEE ALSO
+addf, mulf, solve, trisolve
+
+

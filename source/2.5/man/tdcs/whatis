@@ -1,0 +1,15 @@
+artest - arnold dynamical system   @artest
+bifish - shows a bifurcation diagram in a fish population discrete time model   @bifish
+boucle - phase portrait of a dynamical system with observer   @boucle
+chaintest - a three-species food chain model   @chaintest
+fusee - a set of scilab macro for a landing rocket problem   @fusee
+gpeche - a fishing program   @fishing
+lotest - demo of the lorenz attractor   @lotest
+mine - a mining problem   @mine
+obscont1 - a controlled-observed system   @obscont1
+portr3d - 3 dimensional phase portrait.   @portr3d
+portrait - 2 dimensional phase portrait.   @portrait
+recur - a bilinear recurrent equation   @recur
+systems - a collection of dynamical system   @systems
+tangent - linearization of a dynamical system at an equilibrium point   @tangent
+tdinit - interactive initialisation of the tdcs dynamical systems   @tdinit

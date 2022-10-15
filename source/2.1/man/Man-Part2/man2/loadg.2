@@ -1,0 +1,25 @@
+.TH loadg 1 "October 1994" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME 
+loadg - load an existing graph  
+.SH CALLING SEQUENCE
+.nf
+g = loadg(name,[sup])
+.fi
+.SH PARAMETERS
+.TP 5
+name 
+: string, name of graph to be loaded
+.TP 4
+sup 
+: integer, optional variable with default value 0
+.TP 2
+g
+: graph list
+.SH DESCRIPTION
+\fVname\fR is the name of an existing graph to be loaded in \fVScilab\fR
+and displayed in the \fVMetanet\fR window. 
+If there is already a graph displayed in the \fVMetanet\fR window,
+the optional variable must be equal to 1 to display the new graph instead.
+.SH SEE ALSO
+createg, graph_list, netwindow

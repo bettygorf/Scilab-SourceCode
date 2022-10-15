@@ -1,0 +1,41 @@
+.TH cspect 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+cspect - spectral estimation (periodogram method)
+.SH CALLING SEQUENCE
+.nf
+[sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: data if vector, amount of input data if scalar
+.TP
+y
+: data if vector, amount of input data if scalar
+.TP
+nlags
+: number of correlation lags (positive integer)
+.TP
+ntp
+: number of transform points (positive integer)
+.TP
+wtype
+: string : \fV're','tr','hm','hn','kr','ch'\fR (window type)
+.TP
+wpar
+: optional window parameters for \fVwtype='kr', wpar>0\fR
+and for \fVwtype='ch', 0 < wpar(1) < .5, wpar(2) > 0\fR
+.TP
+sm
+: power spectral estimate in the interval [0,1]
+.TP
+cwp
+: calculated value of unspecified Chebyshev window parameter
+.SH DESCRIPTION
+Spectral estimation using the modified periodogram method.
+Cross-spectral estimate of \fVx\fR and \fVy\fR is calculated when both
+\fVx\fR and \fVy\fR are given. Auto-spectral estimate of \fVx\fR is calculated
+if \fVy\fR is not given.
+.SH AUTHOR
+C. Bunks 

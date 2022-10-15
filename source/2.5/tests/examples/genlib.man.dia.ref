@@ -1,0 +1,21 @@
+ 
+clear;lines(0);
+ 
+genlib('auto1','SCI/macros/auto')
+ 
+disp(auto1)
+ 
+ Functions files location :SCI/macros/auto/
+ 
+ arhnk     abinv     arl2      abcd      bilin     balreal   csim      
+ cont_frm  canon     contrss   colregul  calfrq    ctr_gram  cont_mat  
+ cls2dls   cainv     dscr      dbphi     dt_ility  des2tf    dsimul    
+ ddp       equil     equil1    francis   freson    flts      frep2tf   
+ g_margin  gfrancis  invrs     imrep2ss  invsyslin           kpure     
+ krac2     lqg       lqr       lqe       lqg2stan  markp2ss  minss     
+ minreal   obsv_mat  obs_gram  observer  obsvss    obscont   pfss      
+ projsl    p_margin  phasemag  rowregul  repfreq   statgain  ss2tf     
+ specfact  stabil    ss2ss     sm2ss     svplot    st_ility  ss2des    
+ sm2des    scicos    tf2ss     trzeros   time_id   ui_observer         
+ unobs     zeropen   
+ 

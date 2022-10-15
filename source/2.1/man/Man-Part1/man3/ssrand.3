@@ -1,0 +1,27 @@
+.TH ssrand 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+ssrand - random system generator
+.SH CALLING SEQUENCE
+.nf
+[sl]=ssrand(nout,nin,nstate)
+.fi
+.SH PARAMETERS
+.TP 10
+nout
+: integer (number of output)
+.TP
+nin
+: integer (number of input)
+.TP
+nstate
+: integer (dimension of state-space)
+.TP
+sl
+: list (\fVsyslin\fR list)
+.SH DESCRIPTION
+returns a random strictly proper (\fVD=0\fR) state-space
+system of size \fV[nout,nint]\fR represented by a \fVsyslin\fR list.
+.SH SEE ALSO:
+syslin 
+

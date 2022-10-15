@@ -1,0 +1,25 @@
+.TH maxcpp 1 "October 1994" "Scilab Group" "Scilab macro"
+.so man1/sci.an
+.SH NAME 
+maxcpp - maximum capacity path 
+.SH CALLING SEQUENCE
+.nf
+[p,cap] = maxcpp(i,j,[g])
+.fi
+.SH PARAMETERS
+.TP 4
+i,j
+: integers, node numbers
+.TP 2
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP 2
+p
+: row vector of arc number, maximum capacity path 
+.TP 4
+cap
+: capacity of the path
+.SH DESCRIPTION
+\fVmaxcpp\fR returns the maximum capacity path from node \fVi\fR to 
+node \fVj\fR for the graph \fVg\fR.
+

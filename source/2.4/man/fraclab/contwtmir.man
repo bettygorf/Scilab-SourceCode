@@ -1,0 +1,190 @@
+.TH "contwt" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+contwt -  Continuous L2 wavelet transform with mirroring
+.sp
+Author: Paulo Goncalves
+.sp
+Computes a \fIcontinuous wavelet transform\fP of a mirrored 1\f(CR-\fPD signal (real or complex). The scale operator is unitary with respect to the L2 norm.
+Two closed form wavelets are available:
+the \fIMexican Hat\fP or the \fIMorlet Wavelet\fP (real or analytic). For arbitrary
+analyzing wavelets, numerical approximation is achieved using a Fast
+Mellin Transform.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPwt,scale,f,scalo,wavescaled\f(CR]\fP=contwtmir(x,\f(CR[\fPfmin,fmax,N,wvlt_length\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : Real or complex vector \f(CR[\fP1,nt\f(CR]\fP or \f(CR[\fPnt,1\f(CR]\fP
+Time samples of the signal to be analyzed. 
+
+.TP
+o 
+\fBfmin\fP : real scalar in  \f(CR[\fP0,0.5\f(CR]\fP
+Lower frequency bound of the analysis. When not specified, this
+parameter forces the program to interactive mode.
+
+.TP
+o 
+\fBfmax\fP :  real scalar \f(CR[\fP0,0.5\f(CR]\fP and \fIfmax\fP \f(CR>\fP 
+Upper frequency bound of the analysis. When not specified, this
+parameter forces the program to interactive mode.
+
+.TP
+o 
+\fBN\fP : positive integer. 
+number of analyzing voices.  When not specified, this parameter forces
+the program to interactive mode.
+
+.TP
+o 
+\fBwvlt_length \fP : scalar or vector
+specifies the analyzing wavelet:
+0: Mexican hat wavelet (real)
+Positive real integer: real Morlet wavelet of size 2*\fIwvlt_length\fP+1) at
+finest scale 1
+Positive imaginary integer: analytic Morlet wavelet of size 2*\fIwvlt_length\fP+1) at
+finest scale 1
+Real valued vector: waveform samples of an arbitrary bandpass function.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : Real or complex matrix \f(CR[\fPN,nt\f(CR]\fP
+coefficient of the wavelet transform. 
+
+.TP
+o 
+\fBscale\fP : real vector \f(CR[\fP1,N\f(CR]\fP
+analyzed scales
+
+.TP
+o 
+\fBf\fP : real vector \f(CR[\fP1,N\f(CR]\fP
+analyzed frequencies
+
+.TP
+o 
+\fBscalo\fP : real positive valued matrix
+\f(CR[\fPN,nt\f(CR]\fP
+Scalogram coefficients (squared magnitude of the
+wavelet coefficients \fI wt \fP)
+
+.TP
+o 
+\fBwavescaled\fP : Scalar or real valued matrix
+\f(CR[\fPlength(wavelet at coarser scale)+1,N\f(CR]\fP
+ 
+Dilated versions of the analyzing wavelet
+.RE
+
+.SH Description
+.SH Parameters
+
+
+.RS
+
+.TP
+o 
+\fIx\fP : signal to be analyzed. Real or complex
+vector
+
+.TP
+o 
+\fIfmin\fP : lower frequency bound of the analysis. \fIfmin\fP is
+real scalar comprised in  \f(CR[\fP0,0.5\f(CR]\fP
+
+.TP
+o 
+\fIfmax\fP : upper frequency bound of the analysis. \fIfmax\fP is
+a real scalar comprised in \f(CR[\fP0,0.5\f(CR]\fP and \fIfmax\fP \f(CR>\fP
+\fIfmin\fP
+
+.TP
+o 
+\fIN\fP : number of analyzing voices geometrically
+sampled between minimum scale \fIfmax\fP/\fIfmax\fP and maximum
+scale \fIfmax\fP/\fIfmin\fP.
+
+.TP
+o 
+\fIwvlt_length \fP : specifies the analyzing wavelet:
+0: Mexican hat wavelet (real). The size of the wavelet is
+automatically fixed by the analyzing frequency
+Positive real integer: real Morlet wavelet of size 2*\fIwvlt_length\fP+1) at
+finest scale (1)
+Positive imaginary integer: analytic Morlet wavelet of size
+2\f(CR*\fP\f(CR|\fP\fIwvlt_length\fP\f(CR|\fP+1) at finest scale 1. The corresponding
+wavelet transform is then complex. May be usefull for event detection
+purposes.
+Real valued vector: corresponds to the time samples waveform of any
+arbitrary bandpass function viewed as the analyzing wavelet at any
+given scale. Then, an approximation of the scaled wavelet versions is achieved
+using the Fast Mellin Transform (see dmt and dilate).
+
+.TP
+o 
+\fIwt\fP : coefficient of the wavelet transform.  X\f(CR-\fPcoordinated
+corresponds to time (uniformly sampled), Y\f(CR-\fPcoordinates correspond to
+frequency (or scale) voices (geometrically sampled between \fI fmax\fP
+(resp. 1) and \fIfmin\fP (resp. \fI fmax \fP/\fI fmin \fP). First row of
+wt corresponds to the highest analyzed frequency (finest scale).
+
+.TP
+o 
+\fIscale\fP : analyzed scales (geometrically sampled between
+1  and \fI fmax \fP/\fIfmin\fP
+
+.TP
+o 
+\fIf\fP : analyzed frequencies (geometrically sampled between
+\fI fmax \fP and \fI fmin \fP. \fIf\fP corresponds to \fIfmax\fP/\fIscale\fP
+
+.TP
+o 
+\fIscalo\fP : Scalogram coefficients (squared magnitude of the
+wavelet coefficients \fI wt \fP)
+
+.TP
+o 
+\fBwavescaled\fP : If \fI wvlt_length \fP is a real or Imaginary
+pure scalar, then \fI wavescaled\fP equal \fI wvlt_length \fP. If \fIwvlt_length \fP is a vector (containing the waveform samples of an
+arbitrary analyzing wavelet), then \fI wavescaled \fP contains
+columnwise all scaled version of \fI wvlt_length \fP used for the
+analysis. In this latter case, first element of each column gives the
+effective time support of the analyzing wavelet at the corresponding
+scale. \fI wavescaled\fP can be used for reconstructing the signal
+(see icontwt)
+.RE
+
+.SH Algorithm details
+The overall details of the algorithm are similar to those of \fIcontwt \fP.  The difference stems from the mirror operation applied to
+the signal before computing the wavelet transform to minimize border
+effects. At each scale \fI j \fP the analyzed signal is mirrored at its
+both extremities. The number of added samples at both sides is equal
+to \fIscale(j)* wvlt_length \fP (the half length of the analyzing
+wavelet at this particular scale). After convolution of the mirrored
+signal with the analyzing wavelet, the result is truncated to the
+actual size of the initial signal.
+.SH See also:
+contwt, icontwt and cwt
+.SH Example:
+\fI Signal synthesis \fP 
+x = fbmlevinson(1024,0.8) ; 
+\fI Regular Wavelet transform \fP 
+\f(CR[\fPwt_nomirror,scale,f\f(CR]\fP = contwt(x,2\(ha(-6),2\(ha(-1),128,8) ; 
+viewmat(abs(wt_nomirror),\f(CR[\fP1 1 24\f(CR]\fP) ; 
+\fI Compared with a mirrored  wavelet transform \fP 
+\f(CR[\fPwt_mirror,scale,f\f(CR]\fP = contwtmir(x,2\(ha(-6),2\(ha(-1),128,0) ; 
+viewmat(abs(wt_mirror),\f(CR[\fP1 1 24\f(CR]\fP) ; 

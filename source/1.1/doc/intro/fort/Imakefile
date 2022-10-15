@@ -1,0 +1,9 @@
+#include "../../../Imake.incl"
+
+OBJS= fibb.o
+
+
+
+AllTarget( $(OBJS))
+DependTarget()
+distclean:: clean 

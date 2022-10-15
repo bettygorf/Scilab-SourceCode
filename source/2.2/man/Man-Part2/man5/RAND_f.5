@@ -1,0 +1,42 @@
+.TH RAND_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so man1/sci.an
+.SH NAME
+RAND - Scicos random wave generator
+.SH DESCRIPTION
+This block is a random wave generator: output takes piecewise
+constant random values. Everytime an event is received on the 
+input event port, the output takes a new independent random value.
+.SH DIALOG PARAMETERS
+.TP 15
+Block label
+: A string defining the block label. This label is placed under
+the block.
+.TP
+flag
+: 0 or 1. 0 for uniform distribution on [A,A+B] and 1 for normal
+distribution N(A,B*B).
+.TP
+A
+: scalar
+.TP
+B
+: scalar
+.TP
+dt
+: a scalar. If 0, no ouput event port exists. If dt>0, an output
+event port exists. This port is initially fired and an event is
+generated dt after every input event. By feeding back this event
+output to the event input, a self clocked random wave generator
+can be constructed.
+.TP
+Amplitude
+: a scalar M.
+.SH SEE ALSO
+GENSIN_f SAWTOOTH_f GENSQR_f
+
+
+
+
+
+
+

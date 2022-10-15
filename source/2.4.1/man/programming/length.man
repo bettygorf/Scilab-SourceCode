@@ -1,0 +1,28 @@
+.TH length 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+length - length of object
+.SH CALLING SEQUENCE
+.nf
+n=length(M) 
+.fi
+.SH PARAMETERS
+.TP
+M
+: matrix (usual or polynomial or character string) or list
+.TP
+n
+: integer or integer matrix
+.SH DESCRIPTION
+For usual or polynomial matrix \fVn\fR is the integer equal to number of rows times
+number of columns of \fVM\fR. (Also valid for \fVM\fR a boolean matrix)
+.LP
+For matrices made of character strings (and in particular for a character string)
+\fVlength\fR returns in \fVn\fR the length of entries of the matrix of character strings \fVM\fR.
+.LP
+The length of a list is the number of elements in the list (also given by \fVsize\fR).
+.LP
+\fVlength('123')\fR is \fV3\fR. \fVlength([1,2;3,4])\fR is \fV4\fR.
+.SH SEE ALSO
+size
+

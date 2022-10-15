@@ -1,0 +1,7 @@
+.TH what 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+what - list the Scilab primitives
+.SH DESCRIPTION
+List of low level primitives and commands.
+

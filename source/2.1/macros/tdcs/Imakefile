@@ -1,0 +1,17 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+NAME= tdcslib
+NAM=tdcs
+
+MACROS=	artest.sci  boucle.sci comric.sci  \
+	exemple.sci  finit.sci  gaincom.sci gainobs.sci gpeche.sci  \
+	logr.sci  lotest.sci mine.sci  obs_cont.sci \
+	obsric.sci  portrait.sci portr3d.sci recur.sci  tangent.sci \
+	tdinit.sci  test_d.sci chaintst.sci bifish.sci systems.sci
+
+OBJ=$(MACROS:.sci=.bin)
+MACROSN=$(MACROS:.sci=)
+
+SciLibTarget($(OBJ))
+NormalScilabObjectRule()
+DependTarget()

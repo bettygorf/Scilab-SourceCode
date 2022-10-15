@@ -1,0 +1,41 @@
+.TH typename 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+typename - associates a name to variable type
+.SH CALLING SEQUENCE
+.nf
+[types [ [,names]]=typename()
+typename(name,type)
+.fi
+.SH PARAMETERS
+.TP 10
+types
+: integer column vector: the types codes of each defined data types.
+.TP 10
+names
+: column vector of strings: the names associated to type codes.
+.TP 
+type
+: integer: the type code of new data type.
+.TP 
+name
+: string: the name associated to the type code
+.SH DESCRIPTION
+The function and operator overloading make use of a formal name
+associated to data types to form the name of the overloading function
+(see overloading). The \fVtypename\fR can be used to handle this
+formal names for hard coded data types (the \fVtlist\fR or \fVmlist\fR
+coded data types formal names are defined in an other way, see \fVoverloading\fR).
+.LP
+Called without right hand side argument, \fVtypename\fR returns
+informations on defined data types.
+.LP 
+Called with right hand side argument, \fVtypename\fR associates a name
+to a data type code.
+.LP
+\fVtypename('',type)\fR suppress the data type given by its code
+\fVtype\fR out of the table of known data types.
+
+.SH SEE ALSO
+type, typeof, overloading, tlist, mlist
+

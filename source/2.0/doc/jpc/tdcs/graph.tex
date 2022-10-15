@@ -1,0 +1,649 @@
+
+
+\def\Mhlp{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=hlp()\\ 
+\cmarg \verb@//      Upper level plotting functions@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//    fplot3d : 3 d plotting of a macro (slow due to macro calls)@\\ 
+\cmarg \verb@//    fplot2d : 2 d plotting of a macro (slow due to macro calls)@\\ 
+\cmarg \verb@//    plot3d  :  for 3d plotting of a matrix of points@\\ 
+\cmarg \verb@//    plot2d  :  for 2d plotting @\\ 
+\cmarg \verb@//     xchange :  scale convertion between plot2d and pixels @\\ 
+\cmarg \verb@//     errbar  :  add error bar on a plot2d @\\ 
+\cmarg \verb@//     xgrid   :  add a grid on the plot2d or champ display@\\ 
+\cmarg \verb@//     xtitle  :  add title and axis names for plot2d or champ@\\ 
+\cmarg \verb@//    param3d :  curves in 3d space @\\ 
+\cmarg \verb@//    stair2d :  for 2d piec-wise constant plotting.@\\ 
+\cmarg \verb@//    champ   :  for a vector field @\\ 
+\cmarg \verb@//    fchamp  :  for a vector field  (defined with a macro) @\\ 
+\cmarg \verb@//    contour :  level curves for a 3d function given by a matrix.@\\ 
+\cmarg \verb@//    fcontour:  level curves for a 3d function given by a macro.@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//       RECORDING@\\ 
+\cmarg \verb@//  xtape    : record instructions @\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+
+\def\Mxgrid{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=xgrid(nax)\\ 
+\cmarg //$<$$>$=xgrid($[$nax$]$)\\ 
+\cmarg \verb@// add a grid on a plot2d @\\ 
+\cmarg \verb@// nax : is a vector which specifies the number @\\ 
+\cmarg \verb@// of intervals for the grid on the x and y axes.@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs=0 , nax=$<$10,10$>$,{\bf end}\\ 
+\cmarg xx=xget("wdim");\\ 
+\cmarg wmax=xx(1);\\ 
+\cmarg hmax=xx(2);\\ 
+\cmarg mfact=4;\\ 
+\cmarg stepix=(wmax$-$wmax/mfact)/nax(1);\\ 
+\cmarg xaxis(0,$<$nax(1),1$>$,...\\ 
+\cmarg \hspace{1.0cm}$<$stepix,$-$hmax+hmax/mfact,1$>$,$<$wmax/(2$\star$mfact),hmax$-$hmax/(2$\star$mfact)$>$);\\ 
+\cmarg stepix=(hmax$-$hmax/mfact)/nax(2);\\ 
+\cmarg xaxis($-$90,$<$nax(2),1$>$,...\\ 
+\cmarg \hspace{1.0cm}$<$stepix,wmax$-$wmax/mfact,1$>$,$<$wmax/(2$\star$mfact),hmax$-$hmax/(2$\star$mfact)$>$);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mxtitle{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=xtitle(xtit,xax,yax,encad)\\ 
+\cmarg //$<$$>$=xtitle(xtit,xax,yax,encad)\\ 
+\cmarg \verb@// add title and xaxis an yaxis legends@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg nax=$<$2,10$>$;\\ 
+\cmarg xx=xget("wdim");\\ 
+\cmarg wmax=xx(1);\\ 
+\cmarg hmax=xx(2);\\ 
+\cmarg mfact=4;\\ 
+\cmarg xstring(wmax/(2$\star$mfact),hmax/(2$\star$mfact)$-$10,yax,0,encad);\\ 
+\cmarg xstring(wmax$-$wmax/(2$\star$mfact)+5,hmax$-$hmax/(2$\star$mfact)$-$10,xax,0,encad);\\ 
+\cmarg r=xstringl(0,0,xtit);\\ 
+\cmarg xstring((wmax$-$r(3))/2,hmax/(4$\star$mfact),xtit,0,encad);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mcontour{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=contour(x,y,z,nz)\\ 
+\cmarg //$<$$>$=contour(x,y,z,nz)\\ 
+\cmarg \verb@// Draw level curves for a function f(x,y) which values @\\ 
+\cmarg \verb@// at points x(i),y(j) are given by z(i,j)@\\ 
+\cmarg \verb@// - z is a (n1,n2) matrix @\\ 
+\cmarg \verb@// - x is a (1,n1) matrix @\\ 
+\cmarg \verb@// - y is a (1,n2) matrix @\\ 
+\cmarg \verb@// - nz is the number of level curves. Computed from min and max of z@\\ 
+\cmarg \verb@// Exemple Contour(1:5,1:10,rand(5,10),5);@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$n1,n2$>$={\bf size}(z);\\ 
+\cmarg xselect();\\ 
+\cmarg {\bf fort}('ctdr',x,1,'r',y,2,'r',z,3,'r',n1,4,'i',...\\ 
+\cmarg \hspace{1.0cm}n2,5,'i',nz,6,'i','{\bf sort}');\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mfcontour{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=fcontour(f,xr,yr,nz)\\ 
+\cmarg //$<$$>$=fcontour(f,xr,yr,nz)\\ 
+\cmarg \verb@// Draw level curves for the function defined by the macro f @\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// zr and yr are row vectors which give the grid on which we @\\ 
+\cmarg \verb@// compute f values before computing the level curves @\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// nc is the number of level that we want @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xselect();\\ 
+\cmarg $<$p1,q1$>$={\bf size}(xr);\\ 
+\cmarg $<$p2,q2$>$={\bf size}(yr);\\ 
+\cmarg {\bf for} i=1:q1,\\ 
+\cmarg \hspace{0.8cm}{\bf for} j=1:q2,\\ 
+\cmarg \hspace{1.5cm}x(i,j)=f(xr(i),yr(j)),\\ 
+\cmarg \hspace{0.8cm}{\bf end},\\ 
+\cmarg {\bf end},\\ 
+\cmarg Contour(xr,yr,x,nz);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mfplotdd{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=fplot2d(f,xr,style,strf,leg,rect,nax)\\ 
+\cmarg //$<$$>$=fplot2d(f,xr,$[$style,strf,leg,rect,nax$]$)\\ 
+\cmarg \verb@// f is a macro f(x):=x\^2@\\ 
+\cmarg \verb@// xr : vector to define the arguments of f @\\ 
+\cmarg \verb@// ex xr=<0:0.1:1>@\\ 
+\cmarg \verb@// fplot2d(f,0:0.1:1);@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs$<$=2,style=$-$1,{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=3,strf="021",{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=4,leg=" ",{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=5,rect=$<$0,0,10,10$>$,{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=6,nax=$<$2,10,2,10$>$,{\bf end}\\ 
+\cmarg xselect();\\ 
+\cmarg $<$p1,p2$>$={\bf size}(xr);\\ 
+\cmarg {\bf if} p1=1 , xr=xr';$<$p1,p2$>$={\bf size}(xr);{\bf end}\\ 
+\cmarg {\bf for} i=1:p1,\\ 
+\cmarg \hspace{1.5cm}z(i)=f(xr(i)),\\ 
+\cmarg {\bf end},\\ 
+\cmarg plot2d(xr,z,style,strf,leg,rect,nax),\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mfplottd{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$z$>$=fplot3d(f,xr,yr,teta,alpha,leg,flag)\\ 
+\cmarg //$<$z$>$=fplot3d(f,xr,yr,teta,alpha,leg,$[$flag$]$)\\ 
+\cmarg \verb@// f is a macro f(x,y):=x\^2+y\^2@\\ 
+\cmarg \verb@// (xr,yr) : vectors to defines the arguments of f @\\ 
+\cmarg \verb@// ex xr=0:0.1:1 , yr=0:0.1:1@\\ 
+\cmarg \verb@// teta, alpha : spherical angles that define the view point@\\ 
+\cmarg \verb@// flag (see plot3d)@\\ 
+\cmarg \verb@// The return value is z=the matrix f(xr,yr);@\\ 
+\cmarg \verb@// You can then use plot3d in order to change the view point whithout@\\ 
+\cmarg \verb@// recomputing all the f values. @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xselect();\\ 
+\cmarg $<$p1,q1$>$={\bf size}(xr);\\ 
+\cmarg $<$p2,q2$>$={\bf size}(yr);\\ 
+\cmarg {\bf for} i=1:q1,\\ 
+\cmarg \hspace{0.8cm}{\bf for} j=1:q2,\\ 
+\cmarg \hspace{1.5cm}z(i,j)=f(xr(i),yr(j)),\\ 
+\cmarg \hspace{0.8cm}{\bf end},\\ 
+\cmarg {\bf end},\\ 
+\cmarg plot3d(xr,yr,z,teta,alpha,leg,flag),\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mplottd{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=plot3d(x,y,z,teta,alpha,leg,flag)\\ 
+\cmarg //$<$$>$=plot3d(x,y,z,teta,alpha,leg,$[$flag$]$)\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// Exemple :@\\ 
+\cmarg \verb@// plot3d(1:10,1:20,rand(10,20),45,45,"X-leg@Y-leg@Z-leg",<2,1>)@\\ 
+\cmarg \verb@// flag=<mode,type>@\\ 
+\cmarg \verb@// mode >=2 -> elimination parties cachees mode (surface plus ou moins grisee)@\\ 
+\cmarg \verb@// mode = 1 avec parties cachees.@\\ 
+\cmarg \verb@// si type =0 on superpose (i.e : on ne modifie pas les echelles par rapport @\\ 
+\cmarg \verb@// a l'appel precedent @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xselect();\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs $<$= 6, flag=$<$2,1$>$,{\bf end}\\ 
+\cmarg $<$n1,n2$>$={\bf size}(z);\\ 
+\cmarg {\bf fort}('3ddr',x,1,'r',y,2,'r',z,3,'r',n1,4,'i',...\\ 
+\cmarg \hspace{0.8cm}n2,5,'i',teta,6,'i',alpha,7,'i',leg,8,'i',flag,9,'i','{\bf sort}');\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mplottdu{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=plot3d1(x,y,z,teta,alpha,leg,flag)\\ 
+\cmarg //$<$$>$=plot3d1(x,y,z,teta,alpha,leg,$[$flag$]$)\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// Exemple :@\\ 
+\cmarg \verb@// plot3d1(1:10,1:20,rand(10,20),45,45,"X-leg@Y-leg@Z-leg",<2,1>)@\\ 
+\cmarg \verb@// flag=<mode,type>@\\ 
+\cmarg \verb@// mode >=2 -> elimination parties cachees mode (surface plus ou moins grisee)@\\ 
+\cmarg \verb@// mode = 1 avec parties cachees.@\\ 
+\cmarg \verb@// si type =0 on superpose (i.e : on ne modifie pas les echelles par rapport @\\ 
+\cmarg \verb@// a l'appel precedent @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xselect();\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs $<$= 6, flag=$<$2,1$>$,{\bf end}\\ 
+\cmarg $<$n1,n2$>$={\bf size}(z);\\ 
+\cmarg {\bf fort}('3ddr1',x,1,'r',y,2,'r',z,3,'r',n1,4,'i',...\\ 
+\cmarg \hspace{0.8cm}n2,5,'i',teta,6,'i',alpha,7,'i',leg,8,'i',flag,9,'i','{\bf sort}');\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mparamtd{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=param3d(x,y,z,teta,alpha,leg,flag)\\ 
+\cmarg //$<$$>$=param3d(x,y,z,teta,alpha,leg,$[$flag$]$)\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// Exemple :@\\ 
+\cmarg \verb@// t=0:0.1:5*\%pi;@\\ 
+\cmarg \verb@// param3d(sin(t),cos(t),t/10,35,45,"X-leg@Y-leg@Z-leg",1)@\\ 
+\cmarg \verb@// teta and alpha give the observation point (see plot3d)@\\ 
+\cmarg \verb@// if flag =0 the mode is superpose mode, the scaling of the previous @\\ 
+\cmarg \verb@// call are used @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xselect();\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs $<$= 6, flag=1,{\bf end}\\ 
+\cmarg $<$n1,n2$>$={\bf size}(z);\\ 
+\cmarg {\bf fort}('p3ddr',x,1,'r',y,2,'r',z,3,'r',n2,4,'i',...\\ 
+\cmarg \hspace{0.8cm}teta,5,'i',alpha,6,'i',leg,7,'i',flag,8,'i','{\bf sort}');\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mfchamp{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=fchamp(macr\_f,fch\_t,fch\_xr,fch\_yr,arfact,flag)\\ 
+\cmarg //$<$$>$=fchamp(f,t,xr,yr,fax,arfact)\\ 
+\cmarg \verb@//    This macro displays the vector field described by f@\\ 
+\cmarg \verb@//    on the grid defined by xr,yr @\\ 
+\cmarg \verb@//    f : describes a 2-dimensionnal vector field, it can be :@\\ 
+\cmarg \verb@//        -the name of a macro supposed to be of type f(t,x,[u])@\\ 
+\cmarg \verb@//        -an object of type  list : list(f1,u1) if f1 is a macro @\\ 
+\cmarg \verb@//        of type f1(t,x,u) and we want to fix u to the value u1@\\ 
+\cmarg \verb@//    t : is the time at which we want the vector field.@\\ 
+\cmarg \verb@//    xr,yr: line vectors which give the grid @\\ 
+\cmarg \verb@//    arfact : optional argument to control the size of arrow head @\\ 
+\cmarg \verb@//            the arrow head size is multiplied by arfact @\\ 
+\cmarg \verb@//  -flag : "0" No axis (defaut value)@\\ 
+\cmarg \verb@//          "1" axis using the value of rect@\\ 
+\cmarg \verb@//          "2" axis and rectangle using previous call.@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//Exemple :@\\ 
+\cmarg \verb@//     deff('<xdot> = derpol(t,x)',<'xd1 = x(2)';@\\ 
+\cmarg \verb@//     'xd2 = -x(1) + (1 - x(1)**2)*x(2)';@\\ 
+\cmarg \verb@//     'xdot = < xd1 ; xd2 >'>);@\\ 
+\cmarg \verb@//      fchamp(derpol,0,-1:0.1:1,-1:0.1:1,1);@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xselect();\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg {\bf if} rhs $<$= 2,fch\_xr=$-$1:0.1:1;{\bf end}\\ 
+\cmarg {\bf if} rhs $<$= 3,fch\_yr=$-$1:0.1:1;{\bf end}\\ 
+\cmarg {\bf if} rhs $<$= 4,arfact=1.0;{\bf end}\\ 
+\cmarg {\bf if} rhs $<$= 5,flag="0";{\bf end} \\ 
+\cmarg $<$p1,q1$>$={\bf size}(fch\_xr);\\ 
+\cmarg $<$p2,q2$>$={\bf size}(fch\_yr);\\ 
+\cmarg fch\_rect=$<$fch\_xr(1),fch\_yr(1),fch\_xr(q1),fch\_yr(q2)$>$;\\ 
+\cmarg {\bf if} {\bf type}(macr\_f) $<$$>$ 15,\\ 
+\cmarg \hspace{0.5cm}{\bf for} i=1:q1,\\ 
+\cmarg \hspace{1.0cm}{\bf for} j=1:q2,\\ 
+\cmarg \hspace{1.5cm}xx=macr\_f(fch\_t,$<$fch\_xr(i),fch\_yr(j)$>$'),\\ 
+\cmarg \hspace{1.5cm}fch\_vx(i,j)=xx(1),\\ 
+\cmarg \hspace{1.5cm}fch\_vy(i,j)=xx(2),\\ 
+\cmarg \hspace{0.8cm}{\bf end},\\ 
+\cmarg \hspace{0.5cm}{\bf end},\\ 
+\cmarg {\bf else}\\ 
+\cmarg \hspace{0.5cm}mmm=macr\_f(1) \\ 
+\cmarg \hspace{0.5cm}{\bf for} i=1:q1,\\ 
+\cmarg \hspace{1.0cm}{\bf for} j=1:q2,\\ 
+\cmarg \hspace{1.5cm}xx=mmm(fch\_t,$<$fch\_xr(i),fch\_yr(j)$>$',macr\_f(2)),\\ 
+\cmarg \hspace{1.5cm}fch\_vx(i,j)=xx(1),\\ 
+\cmarg \hspace{1.5cm}fch\_vy(i,j)=xx(2),\\ 
+\cmarg \hspace{0.8cm}{\bf end},\\ 
+\cmarg \hspace{0.5cm}{\bf end},\\ 
+\cmarg {\bf end}\\ 
+\cmarg champ(fch\_vx,fch\_vy,arfact,...\\ 
+\cmarg \hspace{0.8cm}$<$fch\_xr(1),fch\_yr(1),fch\_xr(q1),fch\_yr(q2)$>$,flag);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mchamp{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=champ(fx,fy,arfact,rect,flag)\\ 
+\cmarg //$<$$>$=champ(fx,fy,$[$arfact=1.0,rect=$<$xmin,ymin,xmax,ymax$>$,last$]$)\\ 
+\cmarg \verb@// Draw a vector field of dimension 2@\\ 
+\cmarg \verb@//  -fx and fy are (p,q) matrix which give the vector field @\\ 
+\cmarg \verb@//     fx and fy values on a regular grid @\\ 
+\cmarg \verb@//     Warning fx(i,j) is the value of the field along the x-axis@\\ 
+\cmarg \verb@//     for the point X=(i,j)@\\ 
+\cmarg \verb@//  -if rect is present then it gives the range to use on xaxis@\\ 
+\cmarg \verb@//      and yaxis rect= <xmin,ymin,xmax,ymax>@\\ 
+\cmarg \verb@//  -arfact : optional argument to control the size of arrow head @\\ 
+\cmarg \verb@//            the arrow head size is multiplied by arfact @\\ 
+\cmarg \verb@//  -flag : "0" No axis @\\ 
+\cmarg \verb@//          "1" axis using the value of rect@\\ 
+\cmarg \verb@//          "2" axis and rectangle using previous call.@\\ 
+\cmarg \verb@// Ex : champ(rand(10,10),rand(10,10),<0,0,10,10>)@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xselect();\\ 
+\cmarg $<$n1,n2$>$={\bf size}(fx);\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg {\bf if} rhs $<$=2,arfact=1.0;{\bf end}\\ 
+\cmarg {\bf if} rhs $<$=3,rect=$<$0,0,10,10$>$,{\bf end}\\ 
+\cmarg {\bf if} rhs $<$=4,flag="0";{\bf end}\\ 
+\cmarg \\ 
+\cmarg {\bf fort}('chdr',fx,1,'r',fy,2,'r',n1,3,'i',...\\ 
+\cmarg \hspace{0.8cm}n2,4,'i',flag,5,'i',rect,6,'r',arfact,7,'r','{\bf sort}');\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mplotdd{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=plot2d(x,y,style,strf,leg,rect,nax)\\ 
+\cmarg //$<$$>$=plot2d(x,y,$[$style,strf,leg,rect,nax$]$)\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// plot2d dessine simultanement un ensemble de courbes 2D.@\\ 
+\cmarg \verb@// Arguments minimaux : x et y @\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@// x et y sont deux matrices de taille <nl,nc>.@\\ 
+\cmarg \verb@//   nc : est le nombre de courbes nl : le nombre de points de@\\ 
+\cmarg \verb@//   chaque courbe.@\\ 
+\cmarg \verb@// par exemple : x=< 1:10;1:10>',y= < sin(1:10);cos(1:10)>' @\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@// Arguments optionnels :@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//   -style : est un vecteur de taille nc ( le nombre de courbes )@\\ 
+\cmarg \verb@//       il definit le style de chaque courbe.@\\ 
+\cmarg \verb@//       si style[i] est positif la ieme courbe est tracee avec la @\\ 
+\cmarg \verb@//           marque de numero style[i]@\\ 
+\cmarg \verb@//       si style[i] est < 0 un trace ligne est utilise le type de la ligne@\\ 
+\cmarg \verb@//           est alors donne par abs(style[i])@\\ 
+\cmarg \verb@//       Dans le cas particulier ou l'on ne dessine qu'une courbe @\\ 
+\cmarg \verb@//       style sera donne sous la forme <style,pos> ou style est le style@\\ 
+\cmarg \verb@//         a utiliser et pos donne la position a utiliser pour@\\ 
+\cmarg \verb@//         la legende de la courbe ( 6 positions posibles)@\\ 
+\cmarg \verb@//   -strf="xyz" : chaine de caracteres de longueur 3.@\\ 
+\cmarg \verb@//     x : controle le display des legendes si x=1 on ajoute des legendes@\\ 
+\cmarg \verb@//        qui sont donnees dans l'argument leg="leg1@leg2@...."@\\ 
+\cmarg \verb@//     y : controle l'echelle du graphique @\\ 
+\cmarg \verb@//        si y=1 les valeurs stockees dans l'argument rect sont utilisees@\\ 
+\cmarg \verb@//           pour definir le cadre  rect=<xmin,ymin,xmax,ymax>@\\ 
+\cmarg \verb@//        si y=2 le cadre est calcule en fonction des donnees.@\\ 
+\cmarg \verb@//        sinon le cadre qui a ete utilise lors d'un appel precedent @\\ 
+\cmarg \verb@//           est a nouveau utilise @\\ 
+\cmarg \verb@//     z : controle du cadre @\\ 
+\cmarg \verb@//        si z=1 : un axe gradue est rajoute le nombre d'intervalle est @\\ 
+\cmarg \verb@//        donne par l'argument nax. nax est un vecteur de dimension 4.@\\ 
+\cmarg \verb@//        par exemple si nax=<3,7,2,8>, l'axe des x sera subdivise en 7 @\\ 
+\cmarg \verb@//        intervalles pour lequels une valeur numerique sera ecrite @\\ 
+\cmarg \verb@//        chacun des 7 intervalles sera divise en 3 sous intervalles @\\ 
+\cmarg \verb@//        (resp. 8,2 pour l'axe des y)@\\ 
+\cmarg \verb@//        si z=2 : on rajoute juste un boite autour du graphique@\\ 
+\cmarg \verb@//        sinon  : rien n'est rajoute @\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@//Exemple : x=0:0.1:2*\%pi;@\\ 
+\cmarg \verb@//  [1]    plot2d(<x;x;x>',<sin(x);sin(2*x);sin(3*x)>');@\\ 
+\cmarg \verb@//  [2]    plot2d(<x;x;x>',<sin(x);sin(2*x);sin(3*x)>',...@\\ 
+\cmarg \verb@//           <-1,-2,3>,"111","L1@L2@L3",<0,-2,2*\%pi,2>,<2,10,2,10>);@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xselect();\\ 
+\cmarg $<$np,nc$>$={\bf size}(x);\\ 
+\cmarg {\bf if} np=1,{\bf write}(\%io(2),"Peut$-$etre avez vous oubli de ransposer x ! ");{\bf end}\\ 
+\cmarg $<$np1,nc1$>$={\bf size}(y);\\ 
+\cmarg {\bf if} {\bf size}(x)$<$$>${\bf size}(y),{\bf write}(\%io(2)," x et y doivent avoir la meme taille ");\\ 
+\cmarg {\bf return};\\ 
+\cmarg {\bf end}\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs$<$=2,style=$-$(1:nc),{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=3,strf="021",{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=4,leg=" ",{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=5,rect=$<$0,0,10,10$>$,{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=6,nax=$<$2,10,2,10$>$,{\bf end}\\ 
+\cmarg \verb@// np : nbre de points @\\ 
+\cmarg \verb@// nc : nbre de courbes@\\ 
+\cmarg {\bf fort}('2ddr',x,1,'r',y,2,'r',nc,3,'i',...\\ 
+\cmarg \hspace{0.8cm}np,4,'i',style,5,'i',strf,6,'i',leg,7,'i',rect,8,'r',...\\ 
+\cmarg \hspace{0.8cm}nax,9,'i','{\bf sort}');\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mplotddu{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=plot2d1(str,x,y,style,strf,leg,rect,nax)\\ 
+\cmarg //$<$$>$=plot2d1(str,x,y,$[$style,strf,leg,rect,nax$]$)\\ 
+\cmarg \verb@// Same as plot2d but with one more argument @\\ 
+\cmarg \verb@// str ="abc"@\\ 
+\cmarg \verb@//   str[1]= e | o | g @\\ 
+\cmarg \verb@//      if w = e  , e stands for empty the value of x is not used and can @\\ 
+\cmarg \verb@//                    be omited  plot2d1("enn",1,...)   @\\ 
+\cmarg \verb@//      if w = o  , o stands for one : if there are many curves they all @\\ 
+\cmarg \verb@//                    have the same x-values ( x is of size x(n,1) and y @\\ 
+\cmarg \verb@//                    of size y(n,n1);@\\ 
+\cmarg \verb@//		      plot2d1("onn",(1:10)',<sin(1:10);cos(1:10)>')@\\ 
+\cmarg \verb@//	if w = g  , g stands for general x is of size (n,n1)@\\ 
+\cmarg \verb@//   str[2] and str[3] = n | l @\\ 
+\cmarg \verb@//                  if str[2]=l : logarithmic axes are used on the X-axis@\\ 
+\cmarg \verb@//                  if str[3]=l : logarithmic axes are used on the Y-axis@\\ 
+\cmarg \verb@//	@\\ 
+\cmarg \verb@//   See plot2d for the other arguments@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xselect();\\ 
+\cmarg $<$np1,nc1$>$={\bf size}(x);\\ 
+\cmarg $<$np,nc$>$={\bf size}(y);\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs$<$=3,style=$-$(1:nc),{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=4,strf="021",{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=5,leg=" ",{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=6,rect=$<$0,0,10,10$>$,{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=7,nax=$<$2,10,2,10$>$,{\bf end}\\ 
+\cmarg \verb@// np : nbre de points @\\ 
+\cmarg \verb@// nc : nbre de courbes@\\ 
+\cmarg {\bf fort}('2ddr1',str,1,'i',x,2,'r',y,3,'r',nc,4,'i',...\\ 
+\cmarg \hspace{0.8cm}np,5,'i',style,6,'i',strf,7,'i',leg,8,'i',rect,9,'r',...\\ 
+\cmarg \hspace{0.8cm}nax,10,'i','{\bf sort}');\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mplotddd{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=plot2d2(str,x,y,style,strf,leg,rect,nax)\\ 
+\cmarg //$<$$>$=plot2d2(str,x,y,$[$style,strf,leg,rect,nax$]$)\\ 
+\cmarg \verb@// Same as plot2d1 but with piece-wise constant style@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xselect();\\ 
+\cmarg $<$np1,nc1$>$={\bf size}(x);\\ 
+\cmarg $<$np,nc$>$={\bf size}(y);\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs$<$=3,style=$-$(1:nc),{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=4,strf="021",{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=5,leg=" ",{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=6,rect=$<$0,0,10,10$>$,{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=7,nax=$<$2,10,2,10$>$,{\bf end}\\ 
+\cmarg \verb@// np : nbre de points @\\ 
+\cmarg \verb@// nc : nbre de courbes@\\ 
+\cmarg {\bf fort}('2ddr2',str,1,'i',x,2,'r',y,3,'r',nc,4,'i',...\\ 
+\cmarg \hspace{0.8cm}np,5,'i',style,6,'i',strf,7,'i',leg,8,'i',rect,9,'r',...\\ 
+\cmarg \hspace{0.8cm}nax,10,'i','{\bf sort}');\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mplotddt{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=plot2d3(str,x,y,style,strf,leg,rect,nax)\\ 
+\cmarg //$<$$>$=plot2d3(str,x,y,$[$style,strf,leg,rect,nax$]$)\\ 
+\cmarg \verb@// Same as plot2d1 but curves are plotted using vertical bars @\\ 
+\cmarg \verb@// style are dashed-line styles@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xselect();\\ 
+\cmarg $<$np1,nc1$>$={\bf size}(x);\\ 
+\cmarg $<$np,nc$>$={\bf size}(y);\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs$<$=3,style=$-$(1:nc),{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=4,strf="021",{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=5,leg=" ",{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=6,rect=$<$0,0,10,10$>$,{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=7,nax=$<$2,10,2,10$>$,{\bf end}\\ 
+\cmarg \verb@// np : nbre de points @\\ 
+\cmarg \verb@// nc : nbre de courbes@\\ 
+\cmarg {\bf fort}('2ddr3',str,1,'i',x,2,'r',y,3,'r',nc,4,'i',...\\ 
+\cmarg \hspace{0.8cm}np,5,'i',style,6,'i',strf,7,'i',leg,8,'i',rect,9,'r',...\\ 
+\cmarg \hspace{0.8cm}nax,10,'i','{\bf sort}');\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mplotddq{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=plot2d4(str,x,y,style,strf,leg,rect,nax)\\ 
+\cmarg //$<$$>$=plot2d4(str,x,y,$[$style,strf,leg,rect,nax$]$)\\ 
+\cmarg \verb@// Same as plot2d1 but curves are plotted using arrows @\\ 
+\cmarg \verb@// style are dashed-line styles@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xselect();\\ 
+\cmarg $<$np1,nc1$>$={\bf size}(x);\\ 
+\cmarg $<$np,nc$>$={\bf size}(y);\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs$<$=3,style=$-$(1:nc),{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=4,strf="021",{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=5,leg=" ",{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=6,rect=$<$0,0,10,10$>$,{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=7,nax=$<$2,10,2,10$>$,{\bf end}\\ 
+\cmarg \verb@// np : nbre de points @\\ 
+\cmarg \verb@// nc : nbre de courbes@\\ 
+\cmarg {\bf fort}('2ddr4',str,1,'i',x,2,'r',y,3,'r',nc,4,'i',...\\ 
+\cmarg \hspace{0.8cm}np,5,'i',style,6,'i',strf,7,'i',leg,8,'i',rect,9,'r',...\\ 
+\cmarg \hspace{0.8cm}nax,10,'i','{\bf sort}');\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mstairdd{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=stair2d(x,y,style,strf,leg,rect,nax)\\ 
+\cmarg //$<$$>$=stair2d(x,y,$[$style,strf,leg,rect,nax$]$)\\ 
+\cmarg \verb@// piece-wize constant curves (obsolete) @\\ 
+\cmarg \verb@// see plot2d2@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg plot2d2("gnn",x,y,style,strf,leg,rect,nax)\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mxchange{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$x1,y1,rect$>$=xchange(x,y,dir)\\ 
+\cmarg //$<$x1,y1,rect$>$=xchange(x,y,dir)\\ 
+\cmarg \verb@// whewn you've done a plot2d, you can use this @\\ 
+\cmarg \verb@// function to transform pixels coordinates to real-coordinates@\\ 
+\cmarg \verb@// and real to pixel acording to the dir parameter.@\\ 
+\cmarg \verb@// dir = 'f2i' ou 'i2f' (integer to float)@\\ 
+\cmarg \verb@// rect gives the rectangle in pixels values in which the plot takes @\\ 
+\cmarg \verb@// place @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xselect();\\ 
+\cmarg $<$n1,n2$>$={\bf size}(x);\\ 
+\cmarg x1=0$\star${\bf ones}(n1,n2);\\ 
+\cmarg y1=0$\star${\bf ones}(n1,n2);\\ 
+\cmarg rect=0$\star${\bf ones}(1,4);\\ 
+\cmarg {\bf if} dir = 'f2i' ,\\ 
+\cmarg $<$x1,y1,rect$>$={\bf fort}('2dech',x,1,'r',y,2,'r',x1,3,'i',...\\ 
+\cmarg \hspace{0.8cm}y1,4,'i',n1,5,'i',n2,6,'i',rect,7,'i',dir,8,'i','{\bf sort}',3,4,7);\\ 
+\cmarg {\bf else}\\ 
+\cmarg $<$x1,y1,rect$>$={\bf fort}('2dech',x1,1,'r',y1,2,'r',x,3,'i',...\\ 
+\cmarg \hspace{0.8cm}y,4,'i',n1,5,'i',n2,6,'i',rect,7,'i',dir,8,'i','{\bf sort}',1,2,7);\\ 
+\cmarg {\bf end}\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mxsetech{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=xsetech(frect,irect)\\ 
+\cmarg //$<$$>$=xsetech(frect,irect)\\ 
+\cmarg \verb@// set the scale for subsequent plot2d calls@\\ 
+\cmarg \verb@// the values in the range frect=<xmin,ymin,xmax,ymax>@\\ 
+\cmarg \verb@// will be mapped to the rectangle <x,y,width,height> in pixels@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg {\bf fort}('echse',frect,1,'r',irect,2,'i','{\bf sort}');\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\MErrBar{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=ErrBar(x,y,em,ep)\\ 
+\cmarg //$<$$>$=ErrBar(x,y,em,ep)\\ 
+\cmarg \verb@//Add error bar on a curve @\\ 
+\cmarg \verb@//must be called after a plot2d call@\\ 
+\cmarg \verb@//x,ym and yp must be line vectors @\\ 
+\cmarg \verb@//! @\\ 
+\cmarg xselect();\\ 
+\cmarg $<$n1,n2$>$={\bf size}(x);\\ 
+\cmarg {\bf if} n1 $<$$>$ 1 , {\bf write}(\%io(2),$<$"Attention : x doit etre un vecteur ligne "$>$),\\ 
+\cmarg {\bf else} \\ 
+\cmarg $<$x1,y1,rect$>$=xchange(x,y$-$em,'f2i');\\ 
+\cmarg $<$x1,y2,rect$>$=xchange(x,y+ep,'f2i');\\ 
+\cmarg xset("clipping",rect(1),rect(2),rect(3),rect(4));\\ 
+\cmarg xsegs($<$x1;x1$>$,$<$y1;y2$>$);\\ 
+\cmarg xset("clipping",$-$1,$-$1,2000,2000);\\ 
+\cmarg {\bf end} \\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+
+\def\Mxtape{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=xtape(str)\\ 
+\cmarg //$<$$>$=xtape(str)\\ 
+\cmarg \verb@// str='on' or 'replay' or 'clear'@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg {\bf if} str='on',\\ 
+\cmarg \hspace{0.5cm}driver("Rec");{\bf end}\\ 
+\cmarg {\bf if} str='{\bf clear}',\\ 
+\cmarg \hspace{0.5cm}{\bf fort}('dr','xstart',1,'i',"xv",2,'i','{\bf sort}');{\bf end} \\ 
+\cmarg {\bf if} str='replay';\\ 
+\cmarg \hspace{0.5cm}{\bf fort}('dr','xreplay',1,'i',"xv",2,'i','{\bf sort}');{\bf end} \\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+

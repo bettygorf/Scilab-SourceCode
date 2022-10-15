@@ -1,0 +1,66 @@
+
+
+
+bezout(8)                      Scilab Function                      bezout(8)
+
+
+
+
+
+
+NAME
+  bezout - Bezout equation for polynomials
+
+CALLING SEQUENCE
+  [gcd,U]=bezout(p1,p2)
+
+PARAMETERS
+
+  p1, p2    : two real polynomials
+
+DESCRIPTION
+  [gcd,U]=bezout(p1,p2) computes GCD gcd of p1 and p2 and in addition a (2x2)
+  unimodular matrix U such that:
+
+  [p1,p2]*U = [gcd,0]
+
+  The lcm of p1 and p2 is given by:
+
+  p1*U(1,2) (or -p2*U(2,2))
+
+SEE ALSO
+  poly, roots, simpl, cleanp, lcm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

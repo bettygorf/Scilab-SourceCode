@@ -1,0 +1,64 @@
+ 
+clear;lines(0);
+ 
+a=eye(2,2);b=ones(a);
+ 
+save('val.dat',a,b);
+ 
+clear a
+ 
+clear b
+ 
+load('val.dat','a','b');
+ 
+ 
+// sequential save into a file
+ 
+fd=mopen('TMPDIR/foo','wb')
+ fd  =
+ 
+    2.  
+ 
+for k=1:4, x=k^2;save(fd,x,k),end
+ 
+mclose(fd)
+ ans  =
+ 
+    0.  
+ 
+fd=mopen('TMPDIR/foo','rb')
+ fd  =
+ 
+    2.  
+ 
+for i=1:4, load(fd,'x','k');x,k,end
+ x  =
+ 
+    1.  
+ k  =
+ 
+    1.  
+ x  =
+ 
+    1.  
+ k  =
+ 
+    1.  
+ x  =
+ 
+    1.  
+ k  =
+ 
+    1.  
+ x  =
+ 
+    1.  
+ k  =
+ 
+    1.  
+ 
+mclose(fd)
+ ans  =
+ 
+    0.  
+ 

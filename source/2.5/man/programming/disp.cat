@@ -1,0 +1,24 @@
+
+disp(1)                        Scilab Function                        disp(1)
+NAME
+  disp - displays variables
+
+CALLING SEQUENCE
+  disp(x1,[x2,...xn])
+
+DESCRIPTION
+  displays xi with the current format. xi's are arbitrary objects (matrices
+  of constants, strings, functions, lists, ...)
+
+  Display of objects defined by tlist may be overloaded by the definition of
+  a function. This function must have no output argument a single input argu-
+  ment ant it's name is formed as follow %<tlist_type>_p where %<tlist_type>
+  stands for the first entry of the tlist type component.
+
+SEE ALSO
+  write, read, print, string, tlist
+
+EXAMPLES
+  disp([1 2],3)
+  deff('[]=%t_p(l)','disp(l(3),l(2))')
+  disp(tlist('t',1,2))

@@ -1,0 +1,20 @@
+ Libtool based mex example using shared library.
+ Fill the top of the Makefile (variables FCTMEX, OTHEROBJECTS and LIBRARY)
+with your own examples.
+Makefile generates libmylib.c, libmylib.sce and libmylib.so 
+( when LIBRARY = libmylib, default value)
+CAUTION: The environment variable LD_LIBRARY_PATH must be defined
+e.g. 
+setenv LD_LIBRARY_PATH `pwd`  
+(or: LD_LIBRARY_PATH=`pwd`; export LD_LIBRARY_PATH for bash)  
+BEFORE running Scilab. If not defined, the first parameter
+of addinter (in the libmylib script) must define the complete pathname of 
+the .so file.
+
+-->exec libmylib.sce
+-->pipo(1)
+
+For Windows, fill the top of Makefile.mak AND type "make" ("make clean" to
+clean).
+Files generated are $(LIBRARY)_gateway.c and $(LIBRARY).sce
+

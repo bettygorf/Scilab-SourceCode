@@ -1,0 +1,39 @@
+.TH make_graph 1 "September 1995" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME
+make_graph - make a graph-list
+.SH CALLING SEQUENCE
+.nf
+[g] = make-graph(name,directed,n,tail,head)
+.fi
+.SH PARAMETERS
+.TP 5
+name
+: string, the name of the graph
+.TP 9
+directed
+: integer, 0 or 1 according to the fact that the graph is undirected 
+or directed
+.TP 2
+n
+: integer, the number of nodes of the graph
+.TP 5
+tail
+: row vector of the numbers of the tail nodes of the graph (its size is 
+the number of edges of the graph)
+.TP 5
+head
+: row vector of the numbers of the head nodes of the graph (its size is 
+the number of edges of the graph)
+.SH DESCRIPTION
+\fVmake_graph\fR makes a graph-list according to its arguments which are
+respectively the name of the graph, a flag for directed or undirected, the
+number of nodes and the row vectors tail and head. These are the minimal data
+needed or a graph.
+.SH EXAMPLE
+.nf
+// creating a directed graph with 3 nodes and 4 arcs.
+g=make_graph('foo',1,3,[1,2,3,1],[2,3,1,3]);
+.fi
+.SH SEE ALSO
+graph-list

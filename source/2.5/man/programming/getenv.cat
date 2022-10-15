@@ -1,0 +1,23 @@
+
+getenv(G)                      Scilab Function                      getenv(G)
+NAME
+  getenv - get the value of an environment variable
+
+CALLING SEQUENCE
+  env=getenv(str [, rep] )
+
+PARAMETERS
+
+  str  : character string specifying environment variable name rep : an
+       optional character string. When this optional value is used, the func-
+       tion getenv returns the value rep when the environment variable str is
+       not found.
+
+  env  : character string which contain the environment variable value
+
+DESCRIPTION
+  Return the value of an environment variable if it exists.
+
+EXAMPLE
+          getenv('SCI')
+          getenv('FOO','foo')

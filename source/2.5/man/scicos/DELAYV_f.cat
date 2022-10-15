@@ -1,0 +1,29 @@
+
+DELAYV_f(5)                      Scicos Block                     DELAYV_f(5)
+NAME
+  DELAYV_f - Scicos time varying delay block
+
+DIALOGUE PARAMETERS
+
+  Number inputs            : size of the delayed vector (-1 not allowed)
+
+  Register initial state   : register initial state vector. Dimension must be
+                           greater than  or equal to 2
+
+  Max delay                : Maximum delay that can be produced by this block
+
+DESCRIPTION
+  This block implements a time varying discretized delay. The value of the
+  delay is given by the second input port. The delayed signal enters the
+  first input port and leaves the unique output prot.
+
+  The first event output port must be connected to unique input event port if
+  auto clocking is desired. But the input event port can also be driven by
+  outside clock. In that case, the max delay is size of initial condition
+  times the period of the incoming clock.
+
+  The second output event port generates an event if the second input goes
+  above the maximum delay specified. This signal can be ignored. In that case
+  the output will be delayed by max delay.
+SEE ALSO
+  DELAY_f, EVTDLY_f, REGISTER_f

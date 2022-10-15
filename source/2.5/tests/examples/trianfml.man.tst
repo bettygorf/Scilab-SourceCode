@@ -1,0 +1,9 @@
+clear;lines(0);
+A=['1','2';'a','b']
+W=trianfml([A,string(eye(2,2))])
+U=W(:,3:4)
+a=5;b=6;
+A=evstr(A)
+U=evstr(U)
+U*A
+evstr(W(:,1:2))

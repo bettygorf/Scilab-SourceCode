@@ -1,0 +1,28 @@
+.TH krac2 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+krac2 - continuous SISO system limit feedback gain
+.SH CALLING SEQUENCE
+.nf
+g=krac2(sys)
+.fi
+.SH PARAMETERS
+.TP
+sys
+: SISO linear system (syslin)
+.TP 
+g 
+: constant
+.SH DESCRIPTION
+\fVkrac2(sys)\fR computes the gains \fVg\fR such that the system
+\fVsys\fV fedback by g (\fVsys/.g) \fV has  2 real equal poles.
+.SH EXAMPLE
+.nf
+h=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+xbasc();evans(h,100)
+g=krac2(h)
+hf1=h/.g(1);roots(denom(hf1))
+hf2=h/.g(2);roots(denom(hf2))
+.fi
+.SH SEE ALSO
+evans, kpure

@@ -1,0 +1,49 @@
+.TH format 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+format - number printing and display format
+.SH CALLING SEQUENCE
+.nf
+format([type],[long])
+format()
+.fi
+.SH PARAMETERS
+.TP 10
+type 
+: character string
+.TP 10
+long
+: integer ( max number of digits (default 10))
+.SH DESCRIPTION
+Sets the current printing format with the parameter \fVtype\fR ; it is one of the following :
+.TP
+"v"
+: for a variable format (default)
+.TP
+"e"
+: for the  e-format.
+.LP
+\fVlong\fR defines the max number of digits (default 10).
+\fVformat()\fR returns a vector for the current format:
+first component is the type of format (0 if \fVv\fR ; 1 if \fVe\fR );
+second component is the number of digits.
+.LP
+In "variable format" mode, vectors entries which are less than %eps
+times the maximum absolute value of the entries are displayed as "0".
+.SH EXAMPLE
+.nf
+x=rand(1,5);
+format('v',10);x
+format(20);x
+format('e',10);x
+format(20);x
+
+x=[100 %eps];
+format('e',10);x
+format('v',10);x
+
+format()
+.fi
+.SH SEE ALSO
+write, disp, print
+

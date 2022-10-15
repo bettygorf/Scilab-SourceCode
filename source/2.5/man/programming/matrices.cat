@@ -1,0 +1,29 @@
+
+matrices(1)                    Scilab Function                    matrices(1)
+NAME
+  matrices - Scilab object, matrices in Scilab
+
+DESCRIPTION
+  Matrices are basic objects defined in Scilab.  They can be defined as fol-
+  lows:
+  E=[e11,e12,...,e1n;
+     e21,e22,...,e2n;
+          ....
+     em1,em2,...,emn];
+  Entries eij can be real or complex numbers, polynomials, rationals,
+  strings, booleans.
+
+  Vectors are seen as matrices with one row or one column.
+
+  syslin lists in state-space form or transfer matrices can also be defined
+  as above.
+
+EXAMPLES
+  E=[1,2;3,4]
+  E=[%T,%F;1==1,1~=1]
+  s=poly(0,'s');E=[s,s^2;1,1+s]
+  E=[1/s,0;s,1/(s+1)]
+  E=['A11','A12';'A21','A22']
+
+SEE ALSO
+  poly, string, boolean, rational, syslin, empty, hypermatrices

@@ -1,0 +1,33 @@
+.TH input 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+input - prompt for user input
+.SH CALLING SEQUENCE
+.nf
+[x]=input(message,["string"])   
+.fi
+.SH PARAMETERS
+.TP 10
+message
+: character string 
+.TP 10
+"string"
+: the character string \fV"string"\fR (may be abbreviated to \fV"s"\fR)
+.TP 10
+x
+: real number (or character string if \fV"string"\fR is in the calling sequence)
+.SH DESCRIPTION
+input(message) gives the user the prompt in the text string and 
+then waits for input from the keyboard.
+.LP
+The input can be expression which is evaluated by \fVevstr\fR.
+.LP
+Invoked with two arguments, the output is a character string which is the
+expression entered at keyboard.
+.SH EXAMPLE
+.nf
+x=input("How many iterations?")
+x=input("What is your name?","string")
+.fi
+.SH SEE ALSO
+file, read, write, %io, evstr, x_dialog, x_mdialog

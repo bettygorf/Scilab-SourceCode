@@ -1,0 +1,20 @@
+.TH OUT_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+OUT_f - Scicos Super Block regular output port
+.SH DIALOGUE PARAMETERS
+.TP 15
+Port number
+: an integer giving the port number.
+.SH DESCRIPTION
+This block must only be used inside Scicos Super Blocks to represent
+a regular output port. 
+.LP
+In a Super Block, regular output ports must be numbered from 1 to the
+number of regular output ports.
+
+size of the output is determined by the compiler according to the
+connected blocks port sizes.
+
+.SH SEE ALSO
+CLKIN_f, IN_f, CLKOUT_f

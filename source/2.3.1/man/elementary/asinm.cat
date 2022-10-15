@@ -1,0 +1,25 @@
+
+asinm(1)                       Scilab Function                       asinm(1)
+NAME
+  asinm - matrix wise sine inverse
+
+CALLING SEQUENCE
+  t=asinm(x)
+
+PARAMETERS
+
+  x         : real or complex square matrix
+
+  t         : real or complex square matrix
+
+DESCRIPTION
+   t are sine inverse of the x matrix. Diagonalization method is used. For
+  non symmetric matrices result may be inaccurate.
+
+EXAMPLE
+  A=[1,2;3,4]
+  sinm(asinm(A))
+  asinm(A)+%i*logm(%i*A+sqrtm(eye-A*A))
+
+SEE ALSO
+  asin, sinm

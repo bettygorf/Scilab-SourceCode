@@ -1,0 +1,133 @@
+.TH ss2ss 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+ss2ss - state-space to state-space conversion, feedback, injection
+.SH CALLING SEQUENCE
+.nf
+[Sl1,right,left]=ss2ss(Sl,T, [F, [G , [flag]]])
+.fi
+.SH PARAMETERS
+.TP 15
+Sl
+: linear system (\fVsyslin\fR list) in state-space form
+.TP
+T 
+: square (non-singular) matrix
+.TP
+Sl1, right, left
+: linear systems (syslin lists) in state-space form
+.TP
+F
+: real matrix (state feedback gain)
+.TP
+G
+: real matrix (output injection gain)
+.SH DESCRIPTION
+Returns the linear system \fVSl1=[A1,B1,C1,D1]\fR
+where \fVA1=inv(T)*A*T, B1=inv(T)*B, C1=C*T, D1=D\fR.
+.LP
+Optional parameters \fVF\fR and \fVG\fR are state feedback
+and output injection respectively. 
+.LP
+For example,
+\fVSl1=ss2ss(Sl,T,F)\fR returns \fVSl1\fR with:
+.LP
+.IG
+.nf 
+              | inv(T)*(A+B*F)*T  ,    inv(T)*B |
+        Sl1 = |                                 |
+              |     (C+D*F)*T     ,      D      |
+.fi
+.FI
+.LA \[ \mbox{\verb+Sl1+} = \left( \begin{array}{cc} T^{-1}(A+BF)T & T^{-1} (B) \\
+.LA	        (C+DF)T & D \end{array} \right) \] 
+and \fVright\fR is a non singular linear system such that \fVSl1=Sl*right\fR.
+.LP
+\fVSl1*inv(right)\fR is a factorization of \fVSl\fR.
+.LP
+.LP
+\fVSl1=ss2ss(Sl,T,0*F,G)\fR returns \fVSl1\fR with:
+.IG
+.nf 
+              | inv(T)*(A+G*C)*T  , inv(T)*(B+G*D) |
+        Sl1 = |                                    |
+              |      C*T          ,      D         |
+.fi
+.FI
+.LA \[ \mbox{\verb+Sl1+} = \left( \begin{array}{cc} T^{-1}(A+GC)T & T^{-1} (B+GD) \\
+.LA	        CT & D \end{array} \right) \] 
+.LP 
+and \fVleft\fR is a non singular linear system such that \fVSl1=left*Sl\fR (\fVright=Id\fR if \fVF=0\fR).
+
+When both \fVF\fR and \fVG\fR are given, \fVSl1=left*Sl*right\fR.
+.TP
+-
+When \fVflag\fR is used and \fVflag=1\fR an output injection 
+as follows is used 
+.IG
+.nf
+	 | inv(T)*(A + GC)*T  , inv(T)*(B+GD,-G) |
+	 |      C*T           ,       (D   , 0)  |
+.fi 
+.FI
+.LA \[ \mbox{\verb+Sl1+} = \left( \begin{array}{cc} T^{-1}(A+GC)T & 
+.LA		T^{-1} \left(B+GD,-G\right) \\
+.LA	        CT & \left(D , 0 \right)\end{array} \right) \] 
+and then a feedback is performed, \fVF\fR must be of size \fV(m+p,n)\fR 
+.IG
+( x is in R^n , y in R^p, u in R^m ). 
+.FI
+.LA ( $x$ is in $R^n$, $y$ in $R^p$, $u$ in $R^m$ ).
+.LA
+\fVright\fR and \fVleft\fR have the following property:
+.nf
+	 Sl1 =  left*sysdiag(sys,eye(p,p))*right 
+.fi
+.TP
+-
+When \fVflag\fR is used and \fVflag=2\fR a feedback (\fVF\fR must be of 
+size \fV(m,n)\fR) is performed and then the above output injection is applied.
+\fVright\fR and \fVleft\fR have 
+the following property:
+.nf 
+	 Sl1 = left*sysdiag(sys*right,eye(p,p)))
+.fi
+
+.SH EXAMPLE
+.nf
+Sl=ssrand(2,2,5); trzeros(Sl)       // zeros are invariant:
+Sl1=ss2ss(Sl,rand(5,5),rand(2,5),rand(5,2)); 
+trzeros(Sl1), trzeros(rand(2,2)*Sl1*rand(2,2))
+// output injection [ A + GC, (B+GD,-G)]
+//                  [   C   , (D   , 0)]
+p=1,m=2,n=2; sys=ssrand(p,m,n);
+
+// feedback (m,n)  first and then output injection.
+
+F1=rand(m,n);
+G=rand(n,p);
+[sys1,right,left]=ss2ss(sys,rand(n,n),F1,G,2);
+
+// Sl1 equiv left*sysdiag(sys*right,eye(p,p)))
+
+res=clean(ss2tf(sys1) - ss2tf(left*sysdiag(sys*right,eye(p,p))))
+
+// output injection then feedback (m+p,n) 
+F2=rand(p,n); F=[F1;F2];
+[sys2,right,left]=ss2ss(sys,rand(n,n),F,G,1);
+
+// Sl1 equiv left*sysdiag(sys,eye(p,p))*right 
+
+res=clean(ss2tf(sys2)-ss2tf(left*sysdiag(sys,eye(p,p))*right))
+
+// when F2= 0; sys1 and sys2 are the same 
+F2=0*rand(p,n);F=[F1;F2];
+[sys2,right,left]=ss2ss(sys,rand(n,n),F,G,1);
+
+res=clean(ss2tf(sys2)-ss2tf(sys1))
+.fi
+.SH SEE ALSO
+projsl, feedback
+
+
+

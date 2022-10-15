@@ -1,0 +1,23 @@
+.TH parrot 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+parrot - Parrot's problem
+.SH CALLING SEQUENCE
+.nf
+K=parrot(D,r)
+.fi
+.SH PARAMETERS
+.TP 10
+D,K
+: matrices
+.TP
+r
+: 1X2 vector (dimension of the 2,2 part of \fVD\fR)
+.SH DESCRIPTION
+Given a matrix \fVD\fR partionned as \fV[D11 D12; D21 D22]\fR
+where \fVsize(D22)=r=[r1,r2]\fR
+compute a matrix \fVK\fR such that
+largest singular value of \fV[D11 D12; D21 D22+K]\fR
+is minimal (Parrot's problem)
+.SH SEE ALSO
+h_inf_st

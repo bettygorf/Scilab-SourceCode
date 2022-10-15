@@ -1,0 +1,10 @@
+clear;lines(0);
+typeof(1)
+typeof(poly(0,'x'))
+typeof(1/poly(0,'x'))
+typeof(%t)
+w=sprand(100,100,0.001);
+typeof(w)
+typeof(w==w)
+deff('y=f(x)','y=2*x');
+typeof(f)

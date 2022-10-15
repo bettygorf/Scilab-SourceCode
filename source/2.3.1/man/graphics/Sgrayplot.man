@@ -1,0 +1,32 @@
+.TH GRAYPLOT 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+Sgrayplot - 2D plot of a surface using gray levels
+.SH CALLING SEQUENCE
+.nf
+Sgrayplot(x,y,z,[strf,rect,nax])
+.fi
+.SH DESCRIPTION
+Like \fVgrayplot\fR but the function \fVfec\fR is used to smooth the 
+result. \fVz\fR gives the value of the function on the grid \fV x.*.y \fR.
+The function is plotted assuming that it is linear on a set triangles of
+triangles built from the grid. Type  \fVSgrayplot()\fR to see a demo
+.nf
+    ______ 
+    | /| /| 
+    |/_|/_|  
+    | /| /|
+    |/_|/_|
+.fi
+.SH EXAMPLE
+.nf
+Sgrayplot()
+.fi
+.SH SEE ALSO
+Sfgrayplot, fgrayplot, grayplot, fec 
+.SH AUTHOR
+J.Ph.C..
+
+
+
+

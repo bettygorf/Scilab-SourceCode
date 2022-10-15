@@ -1,0 +1,36 @@
+.TH bezout 8 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+bezout - Bezout equation for polynomials
+.SH CALLING SEQUENCE
+.nf
+[thegcd,U]=bezout(p1,p2) 
+.fi
+.SH PARAMETERS
+.TP 10 
+p1, p2
+: two real polynomials
+.SH DESCRIPTION
+.Vb [thegcd,U]=bezout(p1,p2)
+computes GCD \fVthegcd\fR of \fVp1\fR and \fVp2\fR and in addition a (2x2) 
+unimodular matrix \fVU\fR such that:
+.LP
+\fV[p1,p2]*U = [thegcd,0]\fR
+.LP
+The lcm of \fVp1\fR and \fVp2\fR is given by:
+.LP
+\fVp1*U(1,2)\fR (or \fV-p2*U(2,2)\fR)
+.SH EXAMPLE
+.nf
+x=poly(0,'x');
+p1=(x+1)*(x-3)^5;p2=(x-2)*(x-3)^3;
+[thegcd,U]=bezout(p1,p2) 
+det(U)
+clean([p1,p2]*U)
+thelcm=p1*U(1,2)
+lcm([p1,p2])
+.fi
+.SH SEE ALSO 
+poly, roots, simp, clean, lcm
+
+

@@ -1,0 +1,30 @@
+.TH filter 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+filter - modelling filter
+.SH CALLING SEQUENCE
+.nf
+[y,xt]=filter(n,F,H,Rt,T)
+.fi
+.SH PARAMETERS
+.TP 10
+n
+: number of computed points.
+.TP
+F, H
+: relevant matrices of the Markovian model.
+.TP
+Rt, T
+: gain matrices.
+.TP
+y
+: output of the filter.
+.TP
+xt
+: filter process.
+.SH DESCRIPTION
+This macro computes the modelling filter
+.SH SEE ALSO
+faurre
+.SH AUTHOR
+G. Le V.

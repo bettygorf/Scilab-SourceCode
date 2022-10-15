@@ -1,0 +1,32 @@
+.TH Sfgrayplot 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+Sfgrayplot - smooth 2D plot of a surface defined by a function using colors
+.SH CALLING SEQUENCE
+.nf
+Sfgrayplot(x,y,f,[strf,rect,nax])
+.fi
+.SH DESCRIPTION
+\fVSfgrayplot\fR is the same as \fVfgrayplot\fR but the plot is smoothed.
+The function \fVfec\fR is used for smoothing.
+The surface is plotted assuming that it is linear on a set of
+triangles built from the grid:
+.nf
+    ______ 
+    | /| /| 
+    |/_|/_|  
+    | /| /|
+    |/_|/_|
+.fi
+
+Enter the command \fVSfgrayplot()\fR to see a demo.
+.SH EXAMPLE 
+.nf
+t=-1:0.1:1;
+deff("[z]=surf(x,y)","z=x**2+y**2")
+Sfgrayplot(t,t,surf,"111",[-2,-2,2,2])
+.fi 
+.SH SEE ALSO
+fec, fgrayplot, grayplot, Sgrayplot
+.SH AUTHOR
+J.Ph.C.

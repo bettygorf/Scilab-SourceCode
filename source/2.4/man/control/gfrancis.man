@@ -1,0 +1,61 @@
+.TH gfrancis 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+gfrancis - Francis equations for tracking
+.SH CALLING SEQUENCE
+.nf
+[L,M,T]=gfrancis(Plant,Model)
+.fi
+.SH PARAMETERS
+.TP 15
+Plant
+: \fVsyslin\fR list
+.TP 15
+Model
+: \fVsyslin\fR list
+.TP 15
+L,M,T
+: real matrices
+.SH DESCRIPTION
+Given the the linear plant:
+.nf
+    x'= F*x + G*u 
+    y = H*x + J*u
+.fi
+and the linear model
+.nf
+    xm'= A*xm + B*um
+    ym = C*xm + D*um
+.fi
+the goal is for the plant to track the model i.e. \fVe = y - ym ---> 0\fR
+while keeping stable the state x(t) of the plant. 
+\fVu\fR is given by feedforward and feedback
+.nf
+ u = L*xm + M*um + K*(x-T*xm) = [K , L-K*T] *(x,xm) + M*um
+.fi
+The matrices T,L,M satisfy generalized Francis equations
+.nf
+    F*T + G*L = T*A
+    H*T + J*L = C
+          G*M = T*B
+          J*M = D
+.fi
+The matrix \fVK\fR must be chosen as stabilizing the pair \fV(F,G)\fR
+See example of use in directory \fVdemos/tracking\fR.
+.SH EXAMPLE
+.nf
+Plant=ssrand(1,3,5);
+[F,G,H,J]=abcd(Plant);
+nw=4;nuu=2;A=rand(nw,nw);
+st=maxi(real(spec(A)));A=A-st*eye(A);
+B=rand(nw,nuu);C=2*rand(1,nw);D=0*rand(C*B);
+Model=syslin('c',A,B,C,D);
+[L,M,T]=gfrancis(Plant,Model);
+norm(F*T+G*L-T*A,1)
+norm(H*T+J*L-C,1)
+norm(G*M-T*B,1)
+norm(J*M-D,1)
+.fi
+.SH SEE ALSO
+lqg, ppol
+

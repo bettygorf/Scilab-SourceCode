@@ -1,0 +1,145 @@
+G_make - call make or nmake  
+abs - absolute value, magnitude  
+acos - element wise cosine inverse  
+acosh - hyperbolic cosine inverse  
+acoshm - matrix hyperbolic inverse cosine  
+acosm - matrix wise cosine inverse  
+addf - symbolic addition  
+addmenu - interactive button or menu definition  
+adj2sp - converts adjacency form into sparse matrix.  
+amell - jacobi's am function  
+asin - sine inverse  
+asinh - hyperbolic sine inverse  
+asinhm - matrix hyperbolic inverse sine  
+asinm - matrix wise sine inverse  
+atan - tangent inverse  
+atanh - hyperbolic tangent inverse  
+atanhm - matrix hyperbolic tangent inverse  
+atanm - square matrix tangent inverse  
+besseli - modified i sub alpha bessel functions of the first kind.  
+besselj - modified j sub alpha bessel functions of the first kind.  
+besselk - modified k sub alpha bessel functions of the second kind.  
+bessely - modified y sub alpha bessel functions of the second kind.  
+bloc2exp - block-diagram to symbolic expression  
+bloc2ss - block-diagram to state-space conversion  
+c_link - check dynamic link  
+calerf - computes error functions.  
+cmb_lin - symbolic linear combination  
+conj - conjugate  
+convstr - case conversion  
+cos - cosine function  
+cosh - hyperbolic cosine  
+coshm - matrix hyperbolic cosine  
+cosm - matrix cosine function  
+cotg - cotangent  
+coth - hyperbolic cotangent  
+cothm - matrix hyperbolic cotangent  
+cumprod - cumulative product  
+cumsum - cumulative sum  
+debug - debugging level  
+dec2hex - hexadecimal representation of integers  
+delip - elliptic integral  
+delmenu - interactive button or menu deletion  
+demos - guide for scilab demos  
+diag - diagonal including or extracting  
+dlgamma - derivative of gammaln function.  
+edit - function editing  
+emptystr - zero length string  
+erf - the error function.  
+erfc - the complementary error function.  
+erfcx - scaled complementary error function.  
+eval - evaluation of a matrix of strings  
+execstr - scilab instructions execution by evaluation of strings  
+full - sparse to full matrix conversion  
+gamma - the gamma function.  
+gammaln - the logarithm of gamma function.  
+getvalue - xwindow dialog for data acquisition  
+gsort - decreasing order sorting  
+halt - stop execution  
+havewindow - return scilab window mode  
+hex2dec - converts hexadecimal representation of integers to numbers  
+input - prompt for user input  
+integrate - integration by quadrature  
+interp - interpolation  
+interpln - linear interpolation  
+intsplin - integration of experimental data by spline interpolation  
+inttrap - integration of experimental data by trapezoidal interpolation  
+isdef - check variable existence  
+isinf - check for infinite entries  
+isnan - check for not a number entries  
+kron - kronecker product (.*.)  
+ldivf - left symbolic division  
+linspace - linearly spaced vector  
+log - natural logarithm  
+log10 - logarithm  
+logm - square matrix logarithm  
+logspace - logarithmically spaced vector  
+macr2lst - function to list conversion  
+macrovar - variables of function  
+manedit - editing a manual item  
+mean - mean (row mean, column mean) of vector/matrix entries  
+median - median (row median, column median) of vector/matrix entries  
+modulo - arithmetic remainder modulo m  
+mulf - symbolic multiplication  
+nnz - number of non zero entries in a matrix  
+norm - matrix norms  
+pen2ea - pencil to e,a conversion  
+pertrans - pertranspose  
+prod - product  
+rdivf - right symbolic division  
+readc_ - read a character string  
+readmps - reads a file in mps format  
+sci2exp - converts variable to expression  
+sci2map - scilab to maple variable conversion  
+setmenu - interactive button or menu activation  
+sin - sine function  
+sinh - hyperbolic sine  
+sinhm - matrix hyperbolic sine  
+sinm - matrix sine function  
+smooth - smoothing by spline functions  
+solve - symbolic linear system solver  
+sort - decreasing order sorting  
+sp2adj - converts sparse matrix into adjacency form  
+sparse - sparse matrix definition  
+spcompack - converts a compressed adjacency representation  
+speye - sparse identity matrix  
+spget - retrieves entries of sparse matrix  
+splin - spline function  
+spones - sparse matrix  
+sprand - sparse random matrix  
+spzeros - sparse zero matrix  
+sqrt - square root  
+sqrtm - matrix square root  
+ssprint - pretty print for linear system  
+ssrand - random system generator  
+st_deviation - standard deviation (row or column-wise) of vector/matrix entries  
+strcat - catenate character strings  
+strindex - search position of a character string in an other string.  
+stripblanks - strips leading and trailing blanks of strings  
+strsubst - substitute a character string by another in a character string.  
+subf - symbolic subtraction  
+sum - sum (row sum, column sum) of vector/matrix entries  
+sysconv - system conversion  
+sysdiag - block diagonal system connection  
+syslin - linear system definition  
+tan - tangent  
+tanh - hyperbolic tangent  
+tanhm - matrix hyperbolic tangent  
+tanm - matrix tangent  
+timer - cpu time  
+toeplitz - toeplitz matrix  
+trfmod - poles and zeros display  
+trianfml - symbolic triangularization  
+tril - lower triangular part of matrix  
+trisolve - symbolic linear system solver  
+triu - upper triangle  
+typeof - object type  
+unsetmenu - interactive button or menu or submenu de-activation  
+x_choices - interactive xwindow choices through toggle buttons  
+x_choose - interactive xwindow choice  
+x_dialog - xwindow dialog  
+x_matrix - xwindow editing of matrix  
+x_mdialog - xwindow dialog  
+x_message - x window message  
+xgetfile - dialog to get a file path  
+zeros - matrix made of zeros  

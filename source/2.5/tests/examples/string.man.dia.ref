@@ -1,0 +1,28 @@
+ 
+clear;lines(0);
+ 
+string(rand(2,2))
+ ans  =
+ 
+!0.2113249  0.0002211  !
+!                      !
+!0.7560439  0.3303271  !
+ 
+deff('y=mymacro(x)','y=x+1')
+ 
+[out,in,text]=string(mymacro)
+ text  =
+ 
+     []
+ in  =
+ 
+ x   
+ out  =
+ 
+ y   
+ 
+x=123.356; 'Result is '+string(x)
+ ans  =
+ 
+ Result is 123.356   
+ 

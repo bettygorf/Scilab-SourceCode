@@ -1,0 +1,19 @@
+clear;lines(0);
+h=figure(3);
+// creates  figure number 1.
+uicontrol( h, 'style','text', ...
+ 'string','This is a figure', ...
+ 'position',[50 70 100 100], ...
+ 'fontsize',15);
+// put a  text in figure 3
+figure();
+// create figure 1
+uicontrol( 'style','text', ...
+ 'string','Another figure', ...
+ 'position',[50 70 100 100], ...
+ 'fontsize',15);
+// put a text in figure 1
+close();
+// close the current graphic window (ie fig. 1)
+close(h);
+// close figure 3

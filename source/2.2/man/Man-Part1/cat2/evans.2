@@ -1,0 +1,66 @@
+
+
+
+evans(1)                       Scilab Function                       evans(1)
+
+
+
+
+
+
+NAME
+  evans - Evans root locus
+
+CALLING SEQUENCE
+  evans(syst [,kmax])
+
+PARAMETERS
+
+  syst : list (linear system syslin )
+
+  kmax : real (maximum gain desired for the plot )
+
+DESCRIPTION
+  gives the Evans root locus for a linear system in state-space or transfer
+  form (syslin list)
+
+EXAMPLE
+  h=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+  evans(h,100)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

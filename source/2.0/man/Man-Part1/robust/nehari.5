@@ -1,0 +1,31 @@
+.TH nehari 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+nehari - Nehari approximant
+.SH CALLING SEQUENCE
+.nf
+[x]=nehari(R [,tol])
+.fi
+.SH PARAMETERS
+.TP
+R
+: linear system (\fVsyslin\fR list)
+.TP
+x
+: linear system (\fVsyslin\fR list)
+.TP
+tol
+: optional threshold
+.SH DESCRIPTION
+.Vb [x]=nehari(R [,tol])
+returns the Nehari approximant of \fVR\fR.
+.LP
+\fVR\fR = linear system in state-space representation (\fVsyslin\fR list).
+.LP
+\fVR\fR is strictly proper and \fV- R~\fR is stable 
+(i.e. \fVR\fR is anti stable).
+.nf
+    || R - X ||oo = min || R - Y ||oo
+                  Y in Hoo
+.fi
+

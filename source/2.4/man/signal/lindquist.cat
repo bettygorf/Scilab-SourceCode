@@ -1,0 +1,27 @@
+
+lindquist(1)                   Scilab Function                   lindquist(1)
+NAME
+  lindquist - Lindquist's algorithm
+
+CALLING SEQUENCE
+  [Pn,Rt,T]=lindquist(n,H,F,G,r0)
+
+PARAMETERS
+
+  n               : number of iterations.
+
+  H, F, G         : estimated triple from the covariance sequence of y.
+
+  r0              : E(yk*yk')
+
+  Pn              : solution of the Riccati equation after n iterations.
+
+  RtP Tt          : gain matrices of the filter.
+
+DESCRIPTION
+  computes iteratively the minimal solution of the algebraic Riccati equation
+  and gives the matrices Rt and Tt of the filter model, by the Lindquist's
+  algorithm.
+
+AUTHOR
+  G. Le V.

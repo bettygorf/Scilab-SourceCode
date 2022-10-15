@@ -1,0 +1,23 @@
+.TH routh_tX 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+routh_t - Routh's table
+.SH CALLING SEQUENCE
+.nf
+r=routh_t(h [,k]).
+.fi
+.SH PARAMETERS
+.TP
+h
+: square rational matrix
+.SH DESCRIPTION
+\fVr=routh_t(h,k)\fR computes Routh's table of denominator of the
+system described by transfer matrix SISO \fVh\fR with the
+feedback by the gain \fVk\fR.
+.LP
+If  \fVk=poly(0,'k')\fR we will have a polynomial matrix with dummy variable 
+\fVk\fR, formal expression of the Routh table.
+
+
+
+

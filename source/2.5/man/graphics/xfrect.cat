@@ -1,0 +1,27 @@
+
+xfrect(2)                      Scilab Function                      xfrect(2)
+NAME
+  xfrect - fill a rectangle
+
+CALLING SEQUENCE
+  xfrect(x,y,w,h)
+
+PARAMETERS
+
+  x,y,w,h  : four real values defining the rectangle.
+
+DESCRIPTION
+  xrect fills a rectangle defined by [x,y,w,h] (upper-left point, width,
+  height) using the current scale and style.
+
+EXAMPLE
+  plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
+  xset("pattern",5)
+  xfrect(-1,1,2,2)
+  xset("default")
+
+SEE ALSO
+  xrect, xrects
+
+AUTHOR
+  J.Ph.C.

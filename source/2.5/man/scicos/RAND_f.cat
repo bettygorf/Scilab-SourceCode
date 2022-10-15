@@ -1,0 +1,23 @@
+
+RAND_f(5)                        Scicos Block                       RAND_f(5)
+NAME
+  RAND_f - Scicos random wave generator
+
+DESCRIPTION
+  This block is a random wave generator: each output component takes piece-
+  wise constant random values. Every time an event is received on the input
+  event port, the outputs take  new independent random values.
+
+  output port size is given by the size of A and B vectors
+
+DIALOGUE PARAMETERS
+
+  flag : 0 or 1. 0 for uniform distribution on [A,A+B] and 1 for normal dis-
+       tribution N(A,B*B).
+
+  A    : scalar
+
+  B    : scalar
+
+SEE ALSO
+  GENSIN_f, SAWTOOTH_f, GENSQR_f

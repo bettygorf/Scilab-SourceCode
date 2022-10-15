@@ -1,0 +1,75 @@
+AtanH - arctangent variation   @AtanH
+FWT - 1d forward discrete wavelet transform   @FWT
+FWT2D - 2d forward disrete wavelet transform   @FWT2D
+GeneWei - generalized weierstrass function   @GeneWei
+IWT - 1d inverse discrete wavelet transform   @IWT
+IWT2D - 2d inverse disrete wavelet transform   @IWT2D
+Koutrouvelis - stable law parameters estimation (koutrouvelis method)   @Koutrouvelis
+McCulloch - stable law parameters estimation (mcculloch method)   @McCulloch
+WT2DStruct - retrieve the structure of a 2d dwt   @WT2DStruct
+WT2DVisu - visualise a 2d multiresolution   @WT2DVisu
+WT2Dext - extract a projection from a 2d wt   @WT2Dext
+WTMultires - construct a 1d multiresolution representation   @WTMultires
+WTStruct - retrieve a 1d discrete wavelet structure.   @WTStruct
+alphagifs - holder function estimation using ifs   @alphagifs
+bbch - beneath-beyond concave hull   @bbch
+binom - binomial measure synthesis   @binom
+contwt - continuous l2 wavelet transform   @contwt
+contwtmir - continuous l2 wavelet transform with mirroring   @contwtmir
+contwtspec - continuous l2 wavelet based legendre spectrum   @contwtspec
+cwt - continuous wavelet transform   @cwt
+cwtspec - continuous l1 wavelet based legendre spectrum   @cwtspec
+cwttrack - continuous l2 wavelet based holder exponent estimation   @cwttrack
+cwttrack_all - continuous l2 wavelet based holder function estimation   @cwttrack_all
+dilate - dilation of a signal   @dilate
+dimR2d - regularization dimension of the surface of a 2d function   @dimR2d
+dmt - discrete mellin transform of a vector   @dmt
+dwtspec - discrete wavelet based legendre spectrum   @dwtspec
+fbmfwt - discrete wavelet based synthesis of a fbm   @fbmfwt
+fbmlevinson - levinson synthesis of a fractional brownian motion   @fbmlevinson
+fft1d - operates a column-wise direct or inverse fft   @fft1d
+findWTLM - finds local maxima lines of a cwt   @findWTLM
+flt - fast legendre transform   @flt
+gauss - gaussian window   @gauss
+gifs2wave - wavelet coefficients from new gifs coefficients   @gifs2wave
+gifseg - replaces nodes of the diadic tree by a ceratin unique value.   @gifseg
+holder2d - holder exponents of a measures defined on 2d real signal   @holder2d
+icontwt - inverse continuous l2 wavelet transform   @icontwt
+idmt - inverse discrete mellin transform   @idmt
+integ - approximate 1-d integral   @integ
+isempty - checks if a matrix is empty   @isempty
+lambdak - k's lambda functions for pseudoaw   @lambdak
+lepskiiap - lepskii adaptive procedure   @lepskiiap
+linearlt - linear time legendre transform   @linearlt
+mbmlevinson - levinson synthesis of a multifractional brownian motion   @mbmlevinson
+mcfg1d - continuous large deviation spectrum estimation on 1d measure   @mcfg1d
+mdfl1d - discrete legendre spectrum estimation on 1d measure   @mdfl1d
+mdfl2d - discrete legendre spectrum estimation on 2d measure   @mdfl2d
+mdznq1d - discrete partition function estimation on 1d measure   @mdzq1d
+mdznq2d - discrete partition function estimation on 2d measure   @mdzq2d
+mexhat - mexican hat wavelet   @mexhat
+monolr - monovariate linear regression   @monolr
+morlet - morlet wavelet   @morlet
+multim1d - multinomial 1d measure synthesis   @multim1d
+multim2d - multinomial 2d measure synthesis   @multim2d
+nextpowQ - rounds a number to the up-nearest power of an integer   @nextpowQ
+oscillsing - oscillating singularity synthesis   @oscillsing
+prescrib - generation of signals with prescribed holder function   @prescrib
+pseudoAW - pseudo affine wigner distribution   @pseudoAW
+regdim - estimate the regularization dimension of a 1d or 2d sample.   @regdim
+reynitq - reyni exponents estimation   @reynitq
+sbinom - stochastic binomial measure synthesis   @sbinom
+sgifs - semi generalized ifs generation   @sgifs
+sim_stable - generation of stable random processes   @sim_stable
+smultim1d __subtitle__=stochastic multinomial 1d measure synthesis -   @smultim1d
+smultim2d __subtitle__=stochastic multinomial 2d measure synthesis -   @smultim2d
+sortup - sorts the elements of an array in increasing order   @sortup
+stable_cov - covariation of two jointly symmetric alpha-stable random variables   @stable_cov
+stable_sm - spectral measure of a bivariate stable random vector   @stable_sm
+stable_test - stable law conformicy test   @stable_test
+strfbm - structure function of a brownian field   @strfbm
+symcori - symmetrization of a periodic 2d correlation field   @symcori
+synth2 - stationary increments 2d process   @synth2
+viewWTLM - vizualises the local maxima lines of a cwt   @viewWTLM
+viewmat - vizualisation of a matrix   @viewmat
+wave2gifs - computation of ifs coef. with discrete wavelet coefficients   @wave2gifs

@@ -1,0 +1,44 @@
+.TH max_clique 1 "September 1996" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+max_clique - maximum clique of a graph
+.SH CALLING SEQUENCE
+.nf
+[size,nodes] = max_clique(g,[ind])
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph list
+.TP 4
+ind
+: integer (optional) 
+.TP 5
+size
+: integer
+.TP 6
+nodes
+: integer row vector
+.SH DESCRIPTION
+\fVmax_clique\fR computes the maximum clique of the graph \fVg\fR i.e. the 
+complete subgraph of maximum size. \fVind\fR is a parameter for the choice
+of the method: if \fVind\fR is 0 the method is a partial enumerative 
+algorithm and if \fVind\fR is 1 the algorithm is based on quadratic 
+zero-one programming. The default is 0.
+The output \fVsize\fR is the number of the nodes of the clique found by the
+algorithm and \fVnodes\fR is the vector of the corresponding nodes.
+.SH EXAMPLE
+.nf 
+ta=[1 2 3 4 5 6 6 7 8  9 10 16 16 10 11 11 12 12 11 14 15 15 13 7 13 13];
+he=[2 3 4 5 6 7 8 8 9 10 16  2  3 11 12 13  1 14 14 15  5  9 12 4 14 15];
+g=make_graph('foo',0,16,ta,he);
+g('node_x')=[106 199 369 467 470 403 399 347 308 269 184 108 199 268 345 272];
+g('node_y')=[341 420 422 321 180 212 286 246 193 244 243 209  59 134  51 348];
+g('node_diam')=[1:(g('node_number'))]+20;
+show_graph(g);
+[ns,no] = max_clique(g);
+show_nodes(no);
+g1=graph_complement(g);
+[ns,no] = max_clique(g1);
+show_nodes(no);
+.fi

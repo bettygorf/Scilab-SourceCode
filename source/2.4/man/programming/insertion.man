@@ -1,0 +1,248 @@
+.TH insertion 1 "September 1996" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+insertion - matrix and list insertion or modification
+.SH CALLING SEQUENCE
+.nf
+x(i,j)=a
+x(i)=a
+l(i)=a
+l(k1)...(kn)(i)=a or l(list(k1,...,kn,i))=a
+l(k1)...(kn)(i,j)=a   or l(list(k1,...,kn,list(i,j))=a
+.fi
+.SH PARAMETERS
+.TP 15
+x
+: matrix  of any  kind (constant, sparse, polynomial,...)
+.TP 15
+l
+: list 
+.TP 15
+i,j
+: indices
+.TP
+k1,...kn
+: indices  with integer value
+.TP
+a
+: new entry value
+.SH DESCRIPTION
+.TP 5
+MATRIX CASE
+ 
+\fVi\fR and \fVj\fR, may be:
+.RS
+.TP 3
+-
+real scalars or vectors or matrices with positive elements. 
+.RS
+.TP 3
+* 
+if \fVa\fR is a matrix with dimensions \fV(size(i,'*'),size(j,'*'))\fR
+\fVx(i,j)=a\fR returns a new \fVx\fR matrix such as
+\fVx(int(i(l)),int(j(k)))=a(l,k) \fR for  \fVl\fR from 1 to \fVsize(i,'*')\fR and
+\fVk\fR from 1 to \fVsize(j,'*')\fR, other initial entries of \fVx\fR
+are unchanged. 
+.LP
+if \fVa\fR is a scalar  \fVx(i,j)=a\fR returns a new \fVx\fR matrix such as
+\fVx(int(i(l)),int(j(k)))=a \fR for  \fVl\fR from 1 to \fVsize(i,'*')\fR and
+\fVk\fR from 1 to \fVsize(j,'*')\fR, other initial entries of \fVx\fR
+are unchanged. 
+
+If \fVi\fR or  \fVj\fR maximum value exceed corresponding \fVx\fR
+matrix dimension \fVx\fR is previously extended to the required
+dimensions with zeros entries for standard matrices, 0 length character
+string for string matrices and false values for boolean matrices.
+
+.TP 3
+*
+\fVx(i,j)=[]\fR kills rows specified by \fVi\fR if \fVj\fR matches all
+columns of \fVx\fR or kills columns specified by \fVj\fR if \fVi\fR matches all
+rows of \fVx\fR. In other cases \fVx(i,j)=[]\fR produce an error.
+.TP 3
+*
+\fVx(i)=a\fR  with \fVa\fR a vector returns a new \fVx\fR matrix such as
+\fVx(int(i(l)))=a(l)\fR for  \fVl\fR from 1 to \fVsize(i,'*')\fR ,
+other initial entries of \fVx\fR are unchanged.
+.LP
+\fVx(i)=a\fR  with \fVa\fR a scalar returns a new \fVx\fR matrix such as
+\fVx(int(i(l)))=a\fR for  \fVl\fR from 1 to \fVsize(i,'*')\fR ,
+other initial entries of \fVx\fR are unchanged.
+.LP
+If \fVi\fR maximum value exceed  \fVsize(x,1)\fR, \fVx\fR is
+previously extended to the required dimension with zeros entries for
+standard matrices, 0 length character string for string matrices and
+false values for boolean matrices. 
+
+.RS
+.TP 3
+if
+\fVx\fR is a 1x1 matrix
+\fVa\fR may be a row (respectively a column)  vector with  dimension
+\fVsize(i,'*')\fR. Resulting \fVx\fR matrix is a row (respectively a column) vector
+.TP 3
+if
+\fVx\fR is a row vector
+\fVa\fR must be a row vector with  dimension  \fVsize(i,'*')\fR
+.TP 3
+if
+\fVx\fR is a column vector
+\fVa\fR must be a column vector with  dimension  \fVsize(i,'*')\fR
+.TP 3
+if
+\fVx\fR is a general matrix
+\fVa\fR must be a row or column vector with  dimension
+\fVsize(i,'*')\fR and \fVi\fR maximum value cannot exceed \fVsize(x,'*')\fR,
+.RE
+.TP 3
+*
+\fVx(i)=[]\fR kills entries specified by \fVi\fR.
+.RE
+-
+the \fV:\fR symbol which stands for "all elements". 
+.RS
+.TP 3
+* 
+\fVx(i,:)=a\fR is interpreted as \fVx(i,1:size(x,2))=a\fR 
+.TP
+*
+\fVx(:,j)=a\fR is interpreted as \fVx(1:size(x,1),j)=a\fR 
+.TP
+* 
+\fVx(:)=a\fR returns in \fVx\fR the  \fVa\fR matrix reshaped
+according to x dimensions. \fVsize(x,'*')\fR must be equal to \fVsize(a,'*')\fR
+.RE
+
+.TP
+-
+vector of boolean. If an index (\fVi\fR  or \fVj\fR )is a vector of
+booleans it is interpreted as \fVfind(i)\fR or respectively  \fVfind(j)\fR 
+.TP
+-
+a polynomial.  If an index (\fVi\fR  or \fVj\fR )is a vector of
+polynomials or implicit polynomial vector it is interpreted as
+\fVhorner(i,m)\fR or respectively  \fVhorner(j,n)\fR where \fVm\fR
+and \fVn\fR are associated \fVx\fR dimensions.
+
+Even if this feature works for all polynomials, it is recommended to
+use polynomials in \fV$\fR for readability.  
+.RE
+.TP 
+LIST OR TLIST CASE
+If they are present the \fVki\fR give the path to a sub-list entry of
+\fVl\fR data structure. They allow a recursive extraction without
+intermediate copies.
+
+The  \fVl(k1)...(kn)(i)=a\fR and  \fVl(list(k1,...,kn,i)=a)\fR instructions are interpreted as:
+
+\fVlk1   = l(k1)\fR
+
+\fV ..   = ..    \fR
+
+\fVlkn   = lkn-1(kn)\fR
+
+\fV lkn(i) = a\fR
+
+\fVlkn-1(kn) = lkn\fR
+
+\fV ..   = ..    \fR
+
+\fVl(k1) = lk1\fR
+
+And the  \fVl(k1)...(kn)(i,j)=a\fR and \fVl(list(k1,...,kn,list(i,j))=a\fR
+instructions are  interpreted as:
+
+\fVlk1   = l(k1)\fR
+
+\fV ..   = ..    \fR
+
+\fVlkn   = lkn-1(kn)\fR
+
+\fVlkn(i,j) = a\fR
+
+\fVlkn-1(kn) = lkn\fR
+
+\fV ..   = ..    \fR
+
+\fVl(k1) = lk1\fR
+.RS
+.TP
+\fVi\fR may be :
+.RS
+.TP 3
+-
+a real non negative scalar.
+ \fVl(0)=a\fR adds an entry on the "left" of the list
+
+ \fVl(i)=a\fR sets the \fVi\fR entry of the list \fVl\fR to
+\fVa\fR. if \fVi>size(l)\fR, \fVl\fR is previously extended with zero
+length entries (undefined).
+
+ \fVl(i)=null()\fR suppress the \fVi\fRth list entry.
+.TP
+-
+a polynomial.  If \fVi\fR  is a  polynomial  it is interpreted as
+\fVhorner(i,m)\fR where \fVm=size(l)\fR.
+
+Even if this feature works for all polynomials, it is recommended to
+use polynomials in \fV$\fR for readability.  
+.RE
+\fVk1,..kn\fR may be :
+
+.TP 3
+-
+real positive scalar. 
+
+.TP
+-
+a polynomial,interpreted as
+\fVhorner(ki,m)\fR where \fVm\fR is the corresponding sub-list size.
+
+.TP
+- a character string associated with a sub-list entry name.
+.RE
+.SH REMARKS
+For soft coded matrix types such as rational functions and state space
+linear systems, \fVx(i)\fR syntax may not be used for vector entry
+insertion due to confusion with list entry insertion. \fVx(1,j)\fR
+or \fVx(i,1)\fR syntax must be used.
+
+.SH EXAMPLE
+.nf
+// MATRIX CASE
+a=[1 2 3;4 5 6]
+a(1,2)=10
+a([1 1],2)=[-1;-2]
+a(:,1)=[8;5]
+a(1,3:-1:1)=[77 44 99]
+a(1)=%s
+a(6)=%s+1
+a(:)=1:6
+a([%t %f],1)=33
+a(1:2,$-1)=[2;4]
+a($:-1:1,1)=[8;7]
+a($)=123
+//
+x='test'
+x([4 5])=['4','5']
+//
+b=[1/%s,(%s+1)/(%s-1)]
+b(1,1)=0
+b(1,$)=b(1,$)+1
+b(2)=[1 2] // the numerator
+// LIST OR TLIST CASE
+l=list(1,'qwerw',%s)
+l(1)='Changed'
+l(0)='Added'
+l(6)=['one more';'added']
+//
+//
+dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+dts(2)('a')=33
+dts(2)('b')(1,2)=-100
+.fi
+.SH SEE ALSO
+find, horner, parents, extraction
+
+
+

@@ -1,0 +1,33 @@
+.TH xsegs 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xsegs - draw unconnected segments
+.SH CALLING SEQUENCE
+.nf
+xsegs(nx,ny)
+.fi
+.SH PARAMETERS 
+.TP 15
+nx,ny 
+: two matrices of the same size, 
+.SH DESCRIPTION
+this function draws a set of unconnected segments given by \fVnx,ny\fR
+which are internally considered as vectors ( using the Fortran storage convention). 
+The coordinates of the two points defining a segment
+are given by two consecutive values of \fVnx\fR and \fVny\fR.
+.LP
+\fV(nx[i],ny[i])-->(nx[i+1],nx[i+2])\fR
+.LP
+Using matrices of size (2,.) the segments can be defined by 
+.nf
+nx=[ xi_1,xi_
+     xf_1,xf_2,...  ]
+
+ny=[ yi_1,yi_2,.....;
+    yf_1,yf_2,...  ]
+.fi
+the segments are then \fV(xi_k,yi_k)->(xf_k,yf_k)\fR
+.SH AUTHOR
+C. J.Ph
+
+

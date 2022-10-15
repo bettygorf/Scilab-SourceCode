@@ -1,0 +1,52 @@
+
+alphagifs(2)                   Scilab Function                   alphagifs(2)
+NAME
+  alphagifs - Holder function estimation using IFS
+
+  Author: Khalid Daoudi
+
+  Estimates the pointwise Holder exponents of a 1-D real signal using the
+  GIFS method.
+
+Usage
+  [Alpha, Ci]=wave2gifs(sig, limtype)
+
+Input parameters
+       o sig : Real vector [1,n] or [n,1] Contains the signal to be analysed.
+       o limtype : Character string Specifies the type of limit you want to
+         use. You have the choice between
+Output parameters
+       o Alpha : Real vector Contains the estimated Holder function of the
+         signal.
+       o Ci : Real matrix Contains the GIFS coefficients obtained using the
+         Schauder basis.
+Description
+
+Parameters
+       o sig is a real vector [1,n] or [n,1] which contains the signal to be
+         analysed.
+       o limtype is a character string Specifies the type of limit you want
+         to use. You have the choice between
+       o Alpha is a real vector which contains the estimated Holder function
+         of the signal i.e the estimated pointwise Holder exponent a each
+         point of the given signal.
+       o Ci is a real matrix which contains the GIFS coefficients obtained as
+         the ration between (synchrounous) Schauder basis coefficients at
+         succesive scales.
+Algorithm details
+  The algorithm uses the GIFS method to estimate the Holder exponent at each
+  point of a given signal. The first step of this method consists in comput-
+  ing the coefficients of the GIFS whose attractor is the given signal. In
+  the second step, we replace each coefficient which absolute value is
+  greater than 1 (resp. smaller than 1/2) by 1 (resp. by 1/2).  We then per-
+  form the computation of the limit that yields the estimated Holder function
+  using the chosen type of limit.
+
+See also:
+  gifs and prescalpha
+
+Example:
+   Synthesis of an fbm with exponent H=0.7 (of size 1024 samples) : x =
+  fmblevinson(1024,0.7) ;
+   Estimation of The Holder function : Alpha = alphagifs(x,'slope');
+  plot(Alpha)

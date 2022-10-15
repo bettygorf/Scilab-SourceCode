@@ -1,0 +1,29 @@
+.TH comp 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+comp -  macro compilation
+.SH CALLING SEQUENCE
+.nf
+comp(macro-name)
+.fi
+.SH DESCRIPTION
+.Vb comp(macro-name) 
+compiles the macro \fVmacro-name\fR.
+Compiled and interpreted macros are equivalent but usually 
+compiled macros are much faster.
+The macros provided in the standard libraries are compiled.
+Un-compiled versions exist (entering a library-name returns the names of
+the un-compiled corresponding macros)
+.LP
+The command:
+.Vb getf('filename','c') 
+loads the macros in \fV'filename'\fR and compiles them.
+.SH REMARKS
+commands 
+.Vb who, help, what 
+cannot be compiled.
+.SH SEE ALSO
+deff, getf, whereis, macr2lst, lib
+
+
+

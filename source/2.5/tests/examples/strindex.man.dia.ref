@@ -1,0 +1,28 @@
+ 
+clear;lines(0);
+ 
+k=strindex('SCI/demos/scicos','/')
+ k  =
+ 
+!   4.    10. !
+ 
+k=strindex('SCI/demos/scicos','SCI/')
+ k  =
+ 
+    1.  
+ 
+k=strindex('SCI/demos/scicos','!')
+ k  =
+ 
+     []
+ 
+k=strindex('aaaaa','aa')
+ k  =
+ 
+!   1.    3. !
+ 
+k=strindex('SCI/demos/scicos',['SCI','sci'])
+ k  =
+ 
+!   1.    11. !
+ 

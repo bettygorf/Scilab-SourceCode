@@ -1,0 +1,29 @@
+.TH linspace 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+linspace - linearly spaced vector
+.SH CALLING SEQUENCE
+.nf
+[v]=linspace(x1,x2 [,n])
+.fi
+.SH PARAMETERS
+.TP 10
+x1,x2
+: real or complex scalars
+.TP 10
+n
+: integer (number of values) (default value = 100)
+.TP 10
+v 
+: real or complex row vector
+.SH DESCRIPTION
+Linearly spaced vector.
+\fVlinspace(x1, x2)\fR generates a row vector of n (default value=100) linearly
+equally spaced points between \fVx1\fR and \fVx2\fR.
+.SH EXAMPLE
+.nf
+linspace(1,2,10)
+.fi
+.SH SEE ALSO
+logspace
+

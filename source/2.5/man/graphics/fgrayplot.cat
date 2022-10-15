@@ -1,0 +1,35 @@
+
+fgrayplot(2)                   Scilab Function                   fgrayplot(2)
+NAME
+  fgrayplot - 2D plot of a surface defined by a function using colors
+
+CALLING SEQUENCE
+  fgrayplot(x,y,f,[strf,rect,nax])
+
+PARAMETERS
+
+  x,y  : real row vectors.
+
+  f    : external of type y=f(x,y).
+
+  strf,rect,nax
+       : see plot2d.
+
+DESCRIPTION
+  fgrayplot makes a 2D plot of the surface given by z=f(x,y) on a grid
+  defined by x and y.  Each rectangle on the grid is filled with a gray or
+  color level depending on the average value of z on the corners of the rect-
+  angle.
+
+  Enter the command fgrayplot() to see a demo.
+
+EXAMPLE
+  t=-1:0.1:1;
+  deff("[z]=surf(x,y)","z=x**2+y**2")
+  fgrayplot(t,t,surf,"111",[-2,-2,2,2])
+
+SEE ALSO
+  grayplot, plot2d, Sgrayplot, Sfgrayplot
+
+AUTHOR
+  J.Ph.C.

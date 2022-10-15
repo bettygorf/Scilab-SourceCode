@@ -1,0 +1,54 @@
+
+%helps(1)                      Scilab Function                      %helps(1)
+
+NAME
+  %helps - Variable defining the path of help directories
+
+DESCRIPTION
+  The variable %helps is an N x 2 matrix of strings.  The kth row of %helps,
+  %helps(k,:) represents the kth chapter of the manual and is made of two
+  strings:
+
+  %helps(k,1) is a pathname for a help directory.
+
+  %helps(k,2) is a title for this help directory.  For instance, for k=2, we
+  have the graphics chapter %helps(2,:).
+
+  The variable %helps is defined in the Scilab startup file
+  SCI+"/scilab.star".
+
+  To add a new help directory, the user should add a row to the variable
+  %helps. (One row for each directory).
+
+  For instance, %helps=[%helps; "Path-Of-My-Help-Dir","My-Title"]; enables
+  the Scilab help browser to look for help manual items in the directory with
+  pathname "Path-Of-My-Help-Dir".
+
+  "My-Title" is then the title of a new help chapter which appears in the
+  bottom part of the help window, raised by clicking on the help button.
+
+  A valid help directory must contain:
+
+  1- A set of .cat files (e.g. item1.cat, item2.cat etc).  The .cat files do
+  do require special format. Usually, they are built as Unix man pages.
+
+  2- A whatis file, which must have a special format. Each row of the whatis
+  must be as follows:
+  item - what is item @item
+
+  item is the item of the help, i.e. the command help item returns the con-
+  tents of the file item.cat.
+
+  what is item is a brief description of the item.
+
+  Thewhatis file appears in the top window of the help window, once a chapter
+  has been selected in the bottom window.
+
+  Clicking on one item of the top window opens the manual page.
+
+  The command apropos keyword returns the row(s) of all the whatis file(s) in
+  which the keyword appears.
+  On Unix-Linux platforms Scilab provides a Makefile for transforming
+
+SEE ALSO
+  help, apropos

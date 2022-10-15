@@ -1,0 +1,24 @@
+
+xsave(2)                       Scilab Function                       xsave(2)
+NAME
+  xsave - save graphics in a (reloadable) file.
+
+CALLING SEQUENCE
+  xsave('file-name' [, win-num] )
+
+PARAMETERS
+
+  win-num        : an integer ( optional argument ) which stands for the
+                 graphic window which is to be saved.
+
+DESCRIPTION
+  This function is used to save the graphics contained in the graphic-window
+  win-num.  The graphics are stored in a binary file in a  machine indepen-
+  dent way ( using the xdr library) and can be reloaded in Scilab with the
+  xload command.
+
+SEE ALSO
+  xload
+
+AUTHOR
+  J.Ph.C..

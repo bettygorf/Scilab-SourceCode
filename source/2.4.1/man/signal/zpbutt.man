@@ -1,0 +1,28 @@
+.TH zpbutt 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+zpbutt - Butterworth analog filter
+.SH CALLING SEQUENCE
+.nf
+[pols,gain]=zpbutt(n,omegac)
+.fi
+.SH PARAMETERS
+.TP 10
+n
+: integer (filter order)
+.TP
+omegac
+: real (cut-off frequency in Hertz)
+.TP
+pols
+: resulting poles of filter
+.TP
+gain
+: resulting gain of filter
+.SH DESCRIPTION
+computes the poles of a Butterworth analog
+filter of order \fVn\fR and cutoff frequency omegac
+transfer function H(s) is calculated by
+.Vb H(s) = gain/real(poly(pols,'s'))
+.SH AUTHOR
+F.D.

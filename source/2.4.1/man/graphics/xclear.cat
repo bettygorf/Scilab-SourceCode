@@ -1,0 +1,27 @@
+
+xclear(2)                      Scilab Function                      xclear(2)
+NAME
+  xclear - clear a graphic window
+
+CALLING SEQUENCE
+  xclear([window-id])
+
+PARAMETERS
+
+  window-id      : integer vector
+
+DESCRIPTION
+  Without any argument, this function wipes out the current window.  Other-
+  wise it wipes out the graphic windows whose numbers are included in the
+  vector window-id, for example xclear(1:3).  If one of the windows does not
+  exist then it is automatically created.
+
+  Warning : in recording mode the graphic command xclear wipes out the win-
+  dow, but it doesn't wipe out the recorded commands.  In this case one must
+  use the function xbasc.
+
+SEE ALSO
+  xbasc
+
+AUTHOR
+  J.Ph.C.

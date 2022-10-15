@@ -1,0 +1,4 @@
+Note that "libCom.h" and "libCalCom.h" are the same files as 
+"../routines/libcomm/libCom.h" an "../routines/libcomm/libCalCom.h".
+
+Note that "netcomm.h" is the same file as "../routines/metanet/netcomm.h".

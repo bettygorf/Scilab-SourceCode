@@ -1,0 +1,30 @@
+.TH errbar 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME 
+errbar - add vertical error bars on a 2D plot
+.SH CALLING SEQUENCE
+.nf
+errbar(x,y,em,ep)
+.fi
+.SH PARAMETERS
+.TP 11
+x,y,em,ep 
+: four matrices of the same size.
+.SH DESCRIPTION
+\fVerrbar\fR adds vertical error bars on a 2D plot. 
+\fVx\fR and \fVy\fR have the same meaning as in \fVplot2d\fR.
+\fVem(i,j)\fR and \fVep(i,j)\fR stands for the error interval on the 
+value \fVy(i,j)\fR: \fV[y(i,j)-em(i,j),y(i,j)+ep(i,j)]\fR.
+
+Enter the command \fVerrbar()\fR to see a demo.
+.SH EXAMPLE
+.nf
+t=[0:0.1:2*%pi]';
+y=[sin(t) cos(t)]; x=[t t];
+plot2d(x,y)
+errbar(x,y,0.05*ones(x),0.03*ones(x))
+.fi
+.SH SEE ALSO
+plot2d
+.SH AUTHOR
+J.Ph.C.

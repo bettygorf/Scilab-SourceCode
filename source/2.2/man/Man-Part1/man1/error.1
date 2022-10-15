@@ -1,0 +1,19 @@
+.TH error 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+error - error messages 
+.SH CALLING SEQUENCE
+.nf
+error('string' [,n])
+error(m)
+.fi
+.SH DESCRIPTION
+prints the character string \fV'string'\fR in an error message
+and stops the current instruction.
+.LP
+If \fVn\fR is given, it is associated to the number of the error. \fVn\fR should
+be larger than \fV10000\fR (default value).
+.LP
+\fVerror(m) \fR prints the message associated with the error number \fVm\fR.
+.SH SEE ALSO
+warning

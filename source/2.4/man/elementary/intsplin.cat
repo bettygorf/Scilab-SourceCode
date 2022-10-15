@@ -1,0 +1,36 @@
+
+intsplin(1)                    Scilab Function                    intsplin(1)
+NAME
+  intsplin - integration of experimental data by spline interpolation
+
+CALLING SEQUENCE
+  v = intsplin([x,] s)
+
+PARAMETERS
+
+  x         : vector of increasing x coordinate data. Default value is
+            1:size(y,'*')
+
+  s         : vector of y coordinate data
+
+  v         : value of the integral
+
+DESCRIPTION
+  computes :
+
+                        /x1
+                       [
+                   v = I  f(x)dx
+                       ]
+                      /x0
+  Where f is a function described by a set of experimental value:
+
+  s(i)=f(x(i))  and x0=x(1), x1=x(n)
+  Between mesh points function is interpolated using spline's.
+
+EXAMPLE
+  t=0:0.1:%pi
+  intsplin(t,sin(t))
+
+SEE ALSO
+  intg, integrate, inttrap, splin

@@ -1,0 +1,66 @@
+
+
+
+emptystr(1)                    Scilab Function                    emptystr(1)
+
+
+
+
+
+
+NAME
+  emptystr - zero length string
+
+CALLING SEQUENCE
+  s=emptystr()
+  s=emptystr(a)
+  s=emptystr(m,n)
+
+PARAMETERS
+
+  a         : any type of matrix
+
+  s         : character string matrix
+
+  m,n       : integers
+
+DESCRIPTION
+  Returns a matrix of zero length character strings
+
+  With no input argument returns a zero length character string.
+
+  With a matrix for input argument returns  a zero length character strings
+  matrix of the same size.
+
+  With two integer arguments returns a mxn zero length character strings
+  matrix
+
+EXAMPLE
+  x=emptystr();for k=1:10, x=x+','+string(k);end
+
+SEE ALSO
+  part, length, string
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

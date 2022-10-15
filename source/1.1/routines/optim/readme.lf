@@ -1,0 +1,340 @@
+                Generalized linear-fractional optimization
+                    over positive semidefinite matrices
+                            User's manual
+
+                   A. Nemirovskii & Yu. Nesterov
+       USSR Acad. of Sci. Central Economical & Mathematical Inst.
+               32 Krasikova St., Moscow 117418, USSR
+                      phone:  (095) 129-1322
+                      fax:    (095) 310-7015
+                      e-mail: root@cemi.msk.su
+                              (for Nemirovskii & Nesterov)
+
+
+                              Contents
+             1. Formulation of the problem
+             2. Origin of the method
+             3. Solver: header and semantics of the parameters
+             4. Memory requirements
+             5. Files comprising the software
+             6. Test version of MAIN program
+             7. Important remarks
+
+
+         1. PROBLEM which is solved by the code under consideration
+    looks as follows:
+         minimize              L
+         subject to
+                   L*(Rx+b) - (Qx+p) >= 0
+                        Rx+b >= 0
+                        L >= Lmin
+    where control vector x belongs to n-dimensional space E, R and
+    Q  are linear mappings from E into the space S[m] of symmetric
+    real  block-diagonal  matrices  of  a   given   block-diagonal
+    structure,  b  and  p  are  elements  of S[m] and ">= 0" means
+    "positive  semidefinite".  The  space  S[m]  is  comprised  of
+    symmetric  block-diagonal  matrices  with k diagonal blocks of
+    sizes m(i)*m(i), i = 1,..., k.
+
+         2. METHOD implemented in the  code  is  the  adjusted  to
+    linear-fractional   problems   version   of   the   Projective
+    polynomial time interior point method described in Sect.  4 of
+    Chapter III of
+         Yu. Nesterov, A. Nemirovskii
+         Interior point polynomial methods in  Convex  Programming:
+    theory and applications
+    (to be published by Springer in "Lecture Notes in Mathematics",
+    1992)
+
+         3. SOLVER is a FORTRAN subroutine
+
+        prfr(n,k,m,R,b,Q,p,ipin,rpin,xin,ipout,rpout,xout,war,iwar)
+
+    with
+         ALL REALS BEING REAL *8 (a-h,o-z)
+         ALL INTEGERS BEING INTEGER *4 (i-n)
+
+    The semantics of the parameters is as follows:
+
+    INPUT/OUTPUT:
+         war(nwar)     real working array
+         iwar(niwar)   integer working array
+    INPUT:
+    DATA FOR THE PROBLEM:
+         n        dimension of the control vector, see 1.
+         k        # of diagonal blocks in elements of S[m], see 1.
+         m(k)     m(i) is the size of the i-th diagonal block of an
+                  element of S[m]
+         R(n*lnt),
+         Q(n*lnt) matrices of linear mappings A,Q: E -> S[m], see 1.
+                  REMARK A:
+                        lnt = Len(m(1)) + ... + Len(m(k)),
+                  where
+                               Len(p) = p*(p+1)/2.
+                     A linear mapping W:  E -> S[m] is represented
+                  as  linear  array  comprised  of  n   sequential
+                  segments,  the  i-th of them being We[i],  where
+                  e[i] is the i-th standard orth of E.
+                     An element  X  of  S[m]  is  represented  by a
+                  linear array comprised of k  sequential  segments
+                  of lengths Len(m(1)),...,Len(m(k)),  and the i-th
+                  segment is the lower-triangular part of  the i-th
+                  diagonal block X[i] of X;  a lower-triangular p*p
+                  matrix Q is stored as the linear array
+                      Q(1,1),Q(2,1),Q(2,2),...,Q(p,1),...,Q(p,p).
+         b(lnt),
+         p(lnt)   constant terms,  see 1., represented according to
+                  the above Remark A.
+         xin(n)   initial approximate solution (optional)
+    CONTROL PARAMETERS FOR THE METHOD:
+                  REMARK B:  The figures in angle brackets are  the
+                  default  values;  to  set  the default value of a
+                  parameter,  it suffices to  call  the  subroutine
+                  with negative value of the parameter.
+         ipin(10) integer control parameters
+            ipin(1) <20> # of iterations allowed
+            ipin(2) <5>  # of primal dichotomy steps
+            ipin(3) <10> # of dual Newton steps
+                           0 - default dual step
+            ipin(4) <1>  0/1  to use/not use the initial approxima-
+                           te solution (rpin(4),xin); if ipin(4)=0
+                           and the solution is not strictly feasib-
+                           le, xin is ignored
+            ipin(5) <-1> printlevel:
+                          -1 no messages
+                           0 brief comments at the termination
+                           1 brief on-line messages
+                           2 full on-line messages
+                           Note that ipin(5) controls only screen
+                           messages. The method always create the
+                           protocol file
+            ipin(6) <17> # of channel for protocol file
+            ipin(7) <1>  length of war (in *8 reals)
+            ipin(8) <1>  length of iwar (in *4 integers)
+            ipin(9) <0>  0/1 Y/N on improved projection
+                           (0 corresponds to more accurate, and
+                           more time consuming linear algebra)
+            ipin(10)<0>  0/1 <-> Y/N on Cholesski for termination
+                           (0 corresponds   to  certain  additional
+                           test whether the  required  accuracy  is
+                           achieved)
+         rpin(8)  real control parameters
+            rpin(1) <1.d-6>  required relative accuracy (see below
+                             semantics or ipout(2))
+            rpin(2) <1.d-10> tolerance for "unfeasibility"
+            rpin(3) <1.d-12> tolerance for projection
+            rpin(4)          a priori upper bound for optimal value
+            rpin(5)          tmin, see 1.
+            rpin(6)          not used
+            rpin(7)          not used
+            rpin(8)          not used
+    OUTPUT:
+         ipout(4) integer output characteristics
+            ipout(1) reason for termination
+                     -2  iwar is too small
+                     -1  war is too small
+                      0  normal end
+                    > 0  cannot compute smth.
+            ipout(2) what is found
+                      2  optimal solution found
+                      1  required accuracy achieved
+                      0  feasible solution found
+                     -1  unfeasibility found
+                     -4  nothing found
+            ipout(3) # of iterations performed
+            ipout(4) not used
+         rpout(4) real output characteristics
+            rpout(1) L-component of the result, if ipout(2).ge.0
+            REMARK C: if ipout(2).ge.1 ("required accuracy ensu-
+                      red" or "optimal solution found"), then
+                       |Lres - Lopt| <= rpin(1)*max{1,|Lres|},
+                      where Lres is the resulting, and Lopt is
+                      the optimal value of the objective
+            rpout(2) not used
+            rpout(3) not used
+            rpout(4) not used
+         xout(n)  resulting approximate solution (defined only if
+                   ipout(2) is nonnegative)
+
+         4. MEMORY requirements for Solver:
+
+     the length of *4 integer array "iwar" should be at least 6*k
+     the length of *8 real array "war" should be at least
+        10*m2sum + 19*msum + mmax*(mmax+5) +
+        + (21*n*n+59*n)/2 + 18
+     where
+          m2sum = m(1)*m(1) + ... + m(k)*m(k),
+          msum = m(1) + ... + m(k),
+          mmax = max{m(1),...,m(k)}
+
+         The sizes  of  working  arrays  "war" and "iwar" should be
+    declared in the MAIN program and are communicated to Solver via
+    the values of the formal parameters ipin(7) and ipin(8). Solver
+    and the subroutines called by it do not call for memory.
+
+         5. SOFTWARE is comprised of the following FORTRAN files:
+
+            LF-PD.FOR  (Solver)
+            SBRT.FOR   (Subroutines)
+
+         In addition to this  file,  we  provide  the  user  by  a
+    demo version of the MAIN program; this program (file STBL.FOR)
+    creates in interactive or autogeneration  mode  a  problem  of
+    finding  the best Lyapunov function for a feedback system (see
+    Sect. 6).
+         The MAIN  program  generates  a  problem  instance  in an
+    interactive mode. After the instance is generated, the user is
+    asked  to perform SetUp for the Solver.  Possible answers onto
+    the questions asked by the code during SetUp are  indicated in
+    the questions (in brackets {...}).
+
+         6. TEST  VERSION  of  the  MAIN  program  deals  with the
+    problem (below we follow the paper
+         Stephen Boyd and Quinping Yang
+         Structured and simultaneous Lyapunov functions for
+    system stability problems
+         Int. J. Control, 1989, V. 49 No. 6)
+         We are given a feedback system
+
+    (S):
+                 x'(t) = A*x(t) + B*u(t)
+                 y(t)  = C*x(t) + D*u(t)
+                 u(i,t) = f(i,t,y(i,t)), i = 1,...,nu
+
+    where x  is nx-dimensional,  u and y are nu-dimensional and A,
+    B, C, D are constant matrices of corresponding dimensions.
+         It is  known  that  (nonlinear)  functions f(i,s) satisfy
+    relations
+    (*)            a(i)*s*s <= s*f(i,t,s) <= b(i)*s*s
+    for all real s and positive t.
+         We are  interested  in the analysis of absolute stability
+    properties of  (S)  via  the  best possible quadratic Lyapunov
+    function for the system. As it is shown in the above mentioned
+    paper, these  properties  are  closely  related  to  the nx*nx
+    matrices
+         A[i] = A + B*K[i]*{(I - D*K[i])^(-1)}*C, i = 1,...,l,
+         l = 2^nu
+    where K[i] is diagonal nu*nu matrix  with  the  j-th  diagonal
+    element being a(j) or b(j); K[1],...,K[l], are all matrices of
+    this type.
+         Under the assumption  that  the  problem  is  well-posed,
+    i.e., all the matrices
+                   I - D*K[i], i = 1,...,l
+    are nonsingular  and  their determinants are of the same sign,
+    in the  above  paper  in  fact  it  is  proved  the  following
+    statement:
+         Assume that there exist a positive definite symmetric
+    matrix P and a real L such that
+            2*L*P - (A[i])'*P - P*A[i] >= 0, i = 1,...,l,
+    where (A[i])'  denotes  A[i]  transposed.  Set
+                       V(x) = 0.5*(Px,x).
+    Then for every trajectory x(t) of (S) one has
+                     dV(x(t))/dt <= 2*L*V(x(t)),
+    (whenever functions f(i,t,*) satisfy (*)), so that
+                  V(x(t)) <= V(x(0))*exp{2*L*t}.
+         It follows  that  in  order  to study (S) it is useful to
+    find "the best"  (with  the  smallest  possible  L)  quadratic
+    Lyapunov function of the above type. The latter problem can be
+    rewritten as
+    (Lyap(S)):
+       minimize                 L
+       subject to
+    (**)       2*L*P - (A[i])'*P - P*A[i] >= 0, i = 1,...,l,
+                      P is positive definite.
+     Assume that  we  are  given  a priori lower bound Lmin of the
+    optimal value in the latter  problem.  Then  this  problem  is
+    equivalent to  the  following problem of the type described in
+    Sect. 1:
+    (Prb):
+       minimize                 L
+       subject to
+                   L*(Rx+b) - (Qx+p) >= 0
+                        Rx+b >= 0
+                        L >= Lmin
+    where x belongs to the space R^n, n = nx*(nx+1)/2 of symmetric
+    nx*nx  matrices  and  R and Q take values in the space S[m] of
+    symmetric block-diagonal matrices with
+                            k = l+1
+    diagonal blocks of the size nx*nx each.
+        The i-th blocks, i = 1,...,l, of the values Rx and Qx of R
+    and Q at x are, respectively, the nx*nx matrices
+                     2*x and (A[i])'*x + x*A[i];
+        the (l+1)-th blocks of these values are, respectively,
+                          x and (Lmin-1)*x.
+        The i-th blocks,  i = 1,...,l, of the constant terms b and
+    p are zeros, and the (l+1)-th blocks are, respectively,
+                         -I  and -(Lmin-1)*I.
+        Note that the first l blocks of the matrices
+                   L*(Rx+b) - (Qx+p) and Rx+b
+    are positive  semidefinite  if  and  only  if  P=x is positive
+    semidefinite and satisfies (**),  while the  restriction  that
+    the   (l+1)-th   blocks   of   these   matrices  are  positive
+    semidefinite is equivalent to the constraint P-I >=  0 (recall
+    that we restrict ourselves with values of L not smaller Lmin).
+    Thus, (Prb) is equivalent to (Lyap(S))  (with  the  additional
+    constraint L >= Lmin in the latter problem).
+
+         The test  version  of  MAIN  program  included  into  the
+    software implements the following functions.
+         1. Generating/reading data for (S)
+            The data can be entered from keyboard or from  a  disk
+    file,  as  well as can be created autogeneration mode. Optimal
+    value in the problems created in the latter mode is 1.
+            The created  data should be stored in a disk file (the
+    user is asked to indicate the corresponding file name, as well
+    as  the  name  of  protocol  file  created during the solution
+    process). The file containing the data is a usual text file in
+    which every coefficient of (S) is preceded by a text line with
+    identificator of this coefficient.  When editing the file, the
+    user  should  maintain the order of coefficients and the lines
+    with identificators.
+         2. Checking well-posedness of the problem (see above)
+         3. Transforming the data into the format required  by the
+    Solver,  performing  SetUp  for Solver in interactive mode and
+    running the Solver. The resulting Lyapunov matrix is stored in
+    the protocol file.
+
+         7. IMPORTANT REMARKS.  There are three possibilities  for
+    termination of the computational process:
+         1) The found by Solver lower bound  Lb  for  the  optimal
+    value  of  the  objective  turns out to be close enough to the
+    value Lt of the objective at the feasible approximate solution
+    found by the method, namely,
+                 Lt - Lb <= max{1,|Lt|}*rpin(1)
+    (recall that  the  control  parameter  rpin(1) is the required
+    relative accuracy).  This type of termination is indicated  by
+    the returned  value  1  of  the  parameter ipout(2) ("Required
+    accuracy ensured") or value 2 of the same  parameter ("Optimal
+    solution found").
+         Note that the lower bound found by the  method  generally
+    should not   converge  to  the  optimal  value,  so  that  the
+    termination in question does not necessary occur;  as  far  as
+    problems Lyap(S)  are  concerned,  this  termination  was  not
+    observed in experiments.
+         2) The  amount  of  iterations  performed  by  the method
+    becomes equal to the maximal allowed number of iterations (the
+    latter quantity   is   the  value  of  the  control  parameter
+    ipin(1)).
+         3) There occurs certain computational difficulty (usually
+    the method is unable to perform Cholesski factorization  of an
+    ill-conditioned positive  definite  matrix).  As  far  as  our
+    computational experience is concerned,  this happens when  the
+    current approximate solution is "almost optimal" (the relative
+    accuracy in the value of the objective is  less  than  1.E-7 -
+    1.E-8).
+         Now, when running the code,  the user can simply set  the
+    maximal allowed  number of iterations to be large enough (say,
+    100); the solution in fact will  be  terminated  much  earlier
+    because of the computational difficulties, and the approximate
+    solution found by the method hopefully will be close enough to
+    the precise optimal value.
+         Our  computational  experience  with  a  number  of  test
+    problems demonstrates that the solution with absolute accuracy
+    < 1.E-6 is found in less than 20 iterations (and  this  amount
+    is more or less independent of the sizes of the problem).
+         To conclude, let us notice  that  our  now  computational
+    experience is rather restricted, so that  the  recommendations
+    on SetUp of Solver (indicated in the questions of  interactive
+    SetUp procedure) possibly should be changed. The authors would
+    highly  appreciate  any  information  and  remarks  about  the
+    performance of the code.

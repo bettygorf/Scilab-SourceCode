@@ -1,0 +1,3455 @@
+\section{Scicos editor}
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:15 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: ../../man//scicos/scicos.man
+%
+\phead{scicos}{5}{Janvier\ 1996}{Scilab\ Group}{Scilab\ function}
+
+
+\Sdoc{scicos}{ Block diagram editor and GUI to hybrid simulator scicosim}\index{scicos}\label{scicos}
+
+\Shead{CALLING SEQUENCE}
+sys=scicos()
+sys=scicos(sys,[menus])
+sys=scicos(file,[menus])
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?sys?}]
+: a Scicos data structure
+\item[{\verb?file?}]
+: a character string. The path of a file containing the binary image
+of a Scicos data structure 
+\item[{\verb?menus?}]
+: a vector of character strings. It allows to select some of the
+scicos menus. If %
+\tt menus==[] %
+\rm  scicos draws the diagram and the
+contents of each super blocks in separate windows without menu
+bar. This option is usefull to print diagram definition.
+
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+scicos is a visual editor for constructing models of hybrid dynamical
+systems. Invoking scicos with no argument opens up an empty scicos
+window. Models can then be assembled, loaded, saved, compiled,
+simulated, using GUI of scicos. The input and ouput arguments are only
+useful for debugging purposes. scicos serves as an interface to the
+various block diagram compilers and the hybrid simulator scicosim.
+
+\Seealso{SEE ALSO}
+{\verb?scicosim scicos_main scicos_menu ?} \pageref{scicosimscicosmainscicosmenu}
+      
+
+
+
+
+
+
+
+
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:15 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+
+\section{Blocks}
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:15 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: ../../man//scicos/ABSBLK_f.man
+%
+\phead{ABSBLK\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{ABSBLK\_f}{ Scicos abs block}\index{ABSBLK\_f}\label{ABSBLKf}
+
+\Shead{DIALOG PARAMETERS}
+None.
+\Shead{DESCRIPTION}
+This block realizes element-wise vector absolute value operation. 
+This block has a single input and a single output port.
+Port dimension is determined by the context.
+
+
+
+
+
+%
+% input file: ../../man//scicos/AFFICH_f.man
+%
+\phead{AFFICH\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{AFFICH\_f}{ Scicos digital viewer}\index{AFFICH\_f}\label{AFFICHf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?font?}]
+: integer, the selected font number (see xset)
+\item[{\verb?fontsize?}]
+: integer, the selected font size (set xset)
+\item[{\verb?color?}]
+: integer, the selected color for the text (see xset)
+\item[{\verb?Total numer of digits?}]
+: an integer greater than 3, the maximum number of digits used to
+represent the number(sign,integer part and rational part)
+\item[{\verb?rational part numer of digits?}]
+: an integer greater or equal 0, the number of digits used to
+represent the  rational part
+
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block allows to display a value in a block shape during
+simulation. The block must be located in the main scilab window.
+
+Warning, each time the block is moved user may click on it to set it's
+parameters. So display position is automatically updated.
+\Seealso{SEE ALSO}
+{\verb?SCOPE_f?} \pageref{SCOPEf},{\verb? xset?} \pageref{xset}
+
+%
+% input file: ../../man//scicos/ANDLOG_f.man
+%
+\phead{ANDLOG\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{ANDLOG\_f}{ Scicos logical AND block}\index{ANDLOG\_f}\label{ANDLOGf}
+
+\Shead{DIALOG PARAMETERS}
+None.
+\Shead{DESCRIPTION}
+This block, with two event inputs and a regular output,
+outputs +1 or -1 on its regular ouput depending on input events. 
+\begin{scitem}
+\item[{\verb?+1?}]
+:
+When events are synchronously present on both event input ports
+\item[{\verb?-1?}]
+:
+When only one event is present.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?IFTHEl_f?} \pageref{IFTHElf}
+%
+% input file: ../../man//scicos/ANIMXY_f.man
+%
+\phead{ANIMXY\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{ANIMXY\_f}{ Scicos 2D animated visualization block}\index{ANIMXY\_f}\label{ANIMXYf}
+
+\Shead{DESCRIPTION}
+This block realizes the visualization of the evolution of the two
+regular input signals by drawing the second input as a function of
+the first at instants of events on the event input port.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Curve colors?}]
+: an integer. It is the color number ($<$0)
+or marker type ($>$0) used to draw the evolution of the input port
+signal. See %
+\tt xset() %
+\rm for color (dash type) definitions.
+\item[{\verb?Line or mark size?}]
+: an integer. 
+\item[{\verb?Output window number?}]
+: The number of graphic window used for the display. It is often good
+to use high values to avoid conflict with palettes and Super Block
+windows. If you have more than one scope, make sure they don't have
+the same window numbers (unless superposition of the curves is
+desired).
+\item[{\verb?Output window position?}]
+: a 2 vector specifying the coordinates of the upper left corner of
+the graphic window. Answer [] for default window position.
+\item[{\verb?Output window size?}]
+: a 2 vector specifying the width and height  of 
+the graphic window. Answer [] for default window dimensions.
+\item[{\verb?Xmin, Xmax?}]
+: Minimum and maximum values of the first input; used to set up the X-axis
+of the plot in the graphics window.
+\item[{\verb?Ymin, Ymax?}]
+: Minimum and maximum values of the second input; used to set up the 
+Y-axis of the plot in the graphics window.
+\item[{\verb?Buffer size?}]
+: an integer. The number of points visible at any time.
+\end{scitem}% end Env
+\Shead{REMARKS}
+%
+\tt Output window number%
+\rm , %
+\tt Output window size%
+\rm , %
+\tt Output window
+position %
+\rm are only taken into account at the initialisation time of the
+simulation. 
+
+
+\Seealso{SEE ALSO}
+{\verb?SCOPE_f EVENTSCOPE_f SCOPXY_f?} \pageref{SCOPEfEVENTSCOPEfSCOPXYf}
+
+
+
+
+
+%
+% input file: ../../man//scicos/CLINDUMMY_f.man
+%
+\phead{CLINDUMMY\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{CLINDUMMY\_f}{ Scicos dummy continuous system with state}\index{CLINDUMMY\_f}\label{CLINDUMMYf}
+
+\Shead{DESCRIPTION}
+This block should be placed in any block diagram that contains a
+treshold block but no continuous system with state. The reason 
+for that is that it is the ode solver that find zero crossing
+surfaces.
+\Seealso{SEE ALSO}
+{\verb?ZCROSS_f?} \pageref{ZCROSSf}
+
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/CLKIN_f.man
+%
+\phead{CLKIN\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{CLKIN\_f}{ Scicos Super Block event input port}\index{CLKIN\_f}\label{CLKINf}
+
+\Shead{DESCRIPTION}
+This block must only be used inside Scicos Super Blocks to represent
+an event input port. 
+\par\noindent
+In a Super Block, the event input ports must be numbered from 1 to the
+number of event input ports.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Port number?}]
+: an integer defining the port number.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?IN_f OUT_f CLKOUT_f?} \pageref{INfOUTfCLKOUTf}
+%
+% input file: ../../man//scicos/CLKOUT_f.man
+%
+\phead{CLKOUT\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{CLKOUT\_f}{ Scicos Super Block event output port}\index{CLKOUT\_f}\label{CLKOUTf}
+
+\Shead{DESCRIPTION}
+This block must only be used inside Scicos Super Blocks to represent
+an event output port. 
+\par\noindent
+In a Super\_Block, the event output ports must be numbered from 1 to the
+number of event output ports.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Port number?}]
+: an integer giving the port number.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?IN_f OUT_f CLKIN_f?} \pageref{INfOUTfCLKINf}
+
+%
+% input file: ../../man//scicos/CLKSOM_f.man
+%
+\phead{CLKSOM\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{CLKSOM\_f}{ Scicos event addition block}\index{CLKSOM\_f}\label{CLKSOMf}
+
+\Shead{DIALOG PARAMETERS}
+None.
+\Shead{DESCRIPTION}
+This block is an event addition block with up to three inputs. The
+output reproduces 
+the events on all the input ports. Strictly speaking, CLKSOM is not a
+Scicos block because it is discarded at the compilation phase. The
+inputs and output of CLKSOM are synchronized (this is impossible for
+other basic blocks in Scicos). 
+
+
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/CLKSPLIT_f.man
+%
+\phead{CLKSPLIT\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{CLKSPLIT\_f}{ Scicos event split block}\index{CLKSPLIT\_f}\label{CLKSPLITf}
+
+\Shead{DIALOG PARAMETERS}
+None.
+\Shead{DESCRIPTION}
+This block is an event split block with an input and two outputs. The
+outputs reproduces the event the input port on each output ports. 
+Strictly speaking, CLKSPLIT is not a Scicos block because it is
+discarded at the compilation phase. This block is automatically
+created when creating a new link issued from a link.
+
+The inputs and output of CLKSPLIT are synchronized. 
+
+
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/CLOCK_f.man
+%
+\phead{CLOCK\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{CLOCK\_f}{ Scicos periodic event generator}\index{CLOCK\_f}\label{CLOCKf}
+
+\Shead{DESCRIPTION}
+This block is a Super Block constructed by feeding back the output
+of an event delay block into its input event port. The unique
+output of this block generates a regular train of events.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Period?}]
+: scalar. One over the frequency of the clock. Period is the time that
+separates two output events.
+\item[{\verb?Period?}]
+: scalar. One over the frequency of the clock. Period is the time that
+separates two output events.
+\item[{\verb?Init time?}]
+: scalar. Starting date. if negative the clock never starts.
+
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?EVTDLY_f?} \pageref{EVTDLYf}
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/CLR_f.man
+%
+\phead{CLR\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{CLR\_f}{ Scicos continuous-time linear system (SISO transfer function)}\index{CLR\_f}\label{CLRf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Numerator?}]
+: a polynomial in s.
+\item[{\verb?Denominator?}]
+: a polynomial in s.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block realizes a SISO linear system represented by its rational
+transfer function %
+\tt Numerator/Denominator%
+\rm .
+The rational function must be proper.
+\Seealso{SEE ALSO}
+{\verb?CLSS_f INTEGRAL_f?} \pageref{CLSSfINTEGRALf}
+
+
+
+
+
+%
+% input file: ../../man//scicos/CLSS_f.man
+%
+\phead{CLSS\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{CLSS\_f}{ Scicos continuous-time linear state-space system}\index{CLSS\_f}\label{CLSSf}
+
+\Shead{DESCRIPTION}
+This block realizes a continuous-time linear state-space system.
+\begin{verbatim}
+xdot=A*x+B*u
+y   =C*x+D*u
+\end{verbatim}
+The system is defined by the (A,B,C,D) matrices and the initial
+state x0. The dimensions must be compatible.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?A?}]
+: square matrix. The A matrix
+\item[{\verb?B?}]
+: the %
+\tt B %
+\rm matrix, may be %
+\tt [] %
+\rm if system has no input
+\item[{\verb?C?}]
+: the %
+\tt C %
+\rm matrix , may be %
+\tt [] %
+\rm if system has no output
+\item[{\verb?D?}]
+: the %
+\tt D %
+\rm matrix, may be %
+\tt [] %
+\rm if system has no %
+\tt D %
+\rm term.
+\item[{\verb?x0?}]
+: vector. The initial state of the system.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?CLR_f INTEGRAL_f ?} \pageref{CLRfINTEGRALf}
+
+
+
+
+
+%
+% input file: ../../man//scicos/CONST_f.man
+%
+\phead{CONST\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{CONST\_f}{ Scicos constant value(s) generator}\index{CONST\_f}\label{CONSTf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?constants?}]
+: a real vector. The vector size gives the number of output
+ports. The value %
+\tt constants(i) %
+\rm is assigned to the ith port.
+Note that output ports are numbered from top to bottom.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block is a constant value(s) generator.
+
+
+
+
+%
+% input file: ../../man//scicos/COSBLK_f.man
+%
+\phead{COSBLK\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{COSBLK\_f}{ Scicos cosine block}\index{COSBLK\_f}\label{COSBLKf}
+
+\Shead{DIALOG PARAMETERS}
+None.
+\Shead{DESCRIPTION}
+This block realizes vector cosine operation. %
+\tt y(i)=cos(u(i))%
+\rm .
+The port input and output  port sizes are equal and determined by the
+context.
+\Seealso{SEE ALSO}
+{\verb?SINBLK_f GENSIN_f?} \pageref{SINBLKfGENSINf}
+
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/CURV_f.man
+%
+\phead{CURV\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{CURV\_f}{ Scicos block, tabulated function of time}\index{CURV\_f}\label{CURVf}
+
+\Shead{DIALOG PARAMETERS}
+Tabulated function is entered using a graphics curv editor (see edit\_curv)
+
+\Shead{DESCRIPTION}
+This block defines a tabulated function of the time. Between mesh
+points block performs a linear interpolation. Outside tabulation block
+outputs last tabulated value.
+
+User may define the tabulation of the function using a curv editor.
+
+\Seealso{SEE ALSO}
+{\verb?edit_curv?} \pageref{editcurv}
+
+
+
+%
+% input file: ../../man//scicos/DELAYV_f.man
+%
+\phead{DELAYV\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{DELAYV\_f}{ Scicos varying delay block}\index{DELAYV\_f}\label{DELAYVf}
+
+\Shead{DIALOG PARAMETERS}
+
+\Shead{DESCRIPTION}
+%
+% input file: ../../man//scicos/DELAY_f.man
+%
+\phead{DELAY\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{DELAY\_f}{ Scicos  delay block}\index{DELAY\_f}\label{DELAYf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Discretisation time step?}]
+: positive scalar, delay discretisation time step
+\item[{\verb?Register initial state?}]
+: register initial state vector. Dimension must be greater or equal
+2
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block implements as a discretised delay. It is in fact a Scicos
+super block formed by a shift register and a clock.
+
+value of the delay is given by  the discretisation time step multiplied by the
+number of state of the register minus one 
+\Seealso{SEE ALSO}
+{\verb?DELAYV_f EVTDLY_f REGISTER_f?} \pageref{DELAYVfEVTDLYfREGISTERf}
+%
+% input file: ../../man//scicos/DEMUX_f.man
+%
+\phead{DEMUX\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{DEMUX\_f}{ Scicos demupliplexer block}\index{DEMUX\_f}\label{DEMUXf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?number of output ports?}]
+:
+positive integer less or equal 8.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+Given a vector valued input this block splits inputs over all vector
+valued outputs. So %
+\tt u=[y1;y2....;yn]%
+\rm , where %
+\tt yi %
+\rm are numbered
+from top to bottom. Input and Output port sizes are determined by the
+context.
+\Seealso{SEE ALSO}
+{\verb?MUX_f?} \pageref{MUXf}
+%
+% input file: ../../man//scicos/DLRADAPT_f.man
+%
+\phead{DLRADAPT\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{DLRADAPT\_f}{ Scicos discrete-time linear adaptative system}\index{DLRADAPT\_f}\label{DLRADAPTf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Vector of p mesh points?}]
+: a vector which defines %
+\tt u2 %
+\rm mesh points.
+Numerator roots
+: a matrix, each line gives the roots of the numerator at the
+corresponding mesh point.
+\item[{\verb?Denominator roots?}]
+: a matrix, each line gives the roots of the denominator at the
+corresponding mesh point.
+\item[{\verb?gain?}]
+: a vector, each vector entry gives the transfer gain at the
+corresponding mesh point.
+\item[{\verb?past inputs?}]
+: a vector of initial value of past %
+\tt degree(Numerator) %
+\rm inputs
+\item[{\verb?past outputs?}]
+: a vector of initial value of past %
+\tt degree(Denominator) %
+\rm outputs
+
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block realizes a SISO linear system represented by its rational
+transfer function whose numerator and denominator roots are tabulated
+functions of the second block input. The rational function must be
+proper.
+
+Roots are interpolated linearly between mesh points.
+
+\Seealso{SEE ALSO}
+{\verb?DLSS_f DLR_f?} \pageref{DLSSfDLRf}
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/DLR_f.man
+%
+\phead{DLR\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{DLR\_f}{ Scicos discrete-time linear system (transfer function)}\index{DLR\_f}\label{DLRf}
+
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Numerator?}]
+: a polynomial in z.
+\item[{\verb?Denomiator?}]
+: a polynomial in z.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block realizes a SISO linear system represented by its rational
+transfer function (in the symbolic variable z).
+The rational function must be proper. If it is not proper, the
+direct feedthrough make the output depend continuously on the input,
+so if the input  
+is not the output of a discrete block, it may not be piece-wise constant.
+\Seealso{SEE ALSO}
+{\verb?DLSS_f DLRADAPT_f?} \pageref{DLSSfDLRADAPTf}
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/DLSS_f.man
+%
+\phead{DLSS\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{DLSS\_f}{ Scicos discrete-time linear state-space system}\index{DLSS\_f}\label{DLSSf}
+
+\Shead{DESCRIPTION}
+This block realizes a discrete-time linear state-space system.
+The system is defined by the (A,B,C,D) matrices and the initial
+state x0. The dimensions must be compatible. At the arrival of
+an input event on the unique input event port, the state is
+updated. If D is not zero, the
+the output depends directly on the input, so if the input 
+is not the output of a discrete block, it may not be piecewise constant.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?A?}]
+: square matrix. The A matrix
+\item[{\verb?B?}]
+: the B matrix
+\item[{\verb?C?}]
+: the C matrix
+\item[{\verb?x0?}]
+: vector. The initial state of the system.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?DLR_f INTEGRAL_f CLSS_f DLSS_f?} \pageref{DLRfINTEGRALfCLSSfDLSSf}
+
+
+
+
+
+%
+% input file: ../../man//scicos/EVENTSCOPE_f.man
+%
+\phead{EVENTSCOPE\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{EVENTFSCOPE\_f}{ Scicos visualization block}\index{EVENTFSCOPE\_f}\label{EVENTFSCOPEf}
+
+\Shead{DESCRIPTION}
+This block allows the visualization of event signals
+on its event input port(s).
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Number of inputs?}]
+: an integer, the number of event input ports.
+\item[{\verb?Curve colors?}]
+: a vector of integers. The i-th element is the color number ($<$0)
+or dash type ($>$0) used to draw the evolution of the i-th 
+input port signal. See %
+\tt plot2d %
+\rm for color (dash type) definitions.
+\item[{\verb?Output window number?}]
+: The number of graphic window used for the display. It is often good
+to use high values to avoid conflict with palettes and Super Block
+windows. If you have more than one scope, make sure they don't have
+the same window numbers (unless superposition of the curves is desired).
+\item[{\verb?Refresh period?}]
+: Maximum value on the X-axis (time). The plot is redrawn when time
+reaches a multiple of this value.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?SCOPXY_f SCOPE_f ANIMXY_f?} \pageref{SCOPXYfSCOPEfANIMXYf}
+
+
+
+
+%
+% input file: ../../man//scicos/EVTDLY_f.man
+%
+\phead{EVTDLY\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{EVTDLY\_f}{ Scicos event delay block}\index{EVTDLY\_f}\label{EVTDLYf}
+
+\Shead{DESCRIPTION}
+One event is generated dt after an event enters the unique input
+event port. Block may also generate an initial output event.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Delay?}]
+: scalar. Time delay between input and output event.
+\item[{\verb?Auto-exec?}]
+:  scalar. If %
+\tt Auto-exec$>$=0 %
+\rm and block has yet received  no input event
+block generates an initial output event at date %
+\tt Auto-exec%
+\rm .
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?CLOCK_f?} \pageref{CLOCKf}
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/EVTGEN_f.man
+%
+\phead{EVTGEN\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{EVTGEN\_f}{ Scicos event firing block}\index{EVTGEN\_f}\label{EVTGENf}
+
+\Shead{DESCRIPTION}
+One event is generated on the unique output event port. The time
+of this event is t if t is larger than equal to zero, if not, no
+event is generated.
+\Shead{DIALOG PARAMETERS}
+
+\begin{scitem}
+\item[{\verb?Event time?}]
+: scalar. date of the initial event
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?CLOCK_f EVTDLY_f?} \pageref{CLOCKfEVTDLYf}
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/EVTSCOPE_f.man
+%
+\phead{EVTSCOPE\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{EVTSCOPE\_f}{ Scicos event visualization block}\index{EVTSCOPE\_f}\label{EVTSCOPEf}
+
+\Shead{DESCRIPTION}
+This block realizes the visualization of  the input event signals.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Number of event inputs?}]
+: an integer giving the number of event input ports
+colors
+: a vector of integers. The i-th element is the color number ($<$0)
+or dash type ($>$0) used to draw the evolution of the i-th 
+input port signal. See %
+\tt xset %
+\rm for color (dash type) definitions.
+\item[{\verb?Output window number?}]
+: The number of graphic window used for the display. It is often good
+to use high values to avoid conflict with palettes and Super Block
+windows. If you have more than one scope, make sure they don't have
+the same window numbers (unless superposition of the curves is
+desired).
+Output window position
+: a 2 vector specifying the coordinates of the upper left corner of
+the graphic window. Answer [] for default window position.
+\item[{\verb?Output window size?}]
+: a 2 vector specifying the width and height  of 
+the graphic window. Answer [] for default window dimensions.
+\item[{\verb?Refresh period?}]
+: Maximum value on the X-axis (time). The plot is redrawn when time
+reaches a multiple of this value.
+\end{scitem}% end Env
+\Shead{REMARKS}
+%
+\tt Output window number%
+\rm , %
+\tt Output window size%
+\rm , %
+\tt Output window
+position %
+\rm are only taken into account at the initialisation time of the
+simulation. 
+\Seealso{SEE ALSO}
+{\verb?SCOPXY_f EVENTSCOPE_f ANIMXY_f?} \pageref{SCOPXYfEVENTSCOPEfANIMXYf}
+
+
+
+
+%
+% input file: ../../man//scicos/EXPBLK_f.man
+%
+\phead{EXPBLK\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{EXPBLK\_f}{ Scicos a\^{}u block}\index{EXPBLK\_f}\label{EXPBLKf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?a :?}]
+real positive scalar
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block realizes %
+\tt y(i)=a\^{}u(i)%
+\rm . The input and output port sizes
+are determined by the context.
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/GAIN_f.man
+%
+\phead{GAIN\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{GAIN\_f}{ Scicos gain block}\index{GAIN\_f}\label{GAINf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Gain?}]
+: a real matrix. 
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block is a gain block. The output is the Gain times the
+regular input (vector). The dimensions of Gain determines the
+input (number of columns) and output (number of rows) port sizes.
+
+
+
+
+
+%
+% input file: ../../man//scicos/GENERAL_f.man
+%
+\phead{GENERAL\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{GENERAL\_f}{ Scicos general zero crossing detector}\index{GENERAL\_f}\label{GENERALf}
+
+\Shead{DESCRIPTION}
+Depending on the sign (just before the crossing) of the inputs and
+the input numbers of the inputs that have crossed zero, an event is
+programmed (or not) with a given delay, for each output. The number
+of combinations grows so fast that this becomes unusable for blocks
+having more than 2 or 3 inputs. For the moment this block is not
+documented.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Size of regular input?}]
+: integer.
+\item[{\verb?Number of output events?}]
+: integer.
+\item[{\verb?the routing matrix?}]
+: matrix. number of rows is the number of output events. The columns
+correspond to each possible combination of signs and zero crossings
+of the inputs. The entries of the matrix give the delay for generating
+the output event ($<$0 no event is generated).
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?NEGTOPOS_f POSTONEG_f ZCROSS_f ?} \pageref{NEGTOPOSfPOSTONEGfZCROSSf}
+
+
+
+
+
+%
+% input file: ../../man//scicos/GENSIN_f.man
+%
+\phead{GENSIN\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{GENSIN\_f}{ Scicos sinusoid generator}\index{GENSIN\_f}\label{GENSINf}
+
+\Shead{DESCRIPTION}
+This block is a sine wave generator: M*sin(F*t+P)
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Magnitude?}]
+: a scalar. The magnitude M.
+\item[{\verb?Frequency?}]
+: a scalar. The frequency F.
+\item[{\verb?Phase?}]
+: a scalar. The phase P.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?GENSQR_f RAND_f SAWTOOTH_f?} \pageref{GENSQRfRANDfSAWTOOTHf}
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/GENSQR_f.man
+%
+\phead{GENSQR\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{GENSQR\_f}{ Scicos square wave generator}\index{GENSQR\_f}\label{GENSQRf}
+
+\Shead{DESCRIPTION}
+This block is a square wave generator: output takes values
+0 and M. Everytime an event is received on the input event port,
+the output switches from 0 to M, or M to 0.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Amplitude?}]
+: a scalar M.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?GENSIN_f SAWTOOTH_f RAND_f?} \pageref{GENSINfSAWTOOTHfRANDf}
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/HALT_f.man
+%
+\phead{STOP\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{CLOCK\_f}{ Scicos Stop block}\index{CLOCK\_f}\label{CLOCKf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?State on halt?}]
+: scalar. A value to be placed in the state of the block. For
+debugging purposes this allows to distinguish between different
+halts.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block has a unique input event port. Upon the arrival of an
+event,
+the simulation is stopped and the main Scicos window is activated.
+Simulation can be restarted or continued (Run button).
+
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/IFTHEL_f.man
+%
+\phead{IFTHEL\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{IFTHEL\_f}{ Scicos if then else block}\index{IFTHEL\_f}\label{IFTHELf}
+
+\Shead{DIALOG PARAMETERS}
+None.
+\Shead{DESCRIPTION}
+One event is generated on one of the output event ports when an
+input event arrives. Depending on the sign of the regular input, 
+the event is generated on the first or second output.
+
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/INTEGRAL_f.man
+%
+\phead{INTEGRAL\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{INTEGRAL\_f}{ Scicos simple integrator}\index{INTEGRAL\_f}\label{INTEGRALf}
+
+\Shead{DESCRIPTION}
+This block is an integrator. The output is the integral of the input.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Initial state?}]
+: a scalar. The initial condition of the integrator.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?CLSS_f CLR_f?} \pageref{CLSSfCLRf}
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/INVBLK_f.man
+%
+\phead{INVBLK\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{INVBLK\_f}{ Scicos inversion block}\index{INVBLK\_f}\label{INVBLKf}
+
+\Shead{DIALOG PARAMETERS}
+None.
+\Shead{DESCRIPTION}
+This block computes %
+\tt y(i)=1/u(i)%
+\rm . The input (output) size is
+determined by the context
+%
+% input file: ../../man//scicos/IN_f.man
+%
+\phead{IN\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{IN\_f}{ Scicos Super Block regular input port}\index{IN\_f}\label{INf}
+
+\Shead{DESCRIPTION}
+This block must only be used inside Scicos Super Blocks to represent
+a regular input port. The input size is determined by the context.
+\par\noindent
+In a Super Block, regular input ports must be numbered from 1 to the
+number of regular input ports.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Port number?}]
+: an integer giving the port number.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?CLKIN_f OUT_f CLKOUT_f?} \pageref{CLKINfOUTfCLKOUTf}
+%
+% input file: ../../man//scicos/LOGBLK_f.man
+%
+\phead{LOGBLK\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{LOGBLK\_f}{ Scicos logarithm  block}\index{LOGBLK\_f}\label{LOGBLKf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?a : real scalar greater than 1?}]
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block realizes %
+\tt y(i)=log(u(i))/log(a)%
+\rm . The input and output port sizes
+are determined by the context.
+
+
+%
+% input file: ../../man//scicos/LOOKUP_f.man
+%
+\phead{LOOKUP\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{LOOKUP\_f}{ Scicos Lookup table with graphical editor}\index{LOOKUP\_f}\label{LOOKUPf}
+
+\Shead{DESCRIPTION}
+This block realizes a non-linear function defined using a graphical
+editor. 
+
+
+
+
+
+%
+% input file: ../../man//scicos/MAX_f.man
+%
+\phead{MAX\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{MAX\_f}{ Scicos max block}\index{MAX\_f}\label{MAXf}
+
+\Shead{DIALOG PARAMETERS}
+None.
+\Shead{DESCRIPTION}
+The block outputs the maximum of the input vector:
+%
+\tt y=max(u1,...un)%
+\rm .
+The input vector size is determined by the context.
+
+%
+% input file: ../../man//scicos/MCLOCK_f.man
+%
+\phead{MCLOCK\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{MCLOCK\_f}{ Scicos 2 frequency event clock}\index{MCLOCK\_f}\label{MCLOCKf}
+
+\Shead{DESCRIPTION}
+This block is a Super Block constructed by feeding back the outputs
+of an MFCLCK block into its input event port. The two
+outputs of this block generate regular train of events, the frequency
+of the first input being equal to that of the second output diveided
+by an integer n. The two outputs are synchronized (this is impossible
+for standard blocks; this is a Super Block).
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Basic period?}]
+: scalar. equals 1/f, f being the highest frequency.
+\item[{\verb?n ?}]
+: an intger $>$1. the frequency of the first output event is f/n.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?MFCLCK_f CLOCK_f?} \pageref{MFCLCKfCLOCKf}
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/MFCLCK_f.man
+%
+\phead{MFCLCK\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{MFCLCK\_f}{ Scicos basic block for frequency division of event clock}\index{MFCLCK\_f}\label{MFCLCKf}
+
+\Shead{DESCRIPTION}
+This block is used in the Super Block MCLOCK. The input event is
+directed once evry n times to output 1 and the rest of the time
+to output 2. There is a delay of "Basic period" in the transmission
+of the event. If this period $>$0 then the second output is initially
+fired. It is not if this period=0. In the latter case, the input
+is driven by an event clock and in the former case, feedback can
+be used.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Basic period?}]
+: positive scalar.
+\item[{\verb?n ?}]
+: an integer greater than 1. 
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?MCLOCK_f CLOCK_f?} \pageref{MCLOCKfCLOCKf}
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/MIN_f.man
+%
+\phead{MIN\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{MIN\_f}{ Scicos min block}\index{MIN\_f}\label{MINf}
+
+\Shead{DIALOG PARAMETERS}
+None.
+\Shead{DESCRIPTION}
+The block outputs the minimum of the input vector:
+%
+\tt y=min(u1,...un)%
+\rm .
+The input vector size is determined by the context.
+
+%
+% input file: ../../man//scicos/MUX_f.man
+%
+\phead{MUX\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{MUX\_f}{ Scicos mupliplexer block}\index{MUX\_f}\label{MUXf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?number of output ports?}]
+:
+integer greater or equal 1 and less than 8
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+Given %
+\tt n %
+\rm vector valued inputs this block merges inputs in an single
+output vector. So %
+\tt y=[u1;u2....;un]%
+\rm , where %
+\tt ui %
+\rm are numbered
+from top to bottom. Input and Output port sizes are determined by the
+context.
+\Seealso{SEE ALSO}
+{\verb?MUX_f?} \pageref{MUXf}
+%
+% input file: ../../man//scicos/NEGTOPOS_f.man
+%
+\phead{NEGTOPOS\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{NEGTOPOS\_f}{ Scicos negative to positive detector}\index{NEGTOPOS\_f}\label{NEGTOPOSf}
+
+\Shead{DESCRIPTION}
+An output event is generated when the unique input crosses zero
+with a positive derivative.
+\Seealso{SEE ALSO}
+{\verb?POSTONEG_f ZCROSS_f GENERAL_f?} \pageref{POSTONEGfZCROSSfGENERALf}
+
+
+
+
+
+%
+% input file: ../../man//scicos/OUT_f.man
+%
+\phead{OUT\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{OUT\_f}{ Scicos Super Block regular output port}\index{OUT\_f}\label{OUTf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Port number?}]
+: an integer giving the port number.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block must only be used inside Scicos Super Blocks to represent
+a regular output port. 
+\par\noindent
+In a Super Block, regular output ports must be numbered from 1 to the
+number of regular output ports.
+
+size of the output is determined by the context.
+
+\Seealso{SEE ALSO}
+{\verb?CLKIN_f IN_f CLKOUT_f?} \pageref{CLKINfINfCLKOUTf}
+%
+% input file: ../../man//scicos/POSTONEG_f.man
+%
+\phead{POSTONEG\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{POSTONEG\_f}{ Scicos positive to negative detector}\index{POSTONEG\_f}\label{POSTONEGf}
+
+\Shead{DESCRIPTION}
+An output event is generated when the unique input crosses zero
+with a negative derivative.
+\Seealso{SEE ALSO}
+{\verb?NEGTOPOS_f ZCROSS_f GENERAL_f?} \pageref{NEGTOPOSfZCROSSfGENERALf}
+
+
+
+
+
+%
+% input file: ../../man//scicos/POWBLK_f.man
+%
+\phead{POWBLK\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{POWBLK\_f}{ Scicos u\^{}a block}\index{POWBLK\_f}\label{POWBLKf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?a :?}]
+real scalar
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block realizes %
+\tt y(i)=u(i)\^{}a%
+\rm . The input and output port sizes
+are determined by the context.
+%
+% input file: ../../man//scicos/PROD_f.man
+%
+\phead{PROD\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{PROD\_f}{ Scicos product block}\index{PROD\_f}\label{PRODf}
+
+\Shead{DESCRIPTION}
+The output is the product of the two scalar inputs.
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/QUANT_f.man
+%
+\phead{QUANT\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{QUANT\_f}{ Scicos Quantization block}\index{QUANT\_f}\label{QUANTf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Step?}]
+: scalar, Quantization step
+\item[{\verb?Quantization method?}]
+: scalar with possible values 1,2,3 or 4
+\begin{scitem}
+\item[{\verb?1?}]
+: Round method
+\item[{\verb?2?}]
+: Truncation method
+\item[{\verb?3?}]
+:
+Floor method
+\item[{\verb?4?}]
+:
+Ceil method
+\end{scitem}
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block outputs the quantization of the input according to a choice
+of methods
+\par\noindent
+for %
+\tt Round %
+\rm method 
+
+%
+\tt y(i)=Step*(int(u(i)/Step+0.5)-0.5) %
+\rm if %
+\tt u(i)$<$0%
+\rm .
+
+%
+\tt y(i)=Step*(int(u(i)/Step-0.5)+0.5)%
+\rm . if %
+\tt u(i)$>$=0%
+\rm .
+
+\par\noindent
+For truncation method
+
+%
+\tt y(i)=Step*(int(u(i)/Step+0.5)) %
+\rm if %
+\tt u(i)$<$0%
+\rm .
+
+%
+\tt y(i)=Step*(int(u(i)/Step-0.5)) %
+\rm if %
+\tt u(i)$>$=0%
+\rm .
+
+\par\noindent
+For floor method
+
+%
+\tt y(i)=Step*(int(u(i)/Step+0.5)) %
+\rm .
+
+\par\noindent
+For ceil method
+
+%
+\tt y(i)=Step*(int(u(i)/Step-0.5)) %
+\rm .
+
+
+
+%
+% input file: ../../man//scicos/RAND_f.man
+%
+\phead{RAND\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{RAND\_f}{ Scicos random wave generator}\index{RAND\_f}\label{RANDf}
+
+\Shead{DESCRIPTION}
+This block is a random wave generator: output takes piecewise
+constant random values. Everytime an event is received on the 
+input event port, the output takes a new independent random value.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?flag?}]
+: 0 or 1. 0 for uniform distribution on [A,A+B] and 1 for normal
+distribution N(A,B*B).
+\item[{\verb?A?}]
+: scalar
+\item[{\verb?B?}]
+: scalar
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?GENSIN_f SAWTOOTH_f GENSQR_f?} \pageref{GENSINfSAWTOOTHfGENSQRf}
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/REGISTER_f.man
+%
+\phead{REGISTER\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{REGISTER\_f}{ Scicos shift register block}\index{REGISTER\_f}\label{REGISTERf}
+
+\Shead{DESCRIPTION}
+This block realizes a shift register. At every input event, the
+register is shifted one step.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Initial condition?}]
+: a column vector. It contains the initial state of the register.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?DELAY_f DELAYV_f EVTDLY_f?} \pageref{DELAYfDELAYVfEVTDLYf}
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/RFILE_f.man
+%
+\phead{RFILE\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{RFILE\_f}{ Scicos "read from file" block}\index{RFILE\_f}\label{RFILEf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Time record Selection?}]
+: an empty matrix or a positive integer. If an integer %
+\tt i %
+\rm is given
+the  %
+\tt i%
+\rm th element of the read record is assumed to be the date of
+the output event. If empty no output event exists.
+\item[{\verb?Output record selection?}]
+: a vector of positive integer. %
+\tt [k1,..,kn]%
+\rm ,The %
+\tt ki%
+\rm th
+element of  the read record gives the value of %
+\tt i%
+\rm th output.
+\item[{\verb?size of output?}]
+: a scalar. This fixes the number of "value" readed.
+\item[{\verb?Input file name?}]
+: a character string defining the path of the file 
+\item[{\verb?Input Format?}]
+: a character string defining the Fortran format to use or nothing for
+an unformatted (binary) write
+\item[{\verb?Buffer size?}]
+: To improve efficiency it is possible to buffer the input data. read
+on the file is only done after each %
+\tt Buffer size %
+\rm call to the block.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block allows user to read  datas in a file, in formatted or binary
+mode. %
+\tt Output record selection %
+\rm and %
+\tt Time record Selection %
+\rm allows the user to select data among file records.
+
+Each call to the block advance one record in the file. 
+
+\Seealso{SEE ALSO}
+{\verb?WFILE_f?} \pageref{WFILEf}
+
+
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/SAMPLEHOLD_f.man
+%
+\phead{SAMPLEHOLD\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{SAMPLEHOLD\_f}{ Scicos Sample and hold block}\index{SAMPLEHOLD\_f}\label{SAMPLEHOLDf}
+
+\Shead{DIALOG PARAMETERS}
+None.
+\Shead{DESCRIPTION}
+Each time an input event arises block pick the input value an hold it
+on the output up to next input event.
+For periodic Sample and hold event input must be generated by a %
+\tt Clock%
+\rm .
+\Seealso{SEE ALSO}
+{\verb?DELAY_f CLOCK_f?} \pageref{DELAYfCLOCKf}
+
+%
+% input file: ../../man//scicos/SAT_f.man
+%
+\phead{SAT\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{SAT\_f}{ Scicos Saturation block}\index{SAT\_f}\label{SATf}
+
+\Shead{DESCRIPTION}
+This block realizes the non-linear function: saturation.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Min?}]
+: a scalar. Lower saturation bound
+\item[{\verb?Max?}]
+: a scalar. Upper saturation bound
+\item[{\verb?Slope?}]
+: a scalar. The slope of the line going through the origin 
+and describing the behavior of the function around zero.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?LOOKUP_f?} \pageref{LOOKUPf}
+
+
+
+
+
+%
+% input file: ../../man//scicos/SAWTOOTH_f.man
+%
+\phead{SAWTOOTH\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{SAWTOOTH\_f}{ Scicos sawtooth wave generator}\index{SAWTOOTH\_f}\label{SAWTOOTHf}
+
+\Shead{DESCRIPTION}
+This block is a sawtooth wave generator: output is (t-t\_i)
+from ti to t\_(i+1) where t\_i and t\_(i+1) denote the times of
+two successive input events.
+\Shead{DIALOG PARAMETERS}
+None.
+\Seealso{SEE ALSO}
+{\verb?GENSIN_f GENSQR_f RAND_f?} \pageref{GENSINfGENSQRfRANDf}
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/SCOPE_f.man
+%
+\phead{SCOPE\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{SCOPE\_f}{ Scicos visualization block}\index{SCOPE\_f}\label{SCOPEf}
+
+\Shead{DESCRIPTION}
+This block realizes the visualization of the evolution of the signals
+on the standard input port(s) at instants of events on the event
+input port.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Number of inputs?}]
+: an integer, the number of input ports
+\item[{\verb?Curve colors?}]
+: a vector of integers. The i-th element is the color number ($<$0)
+or dash type ($>$0) used to draw the evolution of the i-th 
+input port signal. See %
+\tt plot2d %
+\rm for color (dash type) definitions.
+\item[{\verb?Output window number?}]
+: The number of graphic window used for the display. It is often good
+to use high values to avoid conflict with palettes and Super Block
+windows. If you have more than one scope, make sure they don't have
+the same window numbers (unless superposition of the curves is
+desired).
+\item[{\verb?Output window position?}]
+: a 2 vector specifying the coordinates of the upper left corner of
+the graphic window. Answer [] for default window position.
+\item[{\verb?Output window size?}]
+: a 2 vector specifying the width and height  of 
+the graphic window. Answer [] for default window dimensions.
+\item[{\verb?Ymin, Ymax?}]
+: Minimum and maximum values of the input; used to set up the Y-axis
+of the plot in the graphics window.
+\item[{\verb?Refresh period?}]
+: Maximum value on the X-axis (time). The plot is redrawn when time
+reaches a multiple of this value.
+\item[{\verb?Buffer size?}]
+: To improve efficiency it is possible to buffer the input data. The
+drawing is only done after each %
+\tt Buffer size %
+\rm call to the block.
+\end{scitem}% end Env
+\Shead{REMARKS}
+%
+\tt Output window number%
+\rm , %
+\tt Output window size%
+\rm , %
+\tt Output window
+position %
+\rm are only taken into account at the initialisation time of the
+simulation. 
+
+\Seealso{SEE ALSO}
+{\verb?SCOPXY_f EVENTSCOPE_f ANIMXY_f?} \pageref{SCOPXYfEVENTSCOPEfANIMXYf}
+
+
+
+
+%
+% input file: ../../man//scicos/SCOPXY_f.man
+%
+\phead{SCOPXY\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{SCOPXY\_f}{ Scicos visualization block}\index{SCOPXY\_f}\label{SCOPXYf}
+
+\Shead{DESCRIPTION}
+This block realizes the visualization of the evolution of the two
+regular input signals by drawing the second input as a function of
+the first at instants of events on the event input port.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Curve colors?}]
+: an integer. It is the color number ($<$0)
+or dash type ($>$0) used to draw the evolution of the input port
+signal. See %
+\tt plot2d %
+\rm for color (dash type) definitions.
+\item[{\verb?Line or mark size?}]
+: an integer. 
+\item[{\verb?Output window number?}]
+: The number of graphic window used for the display. It is often good
+to use high values to avoid conflict with palettes and Super Block
+windows. If you have more than one scope, make sure they don't have
+the same window numbers (unless superposition of the curves is
+desired).
+\item[{\verb?Output window position?}]
+: a 2 vector specifying the coordinates of the upper left corner of
+the graphic window. Answer [] for default window position.
+\item[{\verb?Output window size?}]
+: a 2 vector specifying the width and height  of 
+the graphic window. Answer [] for default window dimensions.
+\item[{\verb?Xmin, Xmax?}]
+: Minimum and maximum values of the first input; used to set up the X-axis
+of the plot in the graphics window.
+\item[{\verb?Ymin, Ymax?}]
+: Minimum and maximum values of the second input; used to set up the 
+Y-axis of the plot in the graphics window.
+\item[{\verb?Buffer size?}]
+: To improve efficiency it is possible to buffer the input data. The
+drawing is only done after each %
+\tt Buffer size %
+\rm call to the block.
+\end{scitem}% end Env
+\Shead{REMARKS}
+%
+\tt Output window number%
+\rm , %
+\tt Output window size%
+\rm , %
+\tt Output window
+position %
+\rm are only taken into account at the initialisation time of the
+simulation. 
+
+\Seealso{SEE ALSO}
+{\verb?SCOPE_f EVENTSCOPE_f ANIMXY_f?} \pageref{SCOPEfEVENTSCOPEfANIMXYf}
+
+
+
+
+
+%
+% input file: ../../man//scicos/SELECT_f.man
+%
+\phead{SELECT\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{SELECT\_f}{ Scicos select block}\index{SELECT\_f}\label{SELECTf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?number of inputs?}]
+: a scalar. Number of regular and event inputs.
+\item[{\verb?initial connected input?}]
+: a integer. It must be between 1 and the number of inputs.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+The blocks routes one of the regular inputs to the unique regular
+output. the choice of which input is to be routed is done, initially
+by the "initial connected input" parameter. Then, everytime an input
+event arrives on the i-th input event port, the i-th regular input
+port is routed to the regular output.
+
+
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/SINBLK_f.man
+%
+\phead{SINBLK\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{SINBLK\_f}{ Scicos sine block}\index{SINBLK\_f}\label{SINBLKf}
+
+\Shead{DIALOG PARAMETERS}
+None.
+\Shead{DESCRIPTION}
+This block realizes vector cosine operation. %
+\tt y(i)=sin(u(i))%
+\rm .
+The port input and output  port sizes are equal and determined by the
+context.
+
+
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/SOM_f.man
+%
+\phead{SOM\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{SOM\_f}{ Scicos addition block}\index{SOM\_f}\label{SOMf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Number of inputs?}]
+: a scalar. Safe to leave at three even if you connect less inputs.
+More than 3 is not allowed. Use Gain for more inputs.
+\item[{\verb?Input signs?}]
+: a (1x3) vector of +1 and -1. If -1, the corresponding input is
+multipled by -1 before addition.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block is a sum. The output is the elementwise sum of the inputs.
+
+Input ports are located at up, left or right and down position.
+You must specify 3 gain numbers but if only two links are 
+connected only the first values are used, port are numbered  anti-clock wise.
+\Seealso{SEE ALSO}
+{\verb?GAIN_f?} \pageref{GAINf}
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/SPLIT_f.man
+%
+\phead{SPLIT\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{SPLIT\_f}{ Scicos regular split block}\index{SPLIT\_f}\label{SPLITf}
+
+\Shead{DIALOG PARAMETERS}
+None.
+\Shead{DESCRIPTION}
+This block is a regular split block with an input and two outputs. The
+outputs reproduces the input port on each output ports. 
+Strictly speaking, SPLIT is not a Scicos block because it is
+discarded at the compilation phase. This block is automatically
+created when creating a new link issued from a link.
+
+Port sizes are determined by the context.
+
+
+%
+% input file: ../../man//scicos/STOP_f.man
+%
+\phead{STOP\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{CLOCK\_f}{ Scicos Stop block}\index{CLOCK\_f}\label{CLOCKf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Block label?}]
+: string. Label to be placed under the block.
+\item[{\verb?State on halt?}]
+: scalar. A value to be placed in the state of the block. For
+debugging purposes this allows to distinguish between different
+halts.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block has a unique input event port. Upon the arrival of an
+event,
+the simulation is stoped and the main Scicos window is activated.
+Simulation can be restarted or continued (Run button).
+
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/SUPER_f.man
+%
+\phead{SUPER\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{SUPER\_f}{ Scicos Super block}\index{SUPER\_f}\label{SUPERf}
+
+\Shead{DESCRIPTION}
+This block opens up a new Scicos window for editing a new block
+diagram. This diagram describes the internal functions of the
+super block. 
+\par\noindent
+Super block  inputs and outputs (regular or event) are designed by
+special (input or output)  blocks.
+\par\noindent
+Regular input blocks must be numbered from 1 to the number of regular
+input ports. Regular input ports of the super block are numbered from
+the top of the block shape to the bottom.
+\par\noindent
+
+Regular output blocks must be numbered from 1 to the number of regular
+output ports. Regular output ports of the super block are numbered
+from the top of the block shape to the bottom.
+\par\noindent
+
+Event input blocks must be numbered from 1 to the number of event
+input ports. Event input ports of the super block are numbered from
+the left of the block shape to the right.
+\par\noindent
+Event output blocks must be numbered from 1 to the number of event
+output ports. Event output ports of the super block are numbered from
+the left of the block shape to the right.
+\Seealso{SEE ALSO}
+{\verb?CLKIN_f OUT_f CLKOUT_f IN_f?} \pageref{CLKINfOUTfCLKOUTfINf}
+
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/TANBLK_f.man
+%
+\phead{TANBLK\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{TANBLK\_f}{ Scicos tan block}\index{TANBLK\_f}\label{TANBLKf}
+
+\Shead{DIALOG PARAMETERS}
+None.
+\Shead{DESCRIPTION}
+This block realizes vector tangent operation.
+input (output) port size are determined by the context
+
+
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/TCLSS_f.man
+%
+\phead{TCLSS\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{TCLSS\_f}{ Scicos jump continuous-time linear state-space system}\index{TCLSS\_f}\label{TCLSSf}
+
+\Shead{DESCRIPTION}
+This block realizes a continuous-time linear state-space system
+with the possibility of jumps in the state. The number of inputs
+to this block is two. The first input is the regular input of the
+linear system, the second carries the new value of the state which
+is copied into the state when an event arrives at the unique event 
+input port of this block. That means the state of the system jumps 
+to the value present on the second input (of size equal to that of
+the state).
+The system is defined by the (A,B,C,D) matrices and the initial
+state x0. The dimensions must be compatible. The sizes of inputs
+and outputs are adjusted automatically.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?A?}]
+: square matrix. The A matrix
+\item[{\verb?B?}]
+: the B matrix
+\item[{\verb?C?}]
+: the C matrix
+\item[{\verb?D?}]
+: the D matrix
+\item[{\verb?x0?}]
+: vector. The initial state of the system.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?CLSS_f CLR_f ?} \pageref{CLSSfCLRf}
+
+
+
+
+
+%
+% input file: ../../man//scicos/TEXT_f.man
+%
+\phead{TEXT\_f}{5}{Janvier\ 1997}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{TEXT\_f}{ Scicos  text drawing block}\index{TEXT\_f}\label{TEXTf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?txt?}]
+: a character string, Text to be displayed
+\item[{\verb?font?}]
+: a positive integer less than 6, number of selected font (see xset)
+\item[{\verb?siz?}]
+: a positive integer, selected font size (see xset)
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This special block is only use to add text at any point of the diagram
+window. It has no effect on the simulation.
+%
+% input file: ../../man//scicos/TIME_f.man
+%
+\phead{TIME\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{TIME\_f}{ Scicos time generator}\index{TIME\_f}\label{TIMEf}
+
+\Shead{DIALOG PARAMETERS}
+None.
+\Shead{DESCRIPTION}
+This block is a time generator. The unique regular output is the
+current time.
+
+
+
+
+
+%
+% input file: ../../man//scicos/TRASH_f.man
+%
+\phead{TRASH\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{TRASH\_f}{ Scicos Trash block}\index{TRASH\_f}\label{TRASHf}
+
+\Shead{DIALOG PARAMETERS}
+None
+\Shead{DESCRIPTION}
+This block does nothing. It simply allows to safely connect the ouputs
+of other blocks which should be ignored. This happens mostly for event
+outputs that should produce no action. The input size is determined
+by the context.
+
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/WFILE_f.man
+%
+\phead{WFILE\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{WFILE\_f}{ Scicos "write to file" block}\index{WFILE\_f}\label{WFILEf}
+
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?number of inputs?}]
+: a scalar. This fixes the input size
+\item[{\verb?Output file name?}]
+: a character string defining the path of the file 
+\item[{\verb?Output Format?}]
+: a character string defining the Fortran format to use or nothing for
+an unformatted (binary) write
+\item[{\verb?Buffer size?}]
+: To improve efficiency it is possible to buffer the input data. write
+on the file is only done after each %
+\tt Buffer size %
+\rm call to the block.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This block allows user to save datas in a file, in formatted or binary
+mode.
+Each call to the block corresponds to a record in the file. Each
+record has the following form:
+%
+\tt [t,V1,...,Vn] %
+\rm where %
+\tt t %
+\rm is the value of time when block is
+called  and %
+\tt Vi %
+\rm is the ith input value
+\Seealso{SEE ALSO}
+{\verb?RFILE_f?} \pageref{RFILEf}
+
+
+
+
+
+
+
+
+
+%
+% input file: ../../man//scicos/ZCROSS_f.man
+%
+\phead{ZCROSS\_f}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{ZCROSS\_f}{ Scicos zero crossing detector}\index{ZCROSS\_f}\label{ZCROSSf}
+
+\Shead{DESCRIPTION}
+An output event is generated when all inputs (if more than one)
+cross zero simultaneously.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?Number of inputs?}]
+: a positive integer.
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?POSTONEG_f ZCROSS_f GENERAL_f?} \pageref{POSTONEGfZCROSSfGENERALf}
+
+
+
+
+
+
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:17 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: ../../man//scicos/scifunc_block.man
+%
+\phead{scifunc\_block}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ Block}
+
+
+\Sdoc{scifunc\_block}{ Scicos block defined interactively}\index{scifunc\_block}\label{scifuncblock}
+
+\Shead{DESCRIPTION}
+This block can realize any type of Scicos block. The function of the
+block is defined interactively using dialog boxes and in Scilab
+language. During simulation, these instructions are interpreted by
+Scilab; the simulation of diagrams that include these types of blocks 
+is slower. For more information see Scicos reference manual.
+\Shead{DIALOG PARAMETERS}
+\begin{scitem}
+\item[{\verb?number of inputs?}]
+: a scalar. Number of regular input ports
+\item[{\verb?number of outputs?}]
+: a scalar. Number of regular output ports
+\item[{\verb?number of input events?}]
+: a scalar. Number of input event ports
+\item[{\verb?number of output events?}]
+: a scalar. Number of output event ports
+\item[{\verb?Initial continuous state?}]
+: a column vector.
+\item[{\verb?Initial discrete state?}]
+: a column vector.
+\item[{\verb?System type?}]
+: a string: z if the block is zero crossing; anything else if it is
+a regular block (c or d for example to specify continuous or discrete). 
+\item[{\verb?System parameter?}]
+: column vector. Any parameters used in the block can be defined here
+a column vector.
+\item[{\verb?initial firing?}]
+: vector. Size of this vector corresponds to the number of event
+outputs. The value of the i-th entry specifies the time of the
+preprogrammed event firing on the i-th output event port. If less than
+zero, no event is preprogrammed.
+
+\item[{\verb?Instructions?}]
+: other dialogs are opened consecutively where used may input scilab
+code associated to the computations needed (block initialization,
+outputs, continuuous and 
+discrete state, output events date, block ending),
+
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?GENERIC_f?} \pageref{GENERICf}
+
+
+
+
+
+\section{Data Structures}
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:18 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: ../../man//scicos/scicos_main.man
+%
+\phead{scicos\_main}{Janvier\ 1997}{Scilab\ Group}{Scicos\ data\ structure}{}
+
+
+\Sdoc{scicos\_main}{ scicos editor main  data structure}\index{scicos\_main}\label{scicosmain}
+
+\Shead{DEFINITION}
+\begin{verbatim}
+scs_m=list(params,o_1,....,o_n)
+
+
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?params?}]
+: scilab list, %
+\tt params=list([w,h,Xshift,Yshift], title, tolerances,
+tf, context)) %
+\rm \begin{scitem}
+\item[{\verb?w ?}]
+: real scalar,scicos editor window width
+\item[{\verb?h ?}]
+: real scalar,scicos editor window height
+\item[{\verb?Xshift ?}]
+: real scalar, diagram drawing x offset within scicos editor window
+\item[{\verb?Yshift ?}]
+: real scalar, diagram drawing y offset within scicos editor window
+\item[{\verb?title ?}]
+: character string, diagram title and default save file name
+\item[{\verb?tolerances ?}]
+: 1 x 4 vector %
+\tt [atol,rtol,ttol,maxt]%
+\rm , where  %
+\tt atol,rtol %
+\rm are
+respectively asolute and relative tolerances for the ode solver,
+%
+\tt ttol %
+\rm is the  minimal distance between to differents events time
+and %
+\tt maxt %
+\rm is maximum integration time interval for a single call to the
+ode solver.
+\item[{\verb?tf?}]
+: real scalar, final time for simulation.
+\item[{\verb?context?}]
+: vector of character strings, defines scilab instructions used to define
+formal scilab variables  used in block definitions.
+\end{scitem}
+\item[{\verb?o\_i?}]
+: block or link  or deleted object data structure (see
+%
+\tt scicos\_block %
+\rm and %
+\tt scicos\_link%
+\rm ). deleted object data
+structure is defined by %
+\tt list('Deleted')%
+\rm .
+\item[{\verb?scs\_m?}]
+: main scicos structure
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+scicos editor uses and modifies the  scicos editor main  data
+structure to keep all information relative to the edited
+diagram. Scicos compiler uses it as a input.
+
+\Seealso{SEE ALSO}
+{\verb?scicos?} \pageref{scicos},{\verb?  scicos_block?} \pageref{scicosblock},{\verb? scicos_link ?} \pageref{scicoslink}
+
+
+
+
+
+
+
+
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:18 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: ../../man//scicos/scicos_block.man
+%
+\phead{scicos\_block}{Janvier\ 1997}{Scilab\ Group}{Scicos\ data\ structure}{}
+
+
+\Sdoc{scicos\_block}{ scicos block data structure}\index{scicos\_block}\label{scicosblock}
+
+\Shead{DEFINITION}
+\begin{verbatim}
+blk=list('Block',graphics,model,void,gui)
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?"Block"?}]
+: keyword used to define list as a scicos block representation
+\item[{\verb?graphics?}]
+: scilab list, graphic properties data structure
+\item[{\verb?model?}]
+: scilab list, system properties data structure. 
+
+\item[{\verb?void?}]
+: unused, reserved for future use.
+\item[{\verb?gui?}]
+: character string, the name of the graphic user interface function
+(generally written in scilab) associated with the block.
+\item[{\verb?blk?}]
+: scilab list, scicos block data structure
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+Scicos editor creates and uses for each block a data structure
+containing all information relative to the graphic interface and
+simulation part of the block. Each of them are stored in the scicos
+editor main data structure. Index of these in scicos
+editor main data structure is given by the creation order.
+
+
+If block is a super block %
+\tt model(9) %
+\rm contains a data structure
+similar to the %
+\tt scicos\_main %
+\rm data structure.
+
+\Seealso{SEE ALSO}
+{\verb?scicos?} \pageref{scicos},{\verb? scicos_main?} \pageref{scicosmain},{\verb? scicos_graphic?} \pageref{scicosgraphic},{\verb? scicos_model?} \pageref{scicosmodel}
+
+
+
+
+
+
+
+
+
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:18 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: ../../man//scicos/scicos_graphics.man
+%
+\phead{scicos\_graphics}{Janvier\ 1997}{Scilab\ Group}{Scicos\ data\ structure}{}
+
+
+\Sdoc{scicos\_graphics}{ scicos block graphics data structure}\index{scicos\_graphics}\label{scicosgraphics}
+
+\Shead{DEFINITION}
+\begin{verbatim}
+graphics=list(orig,sz,orient,exprs,pin,pout,pevtin,pevtout,gr_i)
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?orig?}]
+: 2 x 1 vector, the coordinate of down-left point of the block shape.
+\item[{\verb?sz?}]
+: vector %
+\tt [w,h]%
+\rm , where %
+\tt w %
+\rm is the width and %
+\tt h %
+\rm the
+height of the block shape.
+\item[{\verb?orient?}]
+: boolean, the block orientation. if true the input ports are on the
+left of the box and output ports are on the right. if false  the input ports are on the
+right of the box and output ports are on the left.  
+\item[{\verb?exprs?}]
+: column vector of strings,  contains expressions answered by the user
+at block set time.
+\item[{\verb?pin?}]
+: column vector of integers. If %
+\tt pin(k)$<$$>$0 %
+\rm then  %
+\tt k%
+\rm th input
+port is connected to the %
+\tt pin(k)$<$$>$0 %
+\rm block, else the port is
+unconnected. If no input port exist %
+\tt pin==[]%
+\rm .
+\item[{\verb?pout?}]
+: column vector of integers.  If %
+\tt pout(k)$<$$>$0 %
+\rm then  %
+\tt k%
+\rm th output
+port is connected to the %
+\tt pout(k)$<$$>$0 %
+\rm block, else the port is
+unconnected. If no output port exist %
+\tt pout==[]%
+\rm .
+\item[{\verb?pevtin?}]
+: column vector of ones. If %
+\tt pevin(k)$<$$>$0 %
+\rm then  %
+\tt k%
+\rm th event input
+port is connected to the %
+\tt pevin(k)$<$$>$0 %
+\rm block, else the port is
+unconnected. If no event input port exist %
+\tt pevin==[]%
+\rm .
+\item[{\verb?pevtout?}]
+: column vector of integers.  If %
+\tt pevtout(k)$<$$>$0 %
+\rm then  %
+\tt k%
+\rm th
+event output port is connected to the %
+\tt evtpout(k)$<$$>$0 %
+\rm block, else the port is
+unconnected. If no event  output port exist %
+\tt pevtout==[]%
+\rm .
+\item[{\verb?gr\_i?}]
+: column vector of strings,  contains scilab instrucions used to
+customize the block graphical aspect. This field may be set with
+%
+\tt "Icon" %
+\rm sub\_menu.
+\item[{\verb?graphics?}]
+: scilab list, scicos block graphics data structure.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+scicos block graphics data structure contains all information relative
+to graphical display of the block and to user dialog. Fields may be
+fixed by block definition or set as a result of user dialog or connections. 
+
+\Seealso{SEE ALSO}
+{\verb?scicos?} \pageref{scicos},{\verb?  scicos_model?} \pageref{scicosmodel},{\verb? scicos_main ?} \pageref{scicosmain}
+
+
+
+
+
+
+
+
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:18 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: ../../man//scicos/scicos_model.man
+%
+\phead{scicos\_model}{Janvier\ 1997}{Scilab\ Group}{Scicos\ data\ structure}{}
+
+
+\Sdoc{scicos\_model}{ scicos block functionality  data structure}\index{scicos\_model}\label{scicosmodel}
+
+\Shead{DEFINITION}
+\begin{verbatim}
+model=list(sim,in,out,evtin,evtout,state,dstate,rpar,ipar,..
+                          blocktype,firing,dep_ut,label,import)
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?sim?}]
+: list(fun,typ) or fun. In the latest case typ is supposed to be 0.
+\begin{scitem}
+\item[{\verb?fun?}]
+: character string, the name of the block simulation function (a 
+linked C or Fortran procedure  or a scilab function).
+\item[{\verb?typ?}]
+: integer, calling sequence type of simulation function (see
+documentation for more precision).
+\end{scitem}
+\item[{\verb?in?}]
+: column vector of integers, input port sizes indexed from top to
+bottom of the block. If no input port exist %
+\tt in==[]%
+\rm .
+\item[{\verb?out?}]
+: column vector of integers, output port sizes indexed from top to
+bottom of the block. If no output port exist %
+\tt in==[]%
+\rm .
+\item[{\verb?evtin?}]
+: column vector of ones, the size of %
+\tt evtin %
+\rm gives the number of
+event input ports. If no event input port exists %
+\tt evtin %
+\rm must be equal
+to %
+\tt []%
+\rm .
+\item[{\verb?evtout?}]
+: column vector of ones, the size of %
+\tt evtout %
+\rm gives the number of
+event output ports. If no event output port exists %
+\tt evtout %
+\rm must be equal
+to %
+\tt []%
+\rm .
+\item[{\verb?state?}]
+: column vector, the initial continuous state of the block. Must be
+%
+\tt [] %
+\rm if no continuous state.
+\item[{\verb?dstate?}]
+: column vector, the initial discrete state of the block. Must be
+%
+\tt [] %
+\rm if no discrete state.
+\item[{\verb?rpar?}]
+: column vector, the vector of floating point block parameters. Must be
+%
+\tt [] %
+\rm if no floating point parameters.
+\item[{\verb?ipar?}]
+: column vector, the vector of integer  block parameters. Must be
+%
+\tt [] %
+\rm if no integer parameters.
+\item[{\verb?blocktype?}]
+: a character with possible values:
+\begin{scitem}
+\item[{\verb?:?}]
+'c'  block output depend continuously of the time.
+\item[{\verb?:?}]
+'d' block output changes only on input events.
+\item[{\verb?:?}]
+'z' zero crossing block
+\item[{\verb?:?}]
+'l' logical block
+\end{scitem}
+\item[{\verb?firing?}]
+: a vector whose size is equal to the size of %
+\tt evtout%
+\rm $>$ It contains
+output initial event dates (Events generated before any input event
+arises). Negative values stands for no initial event on the
+corresponding port.
+\item[{\verb?dep\_ut?}]
+: 1x 2 vector of boolean %
+\tt [dep\_u, dep\_t]%
+\rm , %
+\tt dep\_u %
+\rm must be
+true if output depends continuously of the input, %
+\tt dep\_t %
+\rm must be
+true if output depends continuously of the time.
+\item[{\verb?label?}]
+: a character string, used as an identifier. 
+\item[{\verb?import?}]
+: Unused.
+\item[{\verb?model?}]
+: scilab list, scicos block model data structure.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+scicos block model data structure contains all information relative
+to the simulation functionality of the block. Fields may be
+fixed by block definition or set. 
+
+If block is a super block, the fields
+%
+\tt state%
+\rm ,%
+\tt dstate%
+\rm ,%
+\tt ipar%
+\rm ,%
+\tt blocktype%
+\rm ,%
+\tt firing%
+\rm ,
+%
+\tt dep\_ut%
+\rm , are unused. The %
+\tt rpar %
+\rm field contains a
+data structure similar to the %
+\tt scicos\_main %
+\rm data structure.
+
+
+\Seealso{SEE ALSO}
+{\verb?scicos?} \pageref{scicos},{\verb?  scicos_model?} \pageref{scicosmodel},{\verb? scicos_main ?} \pageref{scicosmain}
+
+
+
+
+
+
+
+
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:18 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: ../../man//scicos/scicos_link.man
+%
+\phead{scicos\_link}{Janvier\ 1997}{Scilab\ Group}{Scicos\ data\ structure}{}
+
+
+\Sdoc{scicos\_link}{ scicos link data structure}\index{scicos\_link}\label{scicoslink}
+
+\Shead{DEFINITION}
+\begin{verbatim}
+lnk=list('Link',xx,yy,'drawlink',' ',[0,0],ct,from,to)
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?"Link"?}]
+: keyword used to define list as a scicos link representation
+\item[{\verb?xx?}]
+: vector of x coordinates of the link path.
+\item[{\verb?yy?}]
+: vector of y coordinates of the link path.
+\item[{\verb?ct?}]
+: 2 x 1 vector, %
+\tt [color,typ] %
+\rm where %
+\tt color %
+\rm defines the color
+used for the link drawing and %
+\tt typ %
+\rm defines its type (0 for
+regular link ,1 for event link).
+\item[{\verb?from?}]
+: 2 x 1 vector, %
+\tt [block,port] %
+\rm where %
+\tt block %
+\rm is the index of
+the block at the origin of the link and %
+\tt port %
+\rm is the index of the
+port.
+\item[{\verb?to?}]
+: 2 x 1 vector, %
+\tt [block,port] %
+\rm where %
+\tt block %
+\rm is the index of
+the block at the end of the link and %
+\tt port %
+\rm is the index of the
+port.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+Scicos editor creates and uses for each link a data structure
+containing all information relative to the graphic interface and
+interconnection information. Each of them are stored in the scicos
+editor main data structure. Index of these in scicos
+editor main data structure is given by the creation order.
+\Seealso{SEE ALSO}
+{\verb?scicos?} \pageref{scicos},{\verb? scicos_main?} \pageref{scicosmain},{\verb? scicos_graphic?} \pageref{scicosgraphic},{\verb? scicos_model?} \pageref{scicosmodel}
+
+
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:18 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: ../../man//scicos/scicos_cpr.man
+%
+\phead{scicos\_cpr}{Janvier\ 1997}{Scilab\ Group}{Scicos\ data\ structure}{}
+
+
+\Sdoc{scicos\_cpr}{ scicos compiled diagram data structure}\index{scicos\_cpr}\label{scicoscpr}
+
+\Shead{DEFINITION}
+\begin{verbatim}
+cpr=list(state,sim,cor,corinv)
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?state?}]
+: scilab %
+\tt tlist %
+\rm contains  initial state. 
+\begin{scitem}
+\item[{\verb?state('x')?}]
+: continuous  state vector. 
+\item[{\verb?state('z')?}]
+: discrete  state vector. 
+\item[{\verb?state('tevts')?}]
+: vector of  event dates
+\item[{\verb?state('evtspt')?}]
+: vector of event pointers
+\item[{\verb?state('pointi')?}]
+: pointer to next event
+state('npoint')
+: not used yet
+state('outtb')
+: vector of inputs/outputs initial values.
+\end{scitem}
+\item[{\verb?sim?}]
+: scilab %
+\tt tlist%
+\rm .  Usually generated by scicos
+%
+\tt Compile %
+\rm menu. Some useful entries are:
+\begin{scitem}
+\item[{\verb?sim('rpar')?}]
+: vector of blocks' floating point parameters
+\item[{\verb?sim('rpptr')?}]
+: (nblk+1) x 1 vector of integers, 
+ %
+\tt sim('rpar')(rpptr(i):(rpptr(i+1)-1)) %
+\rm is the vector of floating
+point parameters of the %
+\tt i%
+\rm th block. 
+\item[{\verb?sim('ipar')?}]
+: vector of blocks' integer parameters
+\item[{\verb?sim('ipptr')?}]
+: (nblk+1) x 1 vector of integers, 
+ %
+\tt sim('ipar')(ipptr(i):(ipptr(i+1)-1)) %
+\rm is the vector of integer
+parameters of the %
+\tt i%
+\rm th block. 
+\item[{\verb?sim('funs')?}]
+: vector of strings containing the names of each block simulation function
+\item[{\verb?sim('xptr')?}]
+: (nblk+1) x 1 vector of integers, 
+ %
+\tt state('x')(xptr(i):(xptr(i+1)-1)) %
+\rm is the continuous state
+vector  of the %
+\tt i%
+\rm th block. 
+\item[{\verb?sim('zptr')?}]
+: (nblk+1) x 1 vector of integers, 
+ %
+\tt state('z')(zptr(i):(zptr(i+1)-1)) %
+\rm is the discrete state
+vector  of the %
+\tt i%
+\rm th block. 
+\item[{\verb?sim('inpptr')?}]
+: (nblk+1) x 1 vector of integers, %
+\tt inpptr(i+1)-inpptr(i) %
+\rm gives
+the number of input ports. %
+\tt inpptr(i)%
+\rm th points to the
+beginning of %
+\tt i%
+\rm th block inputs  within the indirection table %
+\tt inplnk%
+\rm .
+\item[{\verb?sim('inplnk')?}]
+: nblink x 1 vector of integers, %
+\tt inplnk(inpptr(i)-1+j) %
+\rm is the
+index of the link connected to the  %
+\tt j%
+\rm th input port of the %
+\tt i%
+\rm th block.
+where %
+\tt j %
+\rm goes from %
+\tt 1 %
+\rm to %
+\tt inpptr(i+1)-inpptr(i))%
+\rm .
+\item[{\verb?sim('outptr')?}]
+: (nblk+1) x 1 vector of integers, %
+\tt outptr(i+1)-outptr(i) %
+\rm gives
+the number of output ports. %
+\tt outptr(i)%
+\rm th points to the
+beginning of %
+\tt i%
+\rm th block outputs  within the indirection table %
+\tt outlnk%
+\rm .
+\item[{\verb?sim('outlnk')?}]
+: nblink x 1 vector of integers, %
+\tt outlnk(outptr(i)-1+j) %
+\rm is the
+index of the link connected to the  %
+\tt j%
+\rm th output port of the %
+\tt i%
+\rm th block.
+where %
+\tt j %
+\rm goes from %
+\tt 1 %
+\rm to %
+\tt outptr(i+1)-outptr(i))%
+\rm .
+\item[{\verb?sim('lnkptr')?}]
+: (nblink+1) x 1 vector of integers, %
+\tt k%
+\rm th  entry points to the
+beginning of region  within %
+\tt outtb %
+\rm dedicated to link indexed %
+\tt k%
+\rm .
+\item[{\verb?sim('funs')?}]
+: vector of strings containing the names of each block simulation function
+\item[{\verb?sim('funtyp')?}]
+: vector of  block block types.
+\end{scitem}
+\item[{\verb?cor    ?}]
+: is a list with same recursive structure as scs\_m each leaf 
+contains the index of associated block in %
+\tt cpr %
+\rm data structure.
+\item[{\verb?corinv ?}]
+: corinv(i) is the path of %
+\tt i %
+\rm th block defined in %
+\tt cpr %
+\rm data structure
+          in the %
+\tt scs\_m %
+\rm data structure.
+
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+scicos compiled diagram data structure contains all information needed
+by %
+\tt scicosim %
+\rm to simulate the system. relative
+\Seealso{SEE ALSO}
+{\verb?scicos?} \pageref{scicos},{\verb?  scicos_model?} \pageref{scicosmodel},{\verb? scicos_main?} \pageref{scicosmain},{\verb? scicosim?} \pageref{scicosim}
+
+
+
+
+
+
+
+
+\section{Usefull Function}
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:19 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: ../../man//scicos/standard_define.man
+%
+\phead{standard\_define}{Janvier\ 1997}{Scilab\ Group}{Scicos\ function}{}
+
+
+\Sdoc{standard\_define}{ scicos block initial definition  function}\index{standard\_define}\label{standarddefine}
+
+\Shead{CALLING SEQUENCE}
+\begin{verbatim}
+o=standard_define(sz,model,dlg,gr_i)
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?o?}]
+: scicos block data structure (see scicos\_block)
+\item[{\verb?sz?}]
+: 2 vector, giving the initial block width and height 
+\item[{\verb?model?}]
+: initial model data structure definition (see scicos\_model)
+\item[{\verb?dlg?}]
+: vector of character strings,initial parameters expressions
+\item[{\verb?gr\_i?}]
+: vector of character strings, initial icon definition instructions 
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This function creates the initial block data structure given the
+initial size  %
+\tt sz%
+\rm , this intial model definition  %
+\tt model%
+\rm , the
+initial parameters expressions  %
+\tt dlg %
+\rm and initial icon definition
+instructions  %
+\tt gr\_i %
+\rm \Seealso{SEE ALSO}
+{\verb?scicos_model?} \pageref{scicosmodel}
+
+
+%
+% input file: ../../man//scicos/standard_draw.man
+%
+\phead{standard\_draw}{Janvier\ 1997}{Scilab\ Group}{Scicos\ function}{}
+
+
+\Sdoc{standard\_draw}{ scicos block drawing function}\index{standard\_draw}\label{standarddraw}
+
+\Shead{CALLING SEQUENCE}
+\begin{verbatim}
+standard_draw(o)
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?o?}]
+: scicos block data structure (see scicos\_block)
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+%
+\tt standard\_draw %
+\rm is the scilab function used to display
+standard blocks in interfacing functions. 
+\par\noindent
+It draws a block with a rectangular shape with any number of regular
+or event input respectively on the left and right faces of the block
+(if not flipped), event input or output respectively on the top and
+bottom faces of the block. Number of ports, size, origin, orientation,
+background color, icon of the block are taken from the block data
+structure %
+\tt o%
+\rm .
+\Seealso{SEE ALSO }
+{\verb?scicos_block?} \pageref{scicosblock}
+%
+% input file: ../../man//scicos/standard_input.man
+%
+\phead{standard\_input}{Janvier\ 1997}{Scilab\ Group}{Scicos\ function}{}
+
+
+\Sdoc{standard\_input}{ get scicos block input port positions}\index{standard\_input}\label{standardinput}
+
+\Shead{CALLING SEQUENCE}
+\begin{verbatim}
+[x,y,typ]=standard_input(o)
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?o?}]
+: scicos block data structure (see scicos\_block)
+\item[{\verb?x?}]
+: vector of x coordinates of the block regular and event input ports
+\item[{\verb?y?}]
+: vector of y coordinates of the block regular and event output ports
+\item[{\verb?typ?}]
+: vector of input ports types (+1 : regular port; -1:event port)
+
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+%
+\tt standard\_input %
+\rm is the scilab function used to get
+standard blocks input port position anf types in interfacing
+functions. 
+\par\noindent
+Port positions are computed, each time they are required, as a
+function of block dimensions.
+
+\Seealso{SEE ALSO }
+{\verb?scicos_block?} \pageref{scicosblock}
+%
+% input file: ../../man//scicos/standard_origin.man
+%
+\phead{standard\_origin}{Janvier\ 1997}{Scilab\ Group}{Scicos\ function}{}
+
+
+\Sdoc{standard\_origin}{ scicos block origin function}\index{standard\_origin}\label{standardorigin}
+
+\Shead{CALLING SEQUENCE}
+\begin{verbatim}
+[x,y]=standard_draw(o)
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?o?}]
+: scicos block data structure (see scicos\_block)
+\item[{\verb?x?}]
+: x coordinate of the block orign (bottom left corner)
+\item[{\verb?y?}]
+: y coordinate of the block orign (bottom left corner)
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+%
+\tt standard\_origin %
+\rm is the scilab function used to get
+standard blocks position in interfacing functions. 
+
+\Seealso{SEE ALSO }
+{\verb?scicos_block?} \pageref{scicosblock}
+%
+% input file: ../../man//scicos/standard_output.man
+%
+\phead{standard\_output}{Janvier\ 1997}{Scilab\ Group}{Scicos\ function}{}
+
+
+\Sdoc{standard\_output}{ get scicos block output port positions}\index{standard\_output}\label{standardoutput}
+
+\Shead{CALLING SEQUENCE}
+\begin{verbatim}
+[x,y,typ]=standard_output(o)
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?o?}]
+: scicos block data structure (see scicos\_block)
+\item[{\verb?x?}]
+: vector of x coordinates of the block regular and event output ports
+\item[{\verb?y?}]
+: vector of y coordinates of the block regular and event output ports
+\item[{\verb?typ?}]
+: vector of output ports types (+1 : regular port; -1:event port)
+
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+%
+\tt standard\_output %
+\rm is the scilab function used to get
+standard blocks output port position anf types in interfacing
+functions. 
+\par\noindent
+Port positions are computed, each time they are required, as a
+function of block dimensions.
+
+\Seealso{SEE ALSO }
+{\verb?scicos_block?} \pageref{scicosblock}
+
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:19 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: ../../man//scicos/scicosim.man
+%
+\phead{scicosim}{Janvier\ 1997}{Scilab\ Group}{Scicos\ function}{}
+
+
+\Sdoc{scicosim}{ scicos simulation function}\index{scicosim}\label{scicosim}
+
+\Shead{CALLING SEQUENCE}
+\begin{verbatim}
+[state,t]=scicosim(state,0,tf,sim,'start' [,tolerances])
+[state,t]=scicosim(state,tcur,tf,sim,'run' [,tolerances])
+[state,t]=scicosim(state,tcur,tf,sim,'finish' [,tolerances])
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?state?}]
+: scilab %
+\tt tlist %
+\rm contains scicosim  initial state. Usually generated by scicos
+%
+\tt Compile %
+\rm or %
+\tt Run %
+\rm menus (see scicos\_cpr for more details).
+\item[{\verb?tcur ?}]
+: initial simulation  time
+\item[{\verb?tf?}]
+: final simulation time (Unused with options  %
+\tt 'start' %
+\rm and  %
+\tt 'finish' %
+\rm \item[{\verb?sim?}]
+: scilab %
+\tt tlist%
+\rm .  Usually generated by scicos
+%
+\tt Compile %
+\rm menu (see scicos\_cpr  for more details). 
+\item[{\verb?tolerances?}]
+: 4 vector %
+\tt [atol,rtol,ttol,deltat] %
+\rm where %
+\tt atol,rtol %
+\rm  are respectively the
+absolute and relative tolerances for ode solver (see ode), %
+\tt ttol %
+\rm is the precision on event dates.  %
+\tt deltat %
+\rm is maximum integration
+interval for each call to ode solver.
+\item[{\verb?t?}]
+: final reached time
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+Simulator for scicos compiled diagram. Usually %
+\tt scicosim %
+\rm is
+called by %
+\tt scicos %
+\rm to perform simulation of a diagram. 
+
+But %
+\tt scicosim %
+\rm may also be called outside scicos. Typical usage in
+such a case may be:
+\begin{scitem}
+\item[{\verb?1?}]
+Use scicos to define a block diagram, compile it.
+\item[{\verb?2?}]
+Save the compiled diagram using %
+\tt Save,SaveAs %
+\rm scicos menus . 
+\item[{\verb?3?}]
+In scilab, load saved file using %
+\tt load %
+\rm function. You get
+variables %
+\tt scicos\_ver%
+\rm , %
+\tt scs\_m%
+\rm , %
+\tt cpr%
+\rm ,
+%
+\tt needcompile%
+\rm .
+\end{scitem}% end Env
+\par\noindent
+%
+\tt scs\_m %
+\rm is the diagram scicos main data structure.
+\par\noindent
+if %
+\tt needcompile==\%f %
+\rm  %
+\tt cpr %
+\rm is the data structure
+%
+\tt list(state,sim,cor,corinv) %
+\rm  
+\begin{scitem}
+\item[{\verb?4?}]
+Extract %
+\tt state%
+\rm , %
+\tt sim %
+\rm out of %
+\tt cpr %
+\rm \item[{\verb?5?}]
+Execute %
+\tt [state,t]=scicosim(state,0,tf,sim,'start' [,tolerances]) %
+\rm for initialisation.
+\item[{\verb?6?}]
+Execute %
+\tt [state,t]=scicosim(state,0,tf,sim,'run' [,tolerances]) %
+\rm for simulation from %
+\tt 0 %
+\rm to %
+\tt tf%
+\rm . Many successives such calls may be
+performed changing initial and final time.
+\item[{\verb?7?}]
+Execute %
+\tt [state,t]=scicosim(state,0,tf,sim,'finish' [,tolerances]) %
+\rm at the very end of the simulation to close files,...
+
+For advanced user it is possible to "manually" change some parameters
+or state values
+
+\end{scitem}% end Env
+\Seealso{SEE ALSO}
+{\verb?scicos ode odedc impl scicos_cpr?} \pageref{scicosodeodedcimplscicoscpr}
+      
+
+
+
+
+
+
+
+
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:19 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: ../../man//scicos/curblock.man
+%
+\phead{curblock}{Janvier\ 1997}{Scilab\ Group}{Scicos\ function}{}
+
+
+\Sdoc{curblock}{ get current block index in a scicos simulation function}\index{curblock}\label{curblock}
+
+\Shead{CALLING SEQUENCE}
+\begin{verbatim}
+k=curblock()
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?k?}]
+: integer, index of the block corresponding to the scilab simulation
+function where this function is called.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+During simulation it may be interesting to get the index of the current
+block to trace execution, to get its label, to animate the block icon
+according to simulation...
+\par\noindent
+For block with a computational function written in Scilab, scilab
+primitive function %
+\tt curblock() %
+\rm  allows to get the index of the
+current block in the compiled data structure.
+\par\noindent
+To obtain path to the block in the scicos main structure user may uses
+the %
+\tt corinv %
+\rm table (see scicos\_cpr).
+\par\noindent
+For block with a computational function written in C user may uses the
+C function  %
+\tt k=C2F(getcurblock)()%
+\rm . Where %
+\tt C2F %
+\rm is the C
+compilation macro defined in %
+\tt $<$SCIDIR$>$/routines/machine.h %
+\rm \par\noindent
+For block with a computational function written in Fortran user may uses the
+integer  function  %
+\tt k=getcurblock()%
+\rm .
+\Seealso{SEE ALSO}
+{\verb?getblocklabel getscicosvars setscicosvars scicos_cpr scicos_main?} \pageref{getblocklabelgetscicosvarssetscicosvarsscicoscprscicosmain}
+
+
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:19 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: ../../man//scicos/getblocklabel.man
+%
+\phead{getblocklabel}{Janvier\ 1997}{Scilab\ Group}{Scicos\ function}{}
+
+
+\Sdoc{getblocklabel}{ get label of a scicos block at running time}\index{getblocklabel}\label{getblocklabel}
+
+\Shead{CALLING SEQUENCE}
+\begin{verbatim}
+label=getblocklabel()
+label=getblocklabel(k)
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?k?}]
+: integer, index of the block. if %
+\tt k %
+\rm is omitted %
+\tt k%
+\rm is
+supposed to be equal to   %
+\tt curblock()%
+\rm . 
+\item[{\verb?label?}]
+: a character string, The label of %
+\tt k%
+\rm th block (see  %
+\tt Label %
+\rm button
+in %
+\tt Block %
+\rm menu.
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+For display or debug purpose it may be usefull to give label to
+particular blocks of a diagram. This may be done using scicos editor 
+(%
+\tt Label %
+\rm button in %
+\tt Block %
+\rm menu). During simulation, value of
+these labels may be obtained in any scilab block with %
+\tt getblocklabel %
+\rm scilab primitive function. 
+\par\noindent
+For C or fortran computational functions, user may use
+ %
+\tt C2F(getlabel) %
+\rm to get a block label. See
+%
+\tt routines/scicos/import.c %
+\rm file for more details
+\par\noindent
+
+Block indexes are those relative to the compile structure%
+\tt cpr%
+\rm . 
+
+\Seealso{SEE ALSO}
+{\verb?curblock getscicosvars setscicosvars?} \pageref{curblockgetscicosvarssetscicosvars}
+
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Tue Apr 22 11:31:20 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: ../../man//scicos/getscicosvars.man
+%
+\phead{getscicosvars}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ function}
+
+
+\Sdoc{getscicosvars}{ get scicos data structure while running}\index{getscicosvars}\label{getscicosvars}
+
+\Shead{CALLING SEQUENCE}
+v=getscicosvars(name)
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?name?}]
+: a character string, the name of the required structure
+\item[{\verb?v ?}]
+: vector of the structure value
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This function may be used in a scilab block to get value of some
+particular global data while running. It allows to write diagram
+monitoring blocks. 
+\par\noindent
+for example  the instruction  %
+\tt disp(getscicosvars('x')) %
+\rm  displays 
+the entire continuous state of the diagram.
+\begin{verbatim}
+x=getscicosvars('x');
+xptr=getscicosvars('xptr');
+disp(x(xptr(k):xptr(k+1)-1))
+\end{verbatim}
+displays the continuous state of the %
+\tt k %
+\rm block
+
+\ignore{
+\begin{verbatim}
+|=========================================================|
+| name     |  data structure definition                   |
+|=========================================================|
+|'x'       | continuous state                             |
+|'xptr'    | continuous state splitting vector            |
+|'z'       | discrete state                               |
+|'zptr'    | discrete  state splitting vector             |
+|'rpar'    | real parameters vector                       |
+|'rpptr'   | rpar  splitting vector                       |
+|'ipar'    | integer parameters vector                    |
+|'ipptr'   | ipar  splitting vector                       |
+|'outtb'   | vector of all input/outputs values           |
+|'inpptr'  | inplnk splitting vector                      |
+|'outptr'  | outlnk splitting vector                      |
+|'inplnk'  | vector of input port values adress in lnkptr |
+|'outlnk'  | vector of output port values adress in lnpkpr|
+|'lnkptr'  | outtb splitting vector                       |
+|=========================================================|
+\end{verbatim}
+}
+\par\noindent
+%Thisis for LaTeX 
+ \begin{tabular}{|r|l|} \hline name& data structure definition \\  \hline  'x' &    continuous state \\  \hline  'xptr' &    continuous state splitting vector\\  \hline  'z' &    discrete state \\  \hline  'zptr' &    discrete  state splitting vector\\  \hline  'rpar' &  real parameters vector \\  \hline  'rpptr' &    rpar  splitting vector\\  \hline  'ipar' &     integer parameters vector \\ \hline  'ipptr' &    ipar  splitting vector\\  \hline  'outtb' &    vector of all input/outputs values \\ \hline  'inpptr' &   inplnk splitting vector \\ \hline  'outptr' &   outlnk splitting vector  \\ \hline  'inplnk' &   vector of input port values adress in lnkptr \\ \hline  'outlnk' &   vector of output port values adress in lnpkpr \\ \hline  'lnkptr' &   outtb splitting vector \\ \hline \end{tabular}\par\noindent
+See %
+\tt scicos\_cpr %
+\rm for more detail on these data structures.
+\par\noindent
+For C or fortran computational function the C procedure
+%
+\tt C2F(getscicosvars) %
+\rm may used. See
+%
+\tt routines/scicos/import.c %
+\rm file for more details.
+\Seealso{SEE ALSO}
+{\verb?setscicosvars  scicosim  curblock scicos_cpr getblocklabel?} \pageref{setscicosvarsscicosimcurblockscicoscprgetblocklabel}
+%
+% input file: ../../man//scicos/setscicosvars.man
+%
+\phead{setscicosvars}{5}{Janvier\ 1996}{Scilab\ Group}{Scicos\ function}
+
+
+\Sdoc{setscicosvars}{ set scicos data structure while running}\index{setscicosvars}\label{setscicosvars}
+
+\Shead{CALLING SEQUENCE}
+setscicosvars(name,v)
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\verb?name?}]
+: a character string, the name of the required structure
+\item[{\verb?v ?}]
+: vector of the new structure value
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+This function may be used in a scilab block to set value of some
+particular global data while running. It allows to write diagram
+supervisor blocks.
+\par\noindent
+for example  the instructions  
+\begin{verbatim}
+x=getscicosvars('x');
+xptr=getscicosvars('xptr');
+x(xptr(k):xptr(k+1)-1)=xk
+setscicosvars('x',x)
+\end{verbatim}
+Changes the continuous state of the %
+\tt k %
+\rm block to %
+\tt xk%
+\rm .
+
+\ignore{
+\begin{verbatim}
+|=========================================================|
+| name     |  data structure definition                   |
+|=========================================================|
+|'x'       | continuous state                             |
+|'xptr'    | continuous state splitting vector            |
+|'z'       | discrete state                               |
+|'zptr'    | discrete  state splitting vector             |
+|'rpar'    | real parameters vector                       |
+|'rpptr'   | rpar  splitting vector                       |
+|'ipar'    | integer parameters vector                    |
+|'ipptr'   | ipar  splitting vector                       |
+|'outtb'   | vector of all input/outputs values           |
+|'inpptr'  | inplnk splitting vector                      |
+|'outptr'  | outlnk splitting vector                      |
+|'inplnk'  | vector of input port values adress in lnkptr |
+|'outlnk'  | vector of output port values adress in lnpkpr|
+|'lnkptr'  | outtb splitting vector                       |
+|=========================================================|
+\end{verbatim}
+}
+\par\noindent
+%Thisis for LaTeX 
+ \begin{tabular}{|r|l|} \hline name& data structure definition \\  \hline  'x' &    continuous state \\  \hline  'xptr' &    continuous state splitting vector\\  \hline  'z' &    discrete state \\  \hline  'zptr' &    discrete  state splitting vector\\  \hline  'rpar' &  real parameters vector \\  \hline  'rpptr' &    rpar  splitting vector\\  \hline  'ipar' &     integer parameters vector \\ \hline  'ipptr' &    ipar  splitting vector\\  \hline  'outtb' &    vector of all input/outputs values \\ \hline  'inpptr' &   inplnk splitting vector \\ \hline  'outptr' &   outlnk splitting vector  \\ \hline  'inplnk' &   vector of input port values adress in lnkptr \\ \hline  'outlnk' &   vector of output port values adress in lnpkpr \\ \hline  'lnkptr' &   outtb splitting vector \\ \hline \end{tabular}\par\noindent
+See %
+\tt scicos\_cpr %
+\rm for more detail on these data structures.
+\par\noindent
+For C or fortran computational function the C procedure
+%
+\tt C2F(setscicosvars) %
+\rm may used. See
+%
+\tt routines/scicos/import.c %
+\rm file for more details.
+\par\noindent
+Warning: The use of this function requires a deep knowledge on how
+scicosim works,may be used very carefully. Unpredicted parameters,
+state, link values changes  may produce erroneous simulations.
+\Seealso{SEE ALSO}
+{\verb?getscicosvars  scicosim  curblock scicos_cpr getblocklabel?} \pageref{getscicosvarsscicosimcurblockscicoscprgetblocklabel}
+

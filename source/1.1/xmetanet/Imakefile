@@ -1,0 +1,13 @@
+#include "../Imake.incl"
+
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS=$(CDEBUGFLAGS) FDEBUGFLAGS=$(FDEBUGFLAGS)
+
+SUBDIRS = gengraph src
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS))
+
+distclean::
+	$(RM) data//**/*.metanet

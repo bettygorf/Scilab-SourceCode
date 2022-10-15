@@ -1,0 +1,50 @@
+
+subgraph(1)                    Scilab function                    subgraph(1)
+NAME
+  subgraph - subgraph of a graph
+
+CALLING SEQUENCE
+  g1 = subgraph(v,ind,g)
+
+PARAMETERS
+
+  v : row vector, numbers of nodes or edges
+
+  ind : string, 'nodes' or 'edges'
+
+  g : graph list
+
+  g1 : graph list of the new graph
+
+DESCRIPTION
+  subgraph returns the graph g1, built with the numbers given by the the row
+  vector v. If ind is the string 'nodes', g1 is built with the node numbers
+  given by v and the connected edges of these nodes in g. If ind is the
+  string 'edges', g1 is built with the edge numbers given by v and the tail-
+  head nodes of these edges in g.
+
+  All the characteristics of the old nodes and edges of g are preserved.
+
+EXAMPLE
+  ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
+  he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 13 15 12 13 9 10 14 11 16 1 17 14 15];
+  g=make_graph('foo',1,17,ta,he);
+  g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+  g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+  g('edge_color')=modulo([1:(edge_number(g))],15)+1;
+  g('node_diam')=[1:(g('node_number'))]+20;
+  show_graph(g);
+  metanet_sync(1);
+  v=[2 3 4 5 17 13 10];
+  show_nodes(v);
+  g1=subgraph(v,'nodes',g);
+  show_graph(g1);
+  v=[10 13 12 16 20 19];
+  show_graph(g);
+  show_arcs(v);
+  g1=subgraph(v,'edges',g);
+  show_graph(g1);
+  metanet_sync(0);
+
+SEE ALSO
+  add_edge, add_node, delete_arcs, delete_nodes, supernode

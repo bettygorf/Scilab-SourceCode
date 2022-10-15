@@ -1,0 +1,174 @@
+.TH "smultim2d __SUBTITLE__=stochastic multinomial 2d measure synthesis" 2 "July 5th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+smultim2d __SUBTITLE__=stochastic multinomial 2d measure synthesis - 
+.sp
+Author: Christophe Canus
+.sp
+This  C_LAB   routine   synthesizes two   types    of pre-multifractal
+stochastic measures related to the multinomial 2d measure (uniform law
+and lognormal law).
+.sp
+.sp
+.SH Usage
+\f(CR[\fPvarargout,\f(CR[\fPoptvarargout\f(CR]\fP\f(CR]\fP=sbinom(bx,by,str,varargin,\f(CR[\fPoptvarargin\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBbx\fP : strictly positive real (integer) scalar 
+Contains the abscissa base of the multinomial.
+
+.TP
+o 
+\fBby\fP : strictly positive real (integer) scalar 
+Contains the ordonate base of the multinomial.
+
+.TP
+o 
+\fBstr\fP : string 
+Contains the type of ouput.
+
+.TP
+o 
+\fBvarargin\fP : variable input argument 
+Contains the variable input argument.
+
+.TP
+o 
+\fBoptvarargin\fP : optional variable input arguments 
+Contains optional variable input arguments.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBvarargout\fP : variable output argument 
+Contains the variable output argument.
+
+.TP
+o 
+\fBoptvarargout\fP : optional variable output argument 
+Contains an optional variable output argument. 
+.RE
+
+.SH Description
+.SH Parameters 
+The stochastic multinomial 2d measure is completly characterized by
+its abscissa base \fIbx\fP, ordonate base \fIby\fP. These first two
+parameters must be \f(CR>\fP1.
+ 
+The third parameter \fIstr\fP is a variable string used to determine
+the desired type of output. There are four suffix strings ('\fImeas\fP'
+for measure, '\fIcdf\fP' for cumulative distribution function
+q, '\fIpdf\fP' for probability density function, '\fIspec\fP' for
+multifractal spectrum) and a two prefix strings for the type of
+stochastic measure ('\fIunif\fP' for uniform and '\fIlogn\fP' for
+lognormal) which must added to the first ones to form composed. For
+example, '\fIunifmeas\fP' is for the synthesis of a uniform law
+multinomial 2d pre-multifractal measure and '\fIlognspec\fP' is for the
+computation of the multifractal spectrum of a lognormal multinomial 2d
+measure.
+When a string containing suffix string '\fImeas\fP' is given as third
+input, a pre-multifractal measure \fImu_n\fP (first output argument) is
+synthesized on the \fIbx\fP-adic and \fIby\fP-adic intervals \fII_nx\fP
+and \fII_ny\fP (second and third optional output argument) of the unit
+square. In that case, the fourth input argument is a strictly positive
+real (integer) scalar \fIn\fP which contains the resolution of the
+pre-multifractal measure. The size of the output real matrix \fImu_n\fP
+is equal to \fIbx\fP\(ha\fIn\fP*\fIby\fP\(ha\fIn\fP and the one of the output
+real vectors \fII_nx\fP and \fII_ny\fP (if used) is equal to
+\fIbx\fP\(ha\fIn\fP and \fIby\fP\(ha\fIn\fP (so be aware the stack size
+;-)). This option is implemented for the uniform law ('\fIunifmeas\fP')
+and the lognormal law ('\fIlognmeas\fP') multinomial 2d measures.
+When a string containing prefix '\fIunif\fP' is given as third input,
+the synthesis or the computation is made for a uniform law multinomial
+2d measure. In that case, the optional fourth input argument is a
+strictly positive real scalar \fIepsilon\fP which contains the
+pertubation around weight .5. The weight is an independant random
+variable identically distributed between \fIepsilon\fP and
+1-\fIepsilon\fP which must be \f(CR>\fP0., \f(CR<\fP1. The default value for
+\fIepsilon\fP is 0.
+When a string containing prefix '\fIlogn\fP' is given as third input,
+the synthesis or the computation is made for a lognormal law multinomial 2d
+measure. In that case, the optional fifth input argument is a
+strictly positive real scalar \fIsigma\fP which contains the standard
+deviation of the lognormal law.
+When replacing suffix string '\fImeas\fP' with suffix
+string '\fIcdf\fP', respectively suffix string '\fIpdf\fP', the cumulative
+distribution function \fIF_n\fP, respectively the probability density
+function \fIp_n\fP, related to this pre-multifractal measure is
+computed (first output argument).
+.SH Algorithm details
+ 
+For the uniform and lognormal law multinomial 2d, the synthesis algorithm is
+implemented is a recursive way (to be able to pick up a i.i.d. r.v. at
+each level of the multiplicative cascade and for all nodes of the
+corresponding binary tree w.r.t. the given law). Note that the
+lognormal law multinomial 2d measure is not conservative.
+.SH Examples
+.SH Matlab
+.sp
+.ft CR
+.nf
+n=5;
+bx=2;
+by=3;
+% synthesizes a pre-multifractal uniform Law multinomial 2d measure
+[mu_n,I_nx,I_ny]=smultim2d(bx,by,'unifmeas',n);
+mesh(I_nx,I_ny,mu_n);
+s=1.;
+% synthesizes the cdf of a pre-multifractal lognormal law multinomial 2d measure
+F_n=smultim2d(bx,by,'logncdf',n,s);
+mesh(I_nx,I_ny,F_n);
+e=.19;
+% synthesizes the pdf of a pre-multifractal uniform law multinomial 2d measure
+p_n=smultim2d(bx,by,'unifpdf',n,e);
+mesh(I_nx,I_ny,p_n);
+.fi 
+.ec
+.ft P
+.sp
+.SH Scilab
+.sp
+.ft CR
+.nf
+n=5;
+bx=2;
+by=3;
+// synthesizes a pre-multifractal uniform Law multinomial 2d measure
+[mu_n,I_nx,I_ny]=smultim2d(bx,by,'unifmeas',n);
+mesh(I_nx,I_ny,mu_n);
+s=1.;
+// synthesizes the cdf of a pre-multifractal lognormal law multinomial 2d measure
+F_n=smultim2d(bx,by,'logncdf',n,s);
+mesh(I_nx,I_ny,F_n);
+e=.19;
+// synthesizes the pdf of a pre-multifractal uniform law multinomial 2d measure
+p_n=smultim2d(bx,by,'unifpdf',n,e);
+mesh(I_nx,I_ny,p_n);
+.fi 
+.ec
+.ft P
+.sp
+.SH References
+\fB"A class of Multinomial Multifractal Measures with negative
+(latent) values for the "Dimension" f(alpha)"\fP, Benoit
+B. MandelBrot. \fIIn Fractals' Physical Origins and Properties,
+Proceeding of the Erice Meeting, 1988. Edited by L. Pietronero, Plenum
+Press, New York, 1989 pages 3-29\fP.
+\fB"Limit Lognormal Multifractal Measures"\fP, Benoit
+B. MandelBrot. \fIIn Frontiers of Physics, Landau Memorial
+Conference, Proceeding of the Tel-Aviv Meeting, 1988. Edited by Errol
+Asher Gotsman, Yuval Ne'eman and Alexander Voronoi, New York Pergamon,
+1990 pages 309-340\fP.
+.SH See also
+\fBbinom, sbinom, multim1d, multim2d, smultim1d\fP (C_LAB routines).
+\fBMFAS_measures, MFAS_dimensions, MFAS_spectra\fP (Matlab and/or Scilab demo scripts).

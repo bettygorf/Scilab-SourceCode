@@ -1,0 +1,53 @@
+
+mseek(1)                       Scilab Function                       mseek(1)
+NAME
+  mseek - set current position in binary file.
+
+CALLING SEQUENCE
+  mseek(n [,fd, flag])
+
+PARAMETERS
+
+  n         :a positive scalar: The offset from origin in number of bytes.
+
+  fd        : scalar. The fd parameter returned by the function mopen. -1
+            stands for last opened file. Default value is -1.
+
+  flag      : a string. specifies the origin. Default value 'set'.
+
+DESCRIPTION
+  The function mseek() sets the position of the next input or output opera-
+  tion on  the stream fd. The new position is at the signed distance given by
+  n bytes from  the  beginning,  from the current position, or from the end
+  of the file, according  to the flag value which can be 'set', 'cur' or
+  'end'.
+
+  mseek() allows the file position indicator to be set  beyond the  end of
+  the existing data in the file.  If data is later written at this point,
+  subsequent reads of data in  the  gap will  return  zero  until  data is
+  actually written into the gap.  mseek(), by itself, does not extend the
+  size  of  the file.
+
+EXAMPLE
+  file3='test3.bin'
+  fd1= mopen(file3,'wb');
+  for i=1:10, mput(i,'d'); end
+  mseek(0);
+  mput(678,'d');
+  mseek(0,fd1,'end');
+  mput(932,'d');
+  mclose(fd1)
+  fd1= mopen(file3,'rb');
+  res=mget(11,'d')
+  res1=[1:11]; res1(1)=678;res1($)=932;
+  if res1<>res ;write(%io(2),'Bug');end;
+  mseek(0,fd1,'set');
+  // trying to read more than stored data
+  res1=mget(100,'d',fd1);
+  if res1<>res ;write(%io(2),'Bug');end;
+  meof(fd1)
+  mclearerr(fd1)
+  mclose(fd1);
+SEE ALSO
+  mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr,
+  mopen, mprintf, mput, mputstr, mscanf, mseek, mtell

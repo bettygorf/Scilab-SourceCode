@@ -1,0 +1,28 @@
+.TH macros 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+"Scilab object : macro" - Scilab procedure
+.SH DESCRIPTION
+Macros are Scilab procedures. Usually, they are defined 
+in files with an editor and loaded into Scilab by \fVgetf\fR or through
+a library.
+.LP
+They can also be defined on-line (see \fVdeff\fR). 
+A file which contains a macro must begin as follows:
+.nf 
+function [y1,...,yn]=foo(x1,...,xm)
+.fi
+The \fVyi\fR are output variables calculated as functions of
+input variables and variables existing in Scilab
+when the macro is executed.
+A macro can be compiled for faster execution. Collections
+of macros can be collected in libraries.
+Macros which begin with \fV%\fR sign (e.g. \fV%foo\fR) and whose
+arguments are lists are used to perform specific 
+operations: for example, \fVz=%rmr(x,y)\fR is equivalent
+to \fVz=x*y\fR when \fVx\fR and \fVz\fR are rationals 
+(i.e. \fVx=list('r',n,d,[])\fR with \fVn\fR and \fVd\fR polynomials).
+.SH SEE ALSO
+deff, getf, comp, lib.
+
+

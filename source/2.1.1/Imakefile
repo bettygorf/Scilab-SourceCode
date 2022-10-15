@@ -1,0 +1,123 @@
+/* How to customize Scilab :
+ * below you can specify your own versions of objects files that you want
+ * to link with scilab : the default programs taken are in the ``default''
+ * directory (${PATHSP}/default, PATHSP being set in the file make.incl)
+ * Examples of such files are  matlab.o matusr.o interf.o...
+ * (all the routines in the ``default'' directory can be copied
+ * in the user's own working directory to extend or modify scilab: the
+ * source code of these routines must be available to each user of scilab)
+*/
+
+/**/include Path.incl
+
+#include "Imake.incl"
+
+AllTarget(bin/scilex)
+
+/*------------------checks SCIDIR--------------------------*/
+scidir  :
+	@if [ $(SCIDIR) != `pwd` ] ; then \
+		echo "Wrong SCIDIR in your Path.incl file " $(SCIDIR)  ;\
+		echo "I'll set up it for you ";\
+		xx=`pwd`;\
+		sed -e "1,2s+$(SCIDIR)+$$xx+" Path.incl > Path.incl.$$$$ ; \
+		mv Path.incl.$$$$ Path.incl  ;\
+		xmkmf ; \
+	fi
+
+/*--------------------scilex-libraries----------------------*/
+
+LIBRSCI = libs/system.a libs/interf.a libs/system2.a libs/optim.a \
+	libs/integ.a libs/control.a libs/signal.a libs/sparse.a \
+	libs/poly.a libs/calelm.a libs/lapack.a libs/X11G.a \
+	libs/metanet.a libs/sun.a \
+	libs/intersci.a libs/xwindow.a libs/xsci.a libs/comm.a
+
+#if defined(WithLocalXaw)
+XAWLIB = libs/libXaw.a 
+XMULIB = libs/libXmu.a
+XMULIBONLY = libs/libXmu.a
+#endif
+
+
+#if defined(LinuxArchitecture)
+LIBR = $(LIBRSCI) libs/libdld.a
+#else
+LIBR = $(LIBRSCI)
+#endif
+
+/*--------------------routines/default----------------------*/
+RF = routines/default/
+
+#include "routines/default/Imake.files"
+
+/*--------------------main program----------------------*/
+
+ScilexProgramTarget(bin/scilex,NullParameter, \
+	scilex-lib util/fundef , \
+	$(DEFAULTS) $(LIBR), XawClientLibs,-ltermcap)
+
+routines/default/funtab.f : util/fundef util/newfun.f
+	cd util; make $(SCIDIR)/routines/default/funtab.f 
+
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS='$(CDEBUGFLAGS)' FDEBUGFLAGS='$(FDEBUGFLAGS)'
+
+SUBDIRS1 =  scripts macros imp util man intersci xless xmetanet tests doc demos geci
+SUBDIRS  =  routines $(SUBDIRS1)
+
+NamedMakeSubdirs(scilex-lib,routines)
+MakeSubdirs($(SUBDIRS1))
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS) tests)
+
+clean::
+	@echo "Cleaning in ./bin"
+	cd bin; $(RM_CMD)
+
+distclean:: clean
+
+tests::
+	@echo "Type \"make tests\" in $(SCIDIR)/tests directory "
+	@echo "  to test the  distribution"
+
+/*--------------------INSTALL---------------------*/
+
+TARFILE=$(SCIDIR)/scilab.tar
+TAR=/usr/local/lib/tar-1.11.2/tar
+
+tar	: 
+	$(TAR) cfvX $(TARFILE)  util/exclude-tar . 
+
+
+exclude-tar :
+	util/make-exclude 
+
+/* TAR BINARY DISTRIBUTION */
+
+SCIBASE = `basename $(SCIDIR)`
+BINDISTFILES = $(SCIBASE)/CHANGES $(SCIBASE)/Imake.incl $(SCIBASE)/Path.incl \
+	$(SCIBASE)/README \
+	$(SCIBASE)/scilab.quit $(SCIBASE)/scilab.star \
+	$(SCIBASE)/notice.ps $(SCIBASE)/notice.tex \
+	$(SCIBASE)/X11_defaults $(SCIBASE)/bin $(SCIBASE)/demos $(SCIBASE)/doc \
+	$(SCIBASE)/imp/NperiPos.ps $(SCIBASE)/macros $(SCIBASE)/man \
+	$(SCIBASE)/maple $(SCIBASE)/patchlevel.h \
+	$(SCIBASE)/scripts $(SCIBASE)/util $(SCIBASE)/xmetanet/data/?*.graph
+
+tarbindist:
+	cd .. ; tar cvf $(SCIDIR)/$(SCIBASE)-bin.tar $(BINDISTFILES)
+
+/*--------------------TAR SOURCES ---------------------
+* make a tar of the distribution files newer than 
+* the file FILEUPG
+* the default file is util/TIMESTAMP
+*/
+
+TARUPG=$(SCIDIR)/tar-update.tar 
+
+FILEUPG=util/TIMESTAMP
+
+tar-upg	:
+	util/make-new $(FILEUPG)
+	tar cfv $(TARUPG) `cat util/new-files`

@@ -1,0 +1,35 @@
+
+eval3dp(2)                     Scilab Function                     eval3dp(2)
+NAME
+  eval3dp - computes facets of a 3D parametrized surface
+
+CALLING SEQUENCE
+  [x,y,z]=eval3dp(fun,p1,p2)
+
+PARAMETERS
+
+  fun       : a Scilab function.
+
+  p1        : a vector of size n
+
+  p2        : a vector of size m
+
+  x,y,z     : return value.Four 4x(n-1*m-1) matrices.
+DESCRIPTION
+  Computes a set of facets which describe a 3D surface. The facet number k is
+  a four sided polygon stored in x(:,k),y(:,k),z(:,k).  The function
+  fun(p1,p2) computes the (x,y,z)  coordinates of the corresponding point on
+  the surface, But for efficiency the function fun is supposed to work with
+  two vector arguments.
+
+EXAMPLE
+    p1=linspace(0,2*%pi,10);
+    p2=linspace(0,2*%pi,10);
+    deff('[x,y,z]=scp(p1,p2)',['x=p1.*sin(p1).*cos(p2)';
+                               'y=p1.*cos(p1).*cos(p2)';
+                               'z=p1.*sin(p2)'])
+    [x,y,z]=eval3dp(scp,p1,p2);
+    plot3d(x,y,z)
+
+SEE ALSO
+  eval3d, plot3d, feval, genfac3d

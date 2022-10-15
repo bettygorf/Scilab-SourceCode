@@ -1,0 +1,33 @@
+
+#include "../../../Imake.incl"
+
+TR2TEX=../tr2latex/tr2tex 
+EX=abs
+
+AllTarget(Docu.dvi)
+
+Docu.dvi: example.tex
+	$(RM) example.1 
+	latex Docu.tex
+	makeindex -s Docu.isty Docu
+	latex Docu
+
+$(TR2TEX)	:
+	cd ../tr2latex ; $(MAKE) $(MFLAGS) 
+
+Tr2texTarget(example.tex,example.1)
+
+example.1 : 
+	$(CP) $(SCIDIR)/man/Man-*[0-9]/man[0-9nl]/$(EX).[0-9nl] example.1
+
+DependTarget()
+
+clean 	::
+	$(RM) -f *.aux *.log  example.tex *.dvi *.ilg *.ind *.idx example.1
+
+
+distclean: clean
+
+
+
+

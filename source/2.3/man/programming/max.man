@@ -1,0 +1,40 @@
+.TH Maximum G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+max - maximum
+.SH CALLING SEQUENCE
+.nf
+[m [,k]]=max(V)
+[m [,k]]=maxi(V)
+.fi
+.SH PARAMETERS
+.TP 10
+V 
+: real vector or matrix or list.
+.SH DESCRIPTION
+For \fVV\fR a vector, matrix or list, \fVmax(V)\fR is the largest element 
+\fVV\fR.
+.LP
+For matrices, \fV[m,k]=max(V)\fR gives in addition
+the index of the maximum.
+
+For example:
+
+.nf
+[m,[k]]=max([V1,V2,...,Vn])
+.fi
+returns the vector m:
+.nf
+m(i)=max([V1(i),....,Vn(1)])
+.fi
+and the vector \fVk\fR contains for each \fVm(i)\fR the number of the 
+first \fVVj(i)\fR achieving the maximum.
+.nf
+[m [,k]]=max(list(v1,...,vn))
+.fi
+is an equivalent syntax.
+.LP 
+Note that \fVmax\fR and \fVmaxi\fR are equivalent.
+.SH SEE ALSO
+sort, find, mini
+

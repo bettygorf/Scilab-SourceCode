@@ -1,0 +1,24 @@
+#include "../../Imake.incl"
+NAME=siglib
+NAM=signal
+
+MACROS= %k.sci %asn.sci %sn.sci analpf.sci bilt.sci \
+	buttmag.sci cheb1mag.sci cheb2mag.sci chepol.sci \
+	cspect.sci czt.sci dft.sci ell1mag.sci eqfir.sci \
+	eqiir.sci faurre.sci ffilt.sci find_fre.sci \
+	frmag.sci fsfirlin.sci fwiir.sci group.sci hank.sci \
+	hilb.sci iir.sci iirgroup.sci iirlp.sci iirmod.sci intdec.sci \
+	jmat.sci kalm.sci lattn.sci lev.sci levin.sci \
+	lindquist.sci mese.sci mfft.sci phc.sci pspect.sci \
+	remezb.sci sinc.sci sincd.sci srfaur.sci convol.sci \
+	srkf.sci system.sci trans.sci wfir.sci wiener.sci \
+	wigner.sci window.sci zpbutt.sci zpch1.sci zpch2.sci zpell.sci
+
+
+
+OBJ=$(MACROS:.sci=.bin)
+MACROSN=$(MACROS:.sci=)
+
+SciLibTarget($(OBJ))
+NormalScilabObjectRule()
+DependTarget()

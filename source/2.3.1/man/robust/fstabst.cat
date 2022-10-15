@@ -1,0 +1,48 @@
+
+fstabst(1)                     Scilab Function                     fstabst(1)
+NAME
+  fstabst - Youla's parametrization
+
+CALLING SEQUENCE
+  [J]=fstabst(P,r)
+
+PARAMETERS
+
+  P         : syslin list (linear system)
+
+  r         : 1x2 row vector, dimension of P22
+
+  J         : syslin list (linear system in state-space representation)
+
+DESCRIPTION
+  Parameterization of all stabilizing feedbacks.
+
+  P is partitioned as follows:
+  P=[ P11 P12;
+      P21 P22]
+  (in state-space or transfer form: automatic conversion in state-space is
+  done for the computations)
+
+  r = size of  P22 subsystem, (2,2) block of P
+            J =[ J11 J12;
+                 J21 J22]
+  K is a stabilizing controller for P (i.e. P22) iff K=lft(J,r,Q) with Q
+  stable.
+
+  The central part of J , J11 is the lqg regulator for P
+
+  This J is such that defining T as the 2-port lft of P and J :
+  [T,rt]=lft(P,r,J,r) one has that T12 is inner and T21 is co-inner.
+
+EXAMPLE
+  ny=2;nu=3;nx=4;
+  P22=ssrand(ny,nu,nx);
+  bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';
+  bigR=rand(nx+ny,nx+ny);bigR=bigR*bigR';
+  [P,r]=lqg2stan(P22,bigQ,bigR);
+  J=fstabst(P,r);
+  Q=ssrand(nu,ny,1);Q(2)=-1;  //Stable Q
+  A=h_cl(P,r,Q); spec(A)
+
+SEE ALSO
+  obscont, lft, lqg, lqg2stan

@@ -1,0 +1,22 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+NAME=metalib
+NAM=metanet
+
+MACROS= metanet.sci g_acolor.sci g_acost.sci g_ahead.sci g_alen.sci \
+	g_arunum.sci g_arcnum.sci \
+	g_atail.sci g_aweig.sci g_demand.sci g_direct.sci g_edgnum.sci \
+	g_la1.sci g_la2.sci g_lp1.sci g_lp2.sci g_ls1.sci g_ls2.sci \
+	g_maxcap.sci g_mincap.sci g_name.sci g_ncolor.sci g_nodnum.sci \
+	g_ntype.sci g_qorig.sci g_qweig.sci g_xnode.sci g_ynode.sci \
+	addra.sci anpath.sci anshp.sci circuit.sci concomp.sci \
+	gmaxflow.sci lshp.sci l2g.sci makeund.sci maxcpp.sci mincf0.sci \
+	minicf.sci mintree.sci sconcomp.sci transclo.sci
+
+
+OBJ=$(MACROS:.sci=.bin)
+MACROSN=$(MACROS:.sci=)
+
+SciLibTarget($(OBJ))
+NormalScilabObjectRule()
+DependTarget()

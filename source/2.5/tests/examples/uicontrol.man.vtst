@@ -1,0 +1,23 @@
+clear;lines(0);
+f=figure();
+// create a figure
+h=uicontrol(f,'style','listbox', ...
+ 'position', [10 10 150 160]);
+// create a listbox
+set(h, 'string', "item 1|item 2|item3");
+// fill the list
+set(h, 'value', [1 3]);
+// select item 1 and 3 in the list
+close();
+// close the figure
+f=figure();
+// create a figure
+h=uicontrol(f,'style','listbox', ...
+ 'position', [10 10 150 160]);
+// create a listbox
+set(h, 'string', "item 1|item 2|item3");
+// fill the list
+set(h, 'value', [1 3]);
+// select (highlight) the item 1 and 3 in the list
+close();
+//close the figure

@@ -1,0 +1,29 @@
+.TH sci2map 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sci2map - Scilab to Maple variable conversion
+.SH CALLING SEQUENCE
+.nf
+txt=sci2map(a,Map-name) 
+.fi
+.SH PARAMETERS
+.TP 10
+a
+: Scilab object (matrix, polynomial, list, string)
+.TP
+Map-name
+: string (name of the Maple variable)
+.TP
+txt
+: vector of strings containing the corresponding Maple code
+.SH DESCRIPTION
+Makes Maple code necessary to send 
+the Scilab variable \fVa\fR to Maple : the name of the variable
+in Maple is \fVMap-name\fR.
+A Maple procedure \fVmaple2scilab\fR can be found in \fVSCIDIR/maple\fR
+directory.
+.SH EXAMPLE
+.nf
+txt=[sci2map([1 2;3 4],'a');
+     sci2map(%s^2+3*%s+4,'p')]
+.fi

@@ -1,0 +1,12 @@
+#ifdef  COLOR
+
+Metanet*Command.background:yellow
+Metanet*Box.background:lightblue
+Metanet*Form.background:wheat
+Metanet*Label.background:wheat
+Metanet*Label.foreground:darkgreen
+Metanet*Scrollbar.background:green
+Metanet*MenuButton.background:yellow
+Metanet*SimpleMenu.background:yellow
+
+#endif

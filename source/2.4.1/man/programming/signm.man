@@ -1,0 +1,18 @@
+.TH signm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+signm - matrix sign function
+.SH DESCRIPTION
+
+For square and Hermitian matrices \fVX=sign(A)\fR is matrix sign
+function.
+.SH EXAMPLE
+.nf
+A=rand(4,4);B=A+A';X=sign(B);spec(X)
+.fi
+.SH SEE ALSO
+sign
+
+
+
+

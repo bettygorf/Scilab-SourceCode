@@ -1,0 +1,66 @@
+
+
+
+coffg(8)                       Scilab Function                       coffg(8)
+
+
+
+
+
+
+NAME
+  coffg - inverse of polynomial matrix
+
+CALLING SEQUENCE
+  [Ns,d]=coffg(Fs)
+
+PARAMETERS
+
+  Fs   : square polynomial matrix
+
+DESCRIPTION
+  coffg computes Fs^-1 where Fs is a polynomial matrix by co-factors method.
+
+  Fs inverse = Ns/d
+
+  d = common denominator; Ns =  numerator (a polynomial matrix)
+
+  (For large matrices,be patient...results are generally reliable)
+
+EXAMPLE
+  s=poly(0,'s')
+  a=[ s, s^2+1; s  s^2-1];
+  [a1,d]=coffg(a);
+  (a1/d)*a
+
+SEE ALSO
+  determ, detr, invr, penlaur, glever
+
+AUTHOR
+  F. D.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

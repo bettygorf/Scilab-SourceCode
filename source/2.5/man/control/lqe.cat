@@ -1,0 +1,42 @@
+
+lqe(1)                         Scilab Function                         lqe(1)
+NAME
+  lqe - linear quadratic estimator (Kalman Filter)
+
+CALLING SEQUENCE
+  [K,X]=lqe(P21)
+
+PARAMETERS
+
+  P21       : syslin list
+
+  K, X      : real matrices
+
+DESCRIPTION
+  lqe returns the Kalman gain for the filtering problem in continuous or dis-
+  crete time.
+
+  P21 is a syslin list representing the system P21=[A,B1,C2,D21]
+
+  The input to P21 is a white noise with variance:
+       [B1 ]               [Q  S]
+  BigV=[   ] [ B1' D21'] = [    ]
+       [D21]               [S' R]
+  X is the solution of the stabilizing Riccati equation and A+K*C2 is stable.
+  In continuous time:
+  (A-S*inv(R)*C2)*X+X*(A-S*inv(R)*C2)'-X*C2'*inv(R)*C2*X+Q-S*inv(R)*S'=0
+  K=-(X*C2'+S)*inv(R)
+
+  In discrete time:
+  X=A*X*A'-(A*X*C2'+B1*D21')*pinv(C2*X*C2'+D21*D21')*(C2*X*A'+D21*B1')+B1*B1'
+  K=-(A*X*C2'+B1*D21')*pinv(C2*X*C2'+D21*D21')
+
+  xhat(t+1)= E(x(t+1)| y(0),...,y(t)) (one-step predicted x) satisfies the
+  recursion:
+  xhat(t+1)=(A+K*C2)*xhat(t) - K*y(t).
+
+SEE ALSO
+  lqr
+
+AUTHOR
+  F. D.

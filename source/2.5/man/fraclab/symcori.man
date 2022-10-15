@@ -1,0 +1,52 @@
+.TH "symcori" 2 " February 20th 1998" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+symcori - Symmetrization of a periodic 2D correlation field
+.sp
+Author: B. Pesquet-Popescu (ENS-Cachan)
+.sp
+Symmetrization of a periodic 2D correlation field 
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+Ss = symcori(S) ;
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fB S \fP : Matrix \f(CR[\fPN/2+1 , N\f(CR]\fP 
+Periodic 2D correlation field S(1:N/2+1,1:N) of a complex 2D
+NxN field. Values of S(1,N/2+2:N) may be arbitrary.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fB Ss \fP :  Matrix \f(CR[\fPN , N\f(CR]\fP
+Symetrized correlation field
+.RE
+
+.SH See also:
+synth2, strfbm
+.SH Example:
+.sp
+.ft CR
+.nf
+.fi 
+.ec
+.ft P
+.sp

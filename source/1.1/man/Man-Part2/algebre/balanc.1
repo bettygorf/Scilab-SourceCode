@@ -1,0 +1,23 @@
+.TH balanc 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+balanc - matrix balancing
+.SH CALLING SEQUENCE
+.nf
+[Ab,X]=balanc(A)
+.fi
+.SH PARAMETERS
+.TP 10
+A:
+a real square matrix
+.SH DESCRIPTION
+Balance a square matrix to improve its condition number.
+.LP
+.Vb [Ab,X] = balanc(A) 
+finds a similarity transformation \fVX\fR such that
+.Vb Ab = inv(X)*A*X 
+has approximately equal row and column norms.
+.SH Remark
+This transformation is made in the functions bdiag and spec.
+.SH SEE ALSO 
+bdiag

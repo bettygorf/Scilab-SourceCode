@@ -1,0 +1,82 @@
+.TH ode_root G "February 1998" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+ode_root - ordinary differential equation solver with root finding
+.SH CALLING SEQUENCE
+.nf
+[y,rd,w,iw]=ode('root',y0,t0,t [,rtol  [,atol]],f  [,jac],ng,g [,w,iw])
+.fi
+.SH PARAMETERS
+.TP 10
+y0 
+: real vector or matrix (initial conditions).
+.TP
+t0,
+: real scalar (initial time).
+.TP
+t
+: real vector (times at which the solution is computed).
+.TP
+f
+: external i.e. function or character string or list.
+.TP
+rtol,atol 
+: real constants or real vector of the same size as y.
+as \fVy\fR.
+.TP
+jac 
+: external i.e. function or character string or list.
+.TP
+w,iw 
+: real vectors.
+.TP
+ng 
+: integer.
+.TP
+g 
+: external i.e. function or character string or list.
+.SH DESCRIPTION
+With this syntax (first argument equal to \fV'root'\fR)
+\fVode\fR
+computes the solution
+of the differential equation \fVdy/dt=f(t,y)\fR until the state
+\fVy(t)\fR crosses the surface \fVg(t,y)=0\fR.
+
+\fVg\fR should give the equation of the surface.
+It is an external i.e. a function with
+specified syntax, or the name a Fortran subroutine or a C function 
+(character string) with specified calling sequence or a list.
+.LP
+If \fVg\fR is function the syntax should be as follows:
+.nf
+z=g(t,y)
+.fi
+where \fVt\fR is a real scalar (time)  and \fVy\fR a real vector (state).
+It returns a vector of size \fVng\fR which corresponds to 
+the \fVng\fR constraints. 
+If \fVg\fR is a character string it refers to the name of a Fortran
+subroutine or a C function, with the following calling sequence: 
+\fVg(n,t,y,ng,gout)\fR.
+where \fVng\fR is the number of constraints and 
+\fVgout\fR is the value of  \fVg\fR (output of the program).
+If \fg\fR is a list the same conventions as for \fVf\fR apply (see ode
+help).
+
+Ouput \fVrd\fR is a \fV1xk\fR vector. The first entry contains the stopping
+time. Other entries indicate which components of \fVg\fR have changed
+sign. \fVk\fR larger than two indicates that more than one surface
+\fV(k-1)\fR has been simultaneously traversed.
+
+Other arguments and other options are the same as for \fVode\fR, see the
+ode help.
+.SH EXAMPLE
+.nf
+// Integration of the differential equation
+// dy/dt=y , y(0)=1, and finds the minimum time t such that y(t)=2
+deff('[ydot]=f(t,y)','ydot=y')
+deff('[z]=g(t,y)','z=y-2')
+y0=1;ng=1;
+[y,rd]=ode('roots',y0,0,2,f,ng,g)
+.fi
+.SH SEE ALSO
+dasrt, ode

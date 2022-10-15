@@ -1,0 +1,20 @@
+ 
+clear;lines(0);
+ 
+a=rand(5,5);b=rand(5,1);A=sparse(a);
+ 
+[h,rk]=lufact(A);
+ 
+x=lusolve(h,b);a*x-b
+ ans  =
+ 
+   1.0D-15 *
+ 
+! - 0.2220446 !
+!   0.        !
+! - 0.0555112 !
+! - 0.2220446 !
+! - 3.8857806 !
+ 
+ludel(h)
+ 

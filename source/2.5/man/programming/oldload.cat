@@ -1,0 +1,35 @@
+
+oldload(1)                     Scilab Function                     oldload(1)
+NAME
+  oldload - load saved variable in 2.4.1 and previous formats
+
+CALLING SEQUENCE
+  oldload('file-name' [,x1,...,xn])
+
+PARAMETERS
+
+  file-name : character string
+
+  xi        : arbitrary Scilab variable name(s) given as strings.
+
+DESCRIPTION
+  The oldload function is obsolete and is retained only for compatibility
+  purpose.
+
+  The oldload command can be used to reload in the Scilab session variables
+  previously saved in a file with the save command.
+
+  oldload('file-name') loads the variables saved in file 'file-name'.
+
+  oldload('file-name','x','y',...,'z') loads only variables x,y,...,z stored
+  in file 'file-name'.
+
+EXAMPLES
+  a=eye(2,2);b=ones(a);
+  oldsave('TMPDIR/vals.dat',a,b);
+  clear a
+  clear b
+  oldload('TMPDIR/vals.dat','a','b');
+
+SEE ALSO
+  save, getf

@@ -1,0 +1,72 @@
+.TH "mtlb_hilbert" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mtlb_hilbert - Hilbert transform of a signal
+.sp
+Author: Paulo Goncalves
+.sp
+Hilbert transform of a signal. \fImtlb_hilbert(x)\fP is the Hilbert
+transform of the real part of vector X.  The real part of the result
+is the original real data; the imaginary part is the actual Hilbert
+transform.
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+y = mtlb_hilbert(x) ;
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : Real or complex valued vector \f(CR[\fP1,N\f(CR]\fP
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBy\fP : Complex valued vector \f(CR[\fP1,N\f(CR]\fP 
+Analytic signal corresponding to the real part of the input \fIx\fP.
+.RE
+
+.SH See also:
+fft
+.SH Example:
+\fI Matrix synthesis: \fP 
+.sp
+.ft CR
+.nf
+t = linspace( -1,1,128 ) ;
+X = cos( 2*%pi*t*16 ) ;
+SpectX = abs( fft( X , -1 ) ) ;
+SpectX = fftshift( SpectX ) ;
+.fi 
+.ec
+.ft P
+.sp
+\fI Hilbert Transform \fP 
+.sp
+.ft CR
+.nf
+AnalyticX = mtlb_hilbert(X) ;
+SpectAnalyticX = abs( fft( AnalyticX , -1 ) ) ;
+SpectAnalyticX = fftshift( SpectAnalyticX ) ;
+Freq = linspace( -0.5,0.5,128 ) ;
+xsetech([0 0 0.5 1]) ; plot2d( Freq,SpectX ) ; 
+xsetech([0.5 0 0.5 1]) ; plot2d( Freq,SpectAnalyticX )
+.fi 
+.ec
+.ft P
+.sp

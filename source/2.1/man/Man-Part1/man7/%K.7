@@ -1,0 +1,28 @@
+.TH %K 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+%K - Jacobi's complete elliptic integral
+.SH CALLING SEQUENCE
+.nf
+[K]=%K(m)
+.fi
+.SH PARAMETERS
+.TP 10
+m
+: parameter of the elliptic integral \fV0<m<1\fR (\fVm\fR can be a vector)
+.TP
+K
+: value of the elliptic integral from 0 to 1 on the real axis
+.SH DESCRIPTION
+Calculates Jacobi's complete elliptic integral
+of the first kind : 
+\"LaTeX \ignore{	
+.nf
+K = integral from 0 to 1 of [(1-t^2)(1-m*t**2)]**(-1/2)
+.fi
+\"LaTeX }
+.LA \[ K = \int_0^1 \frac{dt}{[(1-t^2)(1-m t^2)]^{1/2}} \]
+.SH REFERENCES
+Abramowitz and Stegun page 598
+.SH AUTHOR
+F. D.

@@ -1,0 +1,33 @@
+
+sgrid(1)                       Scilab Function                       sgrid(1)
+NAME
+  sgrid - s-plane grid lines.
+
+CALLING SEQUENCE
+  sgrid()
+  sgrid('new')
+  sgrid(zeta,wn [,color])
+
+DESCRIPTION
+  Used in conjonction with evans, plots lines of constant damping ratio
+  (zeta) and natural frequency (wn).
+
+       sgrid()
+         : add a grid over an existing continuous s-plane root with default
+         values for zeta and wn.
+
+       sgrid('new')
+         : clears the graphic screen and then plots a default s-plane grid
+
+       sgrid(zeta,wn [,color])
+         : same as sgrid() but uses the provided damping ratio and natural
+         frequency.
+
+EXAMPLE
+  H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+  evans(H,100)
+  sgrid()
+  sgrid(0.6,2,7)
+
+SEE ALSO
+  evans

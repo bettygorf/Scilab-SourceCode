@@ -1,0 +1,30 @@
+.TH and 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+and (&) - logical and
+.SH CALLING SEQUENCE
+.nf
+b=and(A),  b=and(A,'*')
+b=and(A,'r'), b=and(A,1)
+b=and(A,'c'), b=and(A,2)
+A&B
+.fi
+.SH DESCRIPTION
+\fVand(A)\fR is the logical AND of elements of 
+the boolean matrix \fVA\fR. \fVand(A)\fR returns \fV%T\fR ("true")  iff 
+all entries of \fVA\fR are \fV%T\fR.
+.LP
+\fVy=and(A,'r')\fR (or, equivalently, \fVy=and(A,1)\fR) is the rowwise and. It returns in each 
+entry of the row vector \fVy\fR the and of the rows of \fVx\fR (The and is performed on the 
+row index : \fVy(j)= and(A(i,j),i=1,m)\fR).
+.LP
+\fVy=and(A,'c')\fR (or, equivalently, \fVy=and(A,2)\fR) is the columnwise and. It returns 
+in each entry of the column vector \fVy\fR the and of the columns of \fVx\fR 
+(The and is performed on the column index:  \fVy(i)= and(A(i,j),j=1,n)\fR)).
+.LP
+
+\fVA&B\fR  gives the element-wise logical \fVand\fR of the booleans matrices
+ \fVA\fR and  \fVB\fR .\fVA\fR and  \fVB\fR must be matrices with the same
+ dimensions or one from them must be a single boolean.
+.SH SEE ALSO
+not, or

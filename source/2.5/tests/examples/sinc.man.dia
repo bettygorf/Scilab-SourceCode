@@ -1,0 +1,5 @@
+ 
+clear;lines(0);
+ 
+plot(sinc(100,0.1))
+ 

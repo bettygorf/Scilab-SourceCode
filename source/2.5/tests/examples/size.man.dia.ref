@@ -1,0 +1,46 @@
+ 
+clear;lines(0);
+ 
+[n,m]=size(rand(3,2))
+ m  =
+ 
+    2.  
+ n  =
+ 
+    3.  
+ 
+[n,m]=size(['a','b';'c','d'])
+ m  =
+ 
+    2.  
+ n  =
+ 
+    2.  
+ 
+x=ssrand(3,2,4);[ny,nu]=size(x)
+ nu  =
+ 
+    2.  
+ ny  =
+ 
+    3.  
+ 
+[ny,nu]=size(ss2tf(x))
+ nu  =
+ 
+    2.  
+ ny  =
+ 
+    3.  
+ 
+[ny,nu,nx]=size(x)
+ nx  =
+ 
+    4.  
+ nu  =
+ 
+    2.  
+ ny  =
+ 
+    3.  
+ 

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<!--Converted with LaTeX2HTML 96.1 (Feb 5, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Descriptor Lyapunov inequalities</TITLE>
+<META NAME="description" CONTENT="Descriptor Lyapunov inequalities">
+<META NAME="keywords" CONTENT="lmidoc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="lmidoc.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html155" HREF="node9.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www-rocq.inria.fr/scilab/icons/next_motif.gif"></A> <A NAME="tex2html153" HREF="node5.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www-rocq.inria.fr/scilab/icons/up_motif.gif"></A> <A NAME="tex2html147" HREF="node7.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www-rocq.inria.fr/scilab/icons/previous_motif.gif"></A> <A NAME="tex2html157" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www-rocq.inria.fr/scilab/icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html156" HREF="node9.html">Mixed  Control</A>
+<B>Up:</B> <A NAME="tex2html154" HREF="node5.html">Examples</A>
+<B> Previous:</B> <A NAME="tex2html148" HREF="node7.html">Control of jump linear </A>
+<BR> <P>
+<H3><A NAME="SECTION00032300000000000000">Descriptor Lyapunov inequalities</A></H3>
+<P>
+<A NAME="ex3">&#160;</A>
+In the study of descriptor systems, it is sometimes 
+necessary to find (or find out that it does not exist)
+an  <IMG WIDTH=38 HEIGHT=16 ALIGN=MIDDLE ALT="tex2html_wrap_inline636" SRC="img11.gif"  >  matrix <I>X</I> satisfying
+<P> <IMG WIDTH=500 HEIGHT=42 ALIGN=BOTTOM ALT="eqnarray138" SRC="img34.gif"  > <P>
+where <I>E</I> and <I>A</I> are  <IMG WIDTH=38 HEIGHT=16 ALIGN=MIDDLE ALT="tex2html_wrap_inline636" SRC="img11.gif"  >  matrices such that <I>E</I>,<I>A</I> is a regular pencil.
+In this problem, which clearly is a  <IMG WIDTH=9 HEIGHT=11 ALIGN=BOTTOM ALT="tex2html_wrap_inline590" SRC="img7.gif"  >  problem,
+the LME functions play important role. The evaluation function
+can be written as follows
+<PRE>function [LME,LMI,OBJ]=dscr_lyap_eval(XLIST)
+X=XLIST(:)
+LME=E'*X-X'*E
+LMI=list(-A'*X-X'*A-eye,E'*X)
+OBJ=[]</PRE>
+and the problem can be solved by (assuming <I>E</I> and <I>A</I> are
+already defined)
+<PRE>--&gt; XLIST0=list(zeros(A))
+--&gt; XLISTF=lmisolver(XLIST0,dscr_lyap_eval)
+--&gt; X=XLISTF(:)</PRE>
+<P>
+<BR> <HR>
+<P><ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

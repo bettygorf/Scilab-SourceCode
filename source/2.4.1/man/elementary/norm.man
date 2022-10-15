@@ -1,0 +1,62 @@
+.TH norm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+norm - matrix norms
+.SH CALLING SEQUENCE
+.nf
+[y]=norm(x [,flag])
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex vector or matrix (full or sparse storage)
+.TP 10
+flag
+: string (type of norm) (default value =2)
+.SH DESCRIPTION
+For matrices
+.RS
+.TP 15
+norm(x) 
+: or \fVnorm(x,2)\fR is the largest singular value of \fVx\fR
+(\fVmax(svd(x))\fR).
+
+.TP
+norm(x,1) 
+: The l_1 norm \fVx\fR (the largest column sum : 
+\fVmaxi(sum(abs(x),'r'))\fR  ).
+.TP
+norm(x,'inf'),norm(x,%inf)
+: The infinity norm of \fVx\fR (the largest row sum : 
+\fVmaxi(sum(abs(x),'c'))\fR  ).
+.TP
+norm(x,'fro') 
+: Frobenius norm i.e. \fVsqrt(sum(diag(x'*x)))\fR
+.RE
+For vectors
+.RS
+.TP 15
+norm(v,p)
+: l_p norm (\fVsum(v(i)^p))^(1/p)\fR .
+.TP
+norm(v) 
+: \fV=norm(v,2)\fR : l_2 norm
+.TP
+norm(v,'inf') 
+: \fVmax(abs(v(i)))\fR.
+.RE
+.SH EXAMPLE
+.nf
+A=[1,2,3];
+norm(A,1)
+norm(A,'inf')
+A=[1,2;3,4]
+max(svd(A))-norm(A)
+
+A=sparse([1 0 0 33 -1])
+norm(A)
+
+.fi
+.SH SEE ALSO
+h_norm, dhnorm, h2norm, abs
+

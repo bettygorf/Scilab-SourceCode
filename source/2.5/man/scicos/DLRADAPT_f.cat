@@ -1,0 +1,31 @@
+
+DLRADAPT_f(5)                    Scicos Block                   DLRADAPT_f(5)
+NAME
+  DLRADAPT_f - Scicos discrete-time linear adaptive system
+
+DIALOGUE PARAMETERS
+
+  Vector of p mesh points
+                      : a vector which defines u2 mesh points.  Numerator
+                      roots : a matrix, each line gives the roots of the
+                      numerator at the corresponding mesh point.
+
+  Denominator roots   : a matrix, each line gives the roots of the denomina-
+                      tor at the corresponding mesh point.
+
+  gain                : a vector, each vector entry gives the transfer gain
+                      at the corresponding mesh point.
+
+  past inputs         : a vector of initial value of past degree(Numerator)
+                      inputs
+
+  past outputs        : a vector of initial value of past degree(Denominator)
+                      outputs
+DESCRIPTION
+  This block realizes a SISO linear system represented by its rational trans-
+  fer function whose numerator and denominator roots are tabulated functions
+  of the second block input. The rational function must be proper.
+
+  Roots are interpolated linearly between mesh points.
+SEE ALSO
+  DLSS_f, DLR_f

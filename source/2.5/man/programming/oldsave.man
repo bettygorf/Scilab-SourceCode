@@ -1,0 +1,47 @@
+.TH oldsave 1 "April 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+oldsave - saving variables in 2.4.1 and previous format
+.SH CALLING SEQUENCE
+.nf 
+oldsave(filename [,x1,x2,...,xn])
+.fi
+.SH PARAMETERS
+.TP 10
+filename 
+: character string or a logical unit returned by file('open',...)
+.TP 10
+xi
+: arbitrary Scilab variable(s) 
+.SH DESCRIPTION
+The \fVoldsave\fR function is obsolete and is retained only for
+compatibility purpose.
+.LP
+
+The \fVoldsave\fR command can be used to save Scilab current variables 
+in binary form in a file.
+.LP
+\fVoldsave(filename)\fV saves all current variables in the file
+defined by  \fVfilename\fR.
+.LP
+\fVoldsave(file-name,x,y)\fR saves only named variables \fVx\fR and \fVy\fR.
+.LP
+Saved  variables can be reloaded by the \fVload\fR or oldload command.
+.SH EXAMPLES
+.nf
+a=eye(2,2);b=ones(a);
+oldsave('TMPDIR/val.dat',a,b);
+clear a
+clear b
+oldload('TMPDIR/val.dat','a','b');
+// sequential save into a file
+
+fd=file('open','TMPDIR/foo','unformatted','unknown')
+for k=1:4, x=k^2;oldsave(fd,x,k),end
+file('close',fd)
+fd=file('open','TMPDIR/foo','old','unknown')
+for i=1:4, oldload(fd,'x','k');x,k,end
+file('close',fd)
+.fi
+.SH SEE ALSO
+load, file

@@ -1,0 +1,48 @@
+ 
+clear;lines(0);
+ 
+ny=2;nu=3;nx=4;
+ 
+P22=ssrand(ny,nu,nx);
+ 
+bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';
+ 
+bigR=rand(nx+ny,nx+ny);bigR=bigR*bigR';
+ 
+[P,r]=lqg2stan(P22,bigQ,bigR);K=lqg(P,r);  //K=LQG-controller
+ 
+spec(h_cl(P,r,K))      //Closed loop should be stable
+ ans  =
+ 
+! - 3.7678785 + 3.1604279i !
+! - 3.7678785 - 3.1604279i !
+! - 3.2834642              !
+! - 1.486064 + 2.0245607i  !
+! - 1.486064 - 2.0245607i  !
+! - 0.6992216              !
+! - 0.7406270 + 1.3548201i !
+! - 0.7406270 - 1.3548201i !
+ 
+//Same as Cl=P22/.K; spec(Cl('A'))
+ 
+s=poly(0,'s')
+ s  =
+ 
+    s   
+ 
+lqg2stan(1/(s+2),eye(2,2),eye(2,2))
+WARNING:lqg2stan: time domain (?) assumed continuous
+ ans  =
+ 
+!     1       0       1    !
+!   -----     -     -----  !
+!   2 + s     1     2 + s  !
+!                          !
+!   0         0     1      !
+!   -         -     -      !
+!   1         1     1      !
+!                          !
+!   - 1       1     - 1    !
+!   -----     -     -----  !
+!   2 + s     1     2 + s  !
+ 

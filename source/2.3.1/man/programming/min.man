@@ -1,0 +1,16 @@
+.TH min 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+min - minimum 
+.SH CALLING SEQUENCE
+.nf
+[m [,k]]=min(A)
+[m [,k]]=min(A1,A2,...,An)
+[m [,k]]=min(list(A1,A2,...,An))
+.fi
+.SH DESCRIPTION
+See \fVmax\fR. Note that \fVmin\fR and \fVmini\fR are equivalent.
+.SH SEE ALSO
+mini, max
+
+

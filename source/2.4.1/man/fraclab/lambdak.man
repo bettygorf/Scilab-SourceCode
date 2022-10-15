@@ -1,0 +1,50 @@
+.TH "lambdak" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+lambdak -  k's lambda functions for pseudoAW
+.sp
+Author: Paulo Goncalves
+.sp
+Computes the parametrizing function lambdak defining the Affine Wigner distributions.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPy\f(CR]\fP = lambdak(u,k) 
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBu\fP : real vector \f(CR[\fP1,n\f(CR]\fP
+Argument of the function \fIlambdak\fP.
+
+.TP
+o 
+\fBk\fP : real scalar
+Parameter of the \fIlambdak\fP function. K=-1 corresponds to the \fIUnterberger \fP distribution; K=0 corresponds to the \fI Bertrand \fP
+distribution; K=0.5 corresponds to the \fI D-Flandrin \fP distribution;
+K=2 corresponds to the \fI Wigner-Ville \fP distribution on analytic
+signals.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBy\fP : real vector \f(CR[\fP1,n\f(CR]\fP
+Result of the function \fI lambdak \fP.
+.RE
+
+.SH See also:
+pseudoAW
+.SH Example:
+x = linspace(-10,10,101) ; 
+y0 = lambdak(x,-1) ; 
+y1 = lambdak(x,2) ; 
+plot(y0) 
+plot(y1) 

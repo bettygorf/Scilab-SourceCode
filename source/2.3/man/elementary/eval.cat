@@ -1,0 +1,16 @@
+
+eval(1)                        Scilab Function                        eval(1)
+NAME
+  eval - evaluation of a matrix of strings
+
+CALLING SEQUENCE
+  [H]= eval(Z)
+
+DESCRIPTION
+  returns the evaluation of the matrix of character strings Z.
+
+EXAMPLE
+  a=1; b=2; Z=['a','sin(b)'] ; eval(Z)  //returns the matrix [1,0.909];
+
+SEE ALSO
+  evstr, execstr

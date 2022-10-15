@@ -1,0 +1,66 @@
+
+
+
+epsfin(1)                      Scilab Function                      epsfin(1)
+
+
+
+
+
+
+NAME
+  epsfin - reduced pencil
+
+CALLING SEQUENCE
+  [Er,Ar,Q,Z]=epsfin(F)
+  [Er,Ar,Q,Z]=epsfin(E,A)
+
+PARAMETERS
+  F    : real matrix pencil F=s*E-A
+  E,A  : two real matrices of same dimensions
+  Q,Z       : two orthogonal matrices (not necessarily square)
+  Er,Ar     : two real matrices of same dimensions (reduced pencil)
+
+DESCRIPTION
+  Returns the epsilon + finite part of the pencil F=sE-A.
+  Er=Q*E*Z, Ar=Q*A*Z has only epsilon and finite Kronecker invariants and Er
+  is full row rank.
+  Z : right subspace associated with epsilon and finite part of the pencil
+  For a regular pencil Z spans the right finite eigenspace.
+
+AUTHOR
+  F. D. & R. N.
+
+SEE ALSO
+  kroneck, pencan, fineta
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

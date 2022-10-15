@@ -1,0 +1,18 @@
+
+GENSIN_f(5)                      Scicos Block                     GENSIN_f(5)
+NAME
+  GENSIN_f - Scicos sinusoid generator
+
+DESCRIPTION
+  This block is a sine wave generator: M*sin(F*t+P)
+
+DIALOGUE PARAMETERS
+
+  Magnitude      : a scalar. The magnitude M.
+
+  Frequency      : a scalar. The frequency F.
+
+  Phase          : a scalar. The phase P.
+
+SEE ALSO
+  GENSQR_f, RAND_f, SAWTOOTH_f

@@ -1,0 +1,33 @@
+.TH getfield 1 "September 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+getfield -  list field extraction
+.SH CALLING SEQUENCE
+.nf
+[x,...]=getfield(i,l)
+.fi
+.SH PARAMETERS
+.TP 15
+x
+: matrix  of any  possible types
+.TP 15
+l
+: list, tlist or mlist variable
+.TP 15
+i
+: field index, see extraction for more details.
+.SH DESCRIPTION
+This function is an equivalent of \fV[x,...]=l(i)\fR syntax for field
+extraction with the only difference that it also applies to
+\fVmlist\fR objects.
+.SH EXAMPLE
+.nf
+l=list(1,'qwerw',%s)
+[a,b]=getfield([3 2],l)
+
+a=hypermat([2,2,2],rand(1:2^3));// hypermatrices are coded using mlists
+a(1) // the a(1,1,1) entry
+getfield(1,a) // the mlist first field
+.fi
+.SH SEE ALSO
+extraction

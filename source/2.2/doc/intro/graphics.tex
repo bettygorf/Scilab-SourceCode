@@ -1,0 +1,636 @@
+\chapter{Graphics}
+This section introduces graphics in Scilab. 
+
+\section{The Graphics Window}
+On the right side of the {\tt Delete} button, a checker give the number 
+{\tt wn} of the graphics window. This number is given at the end of the
+title of the window, e.g. {\tt ScilabGraphic1}. The button 
+{\tt Raise (Create) Window}
+raises the window {\tt wn} if it exists and creates it if not. The 
+button {\tt Set (Create) Window} activates the window {\tt wn} if it exists 
+and simultaneously creates it if necessary.
+The {\tt Delete} button closes the window {\tt wn} if it exists.
+The execution of a plotting command automatically creates a window if 
+necessary.
+
+There are 4 buttons on the graphics window:
+\begin{itemize}
+	\item \verb+3D Rot.+: for applying a rotation with the mouse to a
+3D plot. This button is inhibited for a 2D plot.
+	\item \verb+2D Zoom+: zooming on a 2D plot. This command can be
+recursively invoked. This button  has no for a 3D plot.
+	\item \verb+UnZoomx+: return to the initial plot (not to the plot
+corresponding to the previous zoom in case of multiple zooms).
+	\item \verb+File+: this button opens different commands and menus.
+
+The first one is simple : {\tt Clear} simply rubs out the plot of the window.
+
+The next command {\tt Print...} opens a selection panel for getting a
+paper output of the plot.
+
+The {\tt Export} command opens a panel selection for getting a copy of the 
+plot on a file with a specified format (Postscript, Latex).
+
+The {\tt save} command directly saves the plot on a file with a specified name.
+This file can be loaded later in Scilab for replotting.
+
+The {\tt Delete} is the same command (close) than the previous one but simply 
+applied to its window. 
+
+\end{itemize}
+
+ 
+\section{The Media}
+There are different graphics devices in Scilab which can be used to send
+graphics to windows or paper. The default is \verb+ScilabGraphic0+ window .
+
+The basic Scilab graphics commands are :
+%
+\begin{itemize}
+	\item \verb+driver+: selects a graphic driver
+	\item \verb+xinit+: initializes a graphic driver
+	\item \verb+xclear+: clears one or more graphic windows
+	\item \verb+xpause+: a pause in milliseconds
+	\item \verb+xselect+: raises the current graphic window
+	\item \verb+xclick+: waits for a mouse click
+	\item \verb+xend+: closes a graphic session
+\end{itemize}
+%
+
+\noindent The different devices are:
+
+%
+\begin{itemize}
+	\item \verb+X11+	: graphics device for the X11 window system 
+	\item \verb+Rec+	: an X Window driver (X11) which also records all the graphic commands. This is the default
+	\item \verb+Wdp+	: an X11 driver without recorded graphics; the graphics are done on a pixmap and are send to the graphic window with the
+command  {\tt xset("wshow")}. The pixmap is cleared with the command
+{\tt xset("wwpc")} or with the usual command {\tt xbasc()}
+	\item \verb+Pos+	: graphics device for Postscript printers 
+	\item \verb+Fig+	: graphics device for the Xfig system
+\end{itemize}
+%
+
+In fact, in many cases, one can ignore the existence of drivers and use the
+functions \verb+xbasimp+, \verb+xs2fig+ in order to send a graphic 
+to a printer or in a file for the \verb+Xfig+ system. For example with :
+\begin{verbatim}
+-->driver('Pos')
+ 
+-->xinit('foo.ps')
+ 
+-->plot(1:10)
+ 
+-->xend()
+ 
+-->driver('Rec')
+ 
+-->plot(1:10)
+ 
+-->xbasimp(0,'foo1.ps')
+
+\end{verbatim}
+
+\noindent we get two identical Postscript files : {\tt 'foo.ps'} and {\tt 'foo1.ps.0'}
+(the appending 0 is the number of the active window where the plot has been 
+done).
+
+The default for plotting is the superposition; this can be avoided with
+the command {\tt xbasc(window-number)} which clears the recorded Scilab 
+graphics command associated with the window \verb+window-number+ and clears 
+this window (see the warning below for the difference between {\tt xbasc}
+and {\tt xclear}).
+
+If you enlarge a graphic window, the command \verb+xbasr(window-number)+
+is executed by Scilab. This command clears the graphic window
+\verb+window-number+ and replays the graphic commands associated with it. One 
+can
+call this function manually, in order to verify the associated
+recorded graphics commands. 
+
+Any number of graphics windows can be created with buttons 
+or with the commands \verb+xset+ or \verb+xselect+. The environment 
+variable DISPLAY can be used to specify an X11 Display or one can use
+the \verb+xinit+ function in order to open a graphic window on a
+specific display. 
+
+\section{2D Plotting}
+
+\subsection{Basic 2D Plotting}
+
+The simplest 2D plot is {\tt plot(x,y)} or {\tt plot(y)}: this is the plot of 
+{\tt y} as function of {\tt x} where {\tt x} and {\tt y} are 2 vectors; if 
+{\tt x} is missing, it is replaced by the vector {\tt (1,...,size(y))}.
+If {\tt y} is a matrix, its rows are plotted. There are optional arguments.
+
+
+A first example is given by the following commands and the result is
+represented on figure \ref{d7-1}:
+
+
+\verbatok{diary/simple.dia}
+\end{verbatim}
+
+\input{\Figdir d7-1.tex}
+\dessin{First example of plotting}{d7-1}
+
+\noindent The generic 2D multiple plot is 
+
+
+\noindent {\tt  plot2di(str,x,y,[style,strf,leg,rect,nax])} 
+
+with {\tt i=missing,1,2,3,4}.
+
+For the different values of {\tt i} we have:
+
+	{\tt i=missing}	: piecewise linear plotting
+
+	{\tt i=1}	: as previous with possible logarithmic scales
+
+	{\tt i=2}	: piecewise constant drawing style
+
+	{\tt i=3}	: vertical bars
+
+	{\tt i=4}	: arrows style (e.g. ode in a phase space)
+
+
+-Parameter {\tt str} : it is the string {\tt "abc"} :
+ 
+	{\tt str} is empty if {\tt i} is missing.
+
+	{\tt a=e} : means empty; the values of {\tt x} are not used;
+	   (The user must give a dummy value to {\tt x}).
+
+	{\tt a=o} : means one; the x-values are the same for all the curves
+
+	{\tt a=g} : means general. 
+
+	{\tt b=l} : a logarithmic scale is used on the X-axis
+
+	{\tt c=l} : a logarithmic scale is used on the Y-axis
+
+-Parameters {\tt x,y} : two matrices of the same size {\tt [nl,nc]} ({\tt nc} 
+is the number of curves and {\tt nl} is the number of points of each curve)
+
+-Parameter {\tt style} : it is a real vector of size {\tt (1,nc)}; the style 
+to use for curve j is defined by {\tt size(j)} (when only one curve is drawn 
+{\tt style} can specify the style and a position to use for the caption).
+
+-Parameter {\tt strf}  : it is a string of length 3 {\tt "xyz"} corresponding 
+to :
+
+	    {\tt x=1} : captions  displayed 
+
+	    {\tt y=1} : the argument {\tt rect} is used to specify the 
+		boundaries of the plot.\\  
+		{\tt rect=[xmin,ymin,xmax,ymax]}
+
+	    {\tt y=2}	: the boundaries of the	plot are computed 
+
+	    {\tt y=0}	: the current boundaries 
+
+	    {\tt z=1}	: an axis is drawnand  the number of tics can be specified by the {\tt nax} argument
+
+	    {\tt z=2}	: the plot is only surrounded by a box
+
+-Parameter {\tt leg } : it is the string of the captions for the different 
+plotted curves . This string is composed of fields separated by the {\tt @} 
+symbol: for example  {\tt ``module@phase''} (see example below). These 
+strings are
+displayed under the plot with  small segments recalling the styles of the 
+corresponding curves.
+
+-Parameter {\tt rect } : it is a vector of 4 values specifying the boundaries 
+of the plot {\tt rect=[xmin,ymin,xmax,ymax]}.
+
+For different plots the simple commands without any argument show a demo 
+(e.g {\tt plot2d3()} ).
+
+\subsection{Specialized 2D Plottings}
+%
+\begin{itemize}
+        \item \verb+champ+	: vector field in $R^{2}$
+	\item \verb+fchamp+	: for a vector field in $R^{2}$ defined by a 
+function
+	\item \verb+fplot2d+	: 2D plotting of a curve described by a 
+function
+	\item \verb+fgrayplot+	: gray level on a 2D plot
+	\item \verb+errbar+	: creates a plot with error bars
+\end{itemize}
+%
+
+\subsection{Captions and Presentation}
+%
+\begin{itemize}
+	\item \verb+xgrid+	: adds a grid on a 2D graphic
+	\item \verb+xtitle+	: adds	title and axis names on	a 2D graphic
+	\item \verb+titlepage+	: graphic title page
+	\item \verb+plotframe+	: graphic frame with scaling and grid
+\end{itemize}
+%
+
+The command {\tt plotframe} is used to add a grid and graduations by choosing
+the number of graduations and getting rounded numbers.
+
+
+
+\subsection{Plotting Some Geometric Figures}
+\subsubsection{Polylines Plotting}
+\begin{itemize}
+	\item \verb+xsegs+	: draws	a set of unconnected segments 
+	\item \verb+xrect+	: draws	a single rectangle
+	\item \verb+xfrect+	: fills a single rectangle
+	\item \verb+xrects+	: fills or draws a set	of rectangles
+	\item \verb+xpoly+	: draws	a polyline
+	\item \verb+xpolys+	: draws a set of polylines
+	\item \verb+xfpoly+	: fills a polygon
+	\item \verb+xfpolys+	: fills a set of polygons
+	\item \verb+xarrows+	: draws a set of unconnected arrows
+	\item \verb+xfrect+	: fills a single rectangle
+	\item \verb+xclea+	: erases a rectangle on a graphic window
+\end{itemize}
+%
+\subsubsection{Curves Plotting}
+\begin{itemize}
+	\item \verb+xarc+	: draws	an ellipsis
+	\item \verb+xfarc+	: fills	an ellipsis
+	\item \verb+xarcs+	: fills	or draws a set of ellipsis
+\end{itemize}
+%
+
+\subsection{Writing by Plotting }
+%
+\begin{itemize}
+	\item  \verb+xstring+	: draws a string or a matrix of strings
+        \item  \verb+xstringl+	: computes a rectangle which surrounds a string
+	\item  \verb+xstringb+	: draws a string in a specified box
+	\item  \verb+xnumb+	: draws a set of numbers
+\end{itemize}
+%
+
+\subsection{Manipulating the Plot and Graphics Context}
+\subsubsection{Graphics Context}
+
+Some parameters of the graphics are controlled by a graphic context 
+( for example the line thickness) and others are controlled through
+graphics arguments. In the first example (Figure~(\ref{d7-1})),
+we use all the default arguments.
+%
+\begin{itemize}
+	\item  {\tt xset}	: to set graphic context values.
+Some examples of the use of {\tt xset} : 
+
+(i)-{\tt xset("use color",flag)} changes to color or gray plot according to 
+the values (1 or 0) of {\tt flag}.
+
+(ii)-{\tt xset("window",window-number)} sets the current window to the window 
+{\tt window-number} and creates the window if it doesn't exist.
+
+(iii)-{\tt xset("wpos",x,y)} fixes the position of the upper left point of 
+the graphic window.
+
+The choice of the font, the width and height of the window, the driver...
+can be done by {\tt xset}.
+
+	\item  {\tt xget}	: to get informations about the current graphic context.
+All the values of the parameters fixed by {\tt xset} can be obtained by 
+{\tt xget}.
+
+        \item  {\tt xlfont}	: to load a new family of fonts from the XWindow Manager
+\end{itemize}
+%
+
+\subsubsection{Some Manipulations}
+
+Coordinates transforms :
+\begin{itemize}
+	\item \verb+isoview+	: isometric scale without window change 
+
+allows an isometric scale in the window of previous plots without changing
+the window size (see the example below).
+ 
+	\item \verb+square+	: isometric scale with resizing the window
+
+the window is resized according to the parameters of the command.
+
+        \item \verb+scaling+	: scaling on data
+        \item \verb+rotate+	: rotation
+
+\verb+scaling+ and \verb+rotate+ executes respectively an affine transform and
+a geometric rotation of a 2-lines-matrix corresponding to the {\tt (x,y) }
+values of a set of points.
+ 
+        \item \verb+xgetech, xsetech+	: change of scale inside the graphic window
+
+The current graphic scale can be fixed by a high level plot command. You may
+want to get this parameter or to fix it directly : this is the role of 
+\verb+xgetech, xsetech+ .
+
+\end{itemize}
+%
+
+\section{Some Examples}
+
+We give here a sequence of commands corresponding to the different capabilities
+of the 2D plot and the generated figures. 
+This first example corresponds to the figure~ \ref{fcapab}. 
+
+\verbatok{\Figdir example1-2.code}
+\end{verbatim}
+
+\input{\Figdir example1.tex}
+\dessin{Simple 2D Plot}{fsimple}
+
+\input{\Figdir example2.tex}
+\dessin{Some Capabilities of 2D Plot}{fcapab}
+
+\input{\Figdir frame.tex}
+\dessin{Use of plotframe}{fpframe}
+
+We give now the sequence of the commands for obtaining the 
+figure~ \ref{fgeom}.
+
+\verbatok{\Figdir example3.code}
+\end{verbatim}
+
+\input{\Figdir example3x.tex}
+\dessin{Geometric Graphics and Comments}{fgeom}
+
+\section{3D Plotting}
+\subsection{Generic 3D Plotting}
+%
+\begin{itemize}
+	\item  \verb+plot3d+ : 3D plotting of a matrix of points : plot3d(x,y,z) with x,y,z 3 matrices, z being the values for the points with coordinates x,y. Other
+arguments are optional
+	\item   \verb+plot3d1+ : 3d plotting	of a matrix of points with gray levels
+	\item   \verb+fplot3d+ : 3d plotting	of a surface described by a function; z is given by an external z=f(x,y)
+	\item   \verb+fplot3d1+ : 3d	plotting of a surface described	by a function with gray	levels
+\end{itemize}
+%
+ 
+\subsection{Specialized 3D Plotting}
+\begin{itemize}
+	\item \verb+param3d+	: plots parametric curves in 3d space
+	\item \verb+contour+	: level curves for a 3d function given by a 
+matrix
+	\item \verb+grayplot10+ : gray level on a 2d plot
+	\item \verb+fcontour10+ : level curves for a 3d function given by a 
+function
+	\item \verb+hist3d+	: 3d histogram
+	\item \verb+secto3d+	: conversion of a surface description from 
+sector to plot3d compatible data
+	\item \verb+eval3d+	: evaluates a function on a regular grid. 
+(see also feval)
+\end{itemize}
+%
+ 
+
+\subsection{Mixing 2D and 3D graphics}
+
+When one uses 3D plotting function, default graphic boundaries are
+fixed, but in $R^3$. If one wants to use graphic primitives 
+to add informations on 3D graphics, the \verb+geom3d+ function can be
+used to convert 3D coordinates to 2D-graphics coordinates. The
+figure~ \ref{d7-10} illustrates this feature.
+
+%\def\exemple{d7-10}
+\verbatok{\Figdir d7-10.code}
+\end{verbatim}
+
+\input{\Figdir d7-10.tex}
+\dessin{2D and 3D plot}{d7-10}
+
+\subsection{Sub-windows}
+%\def\exemple{d7-8}
+
+It is also possible to make multiple plotting in the same 
+graphic window (Figure~\ref{d7-8}).
+
+\verbatok{\Figdir d7-8.code}
+\end{verbatim}
+
+\input{\Figdir d7-8.tex}
+\dessin{Use of xsetech}{d7-8}
+
+
+\subsection{A Set of Figures}
+%\def\exemple{d7a11}
+
+In this next example we give a brief summary of different plotting
+functions for 2D or 3D graphics. The figure~ \ref{d7a11} is 
+obtained and inserted in this document with the help of the command 
+\verb+Blatexprs+.
+ 
+\verbatok{\Figdir d7a11.gcode}
+\end{verbatim}
+
+\input{\Figdir d7a11.tex}
+\dessin{Group of figures}{d7a11}
+
+\section{Printing and Inserting Scilab Graphics in \LaTeX}
+
+We describe here the use of programs (Unix shells) for handling Scilab 
+graphics and printing the results. These programs are located in the
+sub-directory {\tt bin} of Scilab.
+
+\subsection{Window to Paper}
+The simplest command to get a paper copy of a plot is to click on the
+{\tt print} button of the ScilabGraphic window.
+
+\subsection{Creating a Postscript File}
+We have seen at the beginning of this chapter that the simplest way to get 
+a Postscript file containing a Scilab plot is :
+
+\begin{verbatim}
+-->driver('Pos')
+ 
+-->xinit('foo.ps')
+ 
+-->plot3d1();
+ 
+-->xend()
+ 
+-->driver('Rec')
+ 
+-->plot3d1()
+ 
+-->xbasimp(0,'foo1.ps')
+
+\end{verbatim}
+
+
+The Postscript files ({\tt foo.ps } or {\tt foo1.ps }) generated by Scilab 
+cannot be directly sent to a
+Postscript printer, they need a preamble. Therefore, printing is done
+through the use of Unix scripts or programs which are provided with
+Scilab. The program \verb+Blpr+ is used to print a set of Scilab Graphics 
+on a single sheet of paper and is used as follows~:
+
+\begin{verbatim}
+ Blpr string-title file1.ps file2.ps > result
+\end{verbatim}
+
+You can then print the file  {\tt result} with the classical Unix command :
+
+\begin{verbatim}
+lpr -Pprinter-name result
+\end{verbatim}
+
+\noindent or use the \verb+ghostview+ Postscript interpreter on your Unix
+workstation to see the result.
+
+You can avoid the file {\tt result} with a pipe, replacing {\tt  > result}
+by the printing command {\tt | lpr} or the previewing command 
+{\tt | ghostview -}.
+
+The best result (best sized figures) is obtained when printing two 
+pictures on a single page. 
+
+
+\subsection{Including a Postscript File in \LaTeX}
+
+The \verb|Blatexpr| Unix shell and the programs \verb+Batexpr2+ and 
+\verb+Blatexprs+ are provided in order to help inserting Scilab graphics 
+in \LaTeX .
+
+Taking the previous file {\tt foo.ps} and  typing the following statement 
+under a Unix shell~:
+\begin{verbatim}
+Blatexpr 1.0 1.0 foo.ps
+\end{verbatim}
+creates two files \verb+foo.epsf+ and \verb+foo.tex+. The original
+Postscript file is left unchanged. 
+To include the figure in a \LaTeX~ document you should insert the following 
+\LaTeX~ code in your \LaTeX~ document~:
+
+\begin{verbatim}
+\input foo.tex
+\dessin{The caption of your picture}{The-label}
+\end{verbatim}
+
+You can also see your figure by using  the  Postscript
+previewer \verb+ghostview+.
+
+The program \verb+Blatexprs+ does the same thing: it is used to insert
+a set of Postscript figures in one \LaTeX picture.
+
+In the following example, we begin by using the Postscript driver {\tt Pos}
+and then initialize successively 4 Postscript files 
+{\tt fig1.ps, ..., fig4.ps} for
+4 different plots and at the end return to the driver {\tt Rec} (X11 driver
+with record).
+
+\verbatok{\Diary mulplot.dia}
+\end{verbatim}
+
+Then we execute the command :
+
+\begin{verbatim}
+  Blatexprs multi fig1.ps fig2.ps fig3.ps fig4.ps
+\end{verbatim}
+
+\noindent and we get 2 files {\tt multi.tex} and  {\tt multi.ps} and you can 
+include the result in a \LaTeX~ source file by :
+
+\begin{verbatim}
+\input multi.tex
+\dessin{The caption of your picture}{The-label}
+\end{verbatim}
+
+Note that the second line {\tt dessin...} is absolutely necessary and you
+have of course to give the absolute path for the input file if you are 
+working in another directory (see below). The file {\tt  multi.tex} is only 
+the definition of the command {\tt dessin} with 2 parameters : the caption 
+and the label; the command {\tt dessin} can be used with one or two
+empty arguments {\tt `` ``} if you want to avoid the caption or the label.   
+
+The Postscipt files are inserted in \LaTeX~ with the help of the
+\verb+\special+ command and with a syntax that works with the
+\verb+dvips+ program.
+
+The program \verb+Blatexpr2+ is used when you want two pictures side
+by side.
+\begin{verbatim}
+  Blatexpr2 Fileres file1.ps file2.ps 
+\end{verbatim}
+
+%\def\exemple{d7-12}
+\input{\Figdir d7-12.tex}
+\dessin{Blatexp2 Example}{d7-12}
+
+It is sometimes convenient to have a main \LaTeX~ document in a directory
+and to store all the figures in a subdirectory. The proper way to
+insert a  picture file in the main document, when the picture 
+is stored in the subdirectory \verb+figures+, is the following~:
+
+\begin{verbatim}
+\def\Figdir{figures/} % My figures are in the {\tt figures/ } subdirectory.
+\input{\Figdir fig.tex}
+\dessin{The caption of you picture}{The-label}
+\end{verbatim}
+
+The declaration \verb+\def\Figdir{figures/}+ is used twice, first to
+find the file {\tt fig.tex} (when you use \verb+latex+), and
+ second to produce a correct pathname for the
+\verb+special+ \LaTeX~ command  found in \verb+fig.tex+. (used at
+dvips level).
+
+-WARNING : the default driver is {\tt Rec}, i.e. all the graphic commands are
+recorded, one record corresponding to one window. The {\tt xbasc()} command
+erases the plot on the active window and all the records corresponding to
+this window. The {\tt  clear} button has the same effect; the {\tt xclear}
+command erases the plot but the record is preserved. So you almost never need
+to use the {\tt xbasc()} or {\tt  clear} commands. If you use such a command 
+and if you re-do a plot you may have a surprising result (if you forget
+that the environment is wiped out); the scale only is preserved and so you 
+may have the ``window-plot'' and the ``paper-plot'' completely different.
+
+
+\subsection{Postscript by Using Xfig}
+
+Another useful way to get a Postscript file for a plot is to use Xfig.
+By the simple command {\tt xs2fig(active-window-number,file-name)} you get
+a file in Xfig syntax. 
+
+This command needs the use of the driver {\tt Rec}.
+
+The window ScilabGraphic0 being  active, if you enter :
+
+\begin{verbatim}
+
+-->t=-%pi:0.3:%pi;
+ 
+-->plot3d1(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+ 
+-->xs2fig(0,'demo.fig');   
+
+\end{verbatim}
+
+you get the file {\tt demo.fig} which contains the plot 
+of window 0. 
+
+Then you can use Xfig and after the modifications you want, get a Postscript 
+file that you can insert in a \LaTeX~ file. The following figure is the result
+of Xfig after adding some comments.
+
+\begin{figure}
+\fbox{\hspace*{0.cm} \begin{picture}(400.0,350.0)(100.0,200.0)
+\hspace{-0.8cm}
+\special{psfile=\Figdir demo.ps}
+\end{picture}}
+\caption{Encapsulated Postscript by Using Xfig}
+\label{xfig2ps}
+\end{figure}
+
+
+\subsection{Encapsulated Postscript Files}
+As it was said before, the use of {\tt Blatexpr} creates 2 files : a 
+{\tt .tex} file to be inserted in the \LaTeX~ file and a {\tt .epsf} file.
+
+It is possible to get the encapsulated Postscript file corresponding to a 
+{\tt .ps} file by using the command {\tt BEpsf}.
+
+Notice that the {\tt .epsf} file generated by {\tt Blatexpr} is not an 
+encapsulated Postscript file : it has no bounding box and {\tt BEpsf}
+generates a {\tt .eps} file which is an encapsulated Postscript file with 
+a bounding box.

@@ -1,0 +1,55 @@
+.TH psmall 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+psmall - spectral projection
+.SH CALLING SEQUENCE
+.nf
+[Q,M]=psmall(A,thres,flag)
+.fi
+.SH PARAMETERS
+.TP 12
+A
+: real square matrix
+.TP 12
+thres
+: real number
+.TP 12
+flag
+: character string (\fV'c'\fR or \fV'd'\fR)
+.TP
+Q,M
+: real matrices
+.SH DESCRIPTION
+Projection on eigen-subspace associated with eigenvalues
+with real part < \fVthres\fR (\fVflag='c'\fR) or with 
+modulus < \fVthres\fR (\fVflag='d'\fR).
+.LP
+The projection is defined by \fVQ*M\fR, \fVQ\fR is full column rank,
+\fVM\fR is full row rank and \fVM*Q=eye\fR.
+.LP
+If \fVflag='c'\fR, the eigenvalues of \fVM*A*Q\fR = eigenvalues
+of \fVA\fR with real part < \fVthres\fR.
+.LP
+If \fVflag='d'\fR, the eigenvalues of \fVM*A*Q\fR = eigenvalues
+of \fVA\fR with magnitude < \fVthres\fR.
+.PP
+If \fVflag='c'\fR and if \fV[Q1,M1]\fR = full rank factorization (\fVfullrf\fR) 
+of \fVeye-Q*M\fR then eigenvalues of  \fVM1*A*Q1\fR = eigenvalues 
+of \fVA\fR with real part >= \fVthres\fR.
+.LP
+If \fVflag='d'\fR and if \fV[Q1,M1]\fR = full rank factorization (\fVfullrf\fR) 
+of \fVeye-Q*M\fR then eigenvalues of  \fVM1*A*Q1\fR = eigenvalues 
+of \fVA\fR with magnitude >= \fVthres\fR.
+.SH EXAMPLE
+.nf
+A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
+[Q,M]=psmall(A,2.5,'d');
+spec(M*A*Q)
+[Q1,M1]=fullrf(eye-Q*M);
+spec(M1*A*Q1)
+.fi
+.SH SEE ALSO
+pbig, proj, projspec
+.SH AUTHOR
+F. D. (1988)
+

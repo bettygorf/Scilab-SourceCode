@@ -1,0 +1,26 @@
+
+xgrid(2)                       Scilab Function                       xgrid(2)
+NAME
+  xgrid - add a grid on a 2D plot
+
+CALLING SEQUENCE
+  xgrid([style])
+
+PARAMETERS
+
+  style  : integer
+
+DESCRIPTION
+  xgrid adds a grid on a 2D plot. style is the dash id or the color id to use
+  for the grid plotting. Use xset() for the meaning of id.
+
+EXAMPLE
+  x=[0:0.1:2*%pi]';
+  plot2d(sin(x))
+  xgrid(2)
+
+SEE ALSO
+  xset, plot2d
+
+AUTHOR
+  J.Ph.C.

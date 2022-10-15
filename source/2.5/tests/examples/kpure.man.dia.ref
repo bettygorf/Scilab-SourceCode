@@ -1,0 +1,35 @@
+ 
+clear;lines(0);
+ 
+s=poly(0,'s');
+ 
+h=syslin('c',(s-1)/(1+5*s+s^2+s^3))
+ h  =
+ 
+      - 1 + s        
+    -------------    
+              2   3  
+    1 + 5s + s + s   
+ 
+xbasc();evans(h)
+ 
+g=kpure(h)
+ g  =
+ 
+  - 2.  
+ 
+hf=h/.g(1)
+ hf  =
+ 
+      - 1 + s        
+    -------------    
+              2   3  
+    3 + 3s + s + s   
+ 
+roots(denom(hf))
+ ans  =
+ 
+! - 1.         !
+!   1.7320508i !
+! - 1.7320508i !
+ 

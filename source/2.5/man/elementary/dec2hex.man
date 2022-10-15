@@ -1,0 +1,24 @@
+.TH dec2hex G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+dec2hex -   hexadecimal representation of integers
+.SH CALLING SEQUENCE
+.nf
+h=dec2hex(d)
+.fi
+.SH PARAMETERS
+.TP
+d 
+: matrix of non negative integers
+.TP
+h
+: matrix of character strings 
+.SH DESCRIPTION
+\fVdec2hex(x)\fR returns the  hexadecimal representation of a matrix
+of integers
+
+.SH EXAMPLE
+.nf
+dec2hex([2748 10;11 3])
+.fi
+

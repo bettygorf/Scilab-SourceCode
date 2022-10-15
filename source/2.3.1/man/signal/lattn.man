@@ -1,0 +1,65 @@
+.TH lattn 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+lattn - recursive solution of normal equations
+.SH CALLING SEQUENCE
+.nf
+[la,lb]=lattn(n,p,cov)
+.fi
+.SH PARAMETERS
+.TP
+n
+: maximum order of the filter
+.TP
+p
+: fixed dimension of the MA part. If \fVp= -1\fR,
+the algorithm reduces to the classical Levinson recursions.
+.TP
+cov
+: matrix containing the \fVRk\fR's (\fVd*d\fR matrices for
+a d-dimensional process).It must be given the
+following way
+.IG
+.nf
+                       |  R0 |
+                       |  R1 |
+                   cov=|  R2 |
+                       |  .  |
+                       |  .  |
+                       |Rnlag|
+.fi
+.FI
+.LA $$ cov = \left[ \matrix{ R_0 \cr R_1 \cr R_2\cr
+.LA \vdots \cr R_{nlag}}
+.LA  \right] $$
+.TP
+la
+: list-type variable, giving the successively calculated
+polynomials (degree 1 to degree n),with coefficients Ak
+.SH DESCRIPTION
+solves recursively on \fVn\fR (\fVp\fR being fixed)
+the following system (normal equations), i.e. identifies
+the AR part (poles) of a vector ARMA(n,p) process
+.IG
+.nf
+                       |Rp+1 Rp+2 . . . . . Rp+n  |
+                       |Rp   Rp+1 . . . . . Rp+n-1|
+                       | .   Rp   . . . . .  .    |
+                       |                          |
+   |I -A1 -A2 . . .-An|| .    .   . . . . .  .    |=0
+                       | .    .   . . . . .  .    |
+                       | .    .   . . . . .  .    |
+                       | .    .   . . . . . Rp+1  |
+                       |Rp+1-n.   . . . . . Rp    |
+.fi
+.FI
+.LA $$ \left( \matrix{ I & -A_1 & -A_2 & \ldots & -A_n
+.LA         } \right)
+.LA  \left( \matrix{ R_{p+1} & R_{p+2} & \ldots & R_{p+n} \cr
+.LA		R_p & R_{p+1} & \ldots & R_{p+n-1} \cr
+.LA		\vdots & \vdots & \ldots & \vdots \cr
+.LA		R_{p+1-n} & R_{p+2-n} & \ldots & R_{p} \cr
+.LA	   } \right) = 0	$$
+where {\fVRk;k=1,nlag\fR} is the sequence of empirical covariances
+.SH AUTHOR
+G. Le V.

@@ -1,0 +1,26 @@
+.TH trace 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+trace  - trace
+.SH CALLING SEQUENCE
+.nf
+trace(X)
+.fi
+.SH PARAMETERS
+.TP
+X 
+: real or complex square matrix, polynomial or rational matrix.
+.SH DESCRIPTION
+\fVtrace(X)\fR is the trace of the matrix \fVX\fR.
+.LP
+Same as \fVsum(diag(X))\fR.
+.SH EXAMPLE
+.nf
+A=rand(3,3);
+trace(A)-sum(spec(A))
+.fi
+.SH SEE ALSO
+det
+
+
+

@@ -1,0 +1,30 @@
+.TH tril 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+tril - lower triangular part of matrix
+.SH CALLING SEQUENCE
+.nf
+tril(x [,k])
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: matrix (real, complex, polynomial, rational)
+.TP
+k
+: integer (default value 0)
+.SH DESCRIPTION
+Lower triangle part of a matrix.
+\fVtril(x,k)\fR  is made by entries below the kth diagonal :
+k>0 (upper diagonal) and   k<0 (diagonals below 
+the main diagonal).
+.SH EXAMPLE
+.nf
+s=poly(0,'s');
+tril([s,s;s,1])
+tril([1/s,1/s;1/s,1])
+.fi
+.SH SEE ALSO
+triu, ones, eye, diag
+
+

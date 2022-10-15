@@ -1,0 +1,12 @@
+/**/include ../Path.incl
+#include "../Imake.incl"
+
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS=$(CDEBUGFLAGS) FDEBUGFLAGS=$(FDEBUGFLAGS)
+
+SUBDIRS = gengraph src
+
+MakeSubdirs($(SUBDIRS) data)
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS))
+DistCleanSubdirs(data)

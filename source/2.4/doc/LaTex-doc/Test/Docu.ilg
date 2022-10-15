@@ -1,0 +1,7 @@
+This is makeindex, portable version 2.12 [26-May-1993].
+Scanning style file Docu.isty...done (3 attributes redefined, 0 ignored).
+Scanning input file Docu.idx....done (1 entries accepted, 0 rejected).
+Sorting entries...done (0 comparisons).
+Generating output file Docu.ind....done (5 lines written, 0 warnings).
+Output written in Docu.ind.
+Transcript written in Docu.ilg.

@@ -1,0 +1,64 @@
+.TH levin 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+levin - Toeplitz system solver
+.SH CALLING SEQUENCE
+.nf
+[la,sig,lb]=levin(n,cov)
+.fi
+.SH PARAMETERS
+.TP 12
+n
+: maximum order of the filter
+.TP
+cov
+: matrix containing the 
+.LA $R_k$
+(d x d matrices for a
+d-dimensional process). It must be given the following way :
+.IG
+.nf
+		|  R0  |
+		|  R1  |
+		|  R2  |
+		|  .   |
+		|  .   |
+		| Rnlag|
+.fi
+.FI
+.LA $$ \vector{ R_0 \cr R_1\cr R_2\cr \vdots \cr R_{nlag}} $$
+.TP
+la
+: list-type variable, giving the successively calculated
+polynomials (degree 1 to degree n), with coefficients \fVAk\fR
+.TP
+sig
+: list-type variable, giving the successive
+mean-square errors.
+.SH DESCRIPTION
+function which solves recursively on n
+the following Toeplitz system (normal equations)
+.IG
+.nf
+                |R1   R2   . . . Rn  |
+                |R0   R1   . . . Rn-1|
+                |R-1  R0   . . . Rn-2|
+                | .    .   . . .  .  |
+|I -A1 .. -An|  | .    .   . . .  .  | = 0
+                | .    .   . . .  .  |
+                | .    .   . . .  .  |
+                |R2-n R3-n . . . R1  |
+                |R1-n R2-n . . . R0  |
+.fi
+.FI
+.LA $$	\vector{ I -A_1 \ldots -A_n} 
+.LA	 \left( \matrix{ R_1 & R_2 & \ldots & R_{n} \cr
+.LA		R_0 & R_1 & \ldots & R_{n-1} \cr
+.LA		R_{-1} & R_0 & \ldots & R_{n-2} \cr
+.LA		\vdots & \vdots & \ldots & \vdots \cr
+.LA		R_{2-n} & R_{3-n} & \ldots & R_{1} \cr
+.LA		R_{1-n} & R_{2-n} & \ldots & R_{0} \cr
+.LA	   } \right) =0	$$
+where {\fVRk;k=1,nlag\fR} is the sequence of \fVnlag\fR empirical covariances
+.SH AUTHOR
+G. Le V.

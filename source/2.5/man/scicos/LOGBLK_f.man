@@ -1,0 +1,12 @@
+.TH LOGBLK_f 5 "Janvier 1997" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+LOGBLK_f - Scicos logarithm  block
+.SH DIALOGUE PARAMETERS
+.TP
+a : real scalar greater than 1
+.SH DESCRIPTION
+This block realizes \fVy(i)=log(u(i))/log(a)\fR. The input and output port sizes
+are determined by the context.
+
+

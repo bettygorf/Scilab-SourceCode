@@ -1,0 +1,34 @@
+.TH asin 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+asin -  sine inverse
+.SH CALLING SEQUENCE
+.nf
+[t]=asin(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex vector
+.TP 10
+t
+: real or complex vector
+.SH DESCRIPTION
+The components of vector \fVt\fR are sine inverse of the 
+corresponding entries of vector \fVx\fR.
+Definition domain is [-1, 1].
+It takes his values in sets
+.IG
+.nf 
+  ]-pi/2,pi/2[ x ]-inf,+inf[, -pi/2 x [0,+inf] and 
+  pi/2 x ]-inf,0] (real x imag)
+.fi
+.FI
+\" This is for LaTeX 
+.LA    $$ ] -\pi/2,\pi/2[ \times ]-\infty +\infty[ $$
+.LA    $$ [-\pi/2] \times [0,+\infty] \quad\mbox{and} 
+.LA   \quad [\pi/2] \times ]-\infty,0] \quad \mbox{(real x imag)} $$
+
+
+
+

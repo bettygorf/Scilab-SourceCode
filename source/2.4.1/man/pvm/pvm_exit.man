@@ -1,0 +1,27 @@
+.TH pvm_exit 1 "May 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_exit - tells the local pvmd that this process is leaving PVM.
+.SH CALLING SEQUENCE
+.nf
+[info] = pvm_exit()
+.fi
+.SH PARAMETERS
+.TP 5
+info
+: integer
+.SH DESCRIPTION
+\fVpvm_exit\fR tells the local pvmd
+that this process is leaving PVM.
+This routine does not kill the process, which can continue to
+perform tasks just like any other serial process.
+.PP
+pvm_exit should be called by all PVM processes before
+they stop or exit for good. It \fImust\fR be called
+by processes that were not started with pvm_spawn.
+.SH EXAMPLE 
+.nf
+pvm_exit()
+.fi
+.SH SEE ALSO
+pvm

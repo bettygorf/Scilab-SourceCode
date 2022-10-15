@@ -1,0 +1,26 @@
+This directory contains examples of C and Fortran interface routines
+dynamically linked with scilab by the addinter command.
+
+The source code of the interfaced routines are found in directory "src"
+
+For example, the Fortran subroutine src/foubare2f.f is interfaced with Scilab
+by the interface program Exemplf.f. It is called from
+Scilab by function [x,y,z,t]=foubare('flag',a,b,c).
+
+The C routine src/foubare2c.c is interfaced with Scilab
+by the interface program Exemplc.c. It is called from
+Scilab by function [x,y,z,t]=foubare('flag',a,b,c).
+
+template.f and template.c are generic skeletons of
+interface programs.
+
+To run a Fortran demo, execute Scilab HERE in this directory and enter at 
+scilab prompt:
+-->exec('Examplf.sce')
+
+To run a C demo enter at scilab prompt:
+-->exec('Examplc.sce')
+
+Other examples are *.sce script files.
+
+make('/tmp/pgm.o') compiles pgm program in the /tmp directory.

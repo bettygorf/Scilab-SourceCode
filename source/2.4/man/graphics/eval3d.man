@@ -1,0 +1,40 @@
+.TH eval3d 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+eval3d - values of a function on a grid
+.SH CALLING SEQUENCE
+.nf
+[z]=eval3d(fun,x,[y])
+.fi
+.SH PARAMETERS
+.TP 15
+fun 
+: function accepting vectors as arguments.
+.TP
+x,y
+: 2 vectors of size (1,n1) and (1,n2). (default value for \fVy\fR : \fVy=x\fR).
+.TP
+z
+: matrix of size (n1,n2).
+.SH DESCRIPTION
+This function returns a matrix \fVz(n1,n2)\fR. \fVz(i,j)=fun(x(i),y(j))\fR. 
+If the function \fVfun\fR doesn't accept arguments of type vector use the
+primitive \fVfeval\fR.
+.SH EXAMPLE 
+.nf
+  x=-5:5;y=x;
+  deff('[z]=f(x,y)',['z= x.*y']);
+  z=eval3d(f,x,y);
+  plot3d(x,y,z);
+// 
+  deff('[z]=f(x,y)',['z= x*y']);
+  z=feval(x,y,f);
+  plot3d(x,y,z);
+.fi 
+.SH SEE ALSO
+feval
+.SH AUTHOR
+Steer S.
+
+
+

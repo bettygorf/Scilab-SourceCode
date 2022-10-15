@@ -1,0 +1,24 @@
+
+lstcat(1)                      Scilab Function                      lstcat(1)
+NAME
+  lstcat - list concatenation
+
+CALLING SEQUENCE
+  lc=lstcat(l1,..ln)
+
+PARAMETERS
+
+  li   : list or any other type of variable
+
+  lc   : a list
+
+DESCRIPTION
+  lc=lstcat(l1,..ln) catenates components of li lists in a single list. If li
+  are other type of variables they are simply added to the resulting list.
+
+EXAMPLE
+  lstcat(list(1,2,3),33,list('foo',%s))
+  lstcat(1,2,3)
+
+SEE ALSO
+  list

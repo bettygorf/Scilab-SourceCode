@@ -1,0 +1,43 @@
+.TH sva 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+sva - singular value approximation
+.SH CALLING SEQUENCE
+.nf
+[U,s,V]=sva(A,k)
+[U,s,V]=sva(A,tol)
+.fi
+.SH PARAMETERS
+.TP 8
+A
+: real or complex matrix
+.TP
+k
+: integer
+.TP
+tol
+: nonnegative real number
+.SH DESCRIPTION
+Singular value approximation.
+.LP
+.Vb [U,S,V]=sva(A,k) 
+ with \fVk\fR an integer >=1, returns \fVU,S\fR and \fVV\fR such that
+\fVB=U*S*V'\fR is the best L2 approximation
+of \fVA\fR with rank(\fVB\fR)=\fVk\fR. 
+.LP
+.Vb [U,S,V]=sva(A,tol)  
+ with \fVtol\fR a real number, returns \fVU,S\fR and \fVV\fR such that
+\fVB=U*S*V'\fR such that L2-norm of  \fVA-B\fR is at most \fVtol\fR.
+.SH EXAMPLE
+.nf
+A=rand(5,4)*rand(4,5);
+[U,s,V]=sva(A,2);
+B=U*s*V';
+svd(A)
+svd(B)
+clean(svd(A-B))
+.fi
+.SH SEE ALSO
+svd
+
+

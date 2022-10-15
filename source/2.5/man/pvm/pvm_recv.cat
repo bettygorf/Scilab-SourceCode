@@ -1,0 +1,54 @@
+
+pvm_recv(1)                    Scilab function                    pvm_recv(1)
+NAME
+  pvm_recv - receive a message.
+
+CALLING SEQUENCE
+  [buff, info] = pvm_recv(tid, msgtag)
+
+PARAMETERS
+
+  tid  : integer, task identifier of sending process supplied by the user.
+
+  msgtag : integer, message tag supplied by the user.  msgtag should be
+       >= 0.
+
+  buff
+      : scilab variable, where the received message will be stored.
+
+  info  : integer, status code returned by the routine. Values less than zero
+        indicate an error.
+DESCRIPTION
+  pvm_recv blocks the process until a message with label msgtag has arrived
+  from tid.  pvm_recv then places the message in buff.
+
+  A -1 in msgtag or tid matches anything.  This allows the user the following
+  options.  If tid = -1 and msgtag is defined by the user, then pvm_recv will
+  accept a message from any process which has a matching msgtag.  If msgtag =
+  -1 and tid is defined by the user, then pvm_recv will accept any message
+  that is sent from process tid.  If tid = -1 and msgtag = -1, then pvm_recv
+  will accept any message from any process.
+
+  The PVM model guarantees the following about message order.  If task 1
+  sends message A to task 2, then task 1 sends message B to task 2, message A
+  will arrive at task 2 before message B.  Moreover, if both messages arrive
+  before task 2 does a receive, then a wildcard receive will always return
+  message A.
+
+  info will be the status code returned by the routine.  If some error occurs
+  then info will be < 0.
+
+  pvm_recv is blocking which means the routine waits until a message matching
+  the user specified tid and msgtag values arrives at the local pvmd. If the
+  message has already arrived then pvm_recv returns immediately with the mes-
+  sage.
+
+  Once pvm_recv returns, the data in the message can be unpacked into the
+  user's memory using the unpack routines.
+
+EXAMPLE
+  [b,info] = pvm_recv(pvm_parent(),100)
+  g = pvm_recv(pvm_parent(),200)
+
+SEE ALSO
+  pvm_send, pvm_bcast

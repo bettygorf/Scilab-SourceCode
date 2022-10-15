@@ -1,0 +1,66 @@
+
+
+
+calfrq(1)                      Scilab Function                      calfrq(1)
+
+
+
+
+
+
+NAME
+  calfrq - frequency response discretization
+
+CALLING SEQUENCE
+  [frq,bnds]=calfrq(h,[fmin,fmax])
+
+PARAMETERS
+
+  h         : SISO linear system (syslin list)
+
+  fmin,fmax : real scalars (min and max frequencies)
+
+  frq       : row vector (discretization of interval)
+
+  bnds      : vector (bounds of the response)
+
+DESCRIPTION
+  frequency response discretization ; frq is the discretization of
+  [fmin,fmax] such that the peaks in the frequency response are well
+  represented. The bounds of real part and imaginary part of the frequency
+  response in [fmin,fmax] are given by bnds.
+
+  Default values for fmin and fmax are 1.d-3, 1.d+3 if h is continuous-time
+  or 1.d-3, 0.5 if h is discrete-time.
+
+EXAMPLE
+  s=poly(0,'s')
+  h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+  h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+  [f1,b1]=calfrq(h1,0.01,1000);
+  rf=repfreq(h1,f1);
+  plot2d(real(rf)',imag(rf)')
+
+SEE ALSO
+  bode, black, nyquist, freq, repfreq, logspace
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

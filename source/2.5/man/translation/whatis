@@ -1,0 +1,9 @@
+ascii - string ascii conversions   @ascii
+excel2sci - reads ascii excel files   @excel2sci
+mfile2sci - matlab m_file to scilab translation function   @mfile2sci
+mtlb_load - load variables from file with matlab4 format.   @mtlb_load
+mtlb_save - save variables on file with matlab4 format.   @mtlb_save
+pol2tex - convert polynomial to tex format   @pol2tex
+sci2for - scilab function to fortran routine conversion   @sci2for
+texprint - tex output of scilab object   @texprint
+translatepaths - translate a set of matlab m_file directories to scilab   @translatepaths

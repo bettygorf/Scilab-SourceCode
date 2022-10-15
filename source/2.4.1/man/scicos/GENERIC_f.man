@@ -1,0 +1,66 @@
+.TH GENERIC_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+GENERIC_f - Scicos generic interfacing function
+.SH DESCRIPTION
+This block can realize any type of block. The computational function
+must already be defined in Scilab, Fortran or C code.
+.SH DIALOGUE PARAMETERS
+.TP 15
+simulation function
+: a character string, the name of the computational  function
+.TP 15
+function type
+: a non negative integer, the type of the computational  function
+.TP 
+input port sizes
+: a vector of integers, size of regular input ports.
+.TP 
+output port sizes
+: a vector of integers, size of regular output ports.
+.TP 
+input event port sizes
+: a vector of ones, size of event input ports. The size of the vector
+gives the number of event input ports.
+.TP 
+output event port sizes
+: a vector of ones, size of event output ports. The size of the vector
+gives the number of of event output ports.
+.TP
+Initial continuous state
+: a column vector.
+.TP
+Initial discrete state
+: a column vector.
+.TP
+System type
+: a string: c,d, z or l (CBB, DBB, zero crossing or synchro).
+.TP
+Real parameter vector
+: column vector. Any parameters used in the block can be defined here
+as a column vector.
+.TP
+Integer parameter vector
+: column vector. Any integer parameters used in the block can be defined here
+as a column vector.
+.TP
+initial firing
+: vector. Size of this vector corresponds to the number of event
+outputs. The value of the i-th entry specifies the time of the
+preprogrammed event firing on the i-th output event port. If less than
+zero, no event is preprogrammed.
+.TP
+direct feedthrough
+: character "y" or "n", specifies if block has a direct input to
+output feedthrough.
+.TP
+Time dependance
+: character "y" or "n", specifies if block output depends explicitly
+on time.
+.SH SEE ALSO
+scifunc_block
+
+
+
+
+

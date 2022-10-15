@@ -1,0 +1,28 @@
+.TH chepol 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+chepol - Chebychev polynomial
+.SH CALLING SEQUENCE
+.nf
+[Tn]=chepol(n,var)
+.fi
+.SH PARAMETERS
+.TP
+n
+: integer : polynomial order
+.TP
+var
+: string : polynomial variable
+.TP
+Tn
+: polynomial in the variable \fVvar\fR
+.SH DESCRIPTION
+Recursive implementation of Chebychev polynomial.
+\fVTn=2*poly(0,var)*chepol(n-1,var)-chepol(n-2,var)\fR with
+\fVT0=1\fR and \fVT1=poly(0,var)\fR.
+.SH EXAMPLE
+.nf
+chepol(4,'x')
+.fi
+.SH AUTHOR
+F. D.

@@ -1,0 +1,30 @@
+
+comp(1)                        Scilab Function                        comp(1)
+NAME
+  comp -  scilab function compilation
+
+CALLING SEQUENCE
+  comp(function [,opt])
+
+PARAMETERS
+
+  function
+       : an not compiled scilab function (type 11)
+
+  opt  : integer flag with value 0 (default) or 1.
+
+DESCRIPTION
+  comp(function) compiles the function function.  Compiled and interpreted
+  functions are equivalent but usually compiled functions are much faster.
+  The functions provided in the standard libraries are compiled.
+
+  The command: getf('filename') loads the functions in file 'filename' and
+  compiles them.  So comp has to be used in very particular cases.
+
+  The opt==1 option is specific to code analysis purpose (see macr2lst)
+
+REMARKS
+  commands who, help, what cannot be compiled.
+
+SEE ALSO
+  deff, getf, whereis, macr2lst, lib

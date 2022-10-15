@@ -1,0 +1,76 @@
+add_edge - adds an edge or an arc between two nodes   @add_edge
+add_node - adds a disconnected node to a graph   @add_node
+adj_lists - computes adjacency lists   @adj_lists
+arc_graph - graph with nodes corresponding to arcs   @arc_graph
+arc_number - number of arcs of a graph   @arc_number
+articul - finds one or more articulation points   @articul
+bandwr - bandwidth reduction for a sparse matrix   @bandwr
+best_match - best matching of a graph   @best_match
+chain_struct - chained structure from adjacency lists of a graph   @chain_struct
+check_graph - checks a scilab graph list   @check_graph
+circuit - finds a circuit or the rank function in a directed graph   @circuit
+con_nodes - set of nodes of a connected component   @con_nodes
+connex - connected components   @connex
+contract_edge - contracts edges between two nodes   @contract_edge
+convex_hull - convex hull of a set of points in the plane   @convex_hull
+cycle_basis - basis of cycle of a simple undirected graph   @cycle_basis
+delete_arcs - deletes all the arcs or edges between a set of nodes   @delete_arcs
+delete_nodes - deletes nodes   @delete_nodes
+edge_number - number of edges of a graph   @edge_number
+find_path - finds a path between two nodes   @find_path
+gen_net - generation of a network   @gen_net
+girth - girth of a directed graph   @girth
+glist - graph list creation   @glist
+graph-list - description of graph list   @graph-list
+graph_2_mat - node-arc or node-node incidence matrix of a graph   @graph_2_mat
+graph_center - center of a graph   @graph_center
+graph_complement - complement of a graph   @graph_complement
+graph_diameter - diameter of a graph   @graph_diameter
+graph_power - kth power of a directed 1-graph   @graph_power
+graph_simp - converts a graph to a simple undirected graph   @graph_simp
+graph_sum - sum of two graphs   @graph_sum
+graph_union - union of two graphs   @graph_union
+hamilton - hamiltonian circuit of a graph   @hamilton
+is_connex - connectivity test   @is_connex
+knapsack - solves a 0-1 multiple knapsack problem   @knapsack
+line_graph - graph with nodes corresponding to edges   @line_graph
+load_graph - loads a graph   @load_graph
+make_graph - makes a graph list   @make_graph
+mat_2_graph - graph from node-arc or node-node incidence matrix   @mat_2_graph
+max_cap_path - maximum capacity path   @max_cap_path
+max_clique - maximum clique of a graph   @max_clique
+max_flow - maximum flow between two nodes   @max_flow
+mesh2d - triangulation of n points in the plane   @mesh2d
+metanet - opens a metanet window   @metanet
+metanet_sync - asynchronous or synchronous mode in metanet   @metanet_sync
+min_lcost_cflow - minimum linear cost constrained flow   @min_lcost_cflow
+min_lcost_flow1 - minimum linear cost flow   @min_lcost_flow1
+min_lcost_flow2 - minimum linear cost flow   @min_lcost_flow2
+min_qcost_flow - minimum quadratic cost flow   @min_qcost_flow
+min_weight_tree - minimum weight spanning tree   @min_weight_tree
+neighbors - nodes connected to a node   @neighbors
+netclose - closes a metanet window   @netclose
+netwindow - chooses a metanet window   @netwindow
+netwindows - gets the numbers of metanet windows   @netwindows
+node_number - number of nodes of a graph   @node_number
+nodes_2_path - path from a set of nodes   @nodes_2_path
+nodes_degrees - degrees of the nodes of a graph   @nodes_degrees
+path_2_nodes - set of nodes from a path   @path_2_nodes
+perfect_match - min-cost perfect matching   @perfect_match
+pipe_network - solves the pipe network problem   @pipe_network
+plot_graph - general plot of a graph   @plot_graph
+predecessors - tail nodes of incoming arcs of a node   @predecessors
+qassign - solves a quadratic assignment problem   @qassign
+salesman - solves the travelling salesman problem   @salesman
+save_graph - saves a graph   @save_graph
+shortest_path - shortest path   @shortest_path
+show_arcs - highlights a set of arcs   @show_arcs
+show_graph - displays a graph   @show_graph
+show_nodes - highlights a set of nodes   @show_nodes
+split_edge - splits an edge by inserting a node   @split_edge
+strong_con_nodes - set of nodes of a strong connected component   @strong_con_nodes
+strong_connex - strong connected components   @strong_connex
+subgraph - subgraph of a graph   @subgraph
+successors - head nodes of outgoing arcs of a node   @successors
+supernode - replaces a group of nodes with a single node   @supernode
+trans_closure - transitive closure   @trans_closure

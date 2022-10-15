@@ -1,0 +1,66 @@
+
+
+
+find(1)                        Scilab Function                        find(1)
+
+
+
+
+
+
+NAME
+  find - find indices of  boolean vector or matrix true elements
+
+CALLING SEQUENCE
+  [ii]=find(x)
+  [ir,ic]=find(x)
+
+PARAMETERS
+
+  x    : a boolean vector or a boolean matrix
+
+  ii, ir, ic
+       : integer vectors of indices or empty matrices
+
+DESCRIPTION
+  If x is a boolean matrix,
+
+  ii=find(x) returns the vector of indices i for which x(i) is "true". If no
+  true element found find returns an empty matrix.
+
+  [ir,ic]=find(x) returns two vectors of indices ir (for rows) and ic (for
+  columns) such that x(il(n),ic(n)) is "true". If no true element found find
+  returns  empty matrices in ir and ic.
+
+EXAMPLE
+  A=rand(1,20);
+  w=find(A<0.5);
+  A(w)
+  returns the vector made of entries of A which are  < 0.5
+  w=find(A>100);
+
+SEE ALSO
+  boolean
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

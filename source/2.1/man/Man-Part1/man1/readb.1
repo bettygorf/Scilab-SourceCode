@@ -1,0 +1,20 @@
+.TH readb 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+readb - binary read 
+.SH CALLING SEQUENCE
+.nf
+[x]=readb(file-name,m,n)
+.fi
+.SH PARAMETERS
+.TP 10
+file-name
+: string or integer 
+.TP 10
+m, n
+: integers (dimensions of the matrix x). Set m=-1 if you dont know the
+numbers of rows, so all the file is read
+.SH DESCRIPTION
+binary read of the matrix \fVx\fR in the file \fVfile-name\fR.
+.SH SEE ALSO
+file, write, writeb

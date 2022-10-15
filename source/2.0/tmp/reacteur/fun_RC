@@ -1,0 +1,224 @@
+function [A,B]=linmod(f,x0,u0)
+// Lineaire tangent en (x0,u0) d'un systeme xd=f(0,x,u)
+
+deff('[y,xd]=sys(x,u)','xd='+f+'(0,x,u) ; y=x');
+comp(sys);
+[A,B,C,D]=lin(sys,x0,u0);
+
+//////////////////////////////////////////////////////////////////////////
+
+function xdot=RC(t,x,u)
+// Appel routine en fortran
+
+xdot=fort('rc',t,2,'d',x,3,'d',u,4,'d','out',[2,1],1,'d');
+
+//////////////////////////////////////////////////////////////////////////
+
+function [xf,x,t] = simul(sys,tf,x0,u)
+// Simulation du reacteur
+
+if sys = "RCp" then
+  [xd,a] = RCp(0,xf,0);
+  strg = "( kp = " + string(a) + " ) ";
+else
+  strg = " ";
+end
+
+// Fabriquer et compiler un champ autonome
+deff( "xd = auto(t,x)", "xd = " + sys + "(t,x," + u + ");" );
+comp(auto);
+
+// Integration numerique
+t = 0:tf/500:tf;
+x = ode("stiff",x0,0,t,auto);
+xf = x(:,maxi(size(x)))
+
+// Affichage
+xclear(); 
+xselect();
+execstr("up = " + u); 
+if (maxi(size(up)) = 1) & ~(up = "t") then
+  up = up*ones(t);
+end;
+plot2d([t; t; t]',[x(1,:); x(2,:)/10; up/10]',...
+[-1,-3,-2],"111","Concentration@Temperature/10@u/10",[0,-1,tf,3],[4,8,4,8]);
+//xgrid([4,6],-1);
+titre = ["Reacteur " + sys + strg + "avec u = " + u];
+xtitle(titre,"temps");
+
+//////////////////////////////////////////////////////////////////////////
+
+function [A,B]=linmod(sys,x0,u0)
+// Lineaire tangent en (x0,u0) d'un systeme xd=sys(0,x,u)
+
+deff("[y,xd] = sys_es(x,u)", "xd =  "+ sys + "(0,x,u) ; y=x");
+comp(sys_es);
+[A,B,C,D]=lin(sys_es,x0,u0);
+
+//////////////////////////////////////////////////////////////////////////
+
+function foo=phaser(sys,u)
+// Portrait de phase du reacteur
+
+if type(u) = 10 then
+  u = eval(u)
+end;
+field = list(eval(sys),u);
+
+if sys = "RCp" then
+  [xd,a] = RCp(0,xf,0);
+  strg = "( kp = " + string(a) + " ) ";
+else
+  strg = " ";
+end
+
+xclear();
+xselect();
+plot2d(-1,0,3,"111"," Point stationnaire",[-.1,-10,1.1,30],[4,8,4,8]);
+titre = ["Portrait de phase du reacteur " + sys + strg "avec u = " + string(u)];
+xtitle(titre,"Conc.","Temperature");
+write(%io(2),"Bouton gauche pour tracer, droit pour quitter")
+
+knob=0;
+tf=15;
+while knob<>2,
+  [knob,a,b]=xclick();
+  if knob=0 then
+    x0=[a;b];
+    t = 0:tf/1000:tf;
+    x = ode("stiff",x0,0,t,field);
+    plot2d(x(1,:)',x(2,:)',-1,"000");
+    l = maxi(size(x));
+    err = (x(:,l) - x(:,l-1))^2;
+    if sqrt( err(1) + err(2) ) < 0.0001 then
+      plot2d(x(1,l),x(2,l),3,"000");
+    end 
+  end
+end
+foo = [];
+
+/////////////////////////////////////////////////////////////////////////
+
+function [hc,x] = heatc(y)
+// Creation de chaleur
+
+g = 0.0254
+Da = 0.000391
+B = 19.1 
+xin = 1
+q = 1
+qprime = 1
+	
+gamma = Da*exp(y/(1+g*y))
+
+x = q*xin/(q+gamma)
+hc = B*gamma*x
+
+/////////////////////////////////////////////////////////////////////////
+
+function foo=bifur(sys)
+// Diagramme de bifurcation
+
+tf = 12;
+step = .6;
+t = 0:tf/500:tf;
+xf = [1;-12];
+
+// Montee
+lu1 = [];
+lx1 = [];
+for index = -12:step:12
+  u = index;
+  write(%io(2),"u = " + string(u));
+  lu1 = [lu1,u];
+  x = ode("stiff",xf,0,t,list(eval(sys),u));
+  xf = x(:,maxi(size(x)));
+  lx1 = [lx1,xf];
+  write(%io(2),"xf = ");
+  write(%io(2),xf);
+end
+
+// Descente
+lu2 = [];
+lx2 = [];
+for index = u+step/2:-step:-12+step/2
+  u = index;
+  write(%io(2),"u = " + string(u));
+  lu2 = [lu2,u];
+  x = ode("stiff",xf,0,t,list(eval(sys),u));
+  xf = x(:,maxi(size(x)));
+  lx2 = [lx2,xf];
+  write(%io(2),"xf = ");
+  write(%io(2),xf);
+end
+
+// Variete d'equilibre parametree par y
+if sys = "RCp" then
+  [xd,a] = RCp(0,xf,0);
+  qprime = 1 - a;
+  strg = "( kp = " + string(a) + " )";
+else
+  qprime = 1;
+  strg = " ";
+end;
+
+ly = [];
+listu = [];
+for y = -15:.1:30
+  ly = [ly,y];
+  u = y - heatc(y)/qprime;
+  listu = [listu,u];
+end
+
+
+// Affichage
+xclear();
+xselect();
+plot2d([lu1; lu2]', [lx1(2,:); lx2(2,:)]',[3,4],"111",...
+ "Montee@Descente",[-12,-15,12,30],[4,8,4,9])
+plot2d(listu',ly',-2,"000")
+titre = ["Diagramme de bifurcation de " + sys + strg];
+xtitle(titre,"u","Temperature");tf = 12;
+
+foo = [];
+
+/////////////////////////////////////////////////////////////////////////
+
+function foo = diather(qprime)
+// Diagrramme thermique
+
+[lhs,rhs] = argn(0);
+if rhs = 0 then
+  qprime = 1;
+end;
+
+ly = [];
+lhc = [];
+for y = -15:.1:30
+  ly = [ly,y];
+  hc = heatc(y);
+  lhc = [lhc,hc];
+end
+
+xclear();
+xselect();
+plot2d(ly', lhc',-1,"111",...
+ "Heat Creation",[-10,-10,30,25],[4,8,4,9])
+titre = ["Diagramme thermique pour qprime = " + string(qprime)];
+xtitle(titre,"Temperature","Chaleur");tf = 12;
+
+write(%io(2),"Bouton gauche pour tracer, droit pour quitter")
+knob=0;
+while knob<>2,
+  [knob,a,b]=xclick();
+  if knob=0 then
+    u = a-b/qprime;
+    write(%io(2),"u = " + string(u));    
+    lhr = qprime*(ly - u*ones(ly));
+    plot2d(ly',lhr',-2,"000")
+  end
+end
+
+foo = [];
+
+/////////////////////////////////////////////////////////////////////////

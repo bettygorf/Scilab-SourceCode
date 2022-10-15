@@ -1,0 +1,16 @@
+
+DEMUX_f(5)                       Scicos Block                      DEMUX_f(5)
+NAME
+  DEMUX_f - Scicos demultiplexer block
+
+DIALOGUE PARAMETERS
+
+  number of output ports   : positive integer less than or equal to 8.
+
+DESCRIPTION
+  Given a vector valued input this block splits inputs over vector valued
+  outputs. So u=[y1;y2....;yn], where yi are numbered from top to bottom.
+  Input and Output port sizes are determined by the context.
+
+SEE ALSO
+  MUX_f

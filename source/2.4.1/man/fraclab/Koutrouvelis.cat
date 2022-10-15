@@ -1,0 +1,32 @@
+
+Koutrouvelis(2)                Scilab Function                Koutrouvelis(2)
+NAME
+  Koutrouvelis - Stable Law parameters estimation (Koutrouvelis method)
+
+  Author: Lotfi Belkacem
+
+  This routine estimates parameters of a  stable law using the Koutrouvelis
+  (1985) method.
+
+Usage
+  [alpha,beta,mu,gamma]=Koutrouvelis(data)
+
+Input parameters
+       o proc : real vector [size,1] corresponding to the data sample.
+Output parameters
+       o alpha : real positive scalar between 0 and 2. This parameter is
+         often referred to as the characteristic exponent.
+       o beta : real scalar between -1 and +1. This parameter is often
+         referred to as the skewness parameter.
+       o mu : real scalar This parameter is often referred to as the location
+         parameter.  It is equal to the expectation when alpha is greater
+         than 1.
+       o gamma : real positive scalar. This parameter is often referred to as
+         the scale parameter.  It is equal to the standard deviation over two
+         squared when alpha equal 2.
+Example
+  [proc1,inc1]=sim_stable(1,0,0,1,10000); generates a standard 1-stable
+  motion (Cauchy process).  [alpha,beta,mu,gamma]=Koutrouvelis(inc1); esti-
+  mates parameters of the previous simutated 1-stable random variable inc1.
+Remarque
+  Skewness and location parameters are badly estimated with this methode.

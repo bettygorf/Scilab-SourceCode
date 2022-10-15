@@ -1,0 +1,21 @@
+.TH clearfun 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+clearfun - remove primitive.
+.SH CALLING SEQUENCE
+.nf
+clearfun('name')
+.fi
+.SH DESCRIPTION
+.Vb clearfun('name') 
+removes the primitive \fV'name'\fR from the set of
+primitives (built-in functions) .
+This function allows to rename a primitive : a Scilab 
+primitive can be replaced by a user-defined function. For experts...
+.SH EXAMPLE
+.nf
+clearfun('abs').
+.fi
+.SH SEE ALSO
+newfun, funptr
+

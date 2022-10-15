@@ -1,0 +1,7 @@
+ 
+clear;lines(0);
+ 
+printf('Result is:\nalpha=%f",0.535)
+Result is:
+alpha=0.535000
+ 

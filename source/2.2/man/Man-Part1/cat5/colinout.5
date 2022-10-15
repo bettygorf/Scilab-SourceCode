@@ -1,0 +1,66 @@
+
+
+
+colinout(1)                    Scilab Function                    colinout(1)
+
+
+
+
+
+
+NAME
+  colinout - inner-outer factorization
+
+CALLING SEQUENCE
+  [Inn,X,Gbar]=colinout(G)
+
+PARAMETERS
+
+  G   : linear system (syslin list) [A,B,C,D]
+
+  Inn :  inner factor (syslin list)
+
+  Gbar
+      :  outer factor (syslin list)
+
+  X   :  row-compressor of G (syslin list)
+
+DESCRIPTION
+  Inner-outer factorization (and column compression) of (lxp) G =[A,B,C,D]
+  with l<=p.
+
+  G is assumed to be fat (l<=p) without zero on the imaginary axis and with a
+  D matrix which is full row rank.
+
+  G must also be stable for having Gbar stable.
+
+  Dual of rowinout.
+
+SEE ALSO
+  syslin, rowinout
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

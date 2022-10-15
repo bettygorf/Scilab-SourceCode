@@ -1,0 +1,22 @@
+
+cont_mat(1)                    Scilab Function                    cont_mat(1)
+NAME
+  cont_mat - controllability matrix
+
+CALLING SEQUENCE
+  Cc=cont_mat(A,B)
+  Cc=cont_mat(sl)
+
+PARAMETERS
+
+  a,b       : two real matrices of appropriate dimensions
+
+  sl        : linear system (syslin list)
+
+DESCRIPTION
+  cont_mat returns the controllability matrix of the pair A,B (resp. of the
+  system sl=[A,B,C,D]).
+  Cc=[B, AB, A^2 B,..., A^(n-1) B]
+
+SEE ALSO
+  ctr_gram, contr, canon, st_ility

@@ -1,0 +1,100 @@
+
+xget(2)                        Scilab Function                        xget(2)
+NAME
+  xget - get current values of the graphics context
+
+CALLING SEQUENCE
+  [x1]=xget(str,[flag])
+  xget()
+
+PARAMETERS
+
+  str       : string.
+
+  flag      : optional. Set to 1 gives a verbose mode.
+
+DESCRIPTION
+  This function is used to get values from the graphics context on the topic
+  specified by the string str. When called with no argument, a choice menu is
+  created showing the current values and changes can be performed through
+  toggle buttons.
+
+  number=xget("alufunction")
+       : Get the logical function number used for drawing.  See xset.
+
+  str=xset("auto clear")
+       : Get the auto clear status ("on" or "off").
+
+  color=xget("background")
+       : Get the background color of the current graphics window.
+
+  rect=xget("clipping")
+       :  Get the clipping zone as a rectangle rect=[x,y,w,h] (Upper-Left
+       point Width Height).
+
+  cmap=xget("colormap")
+       : Get the colormap used for the current graphics window as a m x 3 RGB
+       matrix.
+
+  dash=xget("dashes")
+       : Get the dash style dash=[dash_number] where dash_number is the id of
+       the dash.
+
+  font=xget("font")
+       : Get font=[fontid,fontsize], the current font and its current size.
+
+  color=xget("foreground")
+       : Get the foreground color of the current graphics window.
+
+  str=xget("fpf")
+       : Get the floating point format for number display in contour func-
+       tions. Note that str is "" when default format is used.
+
+  color=xget("hidden3d")
+       : Get the color number for hidden faces in plot3d.
+
+  pat=xget("lastpattern")
+       : Get the id of the last available pattern or color, with the current
+       colormap of the current window. In fact pat+1 and pat+2 are also
+       available and stand respectively for black and white pattern.
+
+  type=xget("line mode")
+       : Get the line drawing mode.  type=1 is absolute mode and type=0 is
+       relative mode.  (Warning: the mode type=0 is has bugs)
+
+  mark=xget("mark")
+       : Get the current mark and current mark size mark=[markid,marksize].
+
+  pat=xget("pattern")
+       : Get the current pattern or the current color. pat is an integer in
+       the range [1,last]. When one uses black and white, 0 is used for black
+       filling and last for white. The value of last can be obtained with
+       xget("lastpattern").
+
+  value=xget("thickness")
+       : Get the thickness of lines in pixel (0 and 1 have the same meaning:
+       1 pixel thick).
+
+  flag=xget("use color")
+       : Get the flag 0 (use black and white) or 1 (use colors). See xset.
+
+  [x,y]=xget("viewport")
+       : Get the current postion of the visible part of graphics in the pan-
+       ner.
+
+  dim=xget("wdim")
+       : Get the width and the height of the current graphics window
+       dim=[width,height].
+
+  win=xget("window")
+       : Get the current window number win.
+
+  pos=xget("wpos",x,y);
+       : Get the position of the upper left point of the graphics window
+       pos=[x,y].
+
+SEE ALSO
+  xset, colormap
+
+AUTHOR
+  J.Ph.C.

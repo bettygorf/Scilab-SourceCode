@@ -1,0 +1,42 @@
+.TH markp2ss 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+markp2ss - Markov parameters to state-space
+.SH CALLING SEQUENCE
+.nf
+[sl]=markp2ss(markpar,n,nout,nin)
+.fi
+.SH PARAMETERS
+.TP 10
+markpar
+: matrix
+.TP 15
+n,nout,nin
+: integers
+.TP 10
+Sl
+: \fVsyslin\fR list
+.SH DESCRIPTION
+given a set of \fVn\fR Markov parameters stacked in the (row)-matrix 
+\fVmarkpar\fR of size \fVnout\fRX\fV(n*nin) markp2ss\fR
+returns a state-space linear system \fVsl\fR (\fVsyslin\fR list) 
+such that with \fV[A,B,C,D]=abcd(sl)\fR:
+.nf
+   C*B = markpar(1:nout,1:nin),
+   C*A*B =markpar(1:nout,nin+1:2*nin),....
+.fi
+.SH EXAMPLE
+.nf
+W=ssrand(2,3,4);   //random system with 2 outputs and 3 inputs
+[a,b,c,d]=abcd(W);
+markpar=[c*b,c*a*b,c*a^2*b,c*a^3*b,c*a^4*b];
+S=markp2ss(markpar,5,2,3);
+[A,B,C,D]=abcd(S);
+Markpar=[C*B,C*A*B,C*A^2*B,C*A^3*B,C*A^4*B];
+norm(markpar-Markpar,1)
+//Caution... c*a^5*b is not C*A^5*B !
+.fi
+.SH SEE ALSO
+frep2tf, tf2ss, imrep2ss
+
+

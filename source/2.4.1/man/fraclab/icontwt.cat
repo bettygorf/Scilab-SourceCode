@@ -1,0 +1,73 @@
+
+icontwt(2)                     Scilab Function                     icontwt(2)
+NAME
+  icontwt -  Inverse Continuous L2 wavelet transform
+
+  Author: Paulo Goncalves
+
+  Computes the inverse continuous wavelet transform: reconstructs a 1-D sig-
+  nal from its wavelet coefficients. The scale operator is unitary with
+  respect to the L2 norm.
+
+Usage
+
+  [x_back]=icontwt(wt,f,wl_length)
+Input parameters
+       o wt :  Real or complex matrix [N,nt] coefficient of the wavelet
+         transform
+       o f : real vector of size [N,1] or [1,N] which elements are in
+         /[0,0.5], in decreasing order.
+       o wl_length  : scalar or matrix specifies the reconstruction wavelet:
+         0: Mexican hat wavelet (real) Positive real integer: real Morlet
+         wavelet of size 2*wl_length+1) at finest scale 1 Positive imaginary
+         integer: analytic Morlet wavelet of size 2*wl_length+1) at finest
+         scale 1 Real valued matrix with  N  columns: each column contains a
+         dilated versions of an arbitrary synthesis wavelet.
+Output parameters
+       o x_back : Real or complex vector [1,nt] Reconstructed signal.
+Description
+Parameters
+       o wt : coefficient of the wavelet transform.  X-coordinated
+         corresponds to time (uniformly sampled), Y-coordinates correspond to
+         frequency (or scale) voices (geometrically sampled between  fmax
+         (resp. 1) and fmin (resp.  fmax / fmin ). First row of wt
+         corresponds to the highest analyzed frequency (finest scale). Usu-
+         ally, wt is the output matrix wt of  contwt .
+       o scale : analyzed scales (geometrically sampled between 1 and  fmax
+         /fmin. Usually, scale is the output vector scale of  contwt .
+       o wl_length  : specifies the synthesis wavelet: 0: Mexican hat wavelet
+         (real). The size of the wavelet is automatically fixed by the
+         analyzing frequency Positive real integer: real Morlet wavelet of
+         size 2*wl_length+1) at finest scale (1) Positive imaginary integer:
+         analytic Morlet wavelet of size 2*|wl_length|+1) at finest scale 1.
+         The corresponding wavelet transform is then complex. May be usefull
+         for event detection purposes.  Real valued matrix: usually, for
+         reconstruction wl_length is the output matrix wavescaled from
+         contwt.
+Algorithm details
+  The reconstruction algorithm Inverse Wavelet Transform , proceeds by con-
+  volving the wavelet coefficients (obtained from contwt  ) by the synthesis
+  wavelet. As we deal with continuous wavelet decomposition, the analyzing
+  wavelet and its dual for reconstruction are the same (continuous basis).
+  This operation is iterated at each analyzed scale  j  yielding  N
+  corresponding band-passed signal versions. The reconstructed signal is the
+  scale weighting sum of these  N  vectors.
+
+See also:
+  contwt, contwtmir
+
+Example:
+   Signal synthesis
+
+  x = morlet(0.1,64) ;
+  t = 1:129 ;
+
+   A Morlet (of size 2*8+1 samples ) wavelet transform
+
+  [wtMorlet,scale,f,scaloMorlet] = contwt(x,0.01,0.5,128,8) ;
+  viewmat(scaloMorlet,1:129,f,[1 1 24]) ;
+
+   Reconstruction with the same synthesis wavelet
+
+  [x_back] = icontwt(wtMorlet,f,8) ;
+  plot([t(:) t(:)],[x(:) x_back(:)]) ;

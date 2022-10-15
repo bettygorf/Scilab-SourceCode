@@ -1,0 +1,45 @@
+.TH spanplus 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+spanplus - sum of subspaces
+.SH CALLING SEQUENCE
+.nf
+[X,dim,dima]=spanplus(A,B[,tol]) 
+.fi
+.SH PARAMETERS
+.TP 10
+A, B
+: two real or complex matrices with equal number of rows
+.TP
+X
+: orthogonal or unitary square matrix
+.TP
+dim, dima 
+: integers, dimension of subspaces
+.TP
+tol
+: nonnegative real number
+.SH DESCRIPTION
+.Vb [X,dim,dima]=spanplus(A,B)
+computes a  basis X such that:
+.LP
+the first \fVdima\fR columns of \fVX\fR span Range(\fVA\fR)
+and the following (\fVdim-dima\fR) columns make a basis of \fVA+B\fR
+relative to \fVA\fR. 
+.LP
+The \fVdim\fR first columns of \fVX\fR make a basis for \fVA+B\fR.
+.LP
+One has the following canonical form for \fV[A,B]\fR:
+.nf
+         [*,*]    (dima rows)
+X'*[A,B]=[0,*]    (dim-dima rows)
+         [0,0]    
+.fi
+.LP
+\fVtol\fR is an optional argument (see macro code).
+.SH SEE ALSO
+spaninter, im_inv, spantwo
+.SH AUTHOR
+F. D.
+
+

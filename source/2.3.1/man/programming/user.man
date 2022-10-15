@@ -1,0 +1,17 @@
+.TH user 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+user - interfacing a fortran routine
+.SH CALLING SEQUENCE
+.nf
+[s_1,s_2,...,s_lhs]=user(e_1,e_2,...,e_rhs)
+.fi
+.SH DESCRIPTION
+With this command it is possible to use an external program 
+as a Scilab command
+where  \fV(s_1,s_2,...,s_lhs)\fR are the output variables and
+ \fV(e_1,e_2,...,e_rhs)\fR are the input variables. To insert this command 
+in Scilab one has to write a few lines in the user fortran subroutine
+of Scilab. See \fVintersci\fR or the Scilab documentation for more information.
+.SH SEE ALSO
+fort, link

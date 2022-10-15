@@ -1,0 +1,37 @@
+.TH pvm_gsize 1 "May 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_gsize -  returns the number of members presently in the named group.
+.SH CALLING SEQUENCE
+.nf
+[nb] = pvm_gsize(group)
+.fi
+.SH PARAMETERS
+.TP 5
+group
+: string, string group name of an existing group.
+.TP 4
+nb
+: integer, returning the number of members presently in the group.
+.SH DESCRIPTION
+\fVpvm_gsize\fR returns the size of
+the group named
+.I group.
+If there is an error
+.I nb
+will be negative.
+.PP
+Since groups can change dynamically in PVM 3.0,
+this routine can only guarantee to return the instantaneous
+size of a given group.
+.\"	 It is the user's responsibility
+.\"    to make sure the group members are not changing dynamically
+.\"    during the call to pvm_gsize.
+ 
+.SH EXAMPLE
+.nf
+nb_worker = pvm_gsize( "worker" ) 
+.fi
+.SH SEE ALSO
+pvm_joingroup
+

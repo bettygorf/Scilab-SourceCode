@@ -1,0 +1,13 @@
+ 
+clear;lines(0);
+ 
+x=[0,1,%i]
+ x  =
+ 
+!   0    1.    i   !
+ 
+acosh(cosh(x))
+ ans  =
+ 
+!   0    1.    i   !
+ 

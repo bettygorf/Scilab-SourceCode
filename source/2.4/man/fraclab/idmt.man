@@ -1,0 +1,91 @@
+.TH "idmt" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+idmt -  Inverse Discrete Mellin transform
+.sp
+Author: Paulo Goncalves
+.sp
+Computes the Inverse Fast Fourier-Mellin transform of a signal.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPx,t\f(CR]\fP = idmt(mellin,beta,\f(CR[\fPM\f(CR]\fP) 
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBmellin\fP :  complex vector \f(CR[\fP1,N\f(CR]\fP
+Fourier-Mellin transform to be inverted. For a correct inversion of the Fourier-Mellin
+transform, the direct Fourier-Mellin transform \fImellin\fP must have been computed from \fIfmin\fP
+to \fB0.5 cycles per sec\fP.
+
+.TP
+o 
+\fBbeta\fP : real vector \f(CR[\fP1,N\f(CR]\fP
+Variable of the Mellin transform \fImellin\fP.
+
+.TP
+o 
+\fBM\fP : positive integer. 
+Number of time samples to be recovered from \fImellin\fP.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : complex vector \f(CR[\fP1,M\f(CR]\fP
+Inverse Fourier-Mellin transform of \fImellin\fP.
+
+.TP
+o 
+\fBt\fP : time variable of the Inverse Fourier-Mellin transform \fIx\fP.
+.RE
+
+.SH Description
+The Inverse Fourier-Mellin transform can be viewed as an Inverse Fast
+Fourier Transform which result is assumed geometrically sampled. To
+recover the initial time signal, a Discrete Inverse Fourier Transform
+is applied to this geometrically Fourier representation.
+\fBImportant\fP The Inverse Fourier-Mellin transform is correct only if
+the direct Fourier-Mellin transform has been computed from \fIfmin\fP
+to \fB0.5 cycles per sec.\fP
+.SH See also:
+dmt, dilate
+.SH Example:
+\fI Signal synthesis \fP 
+.sp
+.ft CR
+.nf
+x = morlet(0.1,32) ; 
+plot(x)
+.fi 
+.ec
+.ft P
+.sp
+\fI Computation of the Mellin transform\fP 
+.sp
+.ft CR
+.nf
+[mellin,beta] = dmt(x,0.01,0.5,128) ;
+plot(beta,abs(mellin))
+.fi 
+.ec
+.ft P
+.sp
+\fI Computation of the Inverse Mellin transform\fP 
+.sp
+.ft CR
+.nf
+[y,t] = idmt(mellin,beta,65) ;
+plot(t,abs(x-y))
+.fi 
+.ec
+.ft P
+.sp

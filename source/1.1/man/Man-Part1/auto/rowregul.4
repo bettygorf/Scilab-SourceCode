@@ -1,0 +1,32 @@
+.TH rowregul 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+rowregul - removing poles and zeros at infinity
+.SH CALLING SEQUENCE
+.nf
+[Stmp,Ws]=rowregul(Sl,alfa,beta) 
+.fi
+.SH PARAMETERS
+.TP 15
+Sl,Stmp
+: \fVsyslin\fR lists
+.TP 10
+alfa,beta
+: reals (new pole and zero positions)
+.SH DESCRIPTION
+computes a postfilter \fVWs\fR such that \fVStmp=Ws*Sl\fR is proper and 
+with full rank \fVD\fR matrix.
+.LP
+Poles at infinity of \fVSl\fR are moved to \fValfa\fR;
+.LP
+Zeros at infinity of \fVSl\fR are moved to \fVbeta\fR;
+.LP
+\fVSl\fR is a assumed to be a right invertible linear system (\fVsyslin\fR list)
+in state-space representation with possibly a polynomial \fVD\fR matrix.
+.LP
+This macro is the dual of colregul (see macro code).
+.SH SEE ALSO
+invsyslin, colregul
+.SH AUTHOR
+F. D. , R. N. 
+

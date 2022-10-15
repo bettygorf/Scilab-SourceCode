@@ -1,0 +1,20 @@
+$SCI/man/programming	Scilab Programming
+$SCI/man/graphics	Graphic Library
+$SCI/man/elementary	Utilities and Elementary Functions
+$SCI/man/linear		Linear Algebra
+$SCI/man/polynomials	Polynomial calculations
+$SCI/man/dcd		Cumulative Distribution Functions, Inverses, grand
+$SCI/man/control	General System and Control macros
+$SCI/man/robust		Robust control toolbox
+$SCI/man/nonlinear	Non-linear tools (optimization and simulation)
+$SCI/man/signal		Signal Processing toolbox
+$SCI/man/fraclab	Fractal Signal Analysis
+$SCI/man/arma		Arma modelisation and simulation toolbox
+$SCI/man/metanet	Metanet: graph and network toolbox
+$SCI/man/scicos		Scicos: Bloc diagram editor and simulator
+$SCI/man/sound		wav file handling
+$SCI/man/translation    Language or data translations
+$SCI/man/pvm            PVM parallel toolbox
+$SCI/man/comm		GECI communication toolbox
+$SCI/man/tdcs		TdCs
+$SCI/man/tksci		TCL/Tk interface

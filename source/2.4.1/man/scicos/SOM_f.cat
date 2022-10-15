@@ -1,0 +1,20 @@
+
+SOM_f(5)                        Scicos Block                         SOM_f(5)
+NAME
+  SOM_f - Scicos addition block
+
+DIALOGUE PARAMETERS
+
+  Input signs
+       : a (1x3) vector of +1 and -1. If -1, the corresponding input is mul-
+       tiplied by -1 before addition.
+
+DESCRIPTION
+  This block is a sum. The output is the element-wise sum of the inputs.
+
+  Input ports are located at up, left or right and down position.  You must
+  specify 3 gain numbers but if only two links are connected only the first
+  values are used, ports are numbered  anti-clock wise.
+
+SEE ALSO
+  GAIN_f

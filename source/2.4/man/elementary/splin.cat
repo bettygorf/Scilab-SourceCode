@@ -1,0 +1,35 @@
+
+splin(G)                       Scilab Function                       splin(G)
+NAME
+  splin - spline function
+
+CALLING SEQUENCE
+  d=splin(x,f [,"periodic"])
+
+PARAMETERS
+
+  x         : real vector
+
+  f         : real vector of same size as x
+
+  "periodic"
+            : string flag (a periodic spline is looked for)
+
+DESCRIPTION
+  Given values fi of a function f at given points xi (fi=f(xi)) this primi-
+  tive computes a third order spline function S which interpolates the func-
+  tion f.  The components of x must be in increasing order.  For a periodic
+  spline f(1) must equal f(n); S is defined through the triple (x,f,d) where
+  d=spline(x,f) is the vector of the estimated derivatives of S at xi
+  (fi=S(xi),di=S'(xi)).  This function should be used in conjunction with
+  interp.
+
+EXAMPLE
+  x=0:0.5:10;f=sin(x);
+  d=splin(x,f);
+  S=interp(0:0.1:10,x,f,d);
+  plot2d(x',f',-1);
+  plot2d((0:0.1:10)',S',2,'000')
+
+SEE ALSO
+  interp, smooth

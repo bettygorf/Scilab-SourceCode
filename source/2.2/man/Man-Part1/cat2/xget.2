@@ -1,0 +1,198 @@
+
+
+
+xget(2)                        Scilab Function                        xget(2)
+
+
+
+
+
+
+NAME
+  xget - gets current values of the graphic context
+
+CALLING SEQUENCE
+  [x1]=xget(str [,flag])
+  xget()
+
+PARAMETERS
+
+  str       : string
+
+  flag      : optional. Set to 1 gives a verbose mode
+
+DESCRIPTION
+  this function is used to get values from the graphic context on the topic
+  specified by the string str. When called no arguments, a choice menu is
+  created showing the current values and changes can be performed through
+  toggle buttons
+
+  number=xget("alufunction")
+       : used to get the logical function number used for drawing.
+
+        0
+         : function  " 0 ",
+
+        1
+         : function " src AND dst "
+
+        2
+         : function " src AND NOT dst "
+
+        3
+         : function " src ", (Default value)
+
+        4
+         : function " NOT src AND dst "
+
+        5
+         : function " dst ",
+
+        6
+         : function " src XOR dst ",
+
+        7
+         : function " src OR dst ",
+
+        8
+         : function " NOT src AND NOT dst ",
+
+        9
+         : function " NOT src XOR dst ",
+
+       10
+         : function " NOT dst ",
+
+       11
+         : function " src OR NOT dst ",
+
+       12
+         : function " NOT src ",
+
+       13
+         : function " NOT src OR dst ",
+
+       14
+         : function " NOT src OR NOT dst ",
+
+       15
+         : function " 1 ";
+
+  rect=xget("clipping")
+       :  get the clipping zone rectangle rect=[x,y,w,h] (Upper-Left point
+       Width Height).
+
+  dash=xget("dashes")
+       : get the dash style dash=[dash_number,v]
+         v contains the definition of the dash
+
+  font=xget("font")
+       : get font=[fontid,fontsize] the current font and its current size.
+
+  type=xget("line mode");
+       This function is used to get the line drawing mode. type=1 :Absolute
+       mode,type=0 relative mode (Warning : the mode type=0 is buged )
+
+  mark=xget("mark")
+       : mark=[markid,marksize] the current mark and current mark size.
+
+  pat=xget("pattern")
+       : to get the current pattern for filling functions, pat is an integer
+       projected in the interval [0,whiteid]. 0 is used for black filling and
+       whiteid for white. The value of whiteid can be obtained with
+       xget("white").
+
+  value=xget("thickness")
+       : get the thickness of lines in pixel  ( 0 and 1 have the same meaning
+       : 1 pixel thick)
+
+  dim=xget("wdim")
+       : dim=[width,height]  the width and height of the current graphic win-
+       dow.
+
+  pos=xget("wpos",x,y);
+       : pos=[x,y] the position of the upper left point of the graphic win-
+       dow.
+
+  win=xget("window")
+       Get the current window to the window win
+
+  flag=xget("use color")
+       if flag=1 then xset("pattern",.) or xset("dashes",.) will be used so
+       as to change the default color for drawing or for filling patterns. If
+       flag=0 then we switch back to the gray and dashes mode.
+
+
+
+SEE ALSO
+  X11 documentation
+
+
+
+
+AUTHOR
+  J.Ph.C.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

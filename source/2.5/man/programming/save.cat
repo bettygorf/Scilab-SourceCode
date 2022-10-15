@@ -1,0 +1,49 @@
+
+save(1)                        Scilab Function                        save(1)
+NAME
+  save - saving variables in binary files
+
+CALLING SEQUENCE
+  save(filename [,x1,x2,...,xn])
+  save(fd [,x1,x2,...,xn])
+
+PARAMETERS
+
+  filename  : character string containing the path of the file
+
+  fd        : a file descriptor given by a call to mopen
+
+  xi        : arbitrary Scilab variable(s)
+
+DESCRIPTION
+  The save command can be used to save Scilab current variables
+   in a binary file. The file can be given either by its paths or by its
+  descriptor previously given by mopen.
+
+  save(filename) saves all current variables in the file defined by  file-
+  name.
+
+  save(fd) saves all current variables in the file defined by  the descriptor
+  fd.
+
+  save(filename,x,y) or save(fd,x,y) saves only named variables x and y.
+
+  Saved  variables can be reloaded by the load command.
+
+EXAMPLES
+  a=eye(2,2);b=ones(a);
+  save('val.dat',a,b);
+  clear a
+  clear b
+  load('val.dat','a','b');
+
+  // sequential save into a file
+  fd=mopen('TMPDIR/foo','wb')
+  for k=1:4, x=k^2;save(fd,x,k),end
+  mclose(fd)
+  fd=mopen('TMPDIR/foo','rb')
+  for i=1:4, load(fd,'x','k');x,k,end
+  mclose(fd)
+
+SEE ALSO
+  load, mopen

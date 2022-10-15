@@ -1,0 +1,17 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+OBJS=   datatf.o lstelm.o lstops.o matdes.o matdsc.o matdsr.o matelm.o\
+	matimp.o matio.o matlu.o matnew.o matode.o matops.o matopt.o\
+	matqr.o matqz.o matric.o matsvd.o matsys.o metane.o matus2.o\
+	polaut.o polelm.o polops.o sigelm.o strelm.o strops.o fmlelm.o \
+	logic.o logelm.o xawelm.o misops.o stack.o colnew-int.o where.o
+
+FSRCS =$(OBJS:.o=.f)
+
+COBJS=  ctest.o
+
+LibraryTarget($(PATHO)/interf.a,$(OBJS) $(COBJS))
+FortranDependTarget()
+
+

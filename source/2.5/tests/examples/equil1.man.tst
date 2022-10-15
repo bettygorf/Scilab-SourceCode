@@ -1,0 +1,11 @@
+clear;lines(0);
+S1=rand(2,2);S1=S1*S1';
+S2=rand(2,2);S2=S2*S2';
+S3=rand(2,2);S3=S3*S3';
+P=sysdiag(S1,S2,zeros(4,4));
+Q=sysdiag(S1,zeros(2,2),S3,zeros(2,2));
+X=rand(8,8);
+P=X*P*X';Q=inv(X)'*Q*inv(X);
+[T,siz]=equil1(P,Q);
+P1=clean(T*P*T')
+Q1=clean(inv(T)'*Q*inv(T))

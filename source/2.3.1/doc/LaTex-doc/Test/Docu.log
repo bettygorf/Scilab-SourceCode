@@ -1,0 +1,131 @@
+This is MlTeX (2.01), C Version 3.1415 (C version 6.1) (format=latex 95.7.21)  16 JUL 1997 16:49
+**Docu
+(Docu.tex
+LaTeX2e <1995/06/01> patch level 3
+(/usr/local/lib/texmf/tex/latex2e/base/latex209.def
+File: latex209.def 1995/07/07 v0.47 Standard LaTeX file
+
+Entering LaTeX 2.09 compatibility mode.
+\footheight=\dimen102
+\@maxsep=\dimen103
+\@dblmaxsep=\dimen104
+(/usr/local/lib/texmf/tex/latex2e/base/tracefnt.sty
+Package: tracefnt 1995/06/15 v3.0b Standard LaTeX package (font tracing)
+\tracingfonts=\count85
+LaTeX Info: Redefining \selectfont on input line 133.
+)
+\symbold=\mathgroup4
+\symsans=\mathgroup5
+\symtypewriter=\mathgroup6
+\symitalic=\mathgroup7
+\symsmallcaps=\mathgroup8
+\symslanted=\mathgroup9
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 276.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 277.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 278.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 284.
+LaTeX Info: Redefining \em on input line 294.
+
+(/usr/local/lib/texmf/tex/latex2e/base/latexsym.sty
+Package: latexsym 1995/03/18 v2.2a Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup10
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'^^J(Font)  
+                U/lasy/m/n --> U/lasy/b/n on input line 81.
+)
+LaTeX Font Info:    Redeclaring math delimiter \lgroup on input line 359.
+LaTeX Font Info:    Redeclaring math delimiter \rgroup on input line 361.
+LaTeX Font Info:    Redeclaring math delimiter \bracevert on input line 363.
+
+(/usr/local/lib/texmf/tex/latex2e/french/latex209.cfg
+(/usr/local/lib/texmf/tex/latex2e/base/newlfont.sty
+Package: newlfont 1995/04/02 v2.2k Standard LaTeX package
+LaTeX Info: Redefining \em on input line 99.
+)))
+(/usr/local/lib/texmf/tex/latex2e/base/book.cls
+Document Class: book 1995/06/26 v1.3g Standard LaTeX document class
+(/usr/local/lib/texmf/tex/latex2e/base/bk10.clo
+File: bk10.clo 1995/06/19 v1.3e Standard LaTeX file (size option)
+)
+\c@part=\count86
+\c@chapter=\count87
+\c@section=\count88
+\c@subsection=\count89
+\c@subsubsection=\count90
+\c@paragraph=\count91
+\c@subparagraph=\count92
+\c@figure=\count93
+\c@table=\count94
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+Compatibility mode: definition of \rm ignored.
+Compatibility mode: definition of \sf ignored.
+Compatibility mode: definition of \tt ignored.
+Compatibility mode: definition of \bf ignored.
+Compatibility mode: definition of \it ignored.
+Compatibility mode: definition of \sl ignored.
+Compatibility mode: definition of \sc ignored.
+LaTeX Info: Redefining \cal on input line 542.
+LaTeX Info: Redefining \mit on input line 543.
+\bibindent=\dimen105
+) (../tr2latex/troffman.sty)
+(/usr/local/lib/texmf/tex/latex2e/base/makeidx.sty
+Package: makeidx 1995/04/19 v1.0j Standard LaTeX package
+)
+\@indexfile=\write4
+
+Writing index file Docu.idx
+(Docu.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    External font `cmex10' loaded for size^^J(Font)            
+  <12> on input line 16.
+LaTeX Font Info:    External font `cmex10' loaded for size^^J(Font)            
+  <8> on input line 16.
+LaTeX Font Info:    External font `cmex10' loaded for size^^J(Font)            
+  <6> on input line 16.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 16.
+ (/usr/local/lib/texmf/tex/latex2e/base/Ulasy.fd
+File: Ulasy.fd 1995/03/18 v2.2aLaTeX symbol font definitions
+) [0
+
+
+]
+Chapter 1.
+(example.tex
+[ss2ss]
+LaTeX Font Info:    External font `cmex10' loaded for size^^J(Font)            
+  <7> on input line 64.
+LaTeX Font Info:    External font `cmex10' loaded for size^^J(Font)            
+  <5> on input line 64.
+[1
+
+]
+^^JLaTeX Warning: Reference `projsl' on page 2 undefined on input line 193.^^J
+^^JLaTeX Warning: Reference `feedback' on page 2 undefined on input line 193.^^
+J
+) (Docu.ind [2] [3
+
+
+]) (Docu.aux)
+^^JLaTeX Warning: There were undefined references.^^J
+ ) 
+Here is how much of TeX's memory you used:
+ 517 strings out of 10726
+ 5294 string characters out of 71843
+ 51803 words of memory out of 262141
+ 3529 multiletter control sequences out of 9500
+ 19817 words of font info for 72 fonts, out of 100000 for 255
+ 15 hyphenation exceptions out of 607
+ 23i,8n,19p,1574b,250s stack positions out of 300i,100n,60p,3000b,4000s
+
+Output written on Docu.dvi (4 pages, 5108 bytes).

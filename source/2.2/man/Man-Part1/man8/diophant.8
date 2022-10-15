@@ -1,0 +1,38 @@
+.TH diophant 8 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+diophant - diophantine (Bezout) equation
+.SH CALLING SEQUENCE
+.nf
+[x,err]=diophant(p1p2,b)
+.fi
+.SH PARAMETERS
+.TP 10
+p1p2
+: polynomial vector \fVp1p2 = [p1 p2]\fR
+.TP
+b
+: polynomial
+.TP
+x
+: polynomial vector [x1;x2]
+.SH DESCRIPTION
+\fV diophant\fR solves the bezout equation:
+.LP
+\fVp1*x1+p2*x2=b\fR with  \fVp1p2\fR a polynomial vector.
+If the equation is not solvable 
+.IG
+.nf
+err=||p1*x1+p2*x2-b||/||b||
+.fi
+.FI
+.LA $ err= ||p1 x1+p2 x2-b||/||b||$
+else \fVerr=0\fR
+.SH EXAMPLE 
+.nf
+s=poly(0,'s');p1=(s+3)^2;p2=(1+s);
+x1=s;x2=(2+s);
+[x,err]=diophant([p1,p2],p1*x1+p2*x2);
+p1*x1+p2*x2-p1*x(1)-p2*x(2)
+.fi
+

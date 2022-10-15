@@ -1,0 +1,18 @@
+.TH winsid 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+winsid - return the list of graphic windows id
+.SH CALLING SEQUENCE
+.nf
+[x]=winsid()
+.fi
+.SH PARAMETERS 
+.TP 15
+x
+: a row vector 
+.SH DESCRIPTION
+This function is used to get the list of graphic windows id.
+
+
+
+

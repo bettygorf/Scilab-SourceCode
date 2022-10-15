@@ -1,0 +1,30 @@
+.TH DLSS_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+DLSS_f - Scicos discrete-time linear state-space system
+.SH DESCRIPTION
+This block realizes a discrete-time linear state-space system.
+The system is defined by the (A,B,C,D) matrices and the initial
+state x0. The dimensions must be compatible. At the arrival of
+an input event on the unique input event port, the state is
+updated. 
+.SH DIALOGUE PARAMETERS
+.TP 20
+A
+: square matrix. The A matrix
+.TP
+B
+: the B matrix
+.TP
+C
+: the C matrix
+.TP
+x0
+: vector. The initial state of the system.
+.SH SEE ALSO
+DLR_f, INTEGRAL_f, CLSS_f, DLSS_f
+
+
+
+
+

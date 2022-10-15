@@ -1,0 +1,16 @@
+
+star(1)                        Scilab Function                        star(1)
+NAME
+  star (*) - multiplication operator
+
+DESCRIPTION
+  Multiplication. Usual meaning. Valid for constant, boolean, polynomial and
+  rational matrices.
+
+  Element-wise multiplication is denoted x.*y. If x or y is scalar (1x1
+  matrix)  .* is the same as *.
+
+  Kronecker product is x.*.y
+
+SEE ALSO
+  mulf

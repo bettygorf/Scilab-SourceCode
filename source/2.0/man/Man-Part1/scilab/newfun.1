@@ -1,0 +1,21 @@
+.TH newfun 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+newfun - add a name in the table of functions
+.SH CALLING SEQUENCE
+.nf
+newfun("function-name",nameptr)
+.fi
+.SH DESCRIPTION
+Utility function (for experts only). Adds the name \fV"function-name"\fR
+in the table
+of functions known to the interpreter. \fV"nameptr"\fR is an integer
+\fV100*fun+fin\fR where \fVfun\fR and \fVfin\fR is the internal coding of
+the primitive \fV"function-name"\fR.
+This function is useful to associate a primitive to a routine
+interfaced in \fV"matusr.f"\fR (\fVfun=14\fR).
+Used with \fVfunptr\fR and \fVclearfun\fR one can redefine a primitive
+by a function with same name.
+.SH SEE ALSO
+clearfun
+

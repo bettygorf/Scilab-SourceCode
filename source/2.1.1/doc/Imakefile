@@ -1,0 +1,15 @@
+/**/include ../Path.incl
+#include "../Imake.incl"
+
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS='$(CDEBUGFLAGS)' FDEBUGFLAGS='$(FDEBUGFLAGS)'
+
+SUBDIRS = intro signal lmitool
+
+AllTarget(info)
+
+info:
+
+NamedMakeSubdirs(doc,$(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS))

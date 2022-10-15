@@ -1,0 +1,29 @@
+.TH eval3d 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so man1/sci.an
+.SH NAME
+eval3d - values of a macro on a grid
+.SH CALLING SEQUENCE
+.nf
+[z]=eval3d(fun,x,[y])
+.fi
+.SH PARAMETERS
+.TP 15
+fun 
+: macro accepting vectors as arguments.
+.TP
+x,y
+: 2 vectors of size (1,n1) and (1,n2). (default value for \fVy\fR : \fVy=x\fR).
+.TP
+z
+: matrix of size (n1,n2).
+.SH DESCRIPTION
+this function returns a matrix \fVz(n1,n2)\fR. \fVz(i,j)=fun(x(i),y(j))\fR. 
+If the macro \fVfun\fR doesn't accept arguments of type vector use the
+primitive \fVfeval\fR.
+.SH SEE ALSO
+feval
+.SH AUTHOR
+Steer S.
+
+
+

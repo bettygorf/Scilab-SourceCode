@@ -1,0 +1,26 @@
+.TH minqflow 1 "April 1993" "Metanet Group" "Metanet Function"
+.so man1/sci.an
+.SH NAME 
+minqflow -  minimal quadratic cost flow
+.SH CALLING SEQUENCE
+.nf
+[phi] = minqflow(eps,[g])
+.fi
+.SH PARAMETERS
+.TP 4
+eps
+: real, precision of the approximation of the derivative of the cost function
+.TP
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP
+phi
+: real, array of the flows on the arcs
+.SH DESCRIPTION
+\fVminqflow\fR returns the minimum quadratic cost flow
+for the directed graph \fVg\fR.
+\fVphi\fR is the array of the flows on the arcs.
+The derivative of the cost function is approximated with the precision 
+\fVeps\fR.
+.SH SEE ALSO
+mincfr, mincf0, minicf

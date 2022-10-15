@@ -1,0 +1,8 @@
+.TH Example 1 "January 1998" "Scilab// Group" "Scilab description"
+.so ../sci.an
+.SH NAME
+Example - just to test the environment
+.SH DESCRIPTION
+
+We are the knights who say ni!
+

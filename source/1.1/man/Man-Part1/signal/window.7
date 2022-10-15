@@ -1,0 +1,30 @@
+.TH window 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+window - symmetric window
+.SH CALLING SEQUENCE
+.nf
+[win_l,cwp]=window(wtype,n,par)
+.fi
+.SH PARAMETERS
+.TP 10
+wtype
+: window type (\fVre,tr,hn,hm,kr,ch\fR)
+.TP
+n
+: window length
+.TP
+par
+: parameter 2-vector (kaiser window: \fVpar(1)=beta>0\fR)
+(Chebychev window \fVpar =[dp,df])\fR, \fVdp\fR =main lobe 
+width (\fV0<dp<.5\fR), \fVdf\fR=side lobe height (\fVdf>0\fR)
+.TP
+win
+: window
+.TP
+cwp
+: unspecified Chebyshev window parameter
+.SH DESCRIPTION
+macro which calculates symmetric window
+.SH AUTHOR
+C. B.

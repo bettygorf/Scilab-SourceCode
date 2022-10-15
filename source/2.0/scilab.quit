@@ -1,0 +1,8 @@
+// This file contains scilab command to be executed at the end 
+// of a scilab session
+
+if exists('TMPDIR') then
+  unix_s('rm -rf '+TMPDIR)
+  disp('Bye')
+end
+

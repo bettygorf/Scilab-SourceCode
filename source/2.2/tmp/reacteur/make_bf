@@ -1,0 +1,7 @@
+// Definition en compilation du reacteur en boucle fermee.
+// Le bouclage est de la forme u = ay + (1-a)v
+deff( "[xd,%a]=RCp(t,x,v)", "xd=RC(t, x, %a*x(2) + (1-%a)*v ); %a;" );
+comp(RCp);
+
+
+

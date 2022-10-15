@@ -1,0 +1,20 @@
+.TH quote 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+quote (') - transposition operator, string delimiter
+.SH DESCRIPTION
+quote (\fV'\fR)is used for (Conjugate) Transpose of matrix.
+.LP
+quote (\fV.'\fR)is used for (non Conjugate) Transpose of matrix.
+.LP
+Simple (') or double (") quotes are also used to define character strings.
+(Character strings are defined between two quotes). A Quote within a
+character string is noted by a double quote.
+
+.SH EXAMPLES
+[1+%i, 2]'
+[1+%i, 2].'
+x='This is a character string'
+'He as said:''Good'''
+
+

@@ -1,0 +1,17 @@
+
+xbasr(2)                       Scilab Function                       xbasr(2)
+NAME
+  xbasr - redraw a graphic window
+
+CALLING SEQUENCE
+  xbasr(win_num)
+
+DESCRIPTION
+  This function is used to redraw the content of the graphic window of id
+  win_num. It works only with the driver "Rec".
+
+SEE ALSO
+  xtape, driver
+
+AUTHOR
+  J.Ph.C.

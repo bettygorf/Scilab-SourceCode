@@ -1,0 +1,30 @@
+.TH kpure 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+kpure - continuous SISO system limit feedback gain
+.SH CALLING SEQUENCE
+.nf
+g=kpure(sys)
+.fi
+.SH PARAMETERS
+.TP 
+sys
+: SISO linear system (syslin)
+.TP 
+g 
+: constant
+.SH DESCRIPTION
+\fVkpure(sys)\fR computes the gains \fVg\fR such that the system
+\fVsys\fV fedback by g (\fVsys/.g) \fVhas  poles on imaginary axis.
+.SH EXAMPLE
+.nf
+s=poly(0,'s');
+h=syslin('c',(s-1)/(1+5*s+s^2+s^3))
+xbasc();evans(h)
+g=kpure(h)
+hf=h/.g(1)
+roots(denom(hf))
+.fi
+.SH SEE ALSO
+evans, krac2
+

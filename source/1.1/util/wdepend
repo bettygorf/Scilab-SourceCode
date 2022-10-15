@@ -1,0 +1,10 @@
+#!/bin/csh 
+echo -n "whatis :" >>! Makefile 
+foreach f (man*/*) 
+   echo -n $f " " >> Makefile
+end
+echo " " >> Makefile 
+
+
+
+

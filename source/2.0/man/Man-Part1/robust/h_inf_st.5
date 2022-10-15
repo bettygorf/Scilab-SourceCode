@@ -1,0 +1,29 @@
+.TH h_inf_st 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+H_inf_st - static H_infinity problem 
+.SH CALLING SEQUENCE
+.nf
+[Kopt,gamaopt]=h_inf_stat(D,r)
+.fi
+.SH PARAMETERS
+.TP
+D
+: real matrix
+.TP
+r 
+: 1x2 vector
+.TP
+Kopt
+: matrix
+.SH DESCRIPTION
+computes a matrix \fVKopt\fR such that largest singular value of:
+.LP
+\fVlft(D,r,K)=D11+D12* K*inv(I-D22*K)* D21\fR
+is minimal (Static H-infinity four blocks problem).
+.LP
+D is partionned as \fVD=[D11 D12; D21 D22]\fR
+where \fVsize(D22)=r=[r1 r2]\fR
+.SH AUTHOR
+F.D. 
+

@@ -1,0 +1,83 @@
+//test of musolve
+mode(-1)
+M1 = [ ..
+   5.2829       5.7683      -2.4004       1.2205      -6.4148    
+   9.7769e-01   2.9786      -3.0408       5.0257e-01  -2.6504    
+   7.0819       9.6324      -3.5750       3.3016      -6.7030    
+  -1.6261      -2.9763       1.6870      -1.0603       1.2211    
+   2.3056       4.3712      -2.4785       2.6152      -1.9832    ];
+
+M2 = [ ..
+  -1.1308      -1.7785       8.7974e-01  -7.5206e-01   1.2089    
+  -3.5255e-01  -5.7002e-01   2.9305e-01  -2.5442e-01   3.7691e-01
+  -1.3724      -2.1501       1.0741      -9.1188e-01   1.4669   
+   3.5839e-01   5.5101e-01  -2.7290e-01   2.3565e-01  -3.7663e-01
+  -4.9015e-01  -7.8706e-01   4.0215e-01  -3.3617e-01   5.3261e-01];
+
+//                  1-  real case
+//*******************************************************
+M=M1
+// Let the structure be all scalar blocks
+K = [1 1 1 1 1]; 
+// Let the first, the third and the fifth blocks be real,
+// and let the rest of blocks be complex
+T = [1 2 1 2 1];
+[D,g,r] = musolve(M,K,T,[0,100]);
+if maxi(real(spec(M'*D*M+%i*(G*M-M'*G')-r*r*D)))>=0 then pause,end
+if r>16.35 then pause,end
+
+// Now, we compute it again with respect to all complex blocks
+T = [2 2 2 2 2];
+[D,g,r] = musolve(M,K,T,[0,100]);
+if maxi(real(spec(M'*D*M+%i*(G*M-M'*G')-r*r*D)))>=0 then pause,end
+if r>16.35 then pause,end
+
+
+T = 3*[1 1 1 1 1];
+[D,g,r] = musolve(M,K,T,[0,100]);
+if maxi(real(spec(M'*D*M+%i*(G*M-M'*G')-r*r*D)))>=0 then pause,end
+if r>16.35 then pause,end
+//
+K = [2 3];
+T = [1 1];
+[D,g,r] = musolve(M,K,T,[0,100]);
+if maxi(real(spec(M'*D*M+%i*(G*M-M'*G')-r*r*D)))>=0 then pause,end
+if r>16.35 then pause,end
+
+T = [2 3];
+[D,g,r] = musolve(M,K,T,[0,100]);
+if maxi(real(spec(M'*D*M+%i*(G*M-M'*G')-r*r*D)))>=0 then pause,end
+if r>17.3 then pause,end
+
+
+//                     2- complex  Case
+//****************************************************************
+M = M1 + %i*M2;
+K = [1 1 1 1 1];  
+T = [1 2 1 2 1];
+[D,g,r] = musolve(M,K,T,[0,100]);
+if maxi(real(spec(M'*D*M+%i*(G*M-M'*G')-r*r*D)))>=0 then pause,end
+if r>15.5 then pause,end
+
+
+T = [2 2 2 2 2];
+[D,g,r] = musolve(M,K,T,[0,100]);
+if maxi(real(spec(M'*D*M+%i*(G*M-M'*G')-r*r*D)))>=0 then pause,end
+if r>16.75 then pause,end
+
+
+T = [1 1 1 1 1];
+[D,g,r] = musolve(M,K,T,[0,100]);
+if maxi(real(spec(M'*D*M+%i*(G*M-M'*G')-r*r*D)))>=0 then pause,end
+if r>10.34 then pause,end
+K = [2 3];
+T = [1 1];
+[D,g,r] = musolve(M,K,T,[0,100]);
+if maxi(real(spec(M'*D*M+%i*(G*M-M'*G')-r*r*D)))>=0 then pause,end
+if r>2.66 then pause,end
+
+T = [2 3];
+[D,g,r] = musolve(M,K,T,[0,100]);
+if maxi(real(spec(M'*D*M+%i*(G*M-M'*G')-r*r*D)))>=0 then pause,end
+if r>17.8 then pause,end
+

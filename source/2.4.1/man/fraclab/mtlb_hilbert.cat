@@ -1,0 +1,38 @@
+
+mtlb_hilbert(2)                Scilab Function                mtlb_hilbert(2)
+NAME
+  mtlb_hilbert - Hilbert transform of a signal
+
+  Author: Paulo Goncalves
+
+  Hilbert transform of a signal. mtlb_hilbert(x) is the Hilbert transform of
+  the real part of vector X.  The real part of the result is the original
+  real data; the imaginary part is the actual Hilbert transform.
+
+Usage
+
+  y = mtlb_hilbert(x) ;
+Input parameters
+       o x : Real or complex valued vector [1,N]
+Output parameters
+       o y : Complex valued vector [1,N] Analytic signal corresponding to the
+         real part of the input x.
+See also:
+  fft
+
+Example:
+   Matrix synthesis:
+
+  t = linspace( -1,1,128 ) ;
+  X = cos( 2*%pi*t*16 ) ;
+  SpectX = abs( fft( X , -1 ) ) ;
+  SpectX = fftshift( SpectX ) ;
+
+   Hilbert Transform
+
+  AnalyticX = mtlb_hilbert(X) ;
+  SpectAnalyticX = abs( fft( AnalyticX , -1 ) ) ;
+  SpectAnalyticX = fftshift( SpectAnalyticX ) ;
+  Freq = linspace( -0.5,0.5,128 ) ;
+  xsetech([0 0 0.5 1]) ; plot2d( Freq,SpectX ) ;
+  xsetech([0.5 0 0.5 1]) ; plot2d( Freq,SpectAnalyticX )

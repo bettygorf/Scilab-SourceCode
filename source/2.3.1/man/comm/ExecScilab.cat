@@ -1,0 +1,22 @@
+
+ExecScilab(1)                  Scilab function                  ExecScilab(1)
+NAME
+  ExecScilab - executes another local Scilab
+
+CALLING SEQUENCE
+  ExecScilab(appli)
+
+PARAMETERS
+
+  appli : string, name of new Scilab
+
+DESCRIPTION
+  ExecScilab executes a new Scilab application on the same host.
+
+  After executing ExecScilab, it is necessary to create links with CreateLink
+  to be able to send messages to new Scilab.
+
+  Use ExecAppli to execute a new Scilab application on a remote host.
+
+SEE ALSO
+  CreateLink, ExecAppli, ExeclScilab

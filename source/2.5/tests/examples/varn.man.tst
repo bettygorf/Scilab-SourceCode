@@ -1,0 +1,2 @@
+clear;lines(0);
+s=poly(0,'s');p=[s^2+1,s];

@@ -1,0 +1,39 @@
+.TH xtape 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xtape - set up the record process of graphics
+.SH CALLING SEQUENCE
+.nf
+xtape(str,[num,rect])
+.fi
+.SH PARAMETERS
+.TP 6
+str 
+: string, "on", "clear", "replay" or "replaysc".
+.TP
+num
+: integer.
+.TP
+rect
+: row vector of size 4.
+.SH DESCRIPTION
+\fVxtape\fR is used to set up the record process of graphics:
+
+xtape("on") 
+just selects the driver "Rec" which records all the 
+graphics operations.
+
+xtape("clear",num) 
+clears the graphics window \fVnum\fR and clears the recorded 
+graphics associated with window \fVnum\fR.
+
+xtape("replay",num) 
+redisplays all the recorded
+graphics in the window \fVnum\fR.
+
+xtape("replaysc",num,rect) replots the graphics window \fVnum\fR
+using \fVrect=[xmin,ymin,xmax,ymax]\fR as x and y bounds.
+.SH SEE ALSO
+driver, replot, xbasc, xbasr
+.SH AUTHOR
+J.Ph.C.

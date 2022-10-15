@@ -1,0 +1,31 @@
+
+lyap(G)                        Scilab Function                        lyap(G)
+NAME
+  lyap  - Lyapunov equation
+
+CALLING SEQUENCE
+  [X]=lyap(A,C,'c')
+  [X]=lyap(A,C,'d')
+
+PARAMETERS
+
+  A, C      : real square matrices, C must be symmetric
+
+DESCRIPTION
+  X = lyap(A,C,flag) solves the continuous time or discrete time  matrix
+  Lyapunov matrix equation:
+  A'*X + X*A = C       ( flag='c' )
+  A'*X*A - X = C       ( flag='d' )
+  Note that a unique solution exist if and only if an eigenvalue of A is
+  not an eigenvalue of -A (flag='c')  or 1 over an eigenvalue of A
+  (flag='d').
+
+EXAMPLE
+  A=rand(4,4);C=rand(A);C=C+C';
+  X=lyap(A,C,'c');
+  A'*X + X*A -C
+  X=lyap(A,C,'d');
+  A'*X*A - X -C
+
+SEE ALSO
+  sylv, ctr_gram, obs_gram

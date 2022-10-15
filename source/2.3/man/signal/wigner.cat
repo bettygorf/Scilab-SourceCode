@@ -1,0 +1,22 @@
+
+wigner(1)                      Scilab Function                      wigner(1)
+NAME
+  wigner - 'time-frequency' wigner spectrum
+
+CALLING SEQUENCE
+  [tab]=wigner(x,h,deltat,zp)
+
+PARAMETERS
+
+  tab       : wigner spectrum (lines correspond to the time variable)
+
+  x         : analyzed signal
+
+  h         : data window
+
+  deltat    : analysis time increment (in samples)
+
+  zp        : length of FFT's. %pi/zp gives the frequency increment.
+
+DESCRIPTION
+  function which computes the 'time-frequency' wigner spectrum of a signal.

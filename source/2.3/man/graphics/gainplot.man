@@ -1,0 +1,45 @@
+.TH gainplot 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+gainplot - magnitude plot
+.SH CALLING SEQUENCE
+.nf
+gainplot(sl,fmin,fmax [,step] [,comments] )
+gainplot(frq,db,phi [,comments])
+gainplot(frq, repf  [,comments])
+.fi
+.SH PARAMETERS 
+.TP 10
+sl       
+: list (\fVsyslin\fR SIMO linear system).
+.TP
+fmin,fmax
+: real scalars (frequency interval).
+.TP
+step      
+: real (discretization step (logarithmic scale))
+.TP
+comments 
+: string 
+.TP
+frq      
+: matrix (row by row frequencies)
+.TP
+db,phi       
+: matrices (magnitudes and phases corresponding to \fVfrq\fR)
+.TP
+repf     
+: complex matrix. One row for each frequency response.
+.SH DESCRIPTION
+Same as Bode but plots only the magnitude.
+.SH EXAMPLE
+.nf
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+gainplot(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
+xbasc()
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+gainplot([h1;h],0.01,100,['h1';'h'])
+.fi
+.SH SEE ALSO
+bode, black, nyquist, freq, repfreq, g_margin, p_margin

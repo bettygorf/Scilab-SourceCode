@@ -1,0 +1,24 @@
+.TH unix_s 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+unix_s - shell (sh) command execution, no output
+.SH CALLING SEQUENCE
+.nf
+unix_s(cmd)
+.fi
+.SH PARAMETERS
+.TP 10
+cmd 
+: a character string
+.SH DESCRIPTION
+Sends a string \fVcmd\fR to Unix for execution by the sh shell. The standard 
+output is redirected  to /dev/null.
+Unix execution errors are trapped; *NOTE* that only the last shell command
+error is reported when a list of command separated by ";" is sent: this is
+not recommended.
+.SH EXAMPLE
+.nf
+unix_s("rm foo");
+.fi
+.SH SEE ALSO
+edit, manedit, unix_g, unix_w, unix_x, unix

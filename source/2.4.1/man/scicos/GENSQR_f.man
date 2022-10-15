@@ -1,0 +1,20 @@
+.TH GENSQR_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+GENSQR_f - Scicos square wave generator
+.SH DESCRIPTION
+This block is a square wave generator: output takes values
+\fV-M\fR and \fVM\fR. Every time an event is received on the input event port,
+the output switches from \fV-M\fR to \fVM\fR, or \fVM to \fV-M\fR.
+.SH DIALOGUE PARAMETERS
+.TP
+Amplitude
+: a scalar \fVM\fR.
+.SH SEE ALSO
+GENSIN_f, SAWTOOTH_f, RAND_f
+
+
+
+
+
+

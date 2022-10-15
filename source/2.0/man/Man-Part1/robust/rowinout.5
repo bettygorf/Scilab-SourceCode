@@ -1,0 +1,56 @@
+.TH rowinout 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+rowinout - inner-outer factorization
+.SH CALLING SEQUENCE
+.nf
+[Inn,X,Gbar]=rowinout(G)
+.fi
+.SH PARAMETERS
+.TP 6
+G  
+: linear system (\fVsyslin\fR list) \fV[A,B,C,D]\fR
+.TP 
+Inn
+:  inner factor (\fVsyslin\fR list)
+.TP 
+Gbar
+:  outer factor (\fVsyslin\fR list)
+.TP 
+X   
+:  row-compressor of \fVG\fR (\fVsyslin\fR list)
+.SH DESCRIPTION
+Inner-outer factorization (and row compression) of (\fVl\fRx\fVp\fR) \fVG =[A,B,C,D]\fR with \fVl>=p\fR.
+.LP
+\fVG\fR is assumed to be tall (\fVl>=p\fR) without zero on the imaginary axis
+and with a \fVD\fR matrix which is full column rank.
+.LP
+\fVG\fR must also be stable for having \fRGbar\fR stable.
+.LP
+\fVG\fR admits the following inner-outer factorization:
+.nf
+         G = [ Inn ] | Gbar |
+                     |  0   |
+.fi
+where \fVInn\fR is square and inner (all pass and stable) and \fVGbar\fR 
+square and outer i.e:
+Gbar is square bi-proper and bi-stable (Gbar inverse is also proper 
+and stable);
+.LP
+Note that:
+.nf
+         [ Gbar ]
+   X*G = [  -   ]
+         [  0   ]
+.fi
+is a row compression of \fVG\fR where \fVX\fR = \fVInn\fR inverse is all-pass i.e:
+.nf
+ T
+X (-s) X(s) = Identity
+.fi
+(for the continous time case).
+.SH SEE ALSO
+syslin, colinout
+
+
+

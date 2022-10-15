@@ -1,0 +1,19 @@
+
+pol2str(1)                     Scilab Function                     pol2str(1)
+NAME
+  pol2str - polynomial to string conversion
+
+CALLING SEQUENCE
+  [str]=pol2str(p)
+
+PARAMETERS
+
+  p    : real polynomial
+
+  str  : character string
+
+DESCRIPTION
+  converts polynomial to character string (utility function).
+
+SEE ALSO
+  string, pol2tex

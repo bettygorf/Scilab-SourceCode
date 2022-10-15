@@ -1,0 +1,51 @@
+ 
+clear;lines(0);
+ 
+x=list(1,2,3);
+ 
+x(4)=10;
+ 
+x(10)='a'
+ x  =
+ 
+ 
+       x(1)
+ 
+    1.  
+ 
+       x(2)
+ 
+    2.  
+ 
+       x(3)
+ 
+    3.  
+ 
+       x(4)
+ 
+    10.  
+ 
+       x(5)
+ 
+    Undefined
+ 
+       x(6)
+ 
+    Undefined
+ 
+       x(7)
+ 
+    Undefined
+ 
+       x(8)
+ 
+    Undefined
+ 
+       x(9)
+ 
+    Undefined
+ 
+       x(10)
+ 
+ a   
+ 

@@ -1,0 +1,28 @@
+.TH trans 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+trans - low-pass to other filter transform
+.SH CALLING SEQUENCE
+.nf
+hzt=trans(pd,zd,gd,tr_type,frq)
+.fi
+.SH PARAMETERS
+.TP
+hz
+: input polynomial
+.TP
+tr_type
+: type of transformation
+.TP
+frq
+: frequency values
+.TP
+hzt
+: output polynomial
+.SH DESCRIPTION
+function for transforming standardized low-pass filter into
+one of the following filters:
+low-pass, high-pass, band-pass, stop-band.
+.SH AUTHOR
+C. Bunks 
+

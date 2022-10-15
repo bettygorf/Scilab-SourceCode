@@ -1,0 +1,37 @@
+.TH testmatrix 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+testmatrix - generate some particular matrices
+.SH CALLING SEQUENCE
+.nf
+[y]=testmatrix(name,n)
+.fi
+.SH PARAMETERS
+.TP 10
+name
+: a character string
+.TP 10
+n
+: integers, matrix size
+.TP 10
+y
+: \fVn\fR x \fVm\fR matrix
+.SH DESCRIPTION
+Create some particular matrices
+.LP
+.TP 17
+testmatrix('magi',n)
+: returns a magic square of size \fVn\fR .
+.TP
+testmatrix('frk',n)
+: returns the Franck matrix :
+.TP
+testmatrix('hilb',n)
+: is the inverse of the nxn Hilbert matrix 
+\fV (Hij= 1/(i+j-1))\fR.
+.RE
+
+
+
+
+

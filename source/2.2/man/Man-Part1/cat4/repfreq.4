@@ -1,0 +1,66 @@
+
+
+
+repfreq(1)                     Scilab Function                     repfreq(1)
+
+
+
+
+
+
+NAME
+  repfreq - frequency response
+
+CALLING SEQUENCE
+  [frq,db,phi] =repfreq(sys,fmin,fmax [,step])
+  [frq,db,phi] =repfreq(sys,frq)
+  [ [frq,] repf]=repfreq(sys,fmin,fmax [,step])
+  [ [frq,] repf]=repfreq(sys,frq)
+
+PARAMETERS
+
+  sys  : syslin list : SIMO linear system
+
+  fmin,fmax      : two real numbers (frequency bounds)
+
+  frq            : vector of frequencies (Hz)
+
+  step           : logarithmic discretization step
+
+  db,phi         : vector of gains (db) and phases at frq
+
+  repf           : vector of the complex frequency response
+
+DESCRIPTION
+  repfreq returns the frequency response calculation of a linear system
+
+SEE ALSO
+  bode, freq, calfrq
+
+AUTHOR
+  S. S.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

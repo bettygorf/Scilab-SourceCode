@@ -1,0 +1,31 @@
+
+dcf(1)                         Scilab Function                         dcf(1)
+NAME
+  dcf - double coprime factorization
+
+CALLING SEQUENCE
+  [N,M,X,Y,NT,MT,XT,YT]=dcf(G,[polf,polc,[tol]])
+
+PARAMETERS
+
+  G           : syslin list (continuous-time linear system)
+
+  polf, polc  : respectively the poles of XT and YT and the poles of N and M
+              (default values =-1).
+
+  tol         : real threshold for detecting stable poles (default value
+              100*%eps).
+
+  N,M,XT,YT,NT,MT,X,Y
+              : linear systems represented by syslin lists
+DESCRIPTION
+  returns eight stable systems (N,M,X,Y,NT,MT,XT,YT) for the doubly coprime
+  factorization
+
+                   !XT  -YT! ! M  Y !
+                   !       !*!      ! = eye
+                   !-NT  MT! ! N  X !
+  G must be stabilizable and detectable.
+
+SEE ALSO
+  copfac

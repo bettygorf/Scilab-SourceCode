@@ -1,0 +1,26 @@
+.TH minss 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+minss - minimal realization
+.SH CALLING SEQUENCE
+.nf
+[slc]=minss( sl [,tol])
+.fi
+.SH PARAMETERS
+.TP 10
+sl,slc      
+: \fVsyslin\fR lists (linear systems in state-space form)
+.TP
+tol
+: real (threshold for rank determination (see \fVcontr\fR))
+.SH DESCRIPTION
+\fVminss\fR returns in \fVslc\fR the minimal realization of \fVsl\fR.
+.SH EXAMPLE
+.nf
+sl=syslin('c',[1 0;0 2],[1;0],[2 1]);
+ssprint(sl);
+ssprint(minss(sl))
+.fi
+.SH SEE ALSO 
+contr, minreal, arhnk, contrss, obsvss
+

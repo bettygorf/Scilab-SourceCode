@@ -1,0 +1,18 @@
+
+getcurblock(5)                 Scicos function                 getcurblock(5)
+NAME
+  getcurblock - get Scicos current block number while running
+
+CALLING SEQUENCE
+  blk=getcurblock()
+
+PARAMETERS
+
+  blk  : the index of the Scicos block which has called getcurblock
+
+DESCRIPTION
+  This function may be used in a Scilab block to get index of this block
+   while running. It may be used with getscicosvars or setscicosvars.
+
+SEE ALSO
+  getscicosvars, setscicosvars, scicosim

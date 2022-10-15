@@ -1,0 +1,86 @@
+
+systems(1)                     Scilab Function                     systems(1)
+NAME
+  systems  - a collection of dynamical system
+
+CALLING SEQUENCE
+  []=systems()
+
+DESCRIPTION
+  A call to this function will load into Scilab a set of macros which
+  describes dynamical systems. Their parameters can be initiated by calling
+  the routine tdinit().
+
+BIOREACT
+  [ydot]=biorecat(t,x)
+  a bioreactor model,
+
+  x(1) is the biomass concentration
+
+  x(2) is the sugar concentration
+                           xdot(1)=mu_td(x(2))*x(1)- debit*x(1);
+                           xdot(2)=-k*mu_td(x(2))*x(1)-debit*x(2)+debit*x2in;
+       where mu_td is given by
+                           mu_td(x)=x/(1+x);
+
+COMPET
+  [xdot]=compet(t,x [,u])
+  a competition model. x(1),x(2) stands for two populations which grows on a
+  same resource. 1/u is the level of that resource ( 1 is the default value).
+  xdot=0*ones(2,1);
+  xdot(1) = ppr*x(1)*(1-x(1)/ppk) - u*ppa*x(1)*x(2) ,
+  xdot(2) = pps*x(2)*(1-x(2)/ppl) - u*ppb*x(1)*x(2) ,
+
+  TThhee mmaaccrroo [[xxee]]==eeqquuiillccoomm((uuee))
+       computes an equilibrium point of the competition model and a fixed
+       level of the resource ue ( default value is 1)
+
+  TThhee mmaaccrroo [[ff,,gg,,hh,,lliinnssyy]]==lliinnccoommpp(([[uuee]]))
+       gives the linearisation of the competition model ( with output y=x)
+       around the equilibrium point xe=equilcom(ue).  This macro returns
+       [f,g,h] the three matrices of the linearised system.  and linsy which
+       is a Scilab macro [ydot]=linsy(t,x) which computes the dynamics of the
+       linearised system
+
+CYCLlIM
+  [xdot]=cycllim(t,x)
+  a model with a limit cycle
+    xdot=a*x+qeps(1-||x||**2)x
+LINEAR
+  [xdot]=linear(t,x)
+  a linear system
+
+BLINPER
+  [xdot]=linper(t,x)
+  a linear system with quadratic perturbations.
+
+POP
+  [xdot]=pop(t,x)
+  a fish population model
+  xdot= 10*x*(1-x/K)- peche(t)*x
+
+PROIE
+  a Predator prey model with external insecticide.
+  [xdot]=p_p(t,x,[u]
+
+  x(1) The prey ( that we want to kill )
+
+  x(2) the predator ( that we want to preserve )
+
+  u    mortality rate due to insecticide which destroys both prey and preda-
+       tor ( default value u=0)
+       xdot(1) = ppr*x(1)*(1-x(1)/ppk) - ppa*x(1)*x(2) - u*x(1);
+       xdot(2) = -ppm*x(2)             + ppb*x(1)*x(2) - u*x(2);
+
+       The macro [xe]=equilpp([ue]) computes the equilibrium point of the p_p
+       system for the value ue of the command. The default value for ue is 0.
+                           xe(1) =  (ppm+ue)/ppb;
+                           xe(2) =  (ppr*(1-xe(1)/ppk)-ue)/ppa;
+
+LINCOM
+  [xdot]=lincom(t,x,k)
+  linear system with a feedback
+          xdot= a*x +b*(-k*x)
+
+SEE ALSO
+  tdinit

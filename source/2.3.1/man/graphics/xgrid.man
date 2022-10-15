@@ -1,0 +1,28 @@
+.TH xgrid 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+xgrid - add a grid on a graphic
+.SH CALLING SEQUENCE
+.nf
+xgrid([style])
+.fi
+.SH PARAMETERS 
+.TP 10
+style
+: an integer 
+.SH DESCRIPTION
+Adds a grid on a 2D plot. \fVstyle\fR stands for the dash 
+style or color to use for the grid plotting. 
+.SH EXAMPLE
+.nf 
+plot2d()
+xgrid()
+.fi
+.SH SEE ALSO
+xset, plot2d
+.SH AUTHOR
+J.Ph.C..
+
+
+
+

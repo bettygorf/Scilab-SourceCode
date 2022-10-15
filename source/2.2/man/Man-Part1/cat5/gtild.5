@@ -1,0 +1,66 @@
+
+
+
+gtild(1)                       Scilab Function                       gtild(1)
+
+
+
+
+
+
+NAME
+  gtild - tilde operation
+
+CALLING SEQUENCE
+  [gt]=gtild(g)
+  [at,bt,ct,dt]=gtild(a,b,c,[d])
+
+PARAMETERS
+
+  g         : linear system (syslin list) or g=g(s) (rational or polynomial)
+
+  gt        : linear system (syslin list) (same as g)
+
+DESCRIPTION
+  gtild returns gtild(s) = g(-s)' (in transfer form or in state-space).
+
+  g is any matrix (constant, polynomial, transfer matrix, or state-space
+  representaion with possibly a polynomial D matrix).
+
+EXAMPLE
+  s=poly(0,'s');w=[1/s,s;2/(s+1),1];gtild(w)
+  ss2tf(gtild(tf2ss(w)))
+
+SEE ALSO
+  syslin, horner
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+.TH cumsum 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+cumsum - cumulative sum 
+.SH CALLING SEQUENCE
+.nf
+y=cumsum(x)
+y=cumsum(x,'r') or y=cumsum(x,1)
+y=cumsum(x,'c') or y=cumsum(x,2)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: vector or matrix (real or complex)
+.TP 10
+y
+: vector or matrix (real or complex)
+.SH DESCRIPTION
+For a vector or a matrix \fVx\fR, \fVy=cumsum(x)\fR (or, equivalently,
+\fVy=cumsum(x,'*')\fR) returns in \fVy\fR the cumulative sum of all the entries
+of \fVx\fR taken columnwise. 
+.LP
+\fVy=cumsum(x,'c')\fR (or, equivalently, \fVy=cumsum(x,2)\fR) returns in 
+\fVy\fR the cumulative sum of the columns of \fVx\fR: \fV y(i,:)=cumsum(x(i,:))\fR
+.LP
+\fVy=cumsum(x,'r')\fR (or, equivalently, \fVy=cumsum(x,1)\fR) returns
+in \fVy\fR the cumulative sum of the rows of \fVx\fR: \fV y(:,i)=cumsum(x(:,i))\fR
+.SH EXAMPLE
+.nf
+A=[1,2;3,4];
+cumsum(A)
+cumsum(A,'r')
+cumsum(A,'c')
+a=rand(3,4)+%i;
+[m,n]=size(a);
+w=zeros(a);
+w(1,:)=a(1,:);
+for k=2:m;w(k,:)=w(k-1,:)+a(k,:);end;w-cumsum(a,'r')
+.fi
+.SH SEE ALSO
+cumprod, sum
+

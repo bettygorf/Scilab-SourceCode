@@ -1,0 +1,20 @@
+
+netclose(1)                        Group"                         netclose(1)
+Scilab function                                               Scilab function
+NAME
+  netclose - closes a Metanet window
+
+CALLING SEQUENCE
+  netclose(window)
+
+PARAMETERS
+
+  window : integer, window number
+
+DESCRIPTION
+  Each Metanet window has a window number returned by the metanet and
+  show_graph functions. This function is used to close the Metanet window
+  with number window.
+
+SEE ALSO
+  metanet, netwindow, netwindows, show_graph

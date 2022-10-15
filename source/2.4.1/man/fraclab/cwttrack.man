@@ -1,0 +1,123 @@
+.TH "cwttrack" 2 " June 20th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+cwttrack -  Continuous L2 wavelet based Holder exponent estimation
+.sp
+Author: Paulo Goncalves
+.sp
+Estimates the local or global Holder exponent of a 1-D signal from its
+L2 continuous wavelet transform ( output of contwt(mir) ). In some
+cases, the global Holder exponent can also be refered to as the long range
+dependance parameter
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+[HofT] = cwttrack(wt,scale,whichT,FindMax,ChooseReg,radius,DeepScale,Show)
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : Real or complex matrix \f(CR[\fPN_scale,N\f(CR]\fP 
+Wavelet coefficients of a continuous wavelet transform (output of \fIcontwt\fP)
+
+.TP
+o 
+\fBscale\fP : real vector  \f(CR[\fP1,N_scale\f(CR]\fP
+Analyzed scale vector
+
+.TP
+o 
+\fBwhichT\fP :  Integer
+whichT, when non zero specifies the time position on the signal where to estimate the local Holder exponent. 
+When \fIwhichT\fP is zero, the global scaling exponent (or LRD exponent) is estimated.
+
+.TP
+o 
+\fBFindMax\fP : 0/1 flag. 
+\fIFindMax\fP = 0 : estimates the Holder exponents (local or global) from all coefficients of the wavelet transform 
+\fIFindMax\fP = 1 : estimates the Holder exponents (local or global)
+from the local Maxima coefficients of the wavelet transform 
+Default value is FindMax = 1
+
+.TP
+o 
+\fBChooseReg\fP : 0/1 flag or integer vector \f(CR[\fP1,N_reg\f(CR]\fP, 
+(\fIN_reg\fP <= \fIN_scale\fP)
+\fIChooseReg\fP = 0 : full scale range regression 
+\fIChooseReg\fP = 1 : scale range is choosed by the user, clicking with the mouse on a regression graph. 
+\fIChooseReg\fP = \f(CR[\fPn1 ... nN_reg\f(CR]\fP : imposes the scale indices for the linear
+regression of the wavelet coefficients \fIversus\fP scale in a \fIlog-log\fP plot 
+Default value is \fI ChooseReg \fP = 0
+
+.TP
+o 
+\fBradius\fP : Positive integer. 
+The local maxima line search is restricted to some neighbourhood of the analyzed point. Basically, this region is defined by the cone of influence of the wavelet. \fI radius \fP allows to modulate the width of the cone. 
+Default value is \fI cone \fP = 8 .
+
+.TP
+o 
+\fBDeepScale\fP : strictly positive integer. 
+DeepScale tells the maxima line procedure how depth in scale to scan from step to step. 
+Default value is \fI DeepScale \fP = 1 
+
+.TP
+o 
+\fBShow\fP 0/1 flag. 
+\fI Show \fP = 1 : display the maxima line trajectory and the \fI log-log \fP regression graph 
+\fI Show \fP = 0 : no display
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBHofT\fP : Real scalar.
+Local or global Holder exponent estimated
+.RE
+
+.SH Algorithm details
+The maxima line search follows the two steps:
+
+
+.RS
+
+.TP
+o 
+ all local maxima are found using a standard  gradient technique
+
+.TP
+o 
+ local maxima are connected along scales by finding the minimum
+Lobatchevsky distance between two consecutive maxima lying beneath the
+cone of influence.
+.RE
+
+.SH See also:
+cwttrack_all, contwtspec, contwt, dwtspec
+.SH Example:
+.sp
+.ft CR
+.nf
+N = 1024 ; 
+[x] = GeneWei(N,[ones(1,N/2)*0.2 ones(1,N/2)*0.8],2,1,1) ;
+[wt,scale] = contwtmir(x,2^(-8),2^(-1),64,8*i) ;
+HofT_1 = cwttrack(wt,scale,N/4,1,1) 
+HofT_2 = cwttrack(wt,scale,3*N/4,1,1)
+.fi 
+.ec
+.ft P
+.sp

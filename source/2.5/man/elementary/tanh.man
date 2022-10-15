@@ -1,0 +1,20 @@
+.TH tanh 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+tanh - hyperbolic tangent
+.SH CALLING SEQUENCE
+.nf
+t=tanh(x) 
+.fi
+.SH DESCRIPTION
+the elements of \fVt\fR are the hyperbolic 
+tangents  of the elements of \fVx\fR
+.SH EXAMPLE
+.nf
+x=[1,%i,-1,-%i]
+tanh(x)
+sinh(x)./cosh(x)
+.fi
+.SH SEE ALSO
+atanh, tan, tanhm
+

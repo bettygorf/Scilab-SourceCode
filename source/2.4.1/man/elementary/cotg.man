@@ -1,0 +1,25 @@
+.TH cotg 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+cotg - cotangent
+.SH CALLING SEQUENCE
+.nf
+[t]=cotg(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x,t
+: real or complex vectors/matrices
+.SH DESCRIPTION
+The  elements  of  \fVt\fR are  the  cotangents
+of  the corresponding entries of \fVx\fR.
+\fVt=cos(x)./sin(x)\fR
+.SH EXAMPLE
+.nf
+x=[1,%i];
+cotg(x)-cos(x)./sin(x)
+.fi
+.SH SEE ALSO
+tan
+
+

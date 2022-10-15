@@ -1,0 +1,21 @@
+.TH odeoptions G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+odeoptions - sets options for odepack solvers
+.SH CALLING SEQUENCE
+.nf
+odeoptions()
+.fi
+.SH DESCRIPTION
+This functions interactively displays a command which
+should be executed to set various options of ode solvers.
+A global variable \fV%ODEOPTIONS\fR sets the options.
+Caution: the \fVode\fR function checks if this variable
+exists and in that case uses it. For using default
+values you should clear this variable. Note that \fVodeoptions\fR
+does not create this variable. To create it you must execute
+with the mouse the command line displayed by \fVodeoptions\fR.
+.SH SEE ALSO
+ode
+.SH REFERENCE
+documentation in source code of lsode, lsoda.

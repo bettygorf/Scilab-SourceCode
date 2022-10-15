@@ -1,0 +1,14 @@
+#include "../Imake.incl"
+
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS=$(CDEBUGFLAGS) FDEBUGFLAGS=$(FDEBUGFLAGS)
+
+SUBDIRS = intro signal
+
+AllTarget(info)
+
+info:
+
+NamedMakeSubdirs(doc,$(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS))

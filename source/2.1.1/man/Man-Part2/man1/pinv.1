@@ -1,0 +1,28 @@
+.TH pinv G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+pinv - pseudoinverse
+.SH CALLING SEQUENCE
+.nf
+pinv(A,[tol])
+.fi
+.SH PARAMETERS
+.TP
+A 
+: real or complex matrix
+.TP
+tol
+: real number
+.SH DESCRIPTION
+.Vb X = pinv(A) 
+produces a matrix \fVX\fR of the same  dimensions as \fVA'\fR such that:
+.LP
+\fVA*X*A = A, X*A*X = X\fR  and both
+\fVA*X\fR and \fVX*A\fR are Hermitian .
+.LP
+The computation is  based  on SVD and  any  singular values 
+lower than a tolerance are treated   as zero: this  tolerance 
+is accessed by \fVX=pinv(A,tol)\fR.
+.SH SEE ALSO
+rank, svd, qr
+

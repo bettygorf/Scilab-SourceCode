@@ -1,0 +1,15 @@
+
+SAWTOOTH_f(5)                   Scicos Block                    SAWTOOTH_f(5)
+NAME
+  SAWTOOTH_f - Scicos sawtooth wave generator
+
+DESCRIPTION
+  This block is a sawtooth wave generator: output is (t-t_i) from ti to
+  t_(i+1) where t_i and t_(i+1) denote the times of two successive input
+  events.
+
+DIALOGUE PARAMETERS
+  None.
+
+SEE ALSO
+  GENSIN_f, GENSQR_f, RAND_f

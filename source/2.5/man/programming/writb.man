@@ -1,0 +1,25 @@
+.TH writb 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+writb - fortran file binary write
+.SH CALLING SEQUENCE
+.nf
+writb(file-name,a [,rec])
+.fi
+.SH PARAMETERS
+.TP 10
+file-name
+: string or integer 
+.TP
+rec
+: vector of positive integers. the selected records for direct access.
+This vector size must be equal to the number of rows of \fVa\fR
+.SH DESCRIPTION
+writes in binary format the matrix \fVa\fR in the file
+\fV'filename'\fR.. Matrix entries are  stored on 4 byte words
+.LP
+For direct record access, file must have been previously opened using
+\fVfile\fR function to set the record_length. \fVfile-name\fR must be
+the result of the \fVfile\fR function. 
+.SH SEE ALSO
+file, readb, write, mput, write4b

@@ -1,0 +1,30 @@
+.TH ^ 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+^,exp - exponentiation
+.SH CALLING SEQUENCE
+.nf
+A^b
+.fi
+.SH DESCRIPTION
+Exponentiation of matrices or vectors by a constant vector.
+.LP
+If \fVA\fR is a vector or a rectangular matrix the exponentiation is done
+element-wise, with the usual meaning.
+.LP
+For square \fVA\fR matrices the exponentiation is done in the matrix sense.
+.LP
+For boolean, polynomial and rational matrices, the exponent must be an integer
+.SH EXAMPLES
+.nf
+2^4
+[1 2;2 4]^(1+%i)
+s=poly(0,"s");
+[1 2 s]^4
+[s 1;1  s]^(-1)
+.fi
+.SH SEE ALSO
+exp, inv
+
+
+

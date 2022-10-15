@@ -1,0 +1,46 @@
+
+pvm_config(1)                  Scilab function                  pvm_config(1)
+NAME
+  pvm_config - sends a message
+
+CALLING SEQUENCE
+  res =  pvm_config()
+
+PARAMETERS
+
+  res, list of 7 elements such that:
+
+  rreess((11))::
+       integer returning the number of hosts (pvmds) in the virtual machine.
+
+  rreess((22))::
+       integer returning the number of different data formats being used.
+
+  rreess((33))::
+       integer returning pvmd task ID for host.
+
+  rreess((44))::
+       character string returning name of host.
+
+  rreess((55))::
+       character string returning architecture name of host
+
+  rreess((66))::
+       integer returning relative speed of host. Default value is 1000.
+
+  rreess((77))::
+       integer status code returned by the routine.
+DESCRIPTION
+  pvm_config returns information about the present virtual machine. The
+  information returned is similar to that available from the console command
+  conf.
+
+  The pvm_config function returns information about the entire virtual
+  machine in one call.
+
+  If pvm_config is successful, info will be 0.  If some error occurs then
+  info will be < 0.
+EXAMPLE
+  res = pvm_config()
+SEE ALSO
+  pvm_tasks

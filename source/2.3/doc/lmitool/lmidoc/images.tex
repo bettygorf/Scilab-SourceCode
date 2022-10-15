@@ -1,0 +1,495 @@
+\batchmode
+\documentclass{article}
+\makeatletter
+
+\usepackage{psfig}
+
+\textwidth=6.65in
+\textheight=9.5in 
+\oddsidemargin=-.08in
+\evensidemargin=0in
+\topmargin=-.6in
+\parskip.1cm
+
+
+\def\lmitool{{\tt LMITOOL}}
+
+\def\dsp{\displaystyle}
+
+\def\reals{{\bf R}}
+
+\def\BEQ{\begin{equation}}
+
+\def\EEQ{\end{equation}}
+
+\def\eg{{\em e.g.}}
+
+\def\ie{{\em i.e.}}
+
+\def\Tr{{\mathop{\bf Tr}}}
+
+\def\diag{{\mathop{\bf diag}}}
+
+\def\eqbydef{\mathrel{\stackrel{\Delta}{=}}}
+
+\makeatother
+\newenvironment{tex2html_wrap}{}{}
+\newwrite\lthtmlwrite
+\def\lthtmltypeout#1{{\let\protect\string\immediate\write\lthtmlwrite{#1}}}%
+\newbox\sizebox
+\begin{document}
+\pagestyle{empty}
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$H_2/H_{\infty }$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline568: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+\stepcounter{section}
+{\newpage
+\clearpage
+\samepage \begin{displaymath}\Sigma : \;\; \left\{
+\begin{array}{ll}
+\mbox{minimize}    &  f(X_1,\ldots,X_M) \\ 
+\mbox{subject to}  & \left\{ \begin{array}{l}
+               G_i(X_1,\ldots,X_M) = 0, \;\;i=1,2,...,p,\\ 
+                H_j(X_1,\ldots,X_M) \geq 0, \;\;j=1,2,..,q. 
+                              \end{array} \right.
+\end{array}
+\right.
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$X_1,\ldots,X_M$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline572: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$G_i$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline578: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$H_j$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline582: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$V \geq 0$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline586: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$\Sigma$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline590: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+\stepcounter{section}
+\stepcounter{subsection}
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$X_i$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline610: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$5 \times 1$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline626: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+\stepcounter{subsection}
+\stepcounter{subsubsection}
+{\newpage
+\clearpage
+\samepage \begin{displaymath}\dot{x}=Ax+Bu   
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$n\times n$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline636: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$n \times n_u$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline640: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$\| x(0)\| \leq 1$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline646: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$\| u(t)\|$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline648: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$t\geq 0$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline650: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$n_u \times n$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline656: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \begin{displaymath}Q-Q^T=0
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \begin{eqnarray*}Q&\geq&0\\ 
+-AQ-QA^T-BY-Y^TB^T &>& 0 \\ 
+\left( \begin{array} {cc}  u_{max}^2I &Y\\ Y^T & Q \end{array} \right) &\geq & 0
+\end{eqnarray*}
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$K=YQ^{-1}$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline662: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+\stepcounter{subsubsection}
+{\newpage
+\clearpage
+\samepage \begin{displaymath}\dot{x} = A(r(t))x+B(r(t))u,
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$\{1,\ldots,N\}$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline678: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$\Pi = (\pi_{ij})$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline682: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$\pi_{ij}$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline684: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$\lim_{t \rightarrow \infty} \mbox{\bf E} \| x(t) \| ^2 = 0$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline692: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$Q(1),\ldots,Q(N)$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline702: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$Y(1),\ldots,Y(N)$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline706: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \begin{eqnarray*}Q(i)- Q(i)^T&=& 0 , \\ 
+{\mathop{\bf Tr}} Q(1)+ \ldots +{\mathop{\bf Tr}} Q(N) -1 &=& 0.
+\end{eqnarray*}
+}
+
+{\newpage
+\clearpage
+\samepage \begin{eqnarray*}\left[ \begin{array}{cc} Q(i) & Y(i)^T \\  Y(i) & I \end{array}\right] &>&0, \\ 
+- \left[ A(i)Q(i)+Q(i)A(i)^{T} + B(i)Y(i)+Y(i)^TB(i)^{T}+
+\displaystyle\sum_{j=1}^{N}\pi_{ji}Q(j) \right] &>& 0, \;\; i = 1,\ldots,N, \\ 
+\end{eqnarray*}
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$K(i) = Y(i)Q(i)^{-1}$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline708: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$i=1,\ldots,N$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline710: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$A(1),\ldots,A(N)$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline712: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$B(1),\ldots,B(N)$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline714: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$\Pi$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline716: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+\stepcounter{subsubsection}
+{\newpage
+\clearpage
+\samepage \begin{eqnarray*}E^TX=X^TE&\geq&0\\ 
+A^TX+X^TA+I&\leq&0
+\end{eqnarray*}
+}
+
+\stepcounter{subsubsection}
+{\newpage
+\clearpage
+\samepage \begin{eqnarray*}\dot{x}&=&Ax+B_1w+B_2u\\ 
+z_1&=&C_1x+D_{11}w+D_{12}u\\ 
+z_2&=&C_2x+D_{22}u
+\end{eqnarray*}
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$\|T_{z_1w}\|_{\infty}<\gamma$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline756: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$\|T_{z_2w}\|_2$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline758: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$\|T_{z_1w}\|_{\infty}$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline760: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$z_1$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline766: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$z_2$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline768: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$K=LX^{-1}$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline770: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \begin{displaymath}X-X^T=0,\;\; Y-Y^T=0,
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \begin{eqnarray*}-\left( \begin{array} {cc}
+AX+B_2L+(AX+B_2L)^T+B_1B_1^T & XC_1^T+L^TD_{12}^T+B_1D_{11}^T \\ 
+C_1X+D_{12}L+D_{11}B_1^T & -\gamma^2 I + D_{11}D_{11}^T
+\end{array} \right) & > & 0 \\ 
+\left( \begin{array} {cc}Y & C_2X+D_{22}L\\ (C_2X+D_{22}L)^T&X
+\end{array} \right) & > & 0
+\end{eqnarray*}
+}
+
+\stepcounter{subsubsection}
+{\newpage
+\clearpage
+\samepage \begin{eqnarray*}Ex(k+1)& = & Ax(k) + u(k) \\ 
+y(k+1)&=& Cx(k+1) + r(k)
+\end{eqnarray*}
+}
+
+{\newpage
+\clearpage
+\samepage \begin{displaymath}P=-\left( \begin{array}{ccc} 0 & 0 & I \end{array} \right)
+\left( \begin{array}{ccc} APA^T + Q & 0 & E \\ 
+                           0   & R & C \\ 
+                            E^T  & C^T & 0 \end{array} \right)^{-1}
+\left( \begin{array}{c} 0 \\  0 \\  I \end{array} \right) .
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \begin{displaymath}P-P^T=0
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \begin{displaymath}\left( \begin{array}{ccc} APA^T + Q & 0 & EP \\ 
+                           0   & R & CP \\ 
+                          P^TE^T  & P^TC^T & P \end{array} \right)
+\geq 0 .
+\end{displaymath}
+}
+
+\stepcounter{subsubsection}
+{\newpage
+\clearpage
+\samepage \begin{displaymath}\begin{array}{cc}
+\mbox{minimize} & e^Tx \\ 
+\mbox{subject to} & Ax + b \geq 0, \\ 
+& Cx+d = 0.
+\end{array}
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$\geq$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline820: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+\stepcounter{subsubsection}
+{\newpage
+\clearpage
+\samepage \begin{displaymath}AX+XB = C
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \begin{displaymath}AXB = C
+\end{displaymath}
+}
+
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+{\newpage
+\clearpage
+\samepage \begin{displaymath}y = H x + V w
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \begin{displaymath}H \in \mbox{\bf Co}\left\{ H(1),...,H(N) \right\},\;\;\;
+V \in \mbox{\bf Co}\left\{ V(1),...,V(N) \right\}
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \begin{displaymath}\hat{x}=Ly
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$\mbox{E}(\|x-\hat{x}\|^2)$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline870: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$\gamma$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline874: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \begin{eqnarray*}I-LH(i) &=& 0 ,\;\;\;i=1,...,N,\\ 
+X(i)-X(i)^T&=& 0,\;\;\;i=1,...,N,
+\end{eqnarray*}
+}
+
+{\newpage
+\clearpage
+\samepage \begin{eqnarray*}\left( \begin{array} {cc} I & (L(i)V(i))^T\\ 
+                        L(i)V(i) & X(i) 
+         \end{array}  \right)  \geq 0,\;\;\;\;i=1,...,N, \\ 
+\gamma-\mbox{Trace}(X(i)) \geq 0,\;\;\;\;i=1,...,N.
+\end{eqnarray*}
+}
+
+{\newpage
+\clearpage
+\samepage \begin{figure}[hb]
+\centerline{\psfig{figure=fig2.eps,height=6cm}}
+
+\label{f1}
+\end{figure}
+}
+
+{\newpage
+\clearpage
+\samepage \begin{figure}[ht]
+\centerline{\psfig{figure=fig3.eps,height=6cm}}
+
+\end{figure}
+}
+
+{\newpage
+\clearpage
+\samepage \begin{figure}[hb]
+\centerline{\psfig{figure=fig4.eps,height=12cm}}
+
+\end{figure}
+}
+
+{\newpage
+\clearpage
+\samepage \begin{figure}[hbtp]
+\centerline{\psfig{figure=fig8.eps,height=15cm}}
+
+\vskip.5cm
+\centerline{\psfig{figure=fig6.eps,height=3cm}}
+
+\end{figure}
+}
+
+\appendix
+\stepcounter{section}
+{\newpage
+\clearpage
+\samepage \begin{displaymath}\begin{array}{ll} \mbox{minimize} & \tilde{c}^T z\\  
+ \mbox{subject to} & \tilde{F}_0 + z_1\tilde{F}_1 + \cdots +
+z_{\tilde{m}} \tilde{F}_{\tilde{m}} \geq 0, \;\; Az + b = 0,
+ \end{array}
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$z_0$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline898: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \begin{displaymath}z = Nx+z_0,
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$N,z_0$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline904: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \begin{displaymath}\begin{array}{ll} \mbox{minimize} & c^T x\\ 
+ \mbox{subject to} & F_0 + x_1F_1 + \cdots + x_m F_m \geq 0,
+ \end{array}
+\end{displaymath}
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$F_0,\ldots,F_m$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline908: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+{\newpage
+\clearpage
+\samepage \setbox\sizebox=\hbox{$F_i$}\lthtmltypeout{latex2htmlSize :tex2html_wrap_inline914: \the\ht\sizebox::\the\dp\sizebox.}\box\sizebox
+}
+
+\stepcounter{section}
+\stepcounter{section}
+
+\end{document}

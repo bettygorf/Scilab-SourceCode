@@ -1,0 +1,35 @@
+.TH pvm_start 1 "May 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_start - Start the PVM daemon
+.SH CALLING SEQUENCE
+.nf
+[info] = pvm_start()
+.fi
+.SH PARAMETERS
+.TP 5
+info
+: integer, status code returned by the routine.
+Values less than zero indicate an error.
+
+.SH DESCRIPTION
+\fVpvm_start\fR  starts the  Pvmd3 which is    a daemon process  which
+coordinates  unix hosts in a  virtual machine.  One  pvmd3 must run on
+each  host in the group.   They provide  the communication and process
+control functions  needed by the user's PVM  processes.  The local and
+remote pvmds can also be started from the PVM console program pvm.
+
+For example:
+.nf
+pvm_start()
+ ans  =
+ 
+    0. 
+-->pvm_start()
+ ans  =
+ 
+  - 28.  
+.fi
+Error -28 means: pvm_start_pvmd(): Duplicate host
+.SH SEE ALSO
+pvm_halt, pvm_addhosts, pvm_config

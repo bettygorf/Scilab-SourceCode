@@ -1,0 +1,107 @@
+.TH flts 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+flts - time response (discrete time, sampled system)
+.SH CALLING SEQUENCE
+.nf
+[y [,x]]=flts(u,sl [,x0])
+[y]=flts(u,sl [,past])  
+.fi
+.SH PARAMETERS
+.TP 10
+u
+: matrix (input vector)
+.TP 10
+sl
+: list (linear system \fVsyslin\fR)
+.TP 10
+x0
+: vector (initial state ; default value=\fV0\fR)
+.TP 10
+past
+: matrix (of the past ; default value=\fV0\fR)
+.TP 10
+x,y
+: matrices (state and output)
+.SH DESCRIPTION
+.LP 
+\fBState-space form:\fR
+.LP
+\fVsl\fR is a \fVsyslin\fR list containing the matrices of the 
+following linear system
+.LP
+\fVsl=syslin('d',A,B,C,D)\fR (see \fVsyslin\fR):
+.nf
+  x[t+1] = A x[t] + B u[t]
+  y[t] = C x[t] + D u[t]
+.fi
+or, more generally, if \fVD\fR is a polynomial matrix (\fVp = degree(D(z))\fR) :
+.IG	
+.nf
+  D(z)=D_0 + z D_1 + z^2 D_2 +..+ z^p D_p
+  y[t] = C x[t] + D_0 u[t] + D_1 u[t+1] +..+ D_[p] u[t+p]
+.fi
+.FI
+.LA $$  D(z)=D_0 + z D_1 + z^2 D_2 +..+ z^p D_p $$
+.LA $$ y_{t} = C x_{t} + D_0 u_{t} + D_1 u_{t+1} +..+ D_{p}u_{t+p} $$
+.IG 
+.nf
+  u=[u0,u1,... un]  (input)
+  y=[y0,y1,... yn-p]  (output)
+  x=x[n-p+1]  (final state, used as \fVx0\fR at next call to flts)
+.fi
+.FI
+.LA  $$ u=[u_0,u_1,... u_n]  (input) $$
+.LA  $$ y=[y_0,y_1,... y_{n-p}]  (output) $$
+.LA  $$ x=x_{n-p+1} $$ (final state, used as x0 at next call to flts)
+.PP 
+\fBTransfer form:\fR
+.LP
+\fV y=flts(u,sl[,past])\fR. Here \fVsl\fR is a linear system in 
+transfer matrix  representation i.e 
+.LP
+\fVsl=syslin('d',transfer_matrix)\fR (see \fVsyslin\fR).
+.IG	
+.nf
+    past = [u     ,...,  u   ]
+           [ -nd           -1]
+           [y     ,...,  y   ]
+           [ -nd           -1]
+.fi
+.FI 
+.LA 	
+.LA $$ past = \left[ \matrix{
+.LA  		u_{-nd} & \ldots & u_{-1} \cr
+.LA  		y_{-nd} & \ldots & u_{-1}
+.LA 		} \right] $$
+.LA 	
+is the matrix of past values of u and y.
+.LP
+nd is the maximum of degrees of lcm's of each row of the denominator
+matrix of sl.
+.nf
+u=[u0 u1 ... un]  (input)
+y=[y0 y1 ... yn]  (output)
+.fi
+p is the difference between maximum degree of numerator and 
+maximum degree of denominator
+.SH EXAMPLE
+.nf
+sl=syslin('d',1,1,1);u=1:10;
+y=flts(u,sl); [y1,x1]=flts(u(1:5),sl);y2=flts(u(6:10),sl,x1);
+y-[y1,y2]
+
+//With polynomial D:
+z=poly(0,'z');sl=syslin('d',1,1,1,1+z+z^2);p=2;
+y=flts(u,sl);[y1,x1]=flts(u(1:5),sl);
+y2=flts(u(5-p+1:10),sl,x1);  // (update)
+y-[y1,y2]
+
+//Delay (transfer form): flts(u,1/z)
+.fi
+.SH SEE ALSO
+ltitr, dsimul, rtitr
+
+
+
+

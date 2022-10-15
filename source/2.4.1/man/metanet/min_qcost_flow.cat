@@ -1,0 +1,72 @@
+
+min_qcost_flow(1)              Scilab function              min_qcost_flow(1)
+NAME
+  min_qcost_flow - minimum quadratic cost flow
+
+CALLING SEQUENCE
+  [c,phi,flag] = min_qcost_flow(eps,g)
+
+PARAMETERS
+
+  eps : scalar, precision
+
+  g : graph list
+
+  c : value of cost
+
+  phi : row vector of the value of flow on the arcs
+
+  flag : feasible problem flag (0 or 1)
+
+DESCRIPTION
+  min_qcost_flow computes the minimum quadratic cost flow in the network g.
+  It returns the total cost of the flows on the arcs c and the row vector of
+  the flows on the arcs phi. eps is the precision of the iterative algorithm.
+  If the problem is not feasible (impossible to find a compatible flow for
+  instance), flag is equal to 0, otherwise it is equal to 1.
+
+  The bounds of the flow are given by the elements edge_min_cap and
+  edge_max_cap of the graph list. The value of the maximum capacity must be
+  greater than or equal to the value of the minimum capacity.  If the value
+  of edge_min_cap or edge_max_cap is not given (empty row vector []), it is
+  assumed to be equal to 0 on each edge.
+
+  The costs on the edges are given by the elements edge_q_orig and
+  edge_q_weight of the graph list. The cost on arc u is given by:
+
+  (1/2)*edge_q_weight[u](phi[u]-edge_q_orig[u])^2
+
+  The costs must be non negative.  If the value of edge_q_orig or
+  edge_q_weight is not given (empty row vector []), it is assumed to be equal
+  to 0 on each edge.
+
+  This function uses an algorithm due to M. Minoux.
+
+EXAMPLE
+  ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15 14 9 11 10 1 8];
+  he=[2 6 3 4 5 1 3 5 1 7 10 11 5 8 9 5 8 11 10 11 9 11 15 13 14 4 6 9 1 12 14];
+  g=make_graph('foo',1,15,ta,he);
+  g('node_x')=[194 191 106 194 296 305 305 418 422 432 552 550 549 416 548];
+  g('node_y')=[56 221 316 318 316 143 214 321 217 126 215 80 330 437 439];
+  show_graph(g);
+  g1=g; ma=arc_number(g1);
+  rand('uniform');
+  while %T then
+    g1('edge_min_cap')=round(5*rand(1,ma));
+    g1('edge_max_cap')=round(20*rand(1,ma))+30*ones(1,ma);
+    g1('edge_q_orig')=0*ones(1,ma);
+    g1('edge_q_weight')=ones(1,ma);
+    [c,phi,flag]=min_qcost_flow(0.001,g1);
+   if flag==1 then break; end;
+  end;
+  x_message(['The cost is: '+string(c);
+            'Showing the flow on the arcs']);
+  ii=find(phi<>0); edgecolor=phi; edgecolor(ii)=11*ones(ii);
+  g1('edge_color')=edgecolor;
+  edgefontsize=8*ones(1,ma); edgefontsize(ii)=18*ones(ii);
+  g1('edge_font_size')=edgefontsize;
+  g1('edge_label')=string(phi);
+  show_graph(g1);
+
+SEE ALSO
+  min_lcost_cflow, min_lcost_flow1, min_lcost_flow2

@@ -1,0 +1,39 @@
+
+max_clique(1)                  Scilab function                  max_clique(1)
+NAME
+  max_clique - maximum clique of a graph
+
+CALLING SEQUENCE
+  [size,nodes] = max_clique(g,[ind])
+
+PARAMETERS
+
+  g : graph list
+
+  ind : integer (optional)
+
+  size : integer
+
+  nodes : integer row vector
+
+DESCRIPTION
+  max_clique computes the maximum clique of the graph g i.e. the complete
+  subgraph of maximum size. ind is a parameter for the choice of the method:
+  if ind is 0 the method is a partial enumerative algorithm and if ind is 1
+  the algorithm is based on quadratic zero-one programming. The default is 0.
+  The output size is the number of the nodes of the clique found by the algo-
+  rithm and nodes is the vector of the corresponding nodes.
+
+EXAMPLE
+  ta=[1 2 3 4 5 6 6 7 8  9 10 16 16 10 11 11 12 12 11 14 15 15 13 7 13 13];
+  he=[2 3 4 5 6 7 8 8 9 10 16  2  3 11 12 13  1 14 14 15  5  9 12 4 14 15];
+  g=make_graph('foo',0,16,ta,he);
+  g('node_x')=[106 199 369 467 470 403 399 347 308 269 184 108 199 268 345 272];
+  g('node_y')=[341 420 422 321 180 212 286 246 193 244 243 209  59 134  51 348];
+  g('node_diam')=[1:(g('node_number'))]+20;
+  show_graph(g);
+  [ns,no] = max_clique(g);
+  show_nodes(no);
+  g1=graph_complement(g);
+  [ns,no] = max_clique(g1);
+  show_nodes(no);

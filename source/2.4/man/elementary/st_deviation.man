@@ -1,0 +1,40 @@
+.TH st_deviation 1 "Januray 1998" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+st_deviation - standard deviation (row or column-wise) of vector/matrix entries
+.SH CALLING SEQUENCE
+.nf
+y=st_deviation(x)
+y=st_deviation(x,'r')
+y=st_deviation(x,'c')
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real vector or matrix 
+.TP 10
+y
+: scalar or vector
+.SH DESCRIPTION
+st_deviation computes the "sample" standard deviation, that
+is, it is normalized by N-1, where N is the sequence length.
+.LP
+For a vector or a matrix \fVx\fR, \fVy=st_deviation(x)\fR  returns in the
+scalar \fVy\fR the standard deviation of all the entries of \fVx\fR.
+.LP
+\fVy=st_deviation(x,'r')\fR (or, equivalently,
+\fVy=st_deviation(x,2)\fR) is the rowwise standard deviation. It returns in each 
+entry of the column vector \fVy\fR the standard deviation of each row of \fVx\fR.
+.LP
+
+\fVy=st_deviation(x,'c')\fR (or, equivalently, \fVy=st_deviation(x,1)\fR) is the columnwise st_deviation. It returns in each entry of the row vector 
+\fVy\fR the standard deviation of each column  of \fVx\fR.
+.SH EXAMPLE
+.nf
+A=[1,2,10;7,7.1,7.01];
+st_deviation(A)
+st_deviation(A,'r')
+st_deviation(A,'c')
+.fi
+.SH SEE ALSO
+sum, median, mean

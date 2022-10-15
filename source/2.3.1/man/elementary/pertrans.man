@@ -1,0 +1,26 @@
+.TH pertrans G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+pertrans - pertranspose
+.SH CALLING SEQUENCE
+.nf
+[Y]=pertrans(X)
+.fi
+.SH PARAMETERS
+.TP
+X 
+: real or complex  matrix
+.TP
+Y
+: real or complex matrix
+.SH DESCRIPTION
+\fVY=pertrans(X)\fR returns the pertranspose of \fVX\fR, i.e. 
+the symmetric of \fVX\fR w.r.t the second diagonal (utility
+function).
+.SH EXAMPLE
+.nf
+A=[1,2;3,4]
+pertrans(A)
+.fi
+
+

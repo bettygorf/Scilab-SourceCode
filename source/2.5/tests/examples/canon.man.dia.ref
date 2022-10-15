@@ -1,0 +1,55 @@
+ 
+clear;lines(0);
+ 
+A=[1,2,3,4,5;
+   1,0,0,0,0;
+   0,1,0,0,0;
+   6,7,8,9,0;
+   0,0,0,1,0];
+ 
+B=[1,2;
+   0,0;
+   0,0;
+   2,1;
+   0,0];
+ 
+X=rand(5,5);A=X*A*inv(X);B=X*B;    //Controllable pair
+ 
+[Ac,Bc,U,ind]=canon(A,B);  //Two indices --> ind=[3.2];
+ 
+index=1;for k=1:size(ind,'*')-1,index=[index,1+sum(ind(1:k))];end
+ 
+Acstar=Ac(index,:);Bcstar=Bc(index,:);
+ 
+s=poly(0,'s');
+ 
+p1=s^3+2*s^2-5*s+3;p2=(s-5)*(s-3);
+ 
+//p1 and p2 are desired closed-loop polynomials with degrees 3,2
+ 
+c1=coeff(p1);c1=c1($-1:-1:1);c2=coeff(p2);c2=c2($-1:-1:1);
+ 
+Acstardesired=[-c1,0,0;0,0,0,-c2];
+ 
+//Acstardesired(index,:) is companion matrix with char. pol=p1*p2
+ 
+F=Bcstar\(Acstardesired-Acstar);   //Feedbak gain
+ 
+Ac+Bc*F         // Companion form
+ ans  =
+ 
+! - 2.           5.         - 3.    0.    0.  !
+!   1.           0.           0.    0.    0.  !
+!   0.           1.           0.    0.    0.  !
+! - 3.553D-15    3.553D-15    0.    8.  - 15. !
+!   0.           0.           0.    1.    0.  !
+ 
+spec(A+B*F/U)   // F/U is the gain matrix in original basis.
+ ans  =
+ 
+!   5.                     !
+! - 3.6134703              !
+!   3.                     !
+!   0.8067351 + 0.4235626i !
+!   0.8067351 - 0.4235626i !
+ 

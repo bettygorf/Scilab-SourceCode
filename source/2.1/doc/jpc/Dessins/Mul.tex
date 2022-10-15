@@ -1,0 +1,59 @@
+\section{plusieurs ``picture'' dans une m\^eme figure}
+On se rapellera que la macro picture dans \LaTeX ne fait que r\'eserver une boite dans le document final et donc que l'on peut utiliser \LaTeX 
+ pour combiner plusieurs ``dessins'' dans une m\^eme figure.
+ Soi par exemple \verb+mypict+ d\'efinit de la fa\c{c}on suivante~:
+\begin{verbatim}
+\def\mypict{	
+\begin{picture}(150.00,106.00)
+\special{psfile='DesBasile.ps.n' hscale=50.0 vscale=50.0}
+\end{picture}}
+\end{verbatim}
+
+\def\mypict{	
+\begin{picture}(150.00,106.00)
+\special{psfile='DesBasile.ps.n' hscale=50.0 vscale=50.0}
+\end{picture}}
+alors les lignes suivantes~:
+
+\begin{figure}[hbtp]
+\begin{center}
+\fbox{\mypict \mypict}
+\end{center}
+\caption{\label{deux}Nouvelle figure contenant deux ``pictures''}
+\end{figure}
+\begin{verbatim}
+\begin{figure}[hbtp]
+\begin{center}
+\fbox{ \mypict \mypict}
+\end{center}
+\caption{\label{deux}Nouvelle figure contenant deux ``pictures''}
+\end{figure}
+\end{verbatim}
+produiront la figure~(\ref{deux}) et le code suivant~:
+
+\def\mypictd{	
+\begin{picture}(150.00,212.00)
+\special{psfile='DesBasile.ps.n' hscale=50.0 vscale=100}
+\end{picture}}
+
+\begin{verbatim}
+\def\mypictd{	
+\begin{picture}(150.00,212.00)
+\special{psfile='DesBasile.ps.n' hscale=50.0 vscale=100}
+\end{picture}}
+
+\begin{figure}[hbtp]
+\begin{center}
+\fbox{\parbox{157pt}{\mypictd} \parbox{157pt}{ \mypict \\ \mypict}}
+\end{center}
+\caption{\label{trois}Figure contenant trois ``pictures''}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}[hbtp]
+\begin{center}
+\fbox{\parbox{157pt}{\mypictd}\parbox{157pt}{ \mypict \\ \mypict}}
+\end{center}
+\caption{\label{trois}Figure contenant trois ``pictures''}
+\end{figure}
+

@@ -1,0 +1,9 @@
+ 
+clear;lines(0);
+ 
+chepol(4,'x')
+ ans  =
+ 
+          2    4  
+    1 - 8x + 8x   
+ 

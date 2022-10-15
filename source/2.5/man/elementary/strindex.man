@@ -1,0 +1,39 @@
+.TH strindex 3 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+strindex - search position of a character string in an other string.
+.SH CALLING SEQUENCE
+.nf
+ind=strindex(str1,str2)
+.fi
+.SH PARAMETERS
+.TP 15
+str1
+: a character string. The string where to search occurrences of \fVstr2\fR
+.TP
+str2
+: a character string or character string vector . The string(s) to search in \fVstr1\fR
+.TP
+ind
+: vector of indexes
+.SH DESCRIPTION
+\fVstrindex \fR searches indexes where \fVstr2(i)\fR is found in
+\fVstr1\fR
+
+for each \fVk\fR it exist a \fVi\fR\fV shuch that
+part(str1,ind(k)+(0:length(str2(i))-1))\fR is the same string than
+\fVstr2(i)\fR 
+
+When str2 is a vector and str2
+.SH EXAMPLE
+.nf
+k=strindex('SCI/demos/scicos','/')
+k=strindex('SCI/demos/scicos','SCI/')
+k=strindex('SCI/demos/scicos','!')
+k=strindex('aaaaa','aa') 
+k=strindex('SCI/demos/scicos',['SCI','sci'])
+.fi
+.SH SEE ALSO
+string, strings
+
+

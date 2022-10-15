@@ -1,0 +1,17 @@
+.TH x_message 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+x_message - X window message
+.SH CALLING SEQUENCE
+.nf
+[num]=x_message(strings) 
+.fi
+.SH DESCRIPTION
+for dispaying a message (diagnostic, user-guide ...)
+.SH EXAMPLE
+.nf
+ gain=0.235;x_message('value of gain is :'+string(gain))
+ x_message(['singular matrix';'use least squares'])
+.fi
+.SH SEE ALSO
+x_dialog, x_mdialog

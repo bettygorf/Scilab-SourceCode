@@ -1,0 +1,25 @@
+ 
+clear;lines(0);
+ 
+a='  123   ';
+ 
+'!'+a+'!'
+ ans  =
+ 
+ !  123   !   
+ 
+'!'+stripblanks(a)+'!'
+ ans  =
+ 
+ !123!   
+ 
+a=['  123   ',' xyz']
+ a  =
+ 
+!  123      xyz  !
+ 
+strcat(stripblanks(a))
+ ans  =
+ 
+ 123xyz   
+ 

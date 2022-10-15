@@ -1,0 +1,26 @@
+.TH pvm_set_timer 1 "January 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_set_timer - Sets the  system's notion  of  the current time.
+.SH CALLING SEQUENCE
+.nf
+[info] = pvm_set_timer()
+.fi
+.SH PARAMETERS
+.TP 5
+info
+: scalar
+.SH DESCRIPTION
+\fVpvm_set_timer\fR initialized the timer. 
+.I info
+will be 0.
+If some error occurs then
+.I info
+will be -1.
+
+.SH EXAMPLE
+.nf
+pvm_set_timer()
+.fi
+.SH SEE ALSO
+pvm_get_timer

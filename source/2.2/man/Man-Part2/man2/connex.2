@@ -1,0 +1,41 @@
+.TH connex 1 "September 1995" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME
+connex - connected components
+.SH CALLING SEQUENCE
+.nf
+[nc,ncomp] = connex(g)
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph-list
+.TP 3
+nc
+: integer, number of connected components
+.TP 6
+ncomp
+: row vector of connected components
+.SH DESCRIPTION
+\fVconnex\fR returns the number \fVnc\fR of connected components for the 
+graph \fVg\fR and a row vector \fVncomp\fR giving the number of the connected 
+component for each node. For instance, if \fVi\fR is a node number,
+\fVncomp[i]\fR is the number of the connected component to
+which node number \fVi\fR belongs.
+.SH EXAMPLE
+.nf
+ta=[1 1 2 2 2 3 4 4 5 6 7 7 7 8 9 10 12 12 13 13 14 15];
+he=[2 6 3 4 5 1 3 5 1 7 5 8 9 5 8 11 10 11 11 15 13 14];
+gt=make_graph('foo',1,15,ta,he);
+gt('node_x')=[197 191 106 194 296 305 305 418 422 432 552 550 549 416 548];
+gt('node_y')=[76 181 276 278 276 83 174 281 177 86 175 90 290 397 399];
+show_graph(gt,'rep');
+[nc,ncomp]=connex(gt)
+g1=gt;
+g1('node_color')=10+ncomp; 
+g1('node_diam')=10+10*ncomp;
+x_message('Displaying the connected components of this graph');
+show_graph(g1,'rep');
+.fi
+.SH SEE ALSO
+con_nodes, is_connex, strong_connex, strong_con_nodes

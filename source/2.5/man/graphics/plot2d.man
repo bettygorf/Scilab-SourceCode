@@ -1,0 +1,187 @@
+.TH plot2d 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+plot2d - 2D plot
+.SH CALLING SEQUENCE
+.nf
+plot2d(x,y,[style,strf,leg,rect,nax])
+plot2d(y)
+.fi
+.SH PARAMETERS 
+.TP 7
+x,y
+: two matrices of the same size (nl,nc). Each column of \fVy\fR is plotted 
+with respect to the corresponding column of \fVx\fR. \fVnc\fR curves are 
+plotted using \fVnl\fR points.
+
+.RS
+For instance, to plot one curve: \fVx=[1:10]'\fR and \fVy=sin(x)\fR.
+
+For instance, to plot 2 curves: \fVx1=[1:10]'\fR, \fVx2=[11:20]'\fR, 
+\fVx=[x1 x2]\fR and \fVy=[sin(x1) cos(x1)]\fR.
+.RE
+.TP
+style
+: is a real row vector of size nc. The style to use for curve \fVi\fR is
+defined by \fVstyle(i)\fR.
+
+The default style is \fV1:nc\fR (1 for the first curve, 
+2 for the second, etc.).
+.RS
+.TP 3
+-
+if \fVstyle(i)\fR is negative the curve is plotted using the mark with id 
+\fVabs(style(i))+1\fR; use \fVxset()\fR to see the mark ids.
+.TP
+-
+if \fVstyle(i)\fR is strictly positive, a plain line with color id 
+\fVstyle(i)\fR or a dashed line with dash id \fVstyle(i)\fR is used; 
+use \fVxset()\fR to see the color ids.
+.TP
+- 
+When only one curve is drawn, \fVstyle\fR can be the row vector 
+of size 2 \fV[sty,pos]\fR
+where \fVsty\fR is used to specify the style and \fVpos\fR is an integer
+ranging from 1 to 6 which specifies a position to use for the caption. 
+This can be useful when a user wants to draw multiple curves on a plot by 
+calling the function \fVplot2d\fR several times and wants to give a caption 
+for each curve.
+.RE
+.TP
+strf
+: is a string of length 3 \fV"xyz"\fR.
+.RS
+.TP
+The default is \fV"021"\fR.
+.TP 3
+x
+: controls the display of captions.
+.RS
+.TP 5
+x=0
+: no captions.
+.TP
+x=1
+: captions are displayed. They are given by the optional argument \fVleg\fR.
+.RE
+.TP
+y
+: controls the computation of the frame.
+.RS
+.TP 5
+y=0
+: the current boundaries (set by a previous call to another high level
+plotting function) are used. Useful when superposing multiple plots.
+.TP
+y=1
+: the optional argument \fVrect\fR is used to specify the boundaries of 
+the plot.
+.TP
+y=2 
+: the boundaries of the plot are computed using min and max values of \fVx\fR and \fVy\fR.
+.TP
+y=3
+: like \fVy=1\fR but produces isoview scaling.
+.TP
+y=4
+: like \fVy=2\fR but produces isoview scaling.
+.TP
+y=5
+: like \fVy=1\fR but \fVplot2d\fR can change the boundaries of the plot and 
+the ticks of the axes to produce pretty graduations. When the zoom button 
+is activated, this mode is used.
+.TP
+y=6
+: like \fVy=2\fR but \fVplot2d\fR can change the boundaries of the plot and 
+the ticks of the axes to produce pretty graduations. When the zoom button 
+is activated, this mode is used.
+.RE
+.TP
+z 
+: controls the display of information on the frame around the plot.
+.RS
+.TP 5
+z=0
+: nothing is drawn around the plot.
+.TP
+z=1
+: axes are drawn. The number of tics can be specified by the \fVnax\fR
+optional argument.
+.TP
+z=2
+: the plot is surrounded by a box without tics.
+.RE
+.RE
+.TP
+leg
+: a string. It is used when the first character x of argument \fVstrf\fR is 1.
+\fVleg\fR has the form \fV"leg1@leg2@...."\fR where \fVleg1\fR, \fVleg2\fR, 
+etc. are respectively the captions of the first curve,
+of the second curve, etc.
+
+The default is \fV" "\fR.
+.TP
+rect
+: This argument is used when the second character y of argument \fVstrf\fR is 1,
+3 or 5. It is a row vector of size 4 and gives the dimension of the frame: 
+\fVrect=[xmin,ymin,xmax,ymax]\fR.
+.TP
+nax
+: This argument is used when the third character z of argument \fVstrf\fR is 1.
+It is a row vector with four entries \fV[nx,Nx,ny,Ny]\fR where
+\fVnx\fR (\fVny\fR) is the number of subgraduations on the x (y) axis and
+\fVNx\fR (\fVNy\fR) is the number of graduations on the x (y) axis.
+.RE
+.LP
+.SH DESCRIPTION
+\fVplot2d\fR plots a set of 2D curves: each column of \fVy\fR is plotted 
+with respect to the corresponding column of \fVx\fR. Piecewise linear plotting is used.
+
+By default, successive plots are superposed. To clear the previous plot, 
+use \fVxbasc\fR.
+
+Invoked with only one argument, \fVplot2d(y)\fR plots all the columns of 
+\fVy\fR with respect to the vector 1:<number of rows of \fVy\fR>.
+
+Enter the command \fVplot2d()\fR to see a demo.
+
+Other high level plot2d function exist:
+.TP
+\fVplot2d1\fR: same as \fVplot2d\fR but enables logarithmic plots and
+more facilities to specify \fVx\fR vectors.
+.TP
+\fVplot2d2\fR: same as \fVplot2d1\fR but the curve is supposed to be 
+piecewise constant.
+.TP
+\fVplot2d3\fR: same as \fVplot2d1\fR but the curve is plotted with
+vertical bars.
+.TP
+\fVplot2d4\fR: same as \fVplot2d1\fR but the curve is plotted with
+arrows.
+.SH EXAMPLE
+.nf
+//simple plot
+x=[0:0.1:2*%pi]';
+plot2d(sin(x))
+//multiple plot
+xbasc()
+plot2d([x x x],[sin(x) sin(2*x) sin(3*x)])
+// multiple plot giving the dimensions of the frame
+xbasc()
+plot2d([x x x],[sin(x) sin(2*x) sin(3*x)],..
+  1:3,"011"," ",[0,0,6,0.5])
+//multiple plot with captions and given tics
+xbasc()
+plot2d([x x x],[sin(x) sin(2*x) sin(3*x)],..
+  [1,2,3],"111","L1@L2@L3",[0,-2,2*%pi,2],[2,10,2,10])
+// isoview
+xbasc()
+plot2d(x,sin(x),1,"041")
+// auto scale 
+xbasc()
+plot2d(x,sin(x),1,"061") 
+.fi
+.SH SEE ALSO
+plot2d1, plot2d2, plot2d3, plot2d4, xbasc, xset
+.SH AUTHOR
+J.Ph.C.

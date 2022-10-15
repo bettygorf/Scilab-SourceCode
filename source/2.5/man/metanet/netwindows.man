@@ -1,0 +1,19 @@
+.TH netwindows 1 "September 1995" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+netwindows - gets the numbers of Metanet windows
+.SH CALLING SEQUENCE
+.nf
+l = netwindows()
+.fi
+.SH PARAMETERS
+.TP 2
+l
+: list
+.SH DESCRIPTION
+This function returns a list \fVl\fR. Its first element is the row vector of 
+all the Metanet windows and the second element is the number of the 
+current Metanet window. This number is equal to 0 if no current Metanet
+window exists.
+.SH SEE ALSO
+metanet, netclose, netwindow, show_graph

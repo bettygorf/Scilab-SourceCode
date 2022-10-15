@@ -1,0 +1,9 @@
+ 
+clear;lines(0);
+ 
+//addmenu('foo')
+ 
+//unsetmenu('foo')
+ 
+//unsetmenu('File',2)
+ 

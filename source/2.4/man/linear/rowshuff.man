@@ -1,0 +1,52 @@
+.TH rowshuff 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+rowshuff - shuffle algorithm
+.SH CALLING SEQUENCE
+.nf
+[Ws,Fs1]=rowshuff(Fs, [alfa])
+.fi
+.SH PARAMETERS
+.TP 5
+Fs
+: square real pencil \fVFs = s*E-A\fR
+.TP
+Ws
+: polynomial matrix
+.TP
+Fs1
+: square real pencil \fVF1s = s*E1 -A1\fR with \fVE1\fR non-singular
+.TP
+alfa
+: real number (\fValfa = 0\fR is the default value)
+.SH DESCRIPTION
+Shuffle algorithm: Given the pencil \fVFs=s*E-A \fR, returns Ws=W(s) 
+(square polynomial matrix) such that:
+.LP
+\fV Fs1 = s*E1-A1 = W(s)*(s*E-A) \fR is a pencil with non singular \fVE1\fR matrix.
+.LP
+This is possible iff the pencil \fVFs = s*E-A \fR is regular (i.e. invertible).
+The degree of \fVWs\fR is equal to the index of the pencil.
+.LP
+The poles at infinity of \fVFs\fR are put to \fValfa\fR and the zeros of \fVWs\fR are at \fValfa\fR.
+.LP
+Note that \fV(s*E-A)^-1 = (s*E1-A1)^-1 * W(s) = (W(s)*(s*E-A))^-1 *W(s)\fR
+.SH EXAMPLE
+.nf
+F=randpencil([],[2],[1,2,3],[]);
+F=rand(5,5)*F*rand(5,5);   // 5 x 5 regular pencil with 3 evals at 1,2,3
+[Ws,F1]=rowshuff(F,-1);
+[E1,A1]=pen2ea(F1);
+svd(E1)           //E1 non singular
+roots(det(Ws))
+clean(inv(F)-inv(F1)*Ws,1.d-7)
+.fi
+.SH SEE ALSO
+pencan, glever, penlaur
+.SH AUTHOR
+F. D.
+
+
+
+
+

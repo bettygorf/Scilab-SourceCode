@@ -1,0 +1,537 @@
+ ' (1)			- transpose of matrix
+ , (1)			- comma
+ < (1)			- lower
+"Scilab object : external" (1)	- external function or routine
+"Scilab object : function" (1)	- Scilab procedure
+"Scilab object : macro" (1) - Scilab procedure
+"Scilab object : rationals" (1) - rational in Scilab
+"Scilab object: boolean"  (1)	- boolean variables and operators & | ~
+"Scilab object: list" (1)   - list definition
+"Scilab object: matrix" (1) - matrices in Scilab
+"Scilab object: syslin" (1) - linear system definition
+"Scilab object:string" (1)  - character strings
+% (1)			- percent
+%asn (1)		- elliptic integral
+%K (1)			- Jacobi's complete elliptic integral
+%sn (1) 		- Jacobi 's elliptic function
+( ) (1) 		- left and right parenthesis
+* (1)			- multiplication 
++     (1)		-      addition
+.TH - 1 "April 1993" "Scilab Group" "Scilab Function"	- - the minus operation
+/ (1)			- right division and feed back
+: (1)			- colon operator
+; (1)			-  ending expression and row separator
+= (1)			- equal sign
+abcd (1)		- state-space matrices
+abs (G) 		-  absolute value, magnitude
+acos (1)		- cosine inverse
+acosh (1)		- hyperbolic cosine inverse
+addf (G)		- symbolic addition
+amell (G)		- Jacobi's am function
+analpf (1)		- create analog low-pass filter 
+and (1) 		- logical and
+ans (1) 		- answer
+apropos (1)		- searches keywords in Scilab help 
+argn (1)		- number of arguments in a function call
+arhnk (1)		- Hankel norm approximant
+arl2 (G)		- L2 approximation
+asin (1)		-  sine inverse
+asinh (1)		- hyperbolic sine inverse
+atan (G)		- tangent inverse
+atanh (1)		- hyperbolic tangent inverse
+augment (5)		- augmented plant
+balreal (1)		- balanced realization
+bezout (8)		- Bezout equation for polynomials
+black (1)		- Black's diagram (Nichol's chart)
+bloc2exp (1)		- block-diagram to symbolic expression
+bloc2ss (1)		- block-diagram to state-space conversion
+bode (1)		- Bode plot
+break (1)		- keyword to interrupt loops
+bstap (1)		- hankel approximant
+buttmag (1)		-  response of Butterworth filter
+Bxxx (2)		- printing scilab graphics 
+calerf (3)		-  computes error functions.
+calfrq (1)		- frequency response discretization
+canon (1)		- canonical controllable form
+casc (1)		-  cascade realization of filter from coefficients
+case (1)		- keyword used in select
+ccontrg (5)		- central H-infinity controller
+ceil (1)		- rounding up
+champ (2)		- draw a 2d vector field 
+chart (1)		- Nichols chart
+cheb1mag (1)		-  response of Chebyshev type 1 filter
+Cheb2mag (1)		- response of type 2 Chebyshev filter
+chepol (1)		- Chebychev polynomial
+clean (1)		- cleans matrices (round to zero small entries)  
+clear (1)		- kills variables
+clearfun (1)		- remove primitive.
+cls2dls (1)		- bilinear transform
+cmb_lin (1)		- symbolic linear combination
+cmndred (1)		- common denominator form
+code2str (1)		- returns character string associated with scilab integer codes.
+coeff (1)		- coefficients of matrix polynomial
+coffg (8)		- inverse of polynomial matrix
+colcompr (8)		- column compression of polynomial matrix
+colinout (1)		- inner-outer factorization
+colnew (G)		- boundary value problems for ODE
+colregul (1)		- removing poles and zeros at infinity
+comments (1)		- comments
+comp (1)		-  function compilation
+conj (1)		-  conjugate
+contour (2)		- level curves of surface
+contr (G)		- controllability, controllable subspace
+contrss (1)		- controllable part
+cont_frm (1)		- transfer to controllable state-space
+cont_mat (1)		- controllability matrix
+convol (1)		- convolution (overlap add method)
+convstr (1)		- case conversion
+copfac (1)		- right coprime factorization
+corr (G)		- correlation, covariance
+cos (G) 		-  cosine function
+cosh (1)		- hyperbolic cosine
+cotg (1)		- cotangent
+coth (1)		- hyperbolic cotangent
+csim (1)		- simulation (time response) of linear system
+cspect (1)		- spectral estimation (periodogram method)
+ctr_gram (1)		- controllability gramian
+czt (1) 		- chirp z-transform algorithm
+c_link (1)		- check dynamic link
+dassl (G)		- differential algebraic equation
+dcf (1) 		- double coprime factorization
+debug (1)		- debugging level
+deff (1)		- on-line definition of function
+degree (1)		- degree of polynomial matrix
+delbpt (1)		- delete breakpoint
+delip (1)		- elliptic integral
+demos (G)		-  guide for scilab demos
+denom (8)		- denominator
+derivat (8)		- rational matrix derivative
+des2ss (1)		- descriptor to state-space
+des2tf (1)		- descriptor to transfer function conversion
+determ (8)		- determinant of polynomial matrix
+detr (1)		- polynomial determinant
+dft (1) 		- discrete fourier transform
+dhnorm(1)		- discrete H-infinity norm
+diag (1)		- diagonal including or extracting 
+diary (1)		- diary of session
+diophant (8)		- diophantine (Bezout) equation
+disp (1)		- displays variables 
+dispbpt (1)		- display breakpoints
+driver (2)		- select a driver for plotting
+dscr (1)		-  discretization of linear system
+dsimul (1)		- discrete time response
+dtsi (1)		- stable anti-stable decomposition
+dt_ility (1)		- detectability test
+edit (G)		-  function editing
+ell1mag (1)		- magnitude of elliptic filter
+else (1)		- keyword in if-then-else
+elseif (1)		- keyword in if-then-else
+emptystr (1)		- zero length string
+end (1) 		- end keyword
+eqfir (1)		- minimax approximation of FIR filter
+eqiir (1)		- Design of iir filters
+equil (1)		- balancing of pair of symmetric matrices
+equil1 (1)		- balancing (nonnegative) pair of matrices
+erf (3) 		-  The error function.
+erfc (3)		-  The complementary error function.
+erfcx (3)		-  The scaled complementary error function.
+errbar (2)		- add error tic on a graphic
+errcatch (1)		- error trapping
+errclear (1)		- error clearing
+error (1)		- error messages 
+eval (1)		- evaluation of a matrix of strings
+eval3d (2)		- values of a function on a grid
+eval3dp (2)		- computes facets of a 3D parametrized surface
+evans (1)		- Evans root locus
+evstr (1)		- evaluation of expressions
+exec (1)		- script file execution
+execstr (1)		- command execution by evaluation of strings
+exists (1)		- checks variable  existence
+exit (1)		-  Scilab quit
+eye (1) 		- identity matrix
+fac3d (2)		- complex 3D surface plotting
+fac3di (2)		- 3D complex surface plotting with interactive view selection
+factors (8)		- numeric real factorization
+factors (8)		- numeric real factorization
+faurre (1)		- filter
+fchamp (2)		- draw a 2d vector field 
+fcontour (2)		- level curves
+feedback (1)		- feedback operation
+feval (1)		- multiple evaluation
+ffilt (1)		- coefficients of FIR low-pass
+fft (G) 		- fast fourier transform.
+fgrayplot (2)		- 2D plot with gray levels
+file (1)		- file management
+filter (1)		- modelling filter
+find (1)		- find indices of  boolean vector or matrix true elements
+findm (1)		- for elliptic filter design
+find_freq (1)		- parameter compatibility for elliptic filter design
+fix (1) 		- rounding towards zero
+floor (1)		- rounding down
+flts (1)		- time response (discrete time, sampled system)
+for (1) 		- language keyword for loops
+format (1)		- printing format
+fort (1)		- fortran or C user routines call
+fourplan (1)		- augmented plant to four plants
+fplot2d  (2)		- 2D plot of a curve defined by an external
+fplot3d (2)		- 3D plot of a surface defined by an external
+fplot3d1 (2)		- gray level plotting of a surface 
+frep2tf (1)		- frequency response to  transfer function
+freq (G)		- frequency response
+freson (1)		- peak frequencies
+frmag (1)		- magnitude of FIR and IIR filters
+fsfirlin (1)		- design of FIR, linear phase filters
+fsolve (G)		- find a zero of a system of n nonlinear functions
+fspecg (1)		- stable factorization
+fstabst (1)		- Youla's parametrization
+full (1)		-  sparse to full matrix conversion
+funptr (G)		- coding of  primitives ( wizard stuff )
+fwiir (1)		- IIR filters in cascade realization
+gainplot (1)		- magnitude plot
+gamitg (5)		- H-infinity gamma iterations
+gcare (1)		- control Riccati equation
+gcd (8) 		- gcd calculation
+geom3d (2)		-  projection from 3D on 2D
+getenv (G)		- get the value of an environnement variable
+getf (1)		- loading of function
+getpid (G)		- get scilab process identificator
+getvalue (1)		- xwindow dialog for data acquisition 
+gfare (1)		- filter Riccati equation
+graduate (2)		- pretty axis graduations
+Graphic (2)		- Graphic library for Scilab 
+grayplot (2)		- 2D plot of a surface using gray levels
+group (1)		- group delay for digital filter
+gr_menu (2)		- simple interactive graphic editor
+gtild (1)		- tilde operation
+g_margin (1)		- gain margin
+h2norm (1)		- H2 norm
+halt (3)		- stop execution
+hank (1)		- hankel matrix
+hankelsv (1)		- Hankel singular values
+havewindow (3)		- return scilab window mode
+help (1)		- on-line help command
+hermit (8)		- Hermite form
+hilb (1)		- Hilbert transform
+hist3d (2)		- 3D representation of an histogram
+histplot (2)		- plot an histogram
+horner (1)		- polynomial/rational evaluation
+host (G)		- unix call
+hrmt (1)		- gcd of polynomials
+htrianr (8)		- triangularization of polynomial matrix
+h_cl (5)		- closed loop matrix
+h_inf (1)		- H-infinity (central) controller
+H_inf_st (1)		- static H_infinity problem 
+H_norm (1)		- H-infinity norm
+if then else (1)	- conditional execution
+iir (1) 		- iir digital filter
+iirlp (1)		- group delay Lp IIR filter optimization
+iirlp (1)		- Lp IIR filter optimization
+imag (G)		- imaginary part
+impl (G)		- differential algebraic equation
+imrep2ss (1)		- impulse response to state-space conversion
+input (1)		- prompt for user input
+int (1) 		- integer part
+intc (1)		- Cauchy integral
+intdec (1)		- Changes  sampling rate of a signal
+integrate (1)		- integration by quadrature
+interp (G)		- interpolation
+interpln (1)		- linear interpolation
+intg (G)		- definite integral
+intl (1)		- Cauchy integral
+invr (8)		- inversion of (rational) matrix
+invsyslin (1)		- system inversion
+isdef (3)		- check variable  existence
+iserror (1)		- error test
+isoview (2)		- set scales for isometric plot
+jmat (1)		- row or column block permutation
+kalm (1)		- Kalman update
+karmarkar (1)		- karmarkar (test program)
+keyboard (keyborad)	- keyborad commands
+kron (3)		- Kronecker product
+lattn (1)		- recursive solution of normal equations
+lattp (1)		- lattp
+lcf (1) 		- normalized coprime factorization
+lcm (8) 		- least common multiple
+ldiv (1)		- polynomial matrix long division
+ldivf (1)		- left symbolic division
+length (1)		- length of object
+leqr (1)		- H-infinity LQ gain (full state)
+lev (1) 		- Yule-Walker equations (Levinson's algorithm)
+levin (1)		- Toeplitz system solver
+lft (5) 		- linear fractional transformation
+lgfft (1)		- utility for fft
+lib (1) 		- library definition
+lin (1) 		- linearization
+lindquist (1)		- Lindquist's algorithm
+lines (1)		- rows and columns used for display
+linf (1)		- infinity norm
+linfn (1)		- infinity norm
+link (1)		- dynamic link
+linpro (1)		- linear programming solver
+linspace (1)		- linearly spaced vector
+lmisolver (1)		- linear matrix inequation solver
+lmitool (1)		- tool for solving linear matrix inequations
+load (1)		- load saved variable
+locate (2)		- mouse selection of a set of points 
+log (1) 		- logarithm
+logspace (1)		- logarithmically spaced vector
+lqe (1) 		- linear quadratic estimator (Kalman Filter)
+lqg (1) 		- LQG compensator
+lqg2stan (1)		- LQG to standard problem
+lqg_ltr (1)		- LQG with loop transform recovery
+lqr (1) 		- LQ compensator (full state)
+ltitr (G)		- discrete time response (state space)
+mac2for (1)		- function to fortran routine conversion
+mac2for (1)		- macro to fortran routine conversion
+Macglov (1)		- Mac Farlane Glover problem
+macr2lst (1)		- function to list conversion
+macrovar (1)		- variables of function
+manedit (G)		-  editing a manual item
+markp2ss (1)		- Markov parameters to state-space
+matrix (1)		- vector to matrix conversion
+max (G) 		- maximum
+maxi (G)		- maximum
+mese (1)		- maximum entropy spectral estimation
+mfft (1)		- multi-dimensional fft
+milk_drop (2)		-  test for plot3d 
+min (1) 		- minimum 
+mini (1)		- minimum 
+minreal (1)		- minimal balanced realization
+minss (1)		- minimal realization
+mode (1)		- select a mode in exec file
+modulo (1)		- arithmetic remainder modulo m
+mulf (1)		-  symbolic multiplication
+m_circle (1)		- M-circle plot
+nehari (1)		- Nehari approximant
+newfun (1)		- add a name in the table of functions
+norm (1)		- matrix norms
+null (1)		- delete an element in a list
+numer (1)		- numerator
+nyquist (1)		- nyquist plot
+obscont (1)		- observer based controller
+obsvss (1)		- observable part
+obsv_mat (1)		- observability matrix
+obs_gram (1)		- observability grammian
+ode (G) 		- ordinary differential equation solver
+ones (1)		- matrix made of ones
+optim (G)		- non-linear optimization routine
+or | (1)		- logical or
+param3d (2)		- parametric curves in 3-D
+param3di (2)		- parametric curves in 3-D with interactive view selection
+parrot (1)		- Parrot's problem
+part (1)		- extraction of strings
+pause (1)		- pause mode, invoke keyboard
+pdiv (1)		- polynomial division
+pen2ea (G)		- pencil to E,A conversion
+pertrans (G)		- pertranspose
+pfss (1)		- partial fraction decomposition
+phase1 (1)		- feasability test for semidefinite programming
+phasemag (1)		- phase magnitude computation
+phc (1) 		- from the hankel matrix to state-space model
+plot (2)		- simple plot 
+plot2d (2)		- multiple plot of functions
+plot2d1 (2)		- multiple plot of functions
+plot2d2 (2)		- multiple plot of functions
+plot2d3 (2)		- multiple plot of functions
+plot2d4 (2)		- multiple plot of functions
+plot3d (2)		- surface plotting
+plot3d1 (2)		- gray level plotting of a surface 
+plot3di (2)		- surface plotting with interactive view selection
+plot3di1 (2)		- gray level plotting of a surface with interactive view selection
+plzr (1)		- pole-zero plot
+pol2des (1)		- polynomial matrix to descriptor form
+pol2str (1)		- polynomial matrix to string conversion
+pol2tex (3)		- convert polynomial  to TeX format
+polfact (1)		- minimal factors 
+poly (1)		- polynomial definition
+ppol (G)		- pole placement
+predef (1)		- variable protection
+print (1)		- prints variables  in a file 
+printf,fprintf,sprintf (1)  - Emulator of C language printf functions
+printf,fprintf,sprintf (1)  - Emulator of C language printf functions
+printf,fprintf,sprintf (1)  - Emulator of C language printf functions
+prod (G)		- product
+projsl (1)		- linear system projection
+pspect (1)		- cross-spectral estimate between 2 series
+p_margin (1)		- phase margin
+quapro (1)		- linear quadratic programming solver
+quit (1)		- decrease the pause level or exit
+rand (1)		- random number generator
+rdivf (1)		- right symbolic division
+read (1)		- matrices read
+readb (1)		- binary read 
+readc_ (3)		- read a character string
+real (G)		- real part
+remez (G)		- Remez's algorithm
+remezb (1)		- Minimax approximation of magnitude response
+repfreq (1)		- frequency response
+residu (G)		- residue 
+resume (1)		- return or resume 
+return (1)		- return or resume 
+ricc (G)		- Riccati equation 
+riccati (1)		- Riccati equation
+ric_desc (1)		- Riccati equation
+roots (G)		- roots of polynomials
+rotate (2)		- geometric rotation of a set of points  
+round (G)		- rounding
+routh_t (1)		- Routh's table
+rowcompr (1)		- row compression of polynomial matrix
+rowinout (1)		- inner-outer factorization
+rowregul (1)		- removing poles and zeros at infinity
+rpem (1)		- RPEM estimation
+rtitr (G)		- discrete time response (transfer matrix)
+save (1)		- saving variables
+scaling (2)		- affine transform of a set of points  
+scanf, fscanf, sscanf (1)   - Converts formatted input
+scanf, fscanf, sscanf (1)   - Converts formatted input
+scanf, fscanf, sscanf (1)   - Converts formatted input
+sci2exp (G)		- converts  variable to an expression
+sci2map (1)		- Scilab to Maple
+scilab	(1)		- Major unix script to execute Scilab and miscellaneous tools
+scilink (1)		- Unix script to relink Scilab
+secto3d (2)		- 3D surfaces conversion
+select (1)		- select keyword 
+semidef (1)		- semidefinite programming
+sensi (5)		- sensitivity functions
+setbpt (1)		- setting breakpoints 
+sfact (G)		- discrete spectral factorization
+sign (1)		- sign function
+Signal (1)		- Signal manual description
+simp (G)		- rational simplification
+sin (G) 		-  sine function
+sinc (1)		-  samples of sinc function
+sincd (1)		- sinc function
+sinh (1)		- hyperbolic sine
+size (1)		- size of objects
+sm2des (1)		- system matrix to descriptor
+sm2ss (1)		- system matrix to state-space
+smooth (1)		- smoothing by spline functions
+solve (1)		- symbolic linear system solver
+sort (1)		- decreasing order sorting
+sparse (1)		-  sparse matrix definition
+specfact (1)		- spectral factor
+speye (1)		-  sparse identity matrix
+spget (1)		- retrieves entries of sparse matrix
+splin (G)		- spline function
+sprand (1)		-  sparse random matrix
+spzeros (1)		-  sparse zero matrix
+sqrt (1)		- square root
+square (2)		- sets scales for isometric graphics
+srfaur (1)		- square-root algorithm
+srkf (1)		- square root Kalman filter
+ss2des (1)		- (polynomial) state-space to descriptor form
+ss2ss (1)		- state-space to state-space conversion, feedback, injection
+ss2tf (1)		- conversion from state-space to transfer function
+sskf (1)		- steady-state Kalman filter
+ssprint (1)		- pretty print for linear system
+ssrand (1)		- random system generator
+startup (1)		- startup file 
+str2code (1)		- return scilab integer codes associated with a character string
+strcat (3)		- catenate character strings
+string (1)		- conversion to string
+st_ility (1)		- stabilizability test
+subf (3)		-  symbolic subtraction
+sum (1) 		- sum  of vector/matrix entries
+svplot (1)		- singular-value sigma-plot
+sylm (1)		- Sylvester matrix
+sysconv (1)		- system conversion
+sysdiag (1)		- block diagonal system connection
+system (1)		- observation update
+systmat (1)		- system matrix
+tan (1) 		- tangent
+tanh (1)		- hyperbolic tangent
+texprint (3)		- TeX output of Scilab object
+tf2des (1)		- transfer function to descriptor
+tf2ss (1)		- transfer to state-space
+timer (3)		- cpu time
+time_id (1)		- SISO identification
+titlepage  (2)		- display a matrix of strings 
+toeplitz (1)		- toeplitz matrix
+trans (1)		- low-pass to other filter transform
+trfmod (1)		- poles and zeros display
+trianfml (1)		- symbolic triangularization
+tril (1)		- lower triangular part of matrix
+trisolve (1)		- symbolic linear system solver
+triu (1)		- upper triangle
+trzeros (1)		- transmission zeros and normal rank
+type (1)		- variable type
+typeof (G)		-  object type
+unix (1)		- shell (sh) command execution
+unix_g (1)		- shell (sh) command execution, output redirected to a variable
+unix_s (1)		- shell (sh) command execution, no output
+unix_w (1)		- shell (sh) command execution, output redirected to scilab window
+unix_x (1)		- shell (sh) command execution, output redirected to a window
+unobs (G)		- unobservable subspace
+user (1)		- interfacing a fortran routine
+varn (1)		- symbolic variable of a polynomial
+wfir (1)		- linear-phase FIR filters
+what (1)		- list the Scilab primitives
+where (1)		- display current instruction calling tree
+where (1)		- get current instruction calling tree
+whereis (1)		- name of library containing a function
+while (1)		- while keyword 
+who (1) 		- listing of variables
+wiener (1)		-  Wiener estimate
+wigner (1)		- 'time-frequency' wigner spectrum
+window (1)		- symmetric window
+writb (1)		- binary write
+write (1)		-  write in a formatted file
+xarc (2)		- draws a part of an ellipsis 
+xarcs (2)		- drawing a set of ellipsis
+xarrows (2)		- draw a set of arrows
+xaxis ()		- draws an axis 
+xbasc (2)		- clear the recorded graphics associated to a window
+xbasimp (2)		- send graphics to a postscript printer or in a file
+xbasr (2)		- redraw a graphic window
+xchange (2)		- coordinates transform 
+xclea (2)		- erase a rectangle on a graphic window
+xclear (2)		- clear a graphic window
+xclick (2)		- wait for a mouse click
+xclip (2)		- set a clip zone 
+xend (2)		- ends a graphic session
+xfarc (2)		- fill a part of an ellipsis 
+xfpoly (2)		- fill a polygon 
+xfpolys (2)		- fill a set of polygons of the same size 
+xfrect (2)		- fill a rectangle 
+xget (2)		- gets current values of the graphic context
+xgetech (2)		- get the current graphic 2d scale
+xgetmouse ()		- get current position of the mouse
+xgrid (2)		- add a grid on a graphic
+xinit (2)		- initialization of a graphic driver
+xlfont (2)		- load a font in the graphic context
+xnumb (2)		- draw numbers on a graphic
+xpause (2)		- suspends Scilab 
+xpoly (2)		- draw a single polyline
+xpolys (2)		- draw a set of polylines
+xrect (2)		- draw a rectangle
+xrects (2)		- draw a set of rectangles
+xrpoly (2)		-  draw a regular polygon
+xs2fig (2)		- send graphics to a file in Xfig syntax
+xsegs (2)		- draw unconnected segments
+xselect (2)		- raise the current graphic window
+xset (2)		- set values of the graphic context
+xsetech (2)		- set the current scale and frame
+xstring (2)		- display a matrix of strings
+xstringb (2)		- draw a matrix of strings 
+xstringl (2)		- computes bounding box of the display of matrix of strings
+xtape (2)		-  set up the record process of graphics
+xtitle (2)		- add titles on a graphic window
+x_choose (1)		- interactive Xwindow choice
+x_dialog (1)		- Xwindow dialog
+x_matrix (1)		- Xwindow editing of matrix 
+x_mdialog (1)		- Xwindow dialog
+x_message (1)		- X window message
+zeropen (1)		- zero pencil
+zeros (1)		- matrix made of zeros
+zgrid (1)		- zgrid plot
+zpbutt (1)		- Butterworth analog filter
+zpch1 (1)		- Chebyshev analog filter
+zpch2 (1)		- Chebyshev analog filter
+zpell (1)		- lowpass elliptic filter
+[ (1)			- left bracket
+[ ] (1) 		- left and right brackets
+[] (1)			- empty matrix
+\\ (1)			- left matrix division
+^  (1)			- power operation 
+^ (1)			- exponentiation
+~ (1)			- logical not

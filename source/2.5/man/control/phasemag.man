@@ -1,0 +1,51 @@
+.TH phasemag 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+phasemag - phase and magnitude computation
+.SH CALLING SEQUENCE
+.nf
+[phi,db]=phasemag(z [,mod])
+.fi
+.SH PARAMETERS
+.TP 
+z     
+: matrix or row vector of complex numbers.
+.TP 
+mod   
+: character string
+.RS 
+.TP 10
+mod='c'  
+: "continuous" representation between -infinity and +360 degrees (default)
+.TP
+mod='m'  
+: representation between -360 and 0 degrees 
+.RE
+.TP 
+phi   
+: phases (in degree) of \fVz\fR.
+.TP
+db    
+: magnitude (in Db)
+.SH DESCRIPTION
+\fVphasemag\fR computes the phases and magnitudes of the entries of
+a complex matrix. For \fVmod='c'\fR
+\fVphasemag\fR computes  \fVphi(:,i+1)\fR  to minimize the
+distance with  \fVphi(:,i)\fR, i.e. it tries to obtain a
+"continuous representation" of the phase.
+
+To obtain the phase between -%pi and %pi use \fVphi=atan(imag(z),real(z))\fR
+.SH EXAMPLE
+.nf
+s=poly(0,'s');
+h=syslin('c',1/((s+5)*(s+10)*(100+6*s+s*s)*(s+.3)));
+[frq,rf]=repfreq(h,0.1,20,0.005);
+xbasc(0);
+plot2d(frq',phasemag(rf,'c')');
+xbasc(1);
+plot2d(frq',phasemag(rf,'m')');
+.fi
+.SH SEE ALSO
+repfreq, gainplot, atan, bode
+
+

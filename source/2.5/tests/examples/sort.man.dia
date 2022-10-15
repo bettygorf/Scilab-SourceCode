@@ -1,0 +1,50 @@
+ 
+clear;lines(0);
+ 
+[s,p]=sort(rand(1,10));
+ 
+//p  is a random permutation of 1:10
+ 
+A=[1,2,5;3,4,2];
+ 
+[Asorted,q]=sort(A);A(q(:))-Asorted(:)
+ ans  =
+ 
+!   0. !
+!   0. !
+!   0. !
+!   0. !
+!   0. !
+!   0. !
+ 
+v=1:10;
+ 
+sort(v)
+ ans  =
+ 
+!   10.    9.    8.    7.    6.    5.    4.    3.    2.    1. !
+ 
+sort(v')
+ ans  =
+ 
+!   10. !
+!   9.  !
+!   8.  !
+!   7.  !
+!   6.  !
+!   5.  !
+!   4.  !
+!   3.  !
+!   2.  !
+!   1.  !
+ 
+sort(v,'r')  //Does nothing for row vectors
+ ans  =
+ 
+!   1.    2.    3.    4.    5.    6.    7.    8.    9.    10. !
+ 
+sort(v,'c')
+ ans  =
+ 
+!   10.    9.    8.    7.    6.    5.    4.    3.    2.    1. !
+ 

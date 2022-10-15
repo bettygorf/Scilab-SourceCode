@@ -1,0 +1,8 @@
+xinit('analog.1.ps')
+//squared magnitude response of Butterworth filter
+h=buttmag(13,300,1:1000);
+plot2d((1:1000)',20*log(h)'/log(10),[-1],"011"," ",[0,-140,1000,10]),
+
+
+
+

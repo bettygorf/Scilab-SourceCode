@@ -1,0 +1,59 @@
+.TH spantwo 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+spantwo - sum and intersection of subspaces
+.SH CALLING SEQUENCE
+.nf
+[Xp,dima,dimb,dim]=spantwo(A,B, [tol])
+.fi
+.SH PARAMETERS
+.TP 10
+A, B
+: two real or complex matrices with equal number of rows
+.TP
+Xp
+: square non-singular matrix
+.TP
+dima, dimb, dim
+: integers, dimension of subspaces
+.TP
+tol
+: nonnegative real number
+.SH DESCRIPTION
+Given two matrices \fVA\fR and \fVB\fR with same number of rows,
+returns a square matrix \fVXp\fR (non singular but not necessarily orthogonal) 
+such that :
+.LP
+.nf
+         [*,0]    (dim-dimb rows)
+Xp*[A,B]=[*,*]    (dima+dimb-dim rows)
+         [0,*]    (dim-dima rows)
+         [0,0]
+.fi
+The  first \fVdima\fR  columns of \fVinv(Xp)\fR span range(\fVA\fR).
+.LP
+Columns \fVdim-dimb+1\fR to \fVdima\fR of \fVinv(Xp)\fR span the 
+intersection of range(A) and range(B).
+.LP
+The \fVdim\fR first columns of \fVinv(Xp)\fR span 
+range(\fVA\fR)+range(\fVB\fR).
+.LP
+Columns \fVdim-dimb+1\fR to \fVdim\fR of \fVinv(Xp)\fR span 
+range(\fVB\fR).
+.SH EXAMPLE
+.nf
+A=[1,0,0,4;
+   5,6,7,8;
+   0,0,11,12;
+   0,0,0,16];
+B=[1,2,0,0]';C=[4,0,0,1]; 
+Sl=ss2ss(syslin('c',A,B,C),rand(A));
+[no,X]=contr(Sl(2),Sl(3));CO=X(:,1:no);  //Controllable part
+[uo,Y]=unobs(Sl(2),Sl(4));UO=Y(:,1:uo);  //Unobservable part
+[Xp,dimc,dimu,dim]=spantwo(CO,UO);    //Kalman decomposition
+Slcan=ss2ss(Sl,inv(Xp));
+.fi             
+.SH SEE ALSO
+spanplus, spaninter
+.SH AUTHOR
+F. D.

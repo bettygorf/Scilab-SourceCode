@@ -1,0 +1,66 @@
+
+
+
+quaskro(1)                     Scilab Function                     quaskro(1)
+
+
+
+
+
+
+NAME
+  quaskro - quasi-Kronecker form
+
+CALLING SEQUENCE
+  [Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(F)
+  [Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(E,A)
+  [Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(F,tol)
+  [Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(E,A,tol)
+
+PARAMETERS
+  F    : real matrix pencil F=s*E-A  (s=poly(0,'s'))
+  E,A  : two real matrices of same dimensions
+  tol  : a real number (tolerance, default value=1.d-10)
+  Q,Z       : two square orthogonal matrices
+  Qd,Zd     : two vectors of integers
+  numbeps        : vector of integers
+
+DESCRIPTION
+  Quasi-Kronecker form of matrix pencil: quaskro computes two orthogonal
+  matrices Q, Z wich put the pencil F=s*E -A into upper-triangular form:
+
+             | sE(eps)-A(eps) |        X       |      X     |
+             |----------------|----------------|------------|
+             |        O       | sE(inf)-A(inf) |      X     |
+  Q(sE-A)Z = |=================================|============|
+             |                                 |            |
+             |                O                | sE(r)-A(r) |
+
+  The dimensions of the blocks are given by:
+  eps=Qd(1) x Zd(1), inf=Qd(2) x Zd(2), r = Qd(3) x Zd(3)
+  The inf block contains the infinite modes of the pencil.
+  The f block contains the finite modes of the pencil
+  The structure of epsilon blocks are given by:
+  numbeps(1) = # of eps blocks of size 0 x 1
+  numbeps(2) = # of eps blocks of size 1 x 2
+  numbeps(3) = # of eps blocks of size 2 x 3     etc...
+  The complete (four blocks) Kronecker form is given by the function kroneck
+  which calls quaskro on the (pertransposed) pencil sE(r)-A(r).
+  The code is taken from T. Beelen
+
+SEE ALSO
+  kroneck, gschur, gspec
+
+
+
+
+
+
+
+
+
+
+
+
+
+

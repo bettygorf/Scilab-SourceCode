@@ -1,0 +1,26 @@
+.TH meof 1 "April 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+meof - check if end of file has been reached
+.SH CALLING SEQUENCE
+.nf
+err=meof(fd)	
+.fi
+.SH PARAMETERS
+.TP 10
+fd
+: scalar. The \fVfd\fR parameter returned by the function
+\fVmopen\fR. -1 stands for last opened file. Default value is -1.
+.TP
+err
+: scalar. Error indicator
+
+.SH DESCRIPTION
+The function \fVmeof\fR will return a non null value if end of file 
+has been reached in a previous call to \fVmget\fR or \fVmgetstr\fR. 
+The function \fVclearerr\fR is used to reset the error flag and
+EOF flag to zero.
+.SH SEE ALSO
+mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget,
+mgetstr, mopen, mprintf, mput, mputstr, mscanf, mseek, mtell
+

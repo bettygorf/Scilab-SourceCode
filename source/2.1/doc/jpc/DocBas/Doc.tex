@@ -1,0 +1,408 @@
+\documentstyle[11pt]{article}
+             \textheight=660pt 
+             \textwidth=15cm
+             \topmargin=-27pt 
+             \oddsidemargin=0.7cm
+             \evensidemargin=0.7cm
+             \marginparwidth=60pt
+             \title{TheTitle} 
+             \author{J.Ph. Chancelier\thanks{Cergrene. Ecole Nationale des Ponts et Chauss\'ees, La Courtine  93167 Noisy le Grand C\'{e}dex }}
+ 
+\begin{document}\maketitle
+\section{Introduction}
+Nous d\'ecrivons ici les biblioth\`eques de macro rajout\'ees dans Basile 
+et permettant d'utiliser la biblioth\`eque graphique \'ecrite en C 
+appell\'ee ``Missile'' (JPh Chancelier). Cette biblioth\`eque est pour l'instant 
+ interfac\'ee en utilisant les primitive interf et fort de Basile. 
+Les macros acc\'essibles dans Basile sont d\'ecrites ci-dessous, elles 
+ utilisent toutes fort pour s'interfacer avec une fonction C remplissant la m\^eme fonction.
+
+La commande \verb+help xplot+ donne de fa\c{c}on interactive  le help qui suit 
+La commande \verb+help x11+ donne le help des fonctions de base.
+
+\verb@//<>=xgrid(nax)@ \\
+\verb@//<>=xgrid(nax)@ \\
+\verb@// Rajoute une grille sur un graphique 2D @ \\
+\verb@//  ( champ plot2d)@ \\
+\verb@// nax=<n1,n2>, ou n1 et n2 sont respectivement le nombre @ \\
+\verb@// d'intervalles demand\'es pour l'axe des x et l'axe des y @ \\
+\verb@// @ \\
+\verb@// Exemple : taper xgrid() pour voir un exemple.@ \\
+\verb@//           plot2d(<0;5>,<0;10>);xgrid(<5,10>)@ \\
+\verb@//!@ \\
+if posok=1,xinit('xgrid.');end
+xgrid();xclick();xclear();xend();
+
+\input xgrid.tex
+\dessin{xgrid.texte}{xgrid}
+\verb@//<>=xtitle(xtit,xax,yax,encad)@ \\
+\verb@//<>=xtitle(xtit,xax,yax,encad)@ \\
+\verb@// Rajoute un titre sur un graphique 2D @ \\
+\verb@// xtit,xax,yax : 3 cha\i{i}nes de caract\`eres donnant respectivement @ \\
+\verb@// le titre g\'en\'eral, le titre pour l'axe des x et le titre pour @ \\
+\verb@// l'axe des y.@ \\
+\verb@// Exemple : taper xtitle() pour voir un exemple @ \\
+\verb@//         plot2d(<0;5>,<0;10>);xtitle("Titre","x","y",0);@ \\
+\verb@//!@ \\
+if posok=1,xinit('xtitle.');end
+xtitle();xclick();xclear();xend();
+
+\input xtitle.tex
+\dessin{xtitle.texte}{xtitle}
+\verb@//<>=contour(x,y,z,nz)@ \\
+\verb@//<>=contour(x,y,z,nz)@ \\
+\verb@// Trace nz courbes de niveau de la surface @ \\
+\verb@// z=f(x,y) d\'efinie par une matrice de  points : @ \\
+\verb@// - z est une matrice de taille (n1,n2)@ \\
+\verb@// - x est une matrice de taille (1,n1)@ \\
+\verb@// - y est une matrice de taille (1,n2)@ \\
+\verb@// z(i,j) donne la valeur de f au point (x(i),y(j))@ \\
+\verb@// Exemple : taper contour() pour voir un exemple .@ \\
+\verb@//         Contour(1:5,1:10,rand(5,10),5);@ \\
+\verb@//!@ \\
+if posok=1,xinit('contour.');end
+contour();xclick();xclear();xend();
+
+\input contour.tex
+\dessin{contour.texte}{contour}
+\verb@//<x>=fcontour(f,xr,yr,nz)@ \\
+\verb@//<x>=fcontour(f,xr,yr,nz)@ \\
+\verb@// Trace nz courbes de niveau de la surface d\'efinie @ \\
+\verb@// par une macro <z>=f(x,y)@ \\
+\verb@// on calcule d'abord f sur une grille qui est renvoy\'ee@ \\
+\verb@// dans la valeur de retour@ \\
+\verb@// xr et yr sont des vecteurs implicites donnant les @ \\
+\verb@// abscisses et les ordonn\'ees des points de la grille@ \\
+\verb@// Exemple : taper fcontour() pour voir un exemple .@ \\
+\verb@// deff('<z>=surf(x,y)','z=x**2+y**2');@ \\
+\verb@// fcontour(surf,-1:0.1:1,-1:0.1:1,10);@ \\
+\verb@// @ \\
+\verb@//!@ \\
+if posok=1,xinit('fcontour.');end
+fcontour();xclick();xclear();xend();
+
+\input fcontour.tex
+\dessin{fcontour.texte}{fcontour}
+\verb@//<>=fplot2d(f,xr,style,strf,leg,rect,nax)@ \\
+\verb@//<>=fplot2d(f,xr,[style,strf,leg,rect,nax])@ \\
+\verb@// Dessin d'une courbe 2D d\'efinie par une macro <y>=f(x) @ \\
+\verb@// on trace un aproximation lin\'eaire par morceaux de la courbe@ \\
+\verb@// y=f(x), passant par les points (xr(i),f(xr(i)))@ \\
+\verb@// xr est donc un vecteur implicite donnant les points ou l'on calcule f.@ \\
+\verb@// pour les autres arguments qui sont optionnels, on se reportera \`a @ \\
+\verb@// plot2d.@ \\
+\verb@// Exemple~: taper fplot2d() pour voir un exemple.@ \\
+\verb@// deff('<y>=f(x)','y=sin(x)+cos(x)');@ \\
+\verb@// fplot2d(f,0:0.1:%pi);@ \\
+\verb@//!@ \\
+if posok=1,xinit('fplot2d.');end
+fplot2d();xclick();xclear();xend();
+
+\input fplot2d.tex
+\dessin{fplot2d.texte}{fplot2d}
+\verb@//<z>=fplot3d(f,xr,yr,teta,alpha,leg,flag)@ \\
+\verb@//<z>=fplot3d(f,xr,yr,teta,alpha,leg,[flag])@ \\
+\verb@// Trace la surface d\'efinie par une macro <z>=f(x,y)@ \\
+\verb@// on calcule d'abord f sur une grille qui est renvoy\'ee@ \\
+\verb@// dans la valeur de retour (z).@ \\
+\verb@// xr et yr sont des vecteurs implicites donnant les @ \\
+\verb@// abscisses et les ordonn\'ees des points de la grille@ \\
+\verb@// -teta, alpha : sont les angles en coordonn\'ees spheriques du@ \\
+\verb@//      point d'observation @ \\
+\verb@// -flag (voir plot3d)@ \\
+\verb@// Exemple : taper fplot3d() pour voir un exemple@ \\
+\verb@// deff('<z>=surf(x,y)','z=x**2+y**2');@ \\
+\verb@// res=fplot3d(surf,-1:0.1:1,-1:0.1:1,35,45,"X@Y@Z",<2,1>);@ \\
+\verb@//!@ \\
+if posok=1,xinit('fplot3d.');end
+fplot3d();xclick();xclear();xend();
+
+\input fplot3d.tex
+\dessin{fplot3d.texte}{fplot3d}
+\verb@//<>=plot3d(x,y,z,teta,alpha,leg,flag)@ \\
+\verb@//<>=plot3d(x,y,z,teta,alpha,leg,[flag])@ \\
+\verb@// Trace la surface f(x,y) d'efinie par une matrice de point@ \\
+\verb@// - z est une matrice de taille (n1,n2)@ \\
+\verb@// - x est une matrice de taille (1,n1)@ \\
+\verb@// - y est une matrice de taille (1,n2)@ \\
+\verb@// z(i,j) donne la valeur de f au point (x(i),y(j))@ \\
+\verb@// -teta, alpha : sont les angles en coordonn\'ees spheriques du@ \\
+\verb@// point d'observation.@ \\
+\verb@// -leg : la legende pour chaque axe. C'est une chaine de caracteres @ \\
+\verb@//      avec @ comme s\'eparateur de champ, par exemple : "X@Y@Z"@ \\
+\verb@// flag=<mode,type>@ \\
+\verb@//   mode >=2 -> elimination parties cachees mode @ \\
+\verb@//               (surface plus ou moins grisee en fonction du nombre choisi)@ \\
+\verb@//   mode = 1 trace en mode filaire (avec parties cachees)@ \\
+\verb@// type =0 on superpose (les echelles utilis\'ees sont les m\^eme que lors de @ \\
+\verb@//         l'appel precedent).@ \\
+\verb@// Exemple : taper plot3d() pour voir un exemple.@ \\
+\verb@// plot3d(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",<2,1>)@ \\
+\verb@//!@ \\
+if posok=1,xinit('plot3d.');end
+plot3d();xclick();xclear();xend();
+
+\input plot3d.tex
+\dessin{plot3d.texte}{plot3d}
+\verb@//<>=plot3d1(x,y,z,teta,alpha,leg,flag)@ \\
+\verb@//<>=plot3d1(x,y,z,teta,alpha,leg,[flag])@ \\
+\verb@// m\^eme chose que plot3d mais le niveau de gris utilise est fonction @ \\
+\verb@// de la valeur de z sur la surface.@ \\
+\verb@// Exemple :@ \\
+\verb@// plot3d1(1:10,1:20,(1:10)'.*.(1:20),35,45,"X@Y@Z",<2,1>)@ \\
+\verb@//!@ \\
+if posok=1,xinit('plot3d1.');end
+plot3d1();xclick();xclear();xend();
+
+\input plot3d1.tex
+\dessin{plot3d1.texte}{plot3d1}
+\verb@//<>=param3d(x,y,z,teta,alpha,leg,flag)@ \\
+\verb@//<>=param3d(x,y,z,teta,alpha,leg,[flag])@ \\
+\verb@//@ \\
+\verb@// Trace un courbe param\'etrique 3D d\'efinie par @ \\
+\verb@// une suite de points (x(i),y(i),z(i)),i=1,n@ \\
+\verb@// -x,y,z sont trois vecteurs de taille (1,n)@ \\
+\verb@// @ \\
+\verb@// -teta, alpha : sont les angles en coordonn\'ees spheriques du@ \\
+\verb@// point d'observation.@ \\
+\verb@//@ \\
+\verb@// -leg : la legende pour chaque axe. C'est une chaine de caracteres @ \\
+\verb@//      avec @ comme s\'eparateur de champ, par exemple : "X@Y@Z"@ \\
+\verb@//@ \\
+\verb@// -flag : si flag vaut 0 les echelles utilis\'ees sont les m\^eme@ \\
+\verb@//       que lors de  l'appel precedent).@ \\
+\verb@// Exemple : taper param3() pour voir un exemple@ \\
+\verb@// t=0:0.1:5*%pi;@ \\
+\verb@// param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",1)@ \\
+\verb@//!@ \\
+if posok=1,xinit('param3d.');end
+param3d();xclick();xclear();xend();
+
+\input param3d.tex
+\dessin{param3d.texte}{param3d}
+
+\verb@//<>=fchamp(macr_f,fch_t,fch_xr,fch_yr,arfact,flag)@ \\
+\verb@//<>=fchamp(f,t,xr,yr,fax,arfact)@ \\
+\verb@//   Visualisation de champ de vecteur dans R^2,@ \\
+\verb@//   Les champs de vecteur que l'on visualise seront d\'efinis sous@ \\
+\verb@//   la forme <y>=f(x,t,[u]), pour \^etre compatible avec la macro ode@ \\
+\verb@//    f : le champ de vecteur . Peut etre soit :@ \\
+	 une macro donnant la valeur d'un champ en un point x,<y>=f(t,x,[u])
+\verb@//       un object de type liste list(f1,u1) ou f1 est une macro de type@ \\
+\verb@//        <y>=f1(t,x,u) et u1 est la valeur que l'on veut donner a u @ \\
+\verb@//    t : est la date \`a laquelle on veut le champ de vecteur.@ \\
+\verb@//    xr,yr: deux vecteurs implicites donnant les points de la grille@ \\
+\verb@//      ou on veut visualiser le champ de vecteur.@ \\
+\verb@//    arfact : un argument optionnel qui permet de controler la taille@ \\
+\verb@//      de la tete des fleches qui indique la valeur du champ (1.0 par defaut)@ \\
+\verb@//    flag : chaine de caractere @ \\
+\verb@//          "0" pas d'indication sous les axes @ \\
+\verb@//          "1" les valeur de xr et yr son rajoutees en indications @ \\
+\verb@//              sous les axes @ \\
+\verb@//          "2" on utilise le cadre et les indications sous les axes@ \\
+\verb@//              en utilisant les valeurs d'un appel @ \\
+\verb@//  	       precedent  ou d'un appel a  xsetech @ \\
+\verb@//Exemple : taper fchamp pour voir un exemple @ \\
+\verb@//     deff('<xdot> = derpol(t,x)',<'xd1 = x(2)';@ \\
+\verb@//     'xd2 = -x(1) + (1 - x(1)**2)*x(2)';@ \\
+\verb@//     'xdot = < xd1 ; xd2 >'>);@ \\
+\verb@//      fchamp(derpol,0,-1:0.1:1,-1:0.1:1,1);@ \\
+\verb@//!@ \\
+if posok=1,xinit('fchamp.');end
+fchamp();xclick();xclear();xend();
+
+\input fchamp.tex
+\dessin{fchamp.texte}{fchamp}
+\verb@//<>=champ(fx,fy,arfact,rect,flag)@ \\
+\verb@//<>=champ(fx,fy,[arfact=1.0,rect=<xmin,ymin,xmax,ymax>,last])@ \\
+\verb@// Draw a vector field of dimension 2@ \\
+\verb@//  -fx and fy are (p,q) matrix which give the vector field @ \\
+\verb@//     fx and fy values on a regular grid @ \\
+\verb@//     Warning fx(i,j) is the value of the field along the x-axis@ \\
+\verb@//     for the point X=(i,j)@ \\
+\verb@//  -if rect is present then it gives the range to use on xaxis@ \\
+\verb@//      and yaxis rect= <xmin,ymin,xmax,ymax>@ \\
+\verb@//  -arfact : optional argument to control the size of arrow head @ \\
+\verb@//            the arrow head size is multiplied by arfact @ \\
+\verb@//  -flag : "0" No axis @ \\
+\verb@//          "1" axis using the value of rect@ \\
+\verb@//          "2" axis and rectangle using previous call.@ \\
+\verb@// Ex : taper champ pour voir un exemple@ \\
+\verb@//   champ(rand(10,10),rand(10,10),1,<0,0,10,10>)@ \\
+\verb@//!@ \\
+if posok=1,xinit('champ.');end
+champ();xclick();xclear();xend();
+
+\input champ.tex
+\dessin{champ.texte}{champ}
+\verb@//<>=plot2d(x,y,style,strf,leg,rect,nax)@ \\
+\verb@//<>=plot2d(x,y,[style,strf,leg,rect,nax])@ \\
+\verb@//@ \\
+\verb@// plot2d dessine simultanement un ensemble de courbes 2D.@ \\
+\verb@// Arguments minimaux : x et y @ \\
+\verb@// @ \\
+\verb@// x et y sont deux matrices de taille <nl,nc>.@ \\
+\verb@//   nc : est le nombre de courbes nl : le nombre de points de@ \\
+\verb@//   chaque courbe.@ \\
+\verb@// par exemple : x=< 1:10;1:10>',y= < sin(1:10);cos(1:10)>' @ \\
+\verb@// @ \\
+\verb@// Arguments optionnels :@ \\
+\verb@//@ \\
+\verb@//   -style : est un vecteur de taille nc ( le nombre de courbes )@ \\
+\verb@//       il definit le style de chaque courbe.@ \\
+\verb@//       si style[i] est positif la ieme courbe est tracee avec la @ \\
+\verb@//           marque de numero style[i]@ \\
+\verb@//       si style[i] est < 0 un trace ligne est utilise le type de la ligne@ \\
+\verb@//           est alors donne par abs(style[i])@ \\
+\verb@//       Dans le cas particulier ou l'on ne dessine qu'une courbe @ \\
+\verb@//       style sera donne sous la forme <style,pos> ou style est le style@ \\
+\verb@//         a utiliser et pos donne la position a utiliser pour@ \\
+\verb@//         la legende de la courbe ( 6 positions posibles)@ \\
+\verb@//   -strf="xyz" : chaine de caracteres de longueur 3.@ \\
+\verb@//     x : controle le display des legendes si x=1 on ajoute des legendes@ \\
+\verb@//        qui sont donnees dans l'argument leg="leg1@leg2@...."@ \\
+\verb@//     y : controle l'echelle du graphique @ \\
+\verb@//        si y=1 les valeurs stockees dans l'argument rect sont utilisees@ \\
+\verb@//           pour definir le cadre  rect=<xmin,ymin,xmax,ymax>@ \\
+\verb@//        si y=2 le cadre est calcule en fonction des donnees.@ \\
+\verb@//        sinon le cadre qui a ete utilise lors d'un appel precedent @ \\
+\verb@//           est a nouveau utilise @ \\
+\verb@//     z : controle du cadre @ \\
+\verb@//        si z=1 : un axe gradue est rajoute le nombre d'intervalle est @ \\
+\verb@//        donne par l'argument nax. nax est un vecteur de dimension 4.@ \\
+\verb@//        par exemple si nax=<3,7,2,8>, l'axe des x sera subdivise en 7 @ \\
+\verb@//        intervalles pour lequels une valeur numerique sera ecrite @ \\
+\verb@//        chacun des 7 intervalles sera divise en 3 sous intervalles @ \\
+\verb@//        (resp. 8,2 pour l'axe des y)@ \\
+\verb@//        si z=2 : on rajoute juste un boite autour du graphique@ \\
+\verb@//        sinon  : rien n'est rajoute @ \\
+\verb@// @ \\
+\verb@//Exemple : taper plot2d() pour voir un exemple@ \\
+\verb@//          x=0:0.1:2*%pi;@ \\
+\verb@//  [1]    plot2d(<x;x;x>',<sin(x);sin(2*x);sin(3*x)>');@ \\
+\verb@//  [2]    plot2d(<x;x;x>',<sin(x);sin(2*x);sin(3*x)>',...@ \\
+\verb@//           <-1,-2,3>,"111","L1@L2@L3",<0,-2,2*%pi,2>,<2,10,2,10>);@ \\
+\verb@//!@ \\
+if posok=1,xinit('plot2d.');end
+plot2d();xclick();xclear();xend();
+
+\input plot2d.tex
+\dessin{plot2d.texte}{plot2d}
+\verb@//<>=plot2d1(str,x,y,style,strf,leg,rect,nax)@ \\
+\verb@//<>=plot2d1(str,x,y,[style,strf,leg,rect,nax])@ \\
+\verb@// Same as plot2d but with one more argument @ \\
+\verb@// str ="abc"@ \\
+\verb@//   str[1]= e | o | g @ \\
+\verb@//      if w = e  , e stands for empty the value of x is not used and can @ \\
+\verb@//                    be omited  plot2d1("enn",1,...)   @ \\
+\verb@//      if w = o  , o stands for one : if there are many curves they all @ \\
+\verb@//                    have the same x-values ( x is of size x(n,1) and y @ \\
+\verb@//                    of size y(n,n1);@ \\
+\verb@//		      plot2d1("onn",(1:10)',<sin(1:10);cos(1:10)>')@ \\
+\verb@//	if w = g  , g stands for general x is of size (n,n1)@ \\
+\verb@//   str[2] and str[3] = n | l @ \\
+\verb@//                  if str[2]=l : logarithmic axes are used on the X-axis@ \\
+\verb@//                  if str[3]=l : logarithmic axes are used on the Y-axis@ \\
+\verb@//	@ \\
+\verb@//   See plot2d for the other arguments@ \\
+\verb@// @ \\
+\verb@//!@ \\
+if posok=1,xinit('plot2d1.');end
+plot2d1();xclick();xclear();xend();
+
+\input plot2d1.tex
+\dessin{plot2d1.texte}{plot2d1}
+\verb@//<>=plot2d2(str,x,y,style,strf,leg,rect,nax)@ \\
+\verb@//<>=plot2d2(str,x,y,[style,strf,leg,rect,nax])@ \\
+\verb@// Same as plot2d1 but with piece-wise constant style@ \\
+\verb@//!@ \\
+if posok=1,xinit('plot2d2.');end
+plot2d2();xclick();xclear();xend();
+
+\input plot2d2.tex
+\dessin{plot2d2.texte}{plot2d2}
+
+\verb@//<>=plot2d3(str,x,y,style,strf,leg,rect,nax)@ \\
+\verb@//<>=plot2d3(str,x,y,[style,strf,leg,rect,nax])@ \\
+\verb@// Same as plot2d1 but curves are plotted using vertical bars @ \\
+\verb@// style are dashed-line styles@ \\
+\verb@//!@ \\
+if posok=1,xinit('plot2d3.');end
+plot2d3();xclick();xclear();xend();
+
+\input plot2d3.tex
+\dessin{plot2d3.texte}{plot2d3}
+\verb@//<>=plot2d4(str,x,y,style,strf,leg,rect,nax)@ \\
+\verb@//<>=plot2d4(str,x,y,[style,strf,leg,rect,nax])@ \\
+\verb@// Same as plot2d1 but curves are plotted using arrows @ \\
+\verb@// style are dashed-line styles@ \\
+\verb@//!@ \\
+if posok=1,xinit('plot2d4.');end
+plot2d4();xclick();xclear();xend();
+
+\input plot2d4.tex
+\dessin{plot2d4.texte}{plot2d4}
+\verb@//<>=stair2d(x,y,style,strf,leg,rect,nax)@ \\
+\verb@//<>=stair2d(x,y,[style,strf,leg,rect,nax])@ \\
+\verb@// piece-wize constant curves (obsolete) @ \\
+\verb@// see plot2d2@ \\
+\verb@//!@ \\
+
+\verb@//<x1,y1,rect>=xchange(x,y,dir)@ \\
+\verb@//<x1,y1,rect>=xchange(x,y,dir)@ \\
+\verb@// Apres avoir utilise une fonction graphique ou la fonction @ \\
+\verb@// xsetech cette fonction permet de passer de coordonn\'ees @ \\
+\verb@// r\'eelles en coordonn\'ees pixel et inversement suivant @ \\
+\verb@// la valeur du param\`etre dir @ \\
+\verb@// dir = 'f2i' ou 'i2f' ( float to int ou int to float)@ \\
+\verb@// le troisi\`eme argument de retour est rect qui indique @ \\
+\verb@// le rectangle en pixel dans lequel l'echelle a \'et\'e fix\'ee @ \\
+\verb@// voir xsetech.@ \\
+\verb@//!@ \\
+
+
+\verb@//<>=xsetech(frect,irect)@ \\
+\verb@//<>=xsetech(frect,irect)@ \\
+\verb@// Si apr\`es avoir utilis\'e cette fonction @ \\
+\verb@// on appelle plot2d avec l'option y=0 (strf="xyz")@ \\
+\verb@// les echelles seront fix\'ees de la facon suivante :@ \\
+\verb@//   le graphique sera effectue dans le rectangle @ \\
+\verb@//      irect=<x,y,width,height> en pixel. @ \\
+\verb@//   Et ce rectangle correspondra aux intervalles r\'eels @ \\
+\verb@//   d\'efinis par frect=<xmin,ymin,xmax,ymax>@ \\
+\verb@//!@ \\
+
+
+\verb@//<frect,irect>=xgetech()@ \\
+\verb@//<frect,irect>=xgetech()@ \\
+\verb@// cette fonction permet de connaitre les echelles qui ont \'et\'ees@ \\
+\verb@// fix\'ees par xsetech ou par un appel \`a une fonction graphique@ \\
+\verb@//!@ \\
+
+
+\verb@//<>=errbar(x,y,em,ep)@ \\
+\verb@//<>=errbar(x,y,em,ep)@ \\
+\verb@// Rajoute des barres d'erreur sur un graphique 2D@ \\
+\verb@// x et y decrivent les courbes (voir plot2d)@ \\
+\verb@// em et ep sont deux matrices la barre d'erreur au point @ \\
+\verb@// <x(i,j),y(i,j)> va de <x(i,j),y(i,j)-em(i,j)> a <x(i,j),y(i,j)+em(i,j)>@ \\
+\verb@// x,y,em et ep sont donc des matrices (p,q), q courbes contenant chacunes @ \\
+\verb@// p points. @ \\
+\verb@// Exemple : taper errbar()@ \\
+\verb@//      x=0:0.1:2*%pi;@ \\
+\verb@//   y=<sin(x);cos(x)>';x=<x;x>';plot2d(x,y);@ \\
+\verb@//   errbar(x,y,0.05*ones(x),0.03*ones(x));@ \\
+if posok=1,xinit('errbar.');end
+errbar();xclick();xclear();xend();
+\input errbar.tex
+\dessin{errbar.texte}{errbar}	
+
+\verb@//<>=xtape(str)@ 
+\verb@//<>=xtape(str)@ \\
+\verb@// str='on' or 'replay' or 'clear'@ \\
+\verb@//!@ \\
+
+
+quit
+
+\end{document}

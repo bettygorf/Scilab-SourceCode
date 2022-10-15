@@ -1,0 +1,58 @@
+.TH edit_curv 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+edit_curv - interactive graphic curve editor
+.SH CALLING SEQUENCE
+.nf
+[x,y,ok,gc] = edit_curv(y)
+[x,y,ok,gc] = edit_curv(x,y)
+[x,y,ok,gc] = edit_curv(x,y,job)
+[x,y,ok,gc] = edit_curv(x,y,job,tit)
+[x,y,ok,gc] = edit_curv(x,y,job,tit,gc)
+.fi
+.SH PARAMETERS
+.TP 5
+x
+: vector of x coordinates
+.TP
+y
+: vector of y coordinates 
+.TP
+job
+: a character string formed by one to three of the characters 'a','x','y'
+.RS
+.TP
+ 'a' : to add points to the edited curve
+.TP
+ 'x' : to modify x coordinates of the edited curve points
+.TP
+ 'y' : to modify y coordinates of the edited curve points
+.RE
+.TP
+tit
+: a vector of three character strings which give the curve legend
+.TP
+gc
+: a list of graphic window parameters: \fVgc=list(rect,nax)\fR
+.RS
+.TP
+rect : bounds of the graphics (see plot2d for details)
+.TP
+nax  : graduation parameters (see plot2d for details)
+.RE
+.TP
+ok
+: indicator if ok==%t user as returned with 'ok' menu else user as returned with 'abort' menu 
+: list (graphical objects created under \fVedit_curv\fR
+.SH DESCRIPTION
+\fVedit_curv\fR is an interactive graphic curve editor. To add a new point
+simply click at the desired location, the added point will be
+connected to the nearest end-point. to move a point click on it, drag
+the mouse to the new position and click to fix the new position
+.SH AUTHOR
+Serge Steer 
+
+
+
+
+

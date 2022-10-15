@@ -1,0 +1,17 @@
+$SCI/man/programming	Scilab Programming
+$SCI/man/graphics	Graphic Library
+$SCI/man/elementary	Utilities and Elementary Functions
+$SCI/man/control	General System and Control macros
+$SCI/man/robust		Robust control toolbox
+$SCI/man/nonlinear	Non-linear tools (optimization and simulation)
+$SCI/man/signal		Signal Processing toolbox
+$SCI/man/polynomials	Polynomial calculations
+$SCI/man/linear		Linear Algebra
+$SCI/man/comm		Communications
+$SCI/man/metanet	Metanet
+$SCI/man/arma		Arma
+$SCI/man/tdcs		TdCs
+$SCI/man/scicos		Scicos
+$SCI/man/sound		Sound
+
+

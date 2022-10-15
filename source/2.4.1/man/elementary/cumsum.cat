@@ -1,0 +1,39 @@
+
+cumsum(1)                      Scilab Function                      cumsum(1)
+NAME
+  cumsum - cumulative sum
+
+CALLING SEQUENCE
+  y=cumsum(x)
+  y=cumsum(x,'r') or y=cumsum(x,1)
+  y=cumsum(x,'c') or y=cumsum(x,2)
+
+PARAMETERS
+
+  x         : vector or matrix (real or complex)
+
+  y         : vector or matrix (real or complex)
+
+DESCRIPTION
+  For a vector or a matrix x, y=cumsum(x)  returns in y the cumulative sum of
+  all the entries of x taken columnwise.
+
+  y=cumsum(x,'c') (or, equivalently, y=cumsum(x,2)) returns in y the cumula-
+  tive sum of the columns of x:  y(i,:)=cumsum(x(i,:))
+
+  y=cumsum(x,'r') (or, equivalently, y=cumsum(x,1)) returns in y the cumula-
+  tive sum of the rows of x:  y(:,i)=cumsum(x(:,i))
+
+EXAMPLE
+  A=[1,2;3,4];
+  cumsum(A)
+  cumsum(A,'r')
+  cumsum(A,'c')
+  a=rand(3,4)+%i;
+  [m,n]=size(a);
+  w=zeros(a);
+  w(1,:)=a(1,:);
+  for k=2:m;w(k,:)=w(k-1,:)+a(k,:);end;w-cumsum(a,'r')
+
+SEE ALSO
+  cumprod, sum

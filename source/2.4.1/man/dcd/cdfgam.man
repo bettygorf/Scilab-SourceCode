@@ -1,0 +1,56 @@
+.TH cdfgam 1 "Dec 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+cdfgam - cumulative distribution function gamma distribution 
+.SH CALLING SEQUENCE
+.nf
+[P,Q]=cdfgam("PQ",X,Shape,Scale)
+[X]=cdfgam("X",Shape,Scale,P,Q)
+[Shape]=cdfgam("Shape",Scale,P,Q,X)
+[Scale]=cdfgam("Scale",P,Q,X,Shape)
+.fi 
+.SH PARAMETERS
+.TP 10
+P,Q,X,Shape,Scale
+: five real vectors of the same size.
+.TP
+P,Q (Q=1-P)
+  The integral from 0 to X of the gamma density.
+Input range: [0,1].
+.TP
+X
+:  The upper limit of integration of the gamma density.
+Input range: [0, +infinity).
+Search range: [0,1E300]
+.TP
+Shape
+:  The shape parameter of the gamma density.
+Input range: (0, +infinity).
+Search range: [1E-300,1E300]
+.TP
+Scale
+:  The scale parameter of the gamma density.
+Input range: (0, +infinity).
+Search range: (1E-300,1E300]
+.SH DESCRIPTION
+Calculates any one parameter of the gamma
+distribution given values for the others.
+.LP
+Cumulative distribution function (P) is calculated directly by
+the code associated with:
+.LP
+DiDinato, A. R. and Morris, A. H. Computation of the  incomplete
+gamma function  ratios  and their  inverse.   ACM  Trans.  Math.
+Softw. 12 (1986), 377-393.
+.LP
+Computation of other parameters involve a seach for a value that
+produces  the desired  value  of P.   The search relies  on  the
+monotinicity of P with the other parameter.
+.LP
+The gamma density is proportional to
+\fVT**(SHAPE - 1) * EXP(- SCALE * T)\fR
+.LP
+From DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+Functions, Inverses, and Other Parameters (February, 1994)
+Barry W. Brown, James Lovato and Kathy Russell. The University of
+Texas.

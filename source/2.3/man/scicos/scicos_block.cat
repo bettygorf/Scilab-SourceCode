@@ -1,0 +1,32 @@
+
+scicos_block(Janvier 1997)                         scicos_block(Janvier 1997)
+NAME
+  scicos_block - Scicos block data structure
+
+DEFINITION
+  blk=list('Block',graphics,model,void,gui)
+
+PARAMETERS
+
+  "Block"   : keyword used to define list as a Scicos block representation
+
+  graphics  : Scilab list, graphic properties data structure
+
+  model     : Scilab list, system properties data structure.
+  void      : unused, reserved for future use.
+
+  gui       : character string, the name of the graphic user interface func-
+            tion (generally written in Scilab) associated with the block.
+
+  blk       : Scilab list, Scicos block data structure
+
+DESCRIPTION
+  Scicos editor creates and uses for each block a data structure containing
+  all information relative to the graphic interface and simulation part of
+  the block. Each of them are stored in the Scicos editor main data struc-
+  ture. Index of these in Scicos editor main data structure is given by the
+  creation order.
+  For Super blocks model(8) contains a data structure similar to the
+  scicos_main data structure.
+SEE ALSO
+  scicos_graphics, scicos_model

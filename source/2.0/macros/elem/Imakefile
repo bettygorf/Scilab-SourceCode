@@ -1,0 +1,19 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+NAME=elemlib
+NAM=elem
+
+MACROS= acos.sci acosh.sci asin.sci asinh.sci atanh.sci cosh.sci \
+	cotg.sci coth.sci  smooth.sci log10.sci \
+	null.sci sinh.sci floor.sci ceil.sci fix.sci \
+	tan.sci tanh.sci toeplitz.sci pertrans.sci \
+	clean.sci modulo.sci interpln.sci and.sci or.sci \
+	intl.sci intc.sci integrate.sci
+
+
+OBJ=$(MACROS:.sci=.bin)
+MACROSN=$(MACROS:.sci=)
+
+SciLibTarget($(OBJ))
+NormalScilabObjectRule()
+DependTarget()

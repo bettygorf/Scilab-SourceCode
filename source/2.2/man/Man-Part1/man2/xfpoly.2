@@ -1,0 +1,30 @@
+.TH xfpoly 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xfpoly - fill a polygon 
+.SH CALLING SEQUENCE
+.nf
+[]=xfpoly(xv,yv,[close])
+.fi
+.SH PARAMETERS
+.TP 10
+xv, yv
+: two vectors of size n (the points of the polygon)
+.TP
+close
+: an integer
+.SH DESCRIPTION
+Fills a polygon. If \fVclose\fR is equal to 1 a point is added to the polyline 
+ \fVxv,yv\fR to define a polygon.
+.SH EXAMPLE
+.nf 
+x=sin(2*%pi*(0:5)/5);
+y=cos(2*%pi*(0:5)/5);
+plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
+xfpoly(x,y)
+.fi
+.SH AUTHOR
+J.Ph.C.
+
+
+

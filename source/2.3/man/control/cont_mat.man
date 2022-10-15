@@ -1,0 +1,24 @@
+.TH cont_mat 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+cont_mat - controllability matrix
+.SH CALLING SEQUENCE
+.nf
+Cc=cont_mat(A,B) 
+Cc=cont_mat(sl)
+.fi
+.SH PARAMETERS
+.TP 10
+a,b
+: two real matrices of appropriate dimensions
+.TP
+sl
+: linear system (\fVsyslin\fR list)
+.SH DESCRIPTION
+\fVcont_mat\fR returns the controllability 
+matrix of the pair \fVA,B\fR (resp. of the system \fVsl=[A,B,C,D]\fR).
+.nf
+Cc=[B, AB, A^2 B,..., A^(n-1) B]  
+.fi
+.SH SEE ALSO
+ctr_gram, contr, canon, st_ility

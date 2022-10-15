@@ -1,0 +1,23 @@
+
+unix_x(1)                      Scilab Function                      unix_x(1)
+NAME
+  unix_x - shell (sh) command execution, output redirected to a window
+
+CALLING SEQUENCE
+  unix_x(cmd)
+
+PARAMETERS
+
+  cmd       : a character string
+DESCRIPTION
+  Sends a string cmd to Unix for execution by the sh shell. The standard out-
+  put  is redirected  to a xless window.  Unix execution errors are trapped;
+  *NOTE* that only the last shell command error is reported when a list of
+  command separated by ";" is sent: this is not recommended.
+
+EXAMPLE
+  if MSDOS then unix_x("dir "+WSCI+"emos");
+  else unix_x("ls $SCI/demos"); end
+
+SEE ALSO
+  edit, manedit, unix_g, unix_s, unix_w, unix

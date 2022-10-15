@@ -1,0 +1,39 @@
+.TH genfac3d 2 "October 1995" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+genfac3d - compute facets of a 3D surface
+.SH CALLING SEQUENCE
+.nf
+[xx,yy,zz]=genfac3d(x,y,z,[mask])
+.fi
+.SH PARAMETERS
+.TP 10
+xx,yy,zz 
+: matrices of size (4,n-1xm-1). \fVxx(:,i)\fR ,\fVyy(:,i) and \fVzz(:,i)\fR 
+are respectively the x-axis, y-axis and z-axis coordinates of the 4 points of 
+the ith four sided facet.
+.TP
+x 
+: x-axis coordinates vector of size m.
+.TP
+y 
+: y-axis coordinates vector of size n.
+.TP
+z      
+: matrix of size (m,n). \fVz(i,j)\fR is the value of the surface at the point
+(x(i),y(j)).
+.TP
+mask     
+: boolean optional matrix with same size as \fVz\fR used to select 
+the entries of \fVz\fR to be represented by facets.
+.SH DESCRIPTION
+\fVgenfac3d\fR computes a four sided facets representation of a 3D surface 
+\fVz=f(x,y)\fR defined by \fVx\fR, \fVy\fR and \fVz\fR.
+.SH EXAMPLE
+.nf
+t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+[xx,yy,zz]=genfac3d(t,t,z);
+plot3d(xx,yy,zz)
+.fi
+.SH SEE ALSO
+eval3dp, plot3d

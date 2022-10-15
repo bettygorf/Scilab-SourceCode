@@ -1,0 +1,33 @@
+.TH bstap 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+bstap - hankel approximant
+.SH CALLING SEQUENCE
+.nf
+[Q]=bstap(Sl)
+.fi
+.SH PARAMETERS
+.TP 10
+sl
+: linear system (\fVsyslin\fR list) assumed continuous-time and anti-stable.
+.TP
+Q
+: best stable approximation of \fVSl\fR (\fVsyslin\fR list).
+.SH DESCRIPTION
+Computes the best approximant \fVQ\fR of the linear system \fVSl\fR
+\"LaTeX \ignore{	
+.nf
+      ||Sl-Q||    =  ||T||
+              inf
+.fi
+\"LaTeX }
+\"LaTeX \[   {\Vert Sl-Q\Vert}_\infty    =  \Vert T \Vert \]
+where 
+\"LaTeX \ignore{ 
+||T||
+\"LaTeX } $\Vert T \Vert$ 
+is the  H-infinity norm of the Hankel operator associated with \fVSl\fR.
+.SH SEE ALSO
+syslin
+
+

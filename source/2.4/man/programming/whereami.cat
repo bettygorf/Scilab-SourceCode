@@ -1,0 +1,21 @@
+
+whereami(1)                    Scilab Function                    whereami(1)
+NAME
+  whereami - display current instruction calling tree
+
+CALLING SEQUENCE
+  whereami()
+
+DESCRIPTION
+  Displays calling tree to instruction which contain whereami(). May be uses
+  within pause levels.
+
+EXAMPLE
+  deff('y=test(a)',['y=sin(a)+1';
+                    'y=t1(y)';
+                    'y=y+1'])
+  deff('y=t1(y)',['y=y^2';'whereami()'])
+  test(1)
+
+SEE ALSO
+  where, pause

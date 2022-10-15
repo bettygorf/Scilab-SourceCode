@@ -1,0 +1,57 @@
+.TH contour2d 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+contour2d - level curves of a surface on a 2D plot
+.SH CALLING SEQUENCE
+.nf
+contour2d(x,y,z,nz,[style,strf,leg,rect,nax])
+.fi
+.SH PARAMETERS
+.TP 5
+x,y 
+: two real row vectors of size n1 and n2: the grid.
+.TP 5
+z   
+: real matrix of size (n1,n2), the values of the function.
+.TP 5
+nz 
+: the level values or the number of levels.
+.RS
+.TP 3
+-
+If \fVnz\fR is an integer, its value gives the number of level curves 
+equally spaced from zmin to zmax.
+.TP
+-
+If \fVnz\fR is a vector, \fVnz(i)\fR gives the value of the ith level curve.
+.RE
+.TP 5
+style,strf,leg,rect,nax
+: see \fVplot2d\fR. The argument \fVstyle\fR gives the dash styles or colors
+which are to be used for level curves. It must have the same size as
+the number of levels.
+.SH DESCRIPTION
+\fVcontour2d\fR draws level curves of a surface \fVz=f(x,y)\fR on a 2D plot.
+The values of \fVf(x,y)\fR are given by the matrix \fVz\fR at the
+grid points defined by \fVx\fR and \fVy\fR.
+
+You can change the format of the floating point number printed on the levels
+by using \fVxset("fpf",string)\fR where \fVstring\fR gives the 
+format in C format syntax (for example \fVstring="%.3f"\fR). Use 
+\fVstring=""\fR to switch back to default format.
+
+Use \fVcontour\fR to draw levels curves on a 3D surface.
+
+Enter the command \fVcontour2d()\fR to see a demo.
+.SH EXAMPLE
+.nf
+contour2d(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
+// changing the format of the printing of the levels
+xset("fpf","%.2f")
+xbasc()
+contour2d(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
+.fi
+.SH SEE ALSO
+contour, fcontour, fcontour2d, plot2d, xset
+.SH AUTHOR
+J.Ph.C.

@@ -1,0 +1,26 @@
+.TH buttmag 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+buttmag -  response of Butterworth filter
+.SH CALLING SEQUENCE
+.nf
+[h]=buttmag(order,omegac,sample)
+.fi
+.SH PARAMETERS
+.TP 10
+order
+: integer : filter order
+.TP
+omegac
+: real : cut-off frequency in Hertz
+.TP
+sample
+: vector of frequency where \fVbuttmag\fR is evaluated
+.TP
+h
+: Butterworth filter values at sample points
+.SH DESCRIPTION
+squared magnitude response of a Butterworth filter
+\fVomegac\fR = cutoff frequency ; \fVsample\fR = sample of frequencies
+.SH AUTHOR
+F. D.

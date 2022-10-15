@@ -1,0 +1,32 @@
+.TH x_message 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+x_message - X window message
+.SH CALLING SEQUENCE
+.nf
+[num]=x_message(strings [,buttons]) 
+.fi
+.SH PARAMETERS
+.TP
+strings
+: vector of characters strings to be displayed
+.TP
+buttons
+: character string or 2 vector of character strings which specifies
+button(s) name(s). Default value is "Ok"
+.TP
+num
+: number  of button clicked (if 2 buttons are specified)
+.SH DESCRIPTION
+for displaying a message (diagnostic, user-guide ...)
+
+.SH EXAMPLES
+.nf
+ gain=0.235;x_message('value of gain is :'+string(gain))
+ x_message(['singular matrix';'use least squares'])
+
+ r=x_message(['Your problem is ill conditioned';
+             'continue ?'],['Yes','No'])
+.fi
+.SH SEE ALSO
+x_dialog, x_mdialog

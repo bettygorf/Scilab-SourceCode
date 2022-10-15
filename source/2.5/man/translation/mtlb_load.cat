@@ -1,0 +1,37 @@
+
+mtlb_load(1)                   Scilab Function                   mtlb_load(1)
+NAME
+  mtlb_load - load variables from file with matlab4 format.
+
+CALLING SEQUENCE
+  mtlb_load fname
+  mtlb_load xxx.yyy
+  mtlb_load fname -ascii
+
+PARAMETERS
+
+  fname     : a file name
+
+  xxx.yyy   : a file name with extension
+
+DESCRIPTION
+  mtlb_load   load variables on file with matlab4 formats.
+
+  mtlb_load fname     loads in scilab all variables stored in file binary
+                      fname.mat .
+
+  mtlb_load fname -ascii
+                      loads in scilab  variable stored in ascii file fname,
+                      which must contain a rectangular array of numeric data,
+                      arranged in m lines with n values in each line.  The
+                      result is an m-by-n matrix named fname .
+
+  mtlb_load xxx.yyy   reads the ascii file xxx.yyy, which must contain a
+                      rectangular array of numeric data, arranged in m lines
+                      with n values in each line.  The result is an m-by-n
+                      matrix named xxx.
+
+   "stdio" value for  fname doesnt redirect load from standard input.
+
+SEE ALSO
+  mtlb_save, save , load

@@ -1,0 +1,27 @@
+.TH ldiv 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+ldiv - polynomial matrix long division
+.SH CALLING SEQUENCE
+.nf
+[x]=ldiv(n,d,k) 
+.fi
+.SH PARAMETERS
+.TP
+n,d
+: two real polynomial matrices
+.TP
+k
+: integer
+.SH DESCRIPTION
+\fVx=ldiv(n,d,k)\fR gives the \fVk\fR first coefficients  of the long
+division of \fVn\fR by \fVd\fR i.e.  the Taylor expansion of the rational
+matrix \fV[nij(z)/dij(z)]\fR near infinity.
+.LP
+Coefficients of expansion of \fVnij/dij\fR are stored in  
+\fVx((i-1)*n+k,j)  k=1:n\fR
+.SH SEE ALSO
+arl2
+
+
+

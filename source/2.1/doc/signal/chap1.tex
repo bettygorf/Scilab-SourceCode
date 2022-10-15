@@ -1,0 +1,992 @@
+\chapter{Description of the Basic Tools}
+
+\section{Introduction}
+
+The purpose of this document is to illustrate the use of the $\Psi$Lab software
+package
+in a signal processing context.
+We have gathered a collection of signal processing 
+algorithms which have been implemented 
+as $\Psi$Lab macros.  Being implemented in $\Psi$Lab the macros are interactive
+since $\Psi$Lab is an interpreted language.
+Consequently, it should be easy for the user to experiment with
+the many examples which are given here, as well as to implement new algorithms.
+In the latter case some knowledge of $\Psi$Lab is necessary \cite{delebecque}.
+
+We have tried to make the code as transparent as possible to help the user 
+to improve or modify the code according to his specific needs.
+
+\section{How to Use This Manual}
+
+	This manual is in part a pedagogical tool concerning
+the study of signal processing and in part a practical guide
+to using the signal processing tools available in $\Psi$Lab.  Consequently,
+for those who are not familiar with basic signal processing concepts
+this manual should provide a relatively informative explanation of 
+the signal processing tools available in $\Psi$Lab.  For those who
+are already well versed in the study of signal processing the tutorial
+parts of the manual will be of less interest.  However, the organization
+of the manual is arranged in such a way so that information about
+the syntax of signal processing tools available in $\Psi$Lab is easily found.
+
+	For each signal processing tool available in the signal 
+processing toolbox there is a section in the manual explaining the
+methodology behind the technique.  This is the tutorial section of the
+manual.  This (or these) sections are followed by a section which
+describes the use (i.e., syntax) of a macro designed to accomplish
+the signal processing described in the preceding sections.  This
+section is in turn followed by an examples section demonstrating the
+use of the macro.  In general, the example section is very important
+for understanding the use of the macro in that this section illustrates
+many of the common points of error in using the macro or illustrates
+more clearly than the syntax section how to use the different modes
+of the macro.
+
+	In this manual the {\tt typewriter-face} font is used to indicate
+either a macro name or an example dialogue which occurs in $\Psi$Lab.
+
+	Each signal processing subject is illustrated by examples
+and figures which were demonstrated using $\Psi$Lab.
+Since the objective of this manual is to demonstrate how to use
+$\Psi$Lab to do signal processing all of the $\Psi$Lab code
+used to generate these examples and figures is available in the text
+of the manual and is located at reasonable points in the text 
+following the development of subject material.  Study of this
+code will greatly assist the user to master the techniques used
+in $\Psi$Lab for signal processing.  To further assist the user,
+there exists for each example and figure an executable file
+which recreates the example or figure.  In this way the user can
+examine step by step the sequence of $\Psi$Lab commands used to
+accomplish a certain signal processing task.  Furthermore, the values of
+variables used in these files can be examined as well.
+To execute an example or figure one uses the following $\Psi$Lab command
+\begin{verbatim}
+-->exec('file.name')
+\end{verbatim}
+which causes $\Psi$Lab to execute all the $\Psi$Lab commands contained
+in the file called {\tt file.name}.  
+All of the files which were used to generate the examples and figures
+in this manual begin with a commented line which contains the name
+of the executable file.  Furthermore, all the figures in the body
+of the manual display the name of the executable file in typewriter
+font and between the caption of the figure and the figure itself.
+
+	Getting help on the use of macros available in the $\Psi$Lab
+signal processing toolbox can be obtained by using the 
+manual (there is an alphabetical index listing subjects, macro syntaxes,
+code listings, etc.) and there is on-line help available in the
+environment of $\Psi$Lab.  To know what signal processing tools
+are available in $\Psi$Lab one would type
+\begin{verbatim}
+-->disp(siglib)
+\end{verbatim}
+\index{toolbox library}
+\index{library sigblib@library {\tt siglib}}
+which produces a list of all the signal processing macros available
+in the signal processing library.  For each of the macros available
+in the library one can obtain on-line help concerning the syntax
+of the macro.  For example, help on the macro {\tt lev} is obtained
+as follows
+\begin{verbatim}
+-->help lev
+\end{verbatim}
+\index{help on macro syntax}
+The code for each of the macros is available in the text of the manual.
+
+\section{Signals}
+\index{signals}
+
+	Signal processing is about processing of signals and, consequently,
+it is important to know how to load and save signals that are to be
+used or are to be generated by $\Psi$Lab.  Furthermore, one uses only
+small portions of lengthy signals which are contained 
+in large files.  Thus, reading and writing from files or an interface
+which accomplishes this is important.  Finally, the generation of
+synthetic (random) signals is an important tool in the development
+in implementation of signal processing tools.  This section addresses
+all of these topics.
+
+\subsection{Saving, Loading, Reading, and Writing Files}
+\index{signals!saving and loading}
+
+	Signals and variables which have been processed or created
+in the $\Psi$Lab environment can be saved in files written directly
+by $\Psi$Lab.  The syntax for the {\tt save} primitive is 
+\begin{verbatim}
+-->save(file_name[,var_list])
+\end{verbatim}
+\index{macro syntax!save@{\tt save}}
+where {\tt file\_name} is the file to be written to and {\tt var\_list}
+is the list of variables to be written.  The variables in the list
+are separated by commas.  The variable list is an optional argument
+which, if left unspecified, causes the {\tt save} command to save
+all the current variables in the environment.  The inverse to the
+operation {\tt save} is accomplished by the primitive {\tt load}
+which has the syntax
+\begin{verbatim}
+-->load(file_name[,var_list])
+\end{verbatim}
+\index{macro syntax!load@{\tt load}}
+where the argument list is identical that used in {\tt save}.
+
+	Although the commands {\tt save} and {\tt load} are
+convenient, one has much more control over the transfer of
+data between files and $\Psi$Lab by using the commands {\tt read}
+and {\tt write}.  These two commands work similarly to the
+read and write commands found in Fortran.  The syntax of these
+two commands is as follows.  The syntax for {\tt write} is
+\begin{verbatim}
+-->write(file,x[,form])
+\end{verbatim}
+\index{macro syntax!write@{\tt write}}
+The first argument of the macro, {\tt file}, must have
+as a value a string of characters representing a valid file name
+under the system in which $\Psi$Lab is being used.  The second argument,
+{\tt x}, is a matrix of values which are to be written to the file.
+The third argument, {\tt form}, is optional and is used to give
+the format of the written values.  The value of {\tt form} is a 
+character string which starts and ends with parentheses between which
+is a string representing a Fortran format specification.  Thus,
+for example, a valid value for {\tt form} could be 
+{\tt form='(1x,e10.3,5x,3(f3.0))'} which indicates that each
+line of the file will contain first a space, then a number in exponential
+format, then five additional spaces, followed by three floating point 
+numbers.  If {\tt form} is not given by the user the default Fortran
+value is used (i.e., {\tt '(*)'}).
+
+	The syntax for {\tt read} is
+\begin{verbatim}
+-->x=read(file,m,n[,form])
+\end{verbatim}
+\index{macro syntax!read@{\tt read}}
+The argument {\tt file} is again a character string giving a file name where
+the desired data is to be found.  The arguments {\tt m} and {\tt n}
+are the row and column dimensions of the resulting data matrix {\tt x},
+and {\tt form} is again the format specification statement (as described
+above).  In the case where character data is to be read the value
+of {\tt n} must be unity.
+
+\subsection{Simulation of Random Signals}
+\index{signals!simulation of random}
+\index{simulation of random signals}
+\index{random number generator}
+
+	The creation of synthetic signals can be accomplished using
+the {\tt rand} primitive in $\Psi$Lab which generates random numbers.  
+The syntax for {\tt rand} follows
+several formats. For {\tt n} and {\tt m} positive reals we have that
+\index{macro syntax!rand@{\tt rand}}
+\begin{verbatim}
+-->rand(n)
+\end{verbatim}
+generates a square matrix of order the integer part of {\tt n} and that
+\begin{verbatim}
+-->rand(n,m)
+\end{verbatim}
+generates a matrix of order the integer part of {\tt n} by the integer
+part of {\tt m}.  The format
+\begin{verbatim}
+-->rand
+\end{verbatim}
+generates a single random number. Normally the probability law of
+the generated random numbers is uniform in the interval $[0,1]$.
+The command
+\begin{verbatim}
+-->rand('normal')
+\end{verbatim}
+changes the probability law so that it follows that of a normally
+(equivalently Gaussian) distributed random variable with zero mean
+and unit variance.  The command
+\begin{verbatim}
+-->rand('uniform')
+\end{verbatim}
+re-establishes the uniform probability law.  
+The random number generator creates a deterministic sequence of values
+starting from the value of a seed.  The seed value can be set using
+the command
+\begin{verbatim}
+-->rand('seed'[,n])
+\end{verbatim}
+where {\tt n} is an integer.  If {\tt n} is omitted the value of
+seed is set to that of its initial value when $\Psi$Lab is loaded.
+
+	Often it is of interest in signal processing to generate
+normally distributed random variables with a certain mean and covariance
+structure.  This can be accomplished by using the standard normal
+random numbers generated by {\tt rand} and subsequently modifying them
+by performing certain linear numeric operations.  For example, to
+obtain a random vector $y$ which is distributed N($m_y$,$\Lambda_y$) from
+a random vector $x$ which is distributed standard normal (i.e. N(0,I))
+one would perform the following operation
+\begin{equation}
+y=\Lambda_y^{1/2}x+m_y
+\label{e.rand.1}
+\end{equation}
+where $\Lambda_y^{1/2}$ is the matrix square root of $\Lambda_y$.
+A matrix square root can be obtained using the {\tt chol} primitive
+as follows
+\verbatok{\Diary rand.1.dia}
+\end{verbatim}
+taking note that it is the transpose of the matrix obtained from {\tt chol}
+that is used for the square root of the desired covariance matrix.
+Sequences  of random numbers following a specific normally distributed
+probability law can also be obtained by filtering.  That is, a white standard
+normal sequence of random numbers is passed through a linear filter
+to obtain a normal sequence with a specific spectrum.  For a filter
+which has a discrete Fourier transform $H(w)$ the resulting filtered
+sequence will have a spectrum $S(w)=|H(w)|^2$.  More on filtering is
+discussed in Section~\ref{filtering}.
+
+\section{Polynomials and System Transfer Functions}
+\index{polynomials}
+\index{system transfer functions}
+
+	A very useful element of $\Psi$Lab is its ability to
+work symbolically with polynomials.  That is to say that
+in $\Psi$Lab it is possible to define a computational object
+which obeys the properties of a polynomial and which can
+be evaluated as a function of its independent variable and
+combined with other polynomials through the operations of
+addition, subtraction, multiplication, and division.  In addition
+there exists in $\Psi$Lab a large collection of macros which
+operate on and manipulate polynomials.  
+
+	The {\tt poly} primitive has the following syntax,
+\begin{verbatim}
+-->q=poly(a,varn[,flag])
+\end{verbatim}
+\index{macro syntax!poly@{\tt poly}}
+The argument {\tt flag} is optional and can take the
+values {\tt 'roots'} or {\tt 'coeff'} (effectively, only the
+first letter of these two character strings is tested and,
+consequently, the values can be simply {\tt 'r'} or {\tt 'c'}).
+If {\tt flag} is not used the default value is {\tt 'roots'}.
+The argument {\tt varn} is a character string which represents
+the formal variable of the polynomial to be created and {\tt a}
+is a matrix or a vector which contains either the roots or the
+coefficients of the polynomial following the specification of the
+{\tt flag} argument.  For the case where {\tt a} is a square matrix
+and {\tt flag} takes the value {\tt 'roots'} (either explicitly
+or by default) the polynomial created is the characteristic polynomial
+of the matrix {\tt a}.  Finally, the returned value {\tt q} is 
+the desired polynomial.
+
+	A very useful companion to the {\tt poly} primitive
+is the {\tt roots} primitive which is the inverse of the {\tt poly}
+primitive which {\tt flag='roots'}.  The syntax for {\tt roots} is
+\begin{verbatim}
+-->a=roots(q);
+\end{verbatim}
+\index{macro syntax!roots@{\tt roots}}
+where {\tt q} is a polynomial and {\tt a} is a vector containing the
+roots of the polynomial.
+The following examples should clarify
+the use of the {\tt poly} and {\tt roots} primitives.
+\verbatok{\Diary poly.1.dia}
+\end{verbatim}
+Notice that the first polynomial {\tt q1} uses the {\tt 'roots'}
+default and, consequently, the polynomial takes the form
+$(s-1)(s-2)=2-3s+s^2$.  Of course, the {\tt roots} primitive
+recuperates the values of the roots used in the call to {\tt poly}.
+The second polynomial {\tt q2} assigns the value
+{\tt 'coeff'} to the {\tt flag} argument and, thus, the resulting
+polynomial uses the elements of the vector as the coefficients of
+the polynomial.  Under this format the ordering of the elements
+in the vector {\tt a} is important.  The first element of the
+vector is the coefficient of $s^0$ and the second element of the
+vector is the coefficient of $s^1$.  Here {\tt roots}
+yields the roots of the polynomial obtained when {\tt flag='coeff'}
+and, consequently, the input vector to {\tt poly} and the output vector
+from {\tt roots} are different.  Finally, the third polynomial
+{\tt q3} calculates the characteristic polynomial of the matrix
+{\tt a} which is by definition $\mbox{det}(sI-\mtt{a})$.  Here the
+calculation of the {\tt roots} primitive yields the eigenvalues of
+the matrix {\tt a}.
+
+	$\Psi$Lab can manipulate polynomials in the same manner as
+other mathematical objects such as scalars, vectors, and matrices.
+That is, polynomials can be added, subtracted, multiplied, and divided
+by other polynomials.  The following $\Psi$Lab session illustrates 
+operations between polynomials
+\verbatok{\Diary poly.2.dia}
+\end{verbatim}
+Notice that in the above $\Psi$Lab session we started by defining
+a basic polynomial element {\tt x} (which should not be confused
+with the character string {\tt 'x'} which represents the formal
+variable of the polynomial).  With this basic polynomial element
+we created more complicated polynomials {\tt q1} and {\tt q2}
+by the simple mathematical operations of addition, multiplication,
+and exponentiation.  This was followed by addition, subtraction,
+multiplication, and division of the polynomials.  In fact, two
+different types of division were performed, the standard {\tt /}
+scalar division and the {\tt ./} vector division.  As can be seen
+these two divisions do not yield identical results. 
+ Another point which is very important in what
+is to follow is that division of polynomials creates a new type
+of mathematical object in $\Psi$Lab.  This object is a rational polynomial
+which is represented by a list (see {\tt help list} and 
+{\tt help type} in $\Psi$Lab).
+
+	(Note: polynomials and rationals with different formal 
+variables cannot be combined
+by mathematical operations to form new polynomials)
+
+	Since a rational\index{rational polynomials} 
+is represented by a list it is important to know
+what the elements of the list represent.  A rational is represented
+by a list containing four elements.  The first element takes the
+value {\tt 'r'} indicating that this list represents a rational polynomial.
+The second and third elements of the list are the numerator and 
+denominator polynomials, respectively, of the rational.  The final
+element of the list is either {\tt []} or a character string.  The 
+character string can be used to represent the nature of the rational
+polynomial.  For example for signal processing applications it
+is of interest to know if the rational polynomial represents
+the transfer function of a continuous or discrete system.
+More on this subject is addressed later
+in this chapter (see Section~\ref{sysrep}).  
+The following $\Psi$Lab dialogue illustrates the
+elements of a list representing a rational polynomial.
+\verbatok{\Diary poly.3.dia}
+\end{verbatim}
+
+\subsection{Evaluation of Polynomials}
+\label{poleval}
+\index{polynomials!evaluation}
+
+	A very important operation on polynomials is their
+evaluation at specific points.  For example, perhaps it is
+desired to know the value the polynomial $x^2+3x-5$ takes
+at the point $x=17.2$.  Evaluation of polynomials is accomplished
+using the primitive {\tt freq}.  The syntax of {\tt freq} is
+as follows
+\begin{verbatim}
+-->pv=freq(num,den,v)
+\end{verbatim}
+Effectively, the primitive {\tt freq} was designed to handle
+both polynomials and rationals.  Consequently, the arguments
+{\tt num} and {\tt den} are the numerator and denominator
+polynomials of a rational polynomial.  In the case where
+there is no denominator polynomial the value of the {\tt den}
+argument is $1$.  The argument {\tt v} is a vector of values
+at which the rational polynomial is to be evaluated.  The 
+returned value of {\tt pv} is a vector of the same length
+as {\tt v} containing the values of the evaluated polynomial.
+
+	For signal processing purposes {\tt freq} is very
+important for evaluating the frequency response of filters
+and system transfer functions.  For example, a discrete
+filter can be evaluated on the unit circle in the $z$-plane
+as follows
+\verbatok{\Diary poly.4.dia}
+\end{verbatim}
+Here, {\tt h} is an FIR filter of length 9 with a triangular 
+impulse response.  The transfer function of the filter is
+obtained by forming a polynomial which represents the $z$-transform
+of the filter.  This is followed by evaluating the polynomial
+at the points $\exp(2\pi in)$ for $n=0,1,\ldots,10$ which 
+amounts to evaluating the $z$-transform on the unit circle
+at ten equally spaced points in the range of angles $[0,\pi]$.
+
+\subsection{Representation of Transfer Functions}
+\label{tfrep}
+\index{polynomials!representation of transfer functions}
+\label{sysrep}
+
+	Signal processing makes use of rational polynomials to
+describe signal and system transfer functions.  These transfer functions
+can represent continuous time signals or systems or discrete time
+signals or systems.  Furthermore, discrete signals or systems
+can be related to  continuous signals or
+systems by sampling.  Thus, it is of interest to give
+rational polynomials certain special characteristics so that macros
+which use rational polynomials for signal
+processing can function more efficiently.
+
+	The macro which processes a rational polynomial so that
+it can be represented as a transfer function is called {\tt syslin}.
+The syntax of this macro takes the following form
+\begin{verbatim}
+-->sl=syslin(domain,num,den)
+\end{verbatim}
+\index{macro syntax!syslin@{\tt syslin}}
+Here {\tt num} and {\tt den} represent the numerator and denominator
+polynomials, respectively, of a rational polynomial.  The 
+argument {\tt domain}
+can take the values {\tt 'c'} indicating that the signal or system is
+continuous, {\tt 'd'} indicating that the signal or system is discrete,
+or {\tt domain} can take a positive real value indicating that the
+signal or system is discrete and obtained from a continuous signal
+or system by sampling at the rate given by the value (in seconds).
+The resulting {\tt sl} is a list with four elements which is identical
+to the list for a rational polynomial except in the place of the {\tt []}
+as the fourth element of the list is the value of {\tt domain}
+specified in {\tt syslin}.
+
+	There is another syntax used for the macro {\tt syslin}
+which is used for state-space descriptions of linear systems.
+This syntax is described in the following section.
+
+\section{State Space Representation}
+\label{ssrep}
+\index{state space representation}
+
+	Often linear systems are represented by
+a state-space description which for a continuous time system takes
+the form
+\begin{eqnarray}
+\dot{x}(t)&=&Ax(t)+Bu(t)\nonumber\\
+y(t)&=&Cx(t)+Du(t)\nonumber\\
+x(0)&=&x_0\nonumber
+\end{eqnarray}
+where $A$, $B$, $C$, and $D$ are matrices and $x_0$ is a vector
+and for a discrete time system takes the form
+\begin{eqnarray}
+x(n+1)&=&Ax(n)+Bu(n)\nonumber\\
+y(n)&=&Cx(n)+Du(n)\nonumber\\
+x(0)&=&x_0\nonumber
+\end{eqnarray}
+where the only difference is that now the system evolves discretely
+instead of continuously.  
+
+	Continuous and discrete state-space descriptions of systems
+can be represented in $\Psi$Lab using the {\tt syslin} macro where
+the syntax is as follows
+\begin{verbatim}
+-->sl=syslin(domain,a,b,c [,d[,x0]])
+\end{verbatim}
+\index{macro syntax!syslin@{\tt syslin}}
+Here, {\tt a}, {\tt b}, {\tt c}, and {\tt d} represent the system
+matrices corresponding to those using capital letters in the above
+state-space system formulations.  The argument {\tt x0} is the initial
+condition of the space-space formulation.  Note that {\tt d} and
+{\tt x0} are optional and, in the case where they are not explicitly
+specified take the default values of zero.  The argument {\tt domain} takes
+the values {\tt 'c'} for continuous time systems, {\tt 'd'} for 
+discrete time systems, or the value of {\tt domain} is a positive 
+integer representing the sampling frequency (in seconds) for a system
+which is discrete and was derived from a continuous time system by
+sampling.  The returned value of {\tt sl} is a list where
+{\tt s=list('lss',a,b,c,d,x0,domain)}.
+
+	The value of having a symbolic object which represents
+a state-space description of a system is that macros can be created
+which operate on the system.  For example, one can combine two systems
+in parallel or in cascade, transform them from state-space descriptions
+into transfer function descriptions and vice versa, and obtain
+discretized versions of continuous time systems and vice versa.
+The topics and others are discussed in the ensuing sections.
+
+\section{Changing System Representation}
+\index{changing system representation}
+
+	Sometimes linear systems are described by their transfer function
+and sometimes by their state equations.  In the event where it is
+desirable to change the representation of a linear system there exists two
+$\Psi$Lab macros which are available for this task.  The first macro
+{\tt tf2ss} converts systems described by a transfer function
+to a system described by state space representation.  The second
+macro {\tt ss2tf} works in the opposite sense.
+
+	The syntax of {\tt tf2ss} is as follows
+\begin{verbatim}
+-->sl=tf2ss(h)
+\end{verbatim}	
+\index{macro syntax!tf2ss@{\tt tf2ss}}
+where {\tt h} is a rational polynomial associated to a linear system
+(i.e., the fourth element of {\tt h} is either {\tt 'c'}, {\tt 'd'},
+or a positive integer (see Section~\ref{tfrep})) and {\tt sl} is
+the resulting linear system in state-space representation (i.e.,
+a list containing the system matrices and initial conditions
+(see Section~\ref{ssrep})).  An important detail is that the
+transfer function {\tt h} must be of minimum phase.  That is, the
+denominator polynomial must be of equal or higher order than that
+of the numerator polynomial.
+The syntax of {\tt ss2tf} is exactly
+analogous
+\begin{verbatim}
+-->h=ss2tf(sl)
+\end{verbatim}	
+\index{macro syntax!ss2tf@{\tt ss2tf}}
+where {\tt h} and {\tt sl} have the same meanings as above.
+The following example illustrates the use of these two macros.
+\verbatok{\Diary sysrep.1.dia}
+\end{verbatim}
+Here the transfer function of a discrete IIR filter is created using
+the macro {\tt iir} (see Section~\ref{desiir}).  The fourth element
+of {\tt h1} is set using the macro {\tt syslin} and then using
+{\tt tf2ss} the state-space representation is obtained in list form.
+
+\section{Interconnecting systems}
+\index{interconnecting systems}
+
+	Linear systems created in the $\Psi$Lab environment can be
+interconnected in cascade or in parallel.  There are four possible
+ways to interconnect systems in $\Psi$Lab.  These four interconnections
+are illustrated in Figure~\ref{f.intcon.1}.
+%
+\begin{figure}[tb]
+\center{
+\begin{picture}(200,300)
+
+\put(180,270){\framebox(0,0){\tt s1*s2}}
+\put(9,270){\circle{2}}
+\put(10,270){\vector(1,0){20}}
+\put(30,260){\framebox(30,20){$s_1$}}
+\put(60,270){\vector(1,0){30}}
+\put(90,260){\framebox(30,20){$s_2$}}
+\put(120,270){\vector(1,0){20}}
+\put(141,270){\circle{2}}
+
+\put(180,220){\framebox(0,0){\tt s1+s2}}
+\put(29,220){\circle{2}}
+\put(30,220){\line(1,0){20}}
+\put(50,220){\circle*{2}}
+\put(50,200){\line(0,1){40}}
+\put(50,200){\vector(1,0){20}}
+\put(50,240){\vector(1,0){20}}
+\put(70,190){\framebox(30,20){$s_2$}}
+\put(70,230){\framebox(30,20){$s_1$}}
+\put(100,200){\line(1,0){20}}
+\put(100,240){\line(1,0){20}}
+\put(120,240){\vector(0,-1){15}}
+\put(120,200){\vector(0,1){15}}
+\put(120,220){\circle{10}}
+\put(120,220){\framebox(0,0){$+$}}
+\put(125,220){\vector(1,0){15}}
+\put(141,220){\circle{2}}
+
+\put(180,140){\framebox(0,0){\tt [s1,s2]}}
+\put(49,160){\circle{2}}
+\put(49,120){\circle{2}}
+\put(50,120){\vector(1,0){20}}
+\put(50,160){\vector(1,0){20}}
+\put(70,110){\framebox(30,20){$s_2$}}
+\put(70,150){\framebox(30,20){$s_1$}}
+\put(100,120){\line(1,0){20}}
+\put(100,160){\line(1,0){20}}
+\put(120,160){\vector(0,-1){15}}
+\put(120,120){\vector(0,1){15}}
+\put(120,140){\circle{10}}
+\put(120,140){\framebox(0,0){$+$}}
+\put(125,140){\vector(1,0){15}}
+\put(141,140){\circle{2}}
+
+\put(180,50){\framebox(0,0){\tt [s1;s2]}}
+\put(49,50){\circle{2}}
+\put(50,50){\line(1,0){20}}
+\put(70,50){\circle*{2}}
+\put(70,30){\line(0,1){40}}
+\put(70,30){\vector(1,0){20}}
+\put(70,70){\vector(1,0){20}}
+\put(90,20){\framebox(30,20){$s_2$}}
+\put(90,60){\framebox(30,20){$s_1$}}
+\put(120,30){\vector(1,0){20}}
+\put(120,70){\vector(1,0){20}}
+\put(141,30){\circle{2}}
+\put(141,70){\circle{2}}
+
+\end{picture}
+}
+\caption{Block Diagrams of System Interconnections}
+\label{f.intcon.1}
+\end{figure}
+%
+In the figure the symbols $s_1$ and $s_2$ represent two linear systems
+which could be represented in $\Psi$Lab by transfer function or state-space
+representations.  For each of the four block diagrams 
+in Figure~\ref{f.intcon.1}
+the $\Psi$Lab command which makes the illustrated interconnection is shown 
+to the left of the diagram
+in typewriter-face font format.
+
+\section{Discretizing Continuous Systems}
+\index{discretization of continuous systems}
+
+	A continuous-time linear system represented in $\Psi$Lab by its
+state-space or transfer function description can be converted into 
+a discrete-time state-space or transfer function
+representation by using the macro {\tt dscr}. 
+
+Consider for example an input-output mapping which is
+given in state space form as:
+%
+\begin{equation}
+   (C) \left\{ \begin{array}{ccc}
+   \dot{x}(t) & = & A x(t) + B u(t) \\
+   y(t) & = & C x(t) + D u(t)
+   \end{array} \right. 
+\label{cont}
+\end{equation}
+%
+From the variation of constants formula the value of the
+state $x(t)$ can be calculated at any time $t$ as
+%
+\begin{equation}
+   x(t)=e^{At}x(0)+\int_{0}^{t}e^{A(t-\sigma)}Bu(\sigma)d\sigma
+\label{voc}
+\end{equation}
+%
+
+Let $h$ be a time step and consider an input $u$ 
+which is constant in intervals of length $h$.
+Then associated with (\ref{cont}) is the following discrete 
+time model obtained by using the variation of constants formulat in 
+(\ref{voc}),
+%
+\begin{equation}
+   (D) \left\{ \begin{array}{ccc}
+   x(n+1) & = & A_{h} x(n) + B_{h} u(n)\nonumber \\
+   y(n) & = & C_{h} x(n) + D_{h} u(n)
+   \end{array} \right. 
+\label{disc}
+\end{equation}
+%
+where
+$$A_{h}=\exp(Ah)$$
+$$B_{h}=\int_{0}^{h}{e^{A(h-\sigma)}Bd\sigma}$$
+$$C_{h}=C$$
+$$D_{h}=D$$
+
+Since the computation of a matrix exponent can be calculated using
+the $\Psi$Lab primitive {\tt exp}, it is straightforward to implement 
+these formulas, although the numerical calculations needed
+to compute $\exp(A_h)$ are 
+rather involved (\cite{VanLoan}). 
+
+If we take
+$$G=\left\lgroup\matrix{A&B\cr0&0\cr}\right\rgroup$$
+where the dimensions of the zero matrices are chosen
+so that $G$ is square then we obtain
+$$\exp(Gh)=\left\lgroup\matrix{A_h&B_h \cr0&I\cr}\right\rgroup$$
+When $A$ is nonsingular we also have that 
+$$B_h=A^{-1}(A_h-I)B.$$  
+This is exactly what the macro {\tt dscr} does to discretize a continuous-time
+linear system in state-space form.
+
+	There are three syntaxes for the macro {\tt dscr}. The
+macro can operate on system matrices, linear system descriptions
+in state-space form, and linear system descriptions in transfer
+function form.  The syntax using system matrices is as follows
+\begin{verbatim}
+-->[f,g[,r]]=dscr(a,b,dt[,m])
+\end{verbatim}
+\index{macro syntax!dscr@{\tt dscr}}
+where {\tt a} and {\tt b} are the two matrices associated to the 
+continuous-time state-space description 
+%
+\begin{equation}
+\dot{x}(t)=Ax(t)+Bu(t)\nonumber
+\end{equation}
+%
+and {\tt f} and {\tt g} are the resulting matrices for a discrete
+time system 
+%
+\begin{equation}
+x(n+1)=Fx(n)+Gu(n)\nonumber
+\end{equation}
+%
+where the sampling period is {\tt dt}.  In the case where the fourth
+argument {\tt m} is given, the continuous time system is assumed to
+have a stochastic input so that now the continuous-time equation is
+%
+\begin{equation}
+\dot{x}(t)=Ax(t)+Bu(t)+w(t)\nonumber
+\end{equation}
+%
+where $w(t)$ is a white, zero-mean, Gaussian random process of 
+covariance {\tt m} and now the resulting discrete-time equation is
+%
+\begin{equation}
+x(n+1)=Fx(n)+Gu(n)+q(n)\nonumber
+\end{equation}
+%
+where $q(n)$ is a white, zero-mean, Gaussian random sequence of 
+covariance {\tt r}.
+
+	The {\tt dscr} macro syntax when the argument is a linear
+system in state-space form is
+\begin{verbatim}
+-->[sld[,r]]=dscr(sl,dt[,m])
+\end{verbatim}
+where {\tt sl} and {\tt sld} are lists representing continuous and
+discrete linear systems representations, respectively.  
+Here {\tt m} and {\tt r} are the same as for the first macro 
+syntax.  In the case
+where the macro argument is a linear system in transfer function form
+the syntax takes the form
+\begin{verbatim}
+-->[hd]=dscr(h,dt)
+\end{verbatim}
+where now {\tt h} and {\tt hd} are transfer function descriptions of
+the continuous and discrete systems, respectively.  The transfer function
+syntax does not allow the representation of a stochastic system.
+
+	As an example of the use of {\tt dscr} consider the following
+$\Psi$Lab session.
+\verbatok{\Diary dscr.1.dia}
+\end{verbatim}
+
+\section{Filtering of Signals}
+\label{filtering}
+
+	An important part of signal processing is filtering of signals
+by linear systems.  There
+exists in $\Psi$Lab a macro called {\tt flts} which is useful for filtering.
+The macro {\tt flts} has two formats.  The first format calculates the filter
+output by recursion and the second format calculates the filter output
+by transform.  The macro syntaxes are as follows.  In the case where the
+linear system is represented by its state-space description (see
+Section~\ref{ssrep}) the syntax of {\tt flts} is
+\begin{verbatim}
+-->[y[,x]]=flts(u,sl[,x0])
+\end{verbatim}
+\index{macro syntax!flts@{\tt flts}!for state-space}
+where {\tt sl} is a list representing a linear system in state-space
+representation, {\tt u} is the input signal to be filtered, and {\tt x0}
+is the initial state of the system {\tt sl}.  The argument {\tt x0} is
+optional and takes the value of the zero-vector in the case where it
+is not supplied by the user.  The input {\tt u} is in the form
+of a matrix where the columns of the matrix are the vector inputs
+to the linear system.  Thus, the $k^{th}$ column of {\tt u} is
+the vector input to {\tt sl} at time $k$.  The output of {\tt flts}
+is the matrix {\tt y} which follows the same format as the matrix {\tt u}
+in that the $k^{th}$ column of {\tt y} is the output of {\tt sl} at time
+$k$.  The optional output argument {\tt x} is the evolution of the state
+of {\tt sl} which again is a matrix following the formats of {\tt u}
+and {\tt y}.
+
+	The second format is for filtering a signal when the representation
+of the linear system is in the form of a transfer function 
+(see Section~\ref{tfrep}).  The syntax of {\tt flts} under these conditions
+is
+\begin{verbatim}
+-->y=flts(u,h[,past])
+\end{verbatim}
+\index{macro syntax!flts@{\tt flts}!for transfer function}
+where {\tt u} and {\tt y} are identical to that of the previous format,
+{\tt h} is a linear system in transfer function form, and {\tt past}
+is an optional argument which can be used to initialize the state of 
+the linear system.  In the case where {\tt past} is used it takes the
+form of a $2\times N$ matrix where $N$ is the order of the denominator
+polynomial of {\tt h} and the elements of {\tt past} are
+\[
+\mtt{ past}=\left[\begin{array}{cccc}
+    	\mtt{ u}_{-N}&\mtt{ u}_{-N-1}&\cdots&\mtt{ u}_{-1}\\
+    	\mtt{ y}_{-N}&\mtt{ y}_{-N-1}&\cdots&\mtt{ y}_{-1}
+        \end{array}\right]
+\]
+In the case where {\tt past} is not given it takes the default value
+of the zero matrix.
+
+	In general the second format is much faster than the first
+format.  However, the first format also yields the evolution of the
+state.  An example of the use of {\tt flts} using the second format
+is illustrated below.
+\verbatok{\Figdir flts.1.code}
+\end{verbatim}
+\verbatok{\Figdir flts.2.code}
+\end{verbatim}
+Notice that in the above example that a signal consisting of the 
+sum of two sinusoids of different frequencies is filtered by
+a low-pass filter.  The cut-off frequency of the filter is 
+such that after filtering only one of the two sinusoids remains.
+Figure~\ref{f.flts.1} illustrates the original sum of sinusoids and
+%
+\input{\Figdir flts.1.tex}
+\dessin{{\tt exec('flts.1.code')} Sum of Two Sinusoids}{f.flts.1}
+%
+Figure~\ref{f.flts.2} illustrates the filtered signal.
+%
+\input{\Figdir flts.2.tex}
+\dessin{{\tt exec('flts.2.code')} Filtered Signal}{f.flts.2}
+
+\section{Plotting Signals}
+\index{plotting}
+
+	Plotting the time and frequency response of signals
+and systems is an integral part of the development of signal
+processing tools.  $\Psi$Lab comes equipped with a primitive
+call {\tt plot}.  Here we describe some of the features of
+{\tt plot} and how it may be applied to signal processing problems.
+A more complete description of the {\tt plot} primitive can
+be found in \cite{delebecque}.
+
+	The format of {\tt plot} used in this manual is as follows
+\begin{verbatim}
+-->plot([x,]y)
+\end{verbatim}
+\index{macro syntax!plot@{\tt plot}}
+where {\tt x} and {\tt y} are real vectors of equal length.  The result
+is that {\tt y} is plotted as a function of {\tt x}.  If {\tt x}
+is not given then {\tt y} is plotted as a function of the default
+for vector {\tt x}, {\tt x=1:maxi(size(y))}.
+
+	There are certain types of plots which are of particular
+interest when working in signal processing.  For example, plotting
+the impulse response or frequency response of a signal or system 
+is often of interest.  Also of use is to plot the poles and zeros
+of a rational transfer function.  Here we present several examples
+to illustrate how to construct these types of plots.  
+
+	To illustrate how an impulse response of an FIR filter
+could be plotted we present the following $\Psi$Lab session.
+\verbatok{\Figdir plot.1.dia}
+\end{verbatim}
+\index{plotting!impulse response}
+Here a band-pass filter with cut-off frequencies of .2 and .25
+is constructed using a Hamming window.  The filter length is 55.
+More on how to make FIR filters can be found in Chapter~\ref{fir}.
+%
+\input{\Figdir plot.1.tex}
+\dessin{{\tt exec('plot.1.code')} Plot of Filter Impulse Response}{f.plot.1}
+%
+The resulting plot is shown in Figure~\ref{f.plot.1}.
+
+	The frequency response of signals and systems requires
+evaluating the $s$-transform on the $j\omega$-axis or the $z$-transform
+on the unit circle.  An example of evaluating the magnitude of the
+frequency response of a continuous-time system is as follows.
+\verbatok{\Figdir plot.2.dia}
+\end{verbatim}
+\index{plotting!continuous magnitude}
+Here we make an analog low-pass filter using the macros {\tt analpf}
+(see Chapter~\ref{iir} for more details).  The filter is a type I
+Chebyshev of order 4 where the cut-off frequency is 5 Hertz.
+Consequently, a vector {\tt fr} is made which takes values
+between 0 and 15 Hertz in steps of .1 Hertz.  This is followed
+by a use of the primitive {\tt freq} (see Section~\ref{poleval})
+which evaluates the transfer function {\tt hs} at the values of
+{\tt fr} on the $j\omega$-axis.  Notice that the evaluation on
+the $j\omega$-axis is accomplished by multiplying the vector {\tt fr}
+by {\tt \%i} which is the $\Psi$Lab variable for $\sqrt{-1}$.  
+The plot is made by evaluating the absolute value of {\tt hf}.
+Notice that the plot of {\tt hm} is made with respect to the values
+in the vector {\tt fr}.  The result is shown in Figure~\ref{f.plot.2}
+%
+\input{\Figdir plot.2.tex}
+\dessin{{\tt exec('plot.2.code')} Plot of Continuous Filter Magnitude Response}{f.plot.2}
+%
+
+	A similar type of procedure can be effected to plot the magnitude
+response of discrete filters where the evaluation of the transfer function
+is done on the unit circle in the $z$-plane.  A macro which performs
+this calculation is available in the signal processing library and
+is called {\tt frmag}.  The syntax of {\tt frmag} is as follows.
+\begin{verbatim}
+-->[xm,fr]=frmag(num[,den],npts)
+\end{verbatim}
+\index{macro syntax!frmag@{\tt frmag}}
+This macro can have two or three arguments.  In the case where the
+macro is given three arguments {\tt num} and {\tt den} are either
+the numerator and denominator polynomials of a discrete rational 
+transfer function or they are the vectors of coefficients of these 
+polynomials.  In the case where {\tt den} is not given {\tt num}
+is either a polynomial, a rational polynomial, or a vector of 
+coefficients of a polynomial representing a discrete transfer function.
+The argument {\tt npts} is the number of points that the transfer
+function is to be evaluated at in the range $[0,\pi]$ on the unit circle.
+The returned arguments are {\tt xm}, the magnitude response at
+the values in {\tt fr}, which contains the normalized discrete 
+frequency values in the range $[0,5]$.  As an example of the use of
+{\tt frmag} consider the following $\Psi$Lab session.
+\verbatok{\Figdir plot.3.dia}
+\end{verbatim}
+\index{plotting!discrete magnitude}
+Here an FIR band-pass filter is created using the macro {\tt eqfir}
+(see Chapter~\ref{fir}).  The macro {\tt eqfir} returns {\tt hn}
+which is a vector of length 33 containing the time domain coefficients
+of the FIR filter.  This is followed by the use of {\tt frmag}
+to evaluate the magnitude of the frequency response of this filter
+on the unit circle.  The result is shown in Figure~\ref{f.plot.3}.
+%
+\input{\Figdir plot.3.tex}
+\dessin{{\tt exec('plot.3.code')} Plot of Discrete Filter Magnitude
+Response}
+{f.plot.3}
+%
+
+	There are other macros which are available in $\Psi$Lab which
+plot special functions.  Several functions which are of interest
+in signal processing are {\tt bode}, {\tt group}, and {\tt plzr}.
+The macro {\tt bode} plots the Bode plot of rational system transfer
+functions.  More on {\tt bode} can be found in Section~\ref{bode}.
+The macro {\tt group} calculates the group delay of a discrete 
+filter.  Use of {\tt group} can be found in Section~\ref{group}.
+Finally, the macro {\tt plzr} plots the locations of the poles
+and zeros of a rational transfer function (continuous or discrete)
+as well as displaying the axes and the unit circle.  The syntax
+of {\tt plzr} is as follows.
+\begin{verbatim}
+-->plzr(h)
+\end{verbatim}
+\index{macro syntax!plzr@{\tt plzr}}
+where {\tt h} is either a rational polynomial or a linear system
+(created using {\tt syslin}).  An example of the use of {\tt plzr}
+is contained in the following $\Psi$Lab session.
+\verbatok{\Figdir plot.4.dia}
+\end{verbatim}
+\index{plotting!poles and zeros}
+Here a third order, low-pass, IIR filter is created using the 
+macro {\tt iir} (see Section~\ref{desiir}).  The resulting
+pole-zero plot is illustrated in Figure~\ref{f.plot.4}
+%
+\input{\Figdir plot.4.tex}
+\dessin{{\tt exec('plot.4.code')} Plot of Poles and Zeros of IIR Filter}{f.plot.4}
+%
+
+\section{Development of Signal Processing Tools}
+
+	The development of signal processing tools in $\Psi$Lab 
+is facilitated by
+the two $\Psi$Lab primitives {\tt exec} and {\tt getf}.  The primitive
+{\tt exec} permits the execution of a file which contains $\Psi$Lab
+commands.  The execution of the file takes place within the environment
+of $\Psi$Lab using the current variable assignments where necessary.  The
+primitive {\tt getf} defines a macro in the environment of $\Psi$Lab
+which is called with arguments and which when called pushes into
+a new environment insulated from the main working environment.
+The syntax of {\tt exec} is as follows.
+\begin{verbatim}
+-->exec(filename)
+\end{verbatim}
+\index{macro syntax!exec@{\tt exec}}
+where {\tt filename} is a character string representing the 
+name of a file containing $\Psi$Lab commands.
+The syntax of {\tt getf} is as follows.
+\begin{verbatim}
+-->getf(filename)
+\end{verbatim}
+\index{macro syntax!getf@{\tt getf}}
+where {\tt filename} is a character string representing the
+name of a file containing a macro definition.  A file containing
+a macro definition must use the following format 
+\begin{verbatim}
+//[y1,y2,...,yN]=name(x1,x2,...,xM)
+       .
+       .
+       .
+//end
+\end{verbatim}
+where {\tt x1,x2,...,xM} are the macro inputs, {\tt y1,y2,...,yN} are
+the macro outputs, and {\tt name} is the macro name which is not necessarily
+the same as {\tt filename} used by {\tt getf}.
+The first line must begin with the two slashes as well as does the
+last line (with the {\tt end}) and the three
+vertical dots show where the logical sequence of $\Psi$Lab commands are
+located which perform the calculation of the macro.  Note that the
+$\Psi$Lab commands lines must not start with the double slash 
+except in the case of a comment since
+the double slash symbol indicates a non-executable line is to  follow.
+The only exception to this rule is in the definition of macros where
+the first double slash indicates the beginning of a macro definition
+and the final double slash indicates the end of the macro definition.
+
+\section{Other Useful $\Psi$Lab Primitives}
+
+	$\Psi$Lab contains many primitives which can be useful for
+signal processing but which are not described in this manual. A list of $\Psi$Lab primitives which are available to the user is obtained by typing {\tt what}.
+  Information on the use of these primitives or macros can
+be obtained by using the {\tt help} command in the $\Psi$Lab environment
+or by referring to the appropriate reference manual.
+

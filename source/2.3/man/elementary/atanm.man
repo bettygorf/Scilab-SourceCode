@@ -1,0 +1,24 @@
+.TH atanm G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+atanm - square matrix tangent inverse
+.SH CALLING SEQUENCE
+.nf
+[t]=atanm(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex square matrix
+.TP 10
+t
+: real or complex square matrix
+.SH DESCRIPTION
+\fVatanm(x)\fR is the matrix arctangent of the matrix x.
+Result may be not reliable if \fVx\fR is not symmetric.
+.SH EXAMPLE
+.nf
+tanm(atanm([1,2;3,4]))
+.fi
+.SH SEE ALSO
+atan

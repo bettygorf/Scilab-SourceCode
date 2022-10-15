@@ -1,0 +1,31 @@
+.TH GENERAL_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+GENERAL_f - Scicos general zero crossing detector
+.SH DESCRIPTION
+Depending on the sign (just before the crossing) of the inputs and
+the input numbers of the inputs that have crossed zero, an event is
+programmed (or not) with a given delay, for each output. The number
+of combinations grows so fast that this becomes unusable for blocks
+having more than 2 or 3 inputs. For the moment this block is not
+documented.
+.SH DIALOGUE PARAMETERS
+.TP 20
+Size of regular input
+: integer.
+.TP
+Number of output events
+: integer.
+.TP
+the routing matrix
+: matrix. number of rows is the number of output events. The columns
+correspond to each possible combination of signs and zero crossings
+of the inputs. The entries of the matrix give the delay for generating
+the output event (<0 no event is generated).
+.SH SEE ALSO
+NEGTOPOS_f, POSTONEG_f, ZCROSS_f 
+
+
+
+
+

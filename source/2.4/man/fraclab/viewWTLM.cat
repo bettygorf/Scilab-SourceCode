@@ -1,0 +1,34 @@
+
+viewWTLM(2)                    Scilab Function                    viewWTLM(2)
+NAME
+  viewWTLM -  Vizualises the local maxima lines of a CWT
+
+  Author: Paulo Goncalves
+
+  Displays the local maxima of a continuous wavelet transform
+
+Usage
+
+  viewWTLM(maxmap[,scale,wt])
+Input parameters
+       o maxmap : 0/1 matrix  [N_scale,N] Indicator matrix of the local
+         wavelet coefficients maxima
+       o scale : real vector  [1,N_scale] Analyzed scale vector
+       o wt : Complex matrix  [N_scale,N] Wavelet coefficients of a continu-
+         ous wavelet transform (output of FWT or contwt)
+See also:
+  findWTLM, viewmat, contwt, cwt
+
+Example:
+
+  N = 2048 ; H = 0.3 ; Q = linspace(-4,4,11) ;
+  [x] = fbmlevinson(N,H) ;
+  [wt,scale] = cwt(x,2^(-6),2^(-1),36,0) ;
+  [maxmap] = findWTLM(wt,scale)
+
+   Vizualisation in Matlab:
+
+  viewWTLM(maxmap,scale,wt) ,
+  axis([1024 - 64 1024 + 64 0 log2(max(scale))]) ,
+
+   Vizualisation in Scilab:  Not implemeted yet!...

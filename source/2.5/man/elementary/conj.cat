@@ -1,0 +1,19 @@
+
+conj(1)                        Scilab Function                        conj(1)
+NAME
+  conj -  conjugate
+
+CALLING SEQUENCE
+  [y]=conj(x)
+
+PARAMETERS
+
+  x,y       :  real or complex matrix.
+
+DESCRIPTION
+  conj(x) is the complex conjugate of x.
+
+EXAMPLE
+  x=[1+%i,-%i;%i,2*%i];
+  conj(x)
+  x'-conj(x)  //x'  is conjugate transpose

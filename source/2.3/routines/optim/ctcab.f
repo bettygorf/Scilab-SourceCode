@@ -1,0 +1,12 @@
+c
+c-----------------------------------------------------------------------
+c
+      subroutine ctcab (n,u,v,izs,rzs,dzs)
+      integer n,izs(1)
+      real rzs(1)
+      double precision u(1),v(1),dzs(1)
+      do 1 i=1,n
+          v(i)=u(i)
+ 1    continue
+      return
+      end

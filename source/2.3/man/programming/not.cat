@@ -1,0 +1,16 @@
+
+not(1)                         Scilab Function                         not(1)
+NAME
+  not (~) - logical not
+
+CALLING SEQUENCE
+  ~A
+
+DESCRIPTION
+  ~A  gives the element-wise negation of the elements of the  boolean matrix
+  A.
+EXAMPLES
+  ~[%t %t %f]
+
+SEE ALSO
+  and, or, find

@@ -1,0 +1,85 @@
+/* How to customize Scilab :
+ * below you can specify your own versions of objects files that you want
+ * to link with scilab : the default programs taken are in the ``default''
+ * directory (${PATHSP}/default, PATHSP being set in the file make.incl)
+ * Examples of such files are  matlab.o matusr.o interf.o...
+ * (all the routines in the ``default'' directory can be copied
+ * in the user's own working directory to extend or modify scilab: the
+ * source code of these routines must be available to each user of scilab)
+*/
+
+#include "Imake.incl"
+
+AllTarget(bin/scilex)
+/*--------------------scilex-libraries----------------------*/
+
+LIBR = libs/system.a libs/interf.a libs/system2.a libs/optim.a \
+	libs/integ.a libs/control.a libs/signal.a libs/sparse.a \
+	libs/poly.a libs/calelm.a libs/X11G.a libs/metanet.a libs/sun.a \
+	libs/intersci.a libs/xwindow.a 
+
+/*--------------------routines/default----------------------*/
+RF = routines/default/
+
+#include "routines/default/Imake.files"
+
+/*--------------------main program----------------------*/
+FortranProgramTarget(bin/scilex,NullParameter, \
+	scilex-lib util/fundef , \
+	$(DEFAULTS) $(LIBR) XawClientLibs,-ltermcap)
+
+routines/default/funtab.f : util/fundef util/newfun.f
+	cd util; make $(SCIDIR)/routines/default/funtab.f 
+
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS=$(CDEBUGFLAGS) FDEBUGFLAGS=$(FDEBUGFLAGS)
+
+SUBDIRS1 =  scripts macros imp util man intersci xsci xmetanet tests doc demos
+SUBDIRS  =  routines $(SUBDIRS1)
+
+NamedMakeSubdirs(scilex-lib,routines)
+MakeSubdirs($(SUBDIRS1))
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS) tests )
+
+/*--------------------INSTALL---------------------*/
+
+myinstall:  Scripts scilab.star imprim
+	-rm -f $(SCIDIR)/X11_defaults/XScilab \
+		$(SCIDIR)/X11_defaults/XScilab-color \
+		$(SCIDIR)/X11_defaults/Metanet-color
+	-$(INSTALL) -c xsci/XScilab.ad $(SCIDIR)/X11_defaults/XScilab
+	-$(INSTALL) -c xsci/XScilab-color.ad \
+		$(SCIDIR)/X11_defaults/XScilab-color
+	-$(INSTALL) -c xmetanet/src/Metanet-color.ad \
+		$(SCIDIR)/X11_defaults/Metanet-color
+
+TARFILE=$(SCIDIR)/scilab.tar
+
+tar	: 
+	tar cfvX $(TARFILE) util/exclude-tar . 
+
+
+exclude-tar :
+	util/make-exclude 
+
+
+
+/*--------------------TAR SOURCES ---------------------
+* make a tar of the distribution files newer than 
+* the file FILEUPG
+* the default file is util/TIMESTAMP
+*/
+
+TARUPG=$(SCIDIR)/tar-update.tar 
+
+FILEUPG=util/TIMESTAMP
+
+tar-upg	:
+	util/make-new $(FILEUPG)
+	tar cfv $(TARUPG) `cat util/new-files`
+
+
+
+
+

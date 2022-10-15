@@ -1,0 +1,51 @@
+.TH metanet 1 "September 1995" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME
+min_weight_tree - minimum weight spanning tree
+.SH CALLING SEQUENCE
+.nf
+[t] = min_weight_tree([i],g)
+.fi
+.SH PARAMETERS
+.TP 2
+i
+: integer, node number of the root of the tree
+.TP 2
+g
+: graph-list
+.TP 2
+t
+: row vector of integer numbers of the arcs of the tree if it exists
+.SH DESCRIPTION
+\fVmin_weight_tree\fR tries to find a minimum weight spanning tree for the
+graph \fVg\fR. The optional argument \fVi\fR is the number of the root node of
+the tree ; its default value is node number 1. This node is meaningless
+for an undirected graph.
+
+The weights are given by the element \fVedge_weight\fR of the graph-list. 
+If its value is not given (empty vector \fV[]\fR), it is assumed to be 
+equal to 0 on each edge.
+Weigths can be positive, equal to 0 or negative. To compute a spanning
+tree without dealing with weights, give to weights a value of 0 on each 
+edge or the empty vector \fV[]\fR.
+
+\fVmin_weight_tree\fR returns the tree \fVt\fR as a row vector of the
+arc numbers (directed graph) or edge numbers (undirected graph)
+if it exists or the empty vector \fV[]\fR otherwise. The numbers in
+this vector are in random order.
+.SH EXAMPLE
+.nf
+ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
+he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
+gt=make_graph('foo',1,17,ta,he);
+gt('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+gt('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+show_graph(gt,'rep');
+t=min_weight_tree(1,gt); 
+g1=gt; ma=g1('arc_number'); n=g1('node_number');
+nodetype=0*ones(1,n); nodetype(1)=2; g1('node_type')=nodetype;
+edgecolor=1*ones(1,ma); edgecolor(t)=11*ones(t); g1('edge_color')=edgecolor;
+edgewidth=1*ones(1,ma); edgewidth(t)=4*ones(t); g1('edge_width')=edgewidth;
+x_message('Minimum weight tree from node 1');
+show_graph(g1,'rep');
+.fi

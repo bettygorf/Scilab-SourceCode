@@ -1,0 +1,138 @@
+.TH quapro 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+quapro - linear quadratic programming solver
+.SH CALLING SEQUENCE
+.nf
+[x,lagr,f]=quapro(Q,p,C,b [,x0])
+[x,lagr,f]=quapro(Q,p,C,b,ci,cs [,x0])
+[x,lagr,f]=quapro(Q,p,C,b,ci,cs,mi [,x0])
+[x,lagr,f]=quapro(Q,p,C,b,ci,cs,mi,x0 [,imp])
+.fi
+.SH PARAMETERS
+.TP
+Q
+: real symmetric matrix (dimension \fVn x n\fR).
+.TP
+p 
+: real (column) vector (dimension \fV1 x n\fR)
+.TP
+C 
+: real matrix (dimension \fV (mi + md) x n\fR)
+(If no constraints are given, you can set \fVC = []\fR)
+.TP
+b 
+: RHS vector (dimension \fV1 x (mi + md)\fR)
+.TP
+ci 
+: (column) vector of lower-bounds (dimension \fV1 x n\fR).
+If there are no lower bound constraints, put \fVci = []\fR.
+If some components of \fVx\fR are bounded from below,
+set the other (unconstrained) values of \fVci\fR to a very 
+large negative  number (e.g. \fVci(j) = -(% eps)^(-1)\fR.
+.TP
+cs 
+: (column) vector of upper-bounds. (Same remarks as above).
+.TP
+mi 
+: number of equality constraints (i.e. \fVC(1:mi,:)*x = b(1:mi)\fR)
+.TP
+x0 
+: either an initial guess for \fVx\fR 
+  or one of the character strings \fV'v'\fR or \fV'g'\fR.
+If \fVx0='v'\fR the calculated initial feasible point is a vertex.
+If \fVx0='g'\fR the calculated initial feasible point is arbitrary.
+.TP
+imp 
+: verbose option (optional parameter)   (Try \fVimp=7,8,...\fR).
+.TP
+x 
+: optimal solution found.
+.TP
+f 
+: optimal value of the cost function (i.e. \fVf=p'*x\fR).
+.TP
+lagr 
+: vector of Lagrange multipliers. 
+If lower and upper-bounds \fVci,cs\fR are provided, \fVlagr\fR has 
+\fVn + mi + md\fR components and \fVlagr(1:n)\fR is the Lagrange 
+vector associated with the bound constraints and 
+\fVlagr (n+1 : n + mi + md)\fR is the Lagrange vector associated 
+with the linear constraints.
+(If an upper-bound (resp. lower-bound) constraint \fVi\fR is active 
+\fVlagr(i)\fR is > 0 (resp. <0).
+If no bounds are provided, \fVlagr\fR has only \fVmi + md\fR components.
+.SH DESCRIPTION
+.Vb [x,lagr,f]=quapro(Q,p,C,b [,x0])
+.LP
+Minimize \fV0.5*x'*Q*x + p'*x\fR
+.PP
+under the constraint 
+.nf
+C*x <= b
+.fi
+.LP
+.Vb [x,lagr,f]=quapro(Q,p,C,b,ci,cs [,x0])
+.LP
+Minimize \fV 0.5*x'*Q*x + p'*x \fR
+.PP
+under the constraints 
+.nf
+C*x <= b          ci <= x <= cs
+.fi
+.LP
+.Vb [x,lagr,f]=quapro(Q,p,C,b,ci,cs,mi [,x0])
+.LP
+Minimize \fV 0.5*x'*Q*x + p'*x \fR
+.PP
+under the constraints 
+.nf
+ C(j,:) x = b(j),  j=1,...,mi
+ C(j,:) x <= b(j), j=mi+1,...,mi+md
+ ci <= x <= cs
+.fi
+.LP 
+If no initial point is given the
+program computes a feasible initial point
+which is a vertex of the region of feasible points if
+\fVx0='v'\fR.
+.LP
+If \fVx0='g'\fR, the program computes a feasible initial 
+point which is not necessarily a vertex. This mode is
+advisable when the quadratic form is positive
+definite and there are  few constraints in
+the problem or when there are large bounds
+on the variables that are just security bounds and
+very likely not active at the optimal solution. 
+.LP
+Note that \fVQ\fR is not necessarily non-negative, i.e.
+\fVQ\fR may have negative eigenvalues.
+.SH EXAMPLE
+.nf
+//Find x in R^6 such that:
+//C1*x = b1 (3 equality constraints i.e mi=3)
+C1= [1,-1,1,0,3,1;
+    -1,0,-3,-4,5,6;
+     2,5,3,0,1,0];
+b1=[1;2;3];
+//C2*x <= b2 (2 inequality constraints)
+C2=[0,1,0,1,2,-1;
+    -1,0,2,1,1,0];
+b2=[-1;2.5];
+//with  x between ci and cs:
+ci=[-1000;-10000;0;-1000;-1000;-1000];cs=[10000;100;1.5;100;100;1000];
+//and minimize 0.5*x'*Q*x + p'*x with
+p=[1;2;3;4;5;6]; Q=eye(6,6);
+//No initial point is given;
+C=[C1;C2] ; //
+b=[b1;b2] ;  //
+mi=3;
+[x,lagr,f]=quapro(Q,p,C,b,ci,cs,mi)
+//Only linear constraints (1 to 4) are active (lagr(1:6)=0):
+[x,lagr,f]=quapro(Q,p,C,b,[],[],mi)   //Same result as above
+.fi
+.SH SEE ALSO
+linpro
+.SH AUTHOR
+E. Casas, C. Pola Mendez
+

@@ -1,0 +1,24 @@
+.TH obsv_mat 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+obsv_mat - observability matrix
+.SH CALLING SEQUENCE
+.nf
+[O]=obsv_mat(A,C)
+[O]=obsv_mat(sl)
+.fi
+.SH PARAMETERS
+.TP 10
+A,C,O
+: matrices
+.TP 10
+sl
+: \fVsyslin\fR list
+.SH DESCRIPTION
+\fVobsv_mat\fR returns the observability matrix
+.nf
+O=[C; CA; CA^2;...; CA^(n-1) ]
+.fi
+.SH SEE ALSO
+contrss, obsvss, obs_gram
+

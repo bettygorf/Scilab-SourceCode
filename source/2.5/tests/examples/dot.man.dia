@@ -1,0 +1,19 @@
+ 
+clear;lines(0);
+ 
+1.345
+ ans  =
+ 
+    1.345  
+ 
+x=[1 2 3];x.^20.*x // a space is required between 2 and dot
+ ans  =
+ 
+!   1.    8.    27. !
+ 
+[123,..
+ 456]
+ ans  =
+ 
+!   123.    456. !
+ 

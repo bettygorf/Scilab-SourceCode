@@ -1,0 +1,37 @@
+.TH oldload 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+oldload - load saved variable in 2.4.1 and previous formats
+.SH CALLING SEQUENCE
+.nf
+oldload('file-name' [,x1,...,xn])
+.fi
+.SH PARAMETERS
+.TP 10
+file-name 
+: character string
+.TP 10
+xi
+: arbitrary Scilab variable name(s) given as strings.
+.SH DESCRIPTION
+The \fVoldload\fR function is obsolete and is retained only for
+compatibility purpose.
+.LP
+The \fVoldload\fR command can be used to reload in the Scilab session
+variables previously saved in a file with the \fVsave\fR command.
+.LP
+\fVoldload('file-name')\fR loads the variables saved in file \fV'file-name'\fR. 
+.LP
+\fVoldload('file-name','x','y',...,'z')\fR loads only variables \fVx,y,...,z\fR
+stored in file \fV'file-name'\fR. 
+.SH EXAMPLES
+.nf
+a=eye(2,2);b=ones(a);
+oldsave('TMPDIR/vals.dat',a,b);
+clear a
+clear b
+oldload('TMPDIR/vals.dat','a','b');
+.fi
+.SH SEE ALSO
+save, getf
+

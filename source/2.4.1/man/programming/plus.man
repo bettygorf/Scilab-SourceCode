@@ -1,0 +1,48 @@
+.TH plus 1 "April 1993" "Scilab Group" "Scilab Operator"
+.so ../sci.an
+.SH NAME
+plus (+) -  addition operator
+.SH CALLING SEQUENCE	
+.nf 
+X+Y
+str1+str2
+.fi
+.SH PARAMETERS
+.TP 
+X 
+: scalar or vector or matrix of numbers, polynomials or rationals. It
+may also be a \fVsyslin\fR list
+.TP 
+Y 
+: scalar or vector or matrix of numbers, polynomials or rationals. It
+may also be a \fVsyslin\fR list
+.TP 
+str1
+: a character string, a vector or a matrix of character strings
+.TP 
+str2
+: a character string, a vector or a matrix of character strings
+.SH DESCRIPTION
+Addition. 
+.LP
+For numeric operands addition as its usual meaning.
+If one of the operands is a matrix and the other one a scalar the
+scalar is added to each matrix entries. if one of the operands is an
+empty matrix the other operand is returned.
+.LP
+For character strings \fV+\fR means concatenation.
+.LP
+Addition may also be defined for other data types through
+"soft-coded" operations.
+.SH EXAMPLE
+.nf
+[1,2]+1
+[]+2
+s=poly(0,"s");
+s+2
+1/s+2
+"cat"+"enate"
+.fi
+.SH SEE ALSO
+addf, mtlb_mode
+

@@ -1,0 +1,28 @@
+
+tdinit(1)                      Scilab Function                      tdinit(1)
+NAME
+  tdinit - interactive initialisation of the tdcs dynamical systems
+
+CALLING SEQUENCE
+  tdinit()
+
+DESCRIPTION
+  This macro can be used to interactively define the parameters needed by the
+  dynamical systems described in systems
+
+       bbiioorreeaaccttoorr mmooddeell
+
+       ccoommppeettiittiioonn mmooddeell
+
+       ssyysstteemm wwiitthh lliimmiitt ccyyccllee
+
+       lliinneeaarr ssyysstteemm
+
+       qquuaaddrraattiicc mmooddeell
+
+       lliinneeaarr ssyysstteemm wwiitthh aa ffeeeeddbbaacckk
+
+       pprreeyy pprreeddaattoorryy mmooddeell
+
+SEE ALSO
+  portrait, systems

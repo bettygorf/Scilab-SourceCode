@@ -1,0 +1,29 @@
+.de IG
+\"LaTeX \ignore{
+..
+.de FI
+\"LaTeX }
+..
+.de LA
+\"LaTeX
+..
+\" ignored in nroff
+.de HR 
+\"LaTeX \barre
+..
+.de TP
+.PD 0
+.if !"\\$1"" .nr )I \\$1n
+.sp \\n()Pu
+.in \\n()Ru
+.nr )E 1
+.ns
+.it 1 }N
+.di ]B
+..
+\" for verb in LaTeX, ignored in nroff
+.de Vb
+.it 1 }N
+.if !"\\$1"" \&\\$1 \\$2 \\$3 \\$4 \\$5 \\$6
+..
+

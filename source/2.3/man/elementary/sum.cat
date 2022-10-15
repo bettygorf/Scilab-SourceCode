@@ -1,0 +1,35 @@
+
+sum(1)                         Scilab Function                         sum(1)
+NAME
+  sum - sum (row sum, column sum) of vector/matrix entries
+
+CALLING SEQUENCE
+  y=sum(x)
+  y=sum(x,'r')
+  y=sum(x,'c')
+
+PARAMETERS
+
+  x         : vector or matrix (real, complex, sparse or polynomial)
+
+  y         : scalar or vector
+
+DESCRIPTION
+  For a vector or a matrix x, y=sum(x) (or, equivalently, y=sum(x,'*'))
+  returns in the scalar y the sum of all the entries of x.  y=sum(x,'r') (or,
+  equivalently, y=sum(x,1)) returns in each entry of the column vector y the
+  sum of each row of x.  y=sum(x,'c') returns in each entry of the row vector
+  y the sum of each column of x.
+
+EXAMPLE
+  A=[1,2;3,4];
+  trace(A)-sum(diag(A))
+  sum(A,'r')-A*ones(2,1)
+  sum(A+%i)
+  A=sparse(A);sum(A,'r')-A*ones(2,1)
+  s=poly(0,'s');
+  M=[s,%i+s;s^2,1];
+  sum(M),sum(M,2)
+
+SEE ALSO
+  cumsum, prod

@@ -1,0 +1,22 @@
+
+edge_number(1)                 Scilab function                 edge_number(1)
+NAME
+  edge_number - number of edges of a graph
+
+CALLING SEQUENCE
+  ma = edge_number(g)
+
+PARAMETERS
+
+  g : graph list
+
+  m : integer, number of edges
+
+DESCRIPTION
+  edge_number returns the number m of edges of the graph.  If the graph is
+  directed, it is the number of arcs.  If the graph is undirected, it is half
+  the number of edges.  It is always equal to the dimension of g('tail') and
+  g('head').
+
+SEE ALSO
+  arc_number, node_number

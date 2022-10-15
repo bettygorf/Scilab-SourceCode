@@ -1,0 +1,29 @@
+.TH acosm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+acosm - matrix wise cosine inverse
+.SH CALLING SEQUENCE
+.nf
+t=acosm(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex square matrix
+.TP 10
+t
+: real or complex square matrix
+.SH DESCRIPTION
+ \fVt\fR are cosine inverse of the \fVx\fR matrix. Diagonalization
+method is used. For nonsymmetric matrices result may 
+be inaccurate.One has \fVt=-%i*logm(x+%i*sqrtm(eye()-x*x))\fR
+.SH EXAMPLE
+.nf
+A=[1,2;3,4];
+cosm(acosm(A))
+.fi
+.SH SEE ALSO 
+acos, sqrtm, logm
+
+
+

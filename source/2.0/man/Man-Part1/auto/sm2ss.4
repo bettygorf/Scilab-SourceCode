@@ -1,0 +1,24 @@
+.TH sm2ss 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+sm2ss - system matrix to state-space
+.SH CALLING SEQUENCE
+.nf
+[Sl]=sm2ss(Sm);
+.fi
+.SH PARAMETERS
+.TP
+Sm
+: polynomial matrix (pencil system matrix)
+.TP
+Sl
+: linear system (\fVsyslin\fR list)
+.SH DESCRIPTION
+Utility function: converts the system matrix:
+.nf
+ Sm = [-sI + A   B;
+      [    C     D]
+.fi
+to linear system in state-space representation.
+.SH SEE ALSO
+ss2des

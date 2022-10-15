@@ -1,0 +1,66 @@
+
+
+
+pinv(G)                        Scilab Function                        pinv(G)
+
+
+
+
+
+
+NAME
+  pinv - pseudoinverse
+
+CALLING SEQUENCE
+  pinv(A,[tol])
+
+PARAMETERS
+  A    : real or complex matrix
+  tol  : real number
+
+DESCRIPTION
+  X = pinv(A) produces a matrix X of the same  dimensions as A' such that:
+  A*X*A = A, X*A*X = X  and both A*X and X*A are Hermitian .
+  The computation is  based  on SVD and  any  singular values lower than a
+  tolerance are treated   as zero: this  tolerance is accessed by
+  X=pinv(A,tol).
+
+SEE ALSO
+  rank, svd, qr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

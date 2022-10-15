@@ -1,0 +1,15 @@
+
+MAX_f(5)                         Scicos Block                        MAX_f(5)
+NAME
+  MAX_f - Scicos max block
+
+DIALOGUE PARAMETERS
+  None.
+
+DESCRIPTION
+  The block outputs the maximum of the input vector: y=max(u1,...un).  The
+  input vector size is determined by the compiler according to the connected
+  blocks port sizes.
+
+SEE ALSO
+  MIN_f

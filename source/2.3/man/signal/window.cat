@@ -1,0 +1,27 @@
+
+window(1)                      Scilab Function                      window(1)
+NAME
+  window - symmetric window
+
+CALLING SEQUENCE
+  [win_l,cwp]=window(wtype,n,par)
+
+PARAMETERS
+
+  wtype     : window type (re,tr,hn,hm,kr,ch)
+
+  n         : window length
+
+  par       : parameter 2-vector (kaiser window: par(1)=beta>0) (Chebychev
+            window par =[dp,df]), dp =main lobe width (0<dp<.5), df=side lobe
+            height (df>0)
+
+  win       : window
+
+  cwp       : unspecified Chebyshev window parameter
+
+DESCRIPTION
+  function which calculates symmetric window
+
+AUTHOR
+  C. B.

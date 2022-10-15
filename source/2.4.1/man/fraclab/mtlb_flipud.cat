@@ -1,0 +1,28 @@
+
+mtlb_flipud(2)                 Scilab Function                 mtlb_flipud(2)
+NAME
+  mtlb_flipud - Flip matrix in up/down direction
+
+  Author: Paulo Goncalves
+
+  Flip matrix in up/down direction.  For matrices, fliplr(x) returns x with
+  columns preserved and rowa flipped in the up/down direction.
+
+Usage
+
+  y = mtlb_flipud(x) ;
+Input parameters
+       o x : Real or complex valued matrix [rx,cx]
+Output parameters
+       o y : Real or complex valued matrix [rx,cx]
+See also:
+  fliplr, fftshift
+
+Example:
+   Matrix synthesis:
+
+  x = [1 4 ; 2 5 ; 3 6]
+
+   Up - Down flip
+
+  FlipX = mtlb_flipud(x)

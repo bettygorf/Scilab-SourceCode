@@ -1,0 +1,85 @@
+.TH "WT2Dext" 2 " 01 June 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+WT2Dext - Extract a Projection from a 2D WT 
+.sp
+Author: Bertrand Guiheneuf
+.sp
+This routine extracts a projection from the wavelet transform of a 2D matrix.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPV\f(CR]\fP=WT2Dext(wt, Scale, Num)
+.SH Input parameter
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : real unidimensional matrix \f(CR[\fPm,n\f(CR]\fP  
+Contains the wavelet transform (obtained with FWT2D). 
+
+.TP
+o 
+\fBw Scale\fP : real scalar
+Contains the scale level of the projection to extract.
+
+.TP
+o 
+\fBw Num\fP : real scalar 
+Contains the number of the output to extract in level \fIScale\fP (between 1 and 4)
+.RE
+
+.SH Output parameter
+
+
+.RS
+
+.TP
+o 
+\fBV\fP : real matrix \f(CR[\fPm,n\f(CR]\fP 
+Contains the  matrix to be visualized directly 
+.RE
+
+.SH Description
+.SH Introduction 
+At each scale, a wavelet transform contains 4 outputs (HL, HH, LH and HH at the last scale). This routine is used to extract a particular component at a desired scale. 
+.SH Parameters  
+\fIwt\fP must be a real matrix. It's generally obtained with FWT2D. It contains the wavelet transform coefficients.
+\fINum\fP is 1,2,3, or 4 (at the last scale). Each number coresponds to a particular 2D frequency component.
+
+
+.RS
+
+.TP
+o 
+ 1 : HL
+High frequency in row direction, Low in column direction.
+
+.TP
+o 
+ 2 : HH 
+High frequency in row direction, High in column direction.
+
+.TP
+o 
+ 3 : LH 
+Low frequency in row direction, High in column direction.
+
+.TP
+o 
+ 4 : LL 
+Low frequency in row direction, Low  in column direction.
+Only for the last scale (equals 0 for the other scales).
+.RE
+
+\fIV\fP the wavelet coefficents at scale \fIScale\fP with fequency component given by \fINum\fP
+.SH Example
+a=rand(256,256);
+q=MakeQMF('daubechies',4);
+wt = FWT2D(a,8,q);
+V=WT2Dext(wt,2,2);
+viewmat(V);
+.SH See Also
+FWT2D, IWT2D, WT2DVisu,

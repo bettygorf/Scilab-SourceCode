@@ -1,0 +1,42 @@
+ 
+clear;lines(0);
+ 
+A=[1,2,3];
+ 
+norm(A,1)
+ ans  =
+ 
+    6.  
+ 
+norm(A,'inf')
+ ans  =
+ 
+    3.  
+ 
+A=[1,2;3,4]
+ A  =
+ 
+!   1.    2. !
+!   3.    4. !
+ 
+max(svd(A))-norm(A)
+ ans  =
+ 
+    0.  
+ 
+ 
+A=sparse([1 0 0 33 -1])
+ A  =
+ 
+(    1,    5) sparse matrix
+ 
+(    1,    1)        1. 
+(    1,    4)        33. 
+(    1,    5)      - 1. 
+ 
+norm(A)
+ ans  =
+ 
+    33.030289  
+ 
+ 

@@ -1,0 +1,41 @@
+
+norm(1)                        Scilab Function                        norm(1)
+NAME
+  norm - matrix norms
+
+CALLING SEQUENCE
+  [y]=norm(x [,flag])
+
+PARAMETERS
+
+  x         : vector or matrix
+
+  flag      : string (type of norm) (default value =2)
+
+DESCRIPTION
+  For matrices
+
+  norm(x)        : or norm(x,2) is the largest singular value of x.
+
+  norm(x,1)      : l_1 norm x (the largest column sum).
+
+  norm(x,'inf')  : l_infinity norm of x (the largest row sum).
+
+  norm(x,'fro')  : Frobenius norm i.e. sqrt(sum(diag(x'*x)))
+  For vectors
+
+  norm(v,p)      : l_p norm (sum(v(i)^p))^(1/p) .
+
+  norm(v)        : =norm(v,2) : l_2 norm
+
+  norm(v,'inf')  : max(abs(v(i))).
+
+EXAMPLE
+  A=[1,2,3];
+  norm(A,1)
+  norm(A,'inf')
+  A=[1,2;3,4]
+  max(svd(A))-norm(A)
+
+SEE ALSO
+  h_norm, dhnorm, h2norm

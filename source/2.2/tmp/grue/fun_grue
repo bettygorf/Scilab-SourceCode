@@ -1,0 +1,126 @@
+function xdot=grue(t,x,u)
+// Appel routine en fortran
+
+xdot=fort('grue',t,2,'d',x,3,'d',u,4,'d','out',[6,1],1,'d');
+
+//////////////////////////////////////////////////////////////////////////
+
+function u=regbn(x,v,param)
+// Appel routine en fortran
+
+u=fort('regbn',x,2,'d',v,3,'d',param,4,'d','out',[2,1],1,'d');
+
+//////////////////////////////////////////////////////////////////////////
+
+function  Xdot = dyn1(t,X)
+//
+//
+//
+//  Rglage des regulateurs de bas niveau.
+////
+//
+//
+// loi horaire  des consignes  (Dc et Rc) 
+//         sur les regulateurs de base.
+//
+   [Dc Rc]= dr1(t);
+   V=[Dc Rc];
+//
+// le systeme aves les regulations bas niveau
+//
+//
+   U=regbn(X,V,param);
+   Xdot=grue(t,X,U);
+
+//////////////////////////////////////////////////////////////////////////
+
+function  Xdot = dyn2(t,X)
+//
+//
+//
+//  Rglage des regulateurs de bas niveau.
+////
+//
+//
+// loi horaire  des consignes  (Dc et Rc) 
+//         sur les rgulateurs de base.
+//
+   [Dc Rc]= dr2(t);
+   V=[Dc Rc];
+//
+// le systeme aves les regulations bas niveau
+//
+//
+   U=regbn(X,V,param);
+   Xdot=grue(t,X,U);
+
+//////////////////////////////////////////////////////////////////////////
+
+function [Dc , Rc ] = dr1(t)
+//
+// les consignes Dc et Rc calcules avec une loi horaire qque;
+// variables globales : deltat Dini Dfin Rini Rfin aa
+if t <= 0 
+   phi=0 ;
+ elseif t<deltat
+   tau=t/deltat;
+   phi=3*tau^2-2*tau^3;
+  else 
+   phi=1;
+end
+//
+// loi horaire consigne sur D:  Dc(0)=Dini  Dc(deltat)=Dfin
+Dc=(1-phi)*Dini+phi*Dfin;
+//
+// loi horaire consigne sur R:  Rc(0)=Rini  Rc(deltat)=Rfin 
+Rc=(1-phi)*Rini+phi*Rfin;
+
+//////////////////////////////////////////////////////////////////////////
+
+function plot_grue(d,r,theta)
+chariot =  .... 
+[ 0  -0.5  -0.5  0.5  0.5  0  
+  0   0     0.5  0.5   0   0    ] ; 
+masse =  .....
+[ 0   0.25  0.25   -0.25  -0.25  0  
+  0   0     -0.5   -0.5     0    0    ] ; 
+for i=1:6;
+  chariot(1,i)=d+chariot(1,i);
+  masse(1,i)=d+r*sin(theta)+masse(1,i);
+  masse(2,i)=-r*cos(theta)+masse(2,i);
+end;
+grue_map=[chariot masse];
+xpoly(grue_map(1,:),grue_map(2,:),'lines') ;
+
+
+function [Dc , Rc ] = dr2(t)
+//
+// variables globales : deltat Dini Dfin Rini Rfin aa 
+if t <= 0 
+   phi=0 ;
+   dphi=0;
+   d2phi=0 ;
+elseif t<deltat
+   tau=t/deltat;
+   phi= tau^5*(aa(1)+tau*(aa(2)+......
+          tau*(aa(3)+tau*(aa(4)+tau*aa(5)))));
+   dphi= tau^4*(5*aa(1)+tau*(6*aa(2)+......
+          tau*(7*aa(3)+tau*(8*aa(4)+tau*9*aa(5)))))/deltat;
+   d2phi= tau^3*(20*aa(1)+tau*(30*aa(2)+tau*(42*aa(3)+.....
+          tau*(56*aa(4)+tau*72*aa(5)))))/deltat/deltat;
+ else 
+   phi=1;
+   dphi=0;
+   d2phi=0 ;
+end
+//
+//  trajectoire sorties plates
+x= (1-phi)*Dini+phi*Dfin;
+z=(1-phi)*Rini+phi*Rfin;
+//
+d2x=d2phi*(Dfin-Dini);
+d2z=d2phi*(Rfin-Rini);
+//
+// commandes   D et R calcules avec les sorties plates (x,z)
+Dc= x - z*d2x/(d2z-10);
+Rc=sqrt((x-Dc)^2+z^2);

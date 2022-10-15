@@ -1,0 +1,64 @@
+
+GENERIC_f(5)                     Scicos Block                    GENERIC_f(5)
+NAME
+  GENERIC_f - Scicos generic interfacing function
+
+DESCRIPTION
+  This block can realize any type of block. The computational function must
+  already be defined in Scilab, Fortran or C code.
+
+DIALOGUE PARAMETERS
+
+  simulation function
+                 : a character string, the name of the computational  func-
+                 tion
+
+  function type  : a non negative integer, the type of the computational
+                 function
+
+  input port sizes
+                 : a vector of integers, size of regular input ports.
+
+  output port sizes
+                 : a vector of integers, size of regular output ports.
+
+  input event port sizes
+                 : a vector of ones, size of event input ports. The size of
+                 the vector gives the number of event input ports.
+
+  output event port sizes
+                 : a vector of ones, size of event output ports. The size of
+                 the vector gives the number of of event output ports.
+
+  Initial continuous state
+                 : a column vector.
+
+  Initial discrete state
+                 : a column vector.
+
+  System type    : a string: c,d, z or l (CBB, DBB, zero crossing or syn-
+                 chro).
+
+  Real parameter vector
+                 : column vector. Any parameters used in the block can be
+                 defined here as a column vector.
+
+  Integer parameter vector
+                 : column vector. Any integer parameters used in the block
+                 can be defined here as a column vector.
+
+  initial firing : vector. Size of this vector corresponds to the number of
+                 event outputs. The value of the i-th entry specifies the
+                 time of the preprogrammed event firing on the i-th output
+                 event port. If less than zero, no event is preprogrammed.
+
+  direct feedthrough
+                 : character "y" or "n", specifies if block has a direct
+                 input to output feedthrough.
+
+  Time dependance
+                 : character "y" or "n", specifies if block output depends
+                 explicitly on time.
+
+SEE ALSO
+  scifunc_block

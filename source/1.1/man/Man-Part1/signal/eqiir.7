@@ -1,0 +1,47 @@
+.TH eqiir 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+eqiir - Design of iir filters
+.SH CALLING SEQUENCE
+.nf
+[cells,fact,zzeros,zpoles]=eqiir(ftype,approx,om,deltap,deltas)
+.fi
+.SH PARAMETERS
+.TP 10
+ftype
+: filter type (\fV'lp','hp','sb','bp'\fR)
+.TP
+approx
+: design approximation (\fV'butt','cheb1','cheb2','ellip'\fR)
+.TP
+om
+: 4-vector of cutoff frequencies (in radians)
+ \fVom=[om1,om2,om3,om4]\fR, \fV0 <= om1 <= om2 <= om3 <= om4 <= pi\fR.
+ When \fVftype\fR=3 or 4, \fVom3\fR and \fVom4\fR are not used
+ and may be set to 0.
+.TP
+deltap
+: ripple in the passband. \fV0<= deltap <=1\fR
+.TP
+deltas
+: ripple in the stopband. \fV0<= deltas <=1\fR
+.TP
+cells
+: realization of the filter as second order cells
+.TP
+fact
+: normalization constant
+.TP
+zzeros
+: zeros in the z-domain
+.TP
+zpoles
+: poles in the z-domain
+.SH DESCRIPTION
+Design of iir filter interface with eqiir (syredi)
+.LP
+The filter obtained is \fVh(z)=fact\fR*product of the elements of
+\fVcells\fR.
+.LP
+That is \fVhz=fact*prod(cells(2))./prod(cells(3))\fR
+

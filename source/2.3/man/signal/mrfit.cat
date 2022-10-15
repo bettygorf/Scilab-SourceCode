@@ -1,0 +1,39 @@
+
+mrfit(1)                       Scilab Function                       mrfit(1)
+NAME
+  mrfit - frequency response fit
+
+CALLING SEQUENCE
+  sys=mrfit(w,mag,order)
+  [num,den]=mrfit(w,mag,order)
+  sys=mrfit(w,mag,order,weight)
+  [num,den]=mrfit(w,mag,order,weight)
+
+PARAMETERS
+
+  w         : positive real vector of frequencies (rad/sec)
+
+  mag       : real vector of frequency responses magnitude (same size as w)
+
+  order     : integer (required order, degree of den)
+
+  weight    : positive real vector (default value ones(w)).
+
+  num,den   : stable polynomials
+
+DESCRIPTION
+  sys=mrfit(w,mag,order,weight) returns a bi-stable transfer function
+  G(s)=sys=num/den, of of given order such that its frequency response magni-
+  tude abs(G(w(i))) matches mag(i) i.e. abs(freq(num,den,%i*w)) should be
+  close to mag.  weight(i) is the weigth given to w(i).
+
+EXAMPLE
+  w=0:0.1:5;s=poly(0,'s');G=2*(s^2+0.1*s+2)/(s^2+s+1)/(s^2+0.3*s+1);
+  fresp=freq(G('num'),G('den'),%i*w);
+  mag=abs(fresp);
+  [num,den]=mrfit(w,mag,4);
+  frespfit=freq(num,den,%i*w);
+  plot2d([w',w'],[mag(:),abs(frespfit(:))])
+
+SEE ALSO
+  cepstrum, frfit, freq, calfrq

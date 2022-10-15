@@ -1,0 +1,28 @@
+
+filter(1)                      Scilab Function                      filter(1)
+NAME
+  filter - modelling filter
+
+CALLING SEQUENCE
+  [y,xt]=filter(n,F,H,Rt,T)
+
+PARAMETERS
+
+  n         : number of computed points.
+
+  F, H      : relevant matrices of the Markovian model.
+
+  Rt, T     : gain matrices.
+
+  y         : output of the filter.
+
+  xt        : filter process.
+
+DESCRIPTION
+  This function computes the modelling filter
+
+SEE ALSO
+  faurre
+
+AUTHOR
+  G. Le V.

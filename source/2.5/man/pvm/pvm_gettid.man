@@ -1,0 +1,39 @@
+.TH pvm_gettid 1 "May 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_gettid - returns the tid of the process identified by a
+group name and instance number.
+.SH CALLING SEQUENCE
+.nf
+[tid] = pvm_gettid(group, inum)
+.fi
+.SH PARAMETERS
+.TP 5
+group
+: string, string that contains the name of an existing group.
+.TP 4
+inum
+: string, instance number of the process in the group.
+.TP 4
+tid
+: integer
+.SH DESCRIPTION
+\fVpvm_gettid\fR 
+returns the tid of the PVM process
+identified by the group name
+.I group
+and the instance number
+.I inum.
+If pvm_gettid is successful,
+.I tid
+will be > 0.
+If some error occurs then
+.I tid
+will be < 0.
+
+.SH EXAMPLE
+.nf
+tid = pvm_gettid("worker",0)
+.fi
+.SH SEE ALSO
+pvm_joingroup, pvm_getinst

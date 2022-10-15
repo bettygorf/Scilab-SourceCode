@@ -1,0 +1,22 @@
+
+chdir(1)                       Scilab Function                       chdir(1)
+NAME
+  chdir - changes Scilab current directory
+
+CALLING SEQUENCE
+  ierr=chdir('path-name')
+
+PARAMETERS
+
+  ierr           : an integer, 1 if chdir failed to change directory and 0
+                 elsewhere.
+
+DESCRIPTION
+  Change the current Scilab directory to 'path-name'
+
+EXAMPLE
+  chdir("/tmp");
+  unix_w("ls");
+
+SEE ALSO
+  getcwd

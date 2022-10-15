@@ -1,0 +1,30 @@
+.TH clean 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+clean - cleans matrices (round to zero small entries)  
+.SH CALLING SEQUENCE
+.nf
+[B]=clean(A [,epsa [,epsr]])
+.fi
+.SH PARAMETERS
+.TP
+A 
+: a numerical matrix (scalar, polynomial...)
+
+.TP
+epsa,epsr 
+: real numbers (default values resp. 1.d-10 and 1.d-10)
+.SH DSECRIPTION
+This function eliminates (i.e. set to zero) all the coefficients 
+with absolute value < \fVepsa\fR and relative value < \fVepsr\fR 
+(relative means relative w.r.t. 1-norm of coefficients)
+in a polynomial (possibly matrix polynomial or rational
+matrix).
+.LP
+Default  values are \fVepsa=1.d-10\fR and \fVepsr=1.d-10;\fR
+.LP
+For a constant (non polynomial) matrix \fVclean(A,epsa)\fR sets to zero all
+entries of \fVA\fR smaller than \fVepsa\fR.
+.SH AUTHOR
+F.D.
+

@@ -1,0 +1,25 @@
+
+is_connex(1)                   Scilab function                   is_connex(1)
+NAME
+  is_connex - connectivity test
+
+CALLING SEQUENCE
+  res = is_connex(g)
+
+PARAMETERS
+
+  g : graph list
+
+  res : integer, result of the test
+
+DESCRIPTION
+  is_connex returns 1 if the graph g is connected and 0 otherwise.
+
+EXAMPLE
+  g=make_graph('foo',1,3,[1,2,3,1],[2,3,1,3]);
+  is_connex(g)
+  g=make_graph('foo',1,4,[1,2,3,1],[2,3,1,3]);
+  is_connex(g)
+
+SEE ALSO
+  con_nodes, strong_connex

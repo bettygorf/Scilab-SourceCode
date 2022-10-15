@@ -1,0 +1,47 @@
+.TH evans 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+evans - Evans root locus
+.SH CALLING SEQUENCE
+.nf
+evans(H [,kmax])
+.fi
+.SH PARAMETERS
+.TP
+H
+: list (linear system \fVsyslin \fR)
+.TP
+kmax
+: real (maximum gain desired for the plot )
+.LP
+.SH DESCRIPTION
+Gives the Evans root locus for a linear system in state-space or 
+transfer form H(s) (\fVsyslin\fR list). This is the locus of the roots of
+\fV1+k*H(s)=1+k*N(s)/D(s)\fR, in the complex plane. For a selected
+sample of gains \fVk <= kmax\fR, the imaginary part of the roots of 
+\fVD(s)+k*N(s)\fR is plotted vs the real part.
+.LP
+To obtain the gain at a given point of the locus you can
+simply execute the following instruction :
+\fVk=-1/real(horner(h,[1,%i]*locate(1)))\fR and click the desired point
+on the root locus. If the coordinates of the selected point are
+in the real 2 x 1 vector \fVP=locate(1)\fR  this \fVk\fR
+solves the equation \fV k*N(w) + D(w) =0\fR with \fVw=P(1)+%i*P(2)=[1,%i]*P\fR.
+.SH EXAMPLE
+.nf
+H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+evans(H,100)
+P=3.0548543 - 8.8491842*%i;    //P=selected point
+k=-1/real(horner(H,P));
+Ns=H('num');Ds=H('den');
+roots(Ds+k*Ns)     //contains P as particular root
+// Another one
+xbasc();s=poly(0,'s');n=1+s;
+d=real(poly([-1 -2 -%i %i],'s'));
+evans(n,d,100);
+//
+xbasc();n=real(poly([0.1-%i 0.1+%i,-10],'s'));
+evans(n,d,80);
+.fi
+.SH SEE ALSO
+kpure, krac2, locate

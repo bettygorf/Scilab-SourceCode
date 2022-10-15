@@ -1,0 +1,257 @@
+.TH " mcfg1d" 2 " February 28, 1998" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ mcfg1d - Continuous large deviation spectrum estimation on 1d measure
+.sp
+Author: Christophe Canus
+.sp
+This C_LAB routine estimates the \fIcontinuous large deviation spectrum\fP on 1d measure.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPalpha,fgc_alpha,\f(CR[\fPpc_alpha,epsilon_star,eta,alpha_eta_x\f(CR]\fP\f(CR]\fP=
+mcfg1d(mu_n,\f(CR[\fPS_min,S_max,J\f(CR]\fP,progstr,ballstr,N,epsilon,contstr,adapstr,kernstr,normstr,I_n\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBmu_n\fP : strictly positive real vector \f(CR[\fP1,N_n\f(CR]\fP or
+\f(CR[\fPN_n,1\f(CR]\fP 
+Contains the 1d measure.
+
+.TP
+o 
+\fBS_min\fP : strictly positive real scalar 
+Contains the minimum size.
+
+.TP
+o 
+\fBS_max\fP : strictly positive real scalar 
+Contains the maximum size.
+
+.TP
+o 
+\fBJ\fP : strictly positive real (integer) scalar 
+Contains the number of scales.
+
+.TP
+o 
+\fBprogstr\fP : string 
+Contains the string which specifies the scale progression.
+
+.TP
+o 
+\fBballstr\fP : string 
+Contains the string which specifies the type of ball.
+
+.TP
+o 
+\fBN\fP : strictly positive real (integer) scalar 
+Contains the number of Hoelder exponents.
+
+.TP
+o 
+\fBepsilon\fP : strictly positive real vector \f(CR[\fP1,N\f(CR]\fP or
+\f(CR[\fPN,1\f(CR]\fP
+Contains the precisions.
+
+.TP
+o 
+\fBcontstr\fP : string 
+Contains the string which specifies the definition of continuous spectrum.
+
+.TP
+o 
+\fBadapstr\fP : string 
+Contains the string which specifies the precision adaptation.
+
+.TP
+o 
+\fBkernstr\fP : string 
+Contains the string which specifies the kernel form.
+
+.TP
+o 
+\fBnormstr\fP : string 
+Contains the string which specifies the pdf's normalization.  
+
+.TP
+o 
+\fBI_n\fP : strictly positive real vector
+\f(CR[\fP1,N_n\f(CR]\fP or \f(CR[\fPN_n,1\f(CR]\fP 
+Contains the intervals on which the pre-multifractal 1d measure is
+defined.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBalpha\fP : real vector \f(CR[\fP1,N\f(CR]\fP 
+Contains the Hoelder exponents.
+
+.TP
+o 
+\fBfgc_alpha\fP : real matrix \f(CR[\fPJ,N\f(CR]\fP 
+Contains the spectrum(a).
+
+.TP
+o 
+\fBpc_alpha\fP : real matrix \f(CR[\fPJ,N\f(CR]\fP 
+Contains the pdf('s).
+
+.TP
+o 
+\fBepsilon_star\fP : strictly positive real matrix
+\f(CR[\fPJ,N\f(CR]\fP  
+Contains the optimal precisions.
+
+.TP
+o 
+\fBeta\fP : strictly positive real vector \f(CR[\fP1,J\f(CR]\fP
+ Contains the sizes.  
+
+.TP
+o 
+\fBalpha_eta_x\fP : strictly positive real matrix
+\f(CR[\fPJ,N_n\f(CR]\fP  Contains the coarse grain Hoelder
+exponents.
+.RE
+
+.SH Description
+.SH Parameters 
+The continuous  large   deviation  spectrum \fI(alpha,fgc_alpha)\fP  is
+estimated  for \fIJ\fP sizes \fIeta_j\fP and  for  the precision vector
+\fIepsilon\fP  by taking into account  the resolution of the 1d measure
+\fImu_n\fP.
+The minimum size \fIS_min\fP sets the equivalent size \fIeta_1\fP in the
+unit interval at which the first spectrum is estimated.  \fIeta_1\fP is
+equal to  \fIS_min*eta_n\fP    where  \fIeta_n\fP is  related    to  the
+resolution of the  1d measure (\fIeta_n=N_n\(ha{-1}\fP  when all intervals
+are of    equal  size else it is    \fImax(|I_n|\(ha{-1}\fP).   It must be
+\f(CR>=\fP1.  The default value for \fIS_min\fP is 1.
+The maximum size \fIS_max\fP sets the equivalent size \fIeta_J\fP in the
+unit interval at which the  last spectrum is estimated.  \fIeta_J\fP is
+equal to \fIS_max*eta_n\fP.  It must be \f(CR>=\fP\fIS_min\fP.  The default
+value for \fIS_max\fP is 1.
+The number  of scales \fIJ\fP sets  the number of computed spectra. The
+bigger  \fIJ\fP   is,  the slower   the   computation  is.  It  must be
+\f(CR>=\fP1. The default value for \fIJ\fP is 1.
+The scale progression string  \fIprogstr\fP specifies the type of scale
+discretization.  It can be   '\fIdec\fP' for decimated,  '\fIlog\fP' for
+logarithmic or '\fIlin\fP'  for  linear scale.   The default value  for
+\fIprogstr\fP is '\fIdec\fP'.
+The   ball   string    \fIballstr\fP  specifies  the      type  of ball
+\fIB_eta(x)\fP. It can be '\fIasym\fP'  for asymmetric, '\fIcent\fP'  for
+centered or '\fIstar\fP' for three  times bigger asymmetric ball.   The
+default value for \fIballstr\fP is '\fIasym\fP'.
+The   number \fIN\fP sets the discretization   of the Hoelder exponents
+interval.   They  are linearly   spaced between \fIalpha_eta_min\fP and
+\fIalpha_eta_max\fP  which are the   minimum and maximum  values of the
+coarse grain Hoelder  exponents  at size \fIeta\fP.  The  bigger \fIN\fP
+is, the  slower the computation is.   It must be \f(CR>=\fP1. The default
+value for \fIN\fP is 100.
+The  precision vector \fIepsilon\fP  sets the  precisions at which  the
+spectrum  is estimated.    It  must  be  of size   \f(CR[\fP1,N\f(CR]\fP  or
+\f(CR[\fPN,1\f(CR]\fP.   When no precision vector  is given as input or when
+it is uniformly  equal to  0,  the  algorithm determines  the  optimal
+precisions   vector    \fIepsilon_star\fP.    The  default   value  for
+\fIepsilon\fP is \fIzeros(1,N)\fP.
+The continuous    string \fIcontstr\fP  specifies   the   definition of
+continuous spectrum.  It can be equal to '\fIhnokern\fP' for definition
+without precision   and  kernel or  '\fIhkern\fP'  for  definition with
+precision   and  kernel.  The default       value    for  \fIcontstr\fP  
+is '\fIhkern\fP'.
+The  precision  adaptation   string  \fIadapstr\fP specifies  the local
+adaptation  of the precision  w.r.t. the Hoelder exponents \fIalpha\fP.
+It     can  be  equal to   '\fImaxdev\fP'    for  maximum  deviation
+or '\fImaxadaptdev\fP' for  maximum adaptive deviation.  The default value
+for \fIadapstr\fP is '\fImaxdev\fP'.
+The kernel string  \fIkernstr\fP specifies the  kernel. It can be equal
+to  '\fIbox\fP' for boxcar,  '\fItri\fP'  for  triangle, '\fImol\fP'  for
+mollifier,  '\fIepa\fP'  for epanechnikhov  or  '\fIgau\fP' for gaussian
+kernel.  The default value for \fIkernstr\fP is '\fIgau\fP'.
+The normalization string    \fInormstr\fP specifies the type   of pdf's
+normalization  conducted  before double log-normalization.   It can be
+equal to '\fInonorm\fP' for  no normalization  conducted, '\fIsuppdf\fP'
+for normalization  w.r.t the  supremum of pdf's,  '\fIinfsuppdf\fP' for
+normalization  w.r.t  the  infimum and the   supremum  of pdf's.   The
+default value for \fInormstr\fP is '\fIsuppdf\fP'.
+The  intervals vector \fII_n\fP can   be useful  when the intervals  on
+which the pre-multifractal 1d measure is defined are not of equal size
+(not implemented yet).
+The  pdf  of the  coarse grain   Hoelder  exponents  matrix  or vector
+\fIpc_alpha\fP,   the     optimal   precisions      matrix   or  vector
+\fIepsilon_star\fP, the  sizes vector  \fIeta\fP and the   coarse grain
+Hoelder exponents matrix or vector \fIalpha_eta_x\fP can be obtained as
+outputs parameters.
+.SH Algorithm details 
+The coarse Hoelder exponents are estimated on each point \fIx\fP of the
+unit interval  discretization by   summing  interval measures  into  a
+sliding window of  size \fIeta\fP containing \fIx\fP (which  corresponds
+to ball \fIB_eta(x)\fP).
+The probability density function \fIpc_alpha\fP is obtained by
+integrating horizontal sections. 
+.SH Examples
+.SH Matlab
+.sp
+.ft CR
+.nf
+% synthesis of pre-multifractal binomial measure: mu_n
+% resolution of the pre-multifractal measure
+n=10; 
+% parameter of the binomial measure
+p_0=.4; 
+% synthesis of the pre-multifractal beiscovitch 1d measure 
+mu_n=binom(p_0,'meas',n);  
+% continuous large deviation spectrum estimation: fgc_alpha  
+%  minimum size, maximum size & # of scales
+S_min=1;S_max=8;J=4;
+% # of hoelder exponents, precision vector
+N=200;epsilon=zeros(1,N); 
+% estimate the continuous large deviation spectrum
+[alpha,fgc_alpha,pc_alpha,epsilon_star]=mcfg1d(mu_n,[S_min,S_max,J],'dec','cent',N,epsilon,'hkern','maxdev','gau','suppdf'); 
+% plot the continuous large deviation spectrum
+plot(alpha,fgc_alpha); 
+title('Continuous Large Deviation spectrum');  
+xlabel('\alpha');
+ylabel('f_{g,\eta}^{c,\epsilon}(\alpha)');
+.fi 
+.ec
+.ft P
+.sp
+.SH Scilab
+.sp
+.ft CR
+.nf
+// computation of pre-multifractal besicovitch measure: mu_n 
+// resolution of the pre-multifractal measure 
+n=10; 
+// parameter of the besicovitch measure 
+p_0=.4; 
+// synthesis of the pre-multifractal besicovitch 1d measure 
+[mu_n,I_n]=binom(p_0,'meas',n); 
+// continuous large deviation spectrum estimation: fgc_alpha  
+// minimum size, maximum size & # of scales
+S_min=1;S_max=8;J=4;
+// # of hoelder exponents, precision vector
+N=200;epsilon=zeros(1,N); 
+// estimate the continuous large deviation spectrum
+[alpha,fgc_alpha,pc_alpha,epsilon_star]=mcfg1d(mu_n,[S_min,S_max,J],'dec','cent',N,epsilon,'hkern','maxdev','gau','suppdf'); 
+// plot the Continuous Large Deviation spectrum 
+plot2d(a,f,[6]); 
+xtitle(["Continuous Large Deviation spectrum";" "],"alpha","fgc(alpha)"); 
+.fi 
+.ec
+.ft P
+.sp
+.SH References
+To be published..SH See Also
+\fBmch1d, fch1d, fcfg1d, cfg1d\fP (C_LAB routines).
+\fBMFAG_continuous, MFAG_epsilon, MFAG_eta, MFAG_epsilon_eta\fP (Matlab and/or Scilab functions).

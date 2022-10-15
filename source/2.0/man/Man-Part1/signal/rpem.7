@@ -1,0 +1,92 @@
+.TH rpem 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+rpem - RPEM estimation
+.SH CALLING SEQUENCE
+.nf
+[w1,[v]]=rpem(w0,u0,y0,[lambda,[k,[c]]])
+.fi
+.SH PARAMETERS
+.TP 15
+a,b,c
+:
+\fVa=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]\fR
+.TP
+w0
+: \fVlist(theta,p,phi,psi,l)\fR where:
+.RS
+.TP 
+theta
+: [a,b,c] is a real vector of order \fV3*n\fV
+.TP
+p
+: (3*n x 3*n) real matrix.
+.TP
+phi,psi,l
+: real vector of dimension \fV3*n\fR
+.RE
+During the first call on can take:
+.nf
+theta=phi=psi=l=0*ones(1,3*n). p=eye(3*n,3*n)
+.fi
+.TP
+u0
+: real vector of inputs (arbitrary size)
+(if no input take \fVu0=[ ]\fR).
+.TP
+y0
+: vector of outputs (same dimension as \fVu0\fR if \fVu0\fR is not empty).
+(\fVy0(1)\fR is not used by rpem).
+.LP
+If the time domain is \fV(t0,t0+k-1)\fR the \fVu0\fR vector contains
+the inputs 
+.LP
+\fVu(t0),u(t0+1),..,u(t0+k-1)\fR and \fVy0\fR the outputs 
+.LP
+\fVy(t0),y(t0+1),..,y(t0+k-1)\fR
+.SH DESCRIPTION
+Recursive estimation of parameters in an ARMAX model.
+Uses Ljung-Soderstrom recursive prediction error method.
+Model considered is the following:
+.nf
+y(t)+a(1)*y(t-1)+...+a(n)*y(t-n)=
+b(1)*u(t-1)+...+b(n)*u(t-n)+e(t)+c(1)*e(t-1)+...+c(n)*e(t-n)
+.fi
+
+The effect of this command is to update the estimation of
+unknown parameter \fVtheta=[a,b,c]\fR with
+.LP
+\fVa=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]\fR.
+.SH Optional parameters
+.TP 10
+lambda
+: optional parameter (forgetting constant) choosed close to 1 as
+convergence occur:
+.LP
+\fVlambda=[lambda0,alfa,beta]\fR evolves according to :
+.nf
+lambda(t)=alfa*lambda(t-1)+beta 
+.fi
+with \fVlambda(0)=lambda0\fR
+.LP
+\fVk\fR : contraction factor to be chosen close to 1 as convergence occurs.
+.LP
+\fVk=[k0,mu,nu]\fR evolves according to:
+.nf
+k(t)=mu*k(t-1)+nu 
+.fi
+with \fVk(0)=k0\fR.
+.LP
+\fVc\fR : large parameter.(\fVc=1000\fR is the default value).
+.SH Output parameters:
+.LP
+\fVw1\fR: update for \fVw0\fR.
+.LP
+\fVv\fR: sum of squared prediction errors on \fVu0, y0\fR.(optional).
+.LP
+In particular \fVw1(1)\fR is the new estimate of \fVtheta\fR.
+If a new sample \fVu1, y1\fR is available the update is obtained by:
+.LP
+\fV[w2,[v]]=rpem(w1,u1,y1,[lambda,[k,[c]]])\fR.
+Arbitrary large series can thus be treated.
+.LP

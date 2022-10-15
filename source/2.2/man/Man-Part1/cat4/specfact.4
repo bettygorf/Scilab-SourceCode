@@ -1,0 +1,66 @@
+
+
+
+specfact(1)                    Scilab Function                    specfact(1)
+
+
+
+
+
+
+NAME
+  specfact - spectral factor
+
+CALLING SEQUENCE
+  [W0,L]=specfact(A,B,C,D)
+
+DESCRIPTION
+  Given a spectral density matrix phi(s):
+                   -1                   -1
+       R + C*(s*I-A) * B  +  B'*(-s*I-A') * C'  with R=D+D' > 0
+  specfact computes  W0 and L such that  W(s)=W0+L*(s*I-A)^-1 * B  is a spec-
+  tral factor of of PHI(s), i.e.
+
+  PHI(s)=W'(-s)*W(s)
+
+SEE ALSO
+  sfact, fspec, fspecg
+
+AUTHOR
+  F. D.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+.TH xstring 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xstring - display a matrix of strings
+.SH CALLING SEQUENCE
+.nf
+[]=xstring(x,y,str,[angle,flag])
+.fi
+.SH PARAMETERS 
+.TP 15
+x,y
+: real scalars (point coordinates)
+.TP
+str
+: matrix of strings
+.TP
+angle
+: real (angle in degree) (clockwise) (default value =0)
+.TP 
+flag
+: integer 
+.SH DESCRIPTION
+draws a matrix of strings ( each line of the matrix stands for a line of text
+and the line elements are separated by a white space) at location \fVx,y\fR
+( lower-left point ) in the current graphic scale. \fVangle\fR if given gives the slope in degree
+to use for drawing the string. if  \fVframe=1\fR a box is drawn around the string 
+(only if \fVangle=0\fR )
+.SH EXAMPLE 
+.nf
+plot2d([0,1],[0,1])
+xstring(0.5,0.5,["Scilab","is" ; "Not","Basilc"])
+//Other example
+alphabet=['a ','b ','c ','d ','e ','f ','g ',...
+          'h ','i ','j ','k ','l ','m ','n ',...
+          'o ','p ','q ','r ','s ','t ','u ',...
+          'v ', 'w ','x ','y ','z '];
+
+xset('default');              //default graphic parameters
+xset("window",1);             //set window number to 1
+xclear();                     
+plot2d([0,1],[0,2])
+xstring(0.1,1.8,alphabet)     //alphabet
+xstring(0.1,1.6,alphabet,20)  //angle
+xset("font",1,1)              //symbol fonts
+xstring(0.1,0.1,alphabet)
+xset('font',1,3)              //change size font
+xstring(0.1,0.3,alphabet)
+xset('font',1,24);xstring(0.1,0.6,'a');  //big alpha
+xset('default')
+.fi
+.SH AUTHOR
+J.Ph.C..
+
+
+
+

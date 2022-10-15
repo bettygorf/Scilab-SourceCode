@@ -1,0 +1,9 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS='$(CDEBUGFLAGS)' FDEBUGFLAGS='$(FDEBUGFLAGS)'
+SUBDIRS=Xmu Xaw
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS))

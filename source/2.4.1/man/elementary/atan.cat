@@ -1,0 +1,26 @@
+
+atan(G)                        Scilab Function                        atan(G)
+NAME
+  atan - tangent inverse
+
+CALLING SEQUENCE
+  [t]=atan(x)
+
+PARAMETERS
+
+  x         : real or complex vector
+
+  t         : real or complex vector
+
+DESCRIPTION
+  The components of vector t are the arctangent of the corresponding entries
+  of vector x.
+
+  atan(x,y) is the same as atan(x/y) but y is allowed to be zero.
+
+EXAMPLE
+  x=[1,%i,-1,%i]
+  phasex=atan(imag(x),real(x))
+
+SEE ALSO
+  tan, ieee

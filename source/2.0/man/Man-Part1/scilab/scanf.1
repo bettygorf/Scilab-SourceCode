@@ -1,0 +1,123 @@
+.TH scanf 1 "May 1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+scanf, fscanf, sscanf - Converts formatted input
+.SH SYNOPSIS
+.nf
+ [v_1,...v_n]=scanf (format);
+ [v_1,...v_n]=fscanf (file,format)
+ [v_1,...v_n]=sscanf (string,format)
+.fi
+.SH PARAMETERS
+.TP 7
+format
+:Specifies the format conversion.
+.TP
+file
+:Specifies the input file name or file number.
+.TP
+string
+:Specifies input to be read.
+.SH DESCRIPTION
+The scanf,fscanf, and
+sscanf functions read character data, interpret it according
+to a format, and returns the converted results.
+
+These functions read their input from the following sources:
+.TP 7 
+scanf
+:Reads from standard input 
+.TP
+fscanf
+:Reads from the file defined by the file parameter.
+.TP
+Lsscanf
+:Reads from the character string
+specified by the string parameter.
+
+The formatparameter contains conversion specifications
+used to interpret the input.
+.PP
+The format parameter can contain
+white-space characters (blanks, tabs, newline, or formfeed)
+that, except in the following two cases, read the input up to the
+next nonwhite-space character. Unless there is a match in the control
+string, trailing white space (including a newline character) is not
+read.
+.TP 4
+Any character except % (percent sign), which must match the next character
+of the input stream.
+.TP  
+A conversion specification that directs the conversion of the
+next input field.
+.SH "Conversion Specifications"
+Each conversion specification in the format parameter
+contains the following elements:
+.TP
++ The character % (percent sign)
+.TP
++ The optional assignment suppression character *
+.TP
++ An optional numeric maximum field width
+.TP
++ A conversion code
+.PP
+The conversion specification has the following syntax:
+.PP
+[*][width][size]convcode
+.PP
+The results from the conversion are placed in v_i arguments
+unless you specify assignment suppression with * (asterisk). Assignment
+suppression provides a way to describe an input field that is to be
+skipped. The input field is a string of nonwhite-space characters.
+It extends to the next inappropriate character or until the field
+width, if specified, is exhausted.
+.PP
+The conversion code indicates how to interpret the input field.
+ You should not specify the v_i parameter for a
+suppressed field. You can use the following conversion codes:
+.TP 7
+%
+:Accepts a single % (percent sign) input at this point; no assignment
+is done.
+.TP
+d, i
+:Accepts a decimal integer; 
+.TP 
+u
+:Accepts an unsigned decimal integer; 
+.TP  
+o
+:Accepts an octal integer;
+.TP 
+x
+:Accepts a hexadecimal integer; 
+.TP 
+e,f,g
+:Accepts a floating-point number.
+The next field is converted accordingly and stored through the corresponding
+parameter, which should be a pointer to a float. The input format
+for floating-point numbers is a string of digits, with the
+following optional characteristics:
+.RS
+.TP 4  
++
+It can be a signed value.
+.TP 
++
+It can be an exponential value, containing a decimal point followed
+by an exponent field, which consists of an E or an e
+followed by an (optionally signed) integer.
+.TP
++
+It can be one of the special values INF, NaN,
+.RE
+.TP 
+s
+:Accepts a string of characters. 
+.TP
+c
+:character value is expected. The normal skip over white space
+is suppressed. 
+.SH SEE ALSO
+printf, read 

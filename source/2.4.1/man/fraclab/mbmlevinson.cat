@@ -1,0 +1,41 @@
+
+mbmlevinson(2)                 Scilab Function                 mbmlevinson(2)
+NAME
+  mbmlevinson - Levinson synthesis of a multifractional Brownian motion
+
+  Author: Paulo Goncalves
+
+  Generates a Multi-Fractional Brownian Motion (mBm) using Cholesky/Levinson
+  factorization
+
+Usage
+
+  [x,y,r] = mbmlevinson(N,H,[seed])
+Input parameters
+       o  N  : Positive integer Sample size of the fBm
+       o  H  : Real vector [1,N] of character string H real vector: contains
+         the Holder exponents at each time. Each element in [0,1]. H charac-
+         ter string: analytic expression of the Holder function (e.g.
+         'abs(0.5 * ( 1 + sin(16 t) ) )')
+       o  seed  : real scalar Random seed generator
+Output parameters
+       o  x  : real vector  [1,N] Time samples of the mBm
+       o  y  : real vector [1,N] Vector of N i.i.d. white standard Gaussian
+         r.v.'s (input process of the generator)
+       o  r  : real matrix [N,N] Matrix containing columnwise each first row
+         of the var/cov Toeplitz matrices R(n) of the non-stationary incre-
+         ment process w[n] = x[n+1] - x[n].
+
+Algorithm details
+  For each time n, a fbm process with constant Holder exponent H[n/] is syn-
+  thesized over N points (see fbmlevinson). Only the sample at rank n is
+  kept.  As a result of this computationally expensive procedure, only small
+  sample sizes of mBms can be generated (typically less than 1024 samples).
+
+See also:
+  mbmlevinson
+
+Example:
+
+  [x,y,r] = mbmlevinson(512,AtanH(512,2,1,0.5)) ;
+  plot(x) ;

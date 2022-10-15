@@ -1,0 +1,31 @@
+.TH gtild 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+gtild - tilde operation
+.SH CALLING SEQUENCE
+.nf
+[gt]=gtild(g)
+[at,bt,ct,dt]=gtild(a,b,c,[d])
+.fi
+.SH PARAMETERS
+.TP 10
+g
+: linear system (\fVsyslin\fR list) or g=g(s) (rational or polynomial)
+.TP
+gt
+: linear system (\fVsyslin\fR list) (same as \fVg\fR)
+.SH DESCRIPTION
+\fVgtild\fR returns \fVgtild(s) = g(-s)'\fR (in transfer form 
+or in state-space).
+.LP
+\fVg\fR is any matrix (constant, polynomial,
+transfer matrix, or state-space representaion with possibly
+a polynomial D matrix).
+.SH EXAMPLE
+.nf
+s=poly(0,'s');w=[1/s,s;2/(s+1),1];gtild(w)
+ss2tf(gtild(tf2ss(w)))
+.fi
+.SH SEE ALSO
+syslin, horner
+

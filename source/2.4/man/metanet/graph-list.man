@@ -1,0 +1,417 @@
+.TH graph-list 1 "September 1996" "Scilab Group" "Scilab type"
+.so ../sci.an
+.SH NAME
+graph-list - description of graph list
+.SH DESCRIPTION
+A graph in Scilab is represented by a Scilab typed list. 
+We call it a graph list.
+
+You will find below the complete description of the list.
+Each element is described by one or more lines.
+The first line gives
+the name of the element and its definition. Additional informations, such as
+the default for elements that can have one, are given in the other lines.
+Indeed, only the 5 first elements must have a value in the list, all the 
+others can be given the empty vector \fV[]\fR as a value, and then the default 
+is used when it is needed by functions or by the Metanet window.
+For instance, you can define a graph list by
+.nf
+g=make_graph('min',1,1,[1],[1]);
+.fi
+which is the simplest graph you can create in Metanet (it is directed, has 
+one node and one loop arc on this node).
+
+The name of the element in the list is very important because it is used to 
+access the elements of the list. For instance, if \fVg\fR is a graph list, 
+to get the name of the graph, you only have to do:
+.nf
+g('name')
+.fi
+and if you want to change the name of the graph to \fV'toto'\fR, 
+you have to do: 
+.nf
+g('name')='toto';
+.fi
+
+Moreover, you can get the number of edges and the number of arcs of the graph
+by using \fVedge_number(g)\fR and \fVarc_number(g)\fR (these names do not
+correspond to elements of the list). For compatibility, \fVnode_number(g)\fR 
+can also be used instead of \fVg('node_number')\fR.
+
+A graph list can be syntactically correct but not represent a good graph. 
+You can use the function \fVcheck_graph\fR to check it.
+Moreover it is a good idea to give nodes different names. In fact, this
+does not give errors in Scilab, but strange behaviour can appear when using 
+the 
+Metanet window. This is not checked by \fVcheck_graph\fR 
+because it is time consuming. It is only checked when loading, saving
+or showing a graph.
+
+The elements of a graph list are given below:
+
+.TP 6
+name:
+- the name of the graph
+.RS
+.TP
+-
+it is a string with a maximum of 80 characters
+.RE
+
+.TP 10
+directed:
+- flag giving the type of the graph
+.RS
+.TP
+-
+it is equal to 1 (graph directed) or equal to 0 (graph undirected)
+.RE
+
+.TP 13
+node_number:
+- number of nodes
+
+.TP 6
+tail:
+- row vector of the tail node numbers
+
+.TP 6
+head:
+- row vector of the head node numbers
+
+.TP 11
+node_name:
+- row vector of node names
+.RS
+.TP
+-
+the names of the nodes must be different
+.TP
+-
+default is the node numbers as node names
+.RE
+
+.TP 11
+node_type:
+- row vector of the node types
+.RS 
+.TP
+-
+the type is an integer from 0 to 2, default is 0 (plain node):
+.RS
+.TP
+-
+0 = plain node
+.TP
+-
+1 = sink node
+.TP
+-
+2 = source node
+.RE
+.RE
+
+.TP 8
+node_x:
+- row vector of the x coordinate of the nodes
+.RS
+.TP
+-
+default is computed
+.RE
+
+.TP 8
+node_y:
+- row vector of the y coordinate of the nodes
+.RS
+.TP
+-
+default is computed
+.RE
+
+.TP 12
+node_color:
+- row vector of the node colors
+.RS
+.TP
+-
+the color is an integer from 0 to 16, default is 0 (default foreground):
+.RS
+.TP
+-
+0 = default foreground
+.TP
+-
+1 = navyblue
+.TP
+-
+2 = blue
+.TP
+-
+3 = skyblue
+.TP
+-
+4 = aquamarine
+.TP
+-
+5 = forestgreen
+.TP
+-
+6 = green
+.TP
+-
+7 = lightcyan
+.TP
+-
+8 = cyan
+.TP
+-
+9 = orange
+.TP
+-
+10 = red
+.TP
+-
+11 = magenta
+.TP
+-
+12 = violet
+.TP
+-
+13 = yellow
+.TP
+-
+14 = gold
+.TP
+-
+15 = beige
+.TP
+-
+16 = background
+.RE
+.RE
+
+.TP 11
+node_diam:
+- row vector of the size of the node diameters in pixels
+.RS
+.TP
+-
+a node is drawn as a circle
+.TP
+-
+default is the value of element \fVdefault_node_diam\fR
+.RE
+
+.TP 13
+node_border:
+- row vector of the size of the node borders in pixels
+.RS
+.TP
+-
+a node is drawn as a circle
+.TP
+-
+default is the value of element \fVdefault_node_border\fR
+.RE
+
+.TP 16
+node_font_size:
+- row vector of the size of the font used to draw the name of the node
+.RS
+.TP
+-
+you can choose 8, 10, 12, 14, 18 or 24
+.TP
+-
+default is the value of element \fVdefault_font_size\fR
+.RE
+
+.TP 13
+node_demand:
+- row vector of the node demands
+.RS
+.TP
+-
+default is 0
+.RE
+
+.TP 11
+edge_name:
+- row vector of the edge names
+.RS
+.TP
+-
+it is better that the names of the edges are different, but this is not
+an error
+.TP
+-
+default is the edge numbers as edge names
+.RE
+
+.TP 12
+edge_color:
+- row vector of the edge colors
+.RS
+.TP
+-
+the color is an integer from 0 to 16 (see \fVnode_color\fR)
+.TP
+-
+default is 0 (default foreground)
+.RE
+
+.TP 12
+edge_width:
+- row vector of the size of the edge widths in pixels
+.RS
+.TP
+-
+default is the value of element \fVdefault_edge_width\fR
+.RE
+
+.TP 15
+edge_hi_width:
+- row vector of the size of the highlighted edge widths in pixels
+.RS
+.TP
+-
+default is the value of element \fVdefault_edge_hi_width\fR
+.RE
+
+.TP 16
+edge_font_size:
+- row vector of the size of the fonts used to draw the name of the edge
+.RS
+.TP
+-
+you can choose 8, 10, 12, 14, 18 or 24
+.TP
+-
+default is the value of element \fVdefault_font_size\fR
+.RE
+
+.TP 13
+edge_length:
+- row vector of the edge lengths
+.RS
+.TP
+-
+default is 0
+.RE
+
+.TP 11
+edge_cost:
+- row vector of the edge costs
+.RS
+.TP
+-
+default is 0
+.RE
+
+.TP 14
+edge_min_cap:
+- row vector of the edge minimum capacities
+.RS
+.TP
+-
+default is 0
+.RE
+
+.TP 14
+edge_max_cap:
+- row vector of the edge maximum capacities
+.RS
+.TP
+-
+default is 0
+.RE
+
+.TP 15
+edge_q_weight:
+- row vector of the edge quadratic weights
+.RS
+.TP
+-
+default is 0
+.RE
+
+.TP 13
+edge_q_orig:
+- row vector of the edge quadratic origins
+.RS
+.TP
+-
+default is 0
+.RE
+
+.TP 13
+edge_weight:
+- row vector of the edge weights
+.RS
+.TP
+-
+default is 0
+.RE
+
+.TP 19
+default_node_diam:
+- default size of the node diameters of the graph
+.RS
+.TP
+-
+default is 20 pixels
+.RE
+
+.TP 21
+default_node_border:
+- default size of the node borders of the graph
+.RS
+.TP
+-
+default is 2 pixels
+.RE
+
+.TP 20
+default_edge_width:
+- default size of the edge widths of the graph
+.RS
+.TP
+-
+default is 1 pixel
+.RE
+
+.TP 23
+default_edge_hi_width:
+- default size of the highlighted edge widths of the graph
+.RS
+.TP
+-
+default is 3 pixels
+.RE
+
+.TP 19
+default_font_size:
+- default size of the font used to draw the names of nodes and edges
+.RS
+.TP
+-
+default is 12
+.RE
+
+.TP 12
+node_label:
+- row vector of node labels
+
+.TP 12
+edge_label:
+- row vector of edge labels
+.SH EXAMPLE
+.nf
+g=load_graph(SCI+'/demos/metanet/mesh100');
+g('node_color')=int(rand(1:g('node_number'))*16);
+g('edge_color')=int(rand(1:edge_number(g))*16);
+show_graph(g)
+.fi
+.SH SEE ALSO
+arc_number, check_graph, edge_number, glist, make_graph, node_number

@@ -1,0 +1,99 @@
+ABSBLK_f - scicos abs block  
+AFFICH_f - scicos numerical display  
+ANDLOG_f - scicos logical and block  
+ANIMXY_f - scicos 2d animated visualization block  
+BIGSOM_f - scicos addition block  
+CLINDUMMY_f - scicos dummy continuous system with state  
+CLKINV_f - scicos super block event input port  
+CLKIN_f - scicos super block event input port  
+CLKOUTV_f - scicos super block event output port  
+CLKOUT_f - scicos super block event output port  
+CLKSOMV_f - scicos event addition block  
+CLKSOM_f - scicos event addition block  
+CLKSPLIT_f - scicos event split block  
+CLOCK_f - scicos periodic event generator  
+CLR_f - scicos continuous-time linear system (siso transfer function)  
+CLSS_f - scicos continuous-time linear state-space system  
+CONST_f - scicos constant value(s) generator  
+COSBLK_f - scicos cosine block  
+CURV_f - scicos block, tabulated function of time  
+DELAYV_f - scicos time varying delay block  
+DELAY_f - scicos delay block  
+DEMUX_f - scicos demultiplexer block  
+DLRADAPT_f - scicos discrete-time linear adaptive system  
+DLR_f - scicos discrete-time linear system (transfer function)  
+DLSS_f - scicos discrete-time linear state-space system  
+EVENTSCOPE_f - scicos event visualization block  
+EVTDLY_f - scicos event delay block  
+EVTGEN_f - scicos event firing block  
+EXPBLK_f - scicos a^u block  
+GAINBLK_f - scicos gain block  
+GAIN_f - scicos gain block  
+GENERAL_f - scicos general zero crossing detector  
+GENERIC_f - scicos generic interfacing function  
+GENSIN_f - scicos sinusoid generator  
+GENSQR_f - scicos square wave generator  
+HALT_f - scicos stop block  
+IFTHEL_f - scicos if then else block  
+INTEGRAL_f - scicos simple integrator  
+INTRP2BLK_f - scicos 2d linear interpolation block  
+INTRPLBLK_f - scicos linear interpolation block  
+INVBLK_f - scicos inversion block  
+IN_f - scicos super block regular input port  
+LOGBLK_f - scicos logarithm block  
+LOOKUP_f - scicos lookup table with graphical editor  
+MAX_f - scicos max block  
+MCLOCK_f - scicos 2 frequency event clock  
+MFCLCK_f - scicos basic block for frequency division of event clock  
+MIN_f - scicos min block  
+MUX_f - scicos multiplexer block  
+NEGTOPOS_f - scicos negative to positive detector  
+OUT_f - scicos super block regular output port  
+POSTONEG_f - scicos positive to negative detector  
+POWBLK_f - scicos u^a block  
+PROD_f - scicos element wise product block  
+QUANT_f - scicos quantization block  
+RAND_f - scicos random wave generator  
+REGISTER_f - scicos shift register block  
+RELAY_f - scicos relay block  
+RFILE_f - scicos read from file block  
+SAMPLEHOLD_f - scicos sample and hold block  
+SAT_f - scicos saturation block  
+SAWTOOTH_f - scicos sawtooth wave generator  
+SCOPE_f - scicos visualization block  
+SCOPXY_f - scicos visualization block  
+SELECT_f - scicos selector block  
+SINBLK_f - scicos sine block  
+SOM_f - scicos addition block  
+SPLIT_f - scicos regular split block  
+STOP_f - scicos stop block  
+SUPER_f - scicos super block  
+TANBLK_f - scicos tan block  
+TCLSS_f - scicos jump continuous-time linear state-space system  
+TEXT_f - scicos text drawing block  
+TIME_f - scicos time generator  
+TRASH_f - scicos trash block  
+WFILE_f - scicos write to file block  
+ZCROSS_f - scicos zero crossing detector  
+check_io - checks and sets scicos block port numbers.  
+curblock - get current block index in a scicos simulation function  
+getblocklabel - get label of a scicos block at running time  
+getcurblock - get scicos current block number while running  
+getscicosvars - get scicos data structure while running  
+icon_edit - simple interactive graphic block icon editor  
+scicos - block diagram editor and gui for the hybrid simulator scicosim  
+scicos_block - scicos block data structure  
+scicos_cpr - scicos compiled diagram data structure  
+scicos_graphics - scicos block graphics data structure  
+scicos_link - scicos link data structure  
+scicos_main - scicos editor main data structure  
+scicos_menus - scicos menus description  
+scicos_model - scicos block functionality data structure  
+scicosim - scicos simulation function  
+scifunc_block - scicos block defined interactively  
+setscicosvars - set scicos data structure while running  
+standard_define - scicos block initial definition function  
+standard_draw - scicos block drawing function  
+standard_input - get scicos block input port positions  
+standard_origin - scicos block origin function  
+standard_output - get scicos block output port positions  

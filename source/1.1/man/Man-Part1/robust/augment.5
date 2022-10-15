@@ -1,0 +1,48 @@
+.TH augment 5 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+augment - augmented plant
+.SH CALLING SEQUENCE
+.nf
+[P,r]=augment(G,[flag])
+.fi
+.SH PARAMETERS
+.TP
+G
+: linear system (\fVsyslin\fR list), the nominal plant
+.TP
+flag
+: one of the following character string:
+\fV 'S' \fR, \fV 'R' \fR, \fV 'T' \fR
+\fV 'SR' \fR, \fV 'ST' \fR, \fV 'RT' \fR
+\fV 'SRT' \fR 
+.TP
+P
+: linear system (\fVsyslin\fR list), the ``augmented'' plant
+.TP
+r
+: 1x2 row vector, dimension of \fVP22 = G\fR
+.SH DESCRIPTION
+If \fVflag='SRT'\fR (default value), returns the "full" augmented plant
+.nf
+    [ I | -G]   -->'S'
+    [ 0 |  I]   -->'R'
+P = [ 0 |  G]   -->'T'
+    [-------]
+    [ I | -G]
+.fi
+.LP
+\fV 'S' \fR, \fV 'R' \fR, \fV 'T' \fR refer to the first three (block) rows
+of \fVP\fR respectively.
+.LP
+If one of this letter is absent in \fVflag\fR, the corresponding
+row in \fVP\fR is missing.
+.LP
+Note that weighting functions can be introduced by left-multipying
+\fVP\fR by a diagonal system of appropriate dimension, e.g.,
+\fV P = sysdiag(W1,W2,W3,eye(G))*P\fR.
+.LP
+Sensitivity functions can be calculated by \fVlft\fR.
+.SH SEE ALSO
+lft, sensi
+

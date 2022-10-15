@@ -1,0 +1,29 @@
+ 
+clear;lines(0);
+ 
+h=syslin('c',-1+%s,3+2*%s+%s^2)
+ h  =
+ 
+    - 1 + s      
+    ---------    
+              2  
+    3 + 2s + s   
+ 
+[g,fr]=g_margin(h)
+ fr  =
+ 
+     []
+ g  =
+ 
+   Inf  
+ 
+[g,fr]=g_margin(h-10)
+ fr  =
+ 
+    0.3558813  
+ g  =
+ 
+  - 19.554472  
+ 
+nyquist(h-10)
+ 

@@ -1,0 +1,2 @@
+clear;lines(0);
+x=emptystr();for k=1:10, x=x+','+string(k);end

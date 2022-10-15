@@ -1,0 +1,32 @@
+
+synth2(2)                      Scilab Function                      synth2(2)
+NAME
+  synth2 - Stationary Increments 2D Process
+
+  Author: B. Pesquet-Popescu (ENS-Cachan)
+
+  Incremental Fourier synthesis method for processes with stationary incre-
+  ments of order (0,1) and (1,0)
+
+Usage
+
+  [B] = synth2(M,H,core)
+Input parameters
+       o  M  : Positive integer Vertical/Horizontal dimension of the gener-
+         ated field
+       o  H  : Real in [0,1] parameter of the structure function (e.g. :
+         Hurst parameter)
+       o  core  : string Name of the structure function of type core(x,y,H)
+         with x,y : vertical/horizontal coordinates
+Output parameters
+       o  B  : real matrix  [N,N] Synthesized random field
+References
+  L.M. Kaplan, C.C. J Kuo : IEEE Tran. on IP, May 1996 (extended version).
+
+See also:
+  fbmlevinson, fbmcwt, fbmfwt, mbmlevinson
+
+Example:
+
+  [B] = synth2(128,0.8,'strfbm') ;
+  viewmat(B)

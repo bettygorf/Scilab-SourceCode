@@ -1,0 +1,29 @@
+
+genlib(1)                      Scilab Function                      genlib(1)
+NAME
+  genlib - building lib with all functions defined in a directory
+
+CALLING SEQUENCE
+  getd(lib-name [,path])
+
+PARAMETERS
+
+  lib-name  : Scilab string. The variable name of the library to (re)create
+
+  path      : Scilab string. The directory pathname. Default value is the
+            current directory
+DESCRIPTION
+  For each xxxxx.sci files (containing Scilab functions) defined in the path
+  directory, this function executes a getf of xxxxx.sci if xxxxx.bin does not
+  exist or is older and saves the functions defined in the file in a
+  xxxxx.bin file in the given directory
+
+  When all xxxxx.sci files have been proceed genlib creates a library vari-
+  able named lib-name in the scilab environment and save it in the file named
+  lib in the given directory
+EXAMPLE
+  genlib('auto1','SCI/macros/auto')
+  disp(auto1)
+
+SEE ALSO
+  getf, lib

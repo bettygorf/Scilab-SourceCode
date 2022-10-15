@@ -1,0 +1,67 @@
+.TH scicos_graphics  "Janvier 1997" "Scilab Group" "Scicos data structure"
+.so ../sci.an
+.SH NAME
+scicos_graphics - Scicos block graphics data structure
+.SH DEFINITION
+.nf
+graphics=list(orig,sz,flip,exprs,pin,pout,pein,peout,gr_i)
+.fi
+.SH PARAMETERS
+.TP
+orig
+: 2 x 1 vector, the coordinate of down-left point of the block shape.
+.TP
+sz
+: vector \fV[w,h]\fR, where \fVw\fR is the width and \fVh\fR the
+height of the block shape.
+.TP
+flip
+: boolean, the block orientation. if true the input ports are on the
+left of the box and output ports are on the right. if false  the input ports are on the
+right of the box and output ports are on the left.  
+.TP
+exprs
+: column vector of strings,  contains expressions answered by the user
+at block set time.
+.TP
+pin
+: column vector of integers. If \fVpin(k)<>0\fR then  \fVk\fRth input
+port is connected to the \fVpin(k)<>0\fR block, else the port is
+unconnected. If no input port exist \fVpin==[]\fR.
+.TP
+pout
+: column vector of integers.  If \fVpout(k)<>0\fR then  \fVk\fRth output
+port is connected to the \fVpout(k)<>0\fR block, else the port is
+unconnected. If no output port exist \fVpout==[]\fR.
+.TP
+pein
+: column vector of ones. If \fVpein(k)<>0\fR then  \fVk\fRth event input
+port is connected to the \fVpein(k)<>0\fR block, else the port is
+unconnected. If no event input port exist \fVpein==[]\fR.
+.TP
+peout
+: column vector of integers.  If \fVpeout(k)<>0\fR then  \fVk\fRth
+event output port is connected to the \fVepout(k)<>0\fR block, else the port is
+unconnected. If no event  output port exist \fVpeout==[]\fR.
+.TP
+gr_i
+: column vector of strings,  contains Scilab instructions used to
+customize the block graphical aspect. This field may be set with
+\fV"Icon"\fR sub_menu.
+.TP
+graphics
+: Scilab list, Scicos block graphics data structure.
+.SH DESCRIPTION
+Scicos block graphics data structure contains all information relative
+to graphical display of the block and to user dialogue. Fields may be
+fixed by block definition or set as a result of user dialogue or connections. 
+
+.SH SEE ALSO
+scicos,  scicos_model, scicos_main 
+
+
+
+
+
+
+

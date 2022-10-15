@@ -1,0 +1,35 @@
+.TH exists 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+exists - checks variable  existence
+.SH CALLING SEQUENCE
+.nf
+exists(name [,where])
+.fi
+.SH PARAMETERS
+.TP 10
+name
+: a character string
+.TP
+where
+: an optional character string with default value \fV'all'\fR
+.SH DESCRIPTION
+\fVexists(name)\fR returns \fV1\fR if the variable named \fVname\fR
+exists and \fV0\fR otherwise. 
+
+Caveats: a function which uses \fVexists\fR may return a result which depends on the environment!
+
+\fVexists(name,'local')\fR returns \fV1\fR if the variable named
+\fVname\fR exists in the local environment of the current function and
+\fV0\fR otherwise.  
+
+.SH EXAMPLE
+.nf
+deff('foo(x)',..
+['disp([exists(''a12''),exists(''a12'',''local'')])'
+ 'disp([exists(''x''),exists(''x'',''local'')])'])
+foo(1)
+a12=[];foo(1)
+.fi
+.SH SEE ALSO
+isdef, whereis, type, typeof, macrovar

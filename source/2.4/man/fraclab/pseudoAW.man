@@ -1,0 +1,188 @@
+.TH "pseudoAW" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+pseudoAW -  Pseudo affine Wigner distribution
+.sp
+Author: Paulo Goncalves
+.sp
+Computes a \fI Pseudo Affine Wigner Distributions \fP of a
+1\f(CR-\fPD signal (real or complex). 
+.sp
+.sp
+.SH Usage
+\f(CR[\fPtfr,scale,f,wt\f(CR]\fP = pseudoAW(x,K,\f(CR[\fPwave,smooth,fmin,fmax,N\f(CR]\fP);
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : Real or complex vector \f(CR[\fP1,nt\f(CR]\fP or \f(CR[\fPnt,1\f(CR]\fP
+Time samples of the signal to be analyzed. 
+
+.TP
+o 
+\fBK\fP : real scalar
+Parameter of the pseudo affine Wigner distributions.
+K = -1  : pseudo Unterberger 
+K = 0   : pseudo Bertrand 
+K = 1/2 : pseudo D-Flandrin 
+K = 2   : pseudo affine Wigner-Ville, etc ...
+
+.TP
+o 
+\fBwvlt_length \fP : positive integer
+specifies the analyzing wavelet:
+0: Mexican hat wavelet (real)
+Positive real integer: real Morlet wavelet of size 2*\fIwvlt_length\fP+1) at
+finest scale 1
+Positive imaginary integer: analytic Morlet wavelet of size 2*\fIwvlt_length\fP+1) at
+finest scale 1
+Default value is the Mexican hat wavelet (\fI wvlt_length \fP = 0 )
+
+.TP
+o 
+\fB smooth \fP : positive integer  
+half length of the time smoothing window. SMOOTH = 0 corresponds to
+the Pseudo affine Wigner distribution with no time-smoothing. Default value is \fImooth\fP = 0.
+
+.TP
+o 
+\fBfmin\fP : real in  \f(CR[\fP0,0.5\f(CR]\fP
+Lower frequency bound of the analysis. When not specified, this
+parameter forces the program to interactive mode.
+
+.TP
+o 
+\fBfmax\fP :  real in  \f(CR[\fP0,0.5\f(CR]\fP and \fIfmax\fP \f(CR>\fP 
+Upper frequency bound of the analysis. When not specified, this
+parameter forces the program to interactive mode.
+
+.TP
+o 
+\fBN\fP : positive integer. 
+number of analyzing voices.  When not specified, this parameter forces
+the program to interactive mode.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBtfr\fP : Real matrix \f(CR[\fPN,nt\f(CR]\fP
+time-frequency distribution 
+
+.TP
+o 
+\fBscale\fP : real vector \f(CR[\fP1,N\f(CR]\fP
+analyzed scales
+
+.TP
+o 
+\fBf\fP : real vector \f(CR[\fP1,N\f(CR]\fP
+analyzed frequencies
+
+.TP
+o 
+\fBwt\fP : real or complex matrix \f(CR[\fPN,nt\f(CR]\fP
+matrix of the wavelet coefficients (intermediate step)
+.RE
+
+.SH Description
+.SH Parameters
+
+
+.RS
+
+.TP
+o 
+\fIK\fP : fixes the function 
+\fIlambda_K(u)\fP = K ( (exp(-u)-1)/(exp(-Ku)-1) )\(ha(1/(k-1)) 
+used in the generalized affine convolution to define the \fIK\fP-order pseudo affine
+Wigner distribution.
+
+.TP
+o 
+\fBsmooth\fP : fixes the ammount of smooth in time of the
+distribution. This ammount can vary continuously from an
+unsmoothed pseudo affine Wigner distribution up to a maximum
+smoothness corresponding to a scalogram (squared magnitude of the
+intermediate wavelet coefficients)
+
+.TP
+o 
+\fIN\fP : number of analyzing voices geometrically sampled
+between minimum scale \fIfmax\fP/\fIfmax\fP and maximum scale
+\fIfmax\fP/\fIfmin\fP.
+
+.TP
+o 
+\fItfr\fP : Samples of the pseudo affine Wigner distribution.
+X\f(CR-\fPcoordinated corresponds to time (uniformly sampled),
+Y\f(CR-\fPcoordinates correspond to frequency (or scale) voices
+(geometrically sampled between \fI fmax\fP (resp. 1) and \fIfmin\fP
+(resp. \fI fmax \fP/\fI fmin \fP). First row of \fItfr\fP corresponds to the
+highest analyzed frequency (finest scale).
+
+.TP
+o 
+\fIscale\fP : analyzed scales (geometrically sampled between
+1  and \fI fmax \fP/\fIfmin\fP
+
+.TP
+o 
+\fIf\fP : analyzed frequencies (geometrically sampled between
+\fI fmax \fP and \fI fmin \fP. \fIf\fP corresponds to \fIfmax\fP/\fIscale\fP
+
+.TP
+o 
+\fIwt\fP : coefficients of the intermediate-step wavelet
+transform. 
+X\f(CR-\fPcoordinated corresponds to time (uniformly sampled),
+Y\f(CR-\fPcoordinates correspond to frequency (or scale) voices
+(geometrically sampled between \fI fmax\fP (resp. 1) and \fIfmin\fP
+(resp. \fI fmax \fP/\fI fmin \fP). First row of \fIwt\fP corresponds to
+the highest analyzed frequency (finest scale).
+.RE
+
+.SH Algorithm details
+A pseudo affine Wigner distribution requires to compute a continuous
+wavelet transform first.  For each time, the corresponding column of
+the wavelet transform is affine convolved (generalized affine
+convolution defined through function \fIlambda_K\fP(u) ) with itself. 
+.SH See also:
+contwt, cwt and lambdak
+.SH Example:
+\fI Signal synthesis \fP 
+.sp
+.ft CR
+.nf
+x = morlet(0.35,32)+morlet(0.1,32) ;
+.fi 
+.ec
+.ft P
+.sp
+\fI K = -1 pseudo affine Wigner distribution with no time smoothing  \fP 
+.sp
+.ft CR
+.nf
+[tfr,scale,f,wt] = pseudoAW(x,-1,12*i,0,0.01,0.5,128) ;
+viewmat(tfr,1:length(x),f,[1 0 .5]) ; 
+.fi 
+.ec
+.ft P
+.sp
+\fI K = -1 time smoothed pseudo affine Wigner distribution \fP 
+.sp
+.ft CR
+.nf
+[tfr,scale,f,wt] = pseudoAW(x,-1,12*i,3,0.01,0.5,128) ;
+viewmat(tfr,1:length(x),f,[1 0 0]) ;
+.fi 
+.ec
+.ft P
+.sp

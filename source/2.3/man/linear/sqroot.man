@@ -1,0 +1,29 @@
+.TH sqroot 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+sqroot - W*W' hermitian factorization
+.SH CALLING SEQUENCE
+.nf
+sqroot(X)
+.fi
+.SH PARAMETERS
+.TP
+X 
+: symmetric non negative definite real or complex matrix
+.SH DESCRIPTION
+.Vb W=sqroot(X) 
+returns W such that  \fVX=W*W'\fR (uses SVD).
+.SH EXAMPLE
+.nf
+X=rand(5,2)*rand(2,5);X=X*X';
+W=sqroot(X)
+norm(W*W'-X,1)
+//
+X=rand(5,2)+%i*rand(5,2);X=X*X';
+W=sqroot(X)
+norm(W*W'-X,1)
+.fi
+.SH SEE ALSO 
+chol, svd
+
+

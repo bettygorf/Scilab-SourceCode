@@ -1,0 +1,76 @@
+.TH kroneck 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+kroneck - Kronecker form
+.SH CALLING SEQUENCE
+.nf
+[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F)
+[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(E,A)
+.fi
+.SH PARAMETERS
+.TP
+F
+: real matrix pencil \fVF=s*E-A\fR
+.TP
+E,A
+: two real matrices of same dimensions
+.TP 10
+Q,Z
+:
+two square orthogonal matrices
+.TP
+Qd,Zd
+:
+two vectors of integers
+.TP 15
+numbeps,numeta
+:
+two vectors of integers
+.SH DESCRIPTION
+Kronecker form of matrix pencil: \fVkroneck\fR computes two
+orthogonal matrices \fVQ, Z\fR which put the pencil \fVF=s*E -A\fR into
+upper-triangular form:
+.nf
+
+           | sE(eps)-A(eps) |        X       |      X     |      X        |
+           |----------------|----------------|------------|---------------|
+           |        O       | sE(inf)-A(inf) |      X     |      X        |
+Q(sE-A)Z = |---------------------------------|----------------------------|
+           |                |                |            |               |
+           |        0       |       0        | sE(f)-A(f) |      X        |
+           |--------------------------------------------------------------|
+           |                |                |            |               |
+           |        0       |       0        |      0     | sE(eta)-A(eta)|
+
+.fi       
+The dimensions of the four blocks are given by:
+.PP
+\fVeps=Qd(1) x Zd(1)\fR, \fVinf=Qd(2) x Zd(2)\fR,
+\fVf = Qd(3) x Zd(3)\fR, \fVeta=Qd(4)xZd(4)\fR
+.LP
+The \fVinf\fR block contains the infinite modes of
+the pencil.
+.LP
+The \fVf\fR block contains the finite modes of
+the pencil
+.LP
+The structure of epsilon and eta blocks are given by:
+.PP
+\fVnumbeps(1)\fR = # of eps blocks of size 0 x 1
+.PP
+\fVnumbeps(2)\fR = # of eps blocks of size 1 x 2
+.PP 
+\fVnumbeps(3)\fR = # of eps blocks of size 2 x 3     etc...
+.PP
+\fVnumbeta(1)\fR = # of eta blocks of size 1 x 0
+.PP
+\fVnumbeta(2)\fR = # of eta blocks of size 2 x 1
+.PP
+\fVnumbeta(3)\fR = # of eta blocks of size 3 x 2     etc...
+.LP
+The code is taken from T. Beelen (Slicot-WGS group).
+.SH SEE ALSO
+gschur, gspec, systmat, pencan, epsfin
+
+
+

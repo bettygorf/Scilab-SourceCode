@@ -1,0 +1,36 @@
+.TH speye 1 "January 1995" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+speye -  sparse identity matrix
+.SH CALING SEQUENCE
+.nf
+Isp=speye(nrows,ncols)
+Isp=speye(A)
+.fi
+.SH PARAMETERS
+.TP 8
+nrows
+: integer (number of rows)
+.TP
+ncols
+: integer (number os columns)
+.TP
+A
+: sparse matrix
+.TP
+sp
+: sparse identity matrix
+.SH DESCRIPTION
+\fVIsp=speye(nrows,ncols)\fR returns a sparse identity matrix \fVIsp\fR 
+with \fVnrows\fR rows, \fVncols\fR columns. (Non square identity matrix
+have a maximal number of ones along the main diagonal).
+.LP
+\fVIsp=speye(A)\fR returns a sparse identity matrix with same
+dimensions as \fVA\fR. If \fV[m,n]=size(A)\fR, \fVspeye(m,n)\fR and
+\fVspeye(A)\fR are equivalent. In particular \fVspeye(3)\fR is not
+equivalent to \fVspeye(3,3)\fR.
+.SH SEE ALSO
+sparse, full, eye, spzeros
+
+
+                        

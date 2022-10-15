@@ -1,0 +1,30 @@
+ 
+clear;lines(0);
+ 
+s=%s;
+ 
+w=[1/s,0;s/(s^3+2),2/s];
+ 
+Sl=tf2ss(w);
+ 
+[Stmp,Ws]=rowregul(Sl,-1,-2);
+ 
+Stmp('D')     // D matrix of Stmp
+ ans  =
+ 
+!   1.    0. !
+!   0.    2. !
+ 
+clean(ss2tf(Stmp))
+ ans  =
+ 
+!   2 + s      0       !
+!   -----      -       !
+!     s        1       !
+!                      !
+!         2            !
+!   2s + s     4 + 2s  !
+!   ------     ------  !
+!        3             !
+!   2 + s        s     !
+ 

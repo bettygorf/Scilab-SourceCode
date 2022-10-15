@@ -1,0 +1,3 @@
+clear;lines(0);
+x=uint16(1:10);
+inttype(x)

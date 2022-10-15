@@ -1,0 +1,26 @@
+
+contrss(1)                     Scilab Function                     contrss(1)
+NAME
+  contrss - controllable part
+
+CALLING SEQUENCE
+  [slc]=contrss(sl [,tol])
+
+PARAMETERS
+
+  sl   : linear system (syslin list)
+
+  tol  : is a threshold for controllability (see contr).  default value is
+       sqrt(%eps).
+
+DESCRIPTION
+  returns the controllable part of the linear system sl = (A,B,C,D) in state-
+  space form.
+
+EXAMPLE
+  A=[1,1;0,2];B=[1;0];C=[1,1];sl=syslin('c',A,B,C);  //Non minimal
+  slc=contrss(sl);
+  sl1=ss2tf(sl);sl2=ss2tf(slc);      //Compare sl1 and sl2
+
+SEE ALSO
+  cont_mat, ctr_gram, cont_frm, contr

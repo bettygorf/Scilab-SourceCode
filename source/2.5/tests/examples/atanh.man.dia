@@ -1,0 +1,13 @@
+ 
+clear;lines(0);
+ 
+x=[0,%i,-%i]
+ x  =
+ 
+!   0    i    - i   !
+ 
+tanh(atanh(x))
+ ans  =
+ 
+!   0    i    - i   !
+ 

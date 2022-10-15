@@ -1,0 +1,510 @@
+/* 
+Scilab needs Athena Widget Libaries libXaw.a and libXmu.a.
+If you run X11R5, these libraries are given with Scilab distribution
+for convenience.
+If you run X11R4 you ***NEED*** to have them and to comment the following line.
+*/
+
+#define WithLocalXaw
+
+/*
+ *****************************************************************************
+ *                                                                           *
+ *              MODIFY BELOW ONLY IF YOU REALLY KNOW WHAT YOU DO             *
+ *                                                                           *
+ *****************************************************************************
+*/
+
+/* Override C compilation options */
+/* CCOPTIONS = */
+/* CDEBUGFLAGS = */
+
+/* Fortran compilation options */
+
+#if defined(SparcArchitecture)
+FFOPTIONS = 
+FDEBUGFLAGS = -O
+/* Flag for static compilation on Sun architecture */
+/* #undef STATICCOMP */
+#define STATICCOMP
+/* If you have and you want to use f2c instead of the fortran compiler */
+/* FC=fc-gcc 	*/
+/* CC=gcc -traditional */
+#endif
+
+/* slackware distribution with gcc 
+	f77 exists on the distribution and performs f2c + gcc
+*/
+
+#if defined(LinuxArchitecture)
+FFOPTIONS = 
+FDEBUGFLAGS = -O
+CDEBUGFLAGS = -O
+EXTRA_LOAD_FLAGS = -lieee
+#endif
+
+
+#if defined(MipsArchitecture)
+FFOPTIONS = -C -fpe1
+FDEBUGFLAGS = -O0  
+EXTRA_LOAD_FLAGS = 
+#endif
+
+#if defined(AlphaArchitecture)
+FFOPTIONS = -C -fpe1 -switch nosqrt_recip -check nounderflow
+FDEBUGFLAGS = 
+CDEBUGFLAGS = 
+CCOPTIONS=
+FC=DECFORT_DEBUG=T;export DECFORT_DEBUG;f77
+EXTRA_LOAD_FLAGS = -ldnet_stub
+#endif
+
+#if defined(HPArchitecture)
+FFOPTIONS = +E4 
+FDEBUGFLAGS = 
+CDEBUGFLAGS = +O0
+EXTRA_LOAD_FLAGS = -lm
+/* For dynamic linking I need a static version of Xaw and Xmu libs od Xwindows*/
+FC = fort77
+#endif
+
+#if defined(AIXArchitecture)
+FFOPTIONS = -qcharlen=4096
+FDEBUGFLAGS =
+CFLAGS = $(CCOPTIONS) -Daix $(CDEBUGFLAGS) $(ALLDEFINES)
+#endif
+
+/*
+ *****************************************************************************
+ *                                                                           *
+ *                       DO NOT MODIFY BELOW THIS LINE                       *
+ *                                                                           *
+ *****************************************************************************
+*/
+SCIVERSION=Scilab-2.0
+SCIDATE=31 October 1994
+
+#if defined(WithLocalXaw)
+EXTRA_INCLUDES=-I$(SCIDIR)/routines
+#endif
+
+/* option for static linking on Sun computers */
+#if defined(SunArchitecture)
+#if defined(STATICCOMP) 
+FLOCAL_LDFLAGS=  -Bstatic
+#if HasGcc
+LOCAL_LDFLAGS=  -static
+#else
+LOCAL_LDFLAGS=  -Bstatic
+#endif
+#endif
+#endif
+#if defined(AlphaArchitecture)
+FLOCAL_LDFLAGS=  -non_shared
+#endif
+/* C options */
+#if AlternateUsrLibDir && defined(UseInstalled)
+LDOPTIONS = $(CDEBUGFLAGS) $(CCOPTIONS) $(LOCAL_LDFLAGS) -L$(USRLIBDIR)
+#else
+LDOPTIONS = $(CDEBUGFLAGS) $(CCOPTIONS) $(LOCAL_LDFLAGS)
+#endif
+
+/* Fortran options */
+FFLAGS = $(FDEBUGFLAGS) $(FFOPTIONS)
+#if AlternateUsrLibDir && defined(UseInstalled)
+FLDOPTIONS = $(FDEBUGFLAGS) $(FFOPTIONS) $(FLOCAL_LDFLAGS) -L$(USRLIBDIR)
+LLDOPTIONS = $(FDEBUGFLAGS) $(FLOCAL_LDFLAGS) -L$(USRLIBDIR)
+#else
+FLDOPTIONS = $(FDEBUGFLAGS) $(FFOPTIONS) $(FLOCAL_LDFLAGS)
+LLDOPTIONS = $(FDEBUGFLAGS) $(FLOCAL_LDFLAGS)
+#endif
+
+PATHSP=$(SCIDIR)/routines
+PATHO=$(SCIDIR)/libs
+
+/* Scilab files */
+.SUFFIXES: .sci .bin .dia .tst $(SUFFIXES)
+
+/* termcap library :used in xsci and bin/scilex */
+
+#ifndef TermcapLibrary
+#if SystemV && !defined(MacIIArchitecture)
+#if defined(CrayArchitecture) || defined(HPArchitecture) || defined(RsArchitecture)
+#define TermcapLibrary -lcurses		/* special cases of System V */
+#else
+#define TermcapLibrary -ltermlib	/* usually in here */
+#endif
+#else
+#define TermcapLibrary -ltermcap	/* bsd puts it here */
+#endif
+#endif
+
+TERMCAPLIB = TermcapLibrary
+
+#ifndef NullParameter
+#define NullParameter
+#endif 
+
+/*
+ * FortranProgramTarget - generate rules to compile and link the indicated 
+ * program; since it does not use any default object files, it may be used for
+ * multiple programs in the same Imakefile.
+ */
+#ifndef FortranProgramTarget
+#define	FortranProgramTarget(program,objects,deplibs,defa,locallibs,syslibs)	@@\
+program: objects deplibs						@@\
+	RemoveTargetProgram($@)						@@\
+	$(FC) -o $@ objects defa $(FLDOPTIONS) locallibs $(LDLIBS) syslibs $(EXTRA_LOAD_FLAGS) @@\
+									@@\
+clean::									@@\
+	$(RM) program 							@@\
+									@@\
+distclean:: clean 							@@\
+
+#endif /* FortranProgramTarget */
+
+
+/*
+ * LibraryTarget - generate rules to create a library.
+ */
+#ifndef LibraryTarget
+#define	LibraryTarget(libname,objlist)					@@\
+AllTarget(libname)							@@\
+									@@\
+libname: objlist							@@\
+	@echo Creation of libname 					@@\
+	@$(RM) $@							@@\
+	@$(AR) $@ objlist						@@\
+	@sleep 1							@@\
+	@if [ "$(RANLIB)" != "" ] ; then $(RANLIB) $@ ; fi		@@\
+									@@\
+distclean:: clean 							@@\
+	$(RM) libname							@@\
+
+#endif /* LibraryTarget */
+
+/*
+ * FortranDependTarget - generate rules to compute dependencies for all 
+ * Fortran files listed in $(FSRCS).
+ */
+#ifndef FortranDependTarget
+#define	FortranDependTarget()						@@\
+depend::								@@\
+	$(SCIDIR)/util/fdepend $(FSRCS) @@\
+
+#endif /* DependTarget */
+
+/*
+ * Target for Scilab macros 
+ */
+
+#ifndef SciLibTarget
+#define SciLibTarget(objlist)						@@\
+all :: objlist lib							@@\
+									@@\
+lib : objlist names							@@\
+	@echo generating lib and names 					@@\
+	@$(SCIDIR)/bin/scilab -lib $(NAME) SCI/macros/$(NAM)		@@\
+									@@\
+names: objlist								@@\
+	@$(RM) names;touch names;					@@\
+	@for i in $(MACROSN); do  (echo $$i >> names );done 		@@\
+									@@\
+distclean:: clean 							@@\
+	$(RM) lib names *.bin						@@\
+
+#endif /* SciLibTarget */
+
+/*
+ * Target for Scilab macros 
+ */
+#ifndef NormalScilabObjectRule
+#define NormalScilabObjectRule()					@@\
+									@@\
+.sci.bin:								@@\
+	@$(SCIDIR)/bin/scilab -comp  $*.sci				@@\
+
+#endif /* NormalScilabObjectRule  */
+
+/*
+ * Target for whatis in Man
+ */
+#ifndef WhatisRule
+#define WhatisRule(objects)				@@\
+whatis	:  	objects					@@\
+	@echo "Updating whatis database"		@@\
+	$(MW) `pwd`					@@\
+
+#endif /* WhatisRule  */
+
+/*
+ * depend target for whatis 
+ */
+#ifndef WhatisDependTarget
+#define	WhatisDependTarget()						@@\
+depend::								@@\
+	$(SCIDIR)/util/wdepend						@@\
+
+#endif /* DependTarget */
+
+#ifndef ScilabTestTarget
+#define	ScilabTestTarget()						@@\
+.tst.dia :								@@\
+	@$(SCIDIR)/util/scidem $(SCIDIR) $*.tst $*.dia			@@\
+
+#endif	 /* ScilabTestTarget */
+
+/*
+ * Script For bin/scilab target 
+ */
+
+#define SEDGLOBALSCRIPT(source,program) \
+	-e "s+SCILAB_DIRECTORY+$(SCIDIR)+" \		@@\
+	-e "s+SCILAB_VERSION+$(SCIVERSION)+" \		@@\
+	-e "s+SCILAB_DATE+$(SCIDATE)+" source > program;
+
+#if defined(HPArchitecture)
+#define SEDSCRIPT(source,program) sed -e "s+do_mank +do_mank_hp +" SEDGLOBALSCRIPT(source,program)
+#else 
+#if defined(MipsArchitecture)
+#define SEDSCRIPT(source,program) if [ -f /bin/sh5 ] ; then \		@@\
+		shname=sh5;\						@@\
+	else \								@@\
+		shname=sh;\						@@\
+	fi;\								@@\
+	sed -e "s+#!/bin/sh+#!/bin/$$shname+" \				@@\
+	-e "s+do_mank +do_mank_mips +" \				@@\
+	-e "s+do_man +do_man_mips +" SEDGLOBALSCRIPT(source,program)
+#else
+#define SEDSCRIPT(source,program) sed  SEDGLOBALSCRIPT(source,program)
+#endif
+#endif
+
+#ifndef ScilabScriptsTarget
+#define	ScilabScriptsTarget(program,source,depend)			@@\
+program: source depend							@@\
+	@$(RM) program							@@\
+	@SEDSCRIPT(source,program)					@@\
+	@chmod +x program						@@\
+	@chmod g+w program						@@\
+	@echo program created						@@\
+									@@\
+clean::									@@\
+	$(RM) program 							@@\
+									@@\
+distclean:: clean							@@\
+
+#endif /* ScilabScriptsTarget */
+
+#ifndef ScriptsTarget
+#define	ScriptsTarget(program,source,depend)				@@\
+program: source depend							@@\
+	@$(RM) program							@@\
+	@sed SEDGLOBALSCRIPT(source,program)				@@\
+	@chmod +x program						@@\
+	@chmod g+w program						@@\
+	@echo program created						@@\
+
+#endif /* ScriptsTarget */
+
+
+/*
+ * DistCleanSubdirs - generate rules to do distclean
+ * in the given subdirectories.
+ */
+#ifndef DistCleanSubdirs
+#define DistCleanSubdirs(dirs) \
+NamedTargetSubdirs(distclean,dirs,"making" distclean,NullParameter,distclean)
+#endif /* DistCleanSubdirs */
+
+/*
+ * Tr2texTarget - generate rules to produce tex source whith tr2tex 
+ */
+
+#define SEDJOB  sed -e 's/\\documentstyle/%\\documentstyle/' \
+			-e 's/\\end{document}//' -e 's/\\begin{document}//' 
+
+#ifndef Tr2texTarget
+#define Tr2texTarget(chap,mandir) 					@@\
+chap : $(TR2TEX) mandir							@@\
+	$(TR2TEX)  -m mandir > /tmp/chap				@@\
+	@SEDJOB /tmp/chap > chap					@@\
+	$(RM) /tmp/chap							@@\
+
+#endif /* Tr2texTarget */
+
+
+/*
+ * ScilexProgramTarget - generate rules to compile and link the scilex 
+ * program this is like FortranProgram Target but with added stuffs 
+ * to deal with dynamic linking in scilex 
+ * program; since it does not use any default object files, it may be used for
+ * multiple programs in the same Imakefile.
+ */
+
+#if defined(AIXArchitecture)
+#ifndef ScilexProgramTarget
+#define	ScilexProgramTarget(program,objects,deplibs,defa,locallibs,syslibs)	@@\
+LLD=ld -bh:4 -T512 -H512 -o /tmp/scilex-1  -bnodelcsect /lib/crt0.o 	@@\
+LLD1=ld -bh:4 -T512 -H512 -o $@ -bnodelcsect -bE:bin/scilex.exp /lib/crt0.o 	@@\
+LLDLF=-lxlf -lm -lc							@@\
+									@@\
+program: objects deplibs						@@\
+	@x=1;if [ -f $@ ] ; then  \					@@\
+	x=`find $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \) -newer $@ -print | wc -l `; \ @@\
+	fi;\								@@\
+	if [ $$x -ne 0 ] ; then \					@@\
+			echo "linking";\				@@\
+	RemoveTargetProgram($@)	;\					@@\
+	RemoveTargetProgram(/tmp/scilex-1);\				@@\
+	$(LLD) objects defa $(LLDOPTIONS) locallibs $(LDLIBS) syslibs $(EXTRA_LOAD_FLAGS) $(LLDLF);\ @@\
+	(echo "#!$(SCIDIR)/program"; /usr/ucb/nm -gp /tmp/scilex-1 | sed -n -e '/.* T \./s///p' -e '/.* [DB] /s///p' | sort -u) > bin/scilex.exp	;\	@@\
+	RemoveTargetProgram(/tmp/scilex-1) ;\				@@\
+	$(LLD1) objects defa $(LLDOPTIONS) locallibs $(LDLIBS) syslibs $(EXTRA_LOAD_FLAGS) $(LLDLF) ;\ @@\
+	else \								@@\
+			echo program is up to date ;\			@@\
+	fi								@@\
+									@@\
+clean::									@@\
+	$(RM) program 							@@\
+									@@\
+distclean:: clean 							@@\
+									@@\
+
+#endif /* ScilexProgramTarget */
+#endif /* AIXarch */
+
+/*
+ * ScilexProgramTarget for HP
+ */
+
+#if defined(HPArchitecture)
+#ifndef ScilexProgramTarget
+#define	ScilexProgramTarget(program,objects,deplibs,defa,locallibs,syslibs)	@@\
+LDD=ld -x -a archive -o $@ /lib/crt0.o 					@@\
+LDDLF= -lU77 -lm -lcl -lisamstub -lc 					@@\
+									@@\
+program: objects deplibs						@@\
+	@x=1;if [ -f $@ ] ; then  \					@@\
+	x=`find $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \) -newer $@ -print | wc -l `; \ @@\
+	fi;\								@@\
+	if [ $$x -ne 0 ] ; then \					@@\
+	RemoveTargetProgram($@)	;\					@@\
+			echo "linking";\				@@\
+	$(LDD) objects defa $(FLDOPTIONS) locallibs  $(LDLIBS) syslibs $(EXTRA_LOAD_FLAGS) $(LDDLF) ;\ @@\
+	else \								@@\
+			echo program is up to date ;\			@@\
+	fi								@@\
+									@@\
+clean::									@@\
+	$(RM) program 							@@\
+									@@\
+distclean:: clean 							@@\
+									@@\
+
+#endif /* ScilexProgramTarget */
+#endif /* HParch */
+
+/*
+ * ScilexProgramTarget for Linux 
+ */
+
+#if defined(LinuxArchitecture)
+#ifndef ScilexProgramTarget
+#define	ScilexProgramTarget(program,objects,deplibs,defa,locallibs,syslibs)	@@\
+									@@\
+program: objects deplibs						@@\
+	@x=1;if [ -f $@ ] ; then  \					@@\
+	x=`find $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \) -newer $@ -print | wc -l `; \ @@\
+	fi;\								@@\
+	if [ $$x -ne 0 ] ; then \					@@\
+	RemoveTargetProgram($@)	;\					@@\
+			echo "linking";\				@@\
+	$(FC) -o $@ objects defa $(FFOPTIONS) $(FLOCAL_LDFLAGS) -L$(USRLIBDIR) locallibs  $(LDLIBS) syslibs $(EXTRA_LOAD_FLAGS) $(LDDLF) ;\ @@\
+	else \								@@\
+			echo program is up to date ;\			@@\
+	fi								@@\
+									@@\
+clean::									@@\
+	$(RM) program 							@@\
+									@@\
+distclean:: clean 							@@\
+									@@\
+
+#endif /* ScilexProgramTarget */
+#endif /* Linuxarch */
+
+
+/*
+ * ScilexProgramTarget general case 
+ */
+
+#ifndef ScilexProgramTarget
+#define	ScilexProgramTarget(program,objects,deplibs,defa,locallibs,syslibs)	@@\
+program: objects deplibs						@@\
+	@x=1;if [ -f $@ ] ; then  \					@@\
+	x=`find $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \) -newer $@ -print | wc -l `; \ @@\
+	fi;\								@@\
+	if [ $$x -ne 0 ] ; then \					@@\
+			RemoveTargetProgram($@); \			@@\
+			echo "linking";\				@@\
+			$(FC) -o $@ objects defa $(FLDOPTIONS) locallibs $(LDLIBS) syslibs $(EXTRA_LOAD_FLAGS) ;\ @@\
+	else \								@@\
+			echo program is up to date ;\			@@\
+	fi								@@\
+									@@\
+									@@\
+clean::									@@\
+	$(RM) program 							@@\
+									@@\
+distclean:: clean 							@@\
+									@@\
+
+#endif /* ScilexProgramTarget */
+
+
+/*
+ * Compilation Target for demo of Scilex
+ * Special rules for linux 
+ * because f77 (the script ) doesn't work properly 
+ * with f77 -c pipo.f -o /tmp/poo.o 
+ */
+
+#if defined(LinuxArchitecture)
+#ifndef ObjectDemo
+#define ObjectDemo(objfile,source,options)				@@\
+objfile : source 							@@\
+	x=`pwd`;cd /tmp/;cp $$x/source . ;\				@@\
+	$(FC) $(FFLAGS) options  -c source  -o objfile			@@\
+									@@\
+clean::									@@\
+	$(RM) objfile 							@@\
+									@@\
+distclean:: clean 							@@\
+									@@\
+
+#endif /* ScilexProgramTarget */
+#endif
+
+/*
+ * Compilation Target for demo of Scilex
+ */
+
+#ifndef ObjectDemo
+#define ObjectDemo(objfile,source,options)				@@\
+objfile : source 							@@\
+	$(FC) $(FFLAGS) options  -c source  -o objfile			@@\
+									@@\
+clean::									@@\
+	$(RM) objfile 							@@\
+									@@\
+distclean:: clean 							@@\
+									@@\
+
+#endif /* ScilexProgramTarget */
+
+
+
+
+
+

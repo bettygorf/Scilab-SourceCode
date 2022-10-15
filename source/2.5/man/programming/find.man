@@ -1,0 +1,41 @@
+.TH find 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+find - find indices of  boolean vector or matrix true elements
+.SH CALLING SEQUENCE
+.nf
+[ii]=find(x)
+[ir,ic]=find(x)
+.fi
+.SH PARAMETERS
+.TP
+x 
+: a boolean vector or a boolean matrix or a "standard" matrix
+.TP
+ii, ir, ic
+: integer vectors of indices or empty matrices
+.SH DESCRIPTION
+If \fVx\fR is a boolean matrix,
+.LP
+\fVii=find(x)\fR returns the vector
+of indices \fVi\fR for which \fVx(i)\fR is "true". If no true element
+found find returns an empty matrix.
+.LP
+\fV[ir,ic]=find(x)\fR returns two vectors of indices \fVir\fR (for rows) and \fVic\fR (for columns)
+such that \fVx(il(n),ic(n))\fR is "true". If no true element
+found find returns  empty matrices in \fVir\fR and \fVic\fR.
+.LP
+if \fVx\fR is standard matrix \fVfind(x)\fR is interpreted as
+\fVfind(x<>0)\fR
+.LP
+\fVfind([])\fR returns \fV[]\fR
+.SH EXAMPLE
+.nf
+A=rand(1,20);
+w=find(A<0.5);
+A(w)
+w=find(A>100);
+.fi
+.SH SEE ALSO
+boolean, extraction, insertion
+

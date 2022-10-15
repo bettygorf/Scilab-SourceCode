@@ -1,0 +1,16 @@
+.TH Maximum G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+max - maximum
+.SH CALLING SEQUENCE
+.nf
+[m [,k]]=max(A)
+[m [,k]]=max(A1,A2,...,An)
+[m [,k]]=max(list(A1,A2,...,An))
+.fi
+: real vector or matrix or list.
+.SH DESCRIPTION
+See \fVmaxi\fR.
+.SH SEE ALSO
+sort, find, mini
+

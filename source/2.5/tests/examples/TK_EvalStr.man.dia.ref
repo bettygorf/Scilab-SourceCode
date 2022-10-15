@@ -1,0 +1,31 @@
+ 
+clear;lines(0);
+ 
+TK_EvalStr('toplevel0.foo');
+Sorry, TK has not been enabled this the session.
+
+ 
+// creates a toplevel TK window.
+ 
+TK_EvalStr('label0.foo.l -text ""TK married Scilab !!!""');
+Sorry, TK has not been enabled this the session.
+
+ 
+// create a static label
+ 
+TK_EvalStr('pack0.foo.l');
+Sorry, TK has not been enabled this the session.
+
+ 
+// pack the label widget. It appears on the screen.
+ 
+text='button0.foo.b -text close -command {destroy0.foo}';
+ 
+TK_EvalStr(text);
+Sorry, TK has not been enabled this the session.
+
+ 
+TK_EvalStr('pack0.foo.b');
+Sorry, TK has not been enabled this the session.
+
+ 

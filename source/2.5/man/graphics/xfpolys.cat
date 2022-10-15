@@ -1,0 +1,46 @@
+
+xfpolys(2)                     Scilab Function                     xfpolys(2)
+NAME
+  xfpolys - fill a set of polygons
+
+CALLING SEQUENCE
+  xfpolys(xpols,ypols,[fill])
+
+PARAMETERS
+
+  xpols,ypols  : matrices of the same size (p,n) (points of the polygons).
+
+  fill         : vector of size n.
+
+DESCRIPTION
+  xfpolys fills a set of polygons of the same size defined by the two matri-
+  ces xpols and ypols.  The coordinates of each polygon are stored in a col-
+  umn of xpols and ypols.
+
+  The pattern for filling polygon number i is given by fill(i):
+
+  -  if fill(i)<0, the polygon is filled with pattern id -fill(i).
+
+  -  if fill(i)=0, the polygon is drawn with the current dash style (or cur-
+     rent color).
+
+  -  if fill(i)>0, the polygon is filled with pattern id fill(i).  Then its
+     contour is drawn with the current dash (or color) and closed if neces-
+     sary.
+
+EXAMPLE
+  plot2d(0,0,[-1],"012"," ",[0,-10,210,40])
+  x1=[0,10,20,30,20,10,0]';
+  y1=[15,30,30,15,0,0,15]';
+  xpols=[x1 x1 x1 x1]; xpols=xpols+[0,60,120,180].*.ones(x1);
+  ypols=[y1 y1 y1 y1];
+  // setting the current dash (or line color)
+  xset("dashes",5)
+  xfpolys(xpols,ypols,[-1,0,1,2])
+  xset("default")
+
+SEE ALSO
+  xfpoly, xpoly, xpolys
+
+AUTHOR
+  J.Ph.C.

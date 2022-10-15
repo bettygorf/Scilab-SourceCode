@@ -1,0 +1,25 @@
+
+isglobal(G)                    Scilab Function                    isglobal(G)
+NAME
+  isglobal -  check if a variable is global
+
+CALLING SEQUENCE
+  t=isglobal(x)
+
+PARAMETERS
+
+  x    : any variable
+
+  t    : a boolean
+
+DESCRIPTION
+  isglobal(x) returns true if x has been declared to be a global
+      variable and false otherwise.
+
+EXAMPLE
+  isglobal(1)
+  global a
+  isglobal(a)
+
+SEE ALSO
+  global, clearglobal, who

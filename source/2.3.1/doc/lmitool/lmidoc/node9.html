@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<!--Converted with LaTeX2HTML 96.1 (Feb 5, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Mixed #tex2html_wrap_inline752# Control</TITLE>
+<META NAME="description" CONTENT="Mixed #tex2html_wrap_inline752# Control">
+<META NAME="keywords" CONTENT="lmidoc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="lmidoc.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html166" HREF="node10.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www-rocq.inria.fr/scilab/icons/next_motif.gif"></A> <A NAME="tex2html164" HREF="node5.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www-rocq.inria.fr/scilab/icons/up_motif.gif"></A> <A NAME="tex2html158" HREF="node8.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www-rocq.inria.fr/scilab/icons/previous_motif.gif"></A> <A NAME="tex2html168" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www-rocq.inria.fr/scilab/icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html167" HREF="node10.html">Descriptor Riccati equations</A>
+<B>Up:</B> <A NAME="tex2html165" HREF="node5.html">Examples</A>
+<B> Previous:</B> <A NAME="tex2html159" HREF="node8.html">Descriptor Lyapunov inequalities</A>
+<BR> <P>
+<H3><A NAME="SECTION00032400000000000000">Mixed  <IMG WIDTH=54 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline568" SRC="img1.gif"  >  Control</A></H3>
+<P>
+Consider the linear system
+<P> <IMG WIDTH=500 HEIGHT=63 ALIGN=BOTTOM ALT="eqnarray142" SRC="img35.gif"  > <P>
+The mixed  <IMG WIDTH=54 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline568" SRC="img1.gif"  >  control problem consists in finding
+a stabilizing feedback which yields  <IMG WIDTH=93 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline756" SRC="img36.gif"  >  and
+minimizes  <IMG WIDTH=54 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline758" SRC="img37.gif"  >  where  <IMG WIDTH=60 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline760" SRC="img38.gif"  >  and
+ <IMG WIDTH=54 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline758" SRC="img37.gif"  >  denote respectively the closed-loop transfer
+functions from <I>w</I> to  <IMG WIDTH=13 HEIGHT=14 ALIGN=MIDDLE ALT="tex2html_wrap_inline766" SRC="img39.gif"  >  and  <IMG WIDTH=13 HEIGHT=14 ALIGN=MIDDLE ALT="tex2html_wrap_inline768" SRC="img40.gif"  > . In [<A HREF="node22.html#khargo">3</A>], it is
+shown that the solution to this problem can be expressed as
+ <IMG WIDTH=79 HEIGHT=13 ALIGN=BOTTOM ALT="tex2html_wrap_inline770" SRC="img41.gif"  >  where <I>X</I> and <I>L</I> are obtained from the problem of
+minimizing Trace(<I>Y</I>) subject to:
+<P> <IMG WIDTH=349 HEIGHT=18 ALIGN=BOTTOM ALT="displaymath750" SRC="img42.gif"  > <P>
+and
+<P> <IMG WIDTH=567 HEIGHT=85 ALIGN=BOTTOM ALT="eqnarray157" SRC="img43.gif"  > <P>
+<P>
+To solve this problem with <TT>lmisolver</TT>, we define the 
+evaluation function:
+<PRE> function [LME,LMI,OBJ]=h2hinf_eval(XLIST)
+ [X,Y,L]=XLIST(:)
+ LME=list(X-X',Y-Y');
+ LMI=list(-[A*X+B2*L+(A*X+B2*L)'+B1*B1',X*C1'+L'*D12'+B1*D11';...
+               (X*C1'+L'*D12'+B1*D11')',-gamma^2*eye+D11*D11'],...
+                                  [Y,C2*X+D22*L;(C2*X+D22*L)',X])
+ OBJ=trace(Y);</PRE>
+and use it as follows:
+<PRE>--&gt; X_init=zeros(A); Y_init=zeros(C2*C2'); L_init=zeros(B2')
+--&gt; XLIST0=list(X_init,Y_init,L_init);
+--&gt; XLISTF=lmisolver(XLIST0,h2hinf_eval);
+--&gt; [X,Y,L]=XLISTF(:)</PRE>
+<P>
+<BR> <HR>
+<P><ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

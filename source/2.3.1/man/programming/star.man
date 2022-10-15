@@ -1,0 +1,16 @@
+.TH star 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+star (*) - multiplication operator
+.SH DESCRIPTION
+Multiplication. Usual meaning. Valid for constant,
+boolean, polynomial and rational matrices.
+.LP
+Element-wise multiplication is denoted \fVx.*y\fR. If
+\fVx\fR or \fVy\fR is scalar (1x1 matrix) \fV .* \fR
+is the same as \fV*\fR.
+.LP
+Kronecker product is \fVx.*.y\fR
+.SH SEE ALSO
+mulf
+

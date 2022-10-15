@@ -1,0 +1,22 @@
+.TH mintree 1 "October 1994" "Scilab Group" "Scilab macro"
+.so man1/sci.an
+.SH NAME 
+mintree - minimal weight tree 
+.SH CALLING SEQUENCE
+.nf
+[t] = mintree(i,[g])
+.fi
+.SH PARAMETERS
+.TP 2
+i 
+: integer, node number of the root of the tree
+.TP 2
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP 2
+t
+: row vector of arc number, tree
+.SH DESCRIPTION
+\fVmintree\fR returns the vector \fVp\fR of the arc numbers of a minimal 
+weight tree (if one exists) with node \fVi\fR as the root 
+for the graph \fVg\fR. 

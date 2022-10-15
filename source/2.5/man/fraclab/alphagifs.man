@@ -1,0 +1,93 @@
+.TH "alphagifs" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+alphagifs - Holder function estimation using IFS
+.sp
+Author: Khalid Daoudi
+.sp
+Estimates the \fIpointwise Holder exponents\fP of a
+1\f(CR-\fPD real signal using the GIFS method.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPAlpha, Ci\f(CR]\fP=wave2gifs(sig, limtype)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBsig\fP : Real vector \f(CR[\fP1,n\f(CR]\fP or \f(CR[\fPn,1\f(CR]\fP
+Contains the signal to be analysed.
+
+.TP
+o 
+\fBlimtype\fP : Character string
+Specifies the type of limit you want to use. You have the choice between
+'slope' and 'cesaro'.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBAlpha\fP : Real vector
+Contains the estimated Holder function of the signal.
+
+.TP
+o 
+\fBCi\fP : Real matrix 
+Contains the GIFS coefficients obtained using the Schauder basis.
+.RE
+
+.SH Description
+.SH Parameters
+
+
+.RS
+
+.TP
+o 
+\fBsig\fP is a real vector \f(CR[\fP1,n\f(CR]\fP or \f(CR[\fPn,1\f(CR]\fP
+which contains the signal to be analysed.
+
+.TP
+o 
+\fBlimtype\fP is a character string
+Specifies the type of limit you want to use. You have the choice between
+'slope' and 'cesaro'.
+
+.TP
+o 
+\fBAlpha\fP is a real vector which
+contains the estimated Holder function of the signal i.e the estimated
+pointwise Holder
+exponent a each point of the given signal.
+
+.TP
+o 
+\fBCi\fP is a real matrix which
+contains the GIFS coefficients obtained as the ration between
+(synchrounous) Schauder basis coefficients at succesive scales.
+.RE
+
+.SH Algorithm details
+The algorithm uses the GIFS method to estimate the Holder exponent
+at each point of a given signal. The first step of this method 
+consists in computing the coefficients of the GIFS whose attractor is the
+given signal. In the second step, we replace each coefficient which
+absolute value is greater than 1 (resp. smaller than 1/2) by 1 (resp. by 1/2).
+We then perform the computation of the limit that yields the estimated Holder
+function using the chosen type of limit.
+.SH See also:
+gifs and prescalpha
+.SH Example:
+\fI Synthesis of an fbm with exponent H=0.7 (of size 1024 samples) \fP: 
+x = fmblevinson(1024,0.7) ; 
+\fI Estimation of The Holder function\fP : 
+Alpha = alphagifs(x,'slope'); 
+plot(Alpha) 

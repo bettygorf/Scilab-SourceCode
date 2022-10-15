@@ -1,0 +1,23 @@
+ 
+clear;lines(0);
+ 
+x=[0 1;2 4]
+ x  =
+ 
+!   0.    1. !
+!   2.    4. !
+ 
+w=sqrtm(x);
+ 
+norm(w*w-x)
+ ans  =
+ 
+    1.007D-15  
+ 
+x(1,2)=%i;
+ 
+w=sqrtm(x);norm(w*w-x,1)
+ ans  =
+ 
+    2.224D-15  
+ 

@@ -1,0 +1,198 @@
+
+
+
+optim(G)                       Scilab Function                       optim(G)
+
+
+
+
+
+
+NAME
+  optim - non-linear optimization routine
+
+CALLING SEQUENCE
+  [f,xopt]=optim(costf,x0)
+  [f,[xopt,[gradopt,[work]]]]=optim(costf,[contr],x0,['algo'],[df0,[mem]],
+       [work],[stop],['in'])
+
+PARAMETERS
+
+  costf     : external, i.e Scilab function or string (costf is the cost
+            function: see below its calling sequence (Scilab or Fortran)).
+
+  x0        : real vector (initial value of variable to be minimized).
+
+  f         : value of optimal cost (f=costf(xopt))
+
+  xopt      : best value of x found.
+
+  contr     : 'b',binf,bsup  with binf and bsup real vectors with same dimen-
+            sion as x0. binf and bsup are lower and upper bounds on x.
+
+  "algo"    : 'qn' or 'gc' or 'nd' . This string stands for quasi-Newton
+            (default), conjugate gradient or non-differentiable respectively.
+            Note that 'nd' does not accept bounds on x ).
+
+  df0       : real scalar. Guessed decreasing of f at first iteration.
+            (df0=1 is the default value).
+
+  mem :      integer, number of variables used to approximate the Hessian,
+            (algo='gc' or 'nd'). Default value is around 6.
+
+  stop      :  sequence of optional parameters controlling the convergence of
+            the algorithm.  stop=  'ar',nap, [iter [,epsg [,epsf [,epsx]]]]
+
+            "ar"
+              : reserved keyword for stopping rule selection defined as fol-
+              lows:
+
+            nap
+              : maximum number of calls to costf allowed.
+
+            iter
+              : maximum number of iterations allowed.
+
+            epsg
+              : threshold on gradient norm.
+
+            epsf
+              : threshold controlling decreasing of f
+
+            epsx
+              : threshold controlling variation of x.  This vector (possibly
+              matrix) of same size as x0 can be used to scale x.
+
+  "in"      : reserved  keyword for initialization of parameters used when
+            costf in given as a Fortran routine (see below).
+
+  gradopt   :  gradient of costf at xopt
+
+  work      : working array for hot restart for quasi-Newton method.  This
+            array is automatically initialized by optim when optim is
+            invoked. It can be used as input parameter to speed-up the calcu-
+            lations.
+
+DESCRIPTION
+  Non-linear optimization routine for programs without constraints or with
+  bound constraints:
+  min costf(x) w.r.t x.
+  costf is an "external" i.e function, or list or Fortran routine (see
+  "external").  This external must return f (costf(x)) and g (gradient of
+  costf) given x.
+
+  If costf is a function, the calling sequence for costf must be:
+  [f,g,ind]=costf(x,ind).
+  Here, costf is a function which returns f, value (real number) of cost
+  function at x, and g, gradient vector of cost function at x.  The variable
+  ind is used by optim and is described below.
+
+  If ind=2 (resp. 3, 4), costf must provide f (resp. g, f and g).
+
+  If ind=1 nothing is computed (used for display purposes only).
+
+  On output, ind<0  means that f cannot be evaluated at x and ind=0 inter-
+  rupts the optimization.
+
+  If costf is a character string, it refers to the name of a Fortran routine
+  which must be linked to Scilab (see examples in the routines foptim.f and
+  e.g. genros.f in the directory SCIDIR/default)
+
+  Dynamic link of Fortran routine is also possible (help link).
+
+  Here, the generic calling sequence for the Fortran subroutine is: function
+  costf(ind,n,x,f,g,ti,tr,td)
+
+  ind has the same meaning as above if set to 0,1,2 but the values ind=10 and
+  ind=11 are now valid. These values are used for initializations (see
+  below).
+
+  n is the dimension of x, x is an n vector, ti,tr,td are working arrays.
+
+  The Fortran function costf must return f and the vector g, given x, ind, n,
+  ti, tr, td.
+
+  If costf is given as a Fortran routine, it is possible to initialize param-
+  eters or to send Scilab variables to this routine.
+
+  This facility is managed by the parameter 'in.
+
+  If the string 'in' is present, initialization is done by Fortran: optim
+  makes two calls to the Fortran function costf, once with ind=10 and once
+  with ind=11. In this case, for ind=10, costf must set the dimensions nti,
+  ntr, ntd of ti, tr, td in the common/nird/nti, ntr, ntd and, for ind=11,
+  costf must initialize the vectors ti , tr, td (integer vector, real vector,
+  double precision vector respectively).
+
+  In the calling sequence of optim, the string 'in' can be replaced by 'ti',
+  valti ,'td' , valtd. Then, the Fortran function costf(ind, x, f, g, ti, tr,
+  td) is evaluated with ti=valti and td=valtd whatever the value of ind.
+  Thus, the Scilab variables valti and valtd (integer vector and real vector)
+  are sent to the Fortran function costf.
+
+  It is also possible to save the content of of the working arrays ti and td.
+  This is possible by adding the strings 'si' and/or 'sd' at the ned of the
+  calling sequence of optim.  Then, the output variables must be:
+  [f,[x,[g],[to]]],[ti],[td]].
+
+EXAMPLES
+  xref=[1;2;3];x0=[1;-1;1]
+  deff('[f,g,ind]=cost(x,ind)','f=0.5*norm(x-xref)^2,g=x-xref');
+  [f,xopt]=optim(cost,x0)      //Simplest call
+  [f,xopt,gopt]=optim(cost,x0,'gc')  // By conjugate gradient
+  [f,xopt,gopt]=optim(cost,x0,'nd')  //Seen as non differentiable
+  [f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0) //  Bounds on x
+  [f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc') //  Bounds on x
+  [f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc','ar',3)
+  // Here, 3 calls to cost are allowed.
+  //Now calling the Fortran subroutine "genros.f" in SCIDIR/default
+  // (see also the interface foptim.f)
+  [f,xopt,gopt]=optim('genros',[1;2;3])    //Rosenbrock's function
+
+SEE ALSO
+  external, quapro, linpro
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

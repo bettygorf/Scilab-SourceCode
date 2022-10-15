@@ -1,0 +1,63 @@
+/**/include ../Path.incl
+#include "../Imake.incl"
+
+/*
+ *  Possible additions to DEFINES (with their hardcoded defaults)
+ *
+ *	-DDEFEDITOR=\"/usr/ucb/vi\"	- path to default editor
+ *	-DPRINTCMD=\"/usr/ucb/lpr\"	- path to send file to printer
+ *	-DTILDE_EXPANSION		- perform ~ expansion on filenames
+ */
+
+DEFINES = -DTILDE_EXPANSION
+
+DEPLIBS = XawClientDepLibs $(LOCAL_DEPLIBS)
+
+#if defined(WithLocalXaw)
+XAWLIB =  ../libs/libXaw.a
+XMULIB = ../libs/libXmu.a
+XMULIBONLY = ../libs/libXmu.a
+#endif
+
+SYS_LIBRARIES = XawClientLibs
+
+         SRCS = help.c init.c popup.c util.c callbacks.c window.c main.c \
+		actions.c functions.c
+         OBJS = help.o init.o popup.o util.o callbacks.o window.o main.o \
+		actions.o functions.o
+all:: ../bin/Xless
+NormalProgramTarget(../bin/Xless,$(OBJS),$(DEPLIBS),$(LOCAL_LIBRARIES),$(SYS_LIBRARIE))
+DependTarget()
+
+distclean:: clean
+
+clean::
+	rm -f $(SCIDIR)/X11_defaults/xless.help
+	rm -f $(SCIDIR)/X11_defaults/XLess
+
+IM=../Imake.incl ../Path.incl
+
+all:: $(SCIDIR)/X11_defaults/xless.help
+
+$(SCIDIR)/X11_defaults/xless.help :  xless.help 
+	cp xless.help $(SCIDIR)/X11_defaults/xless.help
+
+all:: $(SCIDIR)/X11_defaults/XLess
+
+$(SCIDIR)/X11_defaults/XLess : XLess.ad
+	cp XLess.ad $(SCIDIR)/X11_defaults/XLess
+
+#if ProjectX >= 5
+/*
+ * Only users of X11R5 (and beyond) can automatically use the color defaults
+ */
+all:: $(SCIDIR)/X11_defaults/XLess-color
+
+$(SCIDIR)/X11_defaults/XLess-color :  XLess-co.ad
+	cp XLess-co.ad $(SCIDIR)/X11_defaults/XLess-color
+
+clean::
+	rm -f $(SCIDIR)/X11_defaults/XLess-color
+
+#endif
+

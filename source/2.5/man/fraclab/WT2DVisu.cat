@@ -1,0 +1,34 @@
+
+WT2DVisu(2)                    Scilab Function                    WT2DVisu(2)
+NAME
+  WT2DVisu - Visualise a 2D Multiresolution
+
+  Author: Bertrand Guiheneuf
+
+  This routine constructs a matrix that shows all the wavelet coefficients of
+  a 2D matrix.
+
+Usage
+  [V]=WT2DVisu(wt)
+
+Input parameter
+       o wt : real unidimensional matrix [m,n] Contains the wavelet transform
+         (obtained with FWT2D).
+Output parameter
+       o V : real matrix [m,n] Contains a matrix to be visualized directly
+Description
+
+Introduction
+  This routine is used to display all the scales and all the frequency compo-
+  nents of a wavelet transform.
+
+Parameters
+  wt must be a real matrix. It's generally obtained with FWT2D.  V the
+  wavelet coefficents.
+
+Example
+  a=rand(256,256); q=MakeQMF('daubechies',4); wt = FWT2D(a,8,q);
+  V=WT2DVisu(wt); viewmat(V);
+
+See Also
+  FWT2D, IWT2D, WT2Dext,

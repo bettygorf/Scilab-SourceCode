@@ -1,0 +1,172 @@
+# Generated automatically from Makefile.in by configure.
+SHELL = /bin/sh
+
+binary:
+	@if test -f .binary; then \
+		echo "Humm... this is a binary version"; \
+		config/findpath; \
+		(cd scripts; make); \
+                (cd maple; make); \
+		echo "Installation done"; \
+	else \
+		echo "Humm... this is a source version,"; \
+		echo "  you'd better read the README file first."; \
+	fi
+
+#SCIDIR=.
+include Path.incl
+include Makefile.incl
+
+all:: bin/scilex  
+
+world:: scilex-lib-world bin/scilex
+
+# Add the object files that are used to compile Scilex
+include Makefile.OBJ
+
+include config/Makefile.alpha
+
+distclean::
+	$(RM) bin/scilex
+
+SUBDIRS = scripts maple macros imp intersci xless xmetanet \
+	tests demos geci examples
+
+SUBDIRS-DOC = man doc
+
+scilex-lib::
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	cd routines; echo "making all in routines..."; \
+		$(MAKE) $(MFLAGS) all;
+
+scilex-lib::
+	@cd pvm3; echo "making all in pvm3..."; $(MAKE) $(MFLAGS) "CC=$(CC)";
+
+scilex-lib-world::
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	cd routines; echo "making world in routines..."; \
+		$(MAKE) $(MFLAGS) world;
+
+#scilex-lib-world::
+#	@cd pvm3; echo "making all in pvm3..."; $(MAKE) $(MFLAGS);
+
+all::
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in $(SUBDIRS) ;\
+	do \
+		(cd $$i ; echo "making all in $$i..."; \
+			$(MAKE) $(MFLAGS) all); \
+	done
+
+world::
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in $(SUBDIRS) $(SUBDIRS-DOC);\
+	do \
+		(cd $$i ; echo "making world in $$i..."; \
+			$(MAKE) $(MFLAGS) world); \
+	done
+
+
+distclean::
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in routines $(SUBDIRS) $(SUBDIRS-DOC);\
+	do \
+		(cd $$i ; echo "making distclean in $$i..."; \
+			$(MAKE) $(MFLAGS)  distclean); \
+	done
+
+distclean::
+	@cd pvm3; echo "making distclean in pvm3..."; \
+	$(MAKE) $(MFLAGS) distclean;
+
+
+clean::
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in routines $(SUBDIRS) $(SUBDIRS-DOC);\
+	do \
+		(cd $$i ; echo "making clean in $$i..."; \
+			$(MAKE) $(MFLAGS)  clean); \
+	done
+
+#clean::
+#	@cd pvm3; echo "making clean in pvm3..."; \
+#	$(MAKE) $(MFLAGS)  clean;
+
+tests:
+	@echo "Type \"make tests\" in $(SCIDIR)/tests directory "
+	@echo "  to test the  distribution"
+
+distclean::
+	$(RM) config.cache config.log config.status .binary foo.f foo.o \
+	conftest conftest.c so_locations
+
+
+SCIBASE = scilab-2.5
+
+BINDISTFILES = \
+	$(SCIBASE)/.binary \
+        $(SCIBASE)/Path.incl \
+        $(SCIBASE)/Makefile.OBJ \
+	$(SCIBASE)/routines/Make.lib \
+	$(SCIBASE)/ACKNOWLEDGEMENTS \
+	$(SCIBASE)/CHANGES \
+	$(SCIBASE)/Makefile \
+	$(SCIBASE)/Makefile.incl \
+	$(SCIBASE)/Makemex \
+	$(SCIBASE)/README \
+	$(SCIBASE)/Version.incl \
+	$(SCIBASE)/configure \
+	$(SCIBASE)/libtool \
+	$(SCIBASE)/notice.ps \
+	$(SCIBASE)/notice.tex \
+	$(SCIBASE)/scilab.quit \
+	$(SCIBASE)/scilab.star \
+	$(SCIBASE)/X11_defaults \
+	$(SCIBASE)/bin \
+	$(SCIBASE)/config \
+	$(SCIBASE)/contrib \
+	$(SCIBASE)/demos \
+	$(SCIBASE)/examples \
+	$(SCIBASE)/imp/NperiPos.ps \
+	$(SCIBASE)/imp/giffonts \
+	$(SCIBASE)/macros \
+	$(SCIBASE)/man \
+	$(SCIBASE)/maple \
+	$(SCIBASE)/pvm3/lib/pvm \
+	$(SCIBASE)/pvm3/lib/pvmd \
+	$(SCIBASE)/pvm3/lib/pvmtmparch \
+	$(SCIBASE)/pvm3/lib/ALPHA/pvmd3 \
+	$(SCIBASE)/pvm3/lib/ALPHA/pvmgs \
+	$(SCIBASE)/routines/*.h \
+	$(SCIBASE)/routines/graphics/Math.h \
+	$(SCIBASE)/routines/graphics/Graphics.h \
+	$(SCIBASE)/routines/intersci/sparse.h \
+	$(SCIBASE)/routines/scicos/scicos.h \
+	$(SCIBASE)/routines/sun/link.h \
+	$(SCIBASE)/routines/default/FCreate \
+	$(SCIBASE)/routines/default/Flist \
+	$(SCIBASE)/routines/default/README \
+	$(SCIBASE)/routines/default/fundef \
+	$(SCIBASE)/routines/default/*.c \
+	$(SCIBASE)/routines/default/*.f \
+	$(SCIBASE)/routines/default/*.h \
+	$(SCIBASE)/scripts \
+	$(SCIBASE)/tcl \
+	$(SCIBASE)/util
+
+tarbindist:
+	touch .binary
+	strip $(SCIDIR)/bin/scilex
+	cd .. ; tar cvf $(SCIDIR)/$(SCIBASE)-bin.tar $(BINDISTFILES)
+	$(RM) .binary
+
+install:
+	touch .binary
+	strip $(SCIDIR)/bin/scilex
+	cd .. ; tar cvf - $(BINDISTFILES) | (cd ${PREFIX}/share; tar xf -)
+	cd ${PREFIX}/share/scilab-2.5; make
+	rm -f ${PREFIX}/bin/scilab
+	ln -fs ${PREFIX}/share/scilab-2.5/bin/scilab ${PREFIX}/bin/scilab
+	ln -fs ${PREFIX}/bin/xless ${PREFIX}/share/scilab-2.5/bin/xless
+	${BSD_INSTALL_DATA} ${PREFIX}/share/scilab-2.5/X11_defaults/Xscilab ${X11BASE}/lib/X11/app-defaults
+	${BSD_INSTALL_DATA} ${PREFIX}/share/scilab-2.5/X11_defaults/Metanet-color ${X11BASE}/lib/X11/app-defaults

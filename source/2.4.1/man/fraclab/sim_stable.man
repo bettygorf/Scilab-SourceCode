@@ -1,0 +1,68 @@
+.TH "sim_stable" 2 " 1 April 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sim_stable - Generation of stable random processes
+.sp
+Author: Lotfi Belkacem
+.sp
+This routine generates a \fIstable random process\fP and its \fIincrements\fP using the Chambers, Mallows and Stuck (1976) algorithm. 
+.sp
+.sp
+.SH Usage
+\f(CR[\fPproc,inc\f(CR]\fP=sim_stable(alpha,beta,mu,gamma,size)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBalpha\fP : real positive scalar between 0 and 2. 
+This parameter is often referred to as the characteristic exponent. 
+
+.TP
+o 
+\fBbeta\fP : real scalar between -1 and +1. 
+This parameter is often referred to as the skewness parameter.
+
+.TP
+o 
+\fBmu\fP : real scalar 
+This parameter is often referred to as the location parameter.
+It is equal to the expectation when alpha is greater than 1.
+
+.TP
+o 
+\fBgamma\fP : real positive scalar. 
+This parameter is often referred to as the scale parameter.
+It is equal to the standard deviation over two squared when alpha equal 2.
+
+.TP
+o 
+\fBsize\fP : integer positive scalar. 
+size of the simulated sample.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBproc\fP : real vector \f(CR[\fPsize,1\f(CR]\fP 
+corresponding to the stable random process.
+
+.TP
+o 
+\fBinc\fP : real vector \f(CR[\fPsize,1\f(CR]\fP 
+corresponding to the increments of the simulated process.
+.RE
+
+.SH Examples
+.SH Example 1
+\f(CR[\fPproc,inc\f(CR]\fP=sim_stable(2,0,0,1.4142136,5000);
+generates a standard stable random process with alpha=2, beta=0 (symmetric), mu=0 and gamma=1.4142 which coinside with a standard gaussian process (Brownian motion). To visualize the process or the increments use  plot(proc) or plot(inc). 
+.SH Example 2
+\f(CR[\fPproc,inc\f(CR]\fP=sim_stable(1.5,0,0,1,5000);
+generates a standard 1.5-stable motion

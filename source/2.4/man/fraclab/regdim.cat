@@ -1,0 +1,90 @@
+
+regdim(2)                      Scilab Function                      regdim(2)
+NAME
+  regdim - Estimate the regularization dimension of a 1d or 2d sample.
+
+  Author: Francois Roueff
+
+  Computes the regularization dimension of the graph of a 1d or 2d sampled
+  function.  Two kernels are available: the Gaussian or the Rectangle.
+
+Usage
+  dim = regdim(x,sigma,voices,Nmin,Nmax,kernel,mirror,reg,graphs)
+Input parameters
+
+  o    x : 1d: Real vector [1,nt] or [nt,1] 2d: Real matrix [nt,pt] Time sam-
+       ples of the signal to be analyzed.
+  o    sigma : Real positive number Standard Deviation of the noise. Its
+       default value is null (noisefree)
+  o    voices : Positive integer. number of analyzing voices.  When not
+       specified, this parameter is set to 128.
+  o    Nmin : Integer in  [2,nt/3] Lower scale bound (lower length) of the
+       analysing kernel. When not specified, this parameter is set to 2.
+  o    Nmax : Integer in  [Nmin,2nt/3] Upper scale bound (upper length) of
+       the analysing kernel. When not specified, this parameter is set to
+       nt/3.
+  o    kernel  : String specifies the analyzing kernel: "gauss": Gaussian
+       kernel (default) "rect": Rectangle kernel
+  o    mirror : Boolean
+
+       specifies wether the signal is to be mirrorized for the analyse
+       (default: 0).
+  o    reg : Boolean
+
+       specifies wether the regression is to be done by the user or
+       automatically (default: 0).
+  o    graphs : Boolean:
+
+       for one dimensional signals, it specifies wether the regularized
+       graphs have to be displayed (default: 0). In two dimensional sugnals
+       and for matlab only, all the regularized samples contours are plotted
+       on a same figure.
+Output parameters
+
+  o    dim : Real Estimated regularization dimension.
+  o    handlefig (for Matlab only): Integer vector Handles of the figures
+       opened during the procedure.
+Description
+  For a more complete explanation of the regularization dimension, one can
+  refer to: "A regularization approach to fractionnal dimension estimation",
+  F. Roueff, J. Levy-Vehel, submitted to Fractal 98 conference.  The regular-
+  ized graphs of x are computed via convolutions of x with dilated versions
+  of the kernel at different scales. The lengths of the regularized graphs
+  are computed via convolutions of x with the derivatives of the dilated ver-
+  sions of the kernel. The regularization dimension is computed either via an
+  automatic range regression or via a regression by hand on the loglog plot
+  of the lengths versus scales.  If sigma is strictly positive, an estimation
+  of the lengths without noise is used for the regression. These lengths are
+  displayed in red while those of the noisy signal are in black. They should
+  seperate at fine scales.  When one specifies the range regression, the log-
+  log plot of the lengths versus scales appears. Above are either increments
+  (when sigma is null) or a loglog plot of the noise prevalence in the
+  lengths. One selects the scale range of the regression. In the case of
+  noisefree signals, select a scale region with stable increments. In the
+  case of a strictly positive sigma, select  a scale region where the noise
+  prevalence is not too close to 1 (0 in log10): it should correspond to an
+  approximately linear region for the red estimations.  The number of scales
+  (voices) tells how many convolutions are computed. The bigger it is, the
+  slower the computation is. The scale axis is geometrically sampled (i.e.
+  its log is arithmetically sampled). The gaussian kernel should give a
+  better result but the rectangle is faster.
+
+See also:
+  cwttrack, cwtspec.
+
+Example:
+  //          1D:
+  // Signal synthesis
+  x = GeneWei(1024,0.6,2,1.0,0);
+  plot(x);
+  //Dimension of the graph with a regression by hand
+  dim = regdim(x,0,128,10,500,'gauss',0,1,1);
+
+  //          2D
+  // Signal synthesis
+  z = GeneWei(200,0.6,2,1.0,0);
+  y = GeneWei(200,0.4,3,1.0,0);
+  w = z'*y;
+  plot3d(linspace(0,1,200),linspace(0,1,200),w);
+  //Dimension of the graph with a regression by hand
+  dim = regdim(w,0,25,10,50,'gauss',0,1);

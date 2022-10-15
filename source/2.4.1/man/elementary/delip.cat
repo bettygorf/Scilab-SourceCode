@@ -1,0 +1,32 @@
+
+delip(1)                       Scilab Function                       delip(1)
+NAME
+  delip - elliptic integral
+
+CALLING SEQUENCE
+  [r]=delip(x,ck)
+
+PARAMETERS
+
+  x         : real number (or real vector)
+
+  ck        : real number between -1 and 1
+
+  r         : real or complex number (or vector)
+
+DESCRIPTION
+  returns the value of the elliptic integral with parameter ck :
+
+  r=integral from 0 to x {dt / sqrt((1-t^2)*(1-ck^2*t^2))}
+
+  x real and positive.  When called with x a real vector r is evaluated for
+  each entry of x.
+
+EXAMPLE
+  ck=0.5;
+  delip([1,2],ck)
+  deff('y=f(t)','y=1/sqrt((1-t^2)*(1-ck^2*t^2))')
+  intg(0,1,f)    //OK since real solution!
+
+SEE ALSO
+  amell, %asn, %sn

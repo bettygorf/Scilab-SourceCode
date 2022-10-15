@@ -1,0 +1,35 @@
+.TH cls2dls 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+cls2dls - bilinear transform
+.SH CALLING SEQUENCE
+.nf
+[sl1]=cls2dls(sl,T [,fp])
+.fi
+.SH PARAMETERS
+.TP
+sl,sl1
+: linear systems (\fVsyslin\fR lists)
+.TP
+T
+: real number, the sampling period
+.TP
+fp 
+: prevarping frequency in hertz
+.SH DESCRIPTION
+given \fVsl=[A,B,C,D]\fR (\fVsyslin\fR list),a continuous time system 
+\fVcls2dls\fR returns the sampled system obtained by the 
+bilinear transform \fVs=(2/T)*(z-1)/(z+1)\fR.
+.SH EXAMPLE
+.nf
+s=poly(0,'s');z=poly(0,'z');
+sl=syslin('c',(s+1)/(s^2-5*s+2));  //Continuous-time system in transfer form
+slss=tf2ss(sl);  //Now in state-space form
+sl1=cls2dls(slss,0.2);  //sl1= output of cls2dls
+sl1t=ss2tf(sl1) // Converts in transfer form
+sl2=horner(sl,(2/0.2)*(z-1)/(z+1))   //Compare sl2 and sl1
+.fi
+.SH SEE ALSO
+horner
+
+

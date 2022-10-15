@@ -1,0 +1,24 @@
+.TH full 1 "January 1995" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+full -  sparse to full matrix conversion
+.SH SYNTAX
+X=full(sp)
+.SH PARAMETERS
+.TP
+sp
+: real or complex sparse (or full) matrix
+.TP
+X
+: full matrix
+.SH DESCRIPTION
+\fVX=full(sp)\fR converts the sparse matrix \fVsp\fR into its
+full representation. (If \fVsp\fR is already full then \fVX\fR equals
+\fVsp\fR).
+.SH EXAMPLE
+sp=sparse([1,2;5,4;3,1],[1,2,3]);
+A=full(sp)
+.SH SEE ALSO
+sparse, sprand, speye
+
+                        

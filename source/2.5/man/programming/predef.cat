@@ -1,0 +1,35 @@
+
+predef(1)                      Scilab Function                      predef(1)
+NAME
+  predef - variable protection
+
+CALLING SEQUENCE
+  n=predef()
+  oldnew=predef(n)
+  oldnew=predef('all')
+  oldnew=predef('clear')
+
+DESCRIPTION
+  Utility function used for defining "oldest" variables as "protected".  Pro-
+  tected variables  cannot be killed. They are not saved by the 'save' com-
+  mand. The "oldest" are those appearing last in the fVwho('get').
+
+  predef() gets the number of protected variables
+
+  predef('a[ll]') sets all the  variables protected, it also return the old
+  and new value of protected variables number.
+
+  predef('c[lear]') unprotect all but the last 7 variables, it also return
+  the old and new value of protected variables number.
+
+  predef(n) sets the max(n,7) last defined variables as protected, it also
+  return the old and new value of protected variables number.
+
+REMARK
+  A number of protected variables are set in the start-up file scilab.star.
+
+  User may in particular set its own predefined variables in user's startup
+  file home/.scilab
+
+SEE ALSO
+  clear, save

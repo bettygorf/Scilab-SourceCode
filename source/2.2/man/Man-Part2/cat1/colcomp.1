@@ -1,0 +1,66 @@
+
+
+
+colcomp(1)                     Scilab Function                     colcomp(1)
+
+
+
+
+
+
+NAME
+  colcomp - column compression, kernel, nullspace
+
+CALLING SEQUENCE
+  [W,rk]=colcomp(A [,flag,tol])
+
+PARAMETERS
+  A         : real or complex matrix
+  flag      : character string
+  tol       : real number
+  W         : square non-singular matrix (change of basis)
+  rk        : integer (rank of A)
+
+DESCRIPTION
+  Column compression of A: Ac = A*W is column compressed i.e
+  Ac=[0,Af] with Af full column rank, rank(Af) = rank(A) = rk.
+  flag and tol are optional parameters: flag = 'qr' or 'svd' (default is
+  'svd').
+  tol = tolerance parameter (of order %eps as default value).
+  The ma-rk first columns of W span the kernel of A when size(A)=(na,ma)
+
+SEE ALSO
+  rowcomp, fullrf, fullrfk, kernel
+
+AUTHOR
+  F.D.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

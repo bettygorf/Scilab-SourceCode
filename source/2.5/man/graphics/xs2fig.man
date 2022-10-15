@@ -1,0 +1,27 @@
+.TH xs2fig 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+xs2fig - send graphics to a file in Xfig syntax
+.SH CALLING SEQUENCE
+.nf
+xs2fig(win_num,filen,[color])
+.fi
+.SH PARAMETERS
+.TP 9
+win_num 
+: integer scalar or vector .
+.TP 10
+filen 
+: string, file name.
+.TP 10
+color
+: optional integer. 0 means black and white and
+1 means color. The default value is to use a value compatible 
+with the screen status.
+.SH DESCRIPTION
+\fVxs2fig\fR sends the recorded graphics of the
+window \fVwin_num\fR in the file \fVfilen\fR in Xfig syntax.
+This function works only if the selected 
+driver is \fV"Rec"\fR.
+.SH SEE ALSO
+xbasimp

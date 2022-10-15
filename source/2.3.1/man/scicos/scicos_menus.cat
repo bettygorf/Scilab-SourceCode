@@ -1,0 +1,287 @@
+
+scicos_menus(5)                  Scicos GUI                   scicos_menus(5)
+NAME
+  scicos_menu - Scicos menus description
+
+DESCRIPTION
+  Here is a list of operations available in Scicos:
+
+  Main menu
+       :
+
+       Help      : To get help on an object or menu buttons, click first on
+                 Help button and then on the selected object or menu item.
+
+       Edit..    : Click on this button to open the diagram edition menu.
+
+       Simulate..
+                 : Click on this  button to open the compilation/execution
+                 menu.
+
+       File..    : Click on this button to open the file management menu.
+
+       Block..   : Click on this button to open the block management menu.
+
+       Pal editor..
+                 : Click on this button to open the palette edition window
+                 and palette management menu.
+
+       View      : To shift the diagram to left, right, up or down, click
+                 first on the View button, then on a point in the diagram
+                 where you want to appear in the middle of the graphics win-
+                 dow.
+
+       Exit      : Click on the Exit button to leave Scicos and return to
+                 Scilab session. Save your diagram before leaving Scicos or
+                 it will be lost.
+
+  Diagram edition menu.
+       : This menu allows to edit diagram and palettes
+
+       Help      : To get help on an object or menu buttons,
+                          click first on Help button and then on
+                   the selected object or menu item.
+
+       Window    : opens up a dialogue where user may change the Scicos edi-
+                 tion window size. Use this instead of standard window
+                 manager way.
+
+       Palettes  : opens up a selection dialogue where user may select a
+                 desired palette among all defined palettes.
+
+       Context   : opens up a dialogue where user may enter and modify Scilab
+                 instructions to be executed  when diagram is loaded
+                 (Edit../Load menu) or evaluated (Simulate../Eval menu) (of
+                 course instructions are also evaluated when dialogue
+                 returns).These instructions may be used to define Scilab
+                 variables whose names are used in the block parameters
+                 definition expressions.
+
+       Move      : To move a block in main Scicos window, click first on the
+                 Move button, then click on the selected block, drag the
+                 mouse to the desired block position and click again to fix
+                 the position.
+
+       Copy :    To copy a block in main Scicos window, click first on the
+                 Copy button, then click left on the to-be-copied block (in
+                 Scicos window or in a palette) , and finally click where you
+                 want the copy to be placed in Scicos window.
+
+                 To copy a region in main Scicos window, click first on the
+                 Copy button, then click right on a corner of the desired
+                 region (in Scicos window or in a palette) , drag to select
+                 the desired region, click to fix the selected region and
+                 finally click where you want the copy to be placed in Scicos
+                 window. If source diagram is a big region, selection may
+                 take a while.
+
+       Align     : To obtain nice diagrams, you can align ports of different
+                 blocks, vertically and horizontally.  Click first on the
+                 Align button, then on the first port and finally on the
+                 second port.  The block corresponding to the second port is
+                 moved. Connected blocks cannot be aligned.
+
+       AddNew    : This button is exists in Palette edition mode.  To add a
+                 newly defined block to the current palette click first on
+                 this button, a dialogue box will pop up asking for the name
+                 of the GUI function associated with the block. If this func-
+                 tion is not already loaded it is searched in the current
+                 directory. The user may then click at the desired position
+                 of the block in the palette.
+
+       Link      : This button is defined only in diagram edition mode.  To
+                 connect an output port to an input port, click first on the
+                 Link button, then on the intermediate points, if necessary,
+                 and finally on the input port.  Scicos tries to draw hor-
+                 izontal and vertical lines to form links.
+
+                 To split a link, click first on the Link button, then on the
+                 link where the split should be placed, and finally on an
+                 input port.  Only one link can go from and to a port.  Link
+                 color can be changed directly by clicking on the link.
+
+       Delete    : To delete a block or a link, click first on the Delete
+                 button, then click left on the selected object.  If you
+                 delete a block all links connected to it are deleted as
+                 well.
+
+                 To delete a region in main Scicos window click first on the
+                 Delete button, then click right on a corner of the desired
+                 region (in Scicos window or in a palette), drag to select de
+                 desired region, click to fix the selected region. If source
+                 diagram is a big region, selection may take a while.
+
+       Flip      : To reverse the positions of the (regular) inputs and out-
+                 puts of a block placed on its sides, click on the Flip but-
+                 ton first and then on the selected block. This does not
+                 affect the order, nor the position of the input and output
+                 event ports which are numbered from left to right. A
+                 connected block cannot be flipped.
+
+       Save      : See Save button in File.. menu below.
+
+       Undo      : Click on the Undo button to undo the last edit operation.
+
+       Replot    : Scicos window stores the complete history of the editing
+                 session. Click on the Replot button to erase the history and
+                 replot the diagram or palette. Replot diagram before print-
+                 ing or exporting Scicos diagrams.
+
+       View      : See the description of View in the main menu above.
+
+       Calc      : When you click on this button you switch Scilab to the
+                 pause mode (see the help on pause).  In the Scilab main win-
+                 dow and you may enter Scilab instructions to compute what-
+                 ever you want.  to go back to Scicos you need to enter
+                 ""return"" or "[...]=return(...)" Scilab instruction.  If
+                 you use "[...]=return(...)" Scilab instruction take care not
+                 to modify Scicos variables such as "scs_m","scs_gc",
+                 "menus","datam",...  If you have modified Scicos graphic
+                 window you may restore it using the Scicos "Replot" menu.
+
+       Back      : go back to the main menu.
+
+  Simulation menu
+       :
+
+       Help      : See Help button above.
+
+       Setup     : In the main Scicos window, clicking on the Setup button
+                 invokes a dialogue box that allows you to change integration
+                 parameters: absolute and relative error tolerances for the
+                 ode solver, the time tolerance (the smallest time interval
+                 for which the ode solver is used to update continuous
+                 states), and the maximum time increase realized by a single
+                 call to the ode solver.
+       Compile   : This button need never be used since compilation is per-
+                 formed automatically, if necessary, before the beginning of
+                 every simulation (Run button).
+
+                 Normally, a new compilation is not needed if only system
+                 parameters and internal states are modified.  In some cases
+                 however modifications are not correctly updated and a manual
+                 compilation may be needed before a Restart or a Continue.
+                 Click on this button to compile the block diagram.  Please
+                 report if you encounter such a case.
+
+       Context   : See Context definition below.
+
+       Eval      : blocks dialogues answers can be defined using  Scilab
+                 expressions. These expressions  are evaluated immediately
+                 and they are also stored as character strings. Click on the
+                 Eval button to have them re-evaluated according to the new
+                 values of underlying Scilab variables defined by context for
+                 example.
+
+       Run       : To start the simulation.  If the system has already been
+                 simulated, a dialogue box appears where you can choose to
+                 Continue, Restart or End the simulation. You may interrupt
+                 the simulation by clicking on the "stop" button, change any
+                 of the block parameters and continue or restart the simula-
+                 tion with the new values.
+
+       Save      : See Save button in File.. menu below.
+
+       Calc      : See Calc button in Edit.. menu above.
+
+       Back      : go back to the main menu.
+
+  File menu
+       :
+
+       Help      : See Help button in main menu above.
+
+       New       : Clicking on the New button creates an empty diagram in the
+                 main Scicos window. If the previous content of the window is
+                 not saved, it will be lost.
+
+       Purge     : Suppress deleted blocks out of Scicos data structure. This
+                 menu changes block indexing and implies compilation of the
+                 diagram before compilation.
+
+       Rename    : Click on this button to change the diagram or palette's
+                 name. A dialogue window will pop up.
+
+       Newblk    : Click on this button to save the Super Block as a new
+                 Scicos block. A Scilab function is generated and saved in
+                 <window_name>.sci file in the desired directory.
+                 <window_name> is the name of the Super Block appearing on
+                 top of the window.  A dialogue allows choosing the direc-
+                 tory. This block may be added  to a palette using Pal
+                 editor../Edit/AddNew menu.
+
+       Save      : Saves the block diagram in the current binary file
+                 selected by a previous call to SaveAs or Load button. If no
+                 current binary file, diagram is saved in the current direc-
+                 tory as <window_name>.cos.
+
+       Save As   : Saves the block diagram in a binary file. A file selection
+                 dialogue will pop up.
+
+       FSave     : Save the diagram in a formatted ascii file. A dialogue box
+                 allows choosing the file name which must have a .cosf exten-
+                 sion.
+
+                 Formatted save is slower than regular save but has the
+                 advantage that the generated file is system independent
+                 (usefull for exchanging data on different computers.
+       Load :    Loads an ascii or binary file containing a saved block
+                 diagram.  A file selection dialogue will pop up.
+
+       Back      : Go back to the main menu.
+
+  Block menu
+       :
+
+       Help      : See Help button in main menu above.
+
+       Resize    : To change the size of a block , click first on this but-
+                 ton, click next on the desired block. A dialogue appears
+                 that allows you to change the width and/or height of the
+                 block shape.
+
+       Icon      : To change the icon of a block drawn by standard_draw,
+                 click first on this button, click next on the desired block.
+                 A dialogue appears that allows you to enter Scilab instruc-
+                 tions used to draw the icon. These instructions may refer to
+                 orig and sz variables and more generaly to the block data
+                 structure named o in this context (see scicos_block).  If
+                 Icon description selects colors for drawing, it is necessary
+                 to get it through scs_color function to have Color button
+                 work properly.
+
+       Color     : To change the background  of a block drawn by
+                 standard_draw, click first on this button, click next on the
+                 selected block. A color palette appears where user may
+                 select the block background color.
+
+       Label     : To change or define the blocks label, click first on this
+                 button, click next on the desired block. A dialogue appears
+                 that allows you to enter the desired label. Labels may be
+                 used within blocks computational functions as an identifica-
+                 tion (see getlabel function).
+
+       Back      : Go back to the main menu.
+
+  Pal editor menu
+       : The Pal editor.. menu is similar to the main Scicos menu. Clicking
+       on this button opens a new Scicos window in which palettes can be
+       edited. The Edit.., File.., Block.., View, and Exit menus can be used
+       to create, save, load and modify palettes. Palettes have same data
+       structure as diagrams and menus act almost exactly the same way. The
+       only differences are:
+
+       Addnew
+         : this button in Edit.. menu allows user to add a new block in a
+         palette. A dialogue box will appear where user may input the name of
+         the interfacing function. If the required interfacing function is
+         not already present in Scilab environment, Scicos opens up a file
+         selection window to get the file containing the interfacing func-
+         tion.
+
+       Save and SaveAs
+         : When a palette is saved, if necessary, Scicos proposes to add
+         lines to the file ~/.scilab which is the user Scilab startup file.
+
+SEE ALSO
+  scicos

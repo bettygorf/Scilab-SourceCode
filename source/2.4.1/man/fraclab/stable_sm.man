@@ -1,0 +1,50 @@
+.TH "stable_sm" 2 "  05 June 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+stable_sm - Spectral measure of a bivariate Stable random vector
+.sp
+Author: Lotfi Belkacem
+.sp
+This routine estimates a \fInormalized spectral measure\fP of a bivariate stable random vector. 
+.sp
+.sp
+.SH Usage
+\f(CR[\fPtheta,sm\f(CR]\fP=stable_sm(data1,data2)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBdata1\fP : real vector \f(CR[\fPsize,1\f(CR]\fP 
+corresponding to the the first data sample. 
+
+.TP
+o 
+\fBdata2\fP : real vector \f(CR[\fPsize,1\f(CR]\fP 
+corresponding to the second data sample.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBtheta\fP : real vector  
+corresponding to the the input argument of the estimated spectral measure. 
+Components of the vector theta are varying between 0 and 2*PI.
+
+.TP
+o 
+\fBsm\fP : real vector  
+corresponding to the estimation of the normalized spectral measure of the bivariate vector (data1,data2).
+.RE
+
+.SH Example
+for two given signals  S1 and S2,
+\f(CR[\fPtheta,sm\f(CR]\fP=stable_sm(S1,S2);
+estimates the normalized spectral measure of the data vector (S1,S2). 
+To visualize it use plot(theta,sm). 

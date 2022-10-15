@@ -1,0 +1,62 @@
+.TH wiener 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+wiener -  Wiener estimate
+.SH CALLING SEQUENCE
+.nf
+[xs,ps,xf,pf]=wiener(y,x0,p0,f,g,h,q,r)
+.fi
+.SH PARAMETERS
+.TP 10
+f, g, h
+: system matrices in the interval \fV[t0,tf]\fR
+.RS
+.TP
+f
+=\fV[f0,f1,...,ff]\fR, and \fVfk\fR is a nxn matrix
+.TP
+g
+=\fV[g0,g1,...,gf]\fR, and \fVgk\fR is a nxn matrix
+.TP
+h
+=\fV[h0,h1,...,hf]\fR, and \fVhk\fR is a mxn matrix
+.RE
+.TP
+q, r
+: covariance matrices of dynamics and observation noise
+.RS
+.TP
+q
+=\fV[q0,q1,...,qf]\fR, and \fVqk\fR is a nxn matrix
+.TP
+r
+=\fV[r0,r1,...,rf]\fR, and \fVgk\fR is a mxm matrix
+.RE
+.TP
+x0, p0
+: initial state estimate and error variance
+.TP
+y
+: observations in the interval \fV[t0,tf]\fR.
+\fVy=[y0,y1,...,yf]\fR, and \fVyk\fR is a column m-vector
+.TP 10
+xs
+: Smoothed state estimate
+\fVxs= [xs0,xs1,...,xsf]\fR, and \fVxsk\fR is a column n-vector
+.TP
+ps
+: Error covariance of smoothed estimate
+\fVps=[p0,p1,...,pf]\fR, and \fVpk\fR is a nxn matrix
+.TP
+xf
+: Filtered state estimate
+\fVxf= [xf0,xf1,...,xff]\fR, and \fVxfk\fR is a column n-vector
+.TP
+pf
+: Error covariance of filtered estimate
+\fVpf=[p0,p1,...,pf]\fR, and \fVpk\fR is a nxn matrix
+.SH DESCRIPTION
+macro which gives the Wiener estimate using
+the forward-backward Kalman filter formulation
+.SH AUTHOR
+C. B.

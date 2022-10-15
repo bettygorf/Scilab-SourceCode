@@ -1,0 +1,24 @@
+.TH intdec 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+intdec - Changes  sampling rate of a signal
+.SH CALLING SEQUENCE
+.nf
+[y]=intdec(x,lom)
+.fi
+.SH PARAMETERS
+.TP
+x
+: input sampled signal
+.TP
+lom
+: For a 1D signal this is a scalar which gives the rate change.
+For a 2D signal this is a 2-Vector of sampling rate
+changes \fVlom\fR=(col rate change,row rate change)
+.TP
+y
+: Output sampled signal
+.SH DESCRIPTION
+Changes the sampling rate of a 1D or 2D signal by the rates in lom
+.SH AUTHOR
+C. B.

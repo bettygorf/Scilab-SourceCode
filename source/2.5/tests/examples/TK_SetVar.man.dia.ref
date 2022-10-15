@@ -1,0 +1,17 @@
+ 
+clear;lines(0);
+ 
+// creates a toplevel TK window. TK_EvalStr('label0.foo.l -textvariable tvar');
+ 
+// create a static label
+ 
+TK_EvalStr('pack0.foo.l');
+Sorry, TK has not been enabled this the session.
+
+ 
+// pack the label widget. It appears on the screen.
+ 
+TK_SetVar('tvar','This text has been set directly within scilab');
+Sorry, TK has not been enabled this the session.
+
+ 

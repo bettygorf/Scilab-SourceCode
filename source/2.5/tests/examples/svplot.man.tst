@@ -1,0 +1,6 @@
+clear;lines(0);
+x=logspace(-3,3);
+y=svplot(ssrand(2,2,4));
+xbasc();plot2d1("oln",x',20*log(y')/log(10));
+xgrid(12)
+xtitle("Singular values plot","(Rd/sec)", "Db");

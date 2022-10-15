@@ -1,0 +1,9 @@
+.TH INVBLK_f 5 "Janvier 1997" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+INVBLK_f - Scicos inversion block
+.SH DIALOGUE PARAMETERS
+None.
+.SH DESCRIPTION
+This block computes \fVy(i)=1/u(i)\fR. The input (output) size is
+determined by the context

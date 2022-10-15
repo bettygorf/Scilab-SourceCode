@@ -1,0 +1,25 @@
+
+hypermat(1)                    Scilab Function                    hypermat(1)
+NAME
+  hypermat - initialize an  N dimensional matrices
+
+CALLING SEQUENCE
+  M=hypermat(dims [,v])
+
+PARAMETERS
+
+  dims      : vector of hypermatrix dimensions
+
+  v         : vector of hypermatrix entries (default value
+            zeros(prod(dims),1))
+
+DESCRIPTION
+  Initialize an hypermatrix whose dimensions are given in the vector dims and
+  entries are given in optional argument v
+
+  M data structure contains the vector of matrix dimensions M('dims') and the
+  vector of entries M('entries') such as the leftmost subcripts vary first
+  [M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]
+
+EXAMPLES
+  M=hypermat([2 3 2 2],1:24)

@@ -1,0 +1,66 @@
+
+
+
+lin(1)                         Scilab Function                         lin(1)
+
+
+
+
+
+
+NAME
+  lin - linearization
+
+CALLING SEQUENCE
+  [A,B,C,D]=lin(sim,x0,u0)
+  [sl]=lin(sim,x0,u0)
+
+PARAMETERS
+
+  sim       : function
+
+  x0, u0    : vectors of compatible dimensions
+
+  A,B,C,D   : real matrices
+
+  sl        : syslin list
+
+DESCRIPTION
+  linearization of the non-linear system [y,xdot]=sim(x,u) around x0,u0.
+
+  sim is a function which computes y and xdot.
+
+  The output is a linear system (syslin list) sl or the four matrices
+  (A,B,C,D)
+
+  For example, if ftz is the function passed to ode e.g.
+  [zd]=ftz(t,z,u)
+  and if we assume that y=x
+
+  [z]=ode(x0,t0,tf,list(ftz,u) compute x(tf).
+
+  If simula is the following function:
+  deff('[y,xd]=simula(x,u)','xd=ftz(tf,x,u); y=x;');
+  the tangent linear system sl can be obtained by:
+  [A,B,C,D]=lin(simula,z,u)
+  sl = syslin('c',A,B,C,D,x0)
+
+SEE ALSO
+  external, derivat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

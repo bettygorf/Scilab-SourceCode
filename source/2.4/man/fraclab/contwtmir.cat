@@ -1,0 +1,104 @@
+
+contwt(2)                      Scilab Function                      contwt(2)
+NAME
+  contwt -  Continuous L2 wavelet transform with mirroring
+
+  Author: Paulo Goncalves
+
+  Computes a continuous wavelet transform of a mirrored 1-D signal (real or
+  complex). The scale operator is unitary with respect to the L2 norm.  Two
+  closed form wavelets are available: the Mexican Hat or the Morlet Wavelet
+  (real or analytic). For arbitrary analyzing wavelets, numerical approxima-
+  tion is achieved using a Fast Mellin Transform.
+
+Usage
+  [wt,scale,f,scalo,wavescaled]=contwtmir(x,[fmin,fmax,N,wvlt_length])
+
+Input parameters
+       o x : Real or complex vector [1,nt] or [nt,1] Time samples of the sig-
+         nal to be analyzed.
+       o fmin : real scalar in  [0,0.5] Lower frequency bound of the
+         analysis. When not specified, this parameter forces the program to
+         interactive mode.
+       o fmax :  real scalar [0,0.5] and fmax > Upper frequency bound of the
+         analysis. When not specified, this parameter forces the program to
+         interactive mode.
+       o N : positive integer. number of analyzing voices.  When not speci-
+         fied, this parameter forces the program to interactive mode.
+       o wvlt_length  : scalar or vector specifies the analyzing wavelet: 0:
+         Mexican hat wavelet (real) Positive real integer: real Morlet
+         wavelet of size 2*wvlt_length+1) at finest scale 1 Positive ima-
+         ginary integer: analytic Morlet wavelet of size 2*wvlt_length+1) at
+         finest scale 1 Real valued vector: waveform samples of an arbitrary
+         bandpass function.
+
+Output parameters
+       o wt : Real or complex matrix [N,nt] coefficient of the wavelet
+         transform.
+       o scale : real vector [1,N] analyzed scales
+       o f : real vector [1,N] analyzed frequencies
+       o scalo : real positive valued matrix [N,nt] Scalogram coefficients
+         (squared magnitude of the wavelet coefficients  wt )
+       o wavescaled : Scalar or real valued matrix [length(wavelet at coarser
+         scale)+1,N]
+
+         Dilated versions of the analyzing wavelet
+Description
+
+Parameters
+       o x : signal to be analyzed. Real or complex vector
+       o fmin : lower frequency bound of the analysis. fmin is real scalar
+         comprised in  [0,0.5]
+       o fmax : upper frequency bound of the analysis. fmax is a real scalar
+         comprised in [0,0.5] and fmax > fmin
+       o N : number of analyzing voices geometrically sampled between minimum
+         scale fmax/fmax and maximum scale fmax/fmin.
+       o wvlt_length  : specifies the analyzing wavelet: 0: Mexican hat
+         wavelet (real). The size of the wavelet is automatically fixed by
+         the analyzing frequency Positive real integer: real Morlet wavelet
+         of size 2*wvlt_length+1) at finest scale (1) Positive imaginary
+         integer: analytic Morlet wavelet of size 2*|wvlt_length|+1) at
+         finest scale 1. The corresponding wavelet transform is then complex.
+         May be usefull for event detection purposes.  Real valued vector:
+         corresponds to the time samples waveform of any arbitrary bandpass
+         function viewed as the analyzing wavelet at any given scale. Then,
+         an approximation of the scaled wavelet versions is achieved using
+         the Fast Mellin Transform (see dmt and dilate).
+       o wt : coefficient of the wavelet transform.  X-coordinated
+         corresponds to time (uniformly sampled), Y-coordinates correspond to
+         frequency (or scale) voices (geometrically sampled between  fmax
+         (resp. 1) and fmin (resp.  fmax / fmin ). First row of wt
+         corresponds to the highest analyzed frequency (finest scale).
+       o scale : analyzed scales (geometrically sampled between 1  and  fmax
+         /fmin
+       o f : analyzed frequencies (geometrically sampled between
+          fmax  and  fmin . f corresponds to fmax/scale
+       o scalo : Scalogram coefficients (squared magnitude of the wavelet
+         coefficients  wt )
+       o wavescaled : If  wvlt_length  is a real or Imaginary pure scalar,
+         then  wavescaled equal  wvlt_length . If wvlt_length  is a vector
+         (containing the waveform samples of an arbitrary analyzing wavelet),
+         then  wavescaled  contains columnwise all scaled version of
+         wvlt_length  used for the analysis. In this latter case, first ele-
+         ment of each column gives the effective time support of the analyz-
+         ing wavelet at the corresponding scale.  wavescaled can be used for
+         reconstructing the signal (see icontwt)
+Algorithm details
+  The overall details of the algorithm are similar to those of contwt .  The
+  difference stems from the mirror operation applied to the signal before
+  computing the wavelet transform to minimize border effects. At each scale
+  j  the analyzed signal is mirrored at its both extremities. The number of
+  added samples at both sides is equal to scale(j)* wvlt_length  (the half
+  length of the analyzing wavelet at this particular scale). After convolu-
+  tion of the mirrored signal with the analyzing wavelet, the result is trun-
+  cated to the actual size of the initial signal.
+
+See also:
+  contwt, icontwt and cwt
+
+Example:
+   Signal synthesis x = fbmlevinson(1024,0.8) ;
+   Regular Wavelet transform [wt_nomirror,scale,f] = contwt(x,2(-6),2(-
+  1),128,8) ; viewmat(abs(wt_nomirror),[1 1 24]) ;
+   Compared with a mirrored  wavelet transform [wt_mirror,scale,f] =
+  contwtmir(x,2(-6),2(-1),128,0) ; viewmat(abs(wt_mirror),[1 1 24]) ;

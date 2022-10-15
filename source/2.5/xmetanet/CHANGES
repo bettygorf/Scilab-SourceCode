@@ -1,0 +1,100 @@
+		     Main Changes Scilab 2.4.1 -> 2.5
+		     ================================
+
+global
+reference argument passing
+graphic (panner,resizemode)
+
+
+
+		     Main Changes Scilab 2.4 -> 2.4.1
+		     ================================
+
+Many bugs fixed.
+
+Option "--without-pvm" added to configure to compile Scilab 
+  without PVM library.
+
+NEW MACHINES
+============
+
+Scilab runs now on MAC Mklinux and DEC Alpha Linux.
+
+NEW FUNCTIONALITIES
+===================
+
+The Matlab to Scilab translator has been considerably improved.
+
+After fixing a number of bugs, Scicos is no longer considered a beta release.
+
+Metanet toolbox: Function "netclose" for closing a Metanet window 
+                 has been added.
+
+		      Main Changes Scilab 2.3 -> 2.4
+		      ==============================
+
+WINDOWS 95/NT
+=============
+
+This version is no longer a beta version. Incremental link is now possible.
+
+PVM interface and Xmetanet do not work yet.
+
+NEW TOOLBOXES
+=============
+
+m2sci: beta version of a Matlab to Scilab translator.
+
+Fraclab: fractal and wavelet analysis.
+
+Tksci: beta Tcl/Tk interface.
+
+PVM: beta PVM interface (not yet available on Windows).
+
+dcd: cumulative distribution functions and inverses...
+
+grand: random number generators.
+
+NEW FUNCTIONALITIES
+===================
+
+Metanet toolbox: Function "pipe_network" for solving the pipe network problem 
+                 has been added.
+
+Scicos toolbox: - New and improved formalism
+                - Faster Compiler 
+                - Improved GUI
+
+Maple toolbox: The Maple to Scilab interface (maple/maple2scilab.mpl)
+               has been improved. Sparse matrices are handled. There is
+               now the choice between C and Fortran code generation.
+
+Nonlinear toolbox: Addition of 2D and 3D definite integrals int2d et int3d.
+
+Data types: N dimensional arrays have been introduced (see hypermatrices).
+
+chdir and getcwd functions added to change and get working directory.
+
+Floating points exception handling may be set by "ieee" function.
+
+Overloading: It is now possible to overload display of tlist data
+             structure. It is also possible to extend basic primitive
+             function definition to new data types. To avoid possible
+             ambiguity overloading function names have been
+             changed. Old names still work, but for efficiency it
+             desirable to change it. See overloading help.
+
+Syntax: Functions with strings arguments may be called as commands.
+        For instance "exec('foo.sce')" can be entered as "exec foo.sce".
+
+        It is now possible to define functions with unbounded number
+        of input and output arguments (see varargin help).
+
+INCOMPATIBILITIES
+=================
+
+Some old Scicos diagrams may not be translated properly into Scilab 2.4.
+
+Binary files created by "save" in Scilab 2.4 cannot be read by Scilab 2.3.
+
+Scicos diagrams created by "save" in Scilab 2.4 cannot be read by Scilab 2.3.

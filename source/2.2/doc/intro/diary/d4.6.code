@@ -1,0 +1,5 @@
+ exists('fact')
+ getf('../macros/fact.sci')
+ exists('fact')
+ x=fact(5)
+ comp(fact)

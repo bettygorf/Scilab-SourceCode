@@ -1,0 +1,98 @@
+.TH impl G "February 1998" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+impl - differential algebraic equation
+.SH DESCRIPTION
+.nf
+y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])
+.fi
+.SH PARAMETERS
+.TP 10
+y0,ydot0   
+: real vectors or matrix (initial conditions).
+.TP
+t0 
+: real scalar (initial time).
+.TP
+t 
+: real vector (times at which the solution is computed).
+.TP
+res,adda
+: externals (function or character string or list).
+.TP
+type 
+: string \fV'adams'\fR or \fV'stiff'\fR
+.TP
+atol,rtol 
+: real scalar or real vector of the same size as  as \fVy\fR.
+.TP
+jac 
+: external (function or character string or list).
+.SH DESCRIPTION
+Solution of the linear implicit differential equation
+.LP
+A(t,y) dy/dt=g(t,y), y(t0)=y0
+.LP
+\fVt0\fR is the initial instant, \fVy0\fR is the vector of initial conditions
+Vector \fVydot0\fR of the time derivative of \fVy\fR at \fVt0\fR must
+also be given.
+r
+The input \fVres\fR is an external i.e. a function with
+specified syntax, or the name a Fortran subroutine or a C function 
+(character string) with specified calling sequence or a list.
+.LP
+If \fVres\fR is a function, its syntax must be as follows:
+.nf
+r = res(t,y,ydot)
+.fi
+where \fVt\fR is a real scalar (time) and \fVy\fR and \fVydot\fR are
+real vector (state and derivative of the state). 
+This function must return \fVr=g(t,y)-A(t,y)*ydot\fR.
+
+If \fVres\fR is a character string, it refers to the name of a Fortran
+subroutine or a C function. See
+\fVSCIDIR/routines/default/Ex-impl.f\fR for an example to do that.
+
+\fVres\fR can also be a list: see the help of \fVode\fR.
+
+The input \fVadda\fR is also an external.
+.LP
+If \fVadda\fR is a function, its syntax must be as follows:
+.nf
+r = adda(t,y,p)
+.fi
+and it must return \fVr=A(t,y)+p\fR where \fVp\fR is a matrix to be
+added to \fVA(t,y)\fR.
+
+If \fVadda\fR is a character string, it refers to the name of a Fortran
+subroutine or a C function. See
+\fVSCIDIR/routines/default/Ex-impl.f\fR for an example to do that.
+
+\fVadda\fR can also be a list: see the help of \fVode\fR.
+
+The input \fVjac\fR is also an external.
+.LP
+If \fVadda\fR is a function, its syntax must be as follows:
+.nf
+j = jac(t,y,ydot)
+.fi
+and it must return the Jacobian of \fVr=g(t,y)-A(t,y)*ydot\fR with
+respect to \fVy\fR.
+
+If \fVjac\fR is a character string, it refers to the name of a Fortran
+subroutine or a C function. See
+\fVSCIDIR/routines/default/Ex-impl.f\fR for an example to do that.
+
+\fVjac\fR can also be a list: see the help of \fVode\fR.
+
+.SH EXAMPLES
+.nf
+y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
+// Using hot restart 
+//[x1,w,iw]=impl([1;0;0],[-0.04;0.04;0],0,0.2,'resid','aplusp');
+// hot start from previous call 
+//[x1]=impl([1;0;0],[-0.04;0.04;0],0.2,0.4,'resid','aplusp',w,iw);
+//maxi(abs(x1-x))
+.fi
+.SH SEE ALSO
+dassl, ode, external

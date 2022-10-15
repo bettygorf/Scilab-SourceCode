@@ -1,0 +1,40 @@
+ 
+clear;lines(0);
+ 
+A=[1,2;3,4];
+ 
+cumprod(A)
+ ans  =
+ 
+!   1.    6.  !
+!   3.    24. !
+ 
+cumprod(A,'r')
+ ans  =
+ 
+!   1.    2. !
+!   3.    8. !
+ 
+cumprod(A,'c')
+ ans  =
+ 
+!   1.    2.  !
+!   3.    12. !
+ 
+rand('seed',0);
+ 
+a=rand(3,4);
+ 
+[m,n]=size(a);
+ 
+w=zeros(a);
+ 
+w(1,:)=a(1,:);
+ 
+for k=2:m;w(k,:)=w(k-1,:).*a(k,:);end;w-cumprod(a,'r')
+ ans  =
+ 
+!   0.    0.    0.    0. !
+!   0.    0.    0.    0. !
+!   0.    0.    0.    0. !
+ 

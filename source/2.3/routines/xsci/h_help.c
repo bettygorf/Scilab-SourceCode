@@ -1,0 +1,282 @@
+/*
+ * help.c : The Help browser 
+ *
+ * George Ferguson, ferguson@cs.rochester.edu, 23 Apr 1993. 
+ */
+
+#include <stdio.h>
+#include <X11/Intrinsic.h>
+#include <X11/Shell.h>
+#include <X11/StringDefs.h>
+#include <X11/Xaw/Form.h>
+#include <X11/Xaw/Label.h>
+#include <X11/Xaw/Viewport.h>
+#include <X11/Xaw/List.h>
+#include <X11/Xaw/AsciiText.h>
+#include <X11/Xaw/Command.h>
+#include <X11/Xaw/Cardinals.h>
+
+#include <malloc.h>
+
+#include "version.h"
+#include "../sun/h_help.h"
+#include "../graphics/Math.h"
+
+extern Widget   toplevel;
+extern Atom     wm_delete_window;
+extern  char  *getenv();
+
+/** a terminer : normalement c'est statique plus une action **/
+
+void            popupHelpPanel();
+
+static void     initHelpWidgets();
+static void     helpCallback();
+static void     helpCallback1();
+static void     helpDoneAction();
+static void     queryAproposAction();
+
+/*
+ * Data defined here 
+ */
+static Widget   helpShell;
+static Widget   helpLabel, helpViewport, helpList, helpList1, helpViewport1;
+static Widget   helpScrollbar;
+static Widget   aproposText;
+static Widget   aproposInfo;
+
+static Boolean  isPoppedUp;
+
+static XtActionsRec actionTable[] = 
+{
+  {"help", popupHelpPanel},
+  {"help-done", helpDoneAction},
+  {"query-apropos", queryAproposAction},
+};
+
+/*************************************************************
+ * Help Popup 
+ *************************************************************/
+
+void initHelpActions(appContext)
+     XtAppContext    appContext;
+{
+  XtAppAddActions(appContext, actionTable, XtNumber(actionTable));
+}
+
+void popupHelpPanel()
+{
+  if (isPoppedUp) 
+    {
+      XRaiseWindow(XtDisplay(helpShell), XtWindow(helpShell));
+      return;
+    }
+  if (helpShell == NULL) 
+    {
+      if ( Help_Init() == 1) 
+	{
+	  sciprint("can't use man\r\n");
+	  return;
+	}
+      initHelpWidgets();
+      isPoppedUp = True;
+      XtPopup(helpShell, XtGrabNone);
+    }
+  else 
+    {
+      isPoppedUp = True;
+      XtPopup(helpShell, XtGrabNone);
+    }
+}
+
+/**********************************************
+ * Creates the help popup panel 
+ *********************************************/
+
+static void
+initHelpWidgets()
+{
+  Widget          form;
+  char            buf[64];
+  Arg             args[1];
+
+  helpShell = XtCreatePopupShell("helpShell", topLevelShellWidgetClass,
+				 toplevel, (ArgList) 0, (Cardinal) 0);
+  form = XtCreateManagedWidget("helpForm", formWidgetClass,
+			       helpShell, (ArgList) 0, (Cardinal) 0);
+  helpLabel = XtCreateManagedWidget("helpLabel", labelWidgetClass,
+				    form, (ArgList) 0, (Cardinal) 0);
+  sprintf(buf, "This is help for %s", VERSION);
+  if (helpLabel != NULL && buf != NULL) {
+					  XtSetArg(args[0], XtNlabel, buf);
+					  XtSetValues(helpLabel, args, 1);
+					};
+  helpViewport = XtCreateManagedWidget("helpViewport", viewportWidgetClass,
+				       form, (ArgList) 0, (Cardinal) 0);
+  helpList = XtCreateManagedWidget("helpList", listWidgetClass,
+				   helpViewport, (ArgList) 0, (Cardinal) 0);
+
+  XawListChange(helpList, helpTopicInfo, nTopicInfo, 0, True);
+  XtAddCallback(helpList, XtNcallback, helpCallback, (XtPointer) NULL);
+  helpViewport1 = XtCreateManagedWidget("helpViewport1", viewportWidgetClass,
+					form, (ArgList) 0, (Cardinal) 0);
+  helpList1 = XtCreateManagedWidget("helpList1", listWidgetClass,
+				    helpViewport1, (ArgList) 0, (Cardinal) 0);
+
+  XawListChange(helpList1, helpInfo, nInfo, 0, True);
+  XtAddCallback(helpList1, XtNcallback, helpCallback1, (XtPointer) NULL);
+  (void) XtCreateManagedWidget("helpDoneButton", commandWidgetClass,
+			       form, (ArgList) 0, (Cardinal) 0);
+  helpScrollbar = XtNameToWidget(helpViewport, "vertical");
+  (void) XtCreateManagedWidget("aproposLabel", labelWidgetClass,
+			       form, (ArgList) 0, (Cardinal) 0);
+  aproposText = XtCreateManagedWidget("aproposText", asciiTextWidgetClass,
+				      form, (ArgList) 0, (Cardinal) 0);
+  aproposInfo= XtCreateManagedWidget("aproposInfo",labelWidgetClass, 
+				      form, (ArgList) 0, (Cardinal) 0);
+
+  XtRealizeWidget(helpShell);
+  (void) XSetWMProtocols(XtDisplay(helpShell), XtWindow(helpShell), &wm_delete_window, 1);
+}
+
+
+/* meme chose mais appel r'eduit pour appel a partir de C */
+
+void help_info(message,str1,str2)
+     char *message,*str1,*str2;
+{
+  char buf[56];
+  Arg args[1];
+  Cardinal n = 0;
+  sprintf(buf,"%s %s %s",message,str1,str2);
+  XtSetArg(args[n], XtNlabel,buf);n++;
+  XtSetValues(aproposInfo, args, n);
+}
+
+
+
+/***************************************
+ * Changes the current help list to 
+ * chapter i
+ **************************************/
+
+void changeHelpList(i)
+     int  i;
+{
+  setHelpTopicInfo(i);
+  if (nTopicInfo > 0)
+    XawListChange(helpList, helpTopicInfo, nTopicInfo, 0, True);
+}
+
+/************************************************
+ * Changes the state of the help popup 
+ * If it exists 
+ ************************************************/
+
+void
+setHelpShellState(state)
+     int state;
+{
+  if (!isPoppedUp)
+    return;
+  switch (state) {
+  case NormalState:
+    XtMapWidget(helpShell);
+    break;
+  case IconicState:
+    XtUnmapWidget(helpShell);
+    break;
+  }
+}
+
+
+/************************************
+ * Scilab apropos function 
+ ************************************/
+
+static void SciApropos(str)
+	char           *str;
+{
+  int status = AP.nTopic;
+  if ( SetAproposTopics(str) == 1) return ; /** memory allocation **/
+  if (AP.nTopic == 0) 
+    {
+      if ( status != 0) 
+	{
+	  /** the previous valid list was an apropos one we clear it **/
+	  changeHelpList(1);
+	  help_info("No Info on topic ",str,", back to chapter one");
+	}
+      else
+	help_info("No Info on topic ", str,"");
+      return;
+    }
+  help_info("","","");
+  XawListChange(helpList, AP.HelpTopic, AP.nTopic, 0, True);
+}
+
+
+/******************************************************************
+ * Callback procedure 
+ * activate the help ( xless application on the selected topic 
+ *****************************************************************/
+
+static void
+helpCallback(w, client_data, call_data)
+     Widget          w;
+     XtPointer       client_data;	/* not used */
+     XtPointer       call_data;	/* returnStruct */
+{
+  int             ntopic = ((XawListReturnStruct *) call_data)->list_index;
+  HelpActivate(ntopic) ;
+}
+
+static void
+helpCallback1(w, client_data, call_data)
+	Widget          w;
+	XtPointer       client_data;	/* not used */
+	XtPointer       call_data;	/* returnStruct */
+{
+  int             topic = ((XawListReturnStruct *) call_data)->list_index;
+  changeHelpList(topic + 1);
+}
+
+
+/****************************************************
+ * Action procedures 
+ ****************************************************/
+
+static void helpDoneAction(w,event,params,num_params) 
+     Widget w; XEvent *event; String *params; Cardinal *num_params;
+{
+  XtPopdown(helpShell);
+  isPoppedUp = False;
+}
+
+char           *
+getWidgetString(widget)
+	Widget          widget;
+{
+  Arg             args[1];
+  char           *s;
+
+  XtSetArg(args[0], XtNstring, &s);
+  XtGetValues(widget, args, 1);
+  return (s);
+}
+
+static void queryAproposAction(w,event,params,num_params) 
+     Widget w; XEvent *event; String *params; Cardinal *num_params;
+{
+  char           *apropos;
+  if ((apropos = getWidgetString(aproposText)) == NULL || *apropos == '\0') 
+    {
+      help_info("Apropos string is empty ","","");
+      return;
+    } 
+  else 
+    {
+      SciApropos(apropos);
+    }
+}
+

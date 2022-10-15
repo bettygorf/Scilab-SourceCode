@@ -1,0 +1,42 @@
+.TH abcd 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+feedback - feedback operation
+.SH CALLING SEQUENCE
+.nf
+Sl=Sl1/.Sl2
+.fi
+.SH PARAMETERS
+.TP 8
+Sl1,Sl2
+: linear systems (\fVsyslin\fR list) in state-space or transfer form,
+or ordinary gain matrices.
+.TP
+Sl
+: linear system (\fVsyslin\fR list) in state-space or transfer form
+.SH DESCRIPTION
+The feedback operation is denoted by \fV /. \fR (slashdot).
+This command returns \fVSl=Sl1*(I+Sl2*Sl1)^-1\fR, i.e the (negative) 
+feedback of \fVSl1\fR and \fVSl2\fR.
+.LP
+The result is the same as \fVSl=LFT([0,I;I,-Sl2],Sl1)\fR.
+.LP
+Caution: do not use with decimal point (e.g. \fV1/.1\fR is ambiguous!)
+.SH EXAMPLE
+.nf
+S1=ssrand(2,2,3);S2=ssrand(2,2,2);
+W=S1/.S2;
+ss2tf(S1/.S2)
+//Same operation by LFT:
+ss2tf(lft([zeros(2,2),eye(2,2);eye(2,2),-S2],S1))
+//Other approach: with constant feedback
+BigS=sysdiag(S1,S2); F=[zeros(2,2),eye(2,2);-eye(2,2),zeros(2,2)];
+Bigclosed=BigS/.F;
+W1=Bigclosed(1:2,1:2);   //W1=W (in state-space).
+ss2tf(W1)
+.fi
+.SH SEE ALSO 
+lft, sysdiag, augment
+
+
+

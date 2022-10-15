@@ -1,0 +1,4 @@
+-L/softs/GCWIN32/H-i386-cygwin32/lib/gcc-lib/i386-cygwin32/cygnus-2.7.2-961023
+-L/softs/GCWIN32/H-i386-cygwin32/i386-cygwin32/lib
+-L/softs/GCWIN32/win32/lib
+-L/softs/GCWIN32/win32/lib

@@ -1,0 +1,30 @@
+
+host(1)                        Scilab Function                        host(1)
+NAME
+  host - shell (sh) command execution
+
+CALLING SEQUENCE
+  stat=host(command-name)
+
+PARAMETERS
+
+  command-name   : A character string containing Unix sh instruction
+
+  stat           : An integer flag
+
+DESCRIPTION
+  Sends a string command-name to Unix for execution by the sh shell. Standard
+  output and standard errors of the shell command are written in the calling
+  shell.  stat gives -1 if host can't be called (Not enough system memory
+  available) or the sh return code.
+
+EXAMPLE
+  host("ls $SCI/demos");
+  host("emacs $SCI/demos/wheel2/Makefile");
+  deff('wd=pwd()','if MSDOS then host(''cd>''+TMPDIR+''ath'');..
+                   else host(''pwd>''+TMPDIR+''/path'');end..
+        wd=read(TMPDIR+''/path'',1,1,''(a)'')')
+  wd=pwd()
+
+SEE ALSO
+  edit, manedit, unix_g, unix_s, unix_w, unix_x

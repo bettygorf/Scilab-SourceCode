@@ -1,0 +1,43 @@
+.TH plot 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+plot - simple plot 
+.SH CALLING SEQUENCE
+.nf
+plot(x,y,[xcap,ycap,caption])
+plot(y)
+.fi
+.SH PARAMETERS 
+.TP 15
+x,y
+: two vectors with same sizes
+.TP
+xcap,ycap,caption
+:
+character strings or string matrices 
+.SH DESCRIPTION
+Plot \fVy\fR as function of \fVx\fR.
+\fVxcap\fR and \fVycap\fR are captions for x-axis 
+and y-axis respectively and \fVcaption\fR is the caption of the plot.
+
+Invoked with only one argument, \fVplot(y)\fR plots the \fVy\fR vector or,
+if \fVy\fR is a matrix, it plots all its row vectors on the same plot. This
+plot is done with respect to the vector 1:<number of columns of \fVy\fR>.
+
+For more complex plotting, use plot2d.
+.SH EXAMPLE
+.nf
+x=0:0.1:2*%pi;
+// simple plot
+plot(sin(x))
+// using captions
+xbasc()
+plot(x,sin(x),"sin","time","plot of sinus")
+// plot 2 functions
+xbasc()
+plot([sin(x);cos(x)])
+.fi
+.SH SEE ALSO
+plot2d
+.SH AUTHOR
+J.Ph.C.

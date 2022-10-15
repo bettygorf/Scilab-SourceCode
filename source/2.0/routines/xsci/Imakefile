@@ -1,0 +1,93 @@
+/**/include ../../Path.incl
+#include  "../../Imake.incl"
+/* $XConsortium: Imakefile,v 1.56 92/03/11 17:35:22 gildea Exp $
+ *
+ *                         Attention xterm porters
+ *
+ * Xterm assumes that bcopy can handle overlapping arguments.  If your
+ * bcopy (or memcpy) cannot, write a routine called bcopy and link it in
+ * or add -Dbcopy=mybcopy to the DEFINES list below.
+ */
+
+
+#if !defined(LinuxArchitecture) /* to prevent an xmkmf bug on linux */
+/** For the wf files **/
+#if (defined(VaxArchitecture) && !defined(UltrixArchitecture)) || \
+    (defined(RtArchitecture) && !defined(AIXArchitecture)) || \
+    defined(titan) || \
+    (defined(SunOSPlatform) && (OSMinorVersion==0))
+
+STRSTRDEFINES = -DNOSTRSTR
+#endif
+#endif 
+
+DEFINES = $(STRSTRDEFINES)
+
+OSMAJORVERSION = OSMajorVersion
+OSMINORVERSION = OSMinorVersion
+
+MAIN_DEFINES = -DUTMP  $(TTYGROUPDEF) $(PUCCPTYDDEF) \
+		-DOSMAJORVERSION=$(OSMAJORVERSION) \
+		-DOSMINORVERSION=$(OSMINORVERSION)
+
+OBJS = wf_w_dir.o wf_w_file.o wf_w_util.o wf_w_cursor.o \
+	wf_f_util.o wf_f_read.o \
+	wf_w_msgpanel.o wf_w_setup.o wf_e_edit.o wf_w_init.o \
+	jpc_windows.o jpc_command.o  jpc_utils.o jpc_inter.o   \
+	x_button.o x_charproc.o x_cursor.o \
+	x_data.o x_input.o \
+	x_main.o x_menu.o x_misc.o x_screen.o \
+	x_scrollbar.o x_tabs.o \
+	x_util.o x_VTPrsTbl.o x_zzledt.o \
+	h_help.o 
+
+SRCS=$(OBJS:.o=.c)
+
+XSCILAB_DEFAULT1 = $(SCIDIR)/X11_defaults/Xscilab
+XSCILAB_DEFAULT2 = $(SCIDIR)/X11_defaults/Xscilab-color
+AllTarget($(XSCILAB_DEFAULT1) $(XSCILAB_DEFAULT2))
+
+LibraryTarget($(PATHO)/xsci.a,$(OBJS))
+DependTarget()
+
+$(XSCILAB_DEFAULT1): Xscilab.ad
+	rm -f $(XSCILAB_DEFAULT1)
+	$(INSTALL) -c Xscilab.ad $(XSCILAB_DEFAULT1)
+
+$(XSCILAB_DEFAULT2): Xscilab-color.ad
+	rm -f $(XSCILAB_DEFAULT2)
+	$(INSTALL) -c Xscilab-color.ad $(XSCILAB_DEFAULT2)
+
+OBJTEST=x_test_loop.o  
+SRCTEST=x_test_loop.c 
+
+OBJWFTEST=wf_xcommand.o
+SRCWFTEST=wf_xcommand.c
+
+SpecialObjectRule(x_main.o,NullParameter,$(MAIN_DEFINES))
+SpecialObjectRule(x_misc.o,NullParameter,$(MISC_DEFINES))
+SpecialObjectRule(x_charproc.o,NullParameter,$(MISC_DEFINES))
+
+IM=../../Imake.incl
+
+ScriptsTarget(version.h,version.g,$(IM))
+
+x_main.o x_menu.o jpc_windows.o h_help.o : version.h 
+
+x_main.o h_main_help.o	: h_help.ad.h
+
+#if defined(WithLocalXaw)
+XAWLIB = ../../libs/libXaw.a 
+XMULIB = ../../libs/libXmu.a
+#endif
+
+NormalProgramTarget(test,$(OBJTEST) ../sun/zzledt.o ../sun/sync.o ../sun/flags.o $(OBJS),NullParameter, $(SCIDIR)/libs/X11G.a $(SCIDIR)/libs/comm.a XawClientLibs ,$(TERMCAPLIB) $(PTYLIB) -lm)
+
+NormalProgramTarget(wf_test,$(OBJWFTEST) $(OBJS),NullParameter,XawClientLibs,-lm)
+
+NormalProgramTarget(help_test,h_main_help.o h_help.o,NullParameter,XawClientLibs,-lm)
+
+distclean::clean 
+
+clean::
+	rm -f $(XSCILAB_DEFAULT1) $(XSCILAB_DEFAULT2)

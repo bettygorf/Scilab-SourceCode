@@ -1,0 +1,25 @@
+.TH x_matrix 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+x_matrix - Xwindow editing of matrix 
+.SH CALLING SEQUENCE
+.nf
+[result]=x_matrix(label,matrix-init) 
+.fi
+.SH PARAMETERS
+.TP
+label
+: chracter string (name of matrix)
+.TP
+matrix-init 
+: real matrix
+.SH DESCRIPTION
+For reading or editing a matrix .
+.SH EXAMPLE
+.nf
+m=evstr(x_matrix('enter a  3x3 matrix ',rand(3,3)))
+.fi
+.SH SEE ALSO
+x_mdialog, x_dialog
+
+

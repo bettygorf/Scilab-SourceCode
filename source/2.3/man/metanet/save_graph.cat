@@ -1,0 +1,31 @@
+
+save_graph(1)                  Scilab function                  save_graph(1)
+NAME
+  save_graph - saves a graph
+
+CALLING SEQUENCE
+  save_graph(g,path)
+
+PARAMETERS
+
+  g : graph list
+
+  name : string, the path of the graph to save
+
+DESCRIPTION
+  save_graph saves the graph g in a graph file.  path is the name of the
+  graph file where the graph will be saved.  path can be the name or the
+  pathname of the file; if the "graph" extension is missing in path, it is
+  assumed.  If path is the name of a directory, the name of the graph is used
+  as the name of the file.
+
+EXAMPLE
+  g=load_graph(SCI+'/demos/metanet/mesh100');
+  show_graph(g);
+  unix('rm mymesh100.graph')
+  save_graph(g,'mymesh100.graph');
+  g=load_graph('mymesh100');
+  show_graph(g,'new');
+
+SEE ALSO
+  load_graph

@@ -1,0 +1,66 @@
+
+
+
+evstr(1)                       Scilab Function                       evstr(1)
+
+
+
+
+
+
+NAME
+  evstr - evaluation of expressions
+
+CALLING SEQUENCE
+  [H]=evstr(Z)
+
+PARAMETERS
+
+  Z    : matrix of character strings or list
+
+  H    : matrix
+
+DESCRIPTION
+  returns the evaluation of the matrix of character strings Z.
+
+EXAMPLES
+  a=1; b=2; Z=['a','b'] ; evstr(Z)
+  returns the matrix [1,2]
+
+  This function can also be used for a list.
+   a=1; b=2; Z =list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+  evstr(Z)
+  returns [2,-1]
+
+  Here, Z is a list with two elements; the second element of Z is a vector V
+  of character strings; evstr returns the evaluation of the first element of
+  Z. In this first element %(i) stands for the ith element of V consequently
+  evstr returns [a+1,(a+1)-(b+1)]=[2,-1].
+
+  evstr('a=1') is not valid (use execstr ).
+
+SEE ALSO
+  execstr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

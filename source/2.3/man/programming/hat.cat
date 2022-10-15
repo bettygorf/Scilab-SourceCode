@@ -1,0 +1,28 @@
+
+hat(1)                         Scilab Function                         hat(1)
+NAME
+  hat (^) - exponentiation
+
+CALLING SEQUENCE
+  A^b
+
+DESCRIPTION
+  Exponentiation of matrices or vectors by a constant vector.
+
+  If A is a vector or a rectangular matrix the exponentiation is done
+  element-wise, with the usual meaning.
+
+  For square A matrices the exponentiation is done in the matrix sense.
+
+  For boolean, polynomial and rational matrices, the exponent must be an
+  integer
+
+EXAMPLES
+  2^4
+  [1 2;2 4]^(1+%i)
+  s=poly(0,"s");
+  [1 2 s]^4
+  [s 1;1  s]^(-1)
+
+SEE ALSO
+  exp, inv

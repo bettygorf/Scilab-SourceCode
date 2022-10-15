@@ -1,0 +1,86 @@
+
+pvm_tasks(1)                   Scilab function                   pvm_tasks(1)
+NAME
+  pvm_tasks - returns information about the tasks running on the virtual
+  machine.
+
+CALLING SEQUENCE
+  res  = pvm_tasks([where 0])
+
+PARAMETERS
+
+  where (optional)
+       : integer, specifying what tasks to return information about.  The
+       options are:
+
+            0(default)for all the tasks on the virtual machine
+            pvmd tid  for all tasks on a given host
+              tid     for a specific task
+
+  rreess,,
+
+  rreess((11))::
+       integer returning task ID of one task
+
+  rreess((22))::
+       integer returning parent task ID
+
+  rreess((33))::
+       integer returning pvmd task ID of host task is on
+
+  rreess((44))::
+       integer returning status of task
+
+  rreess((55))::
+       string returning the name of spawned task.  Manually started tasks
+       return blank.
+
+  rreess((66))::
+       integer returning the number of tasks being reported on.
+
+  rreess((77))::
+       integer status code returned by the routine.
+
+DESCRIPTION
+  pvm_tasks returns information about tasks presently running on the virtual
+  machine.  The information returned is the same as that available from the
+  console command ps.  The pvm_tasks function returns information about the
+  entire virtual machine in one call.
+
+  If pvm_tasks is successful, info will be 0.  If some error occurs then info
+  will be < 0.
+
+  for example:
+  -->res = pvm_tasks()
+   res  =
+
+         res(1)
+
+  !   262148.    262151.    262152. !
+
+         res(2)
+
+  !   262147.    0.    262151. !
+
+         res(3)
+
+  !   262144.    262144.    262144. !
+
+         res(4)
+
+  !   6.    4.    6. !
+
+         res(5)
+
+  !pvmgs    /home/ubeda/SCILAB/scilab-2.4/bin/scilex  !
+
+         res(6)
+
+      3.
+
+         res(7)
+
+      0.
+
+SEE ALS
+  pvm_config, pvm_tidtohost

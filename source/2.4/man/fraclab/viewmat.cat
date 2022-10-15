@@ -1,0 +1,48 @@
+
+viewmat(2)                     Scilab Function                     viewmat(2)
+NAME
+  viewmat -  Vizualisation of a matrix
+
+  Author: Paulo Goncalves - Bertrand Guiheneuf
+
+  Two dimensional display of a matrix
+
+Usage
+  viewmat(Z [,X,Y])
+
+Input parameters
+       o Z : Real valued matrix [ny,nx] 2-D matrix to be displayed
+       o X : Real  vector [1,nx] or [nx,1] x-axis
+       o Y : Real  vector [1,ny] or [ny,1] Controls the vertical axis.  y
+         forces the vertical axis to be numbered from bottom to top in the
+         increasing order. When not specified, the coordinate system is set
+         to its "Cartesian" axes mode.  The coordinate system origin is at
+         the lower left corner.  The x axis is horizontal and is numbered
+         from left to right.  The y axis is vertical and is numbered from
+         bottom to top.
+
+         o type = 0        : image
+         o type = 1        : pseudo color
+         o type = 2        : contour plot
+         o type = 3        : mesh plot
+         o type = 4        : shaded surface with lighting
+         o scale = 0       : linear dynamic
+         o scale = 1       : logarithmic dynamic
+         o level   : scalar setting the minimum level of the display 0 <
+           level < +1 for linear scale 0 dB < level < Infty dB for loga-
+           rithmic scale
+        Scilab version:  cmd  is ineffective and frozen to [1 0 0] .
+
+Remark
+    viewmat changes the color map
+
+See also:
+  plot3d, grayplot
+
+Example:
+  //Signal synthesis:
+  x = oscillsing(1,1,0,128) ;
+  X = x(:)*x(:)' ;
+  //Matrix vizualisation:
+
+  viewmat(abs(X))

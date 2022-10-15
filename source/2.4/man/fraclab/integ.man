@@ -1,0 +1,87 @@
+.TH "integ" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+integ -  Approximate 1-D integral
+.sp
+Author: Paulo Goncalves
+.sp
+Approximate 1-D integral. \fIinteg(y,x)\fP approximates the integral of
+\fIy\fP with respect to the variable \fIx\fP
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+SOM = integ(y[,x])
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBy\fP : real valued vector or matrix \f(CR[\fPry,cy\f(CR]\fP 
+Vector or matrix to be integrated. For matrices, \fIinteg(Y)\fP computes the integral of each column of \fIY\fP
+
+.TP
+o 
+\fBx\fP :  row-vector \f(CR[\fPry,1\f(CR]\fP 
+Integration path of \fIy\fP. Default value is (1:cy)
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBSOM\fP : real valued vector \f(CR[\fP1,cy\f(CR]\fP  Finite
+sum approximating the integral of \fIy\fP w.r.t the integration path
+\fIx\fP
+.RE
+
+.SH See also:
+integ2d
+.SH Example:
+\fI Cumulative Normal Distribution \fP
+.sp
+.ft CR
+.nf
+sigma = 1 ; N = 100 ;
+x = logspace(log10(0.001),log10(3),N/2) ;
+x = [ -fliplr(x) x ] ;
+y = 1/sqrt(2*pi) * exp( -(x.^2)./2 ) ;
+plot(x,y) 
+for n = 1:N
+  PartialSom(n) = integ( y(1:n),x(1:n) ) ;
+end
+.fi 
+.ec
+.ft P
+.sp
+\fI Vizualisation Matlab \fP
+.sp
+.ft CR
+.nf
+plot(x,PartialSom,x,PartialSom,'or') 
+grid ; xlabel('x') ; title('\int_{-\infty}^{x} g(u) du')
+.fi 
+.ec
+.ft P
+.sp
+\fI Vizualisation Scilab \fP
+.sp
+.ft CR
+.nf
+xbasc()
+plot2d(x,PartialSom,-1) 
+.fi 
+.ec
+.ft P
+.sp

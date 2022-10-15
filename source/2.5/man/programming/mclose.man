@@ -1,0 +1,29 @@
+.TH mclose 1 "April 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mclose - close an opened file
+.SH CALLING SEQUENCE
+.nf
+err=mclose([fd])
+.fi
+.SH PARAMETERS
+.TP 10
+fd
+: scalar. The \fVfd\fR parameter returned by the function \fVmopen\fR is
+used as a file descriptor (it's a positive integer). 
+.TP 
+err
+: a scalar. Error indicator
+: vector
+.SH DESCRIPTION
+\fVmclose\fR must be used to close a file opened by \fVmopen\fR. If fd
+is omitted \fVmclose\fR closes the last opend file.
+.LP
+To close  files opened using \fVfile('open',...)\fR use
+function \fVfile('close',...)\fR.
+.SH SEE ALSO
+mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr, mopen, mprintf, mput, mputstr, mscanf, mseek, mtell
+
+
+
+

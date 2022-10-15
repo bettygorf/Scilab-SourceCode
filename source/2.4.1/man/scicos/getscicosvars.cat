@@ -1,0 +1,48 @@
+
+getscicosvars(5)               Scicos function               getscicosvars(5)
+NAME
+  getscicosvars - get Scicos data structure while running
+
+CALLING SEQUENCE
+  v=getscicosvars(name)
+
+PARAMETERS
+
+  name : a character string, the name of the required structure
+
+  v    : vector of the structure value
+
+DESCRIPTION
+  This function may be used in a Scilab block to get value of some particular
+  global data while running. It allows to write diagram monitoring blocks.
+
+  for example  the instruction  disp(getscicosvars('x'))  displays the entire
+  continuous state of the diagram.
+  x=getscicosvars('x');
+  xptr=getscicosvars('xptr');
+  disp(x(xptr(k):xptr(k+1)-1))
+  displays the continuous state of the k block
+  |=========================================================|
+  | name     |  data structure definition                   |
+  |=========================================================|
+  |'x'       | continuous state                             |
+  |'xptr'    | continuous state splitting vector            |
+  |'z'       | discrete state                               |
+  |'zptr'    | discrete  state splitting vector             |
+  |'rpar'    | real parameters vector                       |
+  |'rpptr'   | rpar  splitting vector                       |
+  |'ipar'    | integer parameters vector                    |
+  |'ipptr'   | ipar  splitting vector                       |
+  |'outtb'   | vector of all input/outputs values           |
+  |'inpptr'  | inplnk splitting vector                      |
+  |'outptr'  | outlnk splitting vector                      |
+  |'inplnk'  | vector of input port values address in lnkptr |
+  |'outlnk'  | vector of output port values address in lnpkpr|
+  |'lnkptr'  | outtb splitting vector                       |
+  |=========================================================|
+  See scicos_cpr for more detail on these data structures.
+
+  For C or fortran computational function the C procedure C2F(getscicosvars)
+  may used. See routines/scicos/import.c file for more details.
+SEE ALSO
+  setscicosvars,  scicosim, curblock, scicos_cpr, getblocklabel

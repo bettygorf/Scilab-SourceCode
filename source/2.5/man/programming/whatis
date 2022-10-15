@@ -1,0 +1,227 @@
+%helps - variable defining the path of help directories   @%helps
+abort - interrupt evaluation.   @abort
+addinter - new functions interface incremental linking at run time   @addinter
+and (&) - logical and   @and
+ans - answer   @ans
+apropos - searches keywords in scilab help   @apropos
+argn - number of arguments in a function call   @argn
+backslash (\\) - left matrix division.   @backslash
+bool2s - convert boolean matrix to a zero one matrix.   @bool2s
+boolean - scilab objects, boolean variables and operators & | ~   @boolean
+brackets ([,]) - left and right brackets   @brackets
+break - keyword to interrupt loops   @break
+call - fortran or c user routines call   @call
+case - keyword used in select   @case
+ceil - rounding up   @ceil
+chdir - changes scilab current directory   @chdir
+clear - kills variables   @clear
+clearfun - remove primitive.   @clearfun
+clearglobal - kills global variables   @clearglobal
+code2str - returns character string associated with scilab integer codes.   @code2str
+coeff - coefficients of matrix polynomial   @coeff
+colon (:) - colon operator   @colon
+comma (,) - column, instruction, argument separator   @comma
+comments - comments   @comments
+comp - scilab function compilation   @comp
+date - current date as date string   @date
+deff - on-line definition of function   @deff
+degree - degree of polynomial matrix   @degree
+delbpt - delete breakpoint   @delbpt
+diary - diary of session   @diary
+disp - displays variables   @disp
+dispbpt - display breakpoints   @dispbpt
+dot (.) - symbol   @dot
+double - conversion from integer to double precision representation   @double
+else - keyword in if-then-else   @else
+elseif - keyword in if-then-else   @elseif
+empty ([]) - empty matrix   @empty
+end - end keyword   @end
+equal (=) - affectation, comparison equal sign   @equal
+errcatch - error trapping   @errcatch
+errclear - error clearing   @errclear
+error - error messages   @error
+evstr - evaluation of expressions   @evstr
+exec - script file execution   @exec
+execstr - scilab instructions execution by evaluation of strings   @execstr
+exists - checks variable existence   @exists
+exit - ends the current scilab session   @exit
+external - scilab object, external function or routine   @external
+extraction - matrix and list entry extraction   @extraction
+eye - identity matrix   @eye
+feval - multiple evaluation   @feval
+file - file management   @file
+find - find indices of boolean vector or matrix true elements   @find
+fix - rounding towards zero   @fix
+floor - rounding down   @floor
+for - language keyword for loops   @for
+format - number printing and display format   @format
+fort - fortran or c user routines call   @fort
+fprintf - emulator of c language fprintf function   @fprintf
+fprintfMat - print a matrix in a file.   @fprintfMat
+fscanf - converts formatted input read on a file   @fscanf
+fscanfMat - reads a matrix from a text file.   @fscanfMat
+funcprot - switch scilab functions protection mode   @funcprot
+function - scilab procedure and scilab object   @function
+funptr - coding of primitives ( wizard stuff )   @funptr
+genlib - building lib with all functions defined in a directory   @genlib
+getcwd - get scilab current directory   @getcwd
+getd - getting all functions defined in a directory   @getd
+getdate - get date and time information   @getdate
+getenv - get the value of an environment variable   @getenv
+getf - loading function   @getf
+getfield - list field extraction   @getfield
+getpid - get scilab process identificator   @getpid
+global - define global variable   @global
+gstacksize - set/get scilab global stack size   @gstacksize
+hat (^) - exponentiation   @hat
+help - on-line help command   @help
+host - shell (sh) command execution   @host
+hypermat - initialize an n dimensional matrices   @hypermat
+hypermatrices - scilab object, n dimensional matrices in scilab   @hypermatrices
+iconvert - conversion to 1 or 4 byte integer representation   @iconvert
+ieee - set floating point exception mode   @ieee
+if then else - conditional execution   @if
+imag - imaginary part   @imag
+insertion - matrix and list insertion or modification   @insertion
+int - integer part   @int
+int16 - conversion to 2 bytes integer representation   @int8
+int32 - conversion to 4 bytes integer representation   @int8
+int8 - conversion to one byte integer representation   @int8
+intersci - scilab tool to interface c of fortran functions with scilab   @intersci
+intppty - set interface argument passing properties   @intppty
+inttype - type integers used in integer data types   @inttype
+inv_coeff - build a polynomial matrix from its coefficients   @inv_coeff
+iserror - error test   @iserror
+isglobal - check if a variable is global   @isglobal
+keyboard - keyboard commands   @keyboard
+left ([) - left bracket   @left
+length - length of object   @length
+less (<) - lower than comparison   @less
+lib - library definition   @lib
+lines - rows and columns used for display   @lines
+link - dynamic link   @link
+list - scilab object and list function definition   @list
+load - load saved variable   @load
+lsslist - scilab linear state space function definition   @lsslist
+lstcat - list concatenation   @lstcat
+macro - scilab procedure and scilab object   @macro
+matrices - scilab object, matrices in scilab   @matrices
+matrix - reshape a vector or a matrix to a different size matrix   @matrix
+max - maximum   @max
+maxi - maximum   @maxi
+mclearerr - reset binary file access errors   @mclearerr
+mclose - close an opened file   @mclose
+meof - check if end of file has been reached   @meof
+mfprintf - converts, formats, and writes data to a file   @mprintf
+mfprintf - interface to the c fprintf function   @mfprintf
+mfscanf - interface to the c fscanf function   @mfscanf
+mfscanf - scan data from file   @mscanf
+mget - reads byte or word in a given binary format   @mget
+mgetstr - read a character string   @mgetstr
+min - minimum   @min
+mini - minimum   @mini
+minus (-) - substraction operator, sign changes   @minus
+mlist - scilab object, matrix oriented typed list definition.   @mlist
+mode - select a mode in exec file   @mode
+mopen - open a file   @mopen
+mprintf - converts, formats, and writes data to the main scilab window   @mprintf
+mprintf - interface to the c printf function   @mfprintf
+mput - writes byte or word in a given binary format   @mput
+mputstr - write a character string in a file   @mputstr
+mscanf - interface to the c scanf function   @mfscanf
+mscanf - scan data from input   @mscanf
+mseek - set current position in binary file.   @mseek
+msprintf - converts, formats, and writes data in a string   @mprintf
+msprintf - interface to the c sprintf function   @mfprintf
+msscanf - interface to the c sscanf function   @mfscanf
+msscanf - scan data from string   @mscanf
+mtell - binary file management   @mtell
+mtlb_mode - switch matlab like operations   @mtlb_mode
+names - scilab names syntax   @names
+newfun - add a name in the table of functions   @newfun
+not (~) - logical not   @not
+null - delete an element in a list   @null
+oldload - load saved variable in 2.4.1 and previous formats   @oldload
+oldsave - saving variables in 2.4.1 and previous format   @oldsave
+ones - matrix made of ones   @ones
+or | - logical or   @or
+overloading - display, functions and operators overloading capabilities   @overloading
+parents ( ) - left and right parenthesis   @parents
+part - extraction of strings   @part
+pause - pause mode, invoke keyboard   @pause
+percent (%) - special character   @percent
+plus (+) - addition operator   @plus
+poly - polynomial definition   @poly
+power - power operation (^,.^)   @power
+predef - variable protection   @predef
+print - prints variables in a file   @print
+printf - emulator of c language printf function   @printf
+printf_conversion - printf, sprintf, fprintf conversion specifications   @printf_conversion
+pwd - print scilab current directory   @pwd
+quit - decrease the pause level or exit   @quit
+quote (') - transpose operator, string delimiter   @quote
+rand - random number generator   @rand
+rat - floating point rational approximation   @rat
+rational - scilab objects, rational in scilab   @rational
+read - matrices read   @read
+read4b - fortran file binary read   @read4b
+readb - fortran file binary read   @readb
+real - real part   @real
+resume - return or resume execution and copy some local variables   @resume
+return - return or resume execution and copy some local variables   @return
+rlist - scilab rational fraction function definition   @rlist
+round - rounding   @round
+save - saving variables in binary files   @save
+scanf - converts formatted input on standard input   @scanf
+scanf_conversion - scanf, sscanf, fscanf conversion specifications   @scanf_conversion
+sciargs - scilab command line arguments   @sciargs
+scilab - major unix script to execute scilab and miscellaneous tools   @scilab
+scilink - unix script to relink scilab   @scilink
+select - select keyword   @select
+semi (;) - instruction and row separator   @semi
+semicolumn (;) - ending expression and row separator   @semicolumn
+setbpt - setting breakpoints   @setbpt
+setfield - list field insertion   @setfield
+sign - sign function   @sign
+signm - matrix sign function   @signm
+size - size of objects   @size
+slash (/) - right division and feed back   @slash
+sprintf - emulator of c language sprintf function   @sprintf
+sscanf - converts formatted input given by a string   @sscanf
+stacksize - set scilab stack size   @stacksize
+star (*) - multiplication operator   @star
+startup - startup file   @startup
+str2code - return scilab integer codes associated with a character string   @str2code
+string - conversion to string   @string
+strings - scilab object, character strings   @strings
+symbols - scilab operator names   @symbols
+testmatrix - generate some particular matrices   @testmatrix
+then - keyword in if-then-else   @then
+tilda (~) - logical not   @tilda
+tlist - scilab object and typed list definition.   @tlist
+type - variable type   @type
+typename - associates a name to variable type   @typename
+uint16 - conversion to 2 bytes unsigned integer representation   @int8
+uint32 - conversion to 4 bytes unsigned integer representation   @int8
+uint8 - conversion to one byte unsigned integer representation   @int8
+ulink - unlink a dynamically linked shared object   @ulink
+unix - shell (sh) command execution   @unix
+unix_g - shell (sh) command execution, output redirected to a variable   @unix_g
+unix_s - shell (sh) command execution, no output   @unix_s
+unix_w - shell (sh) command execution, output redirected to scilab window   @unix_w
+unix_x - shell (sh) command execution, output redirected to a window   @unix_x
+user - interfacing a fortran routine   @user
+varargin - variable numbers of arguments in an input argument list   @varargin
+varargout - variable numbers of arguments in an output argument list   @varargout
+varn - symbolic variable of a polynomial   @varn
+warning - warning messages   @warning
+what - list the scilab primitives   @what
+where - get current instruction calling tree   @where
+whereami - display current instruction calling tree   @whereami
+whereis - name of library containing a function   @whereis
+while - while keyword   @while
+who - listing of variables   @who
+whos - listing of variables in long form   @whos
+writb - fortran file binary write   @writb
+write - write in a formatted file   @write
+write4b - fortran file binary write   @write4b

@@ -1,0 +1,59 @@
+ 
+clear;lines(0);
+ 
+// Here xsetech is used to split the graphics window in two parts
+ 
+// first xsetech is used to set the first sub window
+ 
+// and the graphics scale
+ 
+xsetech([0,0,1.0,0.5],[-5,-3,5,3])
+ 
+// we call plot2d with the "001" option to use the graphics scale
+ 
+// set by xsetech
+ 
+plot2d([1:10]',[1:10]',1,"001"," ")
+ 
+// then xsetech is used to set the second sub window
+ 
+xsetech([0,0.5,1.0,0.5])
+ 
+// the graphics scale is set by xsetech to [0,0,1,1] by default
+ 
+// and we change it with the use of the rect argument in plot2d
+ 
+plot2d([1:10]',[1:10}',1,"011"," ",[-6,-6,6,6])
+ 
+ 
+// Four plots on a single graphics window
+ 
+xbasc()
+ 
+xset("font",2,0)
+ 
+xsetech([0,0,0.5,0.5]); plot3d()
+ Demo of plot3d
+t=-%pi:0.3:%pi;plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+ 
+xsetech([0.5,0,0.5,0.5]); plot2d()
+ Demo of plot2d
+  x=0:0.1:2*%pi,  plot2d([x;x;x]',[sin(x);sin(2*x);sin(3*x)]',[-1,-2,3],'151','L1@L2@L3',[0,-2,2*%pi,2]);
+ 
+xsetech([0.5,0.5,0.5,0.5]); grayplot()
+ Demo of grayplot
+t=-%pi:0.1:%pi;m=sin(t)'*cos(t);grayplot(t,t,m);
+ 
+xsetech([0,0.5,0.5,0.5]); histplot()
+histplot([-6:0.2:6],rand(1,2000,'n'),[1,-1],'011',' ',[-6,0,6,0.5],[2,12,2,11]);
+deff('[y]=f(x)','y=exp(-x.*x/2)/sqrt(2*%pi);');
+x=-6:0.1:6;x=x';plot2d(x,f(x),1,"000");
+titre= 'macro histplot : Histogram plot';
+xtitle(titre,'Classes','N(C)/Nmax');
+ 
+// back to default values for the sub window
+ 
+xsetech([0,0,1,1])
+ 
+xset("default")
+ 

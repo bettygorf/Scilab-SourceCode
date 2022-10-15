@@ -1,0 +1,88 @@
+.TH exec 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+exec - script file execution
+.SH CALLING SEQUENCE
+.nf
+exec(path [,mode])
+exec(fun [,mode])
+ierr=exec(path,'errcatch' [,mode])
+ierr=exec(fun,'errcatch' [,mode])
+.fi
+.SH PARAMETERS
+.TP 5
+path 
+: a string, the path of the script file
+.TP
+mode
+: an integer scalar, the execution mode (see below)
+.TP
+fun
+: a scilab function
+.TP
+ierr
+: integer, 0 or error number
+
+.SH DESCRIPTION
+\fVexec(path [,mode])\fR executes sequentialy the scilab instructions
+contained in the file given by \fVpath\fR  with an optional 
+execution mode \fVmode\fR .
+
+.LP
+The different cases for \fVmode\fR are :
+.IP 0 
+: the default value
+.IP -1 
+: nothing is printed
+.IP 1 
+: echo of each command line
+.IP 2 
+: prompt \fV-->\fR is printed
+.IP 3 
+: echoes + prompts
+.IP 4 
+: stops before each prompt
+.IP 7 
+: stops + prompts + echoes : useful mode for demos.
+.LP
+\fVexec(fun [,mode])\fR executes function  \fVfun\fR as a script: no
+input nor output argument nor specific variable environment. This form
+is more efficient, because script code may be pre-compiled (see getf,
+comp). This method for script evaluation allows to store scripts as
+function in libraries. 
+.LP
+If an error is encountered while executing , if 'errcatch' flag is
+present \fVexec\fR issues an error message, aborts execution of the
+ instructions and resume with \fVierr\fR equal to the error
+number,if 'errcatch' flag is not present, standard error handling
+works.
+
+.SH REMARK
+Last line of script file must be terminated by a newline to be taken
+into account.
+
+.SH EXAMPLES
+.nf
+// create a script file
+write(TMPDIR+'/myscript','a=1;b=2')
+// execute it
+exec(TMPDIR+'/myscript')
+who
+
+//create a function
+deff('y=foo(x)','a=x+1;y=a^2')
+clear a b
+//execute the function
+foo(1)
+// a is a variable created in the environment of the function foo
+//    it is destroyed when foo returns
+who 
+
+x=1 //create x to make it known by the script foo
+exec(foo)
+// a and y are created in the current environment
+who
+.fi
+
+.SH SEE ALSO
+getf, execstr, evstr, comp, mode, chdir, getcwd

@@ -1,0 +1,28 @@
+
+mtlb_fliplr(2)                 Scilab Function                 mtlb_fliplr(2)
+NAME
+  mtlb_fliplr - Flip matrix in left/right direction
+
+  Author: Paulo Goncalves
+
+  Flip matrix in left/right direction.  For matrices, mtlb_fliplr(x) returns
+  x with row preserved and columns flipped in the left/right direction.
+
+Usage
+
+  y = mtlb_fliplr(x) ;
+Input parameters
+       o x : Real or complex valued matrix [rx,cx]
+Output parameters
+       o y : Real or complex valued matrix [rx,cx]
+See also:
+  flipud, fftshift
+
+Example:
+   Matrix synthesis:
+
+  x = [1 2 3 ; 4 5 6]
+
+   Left - Right flip
+
+  FlipX = mtlb_fliplr(x)

@@ -1,0 +1,39 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+TEXFILES= bibli.tex chap0.tex chap1.tex chap2.tex chap3.tex chap4.tex chap5.tex \
+	chap6.tex chap7.tex chap8.tex chap9.tex
+
+AllTarget(info)
+
+info 	:
+	@echo "  Toolbox.ps.Z is Scilab documentation "
+	@echo "  in compressed Postscript source "
+	@echo 
+	@echo "  To remake it from scratch, you need" 
+	@echo "  scilab, latex and makeindex type :"
+	@echo "     rm Toolbox.ps.Z ; xmkmf ; make Makefiles ; make doc "
+
+doc	:  subs Toolbox.ps.Z
+
+Toolbox.ps.Z: subs  $(TEXFILES)
+	latex Toolbox
+	makeindex -s Toolbox.isty Toolbox
+	latex Toolbox
+	dvips -o Toolbox.ps Toolbox.dvi 
+	$(RM) Toolbox.ps.Z
+	compress Toolbox.ps
+
+clean	::
+	$(RM) *.aux *.log  *.dvi *.ind *.idx *.ilg *.lof *.lot *.toc Toolbox.ps
+
+distclean:: clean 
+
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS='$(CDEBUGFLAGS)'
+
+SUBDIRS = Nsource_diary Nfigs_source
+
+NamedMakeSubdirs(subs,$(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS))

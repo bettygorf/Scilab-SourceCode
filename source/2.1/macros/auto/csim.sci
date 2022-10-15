@@ -1,0 +1,106 @@
+function [y,x]=csim(u,dt,sl,x0)
+//Syntax:
+//  [y [,x]]=csim(u,dt,sl,[x0]) 
+// simulation of the controlled linear system sl.
+// sl is assumed to be a continuous-time system.
+// u is the control and x0 the initial state.
+//
+//u can be:
+// - a macro 
+//    [inputs]=u(t)
+// - a list
+//    list(ut,parameter1,....,parametern) such that
+//    inputs=ut(t,parameter1,....,parametern)
+// - the chracter string 'impuls' for impulse response calculation
+//    (here sl is assumed SISO without direct feedthrough and x0=0)
+// - the character string 'step' for step response calculation 
+//    (here sl is assumed SISO without direct feedthrough and x0=0)
+//dt is a vector of instants with dt(1) = initial time
+//                   that is:           x0=x
+//                                          dt(1)
+//
+//y matrix such that:
+//  y=[y       y  ...  y     ]
+//      dt(1)   dt(2)   dt(n)
+//x matrix such that:
+//  x=[x       x  ...  x     ]
+//      dt(1)   dt(2)   dt(n)
+//
+//See also:
+// dsimul flts ltitr rtitr ode impl
+//!
+[lhs,rhs]=argn(0)
+//
+if rhs<3 then error(39),end
+if type(sl)<>15 then error(56,1),end
+select sl(1)
+  case 'lss' then ,
+  case  'r'  then sl=tf2ss(sl)
+  else  error(97,1),
+end;
+if sl(7)<>'c' then error(93,1),end
+//
+[a,b,c,d]=sl(2:5)
+[ma,mb]=size(b);
+//
+imp=0;text='if t=0 then y=0, else y=1,end'
+//
+select type(u)
+ case 10 then //
+    if mb<>1 then error(95,1);end;
+    if part(u,1)='i' then
+           imp=1;
+           if norm(d,1)<>0 then
+               warning('direct feedthrough (d) <> 0;set to zero');
+               d=0*d;
+           end;
+    end;
+    deff('[y]=u(t)',text);comp(u);
+ case 11,comp(u)
+ case 13,
+ case 15 then
+    uu=u(1),
+    if type(uu)=11 then 
+      comp(uu),
+      u(1)=uu,
+    end
+ else error(44,2)
+end;
+//
+if rhs=3 then x0=sl(6),end
+if imp=1 then x0=0*x0,end
+nt=prod(size(dt));x=0*ones(ma,nt)
+[a,v,bs]=bdiag(a,1);b=v\b;c=c*v;x0=v\x0
+//
+if type(u)<>15 then
+  deff('[ydot]=%sim2(%tt,%y)','ydot=ak*%y+bk*u(%tt)');comp(%sim2)
+  ut=ones(mb,nt);for k=1:nt, ut(:,k)=u(dt(k)),end
+else
+  %sim2=u
+  tx=' ';for l=2:size(u), tx=tx+',%'+string(l-1);end;
+  deff('[ydot]=sk(%tt,%y,u'+tx+')','ydot=ak*%y+bk*u(%tt'+tx+')');
+  comp(sk)
+  %sim2(0)=sk;u=u(1)
+  deff('[ut]=uu(t)',...
+     ['['+part(tx,3:length(tx))+']=%sim2(3:'+string(size(%sim2))+')';
+      'ut=ones(mb,nt);for k=1:nt, ut(:,k)=u(t(k)'+tx+'),end'])
+  comp(uu);
+ut=uu(dt);
+end;
+//simulation
+k=1;
+for n=bs',
+  kk=k:k+n-1
+  ak=a(kk,kk)
+  bk=b(kk,:)
+  nrmu=maxi([norm(bk*ut,1),norm(x0(kk))])
+  if nrmu > 0 then
+    atol=1.d-7*nrmu;rtol=atol/100
+    x(kk,:)=ode('adams',x0(kk),dt(1),dt,rtol,atol,%sim2)
+    if imp=1 then x(kk,:)=ak*x(kk,:)+bk*ut,end
+  end;
+  k=k+n
+end;
+if imp=0 then y=c*x+d*ut,else y=c*x,end
+if lhs=2 then x=v*x,end
+

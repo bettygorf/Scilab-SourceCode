@@ -1,0 +1,7 @@
+
+PROD_f(5)                        Scicos Block                       PROD_f(5)
+NAME
+  PROD_f - Scicos element wise product block
+
+DESCRIPTION
+  The output is the element wize product of the inputs.

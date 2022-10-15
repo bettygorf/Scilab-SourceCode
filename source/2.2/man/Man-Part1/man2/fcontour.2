@@ -1,0 +1,54 @@
+.TH fcontour 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so man1/sci.an
+.SH NAME
+fcontour - level curves
+.SH CALLING SEQUENCE
+.nf
+fcontour(xr,yr,f,nz,[theta,alpha,caption,flag,bbox,zlev])
+.fi
+.SH PARAMETERS
+.TP 10
+xr,yr 
+: two real vectors of size respectively (1,n1) and (1,n2).
+.TP
+f
+: is an external which gives the analytic expression of the surface.
+\fVz=f(x,y)\fR is first computed on the grid specified by \fVxr.yr\fR. Then, control is 
+passed to the routine contour.
+.TP
+nz 
+: specifies the level values or number.
+.RS
+.TP
+-
+If \fVnz\fR is of size 1, its value considered as
+an integer gives the number of level curves equally spaced from zmin to zmax.
+.TP
+-
+If \fVnz\fR is a vector, nz(j) gives the value of the jth level curve.
+.RE
+.TP
+[rest] 
+: for \fVtheta,alpha,caption, bbox\fR see \fVplot3d\fR
+.TP
+flag
+: real vector of size 3 ; \fVflag=[mode,type,box]\fR; \fVflag(2)\fR and \fVflag(3)\fR are 
+the same as in \fVplot3d\fR; \fVflag(1)\fR has the following meaning :
+.RS
+.TP 15
+flag(1)=0 
+: the level curves are drawn on the surface defined by (x,y,z)
+.TP
+flag(1)=1
+: the level curves are drawn on a 3D plot and on the plan defined by 
+equation z=zlev
+.TP
+flag(1)=2 
+: The level curves are drawn on a 2D plot.
+.RE
+.SH DESCRIPTION
+Draws the level curves of a surface z=f(x,y) 
+
+Enter the command \fVfcontour()\fR to see a demo.
+.SH AUTHOR
+J.Ph.C..

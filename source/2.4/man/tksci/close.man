@@ -1,0 +1,53 @@
+.TH "close" 2 " 04 June 1998" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+close - close a figure
+.sp
+Author: Bertrand Guiheneuf
+.sp
+This routine allows to close a tksci figure (window). 
+.sp
+.sp
+.SH Usage
+close(\f(CR[\fPh\f(CR[\fP)
+.SH Input parameter
+.nr ll +1
+.nr t\n(ll 0
+.if \n(ll>1 .RS
+.nr bi 1
+.TP
+o 
+\fBh\fP : integer
+Handle of the window to close
+.if \n(ll>1 .RE
+.nr ll -1
+.SH Output parameters
+None
+.SH Description
+This routine close a tksci figure (toplevel window). If a handle is 
+given, the figure corresponding to this handle is closed. 
+Otherwise, the current (active) figure is closed.
+.SH EXAMPLE
+.nf
+h=figure();
+// creates  figure number 1.  
+uicontrol( h, 'style','text', ...
+ 'string','scilab is great', ...
+ 'position',[50 70 100 100], ...
+ 'fontsize',15);
+// put a clever text in figure 1
+figure();
+// create figure 2
+uicontrol( 'style','text', ...
+ 'string','Really great', 'position',[50 70 100 100], 'fontsize',15);
+// put a text in figure 2
+close();
+// close the current graphic window (ie fig. 2)
+close(h);
+// close figure 1
+.fi 
+.ec
+.ft P
+.sp
+.SH See also
+figure, gcf

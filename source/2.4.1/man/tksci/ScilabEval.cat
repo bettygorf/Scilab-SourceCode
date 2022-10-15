@@ -1,0 +1,37 @@
+
+ScilabEval(2)                  Scilab Function                  ScilabEval(2)
+NAME
+  ScilabEval - tcl instruction : Evaluate a string with scilab interpreter
+
+  Author: Bertrand Guiheneuf
+
+  This routine is used inside tcl/tk script executed from scilab. It allows
+  to evaluate any string from the scilab interpreter.  It's mainly used to
+  execute callbacks from tk widgets.
+
+Usage
+  ScilabEval str
+
+Input parameter
+
+  o    str : tcl string character Contains the string to evaluate with the
+       current scilab interpreter.
+
+Output parameters
+  None
+
+Description
+  This function must be called in a tcl/tk script executed from scilab.  It
+  allows to associate scilab actions to tcl/tk widgets (graphic objects).
+  The string str is put in the scilab interpreter buffer which then evaluates
+  it.  This has in general no border effect in the tcl/tk interpreter.
+
+Example (tcl/tk script)
+  # this text must be saved into a file, for instance
+  #  TMPDIR+'/test.tcl'
+  # then launch scilab and type TK_EvalFile(TMPDIR+'/test.tcl');
+  toplevel .w1
+  button .w1.b -text "Click here to see a new Scilab Graphic Window"  -command {ScilabEval "xselect()"}
+  pack .w1.b
+See also
+  TK_EvalFile, TK_EvalStr, TK_GetVar, TK_Setvar

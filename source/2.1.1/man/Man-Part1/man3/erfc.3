@@ -1,0 +1,34 @@
+.TH erfc 3 "December 1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+erfc -  The complementary error function.
+.SH CALING SEQUENCE
+.nf
+ y = erfc(x)
+.fi
+.SH PARAMETERS
+.TP
+x
+: real vector
+.TP
+y
+: real vector (of same size)
+.SH DESCRIPTION
+ \fVerfc\fR computes the complementary error function:
+.IG
+.nf
+                      /inf
+     y = 2/sqrt(pi) *|  exp(-t^2) dt
+                     /x
+
+     y= 1 - erf(x)
+.fi
+.FI
+.LA $$ y = 2/\sqrt(\pi) \int_x^{\infty} exp(-t^2)dt $$
+.LA $$ y = 1-erf(x) $$
+.SH SEE ALSO
+erf, erfcx, calerf.
+
+
+
+

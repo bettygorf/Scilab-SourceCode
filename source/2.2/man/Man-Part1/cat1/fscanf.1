@@ -1,0 +1,132 @@
+
+
+
+scanf(1)                       Scilab Function                       scanf(1)
+
+
+
+
+
+
+NAME
+  scanf, fscanf, sscanf - Converts formatted input
+
+CALLING SEQUENCE
+   [v_1,...v_n]=scanf (format);
+   [v_1,...v_n]=fscanf (file,format)
+   [v_1,...v_n]=sscanf (string,format)
+
+PARAMETERS
+
+  format :Specifies the format conversion.
+
+  file   :Specifies the input file name or file number.
+
+  string :Specifies input to be read.
+
+DESCRIPTION
+  The scanf,fscanf, and sscanf functions read character data, interpret it
+  according to a format, and returns the converted results.
+
+  These functions read their input from the following sources:
+
+  scanf  :Reads from standard input
+
+  fscanf :Reads from the file defined by the file parameter.
+
+  sscanf :Reads from the character string specified by the string parameter.
+
+         The formatparameter contains conversion specifications used to
+         interpret the input.
+
+  The format parameter can contain white-space characters (blanks, tabs, new-
+  line, or formfeed) that, except in the following two cases, read the input
+  up to the next nonwhite-space character. Unless there is a match in the
+  control string, trailing white space (including a newline character) is not
+  read.
+
+       -   Any character except % (percent sign), which must match the next
+           character of the input stream.
+
+       -   A conversion specification that directs the conversion of the next
+           input field.
+
+Conversion Specifications
+  Each conversion specification in the format parameter contains the follow-
+  ing elements:
+
+  +    The character % (percent sign)
+
+  +    The optional assignment suppression character *
+
+  +    An optional numeric maximum field width
+
+  +    A conversion code
+
+
+  The conversion specification has the following syntax:
+
+  [*][width][size]convcode.
+
+  The results from the conversion are placed in v_i arguments unless you
+  specify assignment suppression with * (asterisk). Assignment suppression
+  provides a way to describe an input field that is to be skipped. The input
+  field is a string of nonwhite-space characters.  It extends to the next
+  inappropriate character or until the field width, if specified, is
+  exhausted.
+
+  The conversion code indicates how to interpret the input field.
+   You should not specify the v_i parameter for a suppressed field. You can
+  use the following conversion codes:
+
+  %      :Accepts a single % (percent sign) input at this point; no assign-
+         ment is done.
+
+  d, i   :Accepts a decimal integer;
+
+  u      :Accepts an unsigned decimal integer;
+
+  o      :Accepts an octal integer;
+
+  x      :Accepts a hexadecimal integer;
+
+  e,f,g  :Accepts a floating-point number.  The next field is converted
+         accordingly and stored through the corresponding parameter, which
+         should be a pointer to a float. The input format for floating-point
+         numbers is a string of digits, with the following optional charac-
+         teristics:
+
+         +   It can be a signed value.
+
+         +   It can be an exponential value, containing a decimal point fol-
+             lowed by an exponent field, which consists of an E or an e fol-
+             lowed by an (optionally signed) integer.
+
+         +   It can be one of the special values INF, NaN,
+
+  s      :Accepts a string of characters.
+
+  c      :character value is expected. The normal skip over white space is
+         suppressed.
+
+SEE ALSO
+  printf, read
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

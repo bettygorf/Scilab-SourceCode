@@ -1,0 +1,56 @@
+.TH chart 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+chart - Nichols chart
+.SH CALLING SEQUENCE
+.nf
+chart([flags])
+chart(gain [,flags])
+chart(gain,phase [,flags])
+.fi
+.SH PARAMETERS
+.TP 10
+gain  
+: real vector ( gains (in DB))
+.TP 10
+phase 
+: real vector (phases (in degree))
+.TP 10
+flags
+: a list of at most 4 flags list(sup [,leg [,cm [,cphi]]])
+.RS
+.TP
+sup
+: 1 indicates superposition on the previous plot
+  0 no superposition is done
+.TP
+leg
+: 1 indicates that legends are drawn, o: no legends
+.TP
+cm
+: color number (see plot2d) for gain curves
+.TP
+cphi
+:  color number (see plot2d) for phase curves
+.RE
+.SH DESCRIPTION
+plot the Nichols'chart.
+.LP
+The default values for \fVgain\fR and \fVphase\fR are respectively :
+.LP
+\fV[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]\fR
+.LP
+\fV[-(1:10) , -(20:10:160)]\fR
+.SH EXAMPLE
+.nf
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+black(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
+chart(list(1,0,-2,-3));
+.fi
+Another example :
+.nf
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+black([h1;h],0.01,100,['h1';'h'])
+chart([-8 -6 -4],[80 120],list(1,0));
+.fi

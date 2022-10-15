@@ -1,0 +1,31 @@
+
+strindex(3)                    Scilab Function                    strindex(3)
+NAME
+  strindex - search position of a character string in an other string.
+
+CALLING SEQUENCE
+  ind=strindex(str1,str2)
+
+PARAMETERS
+
+  str1           : a character string. The string where to search occurrences
+                 of str2
+
+  str2           : a character string. The string to search in str1
+
+  ind            : vector of indexes
+
+DESCRIPTION
+  strindex  searches indexes where str1 is found in str2
+
+  for each k part(str1,ind(k)+(0:length(str2)-1)) is the same string than
+  str2
+
+EXAMPLE
+  k=strindex('SCI/demos/scicos','/')
+  k=strindex('SCI/demos/scicos','SCI/')
+  k=strindex('SCI/demos/scicos','!')
+  k=strindex('aaaaa','aa')
+
+SEE ALSO
+  string, strings

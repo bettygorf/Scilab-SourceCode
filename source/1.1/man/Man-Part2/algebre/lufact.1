@@ -1,0 +1,45 @@
+.TH lufact G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+lufact - sparse lu factorization
+.SH CALLING SEQUENCE
+.nf
+[W]=lufact(A)
+.fi
+.SH PARAMETERS
+.TP
+A
+: list representing a sparse matrix (see Remark below)
+.TP 
+W
+: list.
+.SH DESCRIPTION
+.Vb W=lufact(A) 
+returns a list of the following type:
+.nf
+W=list('factored',n,pointer)
+.fi
+This \fVW\fR is the factorized form of the LU factors of the matrix.
+.LP
+\fVW\fR is used by lusolve.
+\fVW\fR should be cleared by the command: \fVludel(W)\fR;
+.SH Remark
+Sparse matrices are represented by lists:
+.nf
+A=list('sp',values,[rows;cols],nrows,ncols)
+.fi
+defines a sparse matrix A. Here:
+.TP 12
+values 
+: a k-vector made of non zero entries of the matrix.
+.TP 12
+[rows;cols] 
+:  kx2 matrix made of indices of non zero entries of the matrix.
+.TP 
+nrows 
+: number of rows of the matrix.
+.TP 
+ncols 
+: number of columns of the matrix.
+.SH SEE ALSO
+sparse, lusolve, slash, backslash.

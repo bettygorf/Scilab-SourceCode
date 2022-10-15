@@ -1,0 +1,15 @@
+.TH dispbpt 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+dispbpt - display breakpoints
+.SH CALLING SEQUENCE
+.nf
+dispbpt()
+.fi
+.SH DESCRIPTION
+\fVdispbpt()\fR displays all active breakpoints actually 
+inserted in functions.
+.SH SEE ALSO
+setbpt, delbpt, pause, resume
+
+

@@ -1,0 +1,19 @@
+.TH lsslist 1 "Jan 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+lsslist - Scilab linear state space t function definition
+.SH CALLING SEQUENCE
+.nf
+lsslist()
+lsslist(a1,....an)  
+.fi
+.SH DESCRIPTION
+\fVlsslist(a1,....an)\fR is a shortcut to  to
+\fVtlist(['lss','A';'B';'C';'X0','dt'], a1,....an)\fR 
+.LP 
+Creates a \fVtlist\fR with  \fV['lss','A';'B';'C';'X0','dt']\fR as
+first entry and  \fVai\fR's as next entries if any. No type nor size
+checking is done on \fVai\fR's.
+
+.SH SEE ALSO
+tlist, syslin

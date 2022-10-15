@@ -1,0 +1,41 @@
+.TH prod G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+prod - product
+.SH CALLING SEQUENCE
+.nf
+y=prod(x)
+y=prod(x,'r') or y=prod(x,1)
+y=prod(x,'c') or y=prod(x,2)
+.fi
+.SH PARAMETERS
+.TP
+x 
+: real or complex vector or matrix
+.TP
+y
+: real or complex scalar or matrix
+.SH DESCRIPTION
+For a vector or a matrix \fVx\fR, \fVy=prod(x)\fR (or, equivalently,
+\fVy=prod(x,'*')\fR) returns in the scalar \fVy\fR the prod of all the entries
+of \fVx\fR, , e.g. \fVprod(1:n)\fR is n!
+.LP
+\fVy=prod(x,'c')\fR (or, equivalently, \fVy=prod(x,2)\fR) computes the
+columns elementwise product of  \fVx\fR. \fVy\fR is the column vector: \fVy(i)=prod(x(:,i))\fR. 
+.LP
+\fVy=prod(x,'r')\fR (or, equivalently, \fVy=prod(x,1)\fR)computes the
+rows elementwise product of  \fVx\fR. \fVy\fR is the row vector: \fVy(i)=prod(x(i,:))\fR. 
+
+.LP
+\fVprod\fR is not implemented for sparse matrices.
+.SH EXAMPLE
+.nf
+A=[1,2;0,100];
+prod(A)
+prod(A,'c')
+prod(A,'r')
+.fi
+.SH SEE ALSO
+sum, cumprod
+
+

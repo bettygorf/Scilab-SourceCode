@@ -1,0 +1,35 @@
+
+union(1)                       Scilab Function                       union(1)
+NAME
+  union - extract union components of a vector
+
+CALLING SEQUENCE
+  [v, [ka,kb]]=union(a,b)
+PARAMETERS
+
+  a    : vector of real numbers or strings
+
+  b    : vector of real numbers or strings
+
+  v    : row vector  of real numbers or strings
+
+  ka   : row vector  of integers
+
+  kb   : row vector  of integers
+DESCRIPTION
+  union(a,b) returns a sorted row vector which retains the unique entries of
+  [a(:);b(:)].
+
+  [v,ka,kb]=union(a,b) also returns index vectors ka and kb such that v is a
+  sorted combination of the entries a(ka) and b(kb).
+
+EXAMPLE
+  A=round(5*rand(10,1));
+  B=round(5*rand(7,1));
+
+  union(A,B)
+  [N,ka,kb]=union(A,B)
+
+  union('a'+string(A),'b'+string(B))
+SEE ALSO
+  unique, sort

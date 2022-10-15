@@ -1,0 +1,82 @@
+
+FWT(2)                         Scilab Function                         FWT(2)
+NAME
+  FWT - 1D Forward Discrete Wavelet Transform
+
+  Author: Bertrand Guiheneuf
+
+  This routine computes discrete wavelet transforms of a 1D real signal. Two
+  transforms are possible : Orthogonal and Biorthogonal
+
+Usage
+  [wt,index,length]=FWT(Input,NbIter,f1,[f2])
+
+Input parameters
+       o Input : real matrix [1,n] or [n,1] Contains the signal to be decom-
+         posed.
+       o NbIter : real positive scalar Number of decomposition Levels to com-
+         pute
+       o f1 : Analysis filter
+       o f2 : real unidimensional matrix [m,n] Synthesis filter. Useful only
+         for biorthogonal transforms. If not precised, the filter f1 is used
+         for the synthesis.
+Output parameters
+       o wt : real matrix Wavelet transform. Contains the wavelet coeffi-
+         cients plus other informations.
+       o index : real matrix [1,NbIter+1] Contains the indexes (in wt) of the
+         projection of the signal on the multiresolution subspaces
+       o length : real matrix [1,NbIter+1] Contains the dimension of each
+         projection
+Description
+Introduction
+  The discrete wavelet transform of Input is a projection on multiresolution
+  Spaces.  The number of scales NbIter tells how many convolutions are com-
+  puted. Each convolution is followed by a downsampling of the output. For
+  example, if the original signal size  is 500, the resulting size of the
+  projection after the first iteration  is 250. Each iteration consists then
+  in two convolution/downsampling steps. One is  high-pass (H) and the other
+  one is low-pass (L). Except for the last iteration, the low-pass output is
+  used as the input of the next iteration. Thus, only the high-pass is stored
+  in wt except at the last iteration where both the outputs are stored. This
+  explains why the wti array dimension is equal to NbIter+1. The last index
+  index(NbIter+1) is the index of firts element of the last low-pass projec-
+  tion.  Two types of filters are available : Quadrature Mirror Filters
+  (Orthogonal) or Conjugate Quadrature Filters (Biorthogonal). Each one
+  allows perfect reconstruction of the signal but only CQF pairs can be
+  symetric. The advantage of QMF is that synthesis and reconstruction filters
+  are the same.
+
+Parameters
+  Input must be a real unidimensional matrix.  NbIter is the number of scales
+  computed. It must be a positive integer greater than one and should be
+  smaller than log2(max(size(Input))) but this is not necessary. f1 is the
+  linear FIR filter used for the analysis and might be  obtained with
+  MakeQMF() or MakeCQF() f2 is the linear FIR filter to use for the recon-
+  struction. It is only necessary if f1 has been obtained with MakeCQF(). wt
+  is the wavelet decomposition structure. The next two parametres must be
+  used to read the wavelet coefficients.  index contains the indexes of the
+  first coefficient of each output.  length contains the dimension  of each
+  output.
+
+Algorithm details
+  Convolutions are computed through discrete linear convolutions in time
+  domain. No FFT is used. The signal is mirrored at its boundaries. The
+  wavelet structure contains all the informations for the reconstruction:
+  wt(1) : size of the original signal wt(2) : Number of iterations wt(3) :
+  Number of causal coefficients of the synthesis filter wt(4) : Number of
+  anticausal coefficients of the synthesis filter then the Synthesis filter
+  coefficients and finaly the wavelet coefficient are stored .
+
+Examples
+  a=rand(1,250); q=MakeQMF('daubechies',4); wt,wti,wtl = FWT(a,6,q);
+  M=WTMultires(wt); plot(M(2,:)); Then to suppress the Lowest Frequency com-
+  ponent and then reconstruction: for i=1:wtl(6), wt(wti(6)+i-1)=0; end;
+  result=IWT(wt);
+
+References
+  Meyer Y. : Wavelets, Algorithms & Applications, SIAM.  Meyer Y. :
+  Ondelettes et Operateurs (I) : Hermann, Paris Daubechies I. : Ten Lectures
+  on Wavelets, CBMS-NSF Regional conference series in applied mathematics.
+
+See Also
+  IWT, MakeQMF, MakeCQF, WTStruct, WTNbScales, WTMultires

@@ -1,0 +1,66 @@
+
+
+
+eval3d(2)                      Scilab Function                      eval3d(2)
+
+
+
+
+
+
+NAME
+  eval3d - values of a function on a grid
+
+CALLING SEQUENCE
+  [z]=eval3d(fun,x,[y])
+
+PARAMETERS
+
+  fun            : function accepting vectors as arguments.
+
+  x,y            : 2 vectors of size (1,n1) and (1,n2). (default value for y
+                 : y=x).
+
+  z              : matrix of size (n1,n2).
+
+DESCRIPTION
+  this function returns a matrix z(n1,n2). z(i,j)=fun(x(i),y(j)). If the
+  function fun doesn't accept arguments of type vector use the primitive
+  feval.
+
+SEE ALSO
+  feval
+
+AUTHOR
+  Steer S.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

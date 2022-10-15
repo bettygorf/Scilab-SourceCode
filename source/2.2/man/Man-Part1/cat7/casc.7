@@ -1,0 +1,66 @@
+
+
+
+casc(1)                        Scilab Function                        casc(1)
+
+
+
+
+
+
+NAME
+  casc -  cascade realization of filter from coefficients
+
+CALLING SEQUENCE
+  [cels]=casc(x,z)
+
+PARAMETERS
+
+  x    : (4xN)-matrix where each column is a cascade element, the first two
+       column entries being the numerator coefficients and the second two
+       column entries being the denominator coefficients
+
+  z    : string representing the cascade variable
+
+  cels : resulting cascade representation
+
+DESCRIPTION
+  Creates cascade realization of filter from a matrix of coefficients
+
+
+EXAMPLE
+  x=[1,2,3;4,5,6;7,8,9;10,11,12]
+  cels=casc(x,'z')
+
+AUTHOR
+  F. D.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

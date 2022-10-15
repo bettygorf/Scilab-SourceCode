@@ -1,0 +1,28 @@
+.TH metanet 1 "October 1994" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME
+metanet - execute Metanet
+.SH CALLING SEQUENCE
+.nf
+[window] = metanet([datapath])
+.fi
+.SH PARAMETERS
+.TP 7
+window
+: integer (window number)
+.TP 9
+datapath
+: string, optional argument, with default value directory 
+  "SCIDIR/xmetanet/data", is the path where graphs are found
+.SH DESCRIPTION
+This function is used to execute \fVMetanet\fR from \fVScilab\fR.
+For instance:
+.PP
+   metawin=metanet()
+.LP
+\fVmetawin\fR is the window number of \fVMetanet\fR window.
+.LP
+This function with no argument is exactly the same as using 
+the \fVMetanet\fR menu of \fVScilab\fR.
+.SH SEE ALSO
+netwindow, netwindows

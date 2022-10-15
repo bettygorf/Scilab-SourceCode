@@ -1,0 +1,49 @@
+
+bbch(2)                        Scilab Function                        bbch(2)
+NAME
+   bbch -  beneath-beyond concave hull
+
+  Author: Christophe Canus
+
+  This C_LAB routine determines the concave hull of a function graph using
+  the beneath-beyond algorithm.
+
+Usage
+  [rx,ru_x]=bbch(x,u_x)
+
+Input parameters
+       o x : real vector [1,N] or [N,1] Contains the abscissa.
+       o u_x : real vector [1,N] or [N,1] Contains the function to be regu-
+         larized.
+Output parameters
+       o rx : real vector [1,M] Contains the abscissa of the regularized
+         function.
+       o ru_x : real vector [1,M] Contains the regularized function.
+Description
+
+Parameters
+  The abscissa x and the function u_x  to be regularized must be of the same
+  size [1,N] or [N,1].  The abscissa rx and the concave regularized function
+  ru_x are of the same size [1,M] with M<=N.
+
+Algorithm details
+  Standard beneath-beyond algorithm.
+Examples
+
+Matlab
+
+  h=.3;beta=3;
+  N=1000;
+  % chirp singularity (h,beta)
+  x=linspace(0.,1.,N);
+  u_x=abs(x).^h.*sin(abs(x).^(-beta));
+  plot(x,u_x);
+  hold on;
+  [rx,ru_x]=bbch(x,u_x);
+  plot(rx,ru_x,'rd');
+  plot(x,abs(x).^h,'k');
+Scilab
+
+  //
+References
+  None.SH See Also linearlt (C_LAB routine).

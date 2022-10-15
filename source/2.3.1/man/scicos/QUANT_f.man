@@ -1,0 +1,56 @@
+.TH QUANT_f 5 "Janvier 1997" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+QUANT_f - Scicos Quantization block
+.SH DIALOGUE PARAMETERS
+.TP 20
+Step
+: scalar, Quantization step
+.TP
+Quantization method
+: scalar with possible values 1,2,3 or 4
+.RS
+.TP
+1
+: Round method
+.TP
+2
+: Truncation method
+.TP
+3
+:
+Floor method
+.TP
+4
+:
+Ceil method
+.RE
+.SH DESCRIPTION
+This block outputs the quantization of the input according to a choice
+of methods
+.LP
+for \fVRound\fR method 
+
+\fVy(i)=Step*(int(u(i)/Step+0.5)-0.5)\fR if \fVu(i)<0\fR.
+
+\fVy(i)=Step*(int(u(i)/Step-0.5)+0.5)\fR. if \fVu(i)>=0\fR.
+
+.LP
+For truncation method
+
+\fVy(i)=Step*(int(u(i)/Step+0.5))\fR if \fVu(i)<0\fR.
+
+\fVy(i)=Step*(int(u(i)/Step-0.5))\fR if \fVu(i)>=0\fR.
+
+.LP
+For floor method
+
+\fVy(i)=Step*(int(u(i)/Step+0.5))\fR .
+
+.LP
+For ceil method
+
+\fVy(i)=Step*(int(u(i)/Step-0.5))\fR .
+
+
+

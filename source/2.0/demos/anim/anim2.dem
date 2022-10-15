@@ -1,0 +1,16 @@
+
+k_dr=driver();
+driver("Wdp");
+if flag1=1;xset("use color",1);end
+np=10;
+t=0:0.1:np*%pi;
+param3d((t/(np*%pi)*%pi).*sin(t),(t/(np*%pi)*%pi).*cos(t),...
+		t/(np*%pi),35,45,'X@Y@Z',[2,4]);
+for i=45:1:(135),xset("wwpc");
+	param3d((t/(np*%pi)*%pi).*sin(t),(t/(np*%pi)*%pi).*cos(t),...
+		t/(np*%pi),35,i,'X@Y@Z',[0,4]);
+ 	xset("wshow");
+end
+driver(k_dr);
+
+

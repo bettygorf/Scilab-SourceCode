@@ -1,0 +1,64 @@
+
+xsetech(2)                     Scilab Function                     xsetech(2)
+NAME
+  xsetech - set the sub window of a graphic window to use for graphics
+
+CALLING SEQUENCE
+  []=xsetech(wrect [,frect,logflag])
+
+PARAMETERS
+
+  wrect     : a vector of size 4 (sub window definition)
+
+  frect     : a vector of size 4 (just like the rect argument of plot2d )
+
+  logflag   : a string of size 2 "xy", where x and y can be "n" or "l". "n"
+            for normal and "l" for logscale. x is for the x-axis and y for
+            the y-axis.
+
+DESCRIPTION
+
+  This function is mainly used to set the sub window of the graphic window
+  which will be used for graphics. The sub window is specified with the
+  parameter wrect=[x,y,w,h] ( Upper-Left Width Height ). The values in wrect
+  are specified using proportion of the width or height of the current
+  graphic window. for example
+
+  wrect=[0,0,1.0,1.0] means that all the graphic window will be used.
+
+  wrect=[0.5,0,0.5,1.0] means that the graphic region will be the right half
+  of the graphic window.
+
+  and can be used in conjunction with graphic routines which request the
+  current graphic scale (for example strf="x0y" in plot2d ).
+  frect=[xmin,ymin,xmax,ymax] is used to set the graphic scale and is just
+  like the rect argument of plot2d. Its default value is [0,0,1,1].
+
+EXAMPLE
+  //In this first example xsetech is used to split the graphic window
+  //in two parts
+
+  // xsetech is used to fix the first sub window
+  // and the graphic scale
+  xsetech([0,0,1.0,0.5],[-5,-3,5,3]);
+  // then we call plot2d with the "001" option to use the graphic scale
+  // set by xsetech
+  plot2d((1:10)',(1:10)',1,"001",' ');
+  // xsetech is used to fix the second sub window
+  xsetech([0,0.5,1.0,0.5]);
+  // the graphic scale is set by xsetech to [0,0,1,1] by default
+  // and we change it with the use of the rect argument in plot2d
+  plot2d((1:10)',(1:10)',1,"011",' ',[-6,-6,6,6]);
+
+  //A second example with four graphics on a single graphic window
+
+  xset("font',2,0);
+  xsetech([0,0,0.5,0.5]);plot3d();
+  xsetech([0.5,0,0.5,0.5]);plot2d();
+  xsetech([0.5,0.5,0.5,0.5]);grayplot();
+  xsetech([0,0.5,0.5,0.5]);histplot();
+  // back to default values for the sub window
+  xsetech([0,0,1,1]);
+  xset("default');
+AUTHOR
+  J.Ph.C.

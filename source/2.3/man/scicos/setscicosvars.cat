@@ -1,0 +1,52 @@
+
+setscicosvars(5)               Scicos function               setscicosvars(5)
+NAME
+  setscicosvars - set Scicos data structure while running
+
+CALLING SEQUENCE
+  setscicosvars(name,v)
+
+PARAMETERS
+
+  name : a character string, the name of the required structure
+
+  v    : vector of the new structure value
+
+DESCRIPTION
+  This function may be used in a Scilab block to set value of some particular
+  global data while running. It allows to write diagram supervisor blocks.
+
+  for example  the instructions
+  x=getscicosvars('x');
+  xptr=getscicosvars('xptr');
+  x(xptr(k):xptr(k+1)-1)=xk
+  setscicosvars('x',x)
+  Changes the continuous state of the k block to xk.
+  |=========================================================|
+  | name     |  data structure definition                   |
+  |=========================================================|
+  |'x'       | continuous state                             |
+  |'xptr'    | continuous state splitting vector            |
+  |'z'       | discrete state                               |
+  |'zptr'    | discrete  state splitting vector             |
+  |'rpar'    | real parameters vector                       |
+  |'rpptr'   | rpar  splitting vector                       |
+  |'ipar'    | integer parameters vector                    |
+  |'ipptr'   | ipar  splitting vector                       |
+  |'outtb'   | vector of all input/outputs values           |
+  |'inpptr'  | inplnk splitting vector                      |
+  |'outptr'  | outlnk splitting vector                      |
+  |'inplnk'  | vector of input port values address in lnkptr |
+  |'outlnk'  | vector of output port values address in lnpkpr|
+  |'lnkptr'  | outtb splitting vector                       |
+  |=========================================================|
+  See scicos_cpr for more detail on these data structures.
+
+  For C or fortran computational function the C procedure C2F(setscicosvars)
+  may used. See routines/scicos/import.c file for more details.
+  Warning: The use of this function requires a deep knowledge on how scicosim
+  works, it must be used very carefully. Unpredicted parameters, state, link
+  values changes  may produce erroneous simulations.
+
+SEE ALSO
+  getscicosvars,  scicosim,  curblock, scicos_cpr, getblocklabel

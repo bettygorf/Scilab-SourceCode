@@ -1,0 +1,33 @@
+
+ccontrg(5)                     Scilab Function                     ccontrg(5)
+NAME
+  ccontrg - central H-infinity controller
+
+CALLING SEQUENCE
+  [K]=ccontrg(P,r,gamma);
+
+PARAMETERS
+
+  P    : syslin list (linear system in state-space representation)
+
+  r    : 1x2 row vector, dimension of the 2,2 part of P
+
+  gamma
+       : real number
+
+DESCRIPTION
+  returns a realization K of the central controller for the general standard
+  problem in state-space form.
+
+  Note that gamma must be > gopt (ouput of gamitg)
+
+  P contains the parameters of plant realization (A,B,C,D) (syslin list) with
+  B = ( B1 , B2 ) ,        C= ( C1 ) ,    D = ( D11  D12)
+                              ( C2 )          ( D21  D22)
+  r(1) and r(2) are the dimensions of D22 (rows x columns)
+
+SEE ALSO
+  gamitg, h_inf
+
+AUTHOR
+  P. Gahinet (INRIA)

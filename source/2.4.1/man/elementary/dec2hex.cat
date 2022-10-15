@@ -1,0 +1,18 @@
+
+dec2hex(G)                     Scilab Function                     dec2hex(G)
+NAME
+  dec2hex -   hexadecimal representation of integers
+
+CALLING SEQUENCE
+  h=dec2hex(d)
+
+PARAMETERS
+
+  d    : matrix of non negative integers
+
+  h    : matrix of character strings
+
+DESCRIPTION
+  dec2hex(x) returns the  hexadecimal representation of a matrix of integers
+EXAMPLE
+  dec2hex([2748 10;11 3])

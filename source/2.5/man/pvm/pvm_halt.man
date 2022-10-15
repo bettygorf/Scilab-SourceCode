@@ -1,0 +1,43 @@
+.TH pvm_halt 1 "May 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_halt - stops the PVM daemon
+.SH CALLING SEQUENCE
+.nf
+[info] = pvm_halt()
+.fi
+.SH PARAMETERS
+.TP 5
+info
+: integer, status code returned by the routine.
+Values less than zero indicate an error.
+
+.SH DESCRIPTION
+\fVpvm_halt\fR kills all PVM tasks, all the remote daemons, and the
+local daemon.  If the master pvmd is killed manually it should be
+sent a SIGTERM signal to allow it to kill the remote pvmds and clean
+up various files.
+ 
+The pvmd can be killed in a manner that  leaves the file /tmp/pvmd.uid
+behind on one  or more  hosts.   Uid  is  the  numeric  user ID  (from
+/etc/passwd) of  the user.  This  will prevent PVM  from restarting on
+that host.  Deletion of this file will fix this problem:
+ 
+         rm `( grep $user /etc/passwd || ypmatch $user passwd )
+              | awk -F: '{print "/tmp/pvmd."$3; exit}'`
+
+For example:
+.nf
+-->pvm_halt()
+ ans  =
+ 
+    0.  
+ 
+-->pvm_halt()
+ ans  =
+ 
+  - 14.  
+.fi
+Error -14 means: pvm_halt(): Can't contact local daemon
+.SH SEE ALSO
+pvm_start, pvm_addhosts, pvm_config

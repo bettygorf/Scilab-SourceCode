@@ -1,0 +1,20 @@
+
+OUT_f(5)                         Scicos Block                        OUT_f(5)
+NAME
+  OUT_f - Scicos Super Block regular output port
+
+DIALOGUE PARAMETERS
+
+  Port number    : an integer giving the port number.
+
+DESCRIPTION
+  This block must only be used inside Scicos Super Blocks to represent a reg-
+  ular output port.
+
+  In a Super Block, regular output ports must be numbered from 1 to the num-
+  ber of regular output ports.
+
+  size of the output is determined by the compiler according to the connected
+  blocks port sizes.
+SEE ALSO
+  CLKIN_f, IN_f, CLKOUT_f

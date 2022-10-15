@@ -1,0 +1,20 @@
+
+mtell(1)                       Scilab Function                       mtell(1)
+NAME
+  mtell - binary file management
+
+CALLING SEQUENCE
+  mtell([fd])
+
+PARAMETERS
+
+  fd        : scalar. The fd parameter returned by the function mopen. -1
+            stands for last opened file. Default value is -1.
+
+DESCRIPTION
+  The function mtell() returns the offset of the current byte  relative  to
+  the beginning of the file associated with the named stream fd.
+
+SEE ALSO
+  mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr,
+  mopen, mprintf, mput, mputstr, mscanf, mseek, mtell

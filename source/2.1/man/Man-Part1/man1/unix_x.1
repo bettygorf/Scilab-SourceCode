@@ -1,0 +1,24 @@
+.TH unix_x 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+unix_x - shell (sh) command execution, output redirected to a window
+.SH CALLING SEQUENCE
+.nf
+unix_x(cmd)
+.fi
+.SH PARAMETERS
+.TP 10
+cmd 
+: a character string
+
+.SH DESCRIPTION
+sends a string \fVcmd\fR to Unix for execution by the sh
+shell. , the standard output  is redirected  to a xless window.
+unix execution errors are trapped.
+.SH EXAMPLE
+.nf
+unix_x("ls $SCI/demos");
+.fi
+.SH SEE ALSO
+edit, manedit, unix_s, unix_g, unix
+

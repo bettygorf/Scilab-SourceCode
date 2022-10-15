@@ -1,0 +1,45 @@
+
+mtlb_save(1)                   Scilab Function                   mtlb_save(1)
+NAME
+  mtlb_save - save variables on file with matlab4 format.
+
+CALLING SEQUENCE
+  mtlb_save fname
+  mtlb_save fname X
+  mtlb_save fname X Y Z
+  mtlb_save fname X Y Z  -ascii
+  mtlb_save fname X Y Z  -ascii -double
+  mtlb_save fname X Y Z  -ascii -double -tabs
+
+PARAMETERS
+
+  fname     : a file name
+
+  X Y Z     : variable names
+
+DESCRIPTION
+  mtlb_save   save variables on file with matlab4 formats.
+
+  mtlb_save fname saves all the current scilab variables which
+                      have corresponding matlab type to the binary "MAT-file"
+                      named fname.mat. The data may be retrieved with
+                      mtlb_load.
+
+  mtlb_save fname X   saves only variable X.
+
+  mtlb_save fname X Y Z
+                        saves variables X, Y, and Z.
+
+  mtlb_save fname X Y Z  -ascii
+                      uses 8-digit ASCII form instead of binary.
+
+  mtlb_save fname X Y Z  -ascii -double
+                      uses 16-digit ASCII form.
+
+  mtlb_save fname X Y Z  -ascii -double -tabs
+                      delimits with tabs.
+
+   "stdio" value for  fname doesnt redirect save to standard output.
+
+SEE ALSO
+  mtlb_load, save, load

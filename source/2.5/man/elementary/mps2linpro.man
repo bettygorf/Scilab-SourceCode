@@ -1,0 +1,49 @@
+.TH mps2linpro 1 "MAY 1998" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+mps2linpro - convert lp problem given in MPS format to linpro format
+.SH CALLING SEQUENCE
+.nf
+lp = mps2linpro(mps)
+[p,C,b,ci,cs,mi] = mps2linpro(mps)
+.fi
+.SH PARAMETERS
+.TP 10
+mps
+: either a character string, path of the MPS file, or an mps data structure
+returned by \fVreadmps\fR
+.TP
+lp
+: a linpro data tlist with following fields:
+.RS
+.TP 10
+p 
+: real (column) vector (dimension \fV n\fR)
+.TP
+C 
+: real matrix (dimension \fV (mi + md) x n\fR)
+(If no constraints are given, you can set \fVC = []\fR)
+.TP
+b 
+: RHS vector (dimension \fV1 x (mi + md)\fR)
+.TP
+ci 
+: (column) vector of lower-bounds (dimension \fV n\fR).
+If there are no lower bound constraints, put \fVci = []\fR.
+If some components of \fVx\fR are bounded from below,
+set the other (unconstrained) values of \fVci\fR to a very 
+large negative  number (e.g. \fVci(j) = -(% eps)^(-1)\fR.
+.TP
+cs 
+: (column) vector of upper-bounds. (Same remarks as above).
+.TP
+mi 
+: number of equality constraints (i.e. \fVC(1:mi,:)*x = b(1:mi)\fR)
+.RE
+.SH DESCRIPTION
+mps2linpro forms Linear programing data compatible with linpro out of
+MPS data format.
+.SH SEE ALSO
+linpro, readmps
+
+

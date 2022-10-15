@@ -1,0 +1,78 @@
+.TH "gauss" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+gauss -  Gaussian window
+.sp
+Author: Paulo Goncalves
+.sp
+Returns a Gaussian window
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+Win = gauss(N[,A])
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBN\fP :  Positive integer
+Number of points defining the time support of the window
+
+.TP
+o 
+\fBA\fP : Real positive scalar 
+Attenuation in dB at the end of the window (10\(ha(-A)). Default value is \fIA\fP = 2.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBWin\fP : real vector \f(CR[\fP1,N\f(CR]\fP
+Gaussian window in time.
+.RE
+
+.SH See also:
+mexhat, morlet
+.SH Example:
+.sp
+.ft CR
+.nf
+t = linspace(-1,1,128) ;
+Win1 = gauss(128,2) ;
+Win2 = gauss(128,5) ;
+.fi 
+.ec
+.ft P
+.sp
+\fI Vizualisation - Matlab \fP
+.sp
+.ft CR
+.nf
+plot(t,win1,'b',t,win2,'r') ; 
+legend('Gaussian window 1','Gaussian window 2') 
+.fi 
+.ec
+.ft P
+.sp
+\fI Vizualisation - Scilab \fP
+.sp
+.ft CR
+.nf
+plot2d([t(:) t(:)],[Win1(:) Win2(:)],[17 19])
+.fi 
+.ec
+.ft P
+.sp

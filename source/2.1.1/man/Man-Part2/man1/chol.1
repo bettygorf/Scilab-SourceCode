@@ -1,0 +1,22 @@
+.TH chol 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+chol - Cholesky factorization
+.SH CALLING SEQUENCE
+.nf
+[R]=chol(X)
+.fi
+.SH PARAMETERS  
+.TP
+X 
+: a symmetric positive definite real or complex matrix.
+.SH DESCRIPTION
+If \fVX\fR is positive definite, then \fVR = chol(X)\fR produces an upper 
+triangular matrix \fVR\fR such that \fVR'*R = X\fR.
+.LP
+\fVchol(X)\fR uses only the diagonal and upper triangle of \fVX\fR.
+The lower triangular is assumed to be the (complex conjugate) 
+transpose of the upper. 
+.SH SEE ALSO 
+qr, svd, bdiag, fullrf
+

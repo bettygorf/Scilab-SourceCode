@@ -1,0 +1,43 @@
+.TH ARL2 G "April 1993" "Scilab Group" "Scilab Function"        
+.so man1/sci.an 
+.SH NAME
+arl2 - L2 approximation
+.SH CALLING SEQUENCE
+.nf
+[den,num,err]=arl2(y,den0,n [,imp])
+.fi
+.SH PARAMETERS
+.TP 10
+y 
+: real vector or polynomial in \fVz^-1\fR
+.TP
+den0,den,num 
+: polynomials
+.TP
+n 
+: integer (degree of den)
+.TP
+imp 
+: integer in \fV(0,1,2)\fR (verbose mode)
+.TP
+err
+: real constant (l2-error)
+.SH DESCRIPTION
+\fV[den,num,err]=arl2(y,den0,n [,imp]) \fR finds a pair of polynomials
+\fVnum\fR and \fVden\fR such that the coefficients of the long division of 
+\fVnum\fR by \fVden\fR approximate (with a minimal l2 norm) the vector \fVy\fR:
+.LP
+\fVldiv(num,den,ny)\fR is approximately \fV[y(1),y(2),...,y(ny)]\fR
+\"LaTeX \ignore{	
+If y(z)  =  y(1)(1/z)+y(2)(1/z^2)+ ...+ y(ny)(1/z^ny) 
+\"LaTeX }
+\"LaTeX If~:\[ y(z)= y(1)({ 1 \over z})+y(2)({ 1 \over z})^2+\dots
+\"LaTeX  + y(ny)({ 1 \over z})^ny \]
+then l2-norm of \fVnum/den - y(z)\fR is \fVerr\fR.
+.LP
+\fVn\fR is the degree of the polynomial \fVden\fR.
+.LP
+Various intermediate results are printed according to \fVimp\fR.
+.SH SEE ALSO
+ldiv, imrep2ss
+

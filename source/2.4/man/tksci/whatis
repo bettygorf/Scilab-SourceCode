@@ -1,0 +1,13 @@
+ScilabEval - tcl instruction : evaluate a string with scilab interpreter  
+TK_EvalFile - reads and evaluate a tcl/tk file  
+TK_EvalStr - evaluate a string whithin the tcl/tk interpreter  
+TK_GetVar - get a tcl/tk variable value  
+TK_SetVar - set a tcl/tk variable value  
+close - close a figure  
+figure - create a figure  
+findobj - find an object with specified property  
+gcf - gets the current figure  
+get - get an ui object property value  
+set - set an ui object property value  
+uicontrol - create a graphic user interface object  
+uimenu - create a menu or a submenu in a figure  

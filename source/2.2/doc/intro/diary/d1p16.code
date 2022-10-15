@@ -1,0 +1,10 @@
+foo=['      subroutine foo(a,b,c)';
+     '      c=a+b';
+     '      end'  ];
+unix_s('\rm foo.f')
+write('foo.f',foo);
+unix_s('make foo.o') 
+link('foo.o','foo')  
+deff('[c]=myplus(a,b)',...
+   'c=fort(''foo'',a,1,''r'',b,2,''r'',''out'',[1,1],3,''r'')')
+myplus(5,7)

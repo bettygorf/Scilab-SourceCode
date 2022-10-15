@@ -1,0 +1,15 @@
+.TH xinfo 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xinfo - draw an info string in the message subwindow
+.SH CALLING SEQUENCE
+.nf
+xinfo(info)
+.fi
+.SH PARAMETERS
+.TP 6
+info
+: string
+.SH DESCRIPTION
+\fVxinfo\fR draws the string \fVinfo\fR in the message subwindow
+of the current graphics window.

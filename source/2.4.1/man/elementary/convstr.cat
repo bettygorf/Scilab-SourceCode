@@ -1,0 +1,22 @@
+
+convstr(1)                     Scilab Function                     convstr(1)
+NAME
+  convstr - case conversion
+
+CALLING SEQUENCE
+  [y]=convstr(str-matrix, ["flag"])
+
+PARAMETERS
+
+  str-matrix, y
+            : matrices of strings
+
+  "flag"    : string ("u" for upper or "l" for lower (default value))
+
+DESCRIPTION
+  converts the matrix of strings str-matrix into lower case (for "l" ;default
+  value) or upper case (for "u").
+
+EXAMPLE
+  A=['this','is';'my','matrix'];
+  convstr(A,'u')

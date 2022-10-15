@@ -1,0 +1,15 @@
+
+sign(1)                        Scilab Function                        sign(1)
+NAME
+  sign - sign function
+
+DESCRIPTION
+   X=sign(A) returns the matrix made of the signs of A(i,j).For complex A,
+  sign(A) = A./abs(A).  function.
+
+EXAMPLE
+  sign(rand(2,3))
+  sign(1+%i)
+
+SEE ALSO
+  abs

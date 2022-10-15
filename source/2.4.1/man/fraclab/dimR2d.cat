@@ -1,0 +1,90 @@
+
+dimR2d(2)                      Scilab Function                      dimR2d(2)
+NAME
+  dimR2d - Regularization dimension of the surface of a 2d function
+
+  Author: Francois Roueff
+
+  Computes the regularization dimension of the surface of a 2d function.  Two
+  kernels are available: the Gaussian or the Rectangle.
+
+Usage
+  [dim, handlefig]=dimR(x,sigma,voices,Nmin,Nmax,kernel,mirror,reg,graphs)
+
+Input parameters
+       o x : Real or complex matrix [nt,pt] Space samples of the signal to be
+         analyzed.
+       o sigma : Real positive number Standard Deviation of the noise. Its
+         default value is null (noisefree)
+       o voices : Positive integer. number of analyzing voices.  When not
+         specified, this parameter is set to 128.
+       o Nmin : Integer in  [2,nt/3] Lower scale bound (lower width) of the
+         analysing kernel. When not specified, this parameter is set to
+         around nt/12.
+       o Nmax : Integer in  [Nmin,2nt/3] Upper scale bound (upper width) of
+         the analysing kernel. When not specified, this parameter is set to
+         nt/3.
+       o kernel  : String specifies the analyzing kernel: "gauss": Gaussian
+         kernel (default) "rect": Rectangle kernel
+       o mirror : Boolean
+
+         specifies wether the signal is to be mirrorized for the analyse
+         (default: 0).
+       o reg : Boolean
+
+         specifies wether the regression is to be done by the user or
+         automatically (default: 0).
+       o graphs : Boolean:
+
+         specifies wether the regularized graphs have to be displayed
+         (default: 0).
+Output parameters
+       o dim : Real Estimated regularization dimension.
+       o handlefig : Integer vector Handles of the figures opened during the
+         procedure.
+Description
+  This function is the same as dimR but adapted to 2d signals.  For a more
+  complete explanation of the regularization dimension, one can refer to: "A
+  regularization approach to fractionnal dimension estimation", F. Roueff, J.
+  Levy-Vehel, submitted to Fractal 98 conference.  The regularized graphs of
+  x are computed via convolutions of x with dilated versions of the kernel at
+  different scales. The lengths of the regularized graphs are computed via
+  convolutions of x with the derivatives of the dilated versions of the ker-
+  nel. The regularization dimension is computed either via an automatic range
+  regression or via a regression by hand on the loglog plot of the lengths
+  versus scales.  If sigma is strictly positive, an estimation of the lengths
+  without noise is used for the regression. These lengths are displayed in
+  red while those of the noisy signal are in black. They should seperate at
+  fine scales.  When one specifies the range regression, the loglog plot of
+  the lengths versus scales appears. Above are either increments (when sigma
+  is null) or a loglog plot of the noise prevalence in the lengths. One
+  selects the scale range of the regression. In the case of noisefree sig-
+  nals, select a scale region with stable increments. In the case of a
+  strictly positive sigma, select  a scale region where the noise prevalence
+  is not too close to 1 (0 in log10): it should correspond to an approxi-
+  mately linear region for the red estimations.  The number of scales
+  (voices) tells how many convolutions are computed. The bigger it is, the
+  slower the computation is. The scale axis is geometrically sampled (i.e.
+  its log is arithmetically sampled). The gaussian kernel should give a
+  better result but the rectangle is faster.  As a general rule, be careful
+  of the size of the input signal and of the maximal size of the kernel (Nmax
+  x Nmax) to avoid too long computing times.
+
+See also:
+  cwttrack, cwtspec.
+
+Example:
+   Signal synthesis
+
+  x = GeneWei(100,0.6,2,1.0,0);
+  y = GeneWei(100,0.4,3,1.0,1);
+  w = x'*y;
+  mesh(w);
+
+   Dimension of the graph with a regression by hand
+
+  [dim,H] = dimR2d(w,0,25,5,30,'gauss',0,1,0);
+
+   Close the figures
+
+  close(H)

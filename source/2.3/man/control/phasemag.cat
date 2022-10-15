@@ -1,0 +1,42 @@
+
+phasemag(1)                    Scilab Function                    phasemag(1)
+NAME
+  phasemag - phase and magnitude computation
+
+CALLING SEQUENCE
+  [phi,db]=phasemag(z [,mod])
+
+PARAMETERS
+
+  z    : matrix or row vector of complex numbers.
+
+  mod  : character string
+
+       mod='c'   : "continuous" representation between -infinity and +360
+                 degrees (default)
+
+       mod='m'   : representation between -360 and 0 degrees
+
+  phi  : phases (in degree) of z.
+
+  db   : magnitude (in Db)
+
+DESCRIPTION
+  phasemag computes the phases and magnitudes of the entries of a complex
+  matrix. For mod='c' phasemag computes  phi(:,i+1)  to minimize the distance
+  with  phi(:,i), i.e. it tries to obtain a "continuous representation" of
+  the phase.
+
+  To obtain the phase between -%pi and %pi use phi=atan(imag(z),real(z))
+
+EXAMPLE
+  s=poly(0,'s');
+  h=syslin('c',1/((s+5)*(s+10)*(100+6*s+s*s)*(s+.3)));
+  [frq,rf]=repfreq(h,0.1,20,0.005);
+  xbasc(0);
+  plot2d(frq',phasemag(rf,'c')');
+  xbasc(1);
+  plot2d(frq',phasemag(rf,'m')');
+
+SEE ALSO
+  repfreq, gainplot, atan, bode

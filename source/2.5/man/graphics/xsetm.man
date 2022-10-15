@@ -1,0 +1,14 @@
+.TH xsetm 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xsetm - dialog to set values of the graphics context
+.SH CALLING SEQUENCE
+.nf
+xsetm()
+.fi
+.SH DESCRIPTION
+\fVxsetm()\fR is the same as \fVxset()\fR.
+.SH SEE ALSO
+xset 
+.SH AUTHOR
+J.Ph.C.

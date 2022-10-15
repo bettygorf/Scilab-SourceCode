@@ -1,0 +1,23 @@
+% Headings for .SH 
+\newcommand{\phead}[5]{}
+
+\def\Sdoc#1#2{\subsection{#1: #2}}
+
+\def\Shead#1{\smallskip\par\noindent{\small\bf{\uppercase{#1}~:\par\noindent}}}
+\def\Seealso#1{\smallskip\par\noindent{\sc See Also}~:}
+\def\Sauthor#1{\smallskip\par\hfill{\small\sc Author}~:}
+% For stuff to ignore 
+\def\ignore#1{}
+%% Changing the default description Mode 
+
+\def\scitemlabel#1{\hspace\labelsep#1}
+
+\def\scitem{\list{}{\labelwidth\z@ \itemindent-\leftmargin 
+        \itemsep=-\parsep \let\makelabel\scitemlabel}}
+
+\let\endscitem\endlist
+
+\let\undertext=\underline
+
+\def\trait{\begin{flushleft}\mbox{\hbox to \textwidth{\hrulefill}}
+        \end{flushleft}}

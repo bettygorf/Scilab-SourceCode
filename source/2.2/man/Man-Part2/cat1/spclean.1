@@ -1,0 +1,66 @@
+
+
+
+spclean(G)                     Scilab Function                     spclean(G)
+
+
+
+
+
+
+NAME
+  spclean - sparse matrix utility
+
+CALLING SEQUENCE
+  Aclean=spclean(A [,tols])
+
+PARAMETERS
+  A    : sparse matrix
+  Aclean
+       : sparse matrix
+  tols : optional 1 x 2 matrix tols=[abstol,reltol]
+
+DESCRIPTION
+  Aclean=spclean(A,[abstol,reltol]) returns a sparse matrix Aclean where the
+  small entries of A are set to zero.
+  An entry Aij is small if abs(Aij) < abstol or
+   abs(Aij) <reltol*norm(A,1)
+
+EXAMPLE
+  A=sparse([%eps,0.001;2,0.1])
+  //spclean(A,[0.002,0])
+
+SEE ALSO
+  sparse, lusolve, luget, spclean
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

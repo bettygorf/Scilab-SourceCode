@@ -1,0 +1,41 @@
+.TH TCLSS_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so man1/sci.an
+.SH NAME
+TCLSS - Scicos jump continuous-time linear state-space system
+.SH DESCRIPTION
+This block realizes a continuous-time linear state-space system
+with the possibility of jumps in the state. The number of inputs
+to this block equals the number of inputs of the linear system plus
+n the number of states of the linear system. When an event arrives
+at the unique event input port of this block, the state of the
+system jumps to the value present on the last n inputs of the block.
+The system is defined by the (A,B,C,D) matrices and the initial
+state x0. The dimensions must be compatible. The number of inputs
+and outputs are adjusted automatically.
+.SH DIALOG PARAMETERS
+.TP 20
+Block label
+: A string defining the block label. This label is written under
+the block. 
+.TP
+A
+: square matrix. The A matrix
+.TP
+B
+: the B matrix
+.TP
+C
+: the C matrix
+.TP
+D
+: the D matrix
+.TP
+x0
+: vector. The initial state of the system.
+.SH SEE ALSO
+CLSS_f CLR_f 
+
+
+
+
+

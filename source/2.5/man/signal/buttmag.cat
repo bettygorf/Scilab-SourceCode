@@ -1,0 +1,30 @@
+
+buttmag(1)                     Scilab Function                     buttmag(1)
+NAME
+  buttmag -  response of Butterworth filter
+
+CALLING SEQUENCE
+  [h]=buttmag(order,omegac,sample)
+
+PARAMETERS
+
+  order     : integer : filter order
+
+  omegac    : real : cut-off frequency in Hertz
+
+  sample    : vector of frequency where buttmag is evaluated
+
+  h         : Butterworth filter values at sample points
+
+DESCRIPTION
+  squared magnitude response of a Butterworth filter omegac = cutoff fre-
+  quency ; sample = sample of frequencies
+
+EXAMPLE
+  //squared magnitude response of Butterworth filter
+  h=buttmag(13,300,1:1000);
+  mag=20*log(h)'/log(10);
+  plot2d((1:1000)',mag,[2],"011"," ",[0,-180,1000,20])
+
+AUTHOR
+  F. D.

@@ -1,0 +1,32 @@
+
+scanf(1)                       Scilab Function                       scanf(1)
+NAME
+  scanf  - Converts formatted input on standard input
+
+CALLING SEQUENCE
+   [v_1,...v_n]=scanf (format);
+
+PARAMETERS
+
+  format :Specifies the format conversion.
+
+DESCRIPTION
+  The scanf functions get character data on standard input (%io(1)), inter-
+  pret it according to a format, and returns the converted results.
+
+  The format parameter contains conversion specifications used to interpret
+  the input.
+
+  The format parameter can contain white-space characters (blanks, tabs, new-
+  line, or formfeed) that, except in the following two cases, read the input
+  up to the next nonwhite-space character. Unless there is a match in the
+  control string, trailing white space (including a newline character) is not
+  read.
+
+  -   Any character except % (percent sign), which must match the next char-
+      acter of the input stream.
+
+  -   A conversion specification that directs the conversion of the next
+      input field. see scanf_conversion for details.
+SEE ALSO
+  printf, read, fscanf, sscanf

@@ -1,0 +1,31 @@
+.TH st_ility 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+st_ility - stabilizability test
+.SH CALLING SEQUENCE
+.nf
+[n [,U [,Slo] ]]=st_ility(Sl [,tol])
+.fi
+.SH PARAMETERS
+.TP 10
+Sl 
+: \fVsyslin\fR list (linar system)
+.TP
+n
+:  integer (dimension of stabilizable subspace)
+.TP
+U 
+: basis such that its \fVn\fR first components span the stabilizable subspace
+.TP
+Slo
+: a linear system (\fVsyslin\fR list)
+.TP
+tol
+: threshold for controllability detection (see contr)
+.SH DESCRIPTION
+\fV Slo=( U'*A*U, U'*B, C*U, D, U'*x0 )\fR (\fVsyslin\fR list)
+displays the stabilizable form of \fVSl\fR.
+.SH SEE ALSO
+dt_ility
+.SH AUTHOR
+S. Steer INRIA 1988

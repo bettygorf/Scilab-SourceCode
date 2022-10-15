@@ -1,0 +1,33 @@
+
+symbols(1)                     Scilab Function                     symbols(1)
+NAME
+  symbols - scilab operator names
+
+DESCRIPTION
+  Use the following names to get help on a specific symbol.
+
+   operator         name in Scilab help
+   ',", .'          quote
+   +                plus
+   -                minus
+   *,.*             star
+   /, ./, /.        slash
+   \,.\ ,\.         backslash
+   .                dot
+   =, ==            equal
+   <,>,>=,<=,<>     less
+   ~                tilda
+   [                left
+   ]                right
+   ()               parents
+   %                percent
+   :                column
+   ,                comma
+   ;                semi
+   ^                hat
+   .^               power
+   |                or
+   &                and
+   .*., ./., .\.    kron
+SEE ALSO
+  overloading

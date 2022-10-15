@@ -1,0 +1,31 @@
+.TH histplot 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+histplot - plot a histogram
+.SH CALLING SEQUENCE
+.nf
+histplot(npoint,data,[style,strf,leg,rect,nax])
+.fi
+.SH PARAMETERS 
+.TP 8
+npoint
+: integer or a row vector of increasing values.
+.TP
+data 
+: real vector.
+.TP
+style,strf,leg,rect,nax
+: see \fVplot2d\fR.
+.SH DESCRIPTION
+.TP 3
+-
+If \fVnpoint\fR is an integer, \fVhistplot\fR plots a histogram of
+the values stored in \fVdata\fR using \fVnpoint\fR equally spaced classes.
+.TP
+-
+If \fVnpoint\fR is a vector \fVhistplot\fR plots a histogram of the
+values stored in \fVdata\fR using the classes \fV]npoint(k),npoint(k+1)]\fR.
+.LP
+Enter the command \fVhistplot()\fR to see a demo.
+.SH SEE ALSO
+hist3d, plot2d

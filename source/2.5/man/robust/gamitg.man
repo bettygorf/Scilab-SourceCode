@@ -1,0 +1,43 @@
+.TH gamitg 5 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+gamitg - H-infinity gamma iterations
+.SH CALLING SEQUENCE
+.nf
+[gopt]=gamitg(G,r,prec [,options]);
+.fi
+.SH PARAMETERS
+.TP 10 
+G 
+: \fVsyslin\fR list (plant realization )
+.TP  
+r
+: 1x2 row vector (dimension of \fVG22\fR)
+.TP  
+prec
+: desired relative accuracy on the norm
+.TP  
+option
+: string \fV't'\fR
+.TP  
+gopt
+: real scalar, optimal H-infinity gain
+.SH DESCRIPTION
+\fVgopt=gamitg(G,r,prec [,options])\fR
+returns the H-infinity optimal gain \fVgopt\fR.
+.LP
+\fVG\fR contains the state-space matrices \fV[A,B,C,D]\fR of
+the plant with the usual partitions:
+.nf
+   B = ( B1 , B2 ) ,    C = ( C1 ) ,    D = ( D11  D12)
+                            ( C2 )          ( D21  D22)
+.fi
+These partitions are implicitly given in \fVr\fR: \fVr(1)\fR
+and \fVr(2)\fR are the dimensions of \fVD22\fR (rows x columns)
+.LP
+With \fVoption='t'\fR, \fVgamitg\fR traces each bisection step, i.e., 
+displays the lower and upper bounds and the current test point.
+.SH SEE ALSO
+ccontrg, h_inf
+.SH AUTHOR
+P. Gahinet

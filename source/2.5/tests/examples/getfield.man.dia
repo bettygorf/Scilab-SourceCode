@@ -1,0 +1,40 @@
+ 
+clear;lines(0);
+ 
+l=list(1,'qwerw',%s)
+ l  =
+ 
+ 
+       l(1)
+ 
+    1.  
+ 
+       l(2)
+ 
+ qwerw   
+ 
+       l(3)
+ 
+    s   
+ 
+[a,b]=getfield([3 2],l)
+ b  =
+ 
+ qwerw   
+ a  =
+ 
+    s   
+ 
+ 
+a=hypermat([2,2,2],rand(1:2^3));// hypermatrices are coded using mlists
+ 
+a(1) // the a(1,1,1) entry
+ ans  =
+ 
+    0.2113249  
+ 
+getfield(1,a) // the mlist first field
+ ans  =
+ 
+!hm  dims  entries  !
+ 

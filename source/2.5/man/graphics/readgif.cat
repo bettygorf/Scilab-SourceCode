@@ -1,0 +1,35 @@
+
+readgif(1)                     Scilab Function                     readgif(1)
+NAME
+  readgif - read gif files
+
+CALLING SEQUENCE
+  [M,cmap]=readgif(filename)
+
+PARAMETERS
+
+  filename
+       : character string: path of the gif file
+
+  M    : matrix of 1 byte unsigned integers: the pixmap
+
+  cmap : Nx3 matrix of 1 byte unsigned integers: the gif colormap
+
+DESCRIPTION
+  [M,cmap]=readgif(filename) returns a uint8 matrix of integers M such as
+  M(i,j) contains the color number of (i,j) pixel and a Nx3 uint8 matrix of
+  integers cmap containing the gif colormap definition cmap=[R G B], where R,
+  G, B stands for Red, Green and Blue components of each colors coded on [0
+  256].
+
+EXEMPLE
+  driver('GIF');xinit(TMPDIR+'/foo.gif')
+  plot2d();xend()
+
+  [M,cmap]=readgif(TMPDIR+'/foo.gif');
+  cmap=double(cmap)/256;
+  xset('colormap',cmap)
+  grayplot(M)
+
+SEE ALSO
+  grayplot

@@ -1,0 +1,12 @@
+cdfbet - cumulative distribution function beta distribution  
+cdfbin - cumulative distribution function binomial distribution  
+cdfchi - cumulative distribution function chi-square distribution  
+cdfchn - cumulative distribution function non-central chi-square distribution  
+cdff - cumulative distribution function f distribution  
+cdffnc - cumulative distribution function non-central f-distribution  
+cdfgam - cumulative distribution function gamma distribution  
+cdfnbn - cumulative distribution function negative binomial distribution  
+cdfnor - cumulative distribution function normal distribution  
+cdfpoi - cumulative distribution function poisson distribution  
+cdft - cumulative distribution function student's t distribution  
+grand - random number generator  

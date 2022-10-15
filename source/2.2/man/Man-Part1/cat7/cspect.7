@@ -1,0 +1,66 @@
+
+
+
+cspect(1)                      Scilab Function                      cspect(1)
+
+
+
+
+
+
+NAME
+  cspect - spectral estimation (periodogram method)
+
+CALLING SEQUENCE
+  [sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)
+
+PARAMETERS
+
+  x         : data if vector, amount of input data if scalar
+
+  y         : data if vector, amount of input data if scalar
+
+  nlags     : number of correlation lags (positive integer)
+
+  ntp       : number of transform points (positive integer)
+
+  wtype     : string : 're','tr','hm','hn','kr','ch' (window type)
+
+  wpar      : optional window parameters for wtype='kr', wpar>0 and for
+            wtype='ch', 0 < wpar(1) < .5, wpar(2) > 0
+
+  sm        : power spectral estimate in the interval [0,1]
+
+  cwp       : calculated value of unspecified Chebyshev window parameter
+
+DESCRIPTION
+  Spectral estimation using the modified periodogram method.  Cross-spectral
+  estimate of x and y is calculated when both x and y are given. Auto-
+  spectral estimate of x is calculated if y is not given.
+
+AUTHOR
+  C. Bunks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

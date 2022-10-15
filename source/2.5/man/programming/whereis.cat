@@ -1,0 +1,15 @@
+
+what(1)                        Scilab Function                        what(1)
+NAME
+  whereis - name of library containing a function
+
+CALLING SEQUENCE
+  [librname]=whereis(function-name)
+
+DESCRIPTION
+  returns as a character string the name of the library containing the func-
+  tion function-name.  The path of the library is returned by typing "libr-
+  name".
+
+SEE ALSO
+  lib

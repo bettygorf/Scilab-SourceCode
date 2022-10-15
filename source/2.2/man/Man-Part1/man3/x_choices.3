@@ -1,0 +1,34 @@
+.TH x_choices 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+x_choices - interactive Xwindow choices through toggle buttons
+.SH CALLING SEQUENCE
+.nf
+[rep]=x_choices(title,items) 
+.fi
+.SH PARAMETERS
+.TP
+title
+: vector of strings, title for the popup window.
+.TP
+items 
+: a list of items \fVitems=list(item1,...,itemn)\fR, where each \fVitem\fR is also a list 
+of the following type : \fVitem=list('label',default_choice,choices)\fR. \fVdefault_choice\fR
+is an integer which gives the default toggle on entry and \fVchoices\fR is a 
+row vector of strings which gives the possible choices.
+.TP
+rep
+: an integer vector which gives for each item the number of the 
+selected toggle.
+.SH DESCRIPTION
+Select items through toggle lists and return in \fVrep\fR the selected 
+items 
+
+Type \fVx_choices()\fR to see an example.
+.SH EXAMPLE
+.nf
+l1=list('choice 1',1,['toggle c1','toggle c2','toggle c3']);
+l2=list('choice 2',2,['toggle d1','toggle d2','toggle d3']);
+l3=list('choice 3',3,['toggle e1','toggle e2']);
+rep=x_choices('Toggle Menu',list(l1,l2,l3));
+.fi

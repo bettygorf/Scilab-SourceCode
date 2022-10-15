@@ -1,0 +1,18 @@
+.TH not 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+not (~) - logical not
+.SH CALLING SEQUENCE
+.nf
+~A
+.fi
+.SH DESCRIPTION
+\fV~A\fR  gives the element-wise negation of the elements of the  boolean 
+matrix  \fVA\fR.  
+
+.SH EXAMPLES
+.nf
+~[%t %t %f]
+.fi
+.SH SEE ALSO
+and, or, find

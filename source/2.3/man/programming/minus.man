@@ -1,0 +1,39 @@
+.TH minus 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+minus (+) -  substraction operator, sign changes
+.SH CALLING SEQUENCE	
+.nf 
+X-Y
+-Y
+.fi
+.SH PARAMETERS
+.TP 
+X 
+: scalar or vector or matrix of numbers, polynomials or rationals. It
+may also be a \fVsyslin\fR list
+.TP 
+Y 
+: scalar or vector or matrix of numbers, polynomials or rationals. It
+may also be a \fVsyslin\fR list
+.SH DESCRIPTION
+Substraction
+.LP
+For numeric operands substraction as its usual meaning.
+If one of the operands is a matrix and the other one a scalar the
+the operation is performed element-wise. if \fVY==[] X\fR  is returned;
+if \fVX==[] -Y\fR  is returned.
+.LP
+Substraction may also be defined for other data types through
+"soft-coded" operations.
+.SH EXAMPLE
+.nf
+[1,2]-1
+[]-2
+
+%s-2
+1/%s-2
+"cat"+"enate"
+.fi
+.SH SEE ALSO
+addf, mtlb_mode

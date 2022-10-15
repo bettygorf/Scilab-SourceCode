@@ -1,0 +1,57 @@
+.TH champ 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so man1/sci.an
+.SH NAME
+champ - draw a 2d vector field 
+.SH CALLING SEQUENCE
+.nf
+champ(x,y,fx,fy [,arfact,rect,strf])
+champ1(x,y,fx,fy [,arfact,rect,strf])
+.fi
+.SH PARAMETERS
+.TP 10
+x,y
+: two vectors which define the grid.
+.TP
+fx
+: a matrix which describes the x component of the vector field. \fVfx(i,j)\fR
+is the x component of the vector field at point \fV(x(i),y(j))\fR.
+.TP 
+fy
+: a matrix which describes the y component of the vector field. \fVfy(i,j)\fR
+is the y component of the vector field at point \fV(x(i),y(j))\fR.
+.TP
+arfact
+: an optional argument of type real which gives a scale factor for the display of the arrow heads on the plot (default value is 1.0)
+.TP
+rect
+: a vector  rect=[xmin,ymin,xmax,ymax] which gives the boundaries of the 
+graphic frame to use.
+.TP
+strf 
+: is a string of length 3 "xyz" which has the same meaning as the strf 
+parameter of \fVplot2d\fR. The parameter "x" has no effect with \fVchamp\fR.
+.SH DESCRIPTION 
+\fVchamp\fR draws a 2d vector field. If ones uses \fVchamp\fR the length 
+of the arrows are proportional to the field intensity and if 
+one uses \fVchamp1\fR (with a color screen) the color of the 
+arrow depends on the intensity of the field.
+
+Enter the command \fVchamp()\fR to see a demo.
+.SH EXAMPLE
+.nf 
+// using rect has graphic boundaries 
+champ(-5:5,-5:5,rand(11,11),rand(11,11),1,[-10,-10,10,10],"011");
+xgrid();
+xbasc();
+// using (x,y) to get boundaries 
+champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021");
+// using coloured arrows
+xset("use color",1)
+champ1(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021");
+.fi
+.SH AUTHOR
+J.Ph.C.
+
+
+
+

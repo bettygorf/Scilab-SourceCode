@@ -1,0 +1,31 @@
+
+plot3d1(2)                     Scilab Function                     plot3d1(2)
+NAME
+  plot3d1 - gray or color level plotting of a surface.
+
+DESCRIPTION
+  plot3d1(x,y,z,[theta,alpha,leg,flag,ebox])
+  plot3d1(xf,yf,zf [,theta,alpha,leg [,flag,ebox]])
+
+PARAMETERS
+  see plot3d for a full description. There's just a slight difference, the
+  value of the mode parameter is unused, only its sign. If the sign is nega-
+  tive the grid is not drawn.
+
+DESCRIPTION
+  plots a surface  z=f(x,y) (points) with colors depending on the z-level of
+  the surface.  Enter the command plot3d1() to see a demo or fac3d1().
+
+EXAMPLE
+  plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3]);
+  xbasc();
+  plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[-2,2,3]);
+  xbasc();
+  t=(0:0.3:2*%pi)';zmat=sin(t)*cos(t');
+  [xx,yy,zz]=genfac3d(t,t,zmat);
+  plot3d1([xx xx],[yy yy],[zz 4+zz]);
+  xbasc();
+  plot3d1([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
+
+AUTHOR
+  J.Ph.C.

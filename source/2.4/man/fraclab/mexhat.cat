@@ -1,0 +1,29 @@
+
+mexhat(2)                      Scilab Function                      mexhat(2)
+NAME
+  mexhat -  Mexican hat wavelet
+
+  Author: Paulo Goncalves
+
+  Computes a Mexican Hat wavelet (seconde derivative of the gaussian).
+
+Usage
+  [wavelet,alpha] = mexhat(nu)
+
+Input parameters
+       o nu :  real scalar between 0 and 1/2 Central (reduced) frequency of
+         the wavelet.
+Output parameters
+       o wavelet : real vector [1,2*N+1] Mexican Hat wavelet in time.
+       o alpha : real scalar Attenuation exponent of the Gaussian enveloppe
+         of the Mexican Hat wavelet.
+See also:
+  morlet, contwt
+
+Example:
+   wavelet synthesis
+
+  wavelet1 = mexhat(0.05) ;
+  wavelet2 = mexhat(0.2) ;
+  plot(wavelet1) ; pause
+  plot(wavelet2)

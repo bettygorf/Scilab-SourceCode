@@ -1,0 +1,38 @@
+.TH xstring 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xstring - display a matrix of strings
+.SH CALLING SEQUENCE
+.nf
+[]=xstring(x,y,str,[angle,flag])
+.fi
+.SH PARAMETERS 
+.TP 15
+x,y
+: real scalars (point coordinates)
+.TP
+str
+: matrix of strings
+.TP
+angle
+: real (angle in degree) (clockwise) (default value =0)
+.TP 
+flag
+: integer 
+.SH DESCRIPTION
+draws a matrix of strings ( each line of the matrix stands for a line of text
+and the line elements are separated by a white space) at location \fVx,y\fR
+( lower-left point ) in the current graphic scale. \fVangle\fR if given gives the slope in degree
+to use for drawing the string. if  \fVframe=1\fR a box is drawn around the string 
+(only if \fVangle=0\fR )
+.SH EXAMPLE 
+.nf
+plot2d([0,1],[0,1])
+xstring(0.5,0.5,["Scilab","is" ; "Not","Basilc"])
+.fi
+.SH AUTHOR
+J.Ph.C..
+
+
+
+

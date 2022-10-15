@@ -1,0 +1,20 @@
+
+nextpowQ(2)                    Scilab Function                    nextpowQ(2)
+NAME
+  nextpowQ - Rounds a number  to the up-nearest power of an integer
+
+  Author: Paulo Goncalves
+
+  Rounds a number x to the up-nearest power of an integer Q
+
+Usage
+
+  [xup2Q,powQ] = nextpowQ(x[,Q])
+Input parameters
+       o x : Real positive number
+       o Q : Positive integer.  Default value is Q = 2
+Output parameters
+       o xup2Q : Positive integer x rounded to the closest power of Q
+       o powQ :  Positive integer xup2Q = powQ^Q.
+See also:
+  log, log2

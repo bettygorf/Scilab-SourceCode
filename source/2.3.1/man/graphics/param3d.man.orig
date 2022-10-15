@@ -1,0 +1,46 @@
+.TH param3d 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+param3d - set of points or parametric curves in 3-D
+.SH CALLING SEQUENCE
+.nf
+param3d(x,y,z,[theta,alpha,leg,flag,ebox]
+.fi
+.SH PARAMETERS
+.TP 15
+x,y,z
+: three matrices of the same size (considered as vectors with
+the Fortran storage convention)  (points of the parametric curve)
+.TP
+theta, alpha
+: gives the coordinates in spherical angle of the observation point 
+.TP
+leg
+: string describing the caption for each axis, the different fields
+in the string are separated by the symbol @, for example : "X@Y@Z"
+.TP
+flag =[type,box] :
+where  type and  box have the same meaning as in \fVplot3d\fR
+.TP
+ebox
+: a vector of size (1,6) which gives the boundaries of the plot
+\fV[xmin,xmax,ymin,ymax,zmin,zmax]\fR when the value of type is \fV1\fR
+.SH DESCRIPTION 
+\fVparam3d()\fR is used to obtain a graphic of a parametric curve in R3, 
+and can also be used to see a set of points in R3
+
+Enter the command \fVparam3d()\fR to see a demo.
+.SH EXAMPLE 
+.nf
+t=0:0.1:5*%pi;
+param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
+xbasc();
+xset("dashes",-3)
+param3d(rand(1,100),rand(1,100),rand(1,100),35,45,"X@Y@Z",[2,3])
+.fi
+.SH SEE ALSO
+param3d1
+.SH AUTHOR
+J.Ph.C.
+
+

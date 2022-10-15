@@ -1,0 +1,19 @@
+.TH argn 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+argn - number of arguments in a macro call
+.SH CALLING SEQUENCE
+.nf
+[lhs [,rhs] ]=argn(0)
+.fi
+.SH DESCRIPTION
+This function is used inside a macro definition.
+It gives the number of actual inputs \fVrhs\fR
+and output \fVlhs\fR parameters passed to the macro when the macro is 
+called. It is usually used in macro definitions to deal with 
+optional arguments.
+.SH SEE ALSO
+macro
+
+
+

@@ -1,0 +1,23 @@
+
+ldivf(1)                       Scilab Function                       ldivf(1)
+NAME
+  rdivf - right symbolic division
+
+CALLING SEQUENCE
+  ["r"]=ldivf("d","c")
+
+PARAMETERS
+
+  "d","c","r"    : strings
+
+DESCRIPTION
+  returns the string "c/d" Trivial simplifications such as "c/1" = "c" are
+  performed.
+
+EXAMPLE
+  ldivf('c','d')
+  ldivf('1','2')
+  ldivf('a','0')
+
+SEE ALSO
+  ldivf

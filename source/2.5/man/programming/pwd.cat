@@ -1,0 +1,16 @@
+
+pwd(1)                          Scilab command                         pwd(1)
+NAME
+  pwd - print Scilab current directory
+
+CALLING SEQUENCE
+  pwd
+
+DESCRIPTION
+  return in ans the Scilab current directory.
+
+EXAMPLE
+  pwd
+
+SEE ALSO
+  getcwd, chdir, unix

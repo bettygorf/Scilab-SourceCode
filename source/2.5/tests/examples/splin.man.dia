@@ -1,0 +1,13 @@
+ 
+clear;lines(0);
+ 
+x=0:0.5:10;f=sin(x);
+ 
+d=splin(x,f);
+ 
+S=interp(0:0.1:10,x,f,d);
+ 
+plot2d(x',f',-1);
+ 
+plot2d((0:0.1:10)',S',2,'000')
+ 

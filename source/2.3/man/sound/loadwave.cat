@@ -1,0 +1,17 @@
+
+loadwave(1)                    Scilab Function                    loadwave(1)
+NAME
+  loadwave - load a sound <<wav>> file into scilab
+
+CALLING SEQUENCE
+  x=loadwave('file-name');
+
+PARAMETERS
+  x : vector
+
+DESCRIPTION
+  Read a wav sound file into Scilab. you can transform other sound files into
+  wav file with the sox program.
+
+SEE ALSO
+  savewave, soundsec, analyze, mapsound

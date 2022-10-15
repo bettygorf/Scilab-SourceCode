@@ -1,0 +1,66 @@
+
+
+
+pol2des(1)                     Scilab Function                     pol2des(1)
+
+
+
+
+
+
+NAME
+  pol2des - polynomial matrix to descriptor form
+
+CALLING SEQUENCE
+  [N,B,C]=pol2des(Ds)
+
+PARAMETERS
+
+  Ds          : polynomial matrix
+
+  N, B, C     : three real matrices
+
+DESCRIPTION
+  Given the polynomial matrix Ds=D_0 +D_1 s +D_2 s^2 +... +D_k s^k, pol2des
+  returns three  matrices N, B, C, with N nilpotent such that:
+
+  Ds = C (sN-Eye)^-1 B
+
+SEE ALSO
+  ss2des, tf2des
+
+AUTHOR
+  F.D.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

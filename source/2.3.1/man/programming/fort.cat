@@ -1,0 +1,116 @@
+
+fort(1)                        Scilab Function                        fort(1)
+NAME
+  fort - Fortran or C user routines call
+
+CALLING SEQUENCE
+  [y1,...,yk]=fort("ident",x1,px1,"tx1",...,xn,pxn,"txn",
+                   "out",[ny1,my1],py1,"ty1",...,[nyl,myl],pyl,"tyl")
+  [y1,....,yk]=fort("ident",x1,...,xn)
+
+PARAMETERS
+
+  "ident"   : string
+
+  xi        : real matrix
+
+  pxi, pyi  : integers
+
+  txi, tyi  : character string "d", "r", "i"  or "c".
+
+DESCRIPTION
+  Interactive call of Fortran (or C) user program from Scilab. The routine
+  must be previously linked with Scilab. This link may be done:
+
+       - with Scilab "link" command (incremental "soft" linking) during the
+         Scilab session.(see link)
+
+       - by "hard" re-linking. Writing the routine call within Scilab routine
+         "default/Ex-fort.f" and then re_linking all Scilab with the command
+         make bin/scilex in main Scilab directory.
+
+  The meaning of each parameter is described now:
+
+       "ident"        is the name of the subroutine called.
+
+       x1,...,xn      are input variables (real matrices) sent to the rou-
+                      tine,
+
+       px1,...,pxn    are the respective positions of these variables in the
+                      calling sequence of the routine and
+
+       tx1,...,txn    are their types ("r","i", "d",  for real (float) ,
+                      integer, double precision) (strings are denoted "c" and
+                      are treated as integers).
+
+       "out"          is a keyword used to separate input variables from out-
+                      put variables.
+
+       [ny1, my1]     are the size (# of rows and columns) of output vari-
+                      ables and
+
+       py1, ...       are the positions of output variables (possibly equal
+                      to pxi ).  The pyi's integers must be in increasing
+                      order.
+
+       "ty1", ...     are the Fortran types of output variables.  The  k
+                      first output variables are put in y1,..., yk.
+
+  If an output variable coincides with an input variable (i.e. pyi=pxj ) one
+  can pass only its position pyi .  The size and type of yi are the same as
+  those of xi .
+
+  In the case of short syntax , [y1,....,yk]=fort("ident",x1,...,xn), the
+  input parameters xi's are sent to the interface routine Ex-fort. txi, nyj,
+  myj  and tyj are then given in this routine (see the source code in the
+  directory SCIDIR/default).
+
+  For example the following program:
+          subroutine foof(c,a,b,n,m)
+          integer n,m
+          double precision a(*),b,c(*)
+          do 10 i=1,m*n
+            c(i) = sin(a(i))+b
+   10     continue
+          end
+
+  link("foof.o","foof")
+  a=[1,2,3;4,5,6];b= %pi;
+  [m,n]=size(a);
+  // Inputs:
+  // a is in position 2 and double
+  // b                3     double
+  // n                4     integer
+  // m                5     integer
+  // Outputs:
+  // c is in position 1 and double with size [m,n]
+  c=fort("foof",a,2,"d",b,3,"d",n,4,"i",m,5,"i","out",[m,n],1,"d");
+  returns the matrix c=2*a+b.
+
+  If your machine is a DEC Alpha, SUN Solaris or SGI you may have to change
+  the previous command line link("foo.o","foo")  by one of the followings:
+  link('foof.o -lfor -lm -lc','foof').
+  link('foof.o -lftn -lm -lc','foof').
+  link('foof.o -L/opt/SUNWspro/SC3.0/lib/lib77 -lm -lc','foof').
+
+  The same example coded in  C:
+          void fooc(c,a,b,m,n)
+          double a[],*b,c[];
+          int *m,*n;
+        { double sin();
+          int i;
+          for ( i =0 ; i < (*m)*(*n) ; i++)
+                 c[i] = sin(a[i]) + *b;
+          }
+
+  link("fooc.o","fooc","C") // note the third argument
+  a=[1,2,3;4,5,6];b= %pi;
+  [m,n]=size(a);
+  c=fort("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
+
+  Characters strings are treated as integers. For passing the string
+  mystring, use the triple:
+  fort(..., str2code('mystring'),pxi,'c',....).
+  Upon return use code2str to convert output integer vector to string.
+SEE ALSO
+  link, c_link, intersci, addinter

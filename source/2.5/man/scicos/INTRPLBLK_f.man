@@ -1,0 +1,22 @@
+.TH INTRPLBLK_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+INTRPLBLK_f - Scicos linear interpolation block
+.SH DIALOGUE PARAMETERS
+.TP 20
+X coord.
+: a vector (strictly increasing)
+.TP
+Y coord.
+: a vector (same size as X coord)
+.SH DESCRIPTION
+The output of this block is a function of the input obtained
+by linear interpolation. This block has a single scalar input 
+and a single scalar output port. The X coord. and Y coord. give
+respectively the X coordinate and the Y coordinate of the data
+points to be interpolated. X coord must be strictly increasing.
+
+
+
+
+

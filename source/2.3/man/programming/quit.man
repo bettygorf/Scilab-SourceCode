@@ -1,0 +1,9 @@
+.TH quit 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+quit - decrease the pause level or exit
+.SH DESCRIPTION
+\fVquit\fR terminates Scilab or decreases the \fVpause\fR level.
+.SH SEE ALSO
+pause, break, abort
+

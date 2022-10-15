@@ -1,0 +1,58 @@
+
+tlist(1)                       Scilab Function                       tlist(1)
+NAME
+  tlist - Scilab object and typed list definition.
+
+CALLING SEQUENCE
+  tlist(typ,a1,....an )
+
+PARAMETERS
+
+  typ       : Character string or vector of character strings
+
+  ai        : any Scilab object (matrix, list,string...).
+
+DESCRIPTION
+  Creates a typed-list with elements ai's. The typ argument specifies the
+  list type. Such typed-list allow the user to define new operations working
+  on these object through scilab functions. The only difference between
+  typed-list and list is the value of the type (16 instead of 15).
+
+  typ(1) specifies the list type (character string used to define soft coded
+  operations)
+
+  if specified typ(i) may give the i+1th element formal name
+
+  Standard Operations on list work similarly for typed-list:
+
+  eexxttrraaccttiioonn
+       : [x,y,z...]=l(v) where v is a vector of indices; [x,y,z]=l(:)
+       extracts all the elements.
+
+  iinnsseerrttiioonn
+       : l(i)=a
+
+  ddeelleettiioonn
+       : l(i)=null() removes the i-th element of the tlist l.
+
+  ddiissppllaayy
+
+  Moreover if typ(2:n+1) are specified, user may point elements by their
+  names
+
+  We give below examples where tlist are used.
+
+  Linear systems are represented by specific typed-list e.g. a linear system
+  [A,B,C,D] is represented by the tlist
+  Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],A,B,C,D,x0,'c') and this
+  specific list may be created by the function syslin.
+
+  Sys(2) or Sys('A') is the state-matrix and Sys('td') is the time domain
+  A rational matrix H is represented by the typed-list
+  H=tlist(['r';'num';'den';'dt'],Num,Den,[]) where Num and Den are two poly-
+  nomial matrices and a  (e.g. continuous time) linear system with transfer
+  matrix H maybe created by syslin('c',H).
+  H(2) or H('num') is the transfer matrix numerator
+
+SEE ALSO
+  null, percent, syslin, list

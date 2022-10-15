@@ -1,0 +1,66 @@
+
+
+
+colcompr(8)                    Scilab Function                    colcompr(8)
+
+
+
+
+
+
+NAME
+  colcompr - column compression of polynomial matrix
+
+CALLING SEQUENCE
+  [Y,rk,ac]=colcompr(A);
+
+PARAMETERS
+
+  A    : polynomial matrix
+
+  Y    : square polynomial matrix (right unimodular basis)
+
+  rk   : normal rank of A
+
+  Ac   : Ac=A*Y, polynomial matrix
+
+DESCRIPTION
+  column compression of polynomial matrix A (compression to the left)
+
+EXAMPLE
+  s=poly(0,'s');
+  p=[s;s*(s+1)^2;2*s^2+s^3];
+  [Y,rk,ac]=colcompr(p*p');
+  p*p'*Y
+
+SEE ALSO
+  rowcompr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+.TH "mtlb_log2" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mtlb_log2 - Base 2 logarithm.
+.sp
+Author: Paulo Goncalves
+.sp
+Base 2 logarithm.
+    \fIy = mtlb_log2(x)\fP is the base 2 logarithm of the elements of \fIx\fP.
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+y = mtlb_log2(x) ;
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : Real valued array \f(CR[\fPrx,cx\f(CR]\fP
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBy\fP : Complex valued matrix \f(CR[\fPrx,cx\f(CR]\fP 
+Base 2 logarithm of the input array \fIx\fP.
+.RE
+
+.SH See also:
+log, exp

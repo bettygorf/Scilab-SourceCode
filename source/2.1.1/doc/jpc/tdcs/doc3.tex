@@ -1,0 +1,79 @@
+\documentstyle[modif.article]{article}
+\textheight=660pt 
+\textwidth=470pt 
+\topmargin=-27pt 
+\oddsidemargin=0pt 
+\evensidemargin=0pt 
+\title{Travaux dirig\'es 3}
+\author{J.Ph. Chancelier et M. Cohen de Lara}
+\begin{document}
+\maketitle 
+\def\cmarg{\hspace{1cm}}
+
+\def\tit#1{ \begin{center} \fbox{{\bf  #1}} \end{center}}
+\centerline{Le fichier des macros de la s\'eance de T.D. 3}
+\input{TdAuto3}
+\Mhlp
+
+\Mtdinitt
+
+\section{Equation r\'ecurrente bilin\'eaire}
+
+\tit{recur}
+Calcule les $n$ it\'er\'es d'une \'equation r\'ecurrente bilin\'eaire 
+partant de $x0$ et pilot\'ee par un bruit gaussien de variance $var$.
+
+\Mrecur
+
+\tit{logr}
+Valeur  th\'eorique de l'exposant de Liapunov.
+
+\Mlogr
+
+\centerline{{\sc Questions}}
+
+\begin{itemize}
+\item Taper la commande {\bf recur(?,?,?,?)} pour diff\'erentes valeurs des param\`etres. Qu'observe-t-on~?
+\item Fixer {\bf var = 1} puis trouver une valeur approch\'ee du $k_{lim}$.
+Calculer {\bf logr($k_{lim} , var$)}.
+\end{itemize}
+\bigskip
+
+
+\section{Commande lin\'eaire optimale}
+\input{TdAuto2.tex}
+\Mcomric
+
+\Mobsric
+
+\Mexemple
+
+\Mtest
+
+\section{Un probl\`eme de contr\^ole optimal}
+
+\Mmine
+
+\Mtrajopt
+
+\Mshowcost
+
+\Mff
+
+\centerline{{\sc Questions}}
+
+\begin{itemize}
+\item Taper {\bf tdinit3()}. Choisir le nombre de couches $n1$, 
+   le nombre d'\'etapes $n2$ et 
+   l'ensemble des commandes admissibles sous forme d'un vecteur ligne 
+   $uvect=<u_1,\ldots,u_n>$ ( par exemple $<-1,0,1>$ ). appeller la macro
+	 par la commande {\bf $<$cout,feed$>$=mine(n1,n2,uvect)}.
+\item Visualiser la commande et la trajectoire optimales en tapant 
+	{\bf trajopt(feed)}. 
+\item Changer les valeurs des param\`etres de la fonction gain instantan\'e 
+   $n1$, $n2$, $te$, $xe$, $k0$,  $kc$ et relancer l'ex\'ecution de {\bf mine}.
+\item Cr\'eer sa propre macro {\bf ff} donnant le gain instantan\'e apparaissant dans 
+le programme {\bf mine} et relancer l'ex\'ecution de {\bf mine}.
+\end{itemize}
+\end{document}
+ 

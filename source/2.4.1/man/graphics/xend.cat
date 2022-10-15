@@ -1,0 +1,15 @@
+
+xend(2)                        Scilab Function                        xend(2)
+NAME
+  xend - ends a graphic session
+
+CALLING SEQUENCE
+  xend()
+
+DESCRIPTION
+  This command is used to end a graphic session. Under the Postscript or Xfig
+  drivers this command closes the current file which was opened by the com-
+  mand xinit.
+
+AUTHOR
+  J.Ph.C.

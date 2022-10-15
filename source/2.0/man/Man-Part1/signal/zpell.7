@@ -1,0 +1,37 @@
+.TH zpell 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+zpell - lowpass elliptic filter
+.SH CALLING SEQUENCE
+.nf
+[zeros,poles,gain]=zpell(epsilon,A,omegac,omegar)
+.fi
+.SH PARAMETERS
+.TP 10
+epsilon
+: real : ripple of filter in pass band (\fV0<epsilon<1\fR)
+.TP
+A
+: real : attenuation of filter in stop band (\fVA>1\fR)
+.TP
+omegac
+: real : pass band cut-off frequency in Hertz
+.TP
+omegar
+: real : stop band cut-off frequency in Hertz
+.TP
+zeros
+: resulting zeros of filter
+.TP
+poles
+: resulting poles of filter
+.TP
+gain
+: resulting gain of filter
+.SH DESCRIPTION
+Poles and zeros of prototype lowpass elliptic filter.
+\fVgain\fR is the gain of the filter
+.SH AUTHOR
+F.D. 
+
+

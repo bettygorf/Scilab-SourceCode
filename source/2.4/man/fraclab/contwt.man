@@ -1,0 +1,229 @@
+.TH "contwt" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+contwt -  Continuous L2 wavelet transform
+.sp
+Author: Paulo Goncalves
+.sp
+Computes a \fIcontinuous wavelet transform\fP of a
+1\f(CR-\fPD signal (real or complex). The scale operator is unitary with respect to the L2 norm.
+Two closed form wavelets are available:
+the \fIMexican Hat\fP or the \fIMorlet Wavelet\fP (real or analytic). For arbitrary
+analyzing wavelets, numerical approximation is achieved using a Fast
+Mellin Transform.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPwt,scale,f,scalo,wavescaled\f(CR]\fP=contwt(x,\f(CR[\fPfmin,fmax,N,wvlt_length\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : Real or complex vector \f(CR[\fP1,nt\f(CR]\fP or \f(CR[\fPnt,1\f(CR]\fP
+Time samples of the signal to be analyzed. 
+
+.TP
+o 
+\fBfmin\fP : real scalar in  \f(CR[\fP0,0.5\f(CR]\fP
+Lower frequency bound of the analysis. When not specified, this
+parameter forces the program to interactive mode.
+
+.TP
+o 
+\fBfmax\fP :  real scalar \f(CR[\fP0,0.5\f(CR]\fP and \fIfmax\fP \f(CR>\fP 
+Upper frequency bound of the analysis. When not specified, this
+parameter forces the program to interactive mode.
+
+.TP
+o 
+\fBN\fP : positive integer. 
+number of analyzing voices.  When not specified, this parameter forces
+the program to interactive mode.
+
+.TP
+o 
+\fBwvlt_length \fP : scalar or vector
+specifies the analyzing wavelet:
+0: Mexican hat wavelet (real)
+Positive real integer: real Morlet wavelet of size 2*\fIwvlt_length\fP+1) at
+finest scale 1
+Positive imaginary integer: analytic Morlet wavelet of size 2*\fIwvlt_length\fP+1) at
+finest scale 1
+Real valued vector: waveform samples of an arbitrary bandpass function.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : Real or complex matrix \f(CR[\fPN,nt\f(CR]\fP
+coefficients of the wavelet transform. 
+
+.TP
+o 
+\fBscale\fP : real vector \f(CR[\fP1,N\f(CR]\fP
+analyzed scales
+
+.TP
+o 
+\fBf\fP : real vector \f(CR[\fP1,N\f(CR]\fP
+analyzed frequencies
+
+.TP
+o 
+\fBscalo\fP : real positive valued matrix
+\f(CR[\fPN,nt\f(CR]\fP
+Scalogram coefficients (squared magnitude of the
+wavelet coefficients \fI wt \fP)
+
+.TP
+o 
+\fBwavescaled\fP : Scalar or real valued matrix
+\f(CR[\fPlength(wavelet at coarser scale)+1,N\f(CR]\fP
+ 
+Dilated versions of the analyzing wavelet
+.RE
+
+.SH Description
+.SH Parameters
+
+
+.RS
+
+.TP
+o 
+\fIx\fP : signal to be analyzed. Real or complex
+vector
+ 
+
+.TP
+o 
+\fIfmin\fP : lower frequency bound of the analysis. \fIfmin\fP is
+real scalar comprised in  \f(CR[\fP0,0.5\f(CR]\fP
+
+.TP
+o 
+\fIfmax\fP : upper frequency bound of the analysis. \fIfmax\fP is
+a real scalar comprised in \f(CR[\fP0,0.5\f(CR]\fP and \fIfmax\fP \f(CR>\fP
+\fIfmin\fP
+
+.TP
+o 
+\fIN\fP : number of analyzing voices geometrically
+sampled between minimum scale \fIfmax\fP/\fIfmax\fP and maximum
+scale \fIfmax\fP/\fIfmin\fP.
+
+.TP
+o 
+\fIwvlt_length \fP : specifies the analyzing wavelet:
+0: Mexican hat wavelet (real). The size of the wavelet is
+automatically fixed by the analyzing frequency
+Positive real integer: real Morlet wavelet of size 2*\fIwvlt_length\fP+1) at
+finest scale (1)
+Positive imaginary integer: analytic Morlet wavelet of size
+2\f(CR*\fP\f(CR|\fP\fIwvlt_length\fP\f(CR|\fP+1) at finest scale 1. The corresponding
+wavelet transform is then complex. May be usefull for event detection
+purposes.
+Real valued vector: corresponds to the time samples waveform of any
+arbitrary bandpass function viewed as the analyzing wavelet at any
+given scale. Then, an approximation of the scaled wavelet versions is achieved
+using the Fast Mellin Transform (see dmt and dilate).
+
+.TP
+o 
+\fIwt\fP : coefficients of the wavelet transform.  X\f(CR-\fPcoordinated
+corresponds to time (uniformly sampled), Y\f(CR-\fPcoordinates correspond to
+frequency (or scale) voices (geometrically sampled between \fI fmax\fP
+(resp. 1) and \fIfmin\fP (resp. \fI fmax \fP/\fI fmin \fP). First row of
+\fIwt\fP corresponds to the highest analyzed frequency (finest scale).
+
+.TP
+o 
+\fIscale\fP : analyzed scales (geometrically sampled between
+1  and \fI fmax \fP/\fIfmin\fP
+
+.TP
+o 
+\fIf\fP : analyzed frequencies (geometrically sampled between
+\fI fmax \fP and \fI fmin \fP. \fIf\fP corresponds to \fIfmax\fP/\fIscale\fP
+
+.TP
+o 
+\fIscalo\fP : Scalogram coefficients (squared magnitude of the
+wavelet coefficients \fI wt \fP)
+
+.TP
+o 
+\fBwavescaled\fP : If \fI wvlt_length \fP is a real or Imaginary
+pure scalar, then \fI wavescaled\fP equal \fI wvlt_length \fP. If \fIwvlt_length \fP is a vector (containing the waveform samples of an
+arbitrary analyzing wavelet), then \fI wavescaled \fP contains
+columnwise all scaled version of \fI wvlt_length \fP used for the
+analysis. In this latter case, first element of each column gives the
+effective time support of the analyzing wavelet at the corresponding
+scale. \fI wavescaled\fP can be used for reconstructing the signal
+(see icontwt)
+.RE
+
+.SH Algorithm details
+The wavelet transform of \fIx\fP is computed via convolutions of
+dilated and translated versions of a single function called the
+"mother wavelet". The scales are given by the dilatation factor. As the
+scales are not absolute, the scale factor is determined through the
+specification of the minimum and maximum frequency of the
+decomposition considered as a time/frequency transform. The maximum
+frequency might not be greater than the Nyquist Frequency i.e. 0.5 as
+the wavelet at this scale would be undersampled (and therefore would create aliasing).
+The number of scales tells how many convolutions are computed. The
+bigger it is, the slower the transform is. The frequency (or scale)
+axis is geometrically sampled. The resulting scales and frequencies
+values can be obtained as output parameters.
+The meaning of the wavelet length parameter is manyfold. When non zero
+integer, it tells the routine to use a real Morlet Wavelet and gives
+its length at scale 1 (maximum frequency). When it is a positive
+imaginary integer, the analytic Morlet wavelet is used. If \fI wvlt_length\fP
+= 0, the Mexican Hat is used. The resulting wavelet transform is then
+real but has a quite poor frequency resolution.  If \fI wvlt_length\fP is a
+real vector, it corresponds to the analyzing wavelet waveform in time at any
+arbitrary scale. Dilated and compressed version of it (according to
+the range \f(CR[\fP\fI fmin \fP,\fI fmax\fP\f(CR]\fP are computed directly
+from \fI wvlt_length\fP using a Fast Mellin Transform.
+For all choices of wavelet, approximative reconstruction of the decomposed signal
+is possible (see icontwt).
+.SH See also:
+icontwt, contwtmir and cwt
+.SH Example:
+\fI Signal synthesis \fP 
+.sp
+.ft CR
+.nf
+x = morlet(0.1,128) ; 
+.fi 
+.ec
+.ft P
+.sp
+\fI A Morlet (of size 2*8+1 samples ) wavelet transform \fP 
+.sp
+.ft CR
+.nf
+[wtMorlet,scale,f,scaloMorlet] = contwt(x,0.01,0.5,128,8) ;
+viewmat(scaloMorlet,[1 1 24]) ;
+.fi 
+.ec
+.ft P
+.sp
+\fI Compared with a Mexican hat wavelet transform \fP 
+.sp
+.ft CR
+.nf
+[wtMex,scale,f,scaloMex] = contwt(x,0.01,0.5,128,0) ;
+viewmat(scaloMex,[1 1 24]) ;
+.fi 
+.ec
+.ft P
+.sp

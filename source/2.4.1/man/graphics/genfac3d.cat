@@ -1,0 +1,37 @@
+
+genfac3d(2)                    Scilab Function                    genfac3d(2)
+NAME
+  genfac3d - convert 3d datas to four sided facets
+
+CALLING SEQUENCE
+  [xx,yy,zz]=genfac3d(x,y,zmat [,mask])
+
+PARAMETERS
+
+  zmat           : a (mxn) matrix.
+
+  x              :x axis coordinates vector ( size m )
+
+  y              :y axis coordinates vector ( size n )
+
+  mask           : boolean optional matrix with same size as zmat used to
+                 select entries of zmat to be represented by facets.
+
+  xx,yy,zz       : Three 4x(n-1xm-1)  matrices. xx(:,i),yy(:,i),zz(:,i) are
+                 respectively the
+                  x-axis,y-axis and z-axis coordinates of the ith facet
+
+DESCRIPTION
+  Converts 3d data ( two vectors x,y and a matrix z which code the  surface
+  z(i,j)=f(x(i),y(j)) ) to a four sided facets representation.
+
+EXAMPLE
+  t = linspace(0,2*%pi,10);
+  zmat=sin(t')*cos(t);
+  plot3d(t,t,zmat)
+  [xx,yy,zz]=genfac3d(t,t,zmat);
+  plot3d(xx,yy,zz)
+  plot3d([xx xx],[yy yy],[zz 4+zz])
+
+SEE ALSO
+  plot3d, eval3dp

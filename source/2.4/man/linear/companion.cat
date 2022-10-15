@@ -1,0 +1,34 @@
+
+companion(1)                   Scilab Function                   companion(1)
+NAME
+  companion - companion matrix
+
+CALLING SEQUENCE
+  A=companion(p)
+
+PARAMETERS
+
+  p         : polynomial or vector of polynomials
+
+  A         : square matrix
+
+DESCRIPTION
+  Returns a matrix A with characteristic polynomial equal to p if p is monic.
+  If p is not monic the characteristic polynomial of A is equal to p/c where
+  c is the coefficient of largest degree in p.
+
+  If p is a vector of monic polynomials, A is block diagonal, and the charac-
+  teristic polynomial of the ith block is p(i).
+
+EXAMPLE
+  s=poly(0,'s');
+  p=poly([1,2,3,4,1],'s','c')
+  det(s*eye-companion(p))
+  roots(p)
+  spec(companion(p))
+
+SEE ALSO
+  spec, poly, randpencil
+
+AUTHOR
+  F.D.

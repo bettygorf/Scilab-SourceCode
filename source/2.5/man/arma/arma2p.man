@@ -1,0 +1,42 @@
+.TH arma2p 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+arma2p - extract polynomial matrices from ar representation 
+.SH CALLING SEQUENCE
+.nf
+[A,B,D]=arma2p(ar)
+.fi
+.SH PARAMETERS
+.TP 20
+A,B,D
+: three polynomial matrices 
+.TP
+ar
+: Scilab 'ar' tlist for arma storage (see \fVarmac\fR).
+.SH DESCRIPTION
+this function extract polynomial matrices \fV(A,B,D)\fR from an armax
+description.
+.IG
+.nf
+   A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)
+.fi
+.FI
+.LA $$   A(z^{-1})y= B(z^{-1})u + D(z^{-1})sig*e(t)$$
+.SH EXAMPLE
+.nf 
+a=[1,-2.851,2.717,-0.865].*.eye(2,2)
+b=[0,1,1,1].*.[1;1];
+d=[1,0.7,0.2].*.eye(2,2);
+sig=eye(2,2);
+ar=armac(a,b,d,2,1,sig)
+// extract polynomial matrices from ar representation 
+[A,B,D]=arma2p(ar);
+.fi
+.SH SEE ALSO
+arma, armax, armax1, arsimul, armac
+
+
+
+
+
+

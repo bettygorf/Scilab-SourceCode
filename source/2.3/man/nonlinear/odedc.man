@@ -1,0 +1,113 @@
+.TH odedc G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+odedc - discrete/continuous ode solver
+.SH CALLING SEQUENCE
+.nf
+yt=odedc(y0,nd,stdel,t0,t,f)
+.fi
+.SH PARAMETERS
+.TP 10
+y0 
+: real column vector (initial conditions),\fVy0=[y0c;y0d]\fR where
+\fVy0d\fR has \fVnd\fR components.
+.TP
+nd
+: integer, dimension of \fVy0d\fR
+.TP
+stdel
+: real vector with one or two entries, \fVstdel=[step, delta]\fR (with
+\fVdelta=0\fR as default value).
+.TP
+t0
+: real scalar (initial time).
+.TP
+t
+: real (row) vector, instants where \fVyt\fR is calculated 
+.TP
+f  
+: Scilab "external" i.e. function or character string or list with
+calling sequence: \fVyp=f(t,yc,yd,flag)\fR
+.SH DESCRIPTION
+.LP
+\fVy=odedc([y0c;y0d],nd,[h,delta],t0,t,f)\fR
+computes the solution of:
+.LP
+ dyc/dt=f(t,yc,yd,0) , yc(t0)=y0c, 
+.LP
+such that, with \fVdelay=h*delta\fR, at instants 
+\fVtd=[delay, delay+h, delay+2*h,...]\fR
+the discrete variable \fVyd\fR is updated by:
+.LP
+yd(td+)=f(yc(t-),yd(t-1),1)
+.LP
+The calling parameters of \fVf\fR are fixed: \fVycd=f(t,yc,yd,flag)\fR;
+this function must return either the derivative of the vector \fVyc\fR if
+\fVflag=0\fR or the update of \fVyd\fR if \fVflag=1\fR. 
+.LP
+\fVycd=dot(yc)\fR must be a vector with same dimension as \fVyc\fR 
+if \fVflag=0\fR and \fVycd=update(yd)\fR must be a vector with same 
+dimension as \fVyd\fR if \fVflag=1\fR
+.LP
+\fVt\fR is a vector of instants where the solution \fVy\fR is computed.
+.LP
+\fVy\fR is the vector \fVy=[y(t(1)),y(t(2)),...]\fR.
+This function can be called with the same optional parameters as the
+\fVode\fR function (provided \fVnd\fR and \fVstdel\fR are given
+in the calling sequence as second and third parameters).
+It particular integration flags, tolerances can be set. Optional
+parameters can be set by the \fVodeoptions\fR function.
+.LP
+An example for calling an external routine is given in directory 
+\fVdefault/fydot2.f\fR 
+External routines can be dynamically linked (see \fVlink\fR).
+.SH EXAMPLE
+.nf
+//Linear system with switching input
+deff('xdu=phis(t,x,u,flag)','if flag=0 then xdu=A*x+B*u; else xdu=1-u;end');
+x0=[1;1];A=[-1,2;-2,-1];B=[1;2];u=0;nu=1;stdel=[1,0];u0=0;t=0:0.05:10;
+xu=odedc([x0;u0],nu,stdel,0,t,phis);x=xu(1:2,:);u=xu(3,:);
+[xi,xa,npx]=graduate(min(t),1.1*max(t));
+[yi,ya,npy]=graduate(1.1*min(min(x),min(u)),1.1*max(max(x),max(u)));
+rect=[xi,yi,xa,ya];nx=2;//cont. components
+plot2d1('onn',t',x',[1:nx],'111',' ',rect,[4,npx,2,npy]);
+plot2d2('onn',t',u',[nx+1:nx+nu],'111',' ',rect,[4,npx,2,npy]);
+//Fortran external( see fydot2.f): 
+norm(xu-odedc([x0;u0],nu,stdel,0,t,'phis'),1)
+
+//Sampled feedback 
+//
+//	       |     xcdot=fc(t,xc,u)
+//  (system)   |
+//	       |     y=hc(t,xc)
+//
+//
+//	       |     xd+=fd(xd,y)
+//  (feedback) |
+//	       |     u=hd(t,xd)
+//
+deff('xcd=f(t,xc,xd,iflag)',...
+  ['if iflag==0 then '
+   '  xcd=fc(t,xc,e(t)-hd(t,xd));'
+   'else '
+   '  xcd=fd(xd,hc(t,xc));'
+   'end']);
+A=[-10,2,3;4,-10,6;7,8,-10];B=[1;1;1];C=[1,1,1];
+Ad=[1/2,1;0,1/20];Bd=[1;1];Cd=[1,1];
+deff('st=e(t)','st=sin(3*t)')
+deff('xdot=fc(t,x,u)','xdot=A*x+B*u')
+deff('y=hc(t,x)','y=C*x')
+deff('xp=fd(x,y)','xp=Ad*x + Bd*y')
+deff('u=hd(t,x)','u=Cd*x')
+h=0.1;t0=0;t=0:0.1:2;
+x0c=[0;0;0];x0d=[0;0];nd=2;
+xcd=odedc([x0c;x0d],nd,h,t0,t,f);
+norm(xcd-odedc([x0c;x0d],nd,h,t0,t,'fcd1')) // Fast calculation (see fydot2.f)
+plot2d([t',t',t'],xcd(1:3,:)');
+xset("window",2);plot2d2("gnn",[t',t'],xcd(4:5,:)');
+xset("window",0);
+.fi
+.SH SEE ALSO
+ode, odeoptions, csim, external
+
+

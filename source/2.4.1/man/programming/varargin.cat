@@ -1,0 +1,35 @@
+
+varargin(1)                    Scilab keyword                     varargin(1)
+NAME
+  varargin -  variable numbers of arguments in an input argument list
+
+SYNTAX
+  varargin must be the rightmost  argument of the function definition input
+  list.
+
+DESCRIPTION
+  A function whose input argument list contains  varargin must be called with
+  more input arguments than indicated in the input argument list. The calling
+  arguments passed form varargin keyword onwards may then be retrieved within
+  the function in a list named varargin.
+
+  Suppose that varargin keyword is the n th argument of the formal input
+  argument list, then if the function is called with less than n-1 input
+  arguments the varargin list is not defined, if the function is called with
+  n-1 arguments then varargin list is an empty list.
+
+  y = function ex(varargin) may be called with any number of input arguments.
+  Within function  ex input arguments may be retrieved in varargin(i)
+  ,i=1:length(varargin)
+
+EXAMPLE
+  deff('exampl(a,varargin)',['[lhs,rhs]=argn(0)'
+                            'if rhs>=1 then disp(varargin),end'])
+  exampl(1)
+  exampl()
+  exampl(1,2,3)
+  l=list('a',%s,%t);
+  exampl(1,l(2:3))
+
+SEE ALSO
+  function, varargout, list

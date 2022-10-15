@@ -1,0 +1,57 @@
+.TH ereduc G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ereduc - computes  matrix column echelon form by qz transformations
+.SH CALLING SEQUENCE
+.nf
+[E,Q,Z [,stair [,rk]]]=ereduc(X,tol)
+.fi
+.SH PARAMETERS
+.TP
+X
+: m x n matrix with real  entries.
+.TP
+tol
+: real positive scalar.
+.TP
+E
+: column echelon form matrix
+.TP
+Q
+: m x m unitary matrix
+.TP
+Z
+: n x n unitary matrix
+.TP
+stair
+: vector of indexes, 
+.RS
+.TP
+*
+\fVISTAIR(i) = + j \fR  if the boundary element \fVE(i,j)\fR is a
+  corner point.
+.TP
+*
+\fVISTAIR(i) = - j\fR   if the boundary element \fVE(i,j)\fR is not
+a corner point.
+.RE
+\fV(i=1,...,M)\fR	
+
+.TP
+rk 
+: integer, estimated rank of the matrix
+
+.SH DESCRIPTION
+Given an \fVm x n\fR matrix \fVX\fR (not necessarily regular) the function 
+ereduc computes a unitary transformed matrix \fVE=Q*X*Z\fR which is in 
+column echelon form (trapezoidal form). Furthermore the rank of
+matrix \fVX\fR is determined.
+.SH EXAMPLE
+.nf
+X=[1 2 3;4 5 6]
+[E,Q,Z ,stair ,rk]=ereduc(X,1.d-15)
+.fi
+.SH SEE ALSO
+fstair
+.SH AUTHOR
+Th.G.J. Beelen (Philips Glass Eindhoven). SLICOT

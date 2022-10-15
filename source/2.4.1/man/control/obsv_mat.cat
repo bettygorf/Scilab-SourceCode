@@ -1,0 +1,21 @@
+
+obsv_mat(1)                    Scilab Function                    obsv_mat(1)
+NAME
+  obsv_mat - observability matrix
+
+CALLING SEQUENCE
+  [O]=obsv_mat(A,C)
+  [O]=obsv_mat(sl)
+
+PARAMETERS
+
+  A,C,O     : real matrices
+
+  sl        : syslin list
+
+DESCRIPTION
+  obsv_mat returns the observability matrix:
+  O=[C; CA; CA^2;...; CA^(n-1) ]
+
+SEE ALSO
+  contrss, obsvss, obs_gram

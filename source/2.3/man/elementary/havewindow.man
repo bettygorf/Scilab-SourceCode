@@ -1,0 +1,16 @@
+.TH havewindow 3 "September 1994" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+havewindow - return scilab window mode
+.SH CALLING SEQUENCE
+.nf
+havewindow() 
+.fi
+.SH DESCRIPTION
+returns %t if scilab has it own window and %f if not, i.e.
+if scilab has been invoked by "scilab -nw". (\fVnw\fR stands
+for "no-window".
+
+
+
+

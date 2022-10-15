@@ -1,0 +1,38 @@
+.TH line_graph 1 "September 1996" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+line_graph - graph with nodes corresponding to edges
+.SH CALLING SEQUENCE
+.nf
+g1 = line_graph(g)
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph list of the old graph
+.TP 3
+g1
+: graph list of the new graph 
+.SH DESCRIPTION
+\fVline_graph\fR returns the graph \fVg1\fR with the nodes corresponding 
+to the edges of the graph \fVg\fR.
+\fVg1\fR is defined in the following way:
+ - its nodes correspond to the edges of \fVg\fR
+ - 2 nodes of the new graph are adjacent if and only if the corresponding
+edges of the graph \fVg\fR are adjacent.
+
+The coordinates of the nodes of \fVg1\fR are given by the middle points of the 
+corresponding edges of \fVg\fR.
+.SH EXAMPLE
+.nf
+ta=[1 1 2 4 4 5 6 7 2 3 5 1];
+he=[2 6 3 6 7 8 8 8 4 7 3 5];
+g=make_graph('foo',0,8,ta,he);
+g('node_x')=[281  284  360  185  405  182  118  45];
+g('node_y')=[262  179  130  154  368  248  64  309];
+show_graph(g);
+g1=line_graph(g);
+show_graph(g1,'new');
+.fi
+.SH SEE ALSO
+arc_graph

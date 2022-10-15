@@ -1,0 +1,31 @@
+.TH fplot3d1 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+fplot3d1 - 3D gray or color level plot of a surface defined by a function
+.SH CALLING SEQUENCE
+.nf
+fplot3d1(xr,yr,f,[theta,alpha,leg,flag,ebox])
+.fi
+.SH PARAMETERS
+.TP 10
+xr
+: row vector of size n1.
+.TP
+yr
+: row vector of size n2.
+.TP
+f
+: external of type z=f(x,y).
+.TP
+theta,alpha,leg,flag,ebox
+: see \fVplot3d1\fR.
+.SH DESCRIPTION
+\fVfplot3d1\fV plots a 3D gray or color level plot of a surface defined by the 
+external function \fVf\fR
+on the grid defined by \fVxr\fV and \fVyr\fR.
+
+Enter the command  \fVfplot3d1()\fR to see a demo.
+.SH SEE ALSO
+plot3d1
+.SH AUTHOR
+J.Ph.C.

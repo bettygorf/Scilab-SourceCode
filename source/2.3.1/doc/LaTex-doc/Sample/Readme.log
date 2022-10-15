@@ -1,0 +1,53 @@
+This is MlTeX (2.01), C Version 3.1415 (C version 6.1) (format=latex 95.7.21)  16 JUL 1997 16:46
+**Readme.tex
+(Readme.tex
+LaTeX2e <1995/06/01> patch level 3
+(/usr/local/lib/texmf/tex/latex2e/base/latex209.def
+File: latex209.def 1995/07/07 v0.47 Standard LaTeX file
+
+Entering LaTeX 2.09 compatibility mode.
+\footheight=\dimen102
+\@maxsep=\dimen103
+\@dblmaxsep=\dimen104
+(/usr/local/lib/texmf/tex/latex2e/base/tracefnt.sty
+Package: tracefnt 1995/06/15 v3.0b Standard LaTeX package (font tracing)
+\tracingfonts=\count85
+LaTeX Info: Redefining \selectfont on input line 133.
+)
+\symbold=\mathgroup4
+\symsans=\mathgroup5
+\symtypewriter=\mathgroup6
+\symitalic=\mathgroup7
+\symsmallcaps=\mathgroup8
+\symslanted=\mathgroup9
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 276.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 277.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 278.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 284.
+LaTeX Info: Redefining \em on input line 294.
+
+(/usr/local/lib/texmf/tex/latex2e/base/latexsym.sty
+Package: latexsym 1995/03/18 v2.2a Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup10
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'^^J(Font)  
+                U/lasy/m/n --> U/lasy/b/n on input line 81.
+)
+LaTeX Font Info:    Redeclaring math delimiter \lgroup on input line 359.
+LaTeX Font Info:    Redeclaring math delimiter \rgroup on input line 361.
+
+! Interruption.
+<to be read again> 
+                   {
+l.363 ...hord}{typewriter}{"7C}{largesymbols}{"3E}
+                                                  
+? x
+ 
+Here is how much of TeX's memory you used:
+ 99 strings out of 10726
+ 982 string characters out of 71843
+ 46017 words of memory out of 262141
+ 3204 multiletter control sequences out of 9500
+ 3640 words of font info for 14 fonts, out of 100000 for 255
+ 15 hyphenation exceptions out of 607
+ 19i,0n,19p,185b,37s stack positions out of 300i,100n,60p,3000b,4000s
+No pages of output.

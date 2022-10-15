@@ -1,0 +1,17 @@
+#include "../../Imake.incl"
+
+/* Default Files are defines in Imake.files which is included in the main 
+	Imakefile */
+
+#include "Imake.files"
+
+AllTarget($(OBJS))
+
+FortranDependTarget()
+
+
+funtab.f : $(SCIDIR)/util/fundef $(SCIDIR)/util/newfun.f
+	cd $(SCIDIR)/util; make $(SCIDIR)/routines/default/funtab.f 
+
+
+distclean: clean

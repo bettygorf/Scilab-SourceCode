@@ -1,0 +1,35 @@
+
+coff(1)                        Scilab Function                        coff(1)
+NAME
+  coff - resolvent (cofactor method)
+
+CALLING SEQUENCE
+  [N,d]=coff(M [,var])
+
+PARAMETERS
+
+  M    : square real matrix
+
+  var  : character string
+
+  N    : polynomial matrix (same size as M)
+
+  d    : polynomial (characteristic polynomial poly(A,'s'))
+
+DESCRIPTION
+  coff computes R=(s*eye()-M)^-1 for M a real matrix. R is given by N/d.
+
+  N = numerator polynomial matrix.
+
+  d = common denominator.
+
+  var character string ('s' if omitted)
+
+EXAMPLE
+  M=[1,2;0,3];
+  [N,d]=coff(M)
+  N/d
+  inv(%s*eye()-M)
+
+SEE ALSO
+  coffg, ss2tf, nlev, poly

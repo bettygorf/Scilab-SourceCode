@@ -1,0 +1,50 @@
+.TH scicos_block  "Janvier 1997" "Scilab Group" "Scicos data structure"
+.so ../sci.an
+.SH NAME
+scicos_block - Scicos block data structure
+.SH DEFINITION
+.nf
+blk=list('Block',graphics,model,void,gui)
+.fi
+.SH PARAMETERS
+.TP 10
+"Block"
+: keyword used to define list as a Scicos block representation
+.TP
+graphics
+: Scilab list, graphic properties data structure
+.TP
+model
+: Scilab list, system properties data structure. 
+
+.TP
+void
+: unused, reserved for future use.
+.TP
+gui
+: character string, the name of the graphic user interface function
+(generally written in Scilab) associated with the block.
+.TP
+blk
+: Scilab list, Scicos block data structure
+.SH DESCRIPTION
+Scicos editor creates and uses for each block a data structure
+containing all information relative to the graphic interface and
+simulation part of the block. Each of them are stored in the Scicos
+editor main data structure. Index of these in Scicos
+editor main data structure is given by the creation order.
+
+
+For Super blocks \fVmodel(8)\fR contains a data structure
+similar to the \fVscicos_main\fR data structure.
+
+.SH SEE ALSO
+scicos_graphics, scicos_model
+
+
+
+
+
+
+
+

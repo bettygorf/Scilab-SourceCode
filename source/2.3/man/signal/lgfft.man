@@ -1,0 +1,16 @@
+.TH lgfft 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+lgfft - utility for fft
+.SH CALLING SEQUENCE
+.nf
+[y]=lgfft(x)
+.fi
+.SH PARAMETERS
+.TP
+x
+: real or complex vector
+.SH DESCRIPTION
+returns the lowest power of 2 larger than \fVsize(x)\fR (for FFT use).
+
+

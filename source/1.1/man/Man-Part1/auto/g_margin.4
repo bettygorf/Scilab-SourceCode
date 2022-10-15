@@ -1,0 +1,18 @@
+.TH g_margin 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+g_margin - gain margin
+.SH CALLING SEQUENCE
+.nf
+[gm [,fr])=g_margin(h) 
+.fi
+.SH PARAMETERS
+.TP
+h
+: \fVsyslin\fR list representing a linear system in state-space or transfer form
+.SH DESCRIPTION
+returns \fVgm\fR, the gain margin (dB) of \fVh\fR 
+(SISO plant) and \fVfr\fR, the achieved corresponding frequency.
+.SH SEE ALSO
+p_margin, black, chart
+

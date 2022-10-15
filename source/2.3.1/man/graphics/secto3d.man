@@ -1,0 +1,44 @@
+.TH secto3d 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+secto3d - 3D surfaces conversion
+.SH CALLING SEQUENCE
+.nf
+[m[,x]]=secto3d(seclist,npas)
+[m]=secto3d(seclist ,x) 
+.fi
+.SH PARAMETERS
+.TP 15
+seclist 
+: a list whose elements are (2,.) matrices 
+.TP
+npas 
+: an integer
+.TP 
+m
+: a matrix
+.TP
+x
+: a vector
+.SH DESCRIPTION
+Considering a surface given through a list \fVseclist\fR of sections in the 
+\fV(x,z)\fR plane  \fV[m [,x]]=secto3d(seclist [,npas])\fR returns a matrix \fVm\fR
+which contains a regular discretization of the surface.
+.TP
+-
+The i-th row of the matrix m corresponds to the i-th section 
+.TP
+-
+The j-th column of m corresponds to the x(j)
+.LP
+Each section \fVseclist(i)\fR is described by a (2,.) matrix which gives respectively the x 
+and z coordinates of points.
+.LP
+\fV[m]=secto3d(seclist ,x)\fR : in that case the x-vector gives the discretization 
+of the x-axis for all the sections 
+.SH SEE ALSO
+plot3d
+.SH AUTHOR
+Steer S.
+
+

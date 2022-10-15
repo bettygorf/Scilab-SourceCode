@@ -1,0 +1,49 @@
+
+param3d1(2)                    Scilab Function                    param3d1(2)
+NAME
+  param3d1 - 3D plot of curves
+
+CALLING SEQUENCE
+  param3d1(x,y,z,[theta,alpha,leg,flag,ebox])
+  param3d1(x,y,list(z,colors),[theta,alpha,leg,flag,ebox])
+
+PARAMETERS
+
+  x,y,z        : matrices of the same size (nl,nc). Each column i of the
+               matrices corresponds to the coordinates of the ith curve.
+
+               You can give a specific color for each curve by using
+               list(z,colors) instead of z, where colors is a vector of size
+               nc. If color(i) is negative the curve is plotted using the
+               mark with id abs(style(i))+1; if style(i) is strictly posi-
+               tive, a plain line with color id style(i) or a dashed line
+               with dash id style(i) is used. Use xset() to see the mark and
+               color ids.
+
+  theta,alpha  : real values giving in degree the  spherical coordinates of
+               the observation point.
+
+  leg          : string defining the captions for each axis with @ as  a
+               field  separator, for  example "X@Y@Z".
+
+  flag=[type,box]
+               : type and box have the same meaning as in plot3d.
+
+  ebox         : used when type in flag is 1. It specifies the boundaries of
+               the plot as the vector [xmin,xmax,ymin,ymax,zmin,zmax].
+
+DESCRIPTION
+  param3d1 is used to plot 3D curves defined by their coordinates x, y and z.
+
+  Enter the command param3d1() to see a demo.
+
+EXAMPLE
+  t=[0:0.1:5*%pi]';
+  param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],..
+           list([t/10,sin(t)],[3,2]),35,45,"X@Y@Z",[2,3])
+
+SEE ALSO
+  param3d, plot3d, xset
+
+AUTHOR
+  J.Ph.C.

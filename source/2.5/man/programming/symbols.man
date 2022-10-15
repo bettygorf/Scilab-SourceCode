@@ -1,0 +1,63 @@
+.TH symbols 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+symbols - scilab operator names
+.SH DESCRIPTION
+Use the following names to get help on a specific symbol.
+.IG
+.TS
+tab(@);
+l l.
+ operator@name in Scilab help
+ \fV'\fR,\fV"\fR, \fV.'\fR@quote
+ \fV+\fR@plus 
+ \fV-\fR@minus
+ \fV*\fR,\fV.*\fR@star
+ \fV/\fR, \fV./\fR, \fV/.\fR@slash
+ \fV\\\\\fR,\fV.\\\\\fR ,\fV\\\\.\fR @backslash
+ \fV.\fR@dot
+ \fV=\fR, \fV==\fR@equal
+ \fV<,>,>=,<=,<>\fR@less
+ \fV~\fR@tilda
+ \fV[\fR@left
+ \fV]\fR@right
+ \fV()\fR@parents
+ \fV%\fR@percent
+ \fV:\fR@column
+ \fV,\fR@comma
+ \fV;\fR@semi
+ \fV^\fR@hat
+ \fV.^\fR@power
+ \fV|\fR@or
+ \fV&\fR@and
+ \fV.*.\fR, \fV./.\fR, \fV.\\\\.\fR@kron
+.TE
+.FI
+\" This is for LaTeX 
+.LA \begin{tabular}{|l|l|}
+.LA { operator } & {name in Scilab help} \\ \hfil
+.LA {\tt  '},{\tt "},{\tt .'}  & quote \\ \hfill
+.LA {\tt  +}  & plus\\ \hfill
+.LA {\tt  -}  & minus\\ \hfill
+.LA {\tt  *},{\tt  .*}  & star\\ \hfill
+.LA {\tt  /},{\tt  ./}  & slash\\ \hfill
+.LA {\tt  \bs },{\tt  .\bs }  & backslash\\ \hfill
+.LA {\tt  .}  & dot\\ \hfill
+.LA {\tt  =},{\tt  ==}  & equal\\ \hfill
+.LA {\tt  <},{\tt  >}, {\tt  <=}, {\tt  >=},{\tt <>}  & less\\ \hfill
+.LA {\tt  \~{}}  & tilda \\ \hfill
+.LA {\tt  [}  & left\\ \hfill
+.LA {\tt  ]}  & right\\ \hfill
+.LA {\tt  ()}  & parents\\ \hfill
+.LA {\tt  \%}  & percent\\ \hfill
+.LA {\tt  :}  & column\\ \hfill
+.LA {\tt  ,}  & comma\\ \hfill
+.LA {\tt  ;}  & semi\\ \hfill
+.LA {\tt  \^{}}  & hat\\ \hfill
+.LA {\tt  .\^{}}  & power\\ \hfill
+.LA {\tt  $|$}  & or\\ \hfill
+.LA {\tt  \&}  & and\\ \hfill
+.LA {\tt  .*.},{\tt  ./.}, {\tt  .\bs. }  & kron\\ \hfill
+.LA \end{tabular}
+.SH SEE ALSO
+overloading

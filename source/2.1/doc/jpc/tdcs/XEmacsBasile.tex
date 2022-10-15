@@ -1,0 +1,487 @@
+\documentstyle[11pt,modif.article]{article}
+\textheight=660pt 
+\textwidth=470pt 
+\topmargin=-27pt 
+\oddsidemargin=0pt 
+\evensidemargin=0pt 
+\marginparwidth=60pt 
+\title{Quelques notes sur {\em X Window}, {\em Emacs} et {\em Basile}}
+\author{ J.Ph. Chancelier  }
+%\date{}
+
+\begin{document}
+\maketitle 
+
+
+Ceci est une introduction aux outils dont nous aurons besoin
+pour les travaux diri\-g\'es d'Au\-tomatique. Nous d\'ecrirons successivement~:
+\begin{itemize}
+\item {\em  X Window}, syst\`eme de fen\^etrage,
+\item {\em Emacs}, \'editeur de texte,
+\item {\em Basile}, langage de programmation pour l'Automatique.
+\end{itemize}
+
+
+
+\section{Utilisation du syst\`eme de fen\^etrage {\em X Window}}
+
+Pour exploiter les possibilit\'es graphiques de {\em Basile}, 
+ on utilisera l'environnement multifen\^etres {\em X Window}.
+D\`es que le ``prompt'' appara\^{\i}t sur l'\'ecran, 
+taper {\bf xul11} ou {\bf x11} pour activer {\em X Window}. 
+Ceci ne fait qu'ex\'ecuter
+un fichier ``shell'' qui est sous \verb=~=$/bin/xul11 $. On
+obtient alors deux fen\^etres~: une de type {\em Xterm} et une de type
+{\em Emacs}.
+ La fen\^etre {\em Xterm} est une fen\^etre terminal dans
+laquelle on tape des commandes {\em Unix} ( le ``shell'' qui interpr\`ete vos
+commandes est le ``shell'' par d\'efaut donn\'e dans le
+fichier {\em passwd} ).
+ La fen\^etre {\em Emacs} est une fen\^etre dans
+laquelle on tape du texte.
+
+\paragraph{}Pour quitter {\em X Window}, taper la commande {\bf exit} 
+dans la fen\^{e}tre {\em Xterm}.
+
+\paragraph{}Les commandes utilisant la souris
+sont d\'efinies par un fichier de nom {\em .uwmrc} qui est chez chaque
+utilisateur.  Celui que vous avez chez vous configure votre clavier de
+la fa\c{c}on suivante :
+
+\begin{description}
+\item[S\'electionner une fen\^etre].
+
+ Appuyer sur la touche $<${\bf left}$>$
+ ou $<\diamond>$ et cliquer sur le bouton du milieu. La fen\^etre sur laquelle
+ pointe votre souris est alors mise au premier plan. Pour s\'electionner une
+ fen\^etre cach\'ee,  il faut utiliser le menu g\'en\'eral d\'ecrit ci-dessous.
+
+\item[Menu de gestion des fen\^etres]. 
+
+Appuyer sur la touche $<${\bf left}$>$
+ ou $<\diamond>$  et cliquer sur le bouton de gauche, 
+la souris pointant sur le fond ( hors de toute fen\^etre ), fait
+appara\^{\i}tre un menu permettant d'effectuer des op\'erations sur
+les fen\^etres.
+
+\item[Menu de cr\'eation de fen\^etres d'applications]. 
+
+Appuyer sur la touche
+ $<${\bf left}$>$ ou $<\diamond>$  et cliquer sur le bouton de droite, 
+la souris pointant sur le fond ( hors de toute fen\^etre ), fait
+appara\^{\i}tre un menu permettant de cr\'eer de nouvelles fen\^etres
+( type terminal ou \'editeurs, \ldots). 
+
+ Le principe de
+cr\'eation de la fen\^etre est le suivant. Vous choisissez
+le type de la fen\^etre \`a cr\'eer dans le menu en vous
+d\'epla\c{c}ant dans le menu et en maintenant appuy\'ee la touche
+$<${\bf left}$>$ ou $<\diamond>$ ainsi que le bouton de droite de la souris.
+ Lorsqu'un squelette de
+fen\^etre appara\^{\i}t, vous cliquez le bouton de gauche ou de droite
+pour avoir des dimensions par d\'efaut. Si vous cliquez le bouton du
+milieu, c'est vous qui d\'ecidez de la taille. Vous d\'eplacez la
+souris en maintenant la touche du milieu enfonc\'ee et lorsque la
+taille vous convient vous relachez le bouton.
+
+\item[Dimensionner une fen\^etre]. 
+
+Appuyer sur la touche $<${\bf left}$>$ ou
+ $<\diamond>$  et cliquer sur le bouton de droite, le pointeur \'etant sur une
+ fen\^etre, permet de redimensionner la fen\^etre
+ s\'electionn\'ee. D\'eplacer la souris en gardant le bouton appuy\'e et
+le lacher quand la taille convient.
+
+\item[D\'eplacer une fen\^etre].
+
+ Appuyer sur la touche $<${\bf left}$>$ ou
+ $<\diamond>$  et cliquer sur le bouton de gauche, le pointeur \'etant sur une
+ fen\^etre, permet de bouger une fen\^etre. D\'eplacer la souris en gardant le
+ bouton appuy\'e et le lacher quand la position est bonne.
+
+\item[Le copier-coller dans Xterm]. 
+
+Pour s\'electionner une r\'egion 
+\`a copier dans une fen\^ etre {\em Xterm}, 
+ positionner la souris au d\'ebut de la zone \`a s\'electionner,
+appuyer sur le bouton de gauche puis d\'eplacer la souris en maintenant le
+bouton appuy\'e : la zone s\'electionn\'ee appara\^{\i}t en noir.
+Lacher le bouton quand la zone s\'electionn\'ee vous convient. La
+r\'egion s\'electionn\'ee est alors dans un ``buffer'' et vous pouvez
+aller la coller dans toute autre fen\^etre {\em Xterm}.
+
+\noindent Pour coller la zone selectionn\'ee dans une fen\^etre {\em Xterm}, 
+y placer la souris et appuyer sur le bouton du milieu.
+Le coller se fait non pas l\`a o\`u pointe la souris, mais l\`a
+o\`u se trouve le ``prompt'' dans la fen\^etre choisie.
+% Ce qui pr\'ec\`ede ne fonctionne pas quand il s'agit d'une fen\^etre
+%{\em Emacs} ( cliquez dans {\em Emacs} le bouton du milieu pour voir comment
+% se fait le couper-coller \`a la souris).
+
+\item[Particularit\'es de la fen\^etre {\em Xterm}]. 
+
+On dispose d'ascenseurs pour se d\'eplacer dans la fen\^etre ainsi que de 
+menus de confi\-guration en appuyant sur la touche $<$ {\bf Control} $>$ et en cliquant \`a gauche ou \`a droite. 
+
+Si le ``shell'' qui  interpr\`ete les commandes dans la fen\^etre {\em Xterm} 
+est le ``shell'' {\em tcsh}, noter qu'on y dispose des commandes
+ {\em Emacs} pour \'editer les commandes {\em Unix}. 
+Les commandes de d\'eplacement de lignes
+$<$ {\bf Control-p} $>$, $<$ {\bf Control-n} $>$, \ldots permettent alors de 
+se d\'eplacer dans l'histoire des commandes.
+\end{description}
+
+\newpage
+
+\section{Les commandes minimales de l'\'editeur de texte {\em Emacs}}
+
+{\bf C-$<$chr$>$} signifiera : appuyer sur la touche
+ $<${\bf Control}$>$ et taper sur  la touche $<${\bf chr}$>$ du clavier. 
+
+\noindent {\bf M-$<$chr$>$} signifiera : appuyer sur la touche $<${\bf Esc}$>$,
+{\em la lacher}, puis taper sur la touche $<${\bf chr}$>$.
+\medskip
+
+Pour cr\'eer une nouvelle fen\^etre {\em Emacs}, utiliser le menu de
+ cr\'eation de fen\^etres ou bien taper la commande {\bf emacs \&} 
+dans la fen\^etre {\em Xterm}.
+
+\paragraph{}Pour d\'etruire une fen\^etre {\em Emacs}, 
+taper {\bf C-x} {\bf C-c} sous {\em Emacs}.
+
+
+\begin{description}
+
+
+\item[Commandes pour se d\'eplacer] .
+
+\begin{itemize}
+\item  {\bf C-v} : affiche la page suivante 
+( {\bf M-v} la page pr\'ec\'edente ).
+\item  {\bf C-l}	: r\'eaffiche l'\'ecran ( ``refresh'' ).
+\item  {\bf C-p}   :    d\'eplace le curseur sur la ligne pr\'ec\'edente
+( {\bf C-n} sur la ligne suivante ).
+\item  {\bf C-b}  :     d\'eplace le curseur 1 caract\`ere en arri\`ere
+( {\bf C-f} 1 caract\`ere en avant ).
+\item   Cliquer le bouton de gauche de la souris place le curseur {\em Emacs} 
+	l\`a o\`u se trouvait la souris.
+\item  {\bf C-a} :    curseur en d\'ebut de ligne 
+( {\bf C-e} curseur en fin de ligne ).
+\item  {\bf M-$<$}  :   d\'ebut du fichier 
+( {\bf M-$>$} fin du fichier ).
+\item  {\bf M-$x$} goto-line $<${\bf Return}$>$ : va \`a la ligne tap\'ee
+apr\`es $<${\bf Return}$>$. 
+\end{itemize}
+
+\item[Commandes pour ins\'erer et d\'etruire] .
+
+\begin{itemize}
+\item  {\bf C-d} : efface le caract\`ere sous le curseur.
+\item  {\bf $<$delete$>$} : efface le caract\`ere qui pr\'ec\`ede 
+ le curseur, puis d\'epla\c{c}e le curseur.
+\item  {\bf C-k}   : d\'etruit les caract\`eres \`a droite du curseur 
+jusqu'en fin de ligne.
+\item  {\bf C-$<$blanc$>$} : place une ``marque'' l\`a o\`u se trouve le 
+curseur. Si ensuite on d\'eplace le curseur et on tape {\bf C-w}, on
+efface les caract\`eres situ\'es entre la marque et la nouvelle position du
+curseur. La zone effac\'ee n'est pas perdue mais est stock\'ee dans
+une zone m\'emoire.
+\item   {\bf C-y} : ins\`ere au point courant ce qui a \'et\'e effac\'e par 
+{\bf C-k} ou {\bf C-w}.
+\end{itemize}
+
+
+\item[Commandes agissant sur les fichiers] .
+
+\begin{itemize}
+\item {\bf C-x C-f} : sert \`a  \'editer un fichier existant ou \`a cr\'eer
+un nouveau fichier. 
+Apr\`es avoir tap\'e {\bf C-x C-f}, l'utilisateur tape le nom du fichier et 
+{\em Emacs} cr\'ee alors un ``buffer'' dans lequel le fichier est charg\'e.
+\item {\bf C-x C-s} : sauve le ``buffer'' courant dans le fichier 
+correspondant. 
+\item {\bf C-x C-w} : sauve le ``buffer'' courant dans un fichier ; 
+l'utilisateur doit taper le nom du fichier dans le mini-buffer.
+\item plusieurs fichiers pouvant \^etre \'edit\'es \`a la fois, on a donc 
+ plusieurs ``buffer'' dans {\em Emacs}. 
+\begin{itemize}
+\item {\bf C-x C-b} donne la liste des ``buffer'' dans {\em Emacs}
+et {\bf C-x 1} permet d'en sortir.
+\item 
+{\bf C-x b} permet de changer de ``buffer''en tapant le nom du
+``buffer'' choisi.
+\end{itemize}
+\end{itemize}
+
+\newpage
+
+\item[Miscellan\'ees] .
+
+\begin{itemize}
+\item {\bf  C-s} : permet de chercher une cha\^{\i}ne de caract\`eres. 
+Apr\`es avoir tap\'e {\bf C-s}, tapez la cha\^{\i}ne de caract\`eres
+ et le curseur 
+se d\'eplace au fur et \`a mesure que vous tapez.
+\item {\bf  M-\%} : permet de chercher et remplacer  une cha\^{\i}ne
+ de caract\`eres par une autre. 
+Apr\`es avoir tap\'e {\bf M-\%}, taper la cha\^{\i}ne de caract\`eres
+\`a remplacer
+puis la touche $<${\bf Return}$>$ et enfin la nouvelle
+ cha\^{\i}ne de caract\`eres. Taper enfin sur la barre d'espace pour 
+accepter le remplacement ou sur la touche $<${\bf Del}$>$ pour le refuser.
+\item {\bf  C-g} : annule la derni\`ere commande {\em Emacs}.
+\end{itemize}
+
+\end{description}
+
+\newpage
+
+\section{{\em Basile} : un langage pour la CAO en Automatique}
+
+
+\subsection{Une introduction \`a {\em Basile}}
+
+{\em Basile} est un langage interpr\'et\'e permettant de g\'erer
+ une base d'objets. 
+ Les objets manipul\'es sont des matrices ou des vecteurs de r\'eels,
+ de complexes, de fraction rationnelles, de cha{\^{\i}}nes de caract\`eres ou 
+bien des listes qui permettent de combiner des objets entre eux
+ pour en cr\'eer de nouveaux.
+ Par exemple, en Automatique, un syst\`eme lin\'eaire peut \^etre d\'ecrit
+ par un triplet de matrices $(f,g,h)$~:
+\[ \left\{ \begin{array}{l} {\displaystyle \dot{x}=fx+gu}
+	  \\[3mm]
+	{\displaystyle  y=hx} 
+	\end{array} \right.
+\]
+
+\paragraph{}Dans {\em Basile} on pourra cr\'eer un objet de type 
+``syst\`eme dynamique'' qui 
+ manipulera globalement ce triplet de matrices ( de fa\c{c}on interne, ce 
+triplet sera une liste ). Les op\'erateurs usuels peuvent alors
+ \^etre red\'efinis 
+ pour ces objets typ\'es. Par exemple, dans le cas de syst\`emes lin\'eaires, 
+ les op\'erateurs usuels +,* ( s'ils ont pour arguments des 
+syst\`emes lin\'eaires ) donnent pour valeur un nouveau syst\`eme 
+lin\'eaire par mise en parall\`ele 
+ ou en s\'erie des arguments fournis.
+
+\paragraph{}Beaucoup de facilit\'es existent pour cr\'eer de fa\c{c}on 
+ simple les objets pr\'ecit\'es et notamment beaucoup d'op\'erateurs agissent 
+ de fa\c{c}on vectorielle. Par exemple la fonction {\bf sin} peut \^etre 
+ appliqu\'ee \`a une matrice ou \`a un vecteur de r\'e\'els $A$, 
+donnant comme  r\'esultat la matrice $( sin(a_{i,j}))$.
+ L'utilisateur ne se pose pas de probl\`emes d'allocation de place~: 
+dans l'exemple qui pr\'ec\`ede, c'est {\em Basile} 
+ qui s'occupe de trouver de la place pour stocker la matrice r\'esultat. 
+
+\paragraph{}On distingue deux types d'op\'erateurs utilisables dans 
+{\em Basile}.
+\begin{itemize}
+\item
+ Certains sont cod\'es en dur ( \'ecrits en {\em Fortran} ) et interfac\'es 
+ dans {\em Basile}  
+et leur liste s'obtient en tapant la commande {\bf what}. Ce
+ sont les op\'erateurs usuels +,$-$ , sin, \ldots, un certain nombre de 
+programmes d'alg\`ebre lin\'eaire pour les matrices et les polyn\^omes
+ainsi que les primitives pour le graphique. 
+\item D'autres op\'erateurs sont \'ecrits en {\em Basile}, qui est aussi
+ un langage de programmation, et ils sont group\'es en biblioth\`eques.
+ Ces op\'erateurs sont 
+ chargeables dynamiquement au cours d'une session {\em Basile} et la commande 
+ {\bf who} vous donne la liste de vos variables cr\'e\'ees et les noms des 
+ biblioth\`eques charg\'ees. En tapant {\bf help autolib}, vous obtiendrez le 
+ contenu de la biblioth\`eque contenant des op\'erateurs pour l'Automatique.
+\end{itemize}
+
+\paragraph{}{\em Basile} est donc un environnement de programmation 
+extensible,  qui a \'et\'e en partie sp\'ecialis\'e pour l'Automatique, de 
+part les biblioth\`eques  donn\'ees par d\'efaut.
+
+\subsection{Quelques commandes {\em Basile}}
+
+
+\begin{description}
+
+\item[Entrer et sortir de {\em Basile}] .
+
+Vous entrez dans {\em Basile} par la commande {\bf basile} ou {\bf fep basile}
+ ({\bf fep} permet de disposer des commandes {\em Emacs} sous {\em Basile}).
+ Le  fichier {\em startup.bas} qui se trouve dans le directory courant 
+et qui contient des instructions {\em Basile} est alors ex\'ecut\'e.
+
+Vous quittez {\em Basile} par la commande {\bf quit}.
+
+\item[Ex\'ecution de commandes {\em Basile}] .
+
+On peut taper une suite de commandes {\em Basile} sous l'inter\-pr\`e\-te 
+ {\em Basile} et voir au fur et \`a mesure le r\'esultat des commandes.
+
+On peut \'egalement \'ecrire cette suite de commandes dans un fichier,
+ puis faire  ex\'ecuter  le contenu de ce  fichier par {\em Basile}. 
+ Pour ce faire, on utilisera dans {\em Basile}  la commande
+  {\bf exec('nom-de-fichier')}. 
+
+
+\item[Chargement de macros dans {\em Basile}] .
+
+On peut cr\'eer de nouvelles fonctions, 
+ appel\'ees {\bf macros}, puis
+ disposer de ces fonctions dans l'environnement {\em Basile}.
+% la syntaxe  d'\'ecriture est alors un peu diff\'erente et 
+%la commande de chargement dans {\em basile} aussi.
+ 
+Pour charger  un ensemble de fonctions d\'efinies dans un fichier,
+ on utilisera la commande {\bf getf('nom-de-fichier')}.
+
+On peut compiler une macro par la 
+ commande {\bf comp{(xx)}} ( ceci peut se r\'ev\'eler utile pour 
+ acc\'el\'erer  l'int\'egration des \'equations diff\'erentielles
+par exemple ).
+
+\item[Help] .
+
+Pour chaque primitive ou macro {\em Basile} qui se trouve dans une 
+biblioth\`eque, vous disposez des commandes 
+{\bf help xx} et {\bf disp(xx)} (uniquement pour une macro non compil\'ee)
+  qui vous permettent d'obtenir un descriptif de son utilisation  
+  ou son code {\em Basile}.
+
+\item[Graphique] .
+
+Pour le graphique, vous aurez besoin de la biblioth\`eque {\em xplot}.
+
+La commande {\bf xclear()} rafra\^{\i}chit l'\'ecran graphique.
+
+\end{description}
+
+\subsection{Un exemple de session {\em Basile}}
+
+\subsubsection{Les objets manipul\'es dans {\bf Basile}} 
+
+\begin{itemize}
+
+\item cr\'eation de matrices ou vecteurs
+
+\begin{verbatim}
+
+ <>a=<1 2 3                            <>b=<1 2 ; 3 4>
+      0 0 atan(1)                
+      5 9 -1>       
+ a         =                           b         =
+ 
+   
+!   1.    2.    3.        !           !   1.    2.   !
+!   0.    0.    0.7853982 !           !   3.    4.   !
+!   5.    9.  - 1.        ! 
+
+\end{verbatim}
+
+
+\item vecteurs sous forme implicite
+
+\newpage
+
+\begin{verbatim}
+ 
+ <>v=1:2:7                              <>w=v'
+ v         =                            w        = !   1.  !
+                                                   !   3.  !
+!   1.    3.    5.    7. !                         !   5.  !
+                                                   !   7.  !
+
+\end{verbatim}
+
+\item polyn\^omes, fractions rationnelles, matrices
+polyn\^omiales et rationnelles, listes groupant des objets.
+
+
+\end{itemize}
+
+
+\subsubsection{op\'erations matricielles}
+
+
+\begin{verbatim}
+
+ 
+ <>f=<1 2 ; 3 4>
+ f         =
+ 
+!   1.    2. !
+!   3.    4. !
+ 
+ <>eye(2)				 <>eye(3)
+ ans       =				 ans       =
+ 
+!   1.    0. !				!   1.    0.    0. !
+!   0.    1. !				!   0.    1.    0. !
+ 				        !   0.    0.    1. !
+
+ <>(f + eye(2))'*f
+ ans       =
+ 
+!   11.    16. !
+!   17.    24. !
+ 
+ <>g = f\<2;9>
+ g         =
+ 
+!   5.  !
+! - 1.5 !
+ 
+ <>f*g
+ ans       =
+ 
+!   2. !
+!   9. !
+ 
+
+\end{verbatim}
+
+
+\subsubsection{fonctions pour l'Automatique}
+
+\begin{itemize}
+
+\item indice de commandabilit\'e
+
+\begin{verbatim}
+ 
+ 
+ <>n=contr(a,b)
+ n         =
+ 
+    3.  
+\end{verbatim}
+
+\item placement de p\^oles
+
+\begin{verbatim}
+
+ <>k=ppol(a,b,<-1-%i -1+%i -1>)
+ k         =
+ 
+!   0.1832061  - 0.3358779    1.740458  !
+!   2.7463953    3.8167939    1.7650419 !
+
+\end{verbatim}
+
+\item spectre de matrice
+
+\begin{verbatim}
+
+ <>spec(a - b*k)
+
+ ans        =
+
+!-1-%i -1+%i -1!
+
+\end{verbatim}
+
+\end{itemize}
+
+
+
+\end{document}
+

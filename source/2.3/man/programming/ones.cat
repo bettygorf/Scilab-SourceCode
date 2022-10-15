@@ -1,0 +1,25 @@
+
+ones(1)                        Scilab Function                        ones(1)
+NAME
+  ones - matrix made of ones
+
+CALLING SEQUENCE
+  [y]=ones(m,n)
+  [y]=ones(x)
+
+DESCRIPTION
+  Returns a matrix made of ones.
+
+  ones(m,n)
+       returns a (m,n) matrix full of ones.
+
+  ones(x)
+       returns a matrix full of ones with the same size that x.
+
+  ones(x)
+       is also valid for x a syslin list.
+
+  Note that ones(3) is ones(a) with a=3 i.e it is NOT a 3x3 matrix!
+
+SEE ALSO
+  eye, zeros

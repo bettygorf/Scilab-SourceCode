@@ -1,0 +1,29 @@
+ 
+clear;lines(0);
+ 
+W=ssrand(2,3,5,list('co',3));  //cont. subspace has dim 3.
+ 
+A=W("A");B=W("B");
+ 
+[n,U]=contr(A,B);n
+ n  =
+ 
+    3.  
+ 
+A1=U'*A*U;
+ 
+spec(A1(n+1:$,n+1:$))  //uncontrollable modes
+ ans  =
+ 
+!   0.6948238 !
+! - 1.2565263 !
+ 
+spec(A+B*rand(3,5))
+ ans  =
+ 
+!   38.572835              !
+!   0.6948238              !
+! - 0.1637917 + 0.3601056i !
+! - 0.1637917 - 0.3601056i !
+! - 1.2565263              !
+ 

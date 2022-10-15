@@ -1,0 +1,9 @@
+[p,q,r]=mexfunction1(1:4,'qwerty');
+[a,x]=mexfunction2(20,'x');
+C=mexfunction3(rand(2,2),rand(2,3));
+p=mexfunction4(1:3,'x');
+w1=mexfunction5(1:5);
+w2=mexfunction6(1:5);
+w=rand(2,3);w(10,15)=0;w=sparse(w);
+mexfunction7(mtlb_sparse(w))
+mexfunction8()    

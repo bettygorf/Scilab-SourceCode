@@ -1,0 +1,50 @@
+.TH ctr_gram 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+ctr_gram - controllability gramian
+.SH CALLING SEQUENCE
+.nf
+[Gc]=ctr_gram(A,B [,dom])
+[Gc]=ctr_gram(sl)
+.fi
+.SH PARAMETERS
+.TP 10
+A,B
+: two real matrices of appropriate dimensions
+.TP
+dom
+: character string (\fV'c'\fR (default value) or \fV'd'\fR)
+.TP
+sl
+: linear system, \fVsyslin\fR list
+.SH DESCRIPTION
+Controllability gramian of \fV(A,B)\fR or \fVsl\fR (a \fVsyslin\fR 
+linear system).
+.LP
+\fVdom\fR character string giving the time domain : \fV"d"\fR for a
+discrete time system and \fV"c"\fR for continuous time (default case).
+.LP
+.IG 
+.nf
+                  /+inf                             ---+inf
+                  [  At  ' A't                      \   k      k
+             Gc = | e  BB e   dt               Gc =  > A BB' A'
+                  ]                                 /
+                 /0                                 ---0
+.fi
+.FI
+.LA  $$ 
+.LA  Gc = \int_0^{\infty} e^{At}BB'e^{A't}dt 
+.LA  \qquad Gc = \sum_{0}^{\infty} A^k B B'{A'}^k
+.LA  $$
+.SH EXAMPLE
+.nf
+A=diag([-1,-2,-3]);B=rand(3,2);
+Wc=ctr_gram(A,B)
+U=rand(3,3);A1=U*A/U;B1=U*B;
+Wc1=ctr_gram(A1,B1)    //Not invariant!
+.fi
+.SH SEE ALSO
+equil1, obs_gram, contr, cont_mat, cont_frm, contrss
+.SH AUTHOR
+S. Steer INRIA 1988

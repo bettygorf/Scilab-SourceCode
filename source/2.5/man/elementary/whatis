@@ -1,0 +1,152 @@
+G_make - call make or nmake   @G_make
+abs - absolute value, magnitude   @abs
+acos - element wise cosine inverse   @acos
+acosh - hyperbolic cosine inverse   @acosh
+acoshm - matrix hyperbolic inverse cosine   @acoshm
+acosm - matrix wise cosine inverse   @acosm
+addf - symbolic addition   @addf
+addmenu - interactive button or menu definition   @addmenu
+adj2sp - converts adjacency form into sparse matrix.   @adj2sp
+amell - jacobi's am function   @amell
+asin - sine inverse   @asin
+asinh - hyperbolic sine inverse   @asinh
+asinhm - matrix hyperbolic inverse sine   @asinhm
+asinm - matrix wise sine inverse   @asinm
+atan - tangent inverse   @atan
+atanh - hyperbolic tangent inverse   @atanh
+atanhm - matrix hyperbolic tangent inverse   @atanhm
+atanm - square matrix tangent inverse   @atanm
+besseli - modified i sub alpha bessel functions of the first kind.   @besseli
+besselj - modified j sub alpha bessel functions of the first kind.   @besselj
+besselk - modified k sub alpha bessel functions of the second kind.   @besselk
+bessely - modified y sub alpha bessel functions of the second kind.   @bessely
+bloc2exp - block-diagram to symbolic expression   @bloc2exp
+bloc2ss - block-diagram to state-space conversion   @bloc2ss
+c_link - check dynamic link   @c_link
+calerf - computes error functions.   @calerf
+cmb_lin - symbolic linear combination   @cmb_lin
+conj - conjugate   @conj
+convstr - case conversion   @convstr
+cos - cosine function   @cos
+cosh - hyperbolic cosine   @cosh
+coshm - matrix hyperbolic cosine   @coshm
+cosm - matrix cosine function   @cosm
+cotg - cotangent   @cotg
+coth - hyperbolic cotangent   @coth
+cothm - matrix hyperbolic cotangent   @cothm
+cumprod - cumulative product   @cumprod
+cumsum - cumulative sum   @cumsum
+debug - debugging level   @debug
+dec2hex - hexadecimal representation of integers   @dec2hex
+delip - elliptic integral   @delip
+delmenu - interactive button or menu deletion   @delmenu
+demos - guide for scilab demos   @demos
+diag - diagonal including or extracting   @diag
+dlgamma - derivative of gammaln function.   @dlgamma
+edit - function editing   @edit
+emptystr - zero length string   @emptystr
+erf - the error function.   @erf
+erfc - the complementary error function.   @erfc
+erfcx - scaled complementary error function.   @erfcx
+eval - evaluation of a matrix of strings   @eval
+full - sparse to full matrix conversion   @full
+gamma - the gamma function.   @gamma
+gammaln - the logarithm of gamma function.   @gammaln
+getvalue - xwindow dialog for data acquisition   @getvalue
+gsort - decreasing order sorting   @gsort
+halt - stop execution   @halt
+havewindow - return scilab window mode   @havewindow
+hex2dec - converts hexadecimal representation of integers to numbers   @hex2dec
+input - prompt for user input   @input
+integrate - integration by quadrature   @integrate
+interp - interpolation   @interp
+interpln - linear interpolation   @interpln
+intersect - returns the vector of common values of two vectors   @intersect
+intsplin - integration of experimental data by spline interpolation   @intsplin
+inttrap - integration of experimental data by trapezoidal interpolation   @inttrap
+isdef - check variable existence   @isdef
+isinf - check for infinite entries   @isinf
+isnan - check for not a number entries   @isnan
+isreal - check if a variable as real or complex entries   @isreal
+kron - kronecker product (.*.)   @kron
+ldivf - left symbolic division   @ldivf
+lex_sort - lexicographic matrix rows sorting   @lex_sort
+linspace - linearly spaced vector   @linspace
+log - natural logarithm   @log
+log10 - logarithm   @log10
+logm - square matrix logarithm   @logm
+logspace - logarithmically spaced vector   @logspace
+macr2lst - function to list conversion   @macr2lst
+macrovar - variables of function   @macrovar
+manedit - editing a manual item   @manedit
+mean - mean (row mean, column mean) of vector/matrix entries   @mean
+median - median (row median, column median) of vector/matrix entries   @median
+modulo - arithmetic remainder modulo m   @modulo
+mps2linpro - convert lp problem given in mps format to linpro format   @mps2linpro
+mtlb_sparse - convert sparse matrix   @mtlb_sparse
+mulf - symbolic multiplication   @mulf
+nnz - number of non zero entries in a matrix   @nnz
+norm - matrix norms   @norm
+pen2ea - pencil to e,a conversion   @pen2ea
+pertrans - pertranspose   @pertrans
+prod - product   @prod
+rdivf - right symbolic division   @rdivf
+readc_ - read a character string   @readc_
+readmps - reads a file in mps format   @readmps
+sci2exp - converts variable to expression   @sci2exp
+sci2map - scilab to maple variable conversion   @sci2map
+setmenu - interactive button or menu activation   @setmenu
+sin - sine function   @sin
+sinh - hyperbolic sine   @sinh
+sinhm - matrix hyperbolic sine   @sinhm
+sinm - matrix sine function   @sinm
+smooth - smoothing by spline functions   @smooth
+solve - symbolic linear system solver   @solve
+sort - decreasing order sorting   @sort
+sp2adj - converts sparse matrix into adjacency form   @sp2adj
+sparse - sparse matrix definition   @sparse
+spcompack - converts a compressed adjacency representation   @spcompack
+speye - sparse identity matrix   @speye
+spget - retrieves entries of sparse matrix   @spget
+splin - spline function   @splin
+spones - sparse matrix   @spones
+sprand - sparse random matrix   @sprand
+spzeros - sparse zero matrix   @spzeros
+sqrt - square root   @sqrt
+sqrtm - matrix square root   @sqrtm
+squarewave - generates a square wave with period 2*%pi   @squarewave
+ssprint - pretty print for linear system   @ssprint
+ssrand - random system generator   @ssrand
+st_deviation - standard deviation (row or column-wise) of vector/matrix entries   @st_deviation
+strcat - catenate character strings   @strcat
+strindex - search position of a character string in an other string.   @strindex
+stripblanks - strips leading and trailing blanks of strings   @stripblanks
+strsubst - substitute a character string by another in a character string.   @strsubst
+subf - symbolic subtraction   @subf
+sum - sum (row sum, column sum) of vector/matrix entries   @sum
+sysconv - system conversion   @sysconv
+sysdiag - block diagonal system connection   @sysdiag
+syslin - linear system definition   @syslin
+tan - tangent   @tan
+tanh - hyperbolic tangent   @tanh
+tanhm - matrix hyperbolic tangent   @tanhm
+tanm - matrix tangent   @tanm
+timer - cpu time   @timer
+toeplitz - toeplitz matrix   @toeplitz
+trfmod - poles and zeros display   @trfmod
+trianfml - symbolic triangularization   @trianfml
+tril - lower triangular part of matrix   @tril
+trisolve - symbolic linear system solver   @trisolve
+triu - upper triangle   @triu
+typeof - object type   @typeof
+union - extract union components of a vector   @union
+unique - extract unique components of a vector   @unique
+unsetmenu - interactive button or menu or submenu de-activation   @unsetmenu
+x_choices - interactive xwindow choices through toggle buttons   @x_choices
+x_choose - interactive xwindow choice   @x_choose
+x_dialog - xwindow dialog   @x_dialog
+x_matrix - xwindow editing of matrix   @x_matrix
+x_mdialog - xwindow dialog   @x_mdialog
+x_message - x window message   @x_message
+xgetfile - dialog to get a file path   @xgetfile
+zeros - matrix made of zeros   @zeros

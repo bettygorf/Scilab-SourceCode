@@ -1,0 +1,32 @@
+
+pvm_start(1)                   Scilab function                   pvm_start(1)
+NAME
+  pvm_start - Start the PVM daemon
+
+CALLING SEQUENCE
+  [info] = pvm_start()
+
+PARAMETERS
+
+  info : integer, status code returned by the routine.  Values less than zero
+       indicate an error.
+DESCRIPTION
+  pvm_start  starts the  Pvmd3 which is    a daemon process  which coordi-
+  nates  unix hosts in a  virtual machine.  One  pvmd3 must run on each  host
+  in the group.   They provide  the communication and process control func-
+  tions  needed by the user's PVM  processes.  The local and remote pvmds can
+  also be started from the PVM console program pvm.
+
+  For example:
+  pvm_start()
+   ans  =
+
+      0.
+  -->pvm_start()
+   ans  =
+
+    - 28.
+  Error -28 means: pvm_start_pvmd(): Duplicate host
+
+SEE ALSO
+  pvm_halt, pvm_addhosts, pvm_config, pvm_error

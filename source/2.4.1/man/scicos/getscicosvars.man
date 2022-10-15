@@ -1,0 +1,76 @@
+.TH getscicosvars 5 "Janvier 1996" "Scilab Group" "Scicos function"
+.so ../sci.an
+.SH NAME
+getscicosvars - get Scicos data structure while running
+.SH CALLING SEQUENCE
+v=getscicosvars(name)
+.SH PARAMETERS
+.TP
+name
+: a character string, the name of the required structure
+.TP
+v 
+: vector of the structure value
+.SH DESCRIPTION
+This function may be used in a Scilab block to get value of some
+particular global data while running. It allows to write diagram
+monitoring blocks. 
+.LP
+for example  the instruction  \fVdisp(getscicosvars('x'))\fR  displays 
+the entire continuous state of the diagram.
+.nf
+x=getscicosvars('x');
+xptr=getscicosvars('xptr');
+disp(x(xptr(k):xptr(k+1)-1))
+.fi
+displays the continuous state of the \fVk\fR block
+
+.IG
+.nf
+|=========================================================|
+| name     |  data structure definition                   |
+|=========================================================|
+|'x'       | continuous state                             |
+|'xptr'    | continuous state splitting vector            |
+|'z'       | discrete state                               |
+|'zptr'    | discrete  state splitting vector             |
+|'rpar'    | real parameters vector                       |
+|'rpptr'   | rpar  splitting vector                       |
+|'ipar'    | integer parameters vector                    |
+|'ipptr'   | ipar  splitting vector                       |
+|'outtb'   | vector of all input/outputs values           |
+|'inpptr'  | inplnk splitting vector                      |
+|'outptr'  | outlnk splitting vector                      |
+|'inplnk'  | vector of input port values address in lnkptr |
+|'outlnk'  | vector of output port values address in lnpkpr|
+|'lnkptr'  | outtb splitting vector                       |
+|=========================================================|
+.fi
+.FI
+.LP
+\" This is for LaTeX 
+.LA \begin{tabular}{|r|l|} \hline
+.LA name& data structure definition \\  \hline
+.LA  'x' &    continuous state \\  \hline
+.LA  'xptr' &    continuous state splitting vector\\  \hline
+.LA  'z' &    discrete state \\  \hline
+.LA  'zptr' &    discrete  state splitting vector\\  \hline
+.LA  'rpar' &  real parameters vector \\  \hline
+.LA  'rpptr' &    rpar  splitting vector\\  \hline
+.LA  'ipar' &     integer parameters vector \\ \hline
+.LA  'ipptr' &    ipar  splitting vector\\  \hline
+.LA  'outtb' &    vector of all input/outputs values \\ \hline
+.LA  'inpptr' &   inplnk splitting vector \\ \hline
+.LA  'outptr' &   outlnk splitting vector  \\ \hline
+.LA  'inplnk' &   vector of input port values address in lnkptr \\ \hline
+.LA  'outlnk' &   vector of output port values address in lnpkpr \\ \hline
+.LA  'lnkptr' &   outtb splitting vector \\ \hline
+.LA \end{tabular}
+.LP
+See \fVscicos_cpr\fR for more detail on these data structures.
+.LP
+For C or fortran computational function the C procedure
+\fVC2F(getscicosvars)\fR may used. See
+\fVroutines/scicos/import.c\fR file for more details.
+.SH SEE ALSO
+setscicosvars,  scicosim, curblock, scicos_cpr, getblocklabel

@@ -1,0 +1,134 @@
+.TH plot2d 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+plot2d - multiple plot of functions
+.SH CALLING SEQUENCE
+.nf
+plot2d(x,y,[style,strf,leg,rect,nax])
+plot2d(y);
+.fi
+.SH PARAMETERS 
+.TP 10
+x,y
+: two matrices of the same size \fV[nl,nc]\fR. \fVnc\fR gives the 
+number of curves and \fVnl\fR gives the number of points for each curve. 
+If \fVnl=1\fR, it's assumed that there's only one curve of \fVnc\fR points.
+.RS
+.TP
+nc
+: is the number of curves
+.TP
+nl
+: is the number of points of each curve
+for example : \fVx=[ 1:10;1:10]',y= [ sin(1:10);cos(1:10)]'\fR
+.RE
+.TP
+style
+: is a real vector of size (1,nc). the style to use for curve j is
+defined by size(j).
+.RS
+.TP
+-
+if \fVstyle[i]\fR is negative the curve is plotted using the mark of Id \fVstyle[i]\fR,
+.TP
+-
+if \fVstyle[i]\fR is strictly positive a dashed or plain line of id (or color)\fVabs(style[i])\fR
+is used. 
+.TP
+- 
+When only one curve is drawn style can be of size (1,2) \fV[style,pos]\fR
+where \fVstyle\fR is used to specify the style and \fVpos\fR is an integer in the range 
+1,6 which specifies a position to use for the caption (this can be useful 
+when a user wants to draw multiple curves on a plot by calling the function plot
+several times and wants to give a caption for each curve)
+.RE
+.TP
+strf
+: is a string of length 3 \fV"xyz"\fR
+.RS
+.TP
+x
+: captions are displayed if \fVx\fR is the character 1. Captions are given by the 
+string leg \fV"leg1@leg2@...."\fR
+.TP
+y
+: controls the computation of the frame 
+.RS
+.TP
+y=0
+: the current boundaries ( set by a previous call to an other high level
+plotting function ) are used.
+.TP
+y=1
+: the argument \fVrect\fR is used to specify the boundaries of the plot.
+\fVrect=[xmin,ymin,xmax,ymax]\fR
+.TP
+y=2 
+: the boundaries of the plot are computed using max and min values of \fVx\fR and \fVy\fR.
+.TP
+y=3
+: like \fVy=1\fR but produces isoview scaling 
+.TP
+y=4
+: like \fVy=2\fR but produces isoview scaling 
+.TP
+y=5
+: like \fVy=1\fR but the boundaries and nax can be changed to produce pretty graduations.
+This mode is used when the zoom button is activated.
+.TP
+y=6
+: like \fVy=2\fR but the boundaries and nax can be changed to produce pretty graduations.
+This mode is used when the zoom button is activated.
+.RE
+.TP
+z 
+: controls the display of information on the frame around the plot
+.RS 
+.TP
+z=1
+: an axis is drawn the number of tics can be specified by the nax
+argument. \fVnax\fR  is a vector with four entries [nx,Nx,ny,Ny] where
+\fVnx\fR (\fVny\fR) is the number of subgrads on the x (y) axis and
+\fVNx\fR (\fVNy\fR) is the number of graduations  on the x (y) axis
+
+.TP
+z=2
+: the plot is only surrounded by a box
+.TP
+.I other value
+Nothing around the plot
+.RE
+.RE
+.LP
+.SH DESCRIPTION
+\fVplot2d\fR simultaneously plot a set of 2D curves which are given by a set of points 
+using piecewise linear plotting
+
+Enter the command \fVplot2d()\fR to see a demo.
+.SH EXAMPLE
+.nf
+x=0:0.1:2*%pi;
+//simple plot
+plot2d(sin(x));
+//multiple plot
+xbasc();
+plot2d([x;x;x]',[sin(x);sin(2*x);sin(3*x)]');
+//multiple plot with captions
+xbasc();
+plot2d([x;x;x]',[sin(x);sin(2*x);sin(3*x)]',...
+[1,2,3],"111","L1@L2@L3",[0,-2,2*%pi,2],[2,10,2,10]);
+// isoview
+xbasc(); 
+plot2d(x',sin(x)',1,'041')
+// auto scale 
+xbasc();
+plot2d(x',sin(x)',1,'061') 
+.fi
+.SH SEE ALSO
+plot2d1, plot2d2, plot2d3, plot2d4
+.SH AUTHOR
+J.Ph.C..
+
+
+
+

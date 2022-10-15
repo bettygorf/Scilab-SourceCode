@@ -1,0 +1,65 @@
+.TH arma 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+arma - Scilab arma library
+.SH DESCRIPTION
+.TP 10
+armac
+: this function creates a description as a list of an  ARMAX process 
+   A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)
+.TP
+armap
+: Display in the file out or on the screen the armax equation
+associated with ar
+.TP
+armax 
+: is used to identify the coefficients of a n-dimensional 
+ARX process
+   A(z^-1)y= B(z^-1)u + sig*e(t)
+.TP
+armax1
+: armax1 is used to identify the coefficients of a 1-dimensional 
+ARX process
+   A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)
+.TP 
+arsimul
+: armax trajectory simulation 
+.TP
+arspec
+: Spectral power estimation of armax processes. 
+Test of  mese and arsimul
+.TP
+exar1
+: An  Example of ARMAX identification ( K.J. Astrom)
+The armax process is described by :
+    a=[1,-2.851,2.717,-0.865]
+    b=[0,1,1,1]
+    d=[1,0.7,0.2]
+.TP
+exar2 
+: ARMAX example ( K.J. Astrom). A simulation of a bi dimensional
+version of the example of exar1.
+.TP
+exar3 
+: Spectral power estimation of arma processes
+from Sawaragi et all where a value of m=18 is used.
+Test of  mese and arsimul
+.TP
+gbruit
+: noise generation 
+.TP
+narsimul
+: armax simulation ( using rtitr) 
+.TP
+odedi
+: Simple tests of ode and arsimul. Tests the option 'discret' of ode 
+.TP
+prbs_a 
+: pseudo random binary sequences generation 
+.TP
+reglin 
+: Linear regression 
+.SH AUTHOR
+J.P.C 
+
+

@@ -1,0 +1,75 @@
+.TH lufact G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+lufact - sparse lu factorization
+.SH CALLING SEQUENCE
+.nf
+[hand,rk]=lufact(A,prec)
+.fi
+.SH PARAMETERS
+.TP
+A
+: square sparse matrix
+.TP 
+hand
+: handle to sparse lu factors
+.TP
+rk
+: integer  (rank of A)
+.TP
+prec
+: a vector of size two \fVprec=[eps,reps]\fR giving the absolute and relative 
+thresolds.
+.SH DESCRIPTION
+\fV[hand,rk]=lufact(A)\fR performs the lu factorization of sparse matrix \fVA\fR.
+\fVhand\fR (no display) is used by \fVlusolve\fR (for solving linear
+system) and \fVluget\fR (for retrieving the factors).
+\fVhand\fR should be cleared by the command: \fVludel(hand)\fR;
+.LP
+The A matrix needs not be full rank but must be square 
+(since A is assumed sparse one may add zeros if necessary to squaring
+down A).
+.TP 
+eps : 
+The absolute magnitude an element must have to be considered
+as a pivot candidate, except as a last resort.  This number
+should be set significantly smaller than the smallest diagonal
+element that is is expected to be placed in the matrix. the default 
+value is \fV%eps\fR.
+.TP
+reps : 
+This number determines what the pivot relative threshold will
+be.  It should be between zero and one.  If it is one then the
+pivoting method becomes complete pivoting, which is very slow
+and tends to fill up the matrix.  If it is set close to zero
+the pivoting method becomes strict Markowitz with no
+threshold.  The pivot threshold is used to eliminate pivot
+candidates that would cause excessive element growth if they
+were used.  Element growth is the cause of roundoff error.
+Element growth occurs even in well-conditioned matrices.
+Setting the reps large will reduce element growth and
+roundoff error, but setting it too large will cause execution
+time to be excessive and will result in a large number of
+fill-ins.  If this occurs, accuracy can actually be degraded
+because of the large number of operations required on the
+matrix due to the large number of fill-ins.  A good value seems
+to be 0.001 which is the default value.  The default is chosen by giving a value larger
+than one or less than or equal to zero.  This value should be
+increased and the matrix resolved if growth is found to be
+excessive.  Changing the pivot threshold does not improve
+performance on matrices where growth is low, as is often the
+case with ill-conditioned matrices.
+reps was choosen for use with nearly diagonally
+dominant matrices such as node- and modified-node admittance
+matrices.  For these matrices it is usually best to use
+diagonal pivoting.  For matrices without a strong diagonal, it
+is usually best to use a larger threshold, such as 0.01 or 0.1.
+.SH EXAMPLE
+.nf
+a=rand(5,5);b=rand(5,1);A=sparse(a);
+[h,rk]=lufact(A);
+x=lusolve(h,b);a*x-b
+ludel(h)
+.fi
+.SH SEE ALSO
+sparse, lusolve, luget

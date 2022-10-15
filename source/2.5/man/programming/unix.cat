@@ -1,0 +1,29 @@
+
+unix(1)                        Scilab Function                        unix(1)
+NAME
+  unix - shell (sh) command execution
+
+CALLING SEQUENCE
+  stat=unix(command-name)
+
+PARAMETERS
+
+  command-name   : A character string containing Unix sh instruction
+
+  stat           : An integer flag
+
+DESCRIPTION
+  Sends a string command-name to Unix for execution by the sh shell. Standard
+  output and standard errors of the shell command are written in the calling
+  shell.  stat gives -1 if unix can't be called (Not enough system memory
+  available) or the sh return code.
+
+EXAMPLE
+  unix("ls $SCI/demos");
+  deff('wd=dir()','if MSDOS then unix(''cd>''+TMPDIR+''ath'');..
+                  else unix(''pwd>''+TMPDIR+''/path'');end..
+        wd=read(TMPDIR+''/path'',1,1,''(a)'')')
+  wd=dir()
+
+SEE ALSO
+  edit, manedit, unix_g, unix_s, unix_w, unix_x, host

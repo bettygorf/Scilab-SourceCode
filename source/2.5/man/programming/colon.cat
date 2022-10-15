@@ -1,0 +1,30 @@
+
+colon(1)                       Scilab Function                       colon(1)
+NAME
+  colon (:) - colon operator
+
+DESCRIPTION
+
+  :         : Colon. Used in subscripts and loops.
+
+  j:k       is the vector [j, j+1, ..., k] (empty if J>K).
+
+  j:d:k     is the vector [j, j+d, ..., j+m*d]
+
+  The colon notation can also be used to pick out selected rows, columns and
+  elements of vectors and matrices.
+
+  A(:)      is the vector of all the elements of A  regarded as a single col-
+            umn.
+
+  A(:,j)    is the j-th column of A
+
+  A(j:k)    is [A(j),A(j+1),...,A(k)]
+
+  A(:,j:k)  is [A(:,j),A(:,j+1),...,A(:,k)]
+
+  A(:)=w    fills the matrix A with entries of w (taken column by column if w
+            is a matrix).
+
+SEE ALSO
+  matrix

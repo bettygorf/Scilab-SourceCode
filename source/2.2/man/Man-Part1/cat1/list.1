@@ -1,0 +1,66 @@
+
+
+
+list(1)                        Scilab Function                        list(1)
+
+
+
+
+
+
+NAME
+  "Scilab object: list" - list definition
+
+CALLING SEQUENCE
+  list( a1,....an )
+
+DESCRIPTION
+  Creates a list with elements ai's which are arbitrary Scilab objects
+  (matrix, list,...). Type of  list objects is 15.
+
+  list() is the empty list (0 element).
+
+  Operations on lists:
+
+  [1mextraction  [0m: [x,y,z...]=l(v) where v is a vector of indices; [x,y,z]=l(:)
+              extracts all the elements.
+
+  [1minsertion   [0m: l(i)=a
+
+  [1mdeletion    [0m: l(i)=null() removes the i-th element of the list l.
+
+EXAMPLE
+  x=list(1,2,3);
+  x(4)=10;
+
+SEE ALSO
+  null, tlist
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

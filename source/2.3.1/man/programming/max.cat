@@ -1,0 +1,16 @@
+
+Maximum(G)                     Scilab Function                     Maximum(G)
+NAME
+  max - maximum
+
+CALLING SEQUENCE
+  [m [,k]]=max(A)
+  [m [,k]]=max(A1,A2,...,An)
+  [m [,k]]=max(list(A1,A2,...,An))
+  : real vector or matrix or list.
+
+DESCRIPTION
+  See maxi.
+
+SEE ALSO
+  sort, find, mini

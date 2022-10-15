@@ -1,0 +1,152 @@
+
+\documentstyle[modif.article]{article}
+
+\textheight=660pt 
+\textwidth=470pt 
+\topmargin=-27pt 
+\oddsidemargin=0pt 
+\evensidemargin=0pt 
+\title{Travaux dirig\'es\\d'Automatique}
+\author{J.Ph. Chancelier et M. Cohen de Lara}
+
+\begin{document}
+\maketitle 
+\def\cmarg{\hspace{1cm}}
+\input{TdAuto.tex}
+
+\section{G\'en\'eralit\'es sur {\em Basile}}
+
+\begin{description}
+
+\item[Entrer et sortir de {\em Basile}] .
+
+Vous entrez dans {\em Basile} par la commande {\bf basile} ou {\bf fep basile}
+ (fep permet de disposer des commandes emacs sous {\em Basile}). Le 
+ fichier {\em startup.bas} qui se trouve dans le directory courant 
+et qui contient des instructions {\em Basile} est alors ex\'ecut\'e.
+
+Vous quittez {\em Basile} par la commande {\bf quit}.
+
+\item[Ex\'ecution de commandes {\em Basile}] .
+
+On peut taper une suite de commandes {\em Basile} sous l'inter\-pr\`e\-te 
+ {\em Basile} et voir au fur et \`a mesure le r\'esultat des commandes.
+
+On peut \'egalement \'ecrire cette suite de commandes dans un fichier,
+ puis faire  ex\'ecuter  le contenu de ce  fichier par {\em Basile}. 
+ Pour ce faire, on utilisera dans {\em Basile}  la commande
+  {\bf exec('nom-de-fichier')}. 
+
+
+\item[Chargement de macros dans {\em Basile}] .
+
+On peut cr\'eer de nouvelles fonctions, 
+ appel\'ees {\bf macros}, puis
+ disposer de ces fonctions dans l'en\-vi\-ron\-ne\-ment {\em Basile}.
+% la syntaxe  d'\'ecriture est alors un peu diff\'erente et 
+%la commande de chargement dans {\em Basile} aussi.
+ 
+Pour charger  un ensemble de fonctions d\'efinies dans un fichier,
+ on utilisera la commande {\bf getf('nom-de-fichier')}.
+
+On peut compiler une macro par la 
+ commande {\bf comp{(xx)}} (ceci peut se r\'ev\'eler utile pour 
+ acc\'el\'erer  l'int\'egration des \'equations diff\'erentielles
+par exemple).
+
+\item[Help] .
+
+Pour chaque primitive ou macro {\em Basile} qui se trouve dans une 
+biblioth\`eque, vous disposez des commandes 
+{\bf help xx} et {\bf disp(xx)} (uniquement pour une macro non compil\'ee)
+  qui vous permettent d'obtenir un descriptif de son utilisation  
+  ou son code {\em Basile}.
+
+
+\item[Biblioth\`eque des travaux dirig\'es] .
+
+Les fonctions {\em Basile} des s\'eances de travaux dirig\'es ont \'et\'e 
+\'ecrites dans diff\'erentes 
+ biblioth\`eques qui ont pour noms 
+{\bf libtp$<$i$>$}. Par exemple, en tapant {\bf help libtp1} vous 
+visualisez le contenu du T.D.1.
+
+  Pour chaque macro, vous disposez des commandes {\bf help xx} et
+ {\bf disp(xx)}
+  qui vous permettent d'obtenir un descriptif de l'utilisation de la macro 
+  ou  son code {\em Basile}.
+
+\item[Graphiques du T.D.] .
+
+Pour pouvoir disposer d'une fen\^etre graphique, tapez la commande 
+{\bf xinit (`unix:0.0')}.
+
+Pour le graphique, vous aurez besoin de la biblioth\`eque {\em xplot}
+ et en  particulier de la  fonction  {\bf fchamp} 
+qui permet d'obtenir une visualisation d'un champ de vecteurs.
+
+La commande {\bf xinit(`unix:0.0')} permet de disposer
+d'une fen\^etre graphique.
+
+La commande {\bf xclear()} rafra\^{\i}chit l'\'ecran graphique.
+
+\end{description}
+
+\newpage
+
+\def\tit#1{ \begin{center} \fbox{{\bf  #1}} \end{center}}
+
+\def\cmarg{\hspace{1cm}}
+
+\section{Les macros g\'en\'erales des T.D.}
+\input graph.tex
+Tous les exercices du T.D. font appel \`a trois macros g\'en\'erales.
+\bigskip
+
+\def\cmarg{\hspace{1cm}}
+
+	\tit{fchamp}
+
+La commande {\bf fchamp} permet de visualiser un champ de 
+vecteurs dans le plan. Voici sa syntaxe.
+
+\Mfchamp
+\bigskip
+
+\def\cmarg{\hspace{1cm}}
+
+	\tit{portrait}
+
+
+La commande {\bf portrait(f,\ldots)} permet de visualiser le portrait de phase
+du champ de vecteurs {\bf f}. Si non sp\'ecifi\'e dans les arguments d'appel
+le cadre du dessin est
+interactivement demand\'e a l'utilisateur, de m\^eme que le nombre de
+points et le pas d'int\'egration du syst\`eme diff\'erentiel.
+L'utilisateur donne alors les coordonn\'ees successives du point
+initial. Si le champ de vecteurs d\'epend de param\`etres auxilliaires, par exemple  $f(t,x,u)$, alors on utilisera la syntaxe 
+\verb@u=??;portrait(list(f,u))@  
+
+\Mportrait
+
+\tit{desorb}
+
+La macro {\bf desorb} est utilis\'ee par la
+macro {\bf portrait}. Elle permet d'int\'egrer des \'equations
+ diff\'erentielles dans le plan. Voici sa syntaxe~:
+
+\Mdesorb
+
+\tit{tangent}
+
+La macro {\bf tangent} permet de lin\'eariser des syst\`emes dynamique
+ autour d'un point donn\'e, et d'obtenir les matrices du syst\`eme 
+ lin\'earis\'e mais aussi un le syst\`eme dynamique lin\'eaire tangent.
+ Voici sa syntaxe~:
+
+\Mtangent
+
+
+\end{document}
+
+

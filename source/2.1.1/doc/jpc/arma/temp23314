@@ -1,0 +1,32 @@
+     ===========
+     B A S I L E         18-MAY-1992 at 14:27: 3 
+     ===========
+ 
+ 
+ SIMULOG S.A. - 3, Avenue du Centre - 78182 St Quentin Yvelines (1) 30-64-49-79
+ BASILE Version 3.0 (15-Janv-1989) Copyright (C) 1987 INRIA All rights reserved
+ 
+          --------------------------
+      --  EXECUTION  DE  LA  STARTUP  --
+          --------------------------
+ 
+- Chargement de l'environnement initial defini dans BAS/basile.ini:
+* Bibliotheques:
+  autolib      polylib    convlib   desslib   elemlib
+  utillib      alglib     icselib   siglib    x11 xplot
+  td<xxx> : travaux diriges 
+* Parametres graphiques (variable dess)
+ 
+- Messages:
+       Attention     Version  3.2   experimentale
+       Si vous avez  des Pb vous pouvez  utiliser
+       la version figee (/usr/riobravo/local/bin)
+ 
+ <> 
+ <>load('Temp3314');
+load('Temp3314');
+                /--erreur 
+ fichier inaccessible ou inexistant :load('Temp3314');
+exec('temp3314')
+ 
+ <>

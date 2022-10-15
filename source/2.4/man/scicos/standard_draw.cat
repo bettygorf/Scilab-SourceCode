@@ -1,0 +1,24 @@
+
+standard_draw(Janvier 1997)                       standard_draw(Janvier 1997)
+NAME
+  standard_draw - Scicos block drawing function
+
+CALLING SEQUENCE
+  standard_draw(o)
+
+PARAMETERS
+
+  o         : Scicos block data structure (see scicos_block)
+
+DESCRIPTION
+  standard_draw is the Scilab function used to display standard blocks in
+  interfacing functions.
+
+  It draws a block with a rectangular shape with any number of regular or
+  event input respectively on the left and right faces of the block (if not
+  flipped), event input or output respectively on the top and bottom faces of
+  the block. Number of ports, size, origin, orientation, background color,
+  icon of the block are taken from the block data structure o.
+
+SEE ALSO
+  scicos_block

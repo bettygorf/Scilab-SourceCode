@@ -1,0 +1,42 @@
+
+qr(G)                          Scilab Function                          qr(G)
+NAME
+  qr - QR decomposition
+
+CALLING SEQUENCE
+  [Q,R]=qr(X)
+  [Q,R,E]=qr(X)
+  [Q,R,rk,E]=qr(X,tol)
+
+PARAMETERS
+
+  X    : real or complex matrix
+
+  tol  : nonnegative real number
+
+  Q    : square orthogonal or unitary matrix
+
+  R    : matrix with same dimensions as X
+
+  E    : permutation matrix
+
+  rk   : integer (QR-rank of X*E)
+
+DESCRIPTION
+  [Q,R] = qr(X) produces an upper triangular matrix R of the same dimension
+  as X and a unitary matrix Q so that X = Q*R.
+
+  [Q,R,E] = qr(X) produces a (column) permutation matrix E, an upper triangu-
+  lar R with decreasing diagonal elements and a unitary Q so that X*E = Q*R.
+
+  [Q,R,rk,E] = qr(X,tol) returns rk = rank estimate of X i.e.  rk is the
+  number of diagonal elements in R which are larger than tol.
+
+EXAMPLE
+  A=rand(5,2)*rand(2,5);
+  [Q,R,rk,E] = qr(A,1.d-10);
+  norm(Q'*A-R)
+  svd([A,Q(:,1:rk)])    //span(A) =span(Q(:,1:rk))
+
+SEE ALSO
+  rank, svd, rowcomp, colcomp

@@ -1,0 +1,118 @@
+
+int3d(G)                       Scilab Function                       int3d(G)
+NAME
+  int3d - definite 3D integral by quadrature and cubature method
+
+CALLING SEQUENCE
+  [result,err]=int3d(X,Y,Z,f [,nf[,params]])
+
+PARAMETERS
+
+  X         : a 4 by NUMTET array containing the abscissae of the vertices
+              of the NUMTET tetrahedrons.
+
+  Y         : a 4 by NUMTET array containing the ordinates of the vertices
+              of the NUMTET tetrahedrons.
+
+  Z         : a 4 by NUMTET array containing the third coordinates of the
+            vertices
+              of the NUMTET tetrahedrons.
+
+  f         : external (function or list or string) defining the integrand
+            f(xyz,nf), where xyz is the vector of a point coordinates and nf
+            the number functions
+
+  nf        : the number of function to integate (default is 1)
+
+  params    : real vector [minpts, maxpts, epsabs, epsrel]. default value is
+            [0, 1000, 0.0, 1.d-5].
+
+            epsabs
+              : Desired bound on the absolute error.
+
+            epsrel
+              : Desired bound on the relative error.
+
+            minpts
+              : Minimum number of function evaluations.
+
+            maxpts
+              : Maximum number of function evaluations.  The number of func-
+              tion evaluations over each subregion is 43
+
+  result    : the integral value,or vector of the integral values.
+
+  err       : Estimates of absolute errors.
+DESCRIPTION
+
+  The function calculates an approximation to a given vector of definite
+  integrals
+  I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
+            1  2      numfun
+  where the region of integration is a collection of NUMTET tetrahedrons and
+  where
+  F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
+   J   J
+
+  A globally adaptive strategy is applied in order to compute approximations
+  result(k) hopefully satisfying, for each component of I, the following
+  claim for accuracy: ABS(I(K)-RESULT(K))<=MAX(EPSABS,EPSREL*ABS(I(K)))
+  int3d repeatedly subdivides the tetrahedrons with greatest estimated errors
+  and estimates the integrals and the errors over the new subtetrahedrons
+  until the error request is met or MAXPTS function evaluations have been
+  used.
+
+  A 43 point integration rule with all evaluation points inside the tetrahe-
+  dron is applied. The rule has polynomial degree 8.
+
+  If the values of the input parameters EPSABS or EPSREL are selected great
+  enough, an integration rule is applied over each tetrahedron and the
+  results are added up to give the approximations RESULT(K). No further sub-
+  division of the tetrahedrons will then be applied.
+
+  When int3d computes estimates to a vector of integrals, all components of
+  the vector are given the same treatment. That is, I(Fj) and I(Fk) for
+
+  j not equal to k, are estimated with the same subdivision of the region of
+  integration.  For integrals with enough similarity, we may save time by
+  applying int3d to all integrands in one call.  For integrals that varies
+  continuously as functions of some parameter, the estimates produced by
+  int3d  will also vary continuously when the same subdivision is applied to
+  all components. This will generally not be the case when the different com-
+  ponents are given separate treatment.
+
+  On the other hand this feature should be used with caution when the differ-
+  ent components of the integrals require clearly different subdivisions.
+EXAMPLES
+  X=[0;1;0;0];
+  Y=[0;0;1;0];
+  Z=[0;0;0;1];
+  deff('v=f(xyz,numfun)','v=exp(xyz''*xyz)')
+  [RESULT,ERROR]=int3d(X,Y,Z,'int3dex')
+  // computes the integrand exp(x*x+y*y+z*z) over the
+  //tetrahedron (0.,0.,0.),(1.,0.,0.),(0.,1.,0.),(0.,0.,1.)
+
+SEE ALSO
+  intc, intl, int3d
+
+REFERENCES
+  Fortran routine dqtet.f
+
+  Authors:
+  Jarle Berntsen, The Computing Centre,
+  University of Bergen, Thormohlens gt. 55,
+  N-5008 Bergen, Norway
+  Phone..  47-5-544055
+  Email..  jarle@eik.ii.uib.no
+
+  Ronald Cools, Dept. of Computer Science,
+  Katholieke Universiteit Leuven, Celestijnenlaan 200A,
+  B-3030 Heverlee, Belgium
+  Phone..  32-16-201015 (3562)
+  Email..  ronald@cs.kuleuven.ac.be
+
+  Terje O. Espelid, Department of Informatics,
+  University of Bergen, Thormohlens gt. 55,
+  N-5008 Bergen, Norway
+  Phone..  47-5-544180
+  Email..  terje@eik.ii.uib.no

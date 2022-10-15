@@ -1,0 +1,130 @@
+.TH bloc2ss 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+bloc2ss - block-diagram to state-space conversion
+.SH CALLING SEQUENCE
+.nf
+[sl]=bloc2ss(blocd)
+.fi
+.SH PARAMETERS
+.TP 10
+blocd 
+: list
+.TP 10
+sl
+: list
+.SH DESCRIPTION
+Given a block-diagram representation of a linear system
+\fVbloc2ss\fR converts this representation to a state-space
+linear system.
+The first element of the list \fVblocd\fR must be the string \fV'blocd'\fR.
+Each other element of this list is itself a list of one
+the following types :
+
+.nf
+list('transfer','name_of_linear_system')
+.fi
+
+.nf 
+list('link','name_of_link',
+             [number_of_upstream_box,upstream_box_port],
+             [downstream_box_1,downstream_box_1_portnumber],
+             [downstream_box_2,downstream_box_2_portnumber],
+             ...)
+.fi
+
+The strings \fV'transfer'\fR and \fV'links'\fR are keywords which
+indicate the type of element in the block diagram.
+
+Case 1 :  the second parameter of the list is a character string which 
+may refer (for a possible further evaluation) 
+to the Scilab name of a linear system given
+in state-space representation (\fVsyslin\fR list) or in transfer
+form (matrix of rationals).
+.LP
+To each transfer block is associated an integer.
+To each input and output of a transfer block is also
+associated its number, an integer (see examples)
+
+Case 2 :  the second kind of element in a block-diagram representation
+is a link.
+A link links one output of a block represented by the pair
+\fV[number_of_upstream_box,upstream_box_port]\fR, to different
+inputs of other blocks. Each such input is represented by 
+the pair \fV[downstream_box_i,downstream_box_i_portnumber]\fR.
+.LP
+The different elements of a block-diagram can be defined
+in an arbitrary order.
+
+For example
+.LP
+[1] \fVS1*S2\fR with unit feedback.
+.LP
+There are 3 transfers \fVS1\fR (number \fVn_s1=2\fR) , \fVS2\fR (number \fVn_s2=3\fR)
+and an adder (number \fVn_add=4\fR) with symbolic transfer 
+function \fV['1','1']\fR.
+.LP
+There are 4 links. The first one (named \fV'U'\fR) links the input 
+(port 0 of fictitious block -1, omitted) to port 1 of the adder.
+The second and third one link respectively (output)port 1 
+of the adder to (input)port 1 of system \fVS1\fR, and 
+(output)port 1 of \fVS1\fR to (input)port 1 of \fVS2\fR.
+The fourth link (named \fV'Y'\fR) links (output)port 1 of \fVS2\fR to 
+the output (port 0 of fictitious block -1, omitted) and to 
+(input)port 2 of the adder.
+.nf
+//Initialization
+syst=list('blocd'); l=1;
+//
+//Systems
+l=l+1;n_s1=l;syst(l)=list('transfer','S1');  //System 1
+l=l+1;n_s2=l;syst(l)=list('transfer','S2');  //System 2
+l=l+1;n_adder=l;syst(l)=list('transfer',['1','1']);  //adder
+//
+//Links
+// Inputs  -1 --> input 1
+l=l+1;syst(l)=list('link','U1',[-1],[n_adder,1]);
+// Internal 
+l=l+1;syst(l)=list('link',' ',[n_adder,1],[n_s1,1]);
+l=l+1;syst(l)=list('link',' ',[n_s1,1],[n_s2,1]);
+// Outputs // -1 -> output 1
+l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
+.fi
+With \fVs=poly(0,'s');S1=1/(s+1);S2=1/s;\fR the result of the evaluation call
+\fVsl=bloc2ss(syst);\fR is a state-space representation for
+\fV1/(s^2+s-1)\fR.
+.HR
+[2] LFT example
+.nf
+//Initialization
+syst=list('blocd'); l=1;
+//
+//System (2x2 blocks plant)
+l=l+1;n_s=l;syst(l)=list('transfer',['P11','P12';'P21','P22']); 
+// 
+//Controller
+l=l+1;n_k=l;syst(l)=list('transfer','k');
+// 
+//Links
+l=l+1;syst(l)=list('link','w',[-1],[n_s,1]);
+l=l+1;syst(l)=list('link','z',[n_s,1],[-1]);
+l=l+1;syst(l)=list('link','u',[n_k,1],[n_s,2]);
+l=l+1;syst(l)=list('link','y',[n_s,2],[n_k,1]);
+.fi
+With 
+.nf
+P=syslin('c',A,B,C,D);
+P11=P(1,1); 
+P12=P(1,2);
+P21=P(2,1); 
+P22=P(2,2);
+K=syslin('c',Ak,Bk,Ck,Dk);
+.fi
+\fVbloc2exp(syst)\fR
+returns the evaluation the lft of \fVP\fR
+and \fVK\fR.
+.fi
+.SH SEE ALSO
+bloc2exp
+.SH AUTHOR 
+S. S., F. D. (INRIA)

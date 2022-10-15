@@ -1,0 +1,42 @@
+.TH REMEZ G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+remez - Remez's algorithm
+.SH CALLING SEQUENCE
+.nf
+[an]=remez(nc,fg,ds,wt)
+.fi
+.SH PARAMETERS
+.TP
+nc
+: integer, number of cosine functions
+.TP
+fg,ds,wt
+: real vectors
+.TP
+fg
+: grid of frequency points in [0,.5)
+.TP
+ds
+: desired magnitude on grid \fVfg\fR
+.TP
+wt
+: weighting function on error on grid \fVfg\fR
+.SH DESCRIPTION
+minimax approximation of a frequency domain magnitude response.
+The approximation takes the form
+.nf
+ h = sum[a(n)*cos(wn)]
+.fi
+for n=0,1,...,nc. An FIR, linear-phase filter
+can be obtained from the the output of \fVremez\fR by using the
+following commands:
+.nf
+                 hn(1nc-1)=an(nc-12)/2;
+                 hn(nc)=an(1);
+                 hn(nc+12*nc-1)=an(2nc)/2;
+.fi
+where \fVan\fR = cosine filter coefficients
+
+
+

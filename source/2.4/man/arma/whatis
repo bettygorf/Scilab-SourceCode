@@ -1,0 +1,10 @@
+arma - scilab arma library  
+armac - scilab description of an armax process  
+armax - armax identification  
+armax1 - armax identification  
+arsimul - armax simulation  
+narsimul - armax simulation ( using rtitr)  
+noisegen - noise generation  
+odedi - test of ode  
+prbs_a - pseudo random binary sequences generation  
+reglin - linear regression  

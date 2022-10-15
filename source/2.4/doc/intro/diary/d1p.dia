@@ -1,0 +1,23 @@
+\begin{verbatim}
+ 
+                  !--error   240 
+File d1p1.dia already exists or directory write access denied 
+ 
+ 
+-->a=1;
+ 
+-->A=2;
+ 
+-->a+A
+ ans  =
+ 
+    3.  
+ 
+-->//Two commands on the same line
+ 
+-->c=[1 2];b=1.5
+ b  =
+ 
+    1.5  
+ 
+\end{verbatim}

@@ -1,0 +1,50 @@
+
+xstring(2)                     Scilab Function                     xstring(2)
+NAME
+  xstring - draw strings
+
+CALLING SEQUENCE
+  xstring(x,y,str,[angle,box])
+
+PARAMETERS
+
+  x,y    : real scalars, coordinates of the lower-left point of the strings.
+
+  str    : matrix of strings.
+
+  angle  : real, clockwise angle in degree; default is 0.
+
+  box    : integer, default is 0.
+
+DESCRIPTION
+  xstring draws the matrix of strings str at location x,y (lower-left point)
+  in the current graphic scale: each row of the matrix stands for a line of
+  text and row elements stand for words separated by a white space.  If angle
+  is given, it gives the slope in degree used for drawing the strings. If box
+  is 1 and angle is 0, a box is drawn around the strings.
+
+EXAMPLE
+  plot2d([0;1],[0;1],0)
+  xstring(0.5,0.5,["Scilab" "is"; "not" "esilaB"])
+  //Other example
+  alphabet=["a" "b" "c" "d" "e" "f" "g" ..
+            "h" "i" "j" "k" "l" "m" "n" ..
+            "o" "p" "q" "r" "s" "t" "u" ..
+            "v" "w" "x" "y" "z"];
+  xbasc()
+  plot2d([0;1],[0;2],0)
+  xstring(0.1,1.8,alphabet)     // alphabet
+  xstring(0.1,1.6,alphabet,0,1) // alphabet in a box
+  xstring(0.1,1.4,alphabet,20)  // angle
+  xset("font",1,1)              // use symbol fonts
+  xstring(0.1,0.1,alphabet)
+  xset("font",1,3)              // change size font
+  xstring(0.1,0.3,alphabet)
+  xset("font",1,24); xstring(0.1,0.6,"a") //big alpha
+  xset("default")
+
+SEE ALSO
+  titlepage, xnumb, xstringb, xstringl, xtitle
+
+AUTHOR
+  J.Ph.C.

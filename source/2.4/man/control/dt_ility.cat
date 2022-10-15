@@ -1,0 +1,49 @@
+
+dt_ility(1)                    Scilab Function                    dt_ility(1)
+NAME
+  dt_ility - detectability test
+
+CALLING SEQUENCE
+  [k, [n [,U [,Sld ] ] ]]=dt_ility(Sl [,tol])
+
+PARAMETERS
+
+  Sl        : linear system (syslin list)
+
+  n         : dimension of unobservable subspace
+
+  k         : dimension of unstable, unobservable subspace ( k<=n ).
+
+  U         : orthogonal matrix
+
+  Sld       : linear system (syslin list)
+
+  tol       : threshold for controllability test.
+
+DESCRIPTION
+  Detectability test for sl, a linear system in state-space representation. U
+  is a basis whose k first columns span the unstable, unobservable subspace
+  of Sl (intersection of unobservable subspace of (A,C) and unstable subspace
+  of A). Detectability means k=0.
+
+  Sld = (U'*A*U,U'*B,C*U,D) displays the "detectable part" of Sl=(A,B,C,D),
+  i.e.
+           [*,*,*]
+  U'*A*U = [0,*,*]
+           [0,0,*]
+
+  C*U = [0,0,*]
+  with (A33,C3) observable (dimension nx-n), A22 stable (dimension n-k) and
+  A11 unstable (dimension k).
+
+EXAMPLE
+  A=[2,1,1;0,-2,1;0,0,3];
+  C=[0,0,1];
+  X=rand(3,3);A=inv(X)*A*X;C=C*X;
+  W=syslin('c',A,[],C);
+  [k,n,U,W1]=dt_ility(W);
+  W1("A")
+  W1("C")
+
+SEE ALSO
+  contr, st_ility, unobs, stabil

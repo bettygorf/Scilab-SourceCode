@@ -1,0 +1,36 @@
+.TH specfact 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+specfact - spectral factor
+.SH CALLING SEQUENCE
+.nf
+[W0,L]=specfact(A,B,C,D)
+.fi
+.SH DESCRIPTION
+Given a spectral density matrix \fVphi(s)\fR:
+.nf
+                 -1                   -1
+     R + C*(s*I-A) * B  +  B'*(-s*I-A') * C'  with R=D+D' > 0
+.fi
+\fVspecfact\fR computes  \fVW0\fR and \fVL\fR such 
+that  \fVW(s)=W0+L*(s*I-A)^-1*B\fR  is a
+spectral factor of of \fVPHI(s)\fR, i.e.
+.LP
+\fVphi(s)=W'(-s)*W(s)\fR
+.SH EXAMPLE
+.nf
+A=diag([-1,-2]);B=[1;1];C=[1,1];D=1;s=poly(0,'s');
+W1=syslin('c',A,B,C,D);
+phi=gtild(W1,'c')+W1;
+phis=clean(ss2tf(phi))
+clean(phis-horner(phis,-s)');   //check this is 0...
+[A,B,C,D]=abcd(W1);
+[W0,L]=specfact(A,B,C,D);
+W=syslin('c',A,B,L,W0)
+Ws=ss2tf(W);
+horner(Ws,-s)*Ws
+.fi
+.SH SEE ALSO
+gtild, sfact, fspecg
+.SH AUTHOR
+F. D. 

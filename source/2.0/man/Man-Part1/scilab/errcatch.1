@@ -1,0 +1,48 @@
+.TH errcatch 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+errcatch - error trapping
+.SH CALLING SEQUENCE
+.nf
+errcatch(n [,'action'] [,'option']) 
+.fi
+.SH PARAMETERS
+.TP 10
+n
+: integer 
+.TP 20
+action, option 
+: strings
+.SH DESCRIPTION
+\fVerrcatch\fR gives an "action" (error-handler)  to be 
+performed when an error of type \fVn\fR occurs.
+.LP
+meaning of \fVn\fR :
+.PP
+\fVn>0\fR is the error number to trap
+.LP
+.PP
+if \fVn<0\fR  all errors are to be trapped
+.LP
+\fVaction\fR is one of the following character strings  :
+.RS
+.TP 12
+"pause"
+: a pause is executed when trapping the error
+.TP
+"continue"
+: next instruction is executed, current instruction
+is ignored
+.TP
+"kill"
+: default mode.
+.TP
+"stop"
+: interrupts the current Scilab session (useful when 
+Scilab is called from an external program).
+.RE
+.LP
+\fVoption\fR is the character string \fV'nomessage'\fR for killing
+error message.
+.SH SEE ALSO
+errclear

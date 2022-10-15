@@ -1,0 +1,22 @@
+
+getcwd(1)                      Scilab Function                      getcwd(1)
+NAME
+  getcwd - get Scilab current directory
+
+CALLING SEQUENCE
+  path=getcwd()
+  pwd
+
+PARAMETERS
+
+  path           : a string
+
+DESCRIPTION
+  return in path the Scilab current directory.
+
+EXAMPLE
+  p=getcwd();
+  pwd
+
+SEE ALSO
+  chdir, unix

@@ -1,0 +1,15 @@
+ 
+-->clear;lines(0);
+ 
+-->a=eye(2,2);b=ones(a);
+ 
+-->oldsave('val.dat',a,b);
+                       !--error   240 
+File val.dat already exists or directory write access denied 
+ 
+ 
+-->clear a
+ 
+-->clear b
+ 
+-->load('val.dat','a','b');

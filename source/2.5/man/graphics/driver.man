@@ -1,0 +1,41 @@
+.TH driver 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+driver - select a graphics driver
+.SH CALLING SEQUENCE
+.nf
+driver(driver_name)
+current_driver=driver()
+.fi
+.SH PARAMETERS 
+.TP 13
+driver_name 
+: string, driver to be selected.
+.SH DESCRIPTION
+This function is used to select a graphics driver, or with no arguments 
+to get the current graphics driver name.
+Most of the time, a user can ignore this function and change the driver
+by calling high level functions such as \fVxbasc\fR or \fVxbasimp\fR.
+The selected driver can be one of the followings:
+.TP 7
+"X11"
+: output to the screen of the computer.
+.TP
+"Pos" 
+: output into Postscript format.
+.TP
+"Rec" 
+: output to the screen of the computer with recording of all the graphics
+commands. This is the default driver.
+.TP
+"Fig" 
+: output into XFig format. Clipping of objects is not provided in XFig.
+.TP
+"GIF" 
+: output into Gif format (beta test driver written by Tom Leitner 
+(http://wiis.tu-graz.ac.at/people/tom.html).
+Note that line thickness is not handled yet.
+.SH SEE ALSO
+xtape, xbasc, xbasimp
+.SH AUTHOR
+J.Ph.C.

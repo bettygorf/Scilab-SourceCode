@@ -1,0 +1,52 @@
+
+pfss(1)                        Scilab Function                        pfss(1)
+NAME
+  pfss - partial fraction decomposition
+
+CALLING SEQUENCE
+  elts=pfss(Sl)
+  elts=pfss(Sl,rmax)
+  elts=pfss(Sl,'cord')
+  elts=pfss(Sl,rmax,'cord')
+
+PARAMETERS
+  Sl : syslin list (state-space or transfer linear system) rmax : real number
+  controlling the conditioning of block diagoanalization cord : character
+  string 'c' or 'd'.
+
+DESCRIPTION
+  Partial fraction decomposition of the linear system Sl (in state-space
+  form, transfer matrices are automatically converted to state-space form by
+  tf2ss):
+
+  elts is the list of linear systems which add up to Sl i.e.
+  elts=list(S1,S2,S3,...,Sn) with:
+
+  Sl = S1 + S2 +... +Sn.
+
+  Each Si contains some poles of S according to the block-diagonalization of
+  the A matrix of S.
+
+  For non proper systems the polynomial part of Sl is put in the last entry
+  of elts.
+
+  If Sl is given in transfer form, it is first converted into state-space and
+  each subsystem Si is then converted in transfer form.
+
+  The A matrix is of the state-space is put into block diagonal form by func-
+  tion bdiag. The optional parameter rmax is sent to bdiag. If rmax should be
+  set to a large number to enforce block-diagonalization.
+
+  If the optional flag cord='c' is given the elements in elts are sorted
+  according to the real part (resp. magnitude if cord='d') of the eigenvalues
+  of A matrices.
+
+EXAMPLE
+  W=ssrand(1,1,6);
+  elts=pfss(W);
+  W1=0;for k=1:size(elts), W1=W1+ss2tf(elts(k));end
+  clean(ss2tf(W)-W1)
+SEE ALSO
+  pbig, bdiag, coffg, dtsi
+AUTHOR
+  F.D.

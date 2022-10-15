@@ -1,0 +1,42 @@
+.TH fineta 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+fineta - reduced pencil
+.SH CALLING SEQUENCE
+.nf
+[Er,Ar,Q,Z]=fineta(F)
+[Er,Ar,Q,Z]=fineta(E,A)
+.fi
+.SH PARAMETERS
+.TP
+F
+: real matrix pencil \fVF=s*E-A\fR
+.TP
+E,A
+: two real matrices of same dimensions
+.TP 10
+Q,Z
+:
+two orthogonal matrices (not necessarily square)
+.TP
+Er,Ar
+:
+two real matrices of same dimensions (reduced pencil)
+.SH DESCRIPTION
+Returns the finite + eta part of the pencil \fVF=sE-A\fR.
+.LP
+\fVEr=Q*E*Z, Ar=Q*A*Z\fR has only finite and eta Kronecker invariants 
+and \fVEr\fR is full column rank.
+.LP
+\fVQ\fR : left (row)-subspace associated with finite and eta part of
+the pencil
+.LP
+For a regular pencil \fVQ\fR spans the left finite eigenspace.
+.SH AUTHOR
+F. D & R. N.
+.SH SEE ALSO
+kroneck, pencan, epsfin
+
+
+
+

@@ -1,0 +1,23 @@
+.TH xload 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xload - load a saved graphics
+.SH CALLING SEQUENCE
+.nf
+xload(file-name,[win-num]) 
+.fi
+.SH PARAMETERS 
+.TP 11
+file-name
+: string, name of the file.
+.TP
+win-num 
+: integer, the graphics window number. If not given, the current graphics
+window is used.
+.SH DESCRIPTION
+\fVxload\fR reloads the graphics contained in the file \fVfile-name\fR
+in the graphics window \fVwin-num\fR.
+.SH SEE ALSO
+xsave 
+.SH AUTHOR
+J.Ph.C.

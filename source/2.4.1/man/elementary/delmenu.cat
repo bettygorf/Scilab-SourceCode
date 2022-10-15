@@ -1,0 +1,30 @@
+
+delmenu(3)                     Scilab Function                     delmenu(3)
+NAME
+  delmenu - interactive button or menu deletion
+
+CALLING SEQUENCE
+  delmenu(button)
+  delmenu(gwin,button)
+
+PARAMETERS
+
+  button
+       : a character string. The button name
+
+  gwin : integer. The number of graphic window where the button is required
+       to be installed
+
+DESCRIPTION
+  The function allows the user to delete  buttons or menus create by addmenu
+  in the main or graphics windows command panels.
+
+  If possible, it is better to delete first the latest created button for a
+  given window to avoid gaps in  command panels.
+
+EXAMPLE
+  addmenu('foo')
+  delmenu('foo')
+
+SEE ALSO
+  setmenu, unsetmenu, addmenu

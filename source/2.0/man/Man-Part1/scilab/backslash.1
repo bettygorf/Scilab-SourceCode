@@ -1,0 +1,19 @@
+.TH backslash 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+\\ - left matrix division
+.SH CALLING SEQUENCE
+.nf
+x=A\b
+.fi
+.SH DESCRIPTION
+Backslash denotes left matrix division. 
+\fVx=A\\b\fR is the solution of \fVA*x=b\fR.  
+The least square solution is given if the system is singular.
+.LP
+\fVA.\\B\fR  is the matrix with \fV(i,j)\fR entry \fVA(i,j)\\B(i,j)\fR.
+If \fVA\fR (or \fVB\fR) is a scalar \fVA.\\B\fR is equivalent to 
+\fVA*ones(B).\\B\fR (or \fVA.\\(B*ones(A))\fR
+.SH SEE ALSO
+slash, percent
+

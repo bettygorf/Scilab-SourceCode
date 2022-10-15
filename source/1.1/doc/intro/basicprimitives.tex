@@ -1,0 +1,759 @@
+\chapter{Basic Primitives}
+\label{ch5}
+This chapter briefly describes some basic primitives of $\Psi$lab.
+More precise information is given in the manual 
+(see the directory {\tt SCIDIR/man/LaTex-doc}).
+\section{The Environment and Input/Output}
+	In this chapter we describe the most important aspects
+of the environment of $\Psi$lab, how to automatically
+perform certain operations when entering $\Psi$lab,
+and how to read and write data
+to and from the $\Psi$lab environment.
+
+\subsection{The Environment}
+\label{s5.1}
+\index{environment}
+
+	At the moment that the user calls $\Psi$lab the environment
+of $\Psi$lab is loaded with a certain number of variables and primitives.
+The command {\tt who}\index{who@{\tt who}} lists the variables 
+which are currently available in $\Psi$lab.  
+
+The {\tt who} command also indicates how many elements and variables
+are available for use.  The user can obtain on-line help on any of 
+the functions listed by what by typing {\tt help}\index{help@{\tt help}}.
+
+	Variables can be saved in a external binary
+file by using {\tt save}\index{save@{\tt save}}.  
+Similarly, variables previously saved can be
+reloaded into $\Psi$lab using {\tt load}\index{load@{\tt load}}.
+
+Notice that after the command {\tt clear}\index{clear@{\tt clear}} 
+that the variables {\tt x} and
+{\tt y} no longer exist in the environment.  
+The command {\tt save} without any variable arguments saves the entire 
+$\Psi$lab environment.  Similarly,
+the command {\tt clear} used
+without any arguments clears all of the variables, macros, and libraries
+in the environment.
+
+	Macros which exist in files can be loaded by using 
+{\tt getf}\index{getf@{\tt getf}}.  
+
+Libraries of macros are loaded
+using {\tt lib}\index{lib@{\tt lib}}\index{libraries}.  
+
+The list of macros available in the library can be had by using {\tt disp}.
+
+\subsection{Startup Commands by the User}
+\label{s5.2}
+\index{startup by user}
+\index{starup.sci@{\tt startup.sci}}
+
+	When $\Psi$lab is called the user can automatically load
+into the environment macros, libraries, variables, and perform
+commands using the the file {\tt .scilab} in the home directory.  
+This is particularly useful when the user wants to run $\Psi$lab programs
+in the background (such as in batch mode).  Another useful aspect
+of the {\tt .scilab} file is when the certain macros or libraries
+are often used.  In this case the command {\tt getf} can be used
+in the {\tt .scilab} file to automatically load the desired 
+macros and libraries whenever $\Psi$lab is invoked.
+
+\subsection{Input and Output}
+\label{s5.3}
+\index{input}
+\index{output}
+
+	Although the commands {\tt save} and {\tt load} are
+convenient, one has much more control over the transfer of
+data between files and $\Psi$lab by using the commands 
+{\tt read}\index{read@{\tt read}}
+and {\tt write}\index{write@{\tt write}}.  
+These two commands work similarly to the
+read and write commands found in Fortran.  The syntax of these
+two commands is as follows.  
+\begin{verbatim}
+ 
+--> x=[1 2 %pi;%e 3 4]
+ x         =
+ 
+!   1.           2.    3.1415927 !
+!   2.7182818    3.    4.        !
+ 
+--> write('x.dat',x)
+ 
+--> clear x
+ 
+--> xnew=read('x.dat',2,3)
+ xnew      =
+ 
+!   1.           2.    3.1415927 !
+!   2.7182818    3.    4.        !
+\end{verbatim}
+Notice that the {\tt read} specifies the number of rows and columns
+of the matrix {\tt x}.
+Complicated formats can be specified. 
+
+\section{Help}
+On-line help is available either by clicking on the {\tt help}
+button or by entering {\tt help item} (where {\tt item} is usually the 
+name of a macro or primitive). The help facility is based on the 
+Unix {\tt xman} command. {\tt apropos item} looks for {\tt item} 
+in the {\tt whatis} file. This facility is equivalent to the Unix 
+{\tt whatis} command. To add a new item in the manual is easy: just
+look at the {\tt SCIDIR/man/Man-General} directory. Note that
+the directory {\tt SCIDIR/man/Man-Contrib} is for the inclusion
+of new help item contributions. 
+The $\Psi$lab \LaTeX  manual is automatically obtained from the
+manual items by a {\tt Makefile}. 
+See the directory {\tt SCIDIR/man/Latex-doc}. Note that the command
+{\tt manedit} opens an help file with an editor (default editor
+is {\tt emacs}).
+
+
+\section{Non-Linear Calculation}
+\label{ch6}
+\index{non-linear calculation}
+
+	$\Psi$lab has several powerful non-linear primitives for simulation
+or optimization.
+\index{simulation}
+\index{optimization}
+\subsection{Externals}
+\index{external}
+An "external" is a macro or Fortran routine which is used as an argument
+of some high-level primitives (such as {\tt ode}, {\tt optim}...).
+The calling sequence of the external (macro or routine) is imposed by
+the high-level primitive which sets the arguments of the external.
+For example the external macro {\tt costfunc} is an argument of 
+the {\tt optim} primitive. Its calling sequence must be: 
+{\tt [f,g,ind]=costfunc(x,ind)} as imposed by the {\tt optim} primitive.
+The following non-linear primitives in $\Psi$lab need externals: 
+{\tt ode}, {\tt optim}, {\tt impl}, {\tt dassl}, {\tt intg}, {\tt fsolve}
+For problems where computation time is important, it is recommended
+to code the externals as Fortran subroutines. Examples of such
+subroutines are given in the directory {\tt SCIDIR/routines/default}.
+When such a subroutine is written it must be linked to $\Psi$lab.
+This link operation can be ``dynamic'' (see {\tt link}). It is
+also possible to introduce the code in a specific interface (see e.g.
+{\tt fydot.f} in {\tt SCIDIR/routines/default} and rebuild a new $\Psi$lab
+by a {\tt make}.
+
+\subsection{Non-Linear primitives}
+The main simulation primitives
+in $\Psi$lab allow integrating a broad range of non-linear system functions of
+both explicit and implicit nature. It is also possible to integrate
+a system of differential equations with a stopping time: 
+integration is performed until the trajectory reaches a given surface.
+In the following we illustrate the basic {\tt ode} syntax by example.
+
+	The example illustrates the basic usage of {\tt ode}.
+Here we simulate the motion of a double pendulum.  
+Let $\theta_1$ and $\theta_2$ be the angles that the first
+and second pendulum elements make with the vertical and
+$r_1$, $r_2$, $m_1$
+and $m_2$ be the lengths and masses of 
+the respective pendulum elements.  
+The non-linear
+differential equation which describes the motion of the pendulum
+is:
+\begin{equation}
+\left[\begin{array}{cc}
+mr_1&m_2r_2\cos\theta\\
+r_1\cos\theta_1&r_2
+\end{array}\right]
+\left[\begin{array}{c}
+\ddot{\theta}_1\\
+\ddot{\theta}_2
+\end{array}\right]
+=
+\left[\begin{array}{c}
+-m_2r_2\dot{\theta}_2^2\sin\theta\\
+r_1\dot{\theta}_1^2\sin\theta
+\end{array}\right]
+-
+\left[\begin{array}{c}
+m\sin\theta_1\\
+\sin\theta_2
+\end{array}\right]
+g
+\label{e6.1}
+\end{equation}
+where $g$ is the acceleration due to gravity, $m=m_1+m_2$, and 
+$\theta=\theta_1+\theta_2$.
+The following $\Psi$lab session simulates the movement
+of the pendulum for $1.5$ seconds where $g=9.8m/s$,
+$r_1=r_2=1m$, and $m1=m2=1kg$.  The initial conditions are
+$\theta_1=\pi/2$, $\theta_2=\pi/2$, $\dot{\theta}_1=0$, and 
+$\dot{\theta}_2=0$.
+\begin{verbatim}
+--> m1=1;m2=1;r1=1;r2=1;
+ 
+--> g=9.8;
+ 
+--> t0=0;
+ 
+--> t=0:.1:1.5;
+ 
+--> z0=[%pi/2;%pi/2;0;0];
+ 
+--> getf('../macros/dpend.sci','c');
+ 
+--> z=ode(z0,t0,t,dpend);
+ 
+--> pp(z)
+\end{verbatim}
+The result of the above session is plotted in Figure~\ref{f6.1}.
+Note that {\tt ode} takes four arguments: a vector initial condition
+{\tt z0}, the initial time {\tt t0}, a vector of times {\tt t}
+for which the integrated values {\tt z} are desired, and the macro
+name {\tt dpend} which exists in the environment of $\Psi$lab and which
+calculates the value of the derivative {\tt zd} give the time {\tt t} 
+and the value of {\tt z} at this time.
+
+\input{\Figdir d6.1.tex}
+\dessin{Simulation of a Double Pendulum}{f6.1}
+
+Note that the {\tt dpend} macro calculates the derivative of
+the state of the double pendulum following (\ref{e6.1}).
+
+\begin{verbatim}
+function [zdot]=dpend(time,z)
+   th1=z(1);th2=z(2);th1d=z(3);th2d=z(4);
+   s12=sin(th1-th2);c12=cos(th1-th2);
+   m12=m1+m2;s1=sin(th1);s2=sin(th2);
+   mat=[m12*r1 m2*r2*c12;...
+        r1*c12 r2];
+   vec=-[m12*g*s1+m2*r2*th2d*th2d*s12;...
+         g*s2-r1*th1d*th1d*s12];
+   res=mat\vec;
+   th1dd=res(1);th2dd=res(2);
+   zdot=[th1d;th2d;th1dd;th2dd];
+
+function []=pp(z)
+   th1=z(1,:);th2=z(2,:);
+   rc1=r1*cos(th1);rc2=r2*cos(th2);
+   rs1=r1*sin(th1);rs2=r2*sin(th2);
+   rs12=rs1+rs2;rc12=rc1+rc2;
+   rect=[-2.1,-3.1,2.1,1.1];
+   for k=1:maxi(size(th1));
+      plot2d([0 rs1(k) rs12(k)]',-[0 rc1(k) rc12(k)]',...
+		[-1],"011",' ',rect,[10,3,10,3]);
+   end,
+
+\end{verbatim}
+
+	The $\Psi$lab ``external'' macro which calculates the derivative
+(in this example {\tt dpend}) must have a certain format.
+This format is as follows
+\begin{verbatim}
+function [xdot]=f(time,x)
+   .
+   .
+   .
+\end{verbatim}
+The format specifies that the argument list contain two variables.
+The first variable {\tt time} is a scalar which represents time, the second
+variable {\tt x} is a vector (or matrix) of the state values.  The returned
+value {\tt xdot} is the calculated derivative and has the same dimensions
+as {\tt x}.  For differential equations of order greater than one
+state augmentation is used. 
+
+The optimization primitive 
+{\tt optim}\index{optim@{\tt optim}} in $\Psi$lab
+is capable finding locally optimum solutions to a wide range
+of non-linear problems.  In the following we illustrate 
+the basic {\tt optim} syntax by example. 
+
+	The example used to illustrate the use of {\tt optim} is
+the classic ray-tracing problem of a plane wave traveling from
+one material to another.  Here we pose the problem slightly differently.
+Imagine a lifeguard on a beach and a person calling for help 
+in the water.  The lifeguard's speed on land is different from
+his speed in water and, consequently, he would like to choose the
+point along the border between beach and water which minimizes
+the travel time to the calling person.  This problem can be analytically
+resolved when the border between beach and water is a straight
+line.  The problem may not be analytically resolvable when the function
+of the border is more complicated than a straight line.
+
+	The problem is posed as follows.  Given that the lifeguard 
+is at the origin of a Cartesian coordinate system, that the person
+to be saved is at the coordinates $(x,y)$, and that the border
+between the beach and the water can be described by the function
+$d(x)$ we have that the lifeguard's time of travel is
+\begin{equation}
+T(p)=\frac{\sqrt{p^2+d^2(p)}}{v_b}+\frac{\sqrt{(x-p)^2+(y-d(p))^2}}{v_w}
+\label{e6.2}
+\end{equation}
+where $p$ is the $x$-axis coordinate of the point along the border through
+which the lifeguard passes and
+where $v_s$ and $v_w$ are the respective 
+speeds of the lifeguard on the beach and in the water.
+Here we assume that the $x$ coordinate give by $p$ uniquely defines
+a point on the border between the beach and the water.
+
+	We know that a locally optimum solution must make 
+$dT(p)/dt=0$ and we can calculate the derivative of $T$ as
+a function of the derivative of $d$
+\begin{equation}
+\frac{d}{dt}T(p)=\frac{p+dd_p}{v_s\sqrt{p^2+d^2}}
+                 +\frac{(p-x)+(d-y)d_p}{v_w\sqrt{(x-p)^2+(y-d)^2}}
+\label{e6.3}
+\end{equation}
+where $d_p$ is the partial of $d$ with respect to $p$.  The following
+$\Psi$lab macros make the calculations in (\ref{e6.2}) and (\ref{e6.3}).
+\begin{verbatim}
+function [t,t_p,ind]=swim(p,ind)
+   [d,d_p]=dpfun(p);
+   as=sqrt(d^2+p^2);
+   aw=sqrt((x-p)^2+(y-d)^2);
+   t=as/vs+aw/vw;
+   t_p=(p+d*d_p)/(vs*as)+((p-x)+(d-y)*d_p)/(vw*aw);
+
+
+function [d,d_p]=dpfun(p);
+   d=1.75-exp(log(1.55)*p);
+   d_p=-log(1.55)*exp(log(1.55)*p);
+\end{verbatim}
+where the functions $d$ and $d_p$ are calculated by the macro {\tt dpfun}.
+These two macros are used in the following $\Psi$lab session by the
+primitive {\tt optim} to find the optimum point $p$.
+\begin{verbatim}
+ 
+--> x=1;y=1;vs=5;vw=1;
+ 
+--> getf('../macros/swim.sci');
+ 
+--> getf('../macros/plotopt.sci');
+ 
+--> [ts,ps,tps]=optim(swim,0)
+ end of optimization
+ 
+ tps       =
+ 
+    4.580D-16  
+ ps        =
+ 
+    0.6144065  
+ ts        =
+ 
+    0.8303513  
+ 
+--> popt(ps);
+\end{verbatim}
+Here it can be seen that the primitive {\tt optim} takes two 
+arguments and returns three values.  The first argument is the
+name of the $\Psi$lab macro which calculates the value of time (the cost)
+and the derivative of the time with respect to the value of $p$.
+The second argument is a first guess for the value of $p$.
+The returned values are, respectively, the optimal cost {\tt ts}
+associated to the value of $p$ which is the value in {\tt ps}, and,
+finally, the value of the gradient at this point which is in
+{\tt tps}.
+
+	The optimal path for the lifeguard is illustrated in
+Figure~\ref{f6.2}.  The curved line represents the shape of the
+shoreline and the dotted line represents the lifeguards optimal
+path.
+%
+\input{\Figdir d6.2.tex}
+\dessin{Optimal Lifeguard Path}{f6.2}
+%
+
+
+\section{Fortran or C Interface}
+\index{Fortran}
+\index{interfacing fortran}
+\index{C}
+
+ $\Psi$lab in a Unix environment can be easily interfaced with Fortran 
+or C subroutines. 
+The simplest way is using the dynamic link primitive 
+{\tt link}\index{link@{\tt link}} and the subroutine
+call primitive {\tt fort}\index{fort@{\tt fort}}. Details are
+given in the $\Psi$lab manual.
+
+Fortran subprograms can also be linked to $\Psi$lab by using an external 
+Fortran program call {\tt interf}\index{interf@{\tt interf}}. See
+the program {\tt interf.f} in the directory {\tt SCIDIR/default} where
+examples are given.
+
+These facilities are particularly useful
+for simulation and optimization of non-linear problems or for
+introducing programs automatically generated by MAPLE.  There are
+two steps for interfacing dynamically a subroutine written 
+in fortran with $\Psi$lab. 
+These two steps are demonstrated in what follows.
+
+	To link a fortran subroutine with $\Psi$lab it is first necessary
+to have a file which contains the executable object file of the subroutine.
+We introduce the Fortran subroutine {\tt fibb} which calculates the
+$n^{th}$ Fibbonacci number, $f_n$ (i.e., the sequence $0,1,1,2,3,5,8,\ldots$
+where $f_n=f_{n-1}+f_{n-2}$).
+\begin{verbatim}
+      subroutine fibb(fn,n)
+      n0=0
+      n1=1
+      if(n.ge.3)then
+      do 10 k=1,n-2
+         fn=n0+n1
+         n0=n1
+         n1=fn
+ 10   continue
+      else
+         fn=n-1
+      endif
+      return
+      end
+\end{verbatim}
+Assuming that the object file for {\tt fibb} is available in the
+file {\tt fibb.o} the following $\Psi$lab session shows how to use
+the subroutine from $\Psi$lab.
+\begin{verbatim}
+-->unix(" make fibb.o");
+ 
+-->link('fibb.o','fibb')
+ 
+-->link()
+ ans       =
+ 
+ fibb                   
+ 
+-->n=6
+ n         =
+ 
+    6.  
+ 
+-->fn=fort('fibb',n,2,'i','out',[1,1],1,'r')
+ fn        =
+ 
+    5.  
+\end{verbatim}
+The primitive {\tt link} normally takes two arguments where the
+first argument is the name of the object file and the second argument
+is the name of the subroutine call.  Note that the primitive \verb!c_link!
+may be used to know  all the previously linked subroutines.  
+The use of {\tt fort} to call the subroutine {\tt fibb}
+is a bit complicated.  The arguments are divided into four groups.
+The first argument in {\tt 'fibb'} is the name of the subroutine called.
+The argument {\tt 'out'} divides the remaining arguments into two 
+groups.  The group of arguments between {\tt 'fibb'} and {\tt 'out'}
+is the list of input arguments, their positions in the call to {\tt fibb},
+and their data type.  The group of arguments to the right of {\tt 'out}
+are the dimensions of the output variables, their positions in the call
+to {\tt fibb}, and their data type.
+The possible data types are real, integer, and double precision which
+are indicated, respectively, by the strings {\tt 'r'}, {\tt 'i'}, and
+{\tt 'd'}.  The positions of the two arguments for {\tt fibb} are
+{\tt n} at position $2$ and {\tt fn} at positon $1$ which explains
+the above call values.  The vector {\tt [1,1]} indicates that the output
+{\tt fn} is a $1\times 1$ matrix.
+The routines which are linked to $\Psi$lab can also access internal 
+$\Psi$lab variables (see the routine {\tt matz.f}
+in the directory {\tt SCIDIR/routines/system2}).
+\section{X-window dialog}
+It may be convenient to open a specific X-window window for entering
+interactively parameters inside a macro or for a demo.
+This facility is possible thanks to e.g. the macros \verb!x_dialog!,
+\verb!x_choose!, \verb!x_mdialog!, \verb!x_matrix! and \verb!x_message!.
+The demos which can be executed by clicking on the {\tt demo} button
+provide simple examples of the use of these macros.
+
+\section{Maple interface}
+The Maple procedure {\tt maple2scilab} allows to numerically evaluate
+any Maple expression in $\Psi$lab.
+On input this procedure takes a Maple matrix made of symbolic
+expressions. When {\tt maple2scilab} is invoked in Maple,
+a Fortran program is automatically generated by Maple 
+(via {\tt Macrofort}) together with a $\Psi$lab macro which 
+allows to (dynamically) call this subroutine.
+The parameters of the macro are the Maple symbols and thus the Maple
+matrix can be evaluated numerically in $\Psi$lab. The use of Fortran
+is for speed purposes since the formal Maple expression can be
+extremely complicated.
+
+\section{System Interconnection}
+	The purpose of this section is to illustrate some
+of the more sophisticated aspects of $\Psi$lab by way of an example.
+The example shows how $\Psi$lab can be used to symbolically represent
+the inter-connection of multiple systems which in turn can 
+then be used to numerically evaluate the performance of the
+inter-connected systems.  The symbolic representation of the
+inter-connected systems is done with a macro called {\tt bloc2exp}
+\index{bloc2exp@{\tt bloc2exp}}
+and the evaluation of the resulting system is done with
+{\tt evstr}\index{evstr@{\tt evstr}}.
+
+	The example illustrates the symbolic inter-connection of the 
+systems shown in Figure~\ref{fa.1}\index{linear systems!inter-connection of}.  
+%
+%\begin{figure}
+\begin{center}
+\begin{picture}(360,204)
+
+\put(80,85){\framebox(40,30){\tt Model}}
+\put(150,85){\framebox(40,30){\tt Reg}}
+\put(240,85){\framebox(40,30){\tt Proc}}
+\put(120,140){\framebox(40,30){\tt FF}}
+\put(190,30){\framebox(40,30){\tt Sensor}}
+\put(210,100){\framebox(0,0){\tt +}}
+
+\put(35,95){\tt U}
+\put(315,95){\tt Y}
+\put(315,125){\tt UP}
+
+\put(50,100){\vector(1,0){30}}
+\put(120,100){\vector(1,0){30}}
+\put(190,100){\vector(1,0){15}}
+\put(215,100){\vector(1,0){25}}
+\put(210,155){\vector(0,-1){50}}
+\put(295,45){\vector(-1,0){65}}
+\put(65,155){\vector(1,0){55}}
+\put(170,45){\vector(0,1){40}}
+\put(225,130){\vector(1,0){85}}
+\put(280,100){\vector(1,0){30}}
+
+\put(65,100){\line(0,1){55}}
+\put(160,155){\line(1,0){50}}
+\put(170,45){\line(1,0){20}}
+\put(225,100){\line(0,1){30}}
+\put(295,100){\line(0,-1){55}}
+
+\put(210,100){\circle{10}}
+\put(48,100){\circle{2}}
+\put(310,100){\circle{2}}
+\put(310,130){\circle{2}}
+\put(65,100){\circle*{2}}
+\put(225,100){\circle*{2}}
+\put(295,100){\circle*{2}}
+
+\end{picture}
+\end{center}
+%\caption{Inter-Connected Systems}
+\label{fa.1}
+%\end{figure}
+%
+Figure~\ref{fa.1} illustrates the classic regulator problem\index{regulator}
+where the block labeled {\tt Proc} is to be controlled
+using feedback from the {\tt Sensor} block and {\tt Reg} block.
+The {\tt Reg} block compares the output from the {\tt Model}
+block to the output from the {\tt Sensor} block to decide how to
+regulate the {\tt Proc} block.  There is also a feed-forward
+block which filters the input signal, {\tt U} to the {\tt Proc}
+block.  The outputs of the system are {\tt Y} and {\tt UP}.
+
+	The system illustrated in Figure~\ref{fa.1} can
+be represented in $\Psi$lab by using the macro {\tt bloc2exp}.
+The use of {\tt bloc2exp} is illustrated in the following $\Psi$lab
+session.
+There a two kinds of objects: 'transfer' and 'links'. The example
+considered here admits 5 transfers and 7 links.
+First the transfer are defined in a symbolic manner. Then links
+are defined and an 'interconnected system' is defined as
+a specific list. The macro {\tt bloc2exp} evaluates symbolically
+the global transfer and {\tt evstr} evaluates numerically
+the global transfer function once the systems are given ``values'', i.e.
+are defined as $\Psi$lab linear systems.
+%
+\begin{verbatim}
+ 
+-->model=2;reg=3;proc=4;sensor=5;ff=6;somm=7;
+ 
+-->tm=list('transfer','model');
+ 
+-->tr=list('transfer',['reg(:,1)','reg(:,2)']);
+ 
+-->tp=list('transfer','proc');
+ 
+-->ts=list('transfer','sensor');
+ 
+-->tf=list('transfer','ff');
+ 
+-->tsum=list('transfer',['1','1']);
+ 
+-->lum=list('link','input',[-1],[model,1],[ff,1]);
+ 
+-->lmr=list('link','model output',[model,1],[reg,1]);
+ 
+-->lrs=list('link','regulator output',[reg,1],[somm,1]);
+ 
+-->lfs=list('link','feed-forward output',[ff,1],[somm,1]);
+ 
+-->lsp=list('link','proc input',[somm,1],[proc,1],[-2]);
+ 
+-->lpy=list('link','proc output',[proc,1],[sensor,1],[-1]);
+ 
+-->lsup=list('link','sensor output',[sensor,1],[reg,2]);
+ 
+-->syst=...
+ list('blocd',tm,tr,tp,ts,tf,tsum,lum,lmr,lrs,lfs,lsp,lpy,lsup);
+ 
+-->[sysf,names]=bloc2exp(syst)
+ names     =
+ 
+ 
+       names>1
+ 
+ input   
+ 
+       names>2
+ 
+!proc output  !
+!             !
+!proc input   !
+ sysf      =
+ 
+!proc*((eye-reg(:,2)*sensor*proc)\(-(-ff-reg(:,1)*model)))  !
+!                                                           !
+!(eye-reg(:,2)*sensor*proc)\(-(-ff-reg(:,1)*model))         !
+\end{verbatim}
+%
+Note that the argument to {\tt bloc2exp} is a list of lists.  The 
+first element of the list {\tt syst} is actually the character chain
+{\tt 'blocd'} which indicates that the list represents a block-diagram
+inter-connection of systems.  Each list entry in the list {\tt syst}
+represents a block or an inter-connection in Figure~\ref{fa.1}.
+The form of a list which represents a block begins with a character
+chain {\tt 'transfer'} followed by a matrix of character chains
+which give the symbolic name of the block.  If the block is multi-input
+multi-output the matrix of character chains must be represented as
+is illustrated for the block {\tt Reg}.  
+
+	The inter-connections between blocks is also represented by lists.  
+The first element of the list is the character chain {\tt 'link'}.
+The second element of the inter-connection is its symbolic name.
+The third element of the inter-connection is the input to the connection.
+The remaining elements are all the outputs of the connection.
+Each input and output to an inter-connection is a vector which
+contains as its first element the block number (i.e., the {\tt model}
+block is assigned the number $2$).  The second element of the vector
+is the port number for the block (for the case of multi-input multi-output
+blocks).  If an inter-connection is not attached to anything the value
+of the block number is negative (as for example the inter-connection
+labeled {\tt 'input'} or is omitted.
+
+	The result of the {\tt bloc2exp} macro is a list of names
+which give the unassigned inputs and outputs of the system and
+the symbolic transfer function of the system given by {\tt sysf}.
+The symbolic names in {\tt sysf} can be associated to polynomials
+and evaluated using the macro {\tt evstr}.  This illustrated in the
+following $\Psi$lab session.
+%
+\begin{verbatim}
+ 
+-->s=poly(0,'s');
+ 
+-->ff=1;sensor=1;model=1;
+ 
+-->proc=s/(s^2+3*s+2);
+ 
+-->reg=[1/s 1/s];
+ 
+-->sys=evstr(sysf)
+ sys       =
+ 
+!     1 + s          !
+!   ----------       !
+!             2      !
+!   1 + 3s + s       !
+!                    !
+!              2   3 !
+!   2 + 5s + 4s + s  !
+!   ---------------- !
+!           2   3    !
+!     s + 3s + s     !
+
+\end{verbatim}
+%
+The resulting polynomial transfer function relates the input
+of the block system to the two outputs.  Note that the output
+of {\tt evstr} is the rational polynomial matrix {\tt sys}
+whereas the output of {\tt bloc2exp} is a matrix of character chains.
+
+The symbolic evaluation which is given here is not very efficient
+with large interconnected systems. The macro {\tt bloc2ss}
+performs the previous calculation in state-space format.
+Each system is given now in state-space 
+as a {\tt syslin} list or simply as a gain (constant matrix). 
+Note {\tt bloc2ss} performs the necessary conversions if this 
+is not done by the user. Each system must be given a value before
+bloc2ss is called. All the calculations are made in state-space
+representation even if the linear systems are given in transfer form.
+
+\section{Converting $\Psi$lab macros to Fortran routines}
+
+$\Psi$lab provides a compiler to transform some $\Psi$lab macros
+into Fortran subroutines. The routines which are thus obtained
+make use of the routines which are in the Fortran libraries.
+All the basic matrix operations are available.
+
+Let us consider the following $\Psi$lab macro:
+\begin{verbatim}
+
+function [x]=macr(a,b,n)
+z=n+m+n,
+c(1,1)=z,
+c(2,1)=z+1,
+c(1,2)=2,
+c(2,2)=0,
+if n=1 then,
+ x=a+b+a,
+else,
+x=a+b-a'+b,
+end,
+y=a(3,z+1)-x(z,5),
+x=2*x*x*2.21,
+sel=1:5,
+t=a*b,
+for k=1:n,
+ z1=z*a(k+1,k)+3,
+end,
+t(sel,5)=a(2:4,7),
+x=[a b;-b' a']
+
+\end{verbatim}
+
+It is translated into Fortran by the macro {\tt mac2for}.
+Each input parameter of the subroutine is described by a list
+which contains its type and its dimensions. Here, we have 3
+input variables {\tt a,b,c} which are, say, {\tt integer,
+double precision, double precision} and of dimensions
+{\tt (m,m), (m,m), (1,1)}: this information is gathered
+in the following list:
+\begin{verbatim}
+l=list();
+l(1)=list('1','m','m');
+l(2)=list('1','m','m');
+l(3)=list('0','1','1');
+\end{verbatim}
+The call to {\tt mac2for} is made as follows:
+\begin{verbatim}
+comp(macr);
+mac2for(macr2lst(macr),l)
+\end{verbatim}
+The output of this command is a stand-alone Fortran subroutine.
+\begin{verbatim}
+       subroutine macr(a,b,n,x,m,work,iwork)
+c!
+c  automatic translation
+.
+.
+.
+       double precision a(m,m),b(m,m),x(m+m,m+m),y,z1,24(m,m),work(*)
+       integer n,m,z,c(2,2),sel(5),k,iwork(*)
+.
+.
+.      
+       call dmcopy(b,m,x(1,m+1),m+m,m,m)
+       call dmcopy(work(iw1),m,x(m+1,1),m+m,m,m)
+       call dmcopy(work(iw1),m,x(m+1,m+1),m+m,m,m)
+       return
+c
+       end
+
+
+\end{verbatim}
+This routine can be linked to $\Psi$lab and interactively called.
+

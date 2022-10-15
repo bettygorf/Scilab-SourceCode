@@ -1,0 +1,55 @@
+.TH deff 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+deff - on-line definition of function
+.SH CALLING SEQUENCE 
+.nf
+deff('[s1,s2,...]=newfunction(e1,e2,....)',text [,opt])
+.fi
+.SH PARAMETERS
+.TP 15
+e1,e2,...,
+: input variables.
+.TP 15
+s1,s2,..., 
+: output variables.
+.TP 15
+text
+: matrix of character strings
+.TP 15
+opt
+: optional character string 
+.RS
+.TP
+'c' 
+: function is "compiled" to be more efficient (default)
+.TP
+'n' 
+: function is not "compiled"
+.RE
+.SH DESCRIPTION
+On-line definition of function (user defined function): the name of the 
+created function is \fVnewfunction\fR.
+\fVtext\fR is a sequence of instructions usually set as a vector of 
+character strings.
+.LP
+This command can be used inside a function and the new function
+can be an input or output of any other function.
+.LP
+Usually, functions are defined in a file and loaded into Scilab by
+\fVgetf\fR
+.LP
+Some time, in particular when you want to use define strings within
+\fVdeff\fR \fVtext\fR is rather difficult to write. A more tractable
+way may be to define your function in a file as usual, to load it into
+Scilab by \fVgetf\fR (without \fV'c'\fR  option) and use sci2exp to
+get corresponding \fVdeff\fR instructions.
+.SH EXAMPLES
+.nf
+deff('[x]=myplus(y,z)','x=y+z')
+//
+deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
+.fi
+.SH SEE ALSO
+getf, comp, exec, function
+

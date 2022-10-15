@@ -1,0 +1,329 @@
+Tue  Dec 14:50:00
+
+	* ajout des flags $(FFLAGS) dans le Makefile.incl.mak pour f2c
+
+
+Fri Dec 10 09:45:00
+
+	* peace% diff Plo3d.c /usr/local/lib/scilab/routines/graphics/
+	  318c318
+	  <   polysize=(*p)+1; /* jpc : dec 1999 */
+	  ---
+	  >   polysize=5;
+	  Comme tu peux le voir la modif est legere 
+	* communicat.c
+        * libCalCom.h
+        * utilitaires.c
+        * utilitaires.h
+
+
+
+Thu  Dec 09 18:10:00
+
+	* changement de do_save.sci et do_SaveAs.sci
+
+
+Mon  Dec 08 10:00:00
+
+	*integration dans Date de Nov (lydia_van_dijk)
+
+
+Mon  Nov 29 10:00:00
+
+	* routines/int/i_matrix.f
+	* routines/int/intelm.f
+	* macros/scicos/do_palettes.sci
+        * do_SaveAs.sci
+        * standard_document.sci
+        * /scicos_blocks/TEXT_f.sci
+  	* mettre a jour les fichiers macros/auto/scicos.sci et
+	* macros/scicos/do_region2block.sci
+	* scilab-2.5/doc/signal
+
+Fri  Nov 28 18:16:00
+
+	*macros/xdess/getcolor.sci
+
+
+Thu  Nov 25 15:30:00
+
+	*SelectClipRgn(ScilabXgc->CWindow, hRgn); ScilabXgc->CWindow au lieu 
+	de hdc par defaut
+
+
+Thu  Nov 25 13:30:00
+
+	*effacement de tous les mtlb_ dans le man de fraclab.
+	*macros/xdess/getcolor.sci
+
+
+Tue  Nov 23 10:57:00
+
+	*routines/system/nextj.f
+
+Mon  Nov 22 11:16:00
+
+	*macros/util/genlib.sci
+
+Mon  Nov 22 11:16:00
+
+	*Mans a modifier : graphics/xset.man 
+	*graphics/getcolor.man ainsi que les .cat correspondants.
+
+
+Mon  Nov 22 11:16:00
+
+	*routines/system2/istrue.f
+	*routines/system2/rwstack.f
+
+	1- Aucun probleme de plantage de Scicos en mode MODE_X=1
+  	Donc on peut rajouter MODE_X=1 dans scilab.star
+
+	2- le help ne marche pas car man/pvm n'existe pas
+
+	3- probleme avec xgetmouse(0) en mode wresize. En particulier,
+   	quand on click quand la souris est en mouvement, on obtient
+   	des coord. erronees (x,y par rapport a la fenetre visible au
+   	lieu de la fenetre virtuelle). Cela fait que quand on fait move
+   	ou copy des blocs scicos, ces blocs peuvent disparaitrent.
+
+	4- Une solution pas satisfaisante mais rapide de 3 pour scicos
+   	c'est de remplacer xgetmouse(0) avec xgetmouse() partout. Mais...
+
+	5- macros/scicos/scs_show.sci a ete corrige. La bonne version se trouve
+   	sur peace. ATTENTION: fichier venant de windows- il faut faire un
+   	dos2unix.
+
+	6- L'installateur de Scilab presente des messages comme quoi Scilab
+   	n'est pas redistribuable. Faux!
+
+
+Fri  Nov 19 10:23:00
+
+	*tests/errcatch.dia.ref et errcatch.tst
+
+Fri  Nov 19 10:23:00
+
+	*Ajout de patchlevel.h qui manquait !!
+
+Fri  Nov 19 10:23:00
+
+	*macros/util/whos.sci
+	*routines/int/intelm.f
+	*routines/int/i_matrix.f
+	*routines/int/Makefile
+	*routines/default/fundef
+	*changement de RM= rm -f en del dans le Makefile.incl.mak
+
+Thu  Nov 18 18:00:00
+
+	*routines/system/run.f
+	*tests/errcatch.tst
+	*tests/errcatch.dia.ref
+	*macros/util/whos.sci
+
+
+
+Thu  Nov 18 15:00:00
+
+	*application de Patch dans Makefile.in de 'install:'
+	en changeant swappant share/... avec ./bin/..xless
+	
+Thu  Nov 18 15:00:00
+
+	*Ajout de Makefile.OBJ
+	*Changement dans Makefile.in pour .OBJ
+	*Chqngement de csh en ch dans examples/callsci/Init
+	*changement dans les Makefile de examples/callsci/
+
+Wed  Nov 17 14:35:00
+
+	*Changement de Makefile et Makefile.in pour le mexlib.o \
+	*Finalement on ne  met pas le '\' !!
+
+Wed  Nov 17 14:35:00
+
+	*routines/sun/h_help_data.c
+
+Wed  Nov 17 14:35:00
+
+	*changement macros/auto/scicos.sci
+	*changement macrso/scicos/f_xsetech.sci
+	*changement macrso/scicos/scs_show.sci
+	*changement macrso/scicos/do_tild.sci
+	*creation du repertoire contrib
+	*creation du repertoire contrib/examples
+
+Wed  Nov 17 9:35:00
+
+	*dans examples supprimer le reperoire callsci1
+	*dans examples/callsci supprimer le fichier callsci2.f
+	*et mettre a jour examples/callsci/README
+
+Tue  Nov 16 18:00:00
+
+	*ajout de abs_main.c dans routines/wsci
+
+Mon  Nov 15 17:10:00
+	*routines/default/mexlib.c
+
+Mon  Nov 15 14:50:00
+	*"man/graphics/plot2d.man
+	*"man/graphics/plot2d.cat
+	*macros/scicos_blocks/TEXT_f.sci
+	*macros/scicos/standard_document.sci
+	*macros/auto/scicos.sci
+	*routines/scicos/scope.f
+	*routines/scicos/scopxy.f
+
+
+Mon  Nov 15 14:50:00
+	*ajout de __STDC__ dans routines/sun/tmpdir.c pour la compatibilite
+	des cc non ansi !!
+
+
+Mon  Nov 15 9:10:00
+
+	*peace:~gomez/man.tar.gz.
+	*routines/system2/termf.f
+
+Wed  Nov  10 14:12:00
+
+	*routines/interface/matsys.f
+	*routines/system/setippty.f
+	*routines/default/fundef
+	*pwd
+	*routines/Makefile (suppression de ciargc)
+	*imp/env.c  (suppression de endif en trop)
+	*man/programming/intppty.man
+
+Wed  Nov  10 11:10:00
+
+	*changement de tests/examples
+
+Wed  Nov  10 11:45:00
+
+	*check.sh
+
+Tue  Nov  9 10:15:00
+
+	*routines/interf/polops.f
+	*Il y a un backslash intempestif a supprimer dans scripts/Blatexpr2
+	*suppression des '.cos' redondant avec les cosf
+	*mise a jour des fichiers pour ABsoft
+	*routines/sound/st.h
+
+
+Mon  Nov  8 10:55:00 1999 Matthieu Philippe  <mphilipp@nemirov.inria.fr>
+
+	*routines/interf/lstelmi.f
+	*man/programming/setfield.man
+	*man/programming/getfield.man
+
+
+Mon  Nov  8 14:55:00 1999 Matthieu Philippe  <mphilipp@nemirov.inria.fr>
+
+	*examples/addinter-examples/*
+
+
+
+
+Wed  Nov  3 18:26:00  1999 Matthieu Philippe  <mphilipp@nemirov.inria.fr>
+
+	*changement de examples/man-examples
+
+Wed  Nov  3 16:54:00  1999 Matthieu Philippe  <mphilipp@nemirov.inria.fr>
+
+	*changement de scilab-2.5/intersci/intersci.c scilab-2.5/intersci/intersci.h
+	par Claude pour que ca marche sur PPC
+
+Wed  Nov  3 10:00:00  1999 Matthieu Philippe  <mphilipp@nemirov.inria.fr>
+
+	*macros/sci2exp.sci on change tout les type <>16 en <>15
+	*nouveau man/programming/%helps.man
+
+Tue  Nov  2 18:44:00  1999 Matthieu Philippe  <mphilipp@nemirov.inria.fr>
+	RM
+	*macros/auto/.scicos_pal
+	*macros/int/lst
+	*macros/int/i_maxi.f
+	*man/graphics/graycolormap.sci
+	*tcl/.scilab
+	*xmetanet/scilab-2.5
+
+Fri  Oct 29  10:45:00 1999 Matthieu Philippe  <mphilipp@nemirov.inria.fr>
+
+	*/routines/scicos/import.c
+
+Fri  Oct 29  10:45:00 1999 Matthieu Philippe  <mphilipp@nemirov.inria.fr>
+
+	*modification de routines/sparse/lspisp.f on retire les commentaires
+	dans les cartes suites.
+
+	*modification du Makefile ajout de Makefile.mak dans 
+	examples/addinter-lapack
+
+Thu  Oct 28  15:45:00 1999 Matthieu Philippe  <mphilipp@nemirov.inria.fr>
+	*pour avoir background en postscript export de scicos j'ai modifie
+	macros/scicos/do_export.sci Ramine.
+	
+	*pour avoir des proportions fixes j'ai modifie 
+	macros/scicos/do_region2block.sci
+
+	*routines/system/macros.f
+	*routines/interf/stack2.f (Serge)
+
+Mon  Oct 25  11:13:00 1999 Matthieu Philippe  <mphilipp@nemirov.inria.fr>
+
+	* /scilab.star
+
+Fri Oct 22 11:13:00 1999 Matthieu Philippe  <mphilipp@nemirov.inria.fr>
+
+	*tests/demos.tst
+	tests/demos.dialogs
+
+	*demos/scicos/scicos_play.sci
+	demos/scicos/scicos_learn.sci
+	
+	*tests/examples/get_examples
+
+	*macros/optim/fit_dat.sci
+	man/programming/oldsave.man
+	man/programming/oldload.man
+
+	*tests/examples/visualpat
+
+	*tests/examples/apropos.man.dia.ref
+	tests/examples/double.man.dia.ref
+	tests/examples/exec.man.dia.ref
+	tests/examples/fchamp.man.dia.ref
+	tests/examples/load.man.dia.ref
+	tests/examples/mlist.man.dia.ref
+
+
+	*routines/interf/matsys.f   (bug dans chdir)
+
+	* Changement de routines/interf/matsys.f pour permettre d'effectuer un clear puis 
+	un help
+
+	*changement de routines/interf/matops.f remplacer les 2 references a matmul par
+	matmult
+
+	*changement man/sound/savewave.man de peace
+
+
+Thu Oct 21 17:42:21 1999  Matthieu Philippe  <mphilipp@nemirov.inria.fr>
+         
+	*recopier les fichiers  *.dia.ref du repertoire tests/examples
+
+        *reprendre les fichiers 
+	 Makefile check.sh get_examples.sh scivisualdem.sh visualcheck.sh visualpat du repertoire tests/examples/
+
+
+	* macros/mtlb/Makefile (MTLB): 
+          remettre mtlb_find.sci ds Makefile et Makefile.mak de 
+          macros/mtlb 
+
+	* routines/interf/newsave.f (intsave): 
+          modif = deplacememt de la ligne 
+          if(.not.opened)  call mseek(fd,0,'set'//char(0),ierr)

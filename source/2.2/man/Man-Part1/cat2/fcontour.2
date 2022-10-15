@@ -1,0 +1,66 @@
+
+
+
+fcontour(2)                    Scilab Function                    fcontour(2)
+
+
+
+
+
+
+NAME
+  fcontour - level curves
+
+CALLING SEQUENCE
+  fcontour(xr,yr,f,nz,[theta,alpha,caption,flag,bbox,zlev])
+
+PARAMETERS
+
+  xr,yr     : two real vectors of size respectively (1,n1) and (1,n2).
+
+  f         : is an external which gives the analytic expression of the sur-
+            face.  z=f(x,y) is first computed on the grid specified by xr.yr.
+            Then, control is passed to the routine contour.
+
+  nz        : specifies the level values or number.
+
+            - If nz is of size 1, its value considered as an integer gives
+              the number of level curves equally spaced from zmin to zmax.
+
+            - If nz is a vector, nz(j) gives the value of the jth level
+              curve.
+
+  [rest]    : for theta,alpha,caption, bbox see plot3d
+
+  flag      : real vector of size 3 ; flag=[mode,type,box]; flag(2) and
+            flag(3) are the same as in plot3d; flag(1) has the following
+            meaning :
+
+            flag(1)=0      : the level curves are drawn on the surface
+                           defined by (x,y,z)
+
+            flag(1)=1      : the level curves are drawn on a 3D plot and on
+                           the plan defined by equation z=zlev
+
+            flag(1)=2      : The level curves are drawn on a 2D plot.
+
+DESCRIPTION
+  Draws the level curves of a surface z=f(x,y)
+
+  Enter the command fcontour() to see a demo.
+
+AUTHOR
+  J.Ph.C..
+
+
+
+
+
+
+
+
+
+
+
+
+

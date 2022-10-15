@@ -1,0 +1,56 @@
+.TH "WTStruct" 2 " 01 June 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+WTStruct - Retrieve a 1D Discrete Wavelet Structure.
+.sp
+Author: Bertrand Guiheneuf
+.sp
+This routine retrieves the structure informations contained in a 1D  Wavelet Transform.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPScIndex, ScLength\f(CR]\fP=WT2DStruct(wt)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : real unidimensional matrix \f(CR[\fP1,n\f(CR]\fP  
+Contains the wavelet transform (obtained with FWT). 
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBindex\fP : real matrix \f(CR[\fP1,NbIter\f(CR]\fP 
+Contains the indexes (in wt) of the projection of the signal on the multiresolution subspaces 
+
+.TP
+o 
+\fBlength\fP : real matrix \f(CR[\fP1,NbIter\f(CR]\fP 
+Contains the dimensions of each projection
+.RE
+
+.SH Description
+.SH Introduction 
+This routine is used to retreive the structure information of a wavelet transform. It must be used in all routine that might work on a wavelet transform whose structure is not passed as an imput parameter. (That should be the case of all routines taking a Wavelet Transform as input parameter to minimize the input).
+.SH Parameters  
+\fIInput\fP must be a real matrix. It's generally obtained with FWT. It contains the wavelet transform.
+\fIindex\fP contains the indexes of the first coefficient of each output.
+The first \fI"NbIter"\fP indexes are the indexes (in wt) of the "high-pass" subspaces projections (Wj),
+the last one is the last "low-pass" projection (Vj);
+\fIlength\fP contains the dimension  of each output.
+.SH Example
+a=rand(1,256);
+q=MakeQMF('daubechies',4);
+wt = FWT2D(a,8,q);
+wti, wtl=WTStruct(wt);
+wtl
+.SH See Also
+FWT2D, IWT2D, WT2Dext, WT2DVisu 

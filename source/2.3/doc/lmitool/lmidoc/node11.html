@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<!--Converted with LaTeX2HTML 96.1 (Feb 5, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Linear programming with equality constraints</TITLE>
+<META NAME="description" CONTENT="Linear programming with equality constraints">
+<META NAME="keywords" CONTENT="lmidoc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="lmidoc.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html188" HREF="node12.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www-rocq.inria.fr/scilab/icons/next_motif.gif"></A> <A NAME="tex2html186" HREF="node5.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www-rocq.inria.fr/scilab/icons/up_motif.gif"></A> <A NAME="tex2html180" HREF="node10.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www-rocq.inria.fr/scilab/icons/previous_motif.gif"></A> <A NAME="tex2html190" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www-rocq.inria.fr/scilab/icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html189" HREF="node12.html">Sylvester Equation</A>
+<B>Up:</B> <A NAME="tex2html187" HREF="node5.html">Examples</A>
+<B> Previous:</B> <A NAME="tex2html181" HREF="node10.html">Descriptor Riccati equations</A>
+<BR> <P>
+<H3><A NAME="SECTION00032600000000000000">Linear programming with equality constraints</A></H3>
+<P>
+<A NAME="ex4">&#160;</A>
+Consider the following classical optimization problem
+<P> <IMG WIDTH=336 HEIGHT=55 ALIGN=BOTTOM ALT="displaymath808" SRC="img48.gif"  > <P>
+where <I>A</I> and <I>C</I> are matrices and <I>e</I>, <I>b</I> and <I>d</I> are vectors with
+appropriate dimensions. Here the sign  <IMG WIDTH=10 HEIGHT=24 ALIGN=MIDDLE ALT="tex2html_wrap_inline820" SRC="img49.gif"  >  is to be understood elementwise.
+<P>
+This problem can be formulated in LMITOOL as follows:
+<PRE>function [LME,LMI,OBJ]=linprog_eval(XLIST)
+ [x]=XLIST(:)
+ [m,n]=size(A)
+ LME=C*x+d
+ LMI=list()
+ tmp=A*x+b 
+ for i=1:m
+    LMI(i)=tmp(i)
+ end
+ OBJ=e'*x</PRE>
+and solved in Scilab by (assuming <I>A</I>, <I>C</I>, <I>e</I>, <I>b</I> and <I>d</I> and
+an initial guess x0 exist in the environment):
+<PRE>--&gt; x=lmisolver(x0,linprog_eval)</PRE>
+<P>
+<BR> <HR>
+<P><ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

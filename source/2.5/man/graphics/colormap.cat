@@ -1,0 +1,31 @@
+
+colormap(2)                    Scilab Function                    colormap(2)
+NAME
+  colormap - using colormaps
+
+DESCRIPTION
+  A colormap cmap is defined by a m x 3 matrix. m is the number of colors.
+  Color number i is given as a 3-uple cmap(i,1), cmap(i,2) cmap(i,3) corre-
+  sponding respectively to red, green and blue intensity between 0 and 1.
+
+  At the beginning, 32 colors are defined in the colormap. You can change the
+  colormap by using xset("colormap",cmap).
+
+  Each color in the colormap has an id you have to use to specify color in
+  most plot functions. To see the ids, use xset() or xgetcolor().
+
+  You can come back to default colormap with xset("default").
+
+EXAMPLE
+  m=228;
+  n= fix(3/8*m);
+  r=[(1:n)'/n; ones(m-n,1)];
+  g=[zeros(n,1); (1:n)'/n; ones(m-2*n,1)];
+  b=[zeros(2*n,1); (1:m-2*n)'/(m-2*n)];
+  h=[r g b];
+  xset("colormap",h)
+  plot3d1()
+  xset("default")
+
+SEE ALSO
+  addcolor, getcolor, xset

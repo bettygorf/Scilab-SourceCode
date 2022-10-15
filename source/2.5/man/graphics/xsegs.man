@@ -1,0 +1,47 @@
+.TH xsegs 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xsegs - draw unconnected segments
+.SH CALLING SEQUENCE
+.nf
+xsegs(xv,yv,[style])
+.fi
+.SH PARAMETERS 
+.TP 7
+xv,yv 
+: matrices of the same size.
+.TP
+style
+: vector or scalar. If \fVstyle\fR is a positive scalar,
+it gives the dash style to use for all segments. If \fVstyle\fR is a negative 
+scalar,
+then current dash style is used. If \fVstyle\fR is a vector, 
+then \fVstyle(i)\fR gives the style to use for segment \fVi\fR.
+.SH DESCRIPTION
+\fVxsegs\fR draws a set of unconnected segments given by \fVxv\fR
+and \fVyv\fR. If \fVxv\fR and \fVyv\fR are matrices 
+they are considered as vectors by concatenating their columns.
+The coordinates of the two points defining a segment
+are given by two consecutive values of \fVxv\fR and \fVyv\fR:
+
+\fV(xv(i),yv(i))-->(xv(i+1),yv(i+1))\fR.
+
+For instance, using matrices of size (2,n), the segments can be defined by:
+.nf
+xv=[xi_1 xi_2 ...;
+    xf_1 xf_2 ...]
+
+yv=[yi_1 yi_2 ...;
+    yf_1 yf_2 ...]
+.fi
+and the segments are \fV(xi_k,yi_k)-->(xf_k,yf_k)\fR.
+.SH EXAMPLE
+.nf
+x=2*%pi*(0:9)/8;
+xv=[sin(x);9*sin(x)];
+yv=[cos(x);9*cos(x)];
+plot2d([-10,10],[-10,10],[-1,-1],"022")
+xsegs(xv,yv,1:10)
+.fi
+.SH AUTHOR
+J.Ph.C.

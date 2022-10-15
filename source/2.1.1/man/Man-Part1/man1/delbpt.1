@@ -1,0 +1,20 @@
+.TH delbpt 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+delbpt - delete breakpoint
+.SH CALLING SEQUENCE
+.nf
+delbpt('macroname' [,linenumb]) 
+.fi
+.SH DESCRIPTION
+deletes the breakpoint at line 
+\fVlinenumb\fR in the function \fVmacroname\fR.
+If \fVlinenumb\fR is omitted all the breakpoints in the function are
+deleted.
+.SH EXAMPLE
+.nf
+setbpt('foo',1),setbpt('foo',10),delbpt('foo',10),dispbpt()
+.fi
+.SH SEE ALSO
+setbpt, dispbpt, pause, resume
+

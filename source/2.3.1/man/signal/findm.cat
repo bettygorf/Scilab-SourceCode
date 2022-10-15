@@ -1,0 +1,16 @@
+
+findm(1)                       Scilab Function                       findm(1)
+NAME
+  findm - for elliptic filter design
+
+CALLING SEQUENCE
+  [m]=findm(chi)
+
+DESCRIPTION
+  Search for m such that chi = %k(1-m)/%k(m) (For use with find_freq).
+
+SEE ALSO
+  %k
+
+AUTHOR
+  F. D.

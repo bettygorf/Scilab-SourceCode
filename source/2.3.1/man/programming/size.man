@@ -1,0 +1,62 @@
+.TH size 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+size - size of objects
+.SH CALLING SEQUENCE
+.nf
+y=size(x [,sel])
+[nr,nc]=size(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: matrix (including transfer matrix) or list or linear system (\fVsyslin\fR)
+.TP
+y
+: \fV 1x2 \fR integer vector or integer number
+.TP
+sel
+: a scalar or a character string
+.TP
+nr,nc
+: two integers
+.SH DESCRIPTION
+Size of a (constant, polynomial, string, boolean, rational) matrix \fVx\fR,
+\fVy\fR = \fV1\fRx\fV2\fR vector [number of rows, number of columns].
+.LP
+Called with LHS=2, returns \fVnr,nc\fR = [number of rows, number of columns].
+.LP
+\fVsel\fR may be used to specify what dimension to get:
+.TP 15
+1 or 'r' 
+: to get the number of rows
+.TP
+2 or 'c' 
+: to get the number of columns
+.TP
+2 or '*' 
+: to get the product of rows and column numbers
+
+.LP
+Size (length) of ordinary \fVlist\fR (number of elements). In this
+case the syntax must be \fVy=size(x)\fR
+.LP
+Caution: if \fVx\fR is a \fVsyslin\fR list representing a linear system,
+\fVy=size(x)\fR returns in \fVy\fR the (row) vector [number of outputs, number if inputs] i.e. the dimension of the corresponding transfer matrix.
+The syntax \fV[nr,nc]=size(x)\fR is also valid (with \fV(nr,nc)=(y(1),y(2)\fR).
+.LP
+If \fVx\fR is a \fVsyslin\fR list representing a linear system in state-space
+form, then \fV [nr,nc,nx]=size(x) \fR returns in addition the dimension \fVnx\fR
+of the \fVA\fR matrix of \fVx\fR.
+.SH EXAMPLES
+.nf
+[n,m]=size(rand(3,2))
+[n,m]=size(['a','b';'c','d'])
+x=ssrand(3,2,4);[ny,nu]=size(x)
+[ny,nu]=size(ss2tf(x))
+[ny,nu,nx]=size(x)
+.fi
+.SH SEE ALSO
+length, syslin
+
+

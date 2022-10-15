@@ -1,0 +1,31 @@
+.TH xtitle 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+xtitle - add titles on a graphics window
+.SH CALLING SEQUENCE
+.nf
+xtitle(xtit,[xax,yax,encad])
+.fi
+.SH PARAMETERS
+.TP 14
+xtit,xax,yax
+: matrices of strings.
+.TP
+encad 
+: integer value. If it is 1, a box is drawn around each title.
+.LP
+.SH DESCRIPTION
+\fVxtitle\fR add titles on a 2D or 3D plot. 
+\fVxtit\fR is the general title,
+\fVxax\fR is the title on the x-axis and \fVyax\fR is the title on the y-axis.
+\fVxtitle\fR must be called after 
+a call to a high level plotting function (\fVplot2d\fR, \fVplot3d\fR, ...). 
+If the arguments are matrices,
+each line of the matrices is displayed on a different
+line.
+
+Enter the command \fVxtitle()\fR to see a demo.
+.SH SEE ALSO
+titlepage
+.SH AUTHOR
+J.Ph.C.

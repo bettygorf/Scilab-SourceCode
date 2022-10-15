@@ -1,0 +1,116 @@
+.TH plot3d 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+plot3d - surface plotting
+.SH CALLING SEQUENCE
+.nf
+plot3d(x,y,z [,theta,alpha,leg [,flag,ebox]])
+plot3d(xf,yf,zf [,theta,alpha,leg [,flag,ebox]])
+plot3d(xf,yf,list(zf,colors) [,theta,alpha,leg [,flag,ebox]])
+.fi
+.SH PARAMETERS
+.TP 15
+x,y
+: matrices of sizes (1,n1) and (1,n2) (point coordinates). These
+coordinates must be monotone.
+.TP 15
+z
+: matrix of size (n1,n2) ( \fVz(i,j)\fR : value of f at the point
+(x(i),y(j))
+.TP
+xf,yf,zf
+: (nf,n)  matrices. xf(:,i),yf(:,i),zf(:,i) are respectively the
+ x-axis,y-axis and z-axis coordinates of the ith facet. Where \fVnf\fR
+is the size of the facets (\fVnf\fR must be greater than 2) and
+\fVn\fR the number of facets. One can use \fVlist(zf,colors)\fR,
+with colors a vector of size \fVn\fR in order to give specific 
+colors for each facet.
+.TP
+theta, alpha 
+: real values giving in degree the spherical coordinates of 
+the observation point
+.TP
+leg 
+: string (captions for each axis. this is string 
+with @ as a field separator, for example : "X@Y@Z")
+.TP
+flag
+: is a real vector of size three \fVflag=[mode,type,box]\fR
+.RS 
+.TP
+mode 
+: string (treatment of hidden parts)
+.RS
+.TP 
+mode > 0 
+the hidden parts of the surface are removed and the surface is painted 
+with color \fVmode\fR.
+.TP
+mode = 0
+the hidden parts of the surface are drawn.
+.TP
+mode < 0
+only the shadow of the surface is painted with color or pattern 
+\fV-mode\fR.
+.RE
+.TP
+type 
+: scaling
+.RS 
+.TP 15
+if type = 0
+the plot is made using the current 3D scaling ( set by a previous call to
+\fVparam3d, plot3d, contour, plot3d1\fR)
+.TP
+if type = 1
+the boundaries are specified by the value of the parameter
+.LP
+\fVebox=[xmin,xmax,ymin,ymax,zmin,zmax]\fR
+.TP
+else
+the boundaries are computed with the given datas.
+.RE
+.TP
+box
+: frame display around the plot.
+.RS
+.TP
+box=0 
+nothing is drawn around the plot
+.TP
+box=1 
+unimplemented ( like box=0 )
+.TP
+box=2 
+only the axes behind the surface are drawn
+.TP
+box=3 
+a box surrounding the surface is drawn and captions are added
+.TP
+box=4
+a box surrounding the surface is drawn, captions are added and axes too.
+.RE
+.RE 
+.SH DESCRIPTION
+\fVplot3d(x,y,z,theta,alpha,leg [,flag,ebox])\fR draw the surface
+\fVz=f(x,y)\fR defined by a matrix of coordinates. 
+
+\fVplot3d(xf,yf,zf,theta,alpha,leg [,flag,ebox])\fR draw the non
+projectable surface \fV0=f(x,y,z)\fR defined by a set of facets.
+xf(:,i),yf(:,i),zf(:,i) are respectively the  x-axis,y-axis and z-axis coordinates of the ith facet.  
+
+Enter the command  \fVplot3d()\fR to see a demo.
+.SH EXAMPLE
+.nf
+plot3d(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
+xbasc();
+t=(0:0.3:2*%pi)';zmat=sin(t)*cos(t');
+[xx,yy,zz]=genfac3d(t,t,zmat);
+plot3d([xx xx],[yy yy],[zz 4+zz]);
+xbasc();
+plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
+.fi
+.SH SEE ALSO
+plot3d1, genfac3d, hist3d, geom3d, param3d
+.SH AUTHOR
+J.Ph.C.

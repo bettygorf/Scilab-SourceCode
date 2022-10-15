@@ -1,0 +1,24 @@
+.TH metanet 1 "April 1993" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME
+metanet - execute \fVMetanet\fR
+.SH CALLING SEQUENCE
+.nf
+[sock] = metanet()
+.fi
+.SH PARAMETERS
+.TP 5
+sock
+: integer, socket number (screen number)
+.SH DESCRIPTION
+This function is used to connect \fVScilab\fR to \fVMetanet\fR which will
+run on the same computer. For instance:
+.PP
+   metawin=metanet()
+.LP
+\fVmetawin\fR is the screen number of \fVMetanet\fR window.
+.LP
+This function has exactly the same effect as using the \fVMetanet\fR menu of
+\fVxscilab\fR.
+.SH SEE ALSO
+connect, screen

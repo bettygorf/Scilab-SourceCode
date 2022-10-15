@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<!--Converted with LaTeX2HTML 96.1 (Feb 5, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Sylvester Equation</TITLE>
+<META NAME="description" CONTENT="Sylvester Equation">
+<META NAME="keywords" CONTENT="lmidoc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="lmidoc.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html197" HREF="node13.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www-rocq.inria.fr/scilab/icons/next_motif.gif"></A> <A NAME="tex2html195" HREF="node5.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www-rocq.inria.fr/scilab/icons/up_motif.gif"></A> <A NAME="tex2html191" HREF="node11.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www-rocq.inria.fr/scilab/icons/previous_motif.gif"></A> <A NAME="tex2html199" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www-rocq.inria.fr/scilab/icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html198" HREF="node13.html">Function LMITOOL</A>
+<B>Up:</B> <A NAME="tex2html196" HREF="node5.html">Examples</A>
+<B> Previous:</B> <A NAME="tex2html192" HREF="node11.html">Linear programming with equality </A>
+<BR> <P>
+<H3><A NAME="SECTION00032700000000000000">Sylvester Equation</A></H3>
+<P>
+<A NAME="ex5">&#160;</A>
+The problem of finding matrix <I>X</I> satisfying
+<P> <IMG WIDTH=305 HEIGHT=12 ALIGN=BOTTOM ALT="displaymath832" SRC="img50.gif"  > <P>
+or 
+<P> <IMG WIDTH=287 HEIGHT=11 ALIGN=BOTTOM ALT="displaymath833" SRC="img51.gif"  > <P>
+where <I>A</I> and <I>B</I> are square matrices (of possibly different sizes) is
+a well-known problem. We refer to the first equation as the continuous
+Sylvester equation and the second, the discrete Sylvester equation.
+<P>
+These two problems can easily be formulated as  <IMG WIDTH=9 HEIGHT=11 ALIGN=BOTTOM ALT="tex2html_wrap_inline590" SRC="img7.gif"  >  problems as
+follows:
+<PRE> function [LME,LMI,OBJ]=sylvester_eval(XLIST)
+ [X]=XLIST(:)
+ if flag=='c' then 
+   LME=A*X+X*B-C
+ else 
+   LME=A*X*B-C
+ end                                               
+ LMI=[]                                                          
+ OBJ=[]</PRE>
+with a solver function such as:
+<PRE> function [X]=sylvester(A,B,C,flag)
+ [na,ma]=size(A);[nb,mb]=size(B);[nc,mc]=size(C);                                
+ if ma&lt;&gt;na|mb&lt;&gt;nb|nc&lt;&gt;na|mc&lt;&gt;nb then error(&quot;invalid dimensions&quot;);end           
+ XLISTF=lmisolver(zeros(nc,mc),sylvester_eval)
+ X=XLISTF(:)</PRE>
+Then, to solve the problem, all we need to do is to (assuming <I>A</I>, <I>B</I>
+and <I>C</I> are defined)
+<PRE>--&gt; X=sylvester(A,B,C,'c')</PRE>
+for the continuous problem and 
+<PRE>--&gt; X=sylvester(A,B,C,'d')</PRE>
+for the discrete problem.
+<P>
+<BR> <HR>
+<P><ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,19 @@
+
+SELECT_f(5)                     Scicos Block                      SELECT_f(5)
+NAME
+  SELECT_f - Scicos selector block
+
+DIALOGUE PARAMETERS
+
+  number of inputs    : a scalar. Number of regular and event inputs.
+
+  initial connected input
+                      : an integer. It must be between 1 and the number of
+                      inputs.
+
+DESCRIPTION
+  This block routes one of the regular inputs to the unique regular output.
+  the choice of which input is to be routed is done, initially by the "ini-
+  tial connected input" parameter. Then, every time the block is activated
+  through its i-th input activation  port, the i-th regular input value port
+  is put to the regular output.

@@ -1,0 +1,29 @@
+.TH Macglov 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+Macglov - Mac Farlane Glover problem
+.SH CALLING SEQUENCE
+.nf
+[P,r]=Macglov(Sl)
+.fi
+.SH PARAMETERS
+.TP
+Sl
+: linear system (\fVsyslin\fR list)
+.TP
+P
+: linear system (\fVsyslin\fR list), ``augmented'' plant
+.TP
+r
+: 1x2 vector, dimension of \fVP22\fR
+.SH DESCRIPTION
+.Vb [P,r]=Macglov(Sl)
+returns the standard plant \fVP\fR for the Glover-McFarlane problem.
+.LP
+For this problem ro_optimal = 1-hankel_norm(\fV[N,M]\fR)
+with \fV[N,M]=LCF(Sl)\fR (Normalized coprime factorization) i.e.
+.LP
+gama_optimal = \fV1/sqrt(ro_optimal)\fR
+.SH AUTHOR
+F. D.
+

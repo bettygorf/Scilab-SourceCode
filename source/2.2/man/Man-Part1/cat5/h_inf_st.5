@@ -1,0 +1,66 @@
+
+
+
+h_inf_st(1)                    Scilab Function                    h_inf_st(1)
+
+
+
+
+
+
+NAME
+  H_inf_st - static H_infinity problem
+
+CALLING SEQUENCE
+  [Kopt,gamaopt]=h_inf_stat(D,r)
+
+PARAMETERS
+
+  D    : real matrix
+
+  r    : 1x2 vector
+
+  Kopt : matrix
+
+DESCRIPTION
+  computes a matrix Kopt such that largest singular value of:
+
+  lft(D,r,K)=D11+D12* K*inv(I-D22*K)* D21 is minimal (Static H-infinity four
+  blocks problem).
+
+  D is partionned as D=[D11 D12; D21 D22] where size(D22)=r=[r1 r2]
+
+AUTHOR
+  F.D.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

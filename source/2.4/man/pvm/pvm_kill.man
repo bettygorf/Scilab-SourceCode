@@ -1,0 +1,43 @@
+.TH pvm_kill 1 "January 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_kill -  Terminates a specified PVM process.
+.SH CALLING SEQUENCE
+.nf
+[infos] = pvm_kill(tids)
+.fi
+.SH PARAMETERS
+.TP 5
+tids
+: row of integer, task identifier of the PVM process to be killed
+(not yourself).
+.TP 4
+infos
+: row of integer, status code returned by the routine.
+Values less than zero indicate an error.
+.SH DESCRIPTION
+\fVpvm_kill\fR 
+sends a terminate (SIGTERM) signal
+to the PVM process identified by
+.I tids.
+In the case of multiprocessors the terminate signal is replaced
+with a host dependent method for killing a process.
+If pvm_kill is successful,
+
+
+The array
+.I infos
+can be checked to determine the status for each process.
+Values less than zero indicate an error,
+while zero values indicate a success.
+.PP
+pvm_kill is not designed to kill the calling process.
+To kill yourself in C call pvm_exit() followed by quit().
+
+.SH EXAMPLE
+.nf
+info = pvm_kill(262153)
+.fi
+
+.SH SEE ALSO
+pvm_exit

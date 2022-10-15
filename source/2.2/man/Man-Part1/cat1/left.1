@@ -1,0 +1,66 @@
+
+
+
+left(1)                        Scilab Function                        left(1)
+
+
+
+
+
+
+NAME
+  [ - left bracket
+
+CALLING SEQUENCE
+  [a11,a12,...;a21,a22,...;...]
+  [s1,s2,...]=func(...)
+
+PARAMETERS
+
+  a11,a12,...    : matrix of any compatibles types with compatibles dimen-
+                 sions s1,s2,...  : any possible variable name
+
+DESCRIPTION
+  Left and right brackets are used for vector and matrix concatenation.
+  These symbols are also used to denote a multiple left-hand-side for a func-
+  tion call
+
+  Inside concatenation brackets blank or comma characters mean "column con-
+  catenation", semicolumn and carriage-return mean "row concatenation".
+
+  Note : to avoid confusions it is safer to use comma instead of blank to
+  separate columns.
+
+  Within multiple lhs brackets variable names must be separated by comma.
+
+EXAMPLES
+  [6.9,9.64; sqrt(-1) 0]
+  [1 +%i  2 -%i  3]
+  []
+  ['this is';'a string';'vector']
+
+  [u,s]=schur(rand(3,3))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

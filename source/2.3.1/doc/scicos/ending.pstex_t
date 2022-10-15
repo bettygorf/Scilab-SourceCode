@@ -1,0 +1,51 @@
+\begin{picture}(0,0)%
+\epsfig{file=ending.pstex}%
+\end{picture}%
+\setlength{\unitlength}{0.00058600in}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined%
+\gdef\SetFigFont#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(7469,8099)(69,-8048)
+\put(676,-466){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}Agenda}}}
+\put(1126,-3121){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}link reg.}}}
+\put(1126,-3391){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}update}}}
+\put(1126,-3661){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}(cord)}}}
+\put(4546,-2761){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}SOLVER}}}
+\put(4546,-3301){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}integrate}}}
+\put(4546,-3571){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}continuous part}}}
+\put(4546,-3841){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}of the system}}}
+\put(6616,-3121){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}update}}}
+\put(6616,-3391){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}agenda}}}
+\put(6436,-5371){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}link reg.}}}
+\put(6436,-5641){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}update}}}
+\put(4501,-7396){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}update}}}
+\put(4501,-7666){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}agenda}}}
+\put(4456,-5281){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}update discr.}}}
+\put(4456,-5551){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}states using}}}
+\put(4456,-5821){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}execlk}}}
+\put(4456,-6091){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}(flag 2)}}}
+\put(6436,-5956){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}ordclk}}}
+\put(4816,-331){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}link reg.}}}
+\put(4816,-601){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}update}}}
+\put(4816,-871){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}(cord)}}}
+\put(3016,-5371){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}update}}}
+\put(3016,-5641){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}agenda}}}
+\put(181,-3796){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}from}}}
+\put(181,-4066){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}initialization}}}
+\put(2206,-1951){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}  }}}
+\put(631,-1906){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}Te: time of}}}
+\put(631,-2176){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}       next event}}}
+\put(3601,-3931){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}t$<$Te}}}
+\put(3376,-4696){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}t$=$Te}}}
+\put(6301,-4156){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}t$<$Te}}}
+\put(6301,-4426){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}zero-crossing}}}
+\put(5356,-1501){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}t$=$Te}}}
+\put(5356,-1771){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}no zero-crossing}}}
+\put(1036,-4876){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}t$=$Tf}}}
+\put(451,-5641){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}To ending}}}
+\put(4546,-4111){\makebox(0,0)[lb]{\smash{\SetFigFont{10}{12.0}{\rmdefault}{\bfdefault}{\updefault}from t to Te}}}
+\end{picture}

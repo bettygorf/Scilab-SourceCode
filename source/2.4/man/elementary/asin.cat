@@ -1,0 +1,26 @@
+
+asin(1)                        Scilab Function                        asin(1)
+NAME
+  asin -  sine inverse
+
+CALLING SEQUENCE
+  [t]=asin(x)
+
+PARAMETERS
+
+  x         : real or complex vector/matrix
+
+  t         : real or complex vector/matrix
+
+DESCRIPTION
+  The entries of t are sine inverse of the corresponding entries of x.
+  Definition domain is [-1, 1].  It takes his values in sets
+
+    ]-pi/2,pi/2[ x ]-inf,+inf[, -pi/2 x [0,+inf] and
+    pi/2 x ]-inf,0] (real x imag)
+EXAMPLE
+  A=[1,2;3,4]
+  sin(asin(A))
+
+SEE ALSO
+  sin, sinm, asinm

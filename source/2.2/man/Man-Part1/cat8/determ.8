@@ -1,0 +1,66 @@
+
+
+
+determ(8)                      Scilab Function                      determ(8)
+
+
+
+
+
+
+NAME
+  determ - determinant of polynomial matrix
+
+CALLING SEQUENCE
+  res=determ(W [,k])
+
+PARAMETERS
+
+  W    : real square polynomial matrix
+
+  k    : integer (upper bound for the degree of the determinant of W)
+
+DESCRIPTION
+  res=determ(W [,k]) returns the determinant of a real polynomial matrix
+  (computation made by FFT).
+
+  k is an integer larger than the actual degree of the determinant of W.
+
+  The default value of k is the smallest power of 2 which is larger than
+  n*maxi(degree(W)).
+
+  Method: evaluate the determinant of W for the Fourier frequencies and apply
+  inverse FFT to the coefficients of the determinant.
+
+SEE ALSO
+  det, detr, coffg
+
+AUTHOR
+  F.D.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

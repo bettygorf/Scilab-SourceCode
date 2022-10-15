@@ -1,0 +1,88 @@
+
+int2d(G)                       Scilab Function                       int2d(G)
+NAME
+  int2d - definite 2D integral by quadrature and cubature method
+
+CALLING SEQUENCE
+  [I,err]=int2d(X,Y,f [,params])
+
+PARAMETERS
+
+  X         : a 3 by N array containing the abscissae of the vertices
+              of the N triangles.
+
+  Y         : a 3 by N array containing the ordinates of the vertices
+              of the N triangles.
+
+  f         : external (function or list or string) defining the integrand
+            f(u,v);
+
+  params    : real vector [tol, iclose, maxtri, mevals, iflag]. default value
+            is [1.d-10, 1, 50, 4000, 1].
+
+            tol
+              :the desired bound on the error.  If iflag=0, tol is inter-
+              preted as a bound on the relative error; if iflag=1, the bound
+              is on the absolute error.
+
+            iclose
+              :an integer parameter that determines the selection of LQM0 or
+              LQM1 methods.  If iclose=1 then LQM1 is used.  Any other value
+              of iclose causes LQM0 to be used.  LQM0 uses function values
+              only at interior points of the triangle.  LQM1 is usually more
+              accurate than LQM0 but involves evaluating the integrand at
+              more points including some on the boundary of the triangle.  It
+              will usually be better to use LQM1 unless the integrand has
+              singularities on the boundary of the triangle.
+
+            maxtri
+              :the maximum number of triangles in the final triangulation of
+              the region
+
+            mevals
+              : the maximum number of function evaluations to be allowed.
+              This number will be effective in limiting the computation only
+              if it is less than 94*maxtri  when LQM1 is specified or 56*max-
+              tri when LQM0 is specified.
+
+            iflag
+              :
+
+  I         : the integral value
+
+  err       : the estimated error
+
+DESCRIPTION
+  int2d computes the two-dimensional integral of a function f over a region
+  consisting of n triangles.  A total error estimate is obtained and compared
+  with a tolerance - tol - that is provided as input to the subroutine.  The
+  error tolerance is treated as either relative or absolute depending on the
+  input value of iflag.  A 'Local Quadrature Module' is applied to each input
+  triangle and estimates of the total integral and the total error are com-
+  puted.  The local quadrature module is either subroutine LQM0 or subroutine
+  LQM1 and the choice between them is determined by the value of the input
+  variable iclose.
+
+  If the total error estimate exceeds the tolerance, the triangle with the
+  largest absolute error is divided into two triangles by a median to its
+  longest side.  The local quadrature module is then applied to each of the
+  subtriangles to obtain new estimates of the integral and the error.  This
+  process is repeated until either (1) the error tolerance is satisfied, (2)
+  the number of triangles generated exceeds the input parameter maxtri, (3)
+  the number of integrand evaluations exceeds the input parameter mevals, or
+  (4) the function senses that roundoff error is beginning to contaminate the
+  result.
+
+EXAMPLES
+  X=[0,0;1,1;1,0];
+  Y=[0,0;0,1;1,1];
+  deff('z=f(x,y)','z=cos(x+y)')
+  [I,e]=int2d(X,Y,f)
+  // computes the integrand over the square [0 1]x[0 1]
+
+SEE ALSO
+  intc, intl, int3d, intg, mesh2d
+
+REFERENCES
+  Fortran routine twodq,Authors: Kahaner,D.K.,N.B.S., Rechard,O.W.,N.B.S.,
+  Barnhill,Robert,Univ. of UTAH

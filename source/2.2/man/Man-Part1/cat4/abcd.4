@@ -1,0 +1,66 @@
+
+
+
+abcd(1)                        Scilab Function                        abcd(1)
+
+
+
+
+
+
+NAME
+  abcd - state-space matrices
+
+CALLING SEQUENCE
+  [A,B,C,D]=abcd(sl)
+
+PARAMETERS
+
+  sl      : linear system (syslin list) in state-space or transfer form
+
+  A,B,C,D : real matrices of appropriate dimensions
+
+DESCRIPTION
+  returns the A,B,C,D  matrices from a linear system Sl.
+
+  Utility function. For transfer matrices Sl is converted into state-space
+  form by tf2ss.
+
+  The matrices A,B,C,D are the elements 2 to 5 of the syslin list Sl, i.e.
+  [A,B,C,D] = Sl(2:5) .
+
+SEE ALSO
+  syslin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

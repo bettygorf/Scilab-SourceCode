@@ -1,0 +1,66 @@
+
+
+
+exp(G)                         Scilab Function                         exp(G)
+
+
+
+
+
+
+NAME
+  exp - exponential, matrix exponential
+
+CALLING SEQUENCE
+  exp(X)
+
+PARAMETERS
+  X    : a vector or a square matrix with real or complex entries.
+DESCRIPTION
+  If X is a vector (or a [1mnon-square [0mmatrix) exp(X) is the (element-wise)
+  exponential of the entries of X, e to the X.
+  If X is a [1msquare [0mmatrix exp(X) is the matrix
+
+
+  exp(X) = I + X + X^2 /2 + ...
+
+  The computation is performed by first block-diagonalizing X and then apply-
+  ing a Pade approximation on each block.
+
+SEE ALSO
+  bdiag, coff, log
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,349 @@
+1 //Introduction to scilab
+2 //Graphics I
+ 1   //plot2d 
+ 2   //plot2d1
+ 3   //plot2d3
+ 4   //plot2d1
+ 5   //Histplot
+ 6   //fplot2d
+ 7   //param3d
+ 8   //param3d
+ 9   //plot3d
+ 10  //fplot3d
+ 11  //plot3d1
+ 12  //fplot3d1
+ 13  //contour
+ 14  //fcontour
+ 15  //champ
+ 16  //fchamp
+ 17  //grayplot
+ 18  //fgrayplot
+ 19  //errbar
+ 20  //abaque
+ 21  //zgrid
+ 22  //xgeom 1
+ 23  //xgeom 2
+ 24  //contour (3d) 2
+ 25  //contour (3d) 3
+ 26  //contour (3d) 4
+ 27  //plot2d+gr_menu
+ 28  //plot3d+gr_menu
+ 29  //plots+xsetech
+ 30  //fac3d
+ 31  //fac3d1
+ 0   //exit
+3 //Graphics Misc
+ 1   //1
+ 2   //2
+ 3   //3
+ 4   //4
+ 0   //exit
+4 //Graphics : Xprimitives
+ 1   //Graphics X11 1
+ 2   //Graphics X11 2
+ 3   //Graphics X11 3
+ 4   //Graphics X11 4
+ 0   //exit
+5 //Graphics : Animation
+ 1   // Plot3d1
+ 2   // param3d 
+ 3   // param3d lorenz curve
+ 4   // contour
+ 5   // Plot3d
+ 6   // N pendulum
+ 7   // Plot3d1 with xtape
+ 0   //exit
+6 //Graphics : Finite Elements
+ 1   // Graphics : Fec 1
+ 2   // Graphics : Fec 2
+ 0   //exit
+7 //Inverted pendulum
+8 //n-pendulum
+  1  //read a precomputed trajectory
+8 //n-pendulum
+  2  //Simulation with ode (may fail)
+    2 //Go on
+        -1.3912301// theta1
+        -1.6560533// theta2
+        -3.1197583// theta3
+        -1.5835081// theta4
+        -1.5713455// theta5
+        -1.1955653// theta6
+        -8.2452393// theta7
+        -1.3010066// theta8
+        1.1671875// theta9
+        -18.619763// theta10
+        1.4255478// thetad1
+        -6.5174875// thetad2
+        2.2944054// thetad3
+        2.3835463// thetad4
+        -5.9062465// thetad5
+        9.8190264// thetad6
+        -0.8858167// thetad7
+        -15.979205// thetad8
+        -14.57535// thetad9
+        0.4054334// thetad10
+       o         //Ok
+     1 //With last point trajectory
+    1 // Stop
+9  // Car parking
+ 1   //car
+    0           //x_0
+    4           //y_0
+    1.0471976   //theta
+    -0.5235988  //phi
+    o           //Ok
+ 2   //Two trailer truck
+    -2          //x2
+     3          //y2
+     0.5235988  //theta2
+     0          //theta12
+     0          //theta10
+     1          //phi
+     o          //Ok
+ 0  //Exit Car parking
+10  //Wheel Simulation 
+  1   //reading a precomputed trajectory
+10  //Wheel Simulation 
+  2   // simulation with ode (may fail)
+    2   // Go on
+       -10.940468 //phi
+        1.0631321 //theta
+        73.444368 //psi
+       -1.3947561 //Dpsi
+       -3.5513231 //Dtheta
+        3.6337222 //Dpsi
+       -1.5013428 //x
+        3.5348768 //y
+        o         //Ok
+    1  //Stop
+11 //Bike Simulation (1)
+  1  // bike-1 
+  2  // bike-2
+  3  // bike-3
+  4  // bike-4
+  5  // bike-4p
+  6  // bike-5
+  0  // Exit Bike Simulation (1)
+12  //Bike Simulation (2)
+13  //Bike Picture
+14  //Signal Processing
+  1    // Spectral Estimation
+  2    // IIR filter Design
+     lp         //type
+     3          //order
+     ellip      //design
+     0.15 0.25  //cut-off frequencies
+     0.08 0.035 // error values
+     o          //Ok
+  2   // IIR filter Design
+     bp         //type
+     3          //order
+     butt       //design
+     0.15 0.25  //cut-off frequencies
+     0.08 0.030 // error values
+     o           //Ok
+  3   // Minimax FIR filter design
+  0 //Exit Signal Processing
+16 //Fortran translator
+  1    //Clause, loops ans operations
+16 //Fortran translator
+  2    //matrix concatenation
+16 //Fortran translator
+  3    // concatenation and inversion
+16 //Fortran translator
+  4    // simple primitives
+16 //Fortran translator
+  5    // complex number
+16 //Fortran translator
+  6    //matrix division
+17 // ODE'S
+18 // ARMA
+19 // Tracking
+20 // Robust control
+21 //LMITOOL
+  1  // H_infinity gain
+  default
+  c
+  [0,1,0;2,3,1;-1,-2,0]
+  [1,0;-2,1;0,1]
+  [1,2,0;0,1,-2]
+  [0,0;0,0]
+  o
+21 //LMITOOL
+  2  // Output Feedback
+  default
+  c
+  [0,1,0;2,3,1;-1,-2,0]  // A
+  [1,0;-2,1;0,1]         // B
+  [1,2,0;0,1,-2]         // C
+  o
+21 //LMITOOL
+  3  // Sylvester equation
+  default
+  c
+  [0,1,0;2,3,1;-1,-2,0]  // A
+  [1,0;-2,1]             // B
+  [1,2;0,1;1,-2]         // C
+  o
+22 //METANET
+  Yes //try the demo
+    5   //Alfort-Ecole Veterinaire
+    16  //Bastille
+    1   //Zoom of the path (Yes)
+  1 // another travel (yes)
+    9   //Argentine
+    1   //INRIA
+    Travel   //TRavel
+    10  //
+    1   //INRIA
+    Cancel   //cancel
+    15   //
+    16  //Bastille
+    2   //Zoom of the path (No)
+  2 //another travel (no)
+23 //Control Examples
+  1 // LQG
+    1  // Continuuous time
+      [(s-1)/(s^2-5*s+1)] // system
+      o                   //OK
+      [1, 0; 0, 1]        //x_weighting matrix
+      o                   //OK
+      1                   //u_weighting matrix
+      o                   //OK
+      [1, 0; 0, 1]        // x-noise cov matrix
+      o                   //OK
+      1                   // y-noise cov matrix
+      o                   //OK
+         1                // Frequency response
+         2                // time response
+           0.1              //sampling period
+           20               //tmax
+           o                //ok
+             1                //step response
+         2                // time response
+           0.1              //sampling period
+           20               //tmax
+           o                //ok
+             2                //Impulse response
+         0                // Cancel
+  1 // LQG
+    2  // Discrete time
+      (z+1)/(z^2-5*z+2)
+      o                   //OK
+      [1, 0; 0, 1]        //x_weighting matrix
+      o                   //OK
+      1                   //u_weighting matrix
+      o                   //OK
+      [1, 0; 0, 1]        // x-noise cov matrix
+      o                   //OK
+      1                   // y-noise cov matrix
+      o                   //OK
+         1                // Frequency response
+         2                // time response
+           30               //tmax
+           o                //ok
+             1                //step response
+         2                // time response
+           30               //tmax
+           o                //ok
+             2                //Impulse response
+         0               // Cancel
+  2  // Mixed sensitivity
+      (s-1)/((s-1)^2*(s+2)) // Nominal plant
+      o                     // Ok
+      s                     // W1
+      1                     // W2
+      1                     // W3
+      o                     // Ok
+      0.01                  //gamma min
+      1000                  //gamma max
+      50                    // #iterations
+      o                     // Ok
+      Yes                   // S function
+      No                    // R function
+      Yes                   // T function
+      o                     // Ok
+  3  // PID
+      1                     // Continuuous time
+      (s-1)/(s^2+5*s+1)     // Nominal plant
+      o                     // Ok
+      -1.2                  // Kp
+      1                     // T0
+      0.1                   // T1
+      o                     // Ok
+         1                // Frequency response
+         2                // time response
+           0.1              //sampling period
+           50               //tmax
+           o                //ok
+             1                //step response
+         2                // time response
+           0.1              //sampling period
+           50               //tmax
+           o                //ok
+             2                //Impulse response
+         0                // Cancel
+  0 //Exit Control examples
+24 //scicos
+ 1  //Thermostat
+      0,556.34518,341.88034 //Simulate..
+      0,556.34518,314.52991 //Run
+      0,489.3401,152.70655  //Scope
+       Scope  //label
+        2      //number of inputs
+        -1 -5  //input color
+        10     //output window number
+       -30     //ymin
+        15     //ymax
+        30     //refresh period
+        2      //buffer size
+        0      //dt
+        o      //ok
+      0,567.51269,315.66952//Run
+        1      //restart
+      0,564.46701,294.01709//Back
+      0,558.37563,271.22507//Exit
+      Yes
+  2 // Continuuous plant ..
+       0,309.64467,238.17664 // Block
+        //Block label
+    1   //Numerator
+    1+s //denominator
+    o   //ok
+       0,395.93909,324.78632 // Block
+       0,577.66497,268.94587 //Exit
+       0,555.32995,341.88034 //Simulate..
+       0,559.39086,315.66952 //Run
+       0,567.51269,295.1567 //Back
+       0,557.36041,270.08547 //Exit
+    Yes  //really exit
+  3 //Simple demo
+       0,564.46701,340.74074 //Simulate..
+       0,562.43655,319.08832 //Run
+       0,567.51269,295.1567 //Back
+       0,565.48223,267.80627 //Exit
+  4 //Bouncing Ball
+       0,252.79188,231.33903 // Block
+       0,579.69543,265.52707 //Exit
+       0,559.39086,340.74074 //Simulate..
+       0,563.45178,314.52991 //Run
+       0,563.45178,288.31909 //Back
+       0,564.46701,270.08547 //Exit
+  5 //Table Lookup
+       0,557.36041,343.01994 //Simulate..
+       0,558.37563,315.66952 //Run
+       0,562.43655,295.1567 //Back
+       0,562.43655,270.08547 //Exit
+  6 //Threshold
+       0,554.31472,340.74074 //Simulate..
+       0,557.36041,321.36752 //Run
+       0,563.45178,294.01709 //Back
+       0,561.42132,270.08547 //Exit
+  7 //Scilab Block
+       0,552.28426,344.15954 //Simulate..
+       0,561.42132,314.52991 //Run
+       0,563.45178,295.1567 //Back
+       0,561.42132,272.36467 //Exit
+  0 //Exit scicos demo
+0 //EXIT DEMOS

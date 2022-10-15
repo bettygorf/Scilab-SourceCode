@@ -1,0 +1,50 @@
+The purpose of this contribution is to emulate the Matlab mexfile
+mechanism for people too lazy/busy to learn the Scilab dynamic
+link interfacing mechanism...
+Only the most useful functions have been emulated. 
+Nothing is provided to read/write binary .mat files inside mexfiles.
+Matlab .mat files saved in Matlab4 format can be read by mtlb_read.  
+Any Matlab mexfunction which uses the emulated functions can be used. 
+(However, for calling Scilab functions inside 
+mexfiles "mexCallSCILAB" should be used instead of "mexCallMATLAB").
+
+1- Take the source code of an existing mexfunction or write yours 
+   using the Matlab syntax.
+   Rename the mexfunction (such as mexfunction1 in the file 
+   mexfunction1.c). This is necessary if you want to use several
+   mex functions. In Matlab all mexfunctions are called "mexFunction".
+   Here, any name can be used (but of course the calling sequence is
+   the usual one (nlhs, plhs, ...) and should not be modified).
+
+2- Edit the Makefile to give the name of your mexfile objects and (if any)
+   functions used by the mexfiles (which are not in the .c mexfile). 
+   The Makefile generates two files: "generic_gateway.c" (C code) and "startup.sce" (scilab script).
+
+3. You can edit the scilab script "startup.sce" and add your stuff by filling 
+   appropriate string vectors:
+
+-the name of Scilab function ("myfunction") associated with the C mexfunction:
+ one row in the vector scilab_functions.
+-the names of all necessary object files (.o) as argument to G_make 
+(Note that on Unix/Linux machines generic_gateway.o must appear).
+ 
+scilab_functions=['myfunction'];
+object_files=G_make(['generic_gateway.o','my-mexfunction.o'],'generic.dll');
+addinter(object_files,'generic_gateway',scilab_functions);
+
+4. Enter: "exec startup.sce" at the Scilab prompt.
+
+5. Call your new function (e.g. [p,q,r]=myfunction(a,b))
+
+The program generic_gateway can be used for interfacing at most 100
+mexfunctions (such as my-mexfunction). Of course you can build new programs
+similar to generic_gateway. It is recommended that you build one such
+program by topic. For instance algebra_gateway.c, image_gateway.c, 
+wavelet_gateway.c, etc...
+
+Note that the Makefile given here generates both the generic_gateway.c
+and startup.sce file for the example functions given here.
+
+ENJOY
+F.D.
+

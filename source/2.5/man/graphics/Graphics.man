@@ -1,0 +1,335 @@
+.TH graphics 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME 
+Graphics - graphics library overview
+.SH 2D PLOTTING
+.TP 11
+plot
+: simple plot of a curve
+.TP
+plot2d
+: plot a curve
+.TP
+plot2d1
+: plot a curve, allows logarithmic axes
+.TP
+plot2d2
+: plot a curve as step function
+.TP
+plot2d3
+: plot a curve with vertical bars
+.TP
+plot2d4
+: plot a curve with arrows
+.TP
+fplot2d
+: plot a curve defined by a function
+.TP
+champ
+: 2D vector field 
+.TP
+champ1
+: 2D vector field with colored arrows
+.TP
+fchamp
+: direction field of a 2D first order ODE
+.TP
+contour2d
+: level curves of a surface on a 2D plot
+.TP
+fcontour2d
+: level curves of a surface defined by a function on a 2D plot
+.TP
+grayplot
+: 2D plot of a surface using colors
+.TP
+fgrayplot
+: 2D plot of a surface defined by a function using colors
+.TP
+Sgrayplot
+: smooth 2D plot of a surface using colors
+.TP
+Sfgrayplot
+: smooth 2D plot of a surface defined by a function using colors
+.TP
+xgrid
+: add a grid on a 2D plot
+.TP
+errbar
+: add vertical error bars on a 2D plot
+.TP
+histplot
+: plot a histogram
+.TP
+Matplot
+: 2D plot of a matrix using colors 
+.SH 3D PLOTTING
+.TP 11
+plot3d
+: plot a surface
+.TP
+plot3d1 
+: plot a surface with gray or color level
+.TP 11
+fplot3d
+: plot a surface defined by a function
+.TP
+fplot3d1 
+: plot a surface defined by a function with gray or color level
+.TP
+param3d
+: plot one curve
+.TP
+param3d1
+: plots curves
+.TP
+contour
+: level curves on a 3D surface
+.TP
+fcontour
+: level curves on a 3D surface defined by a function
+.TP
+hist3d
+: 3D representation of a histogram
+.TP
+genfac3d
+: compute facets of a 3D surface
+.TP
+eval3dp
+: compute facets of a 3D surface
+.TP
+geom3d
+: projection from 3D on 2D after a 3D plot
+.SH LINE AND POLYGON PLOTTING
+.TP 11
+xpoly
+: draw a polyline or a polygon
+.TP
+xpolys
+: draw a set of polylines or polygons
+.TP
+xrpoly
+: draw a regular polygon
+.TP
+xsegs
+: draw unconnected segments
+.TP
+xfpoly
+: fill a polygon
+.TP
+xfpolys
+: fill a set of polygons
+.SH RECTANGLE PLOTTING
+.TP 11
+xrect
+: draw a rectangle
+.TP
+xfrect
+: fill a rectangle
+.TP
+xrects
+: draw or fill a set of rectangles
+.SH ARC PLOTTING
+.TP 11
+xarc
+: draw a part of an ellipse
+.TP
+xarcs
+: draw parts of a set of ellipses
+.TP
+xfarc
+: fill a part of an ellipse
+.TP
+xfarcs
+: fill parts of a set of ellipses
+.SH ARROW PLOTTING
+.TP 11
+xarrows
+: draw a set of arrows
+.SH STRINGS
+.TP 11
+xstring
+: draw strings
+.TP
+xstringl
+: compute a box which surrounds strings
+.TP
+xstringb
+: draw strings into a box
+.TP
+xtitle
+: add titles on a graphics window
+.TP
+titlepage
+: add a title in the middle of a graphics window
+.TP
+xinfo
+: draw an info string in the message subwindow
+.SH FRAMES AND AXES
+.TP 11
+xaxis
+: draw an axis 
+.TP
+graduate
+: pretty axis graduations
+.TP
+plotframe
+: plot a frame with scaling and grids
+.SH COORDINATES TRANSFORMATIONS
+.TP 11
+isoview
+: set scales for isometric plot (do not change the size of the window)
+.TP
+square
+: set scales for isometric plot (change the size of the window)
+.TP
+scaling
+: affine transformation of a set of points
+.TP
+rotate
+: rotation of a set of points  
+.TP
+xsetech
+: set the sub window of a graphics window for plotting
+.TP
+xgetech
+: get the current graphics scale
+.TP
+xchange
+: transform real to pixel coordinates
+.SH COLORS
+.TP 11
+colormap
+: using colormaps
+.TP
+getcolor
+: dialog to select colors in the current colormap
+.TP
+addcolor
+: add new colors to the current colormap
+.TP
+graycolormap
+: linear gray colormap
+.TP
+hotcolormap
+: red to yellow colormap
+.SH GRAPHICS CONTEXT
+.TP 11
+xset
+: set values of the graphics context
+.TP
+xget
+: get current values of the graphics context
+.TP
+xlfont
+: load a font in the graphics context or query loaded font
+.TP
+getsymbol
+: dialog to select a symbol and its size
+.SH SAVE AND LOAD
+.TP 11
+xsave
+: save graphics into a file
+.TP
+xload
+: load a saved graphics
+.TP
+xbasimp
+: send graphics to a Postscript printer or in a file
+.TP
+xs2fig
+: send graphics to a file in Xfig syntax
+.SH GRAPHICS PRIMITIVES
+.TP 11
+xbasc
+: clear a graphics window and erase the associated recorded graphics
+.TP
+xclear
+: clear a graphics window
+.TP
+driver
+: select a graphics driver
+.TP
+xinit
+: initialisation of a graphics driver
+.TP
+xend
+: close a graphics session
+.TP
+xbasr
+: redraw a graphics window
+.TP
+replot
+: redraw the current graphics window with new boundaries
+.TP
+xpause
+: suspend Scilab 
+.TP
+xselect
+: raise the current graphics window
+.TP
+xclea
+: erase a rectangle
+.TP
+xclip
+: set a clipping zone 
+.TP
+xdel
+: delete a graphics window
+.TP
+winsid
+: return the list of graphics windows
+.TP
+xname
+: change the name of the current graphics window
+.SH MOUSE POSITION
+.TP 11
+xclick
+: wait for a mouse click
+.TP
+locate
+: mouse selection of a set of points
+.TP
+xgetmouse
+: get the current position of the mouse
+.SH INTERACTIVE EDITOR
+.TP 11
+edit_curv
+: interactive graphics curve editor
+.TP
+gr_menu
+: simple interactives graphic editor
+.TP
+sd2sci
+: gr_menu structure to scilab instruction convertor
+.SH GRAPHICS FUNCTIONS FOR AUTOMATIC CONTROL
+.TP 11
+bode
+: Bode plot
+.TP
+gainplot
+: magnitude plot
+.TP
+nyquist
+: Nyquist plot
+.TP
+m_circle
+: M-circle plot
+.TP
+chart
+: Nichols chart
+.TP
+black
+: Black's diagram
+.TP
+evans
+: Evans root locus
+.TP
+sgrid
+: s-plane grid lines
+.TP
+plzr
+: pole-zero plot
+.TP
+zgrid
+: zgrid plot

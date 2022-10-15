@@ -1,0 +1,48 @@
+.TH equil1 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+equil1 - balancing (nonnegative) pair of matrices
+.SH CALLING SEQUENCE
+.nf
+[T [,siz]]=equil1(P,Q [,tol])
+.fi
+.SH PARAMETERS
+.TP 10
+P, Q
+: two non-negative symmetric matrices
+.TP
+T
+: nonsingular matrix
+.TP
+siz
+: vector of three integers
+.TP
+tol
+: threshold
+.SH DESCRIPTION
+\fVequil1\fR computes \fVt\fR such that:
+.LP
+\fVP1=T*P*T'\fR  and \fVQ1=inv(T)'*Q*inv(T)\fR are as follows:
+.LP
+\fVP1 = diag(S1,S2,0,0)\fR  and \fVQ1 = diag(S1,0,S3,0)\fR with
+\fVS1,S2,S3\fR positive and diagonal matrices with respective 
+dimensions \fVsiz=[n1,n2,n3]\fR
+.LP 
+\fVtol\fR is a threshold for rank determination in SVD
+.SH EXAMPLE
+.nf
+S1=rand(2,2);S1=S1*S1';
+S2=rand(2,2);S2=S2*S2';
+S3=rand(2,2);S3=S3*S3';
+P=sysdiag(S1,S2,zeros(4,4));
+Q=sysdiag(S1,zeros(2,2),S3,zeros(2,2));
+X=rand(8,8);
+P=X*P*X';Q=inv(X)'*Q*inv(X);
+[T,siz]=equil1(P,Q);
+P1=clean(T*P*T')
+Q1=clean(inv(T)'*Q*inv(T))
+.fi
+.SH SEE ALSO
+balreal, minreal, equil, hankelsv
+.SH AUTHOR
+S. Steer 1987

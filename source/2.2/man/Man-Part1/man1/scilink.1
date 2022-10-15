@@ -1,0 +1,30 @@
+.TH scilink 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+scilink - Unix script to relink Scilab
+.SH CALLING SEQUENCE
+.nf
+scilink <object-files>
+.fi
+.SH DESCRIPTION
+This script is used to produce a local \fVscilex\fR (executable code
+of Scilab) linked with the  additional files given by the 
+user in \fV<object-files>\fR.
+
+If in the list of object files some names are known \fVscilex\fR names 
+(from \fVSCIDIR/routines/default\fR ) then the \fVscilex\fR default 
+files are omited and replaced with the given ones .
+
+This script also produces an \fVxscilab\fR script, which when called 
+will ran the new generated scilex file.
+
+For example the command
+.nf
+scilink C/interf.o C/evol.o C/bib.a
+.fi
+will create a new \fVscilex\fR file in which the default \fVinterf.o\fR 
+file will be replaced by \fVC/interf.o\fR.
+.SH SEE ALSO
+directory SCIDIR/routines/default
+
+

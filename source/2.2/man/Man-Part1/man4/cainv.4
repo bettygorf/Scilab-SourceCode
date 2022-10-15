@@ -1,0 +1,72 @@
+.TH cainv 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+cainv -  Dual of abinv
+.SH CALLING SEQUENCE
+.nf
+[Y,ns,nsg,nn,J,k,Z]=cainv(Sl,alfa)
+.fi
+.SH PARAMETERS
+.TP 10
+sl
+: \fVsyslin\fR list containing the matrices \fV[A,B,C,D]\fR.
+.TP
+alpha 
+: real number or vector (possibly complex, location of closed loop poles)
+.TP
+Y
+: orthogonal matrix of size nx (dim of state space).
+.TP
+ns,nsg,nn
+:
+three integers 
+.TP
+J
+: real matrix (output injection)
+.TP
+k
+: integer (normal rank of \fVSl\fR)
+.TP
+Z
+: non-singular linear system (\fVsyslin\fR list)
+.SH DESCRIPTION
+\fvcainv\fR finds a basis \fVY\fR and output injection \fVJ\fR
+such that the abcd matrices of \fVss2ss(Sl,Y,[],J))\fR are: 
+.nf
+                  [*,*,*,*]             [*]
+  (Y'A + J*C)*Y = [0,u,*,*]   B + J*D = [0]
+                  [0,0,s,*]             [0]
+                  [0,0,0,*]             [0]
+
+            C*Y = [*,*,*,*]          D= [*]
+                  [0,0,0,*]             [0]
+.fi
+where the modes of A22 (u) are unstable, modes of A33 (s) are stable,
+pair (A44, C24) is observable, poles of A44 set to \fValfa\fR.
+.LP
+The \fVns\fR first columns of \fVY\fR span S= smallest (C,A) invariant
+subspace which contains Im(B), \fVnsg\fR first columns of \fVY\fR
+span Sg, \fVnn\fR first columns of \fVY\fR span \fVN=S+V\fR. 
+(\fVns=0\fR iff B(ker(D))=0).
+.LP
+.nf
+// DDEP: dot(x)=A x + Bu + Gd
+//           y= Cx   (observation)
+//           z= Hx    (z=variable to be estimated, d=disturbance)
+//  Find: dot(w) = Fw + Ey + Ru such that
+//          zhat = Mw + Ny
+//           z-Hx goes to zero at infinity
+//  Solution exists iff Ker H contains Sg(A,C,G) inter KerC
+//i.e. H is such that:
+// For any W which makes a column compression of [Yp(1:nsg,:);C]
+// with Yp=Y' and [Y,ns,nsg,nn,J,k,Z]=cainv(syslin('c',A,G,C));
+// [Yp(1:nsg,:);C]*W = [0 | *] one has
+// H*W = [0 | *]  (with at least as many columns as above).
+.fi
+.SH SEE ALSO
+abinv, dt_ility
+
+
+
+
+

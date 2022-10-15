@@ -1,0 +1,52 @@
+
+cdfnor(1)                      Scilab Function                      cdfnor(1)
+NAME
+  cdfnor - cumulative distribution function normal distribution
+
+CALLING SEQUENCE
+  [P,Q]=cdfnor("PQ",X,Mean,Std)
+  [X]=cdfnor("X",Mean,Std,P,Q)
+  [Mean]=cdfnor("Mean",Std,P,Q,X)
+  [Std]=cdfnor("Std",P,Q,X,Mean)
+
+PARAMETERS
+
+  P,Q,X,Mean,Std
+            : six real vectors of the same size.
+
+  P,Q (Q=1-P)
+            : The integral from -infinity to X of the normal density.  Input
+            range: (0,1].
+
+  X         :Upper limit of integration of the normal-density.  Input range:
+            ( -infinity, +infinity)
+
+  Mean      :  The mean of the normal density.  Input range: (-infinity,
+            +infinity)
+
+  Sd        :  Standard Deviation of the normal density.  Input range: (0,
+            +infinity).
+
+DESCRIPTION
+  Calculates any one parameter of the normal distribution given values for
+  the others.
+
+  A slightly modified version of ANORM from Cody, W.D. (1993). "ALGORITHM
+  715: SPECFUN - A Portabel FORTRAN Package of Special Function Routines and
+  Test Drivers" acm Transactions on Mathematical Software. 19, 22-32.  is
+  used to calulate the  cumulative standard normal distribution.
+
+  The rational functions from pages  90-95  of Kennedy and Gentle, Statisti-
+  cal  Computing,  Marcel  Dekker, NY,  1980 are  used  as starting values to
+  Newton's Iterations which compute the inverse standard normal.  Therefore
+  no  searches  are necessary for  any parameter.
+
+  For X < -15, the asymptotic expansion for the normal is used  as the start-
+  ing value in finding the inverse standard normal.  This is formula 26.2.12
+  of Abramowitz and Stegun.
+
+  The normal density is proportional to exp( - 0.5 * (( X - MEAN)/SD)**2)
+
+  From DCDFLIB: Library of Fortran Routines for Cumulative Distribution Func-
+  tions, Inverses, and Other Parameters (February, 1994) Barry W. Brown,
+  James Lovato and Kathy Russell. The University of Texas.

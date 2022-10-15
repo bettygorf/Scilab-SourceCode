@@ -1,0 +1,36 @@
+.TH pvm_lvgroup 1 "May 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_lvgroup - Unenrolls the calling process from a named group.
+.SH CALLING SEQUENCE
+.nf
+[info] = pvm_lvgroup(group)
+.fi
+.SH PARAMETERS
+.TP 5
+group
+: string, group name of an existing group.
+.TP 4
+info
+: integer, status code returned by the routine.
+.SH DESCRIPTION
+\fVpvm_lvgroup\fR 
+unenrolls the calling process from
+the group named
+.I group.
+If there is an error
+.I info
+will be negative.
+.PP
+If a process leaves a group by calling either pvm_lvgroup
+or pvm_exit, and later rejoins the same group, the process
+may be assigned a new instance number. Old instance
+numbers are reassigned to processes calling pvm_joingroup.
+
+
+.SH EXAMPLE
+.nf
+info = pvm_lvgroup( "worker" )
+.fi
+.SH SEE ALSO
+pvm_joingroup

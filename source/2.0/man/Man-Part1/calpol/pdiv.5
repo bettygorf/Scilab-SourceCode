@@ -1,0 +1,28 @@
+.TH pdivg 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+pdiv - polynomial division
+.SH CALLING SEQUENCE
+.nf
+[R,Q]=pdiv(P1,P2)
+.fi
+.SH PARAMETERS
+.TP 10
+P1
+: polynomial matrix
+.TP 10
+P2
+: polynomial or polynomial matrix
+.TP 10
+R,Q
+: two polynomial matrices
+.SH DESCRIPTION
+Element-wise euclidan division of the polynomial matrix \fVP1\fR
+by the polynomial \fVP2\fR or by the polynomial matrix \fVP2\fR.
+\fVRij\fR is the matrix of remainders, \fVQij\fR is the matrix
+of quotients and \fVP1ij = Qij*P2 + Qij\fR or \fVP1ij = Qij*P2ij + Qij\fR.
+.SH SEE ALSO
+pdiv, ldiv
+
+
+

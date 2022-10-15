@@ -1,0 +1,110 @@
+.TH fusee 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+fusee - a set of macro for a fusee problem 
+.SH FUSEE
+.nf
+[xdot]=fusee(t,x)
+.fi
+Dynamical motion equation for the fusee
+.SH FINIT
+.nf
+finit()
+.fi
+Initializes parameters for alunisage problem 
+.TP
+k     
+: acceleration de poussee de la fusee
+.TP
+gamma 
+: acceleration de la pesanteur sur la lune
+.TP
+umax  
+: debit maximum d'ejection des gaz
+.TP
+mcap  
+: masse de la capsule
+.TP
+cpen  
+: penalisation dans la fonction cout de l'etat final
+.LP
+.SH FUSEEGRAD
+.nf
+[ukp1]=fuseegrad(niter,ukp1,pasg)
+.fi
+.TP
+niter
+: nombre d'iteration de gradient a faire a partir
+de ukp1 solution initiale de taille 135
+.TP
+pasg  
+: le pas de gradient choisit
+la valeur renvoyee est la derniere loi de commande obtenue.
+l'optimum s'obtient avec ubang(135,50)
+(optimum du pb non penalise)
+.LP
+Gradiant iterations for the fusee problem 
+.SH FUSEEP
+.SH DESCRIPTION
+.nf
+[pdot]=fuseep(t,p)
+.fi
+adjoint equation for the fusee problem 
+.SH POUSSE
+.nf
+[ut]=pousse(t)
+.fi
+la loi de commande u(t) constante par morceaux
+construite sur la loi de comande discrete uk
+.SH UBANG
+.nf
+[uk]=ubang(tf,tcom)
+.fi
+genere une loi bang-bang qui vaut 0 de 0 a tcom
+et 1 de tcom a tf
+.SH NAME FCOUT
+.nf
+[c,xk,pk,ukp1]=fcout(tf,uk,pasg)
+.fi
+pour une loi de commande uk
+Calcule la fonction cout que l'on cherche a minimiser
+c = -m(tf) + C*( h(tf)**2 + v(tf)**2)
+(on veut minimiser la consommation et atteindre la
+cible h=0 avec une vitess nulle obtenue par penalisation)
+la trajectoire associee
+Calcule aussi une nouvelle loi de commande par une methode
+de gradient
+.SH SFUSEE
+.nf
+[]=sfusee(tau,h0,v0,m0,Tf)
+.fi
+calcule la trajectoire de la fusee soumise a
+une commande bang-bang
+tau est la date de commutation
+.TP
+h0 
+: la hauteur initiale
+.TP
+v0 
+: la vitesse initiale ( negative si chute)
+.TP
+m0 
+: la masse initiale ( carburant + capsule)
+.TP
+Tf 
+: l'horizon d'integration
+.LP
+.SH EQUAD
+.SH DESCRIPTION
+.nf
+[xk,pk]=equad(tf,uk)
+.fi
+pour une loi de commande u(t)  stockee dans uk, calcule
+la trajectoire xk associee et l'etat adjoint pk
+.SH TRAJ
+.nf
+[xt]=traj(t)
+.fi
+approximation constante par morceaux de l'evolution de la masse
+construite sur xk : trajectoire discrete.
+

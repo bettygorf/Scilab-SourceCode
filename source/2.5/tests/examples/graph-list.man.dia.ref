@@ -1,0 +1,14 @@
+ 
+clear;lines(0);
+ 
+g=load_graph(SCI+'/demos/metanet/mesh100');
+ 
+g('node_color')=int(rand(1:g('node_number'))*16);
+ 
+g('edge_color')=int(rand(1:edge_number(g))*16);
+ 
+show_graph(g)
+ ans  =
+ 
+    1.  
+ 

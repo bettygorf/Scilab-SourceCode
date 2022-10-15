@@ -1,0 +1,14 @@
+#include "../../Imake.incl"
+
+OBJS_C = cchar.o ccharf.o cdouble.o cdoublef.o cerro.o cint.o cintf.o cout.o
+
+OBJS_F = erro.o out.o 
+
+OBJS= $(OBJS_C) $(OBJS_F)
+
+SRCS=$(OBJS_C:.o=.c)
+FSRCS =$(OBJS_F:.o=.f)
+
+LibraryTarget($(PATHO)/intersci.a,$(OBJS))
+FortranDependTarget()
+DependTarget()

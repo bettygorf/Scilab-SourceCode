@@ -1,0 +1,59 @@
+.TH mseek 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mseek - set current position in binary file.
+.SH CALLING SEQUENCE
+.nf
+mseek(n [,fd, flag])	    
+.fi
+.SH PARAMETERS
+.TP 10
+n
+:a positive scalar: The offset from origin in number of bytes.
+.TP
+fd
+: scalar. The \fVfd\fR parameter returned by the function
+\fVmopen\fR. -1 stands for last opened file. Default value is -1.
+.TP 
+flag
+: a string. specifies the origin. Default value 'set'.
+.SH DESCRIPTION
+The function \fVmseek()\fR sets the position of the next input or output operation
+on  the stream \fVfd\fR. The new position is at
+the signed distance given by \fVn\fR bytes from  the  beginning,  from
+the current position, or from the end of the file, according  to the 
+\fVflag\fR value which can be \fV'set'\fR, \fV'cur'\fR or \fV'end'\fR.
+
+\fVmseek()\fR allows the file position indicator to be set  beyond
+the  end of the existing data in the file.  If data is later
+written at this point, subsequent reads of data in  the  gap
+will  return  zero  until  data is actually written into the
+gap.  \fVmseek()\fR, by itself, does not extend the  size  of  the
+file.
+.SH EXAMPLE 
+.nf 
+file3='test3.bin'
+fd1= mopen(file3,'wb');
+for i=1:10, mput(i,'d'); end 
+mseek(0);
+mput(678,'d');
+mseek(0,fd1,'end');
+mput(932,'d');
+mclose(fd1)
+fd1= mopen(file3,'rb');
+res=mget(11,'d')
+res1=[1:11]; res1(1)=678;res1($)=932;
+if res1<>res ;write(%io(2),'Bug');end;
+mseek(0,fd1,'set');
+// trying to read more than stored data 
+res1=mget(100,'d',fd1);
+if res1<>res ;write(%io(2),'Bug');end;
+meof(fd1)
+mclearerr(fd1)
+mclose(fd1);
+.fi 
+.SH SEE ALSO
+mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr, mopen, mprintf, mput, mputstr, mscanf, mseek, mtell
+
+
+

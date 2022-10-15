@@ -1,0 +1,44 @@
+
+deff(1)                        Scilab Function                        deff(1)
+NAME
+  deff - on-line definition of function
+
+CALLING SEQUENCE
+  deff('[s1,s2,...]=newfunction(e1,e2,....)',text [,opt])
+
+PARAMETERS
+
+  e1,e2,...,     : input variables.
+
+  s1,s2,...,     : output variables.
+
+  text           : matrix of character strings
+
+  opt            : optional character string
+
+                 : function is "compiled" to be more efficient (default)
+
+                 : function is not "compiled"
+
+DESCRIPTION
+  On-line definition of function (user defined function): the name of the
+  created function is newfunction.  text is a sequence of instructions usu-
+  ally set as a vector of character strings.
+
+  This command can be used inside a function and the new function can be an
+  input or output of any other function.
+
+  Usually, functions are defined in a file and loaded into Scilab by getf
+
+  Some time, in particular when you want to use define strings within deff
+  text is rather difficult to write. A more tractable way may be to define
+  your function in a file as usual, to load it into Scilab by getf (without
+  'c'  option) and use sci2exp to get corresponding deff instructions.
+
+EXAMPLES
+  deff('[x]=myplus(y,z)','x=y+z')
+  //
+  deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
+
+SEE ALSO
+  getf, comp, exec, function

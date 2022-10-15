@@ -1,0 +1,18 @@
+
+fspecg(1)                      Scilab Function                      fspecg(1)
+NAME
+  fspecg - stable factorization
+
+CALLING SEQUENCE
+  [gm]=fspecg(g).
+
+PARAMETERS
+
+  g,gm        : syslin lists (linear systems in state-space representation)
+
+DESCRIPTION
+  returns gm with gm and gm^-1 stable such that:
+  gtild(g)*g = gtild(gm)*gm
+  g and gm are continuous-time linear systems in state-space form.
+
+  Imaginary-axis poles are forbidden.

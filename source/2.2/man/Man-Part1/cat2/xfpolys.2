@@ -1,0 +1,66 @@
+
+
+
+xfpolys(2)                     Scilab Function                     xfpolys(2)
+
+
+
+
+
+
+NAME
+  xfpolys - fill a set of polygons of the same size
+
+CALLING SEQUENCE
+  []=xfpolys(xpols,ypols,[fill])
+
+PARAMETERS
+
+  xpols,ypols
+            : two matrices of size (n1,n2) (polygon def)
+
+  fill      : vector of size n2 (number of polygons) (pattern id's).
+
+DESCRIPTION
+  fills a set of polygons of the same size defined by the two matrices
+  xpols,ypols . xpols= [ xpol1;xpol2;...]', each column of the matrix xpols
+  gives the x-values of the points of a polygon (i.e ypols).
+
+  fill(i) gives the id of the pattern for filling the polygon number i
+
+  -    if fill(i) < xget("white")+1,   the polygon is filled with pattern
+       fill(i).
+
+  -    if fill(i) >= xget("white")+1,  the polyline is only drawn.
+
+  -    if fill(i) >= xget("white")+2,  the polygon is filled with the pattern
+       id fill(i)+2*WID +2 (WID is the id of the white pattern ). Then its
+       contour is drawn and closed if necessary
+
+EXAMPLE
+  plot2d(0,0,[-1],"012"," ",[0,-10,210,40]);
+  x1=[0,10,20,30,20,10,0];
+  y1=[15,30,30,15,0,0,15];
+  xpols=[x1;x1;x1;x1]';xpols=xpols + [0,60,120,180].*.ones(x1)';
+  ypols=[y1;y1;y1;y1]';
+  xfpolys(xpols,ypols,[1,2,3,4]);
+
+AUTHOR
+  J.Ph.C.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

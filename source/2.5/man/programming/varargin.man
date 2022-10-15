@@ -1,0 +1,35 @@
+.TH varargin 1 "April 1998" "Scilab Group" "Scilab keyword"
+.so ../sci.an
+.SH NAME
+varargin -  variable numbers of arguments in an input argument list
+.SH SYNTAX
+\fVvarargin\fR must be the rightmost  argument of the function definition
+input list.
+.SH DESCRIPTION
+A function whose input argument list contains  \fVvarargin\fR must be
+called with more input arguments than indicated in the input argument
+list. The calling arguments passed form \fVvarargin\fR keyword onwards
+may then be retrieved within the function in a list named
+\fVvarargin\fR.
+.LP
+Suppose that \fVvarargin\fR keyword is the \fVn\fR th argument of the
+formal input argument list, then if the function is called with less
+than \fVn-1\fR input arguments the \fVvarargin\fR list is not defined,
+if the function is called with \fVn-1\fR arguments then \fVvarargin\fR
+list is an empty list.
+
+\fVy = function ex(varargin)\fR may be called with any number of input
+arguments. Within function  \fVex\fR input arguments may be retrieved
+in \fVvarargin(i)\fR ,\fVi=1:length(varargin)\fR
+.SH EXAMPLE
+.nf
+deff('exampl(a,varargin)',['[lhs,rhs]=argn(0)'
+                          'if rhs>=1 then disp(varargin),end'])
+exampl(1)
+exampl()
+exampl(1,2,3)
+l=list('a',%s,%t);
+exampl(1,l(2:3))
+.fi
+.SH SEE ALSO
+function, varargout, list

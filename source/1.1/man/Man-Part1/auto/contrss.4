@@ -1,0 +1,28 @@
+.TH contrss 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+contrss - controllable part
+.SH CALLING SEQUENCE
+.nf
+[slc]=contrss(sl [,tol])
+.fi
+.SH PARAMETERS
+.TP
+sl
+: linear system (\fVsyslin\fR list)
+.TP
+tol 
+: is a threshold for controllability (see \fVcontr\fR). 
+default value is \fVsqrt(%eps)\fR.
+.SH DESCRIPTION
+returns the controllable part of the linear 
+system \fVsl = (A,B,C,D)\fR in state-space form. 
+.SH EXAMPLE
+.nf
+A=[1,1;0,2];B=[1;0];C=[1,1];sl=syslin('c',A,B,C);  //Non minimal
+slc=contrss(sl);
+sl1=ss2tf(sl);sl2=ss2tf(slc);      //Compare sl1 and sl2
+.fi
+.SH SEE ALSO
+cont_mat, ctr_gram, cont_frm, contr
+

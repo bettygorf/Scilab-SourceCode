@@ -1,0 +1,79 @@
+
+wave2gifs(2)                   Scilab Function                   wave2gifs(2)
+NAME
+  wave2gifs - Computation of IFS coef. with Discrete Wavelet coefficients
+
+  Author: Khalid Daoudi
+
+  Computes the GIFS cefficients of a 1-D real signal as the ratio between
+  (synchrounous) wavelets coefficients at successive scales. You have to com-
+  pute the wavelet coefficients of the given signal (using FWT) before using
+  wave2gifs.
+
+Usage
+  [Ci, Ci_idx, Ci_lg, pc0, pc_ab]=wave2gifs(wt, wt_idx, wt_lg, [M0, a, b])
+
+Input parameters
+       o wt : Real matrix [1,n] Contains the wavelet coefficients (obtained
+         using FWT).
+       o wt_idx : Real matrix [1,n] Contains the indexes (in wt) of the pro-
+         jection of the signal on the multiresolution subspaces (obtained
+         also using FWT).
+
+       o wt_lg : Real matrix [1,n] Contains the dimension of each projection
+         (obtained also using FWT).
+       o M0 :  Real positive scalar If specified, each GIFS coefficient whose
+         absolute value belong to ]1,M0[ will be replaced by 0.99 (keeping
+         its signe).
+       o a,b : Real positive scalars The routine gives the percentage of the
+         Ci's whose absolute value belong to ]a,b[ (if not specified,
+         ]a,b[=]0,2[).
+Output parameters
+       o Ci : Real matrix Contains the GIFS coefficients plus other
+         informations.
+       o Ci_idx : Real matrix Contains the the indexes of the first Ci at
+         each scale (the finest scale is 1).
+       o Ci_lg : Real matrix Contains the length of Ci's at each scale.
+       o pc0 : Real scalar Gives the percentage of vanishing Ci's
+       o pc_ab : Real scalar Gives the percentage of Ci's which belong to
+         ]a,b[
+Description
+
+Parameters
+       o wt is a real matrix which is a structure containg the wavelet coef-
+         ficients and other informations. It is obtained using FWT.
+       o wt_idx is a real vector which contains the indexes (in wt) of the
+         first wavelet coefficient a each scale.  For instance, wt(wt_idx(1)
+         : wt_idx(2)-1) is a vector containing the wavelet coefficients a the
+         finest scale.
+
+       o wt_lg is a real vector which contains the length of wavelet coeffi-
+         cients a each scale.  For instance, wt_lg(1) is the number of the
+         wavelet coefficients a the finest scale.
+       o M0 is a real positive scalar such that each GIFS coefficient (ci)
+         whose absolute value belong to ]1,M0[ will be replaced by
+         0.99*signe(ci).
+       o a and b are two real positive scalars.  The routine gives the per-
+         centage of the Ci's whose absolute values belong to ]a,b[ (if not
+         specified, ]a,b[=]0,2[).
+       o Ci is a real matrix which contains the GIFS coefficients, the size
+         of the signal in Ci(lenght(Ci)) and the number of scales used in the
+         wavelet decomposition in Ci(lenght(Ci)-1).
+       o Ci_idx is a real matrix which ontains the the indexes of the first
+         Ci at each scale.  For instance, Ci(Ci_idx(j) : Ci_idx(j)+ Ci_lg(j)
+         - 1) is a vector containing the GIFS coefficients at scale j (the
+         finest scale is j=1).
+       o Ci_lg is a real vector which contains the length of GIFS coeffi-
+         cients a each scale.  For instance, Ci_lg(1) is the number of the
+         wavelet coefficients a the finest scale.
+       o pc0 is a real scalar which gives the percentage of vanishing GIFS
+         coefficients.
+       o pc_ab is a real scalar which gives the percentage of GIFS coeffi-
+         cients which belong to ]a,b[.
+Algorithm details
+
+See also:
+
+  FWT and MakeQMF.
+
+Example:

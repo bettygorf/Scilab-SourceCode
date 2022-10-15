@@ -1,0 +1,132 @@
+
+
+
+plot2d(2)                      Scilab Function                      plot2d(2)
+
+
+
+
+
+
+NAME
+  plot2d - multiple plot of functions
+
+CALLING SEQUENCE
+  plot2d(x,y,[style,strf,leg,rect,nax])
+
+PARAMETERS
+
+  x,y       : two matrices of the same size [nl,nc].
+
+            nc
+              : is the number of curves
+
+            nl
+              : is the number of points of each curve for example : x=[
+              1:10;1:10]',y= [ sin(1:10);cos(1:10)]'
+
+  style     : is a real vector of size (1,nc). the style to use for curve j
+            is defined by size(j).
+
+            - if style[i] is positive the curve is plotted using the mark of
+              Id style[i],
+
+            - if style[i] is strictly negative a dashed or plain line of id
+              abs(style[i]) is used.
+
+            - When only one curve is drawn style can be of size (1,2)
+              [style,pos] where style is used to specify the style and pos is
+              an integer in the range 1,6 which specifies a position to use
+              for the caption (this can be useful when a user wants to draw
+              multiple curves on a plot by calling the function plot several
+              times and wants to give a caption for each curve)
+
+  strf      : is a string of length 3 "xyz"
+
+            x : captions are displayed if x is the character 1. Captions are
+              given by the string leg "leg1@leg2@...."
+
+            y : controls the computation of the frame
+
+              y=0
+                : the current boundaries ( set by a previous call to an other
+                high level plotting function ) are used.
+
+              y=1
+                : the argument rect is used to specify the boundaries of the
+                plot.  rect=[xmin,ymin,xmax,ymax]
+
+              y=2
+                : the boundaries of the plot are computed using max and min
+                values of x and y.
+
+              y=3
+                : like y=1 but produces isoview scaling
+
+              y=4
+                : like y=2 but produces isoview scaling
+
+              y=5
+                : like y=1 but the boundaries and nax can be changed to pro-
+                duce pretty graduations.  This mode is used when the zoom
+                button is activated.
+
+              y=6
+                : like y=2 but the boundaries and nax can be changed to pro-
+                duce pretty graduations.  This mode is used when the zoom
+                button is activated.
+
+            z : controls the display of information on the frame around the
+              plot
+
+              z=1
+                : an axis is drawn the number of tics can be specified by the
+                nax argument. nax  is a vector with four entries
+                [nx,Nx,ny,Ny] where nx (ny) is the number of subgrads on the
+                x (y) axis and Nx (Ny) is the number of graduations  on the x
+                (y) axis
+
+
+              z=2
+                : the plot is only surrounded by a box
+
+              _o_t_h_e_r _v_a_l_u_e
+                Nothing around the plot
+
+DESCRIPTION
+  plot2d simultaneously plot a set of 2D curves which are given by a set of
+  points using piecewise linear plotting
+
+  Enter the command plot2d() to see a demo.
+
+EXAMPLE
+  x=0:0.1:2*%pi;
+  plot2d([x;x;x]',[sin(x);sin(2*x);sin(3*x)]');
+  plot2d([x;x;x]',[sin(x);sin(2*x);sin(3*x)]',...
+  [-1,-2,3],"111","L1@L2@L3",[0,-2,2*%pi,2],[2,10,2,10]);
+  // isoview
+  plot2d(x',sin(x)',-1,'041')
+  // auto scale
+  plot2d(x',sin(x)',-1,'061')
+
+SEE ALSO
+  plot2d1,plot2d2,plot2d3,plot2d4
+
+AUTHOR
+  J.Ph.C..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

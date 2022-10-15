@@ -1,0 +1,131 @@
+function [t]=soundsec (n,rate)
+	// Return n seconds of t parameter.
+	[lhs,rhs]=argn(0);
+	defaultrate=22050;
+        if rhs <=1 ; rate=defaultrate; end;
+        t= 0:2*%pi/rate:2*n*%pi;
+
+function [z]=savewave(filename,v,rate,bits)
+// Save a vector of sound data in WAV format.
+// Return the length of the sample in seconds.
+// If rate=0, the default sampling rate is taken.
+// bits may be 8 or 16.
+	[lhs,rhs]=argn(0);
+	if rhs <= 3 then bits =16;end
+	if rhs <= 2 then rate =0;end
+	defaultrate=22050;
+        if rate==0; rate=defaultrate; end;
+        mopen(filename,"wb");
+        mputstr("RIFF");
+        if bits==8;
+                n=prod(size(v));
+                mput(n+37,"l");
+                mputstr("WAVEfmt ");
+                mput(16,"l"); mput(1,"s"); mput(1,"s");
+                mput(rate,"l"); mput(rate,"l");
+                mput(1,"s"); mput(8,"s");
+                mputstr("data");
+                mput(n,"l");
+                m=max(abs(v)); v=v/m*64+128;
+                putuchar(v,"uc");
+                putchar(0,"c");
+        elseif bits==16;
+                n=prod(size(v));
+                mput(2*n+36,"l");
+                mputstr("WAVEfmt ");
+                mput(16,"l"); mput(1,"s"); mput(1,"s");
+                mput(rate,"l"); mput(2*rate,"l");
+                mput(2,"s"); mput(16,"s");
+                mputstr("data");
+                mput(2*n,"l");
+                m=max(abs(v)); v=v/m*64*256;
+		pause;
+                mput(v,"s");
+        else error("Bits must be 8 or 16");
+        end
+        mclose();
+	z=prod(size(v))/rate;
+
+function [w]=loadwave (filename)
+// Read a WAV file.
+// The sample rate is stored to defaultrate.
+	defaultrate=22050;
+        mopen(filename,"rb");
+        if mgetstr(4)<>"RIFF"; error("No Wave file!"); end;
+        mget(1,"l");; // This is the total file length minus 8
+        if mgetstr(8)<>"WAVEfmt "; error("No Wave file!"); end;
+        mget(1,"l");; // ??? Is always 16.
+        mget(1,"s"); // ??? Is always 1.
+        if (mget(1,"s")<>1); error("Stereo sample!"); end;
+        rate=mget(1,"l");; mget(1,"l");;
+        byte=mget(1,"s");
+        bits=mget(1,"s");
+        if mgetstr(4)<>"data"; error("No Wave file!"); end;
+        if byte==1;
+		xx=mget(1,"l");
+                w=mget(xx,"uc");
+        elseif byte==2;
+                w=mget(mget(1,"l")/2,"s");
+        else error("Not 8 or 16 bit!");
+        end;
+        if prod(size(w))>0; 
+		w=w-sum(w)/prod(size(w)); w=w/max(abs(w)); end;
+        mclose();
+        defaultrate=rate;
+
+function analyze (w,fmin,fmax,rate,points)
+// Make a frequency plot of the signal w with sampling rate.
+// The data must be at least points long.
+// The maximal frequency plotted will be fmax, the minimal fmin.
+	[lhs,rhs]=argn(0);
+	if ( rhs <= 4 ) then points=8192 ; end ;
+	if ( rhs <= 3 ) then rate=0; end ;
+	if ( rhs <= 2 ) then fmax=1500; end ;
+	if ( rhs <= 1 ) then fmin=10;  end ;
+	defaultrate=22050;
+        if rate==0; rate=defaultrate; end;
+        v=w(1:points);
+        f=abs(fft(v,1));
+        i=fmin/rate*points:fmax/rate*points;
+        fr=i/points*rate;
+        plot2d(fr',f(i)');
+
+function mapsound (w,dt,fmin,fmax,simpl,rate)
+// Plots a sound map for a sound.
+// It does FFT at time increments dt.
+// rate is the sampling rate.
+// simpl points are collected for speed reasons.
+	[lhs,rhs]=argn(0);
+	if ( rhs <= 5 ) then rate=0;end
+	if ( rhs <= 4 ) then simpl=1; end ;
+	if ( rhs <= 3 ) then fmax=1500; end ;
+	if ( rhs <= 2 ) then fmin=100; end ;
+	if ( rhs <= 1 ) then dt=0.1;  end ;
+        n=prod(size(w));
+	defaultrate=22050;
+        if rate==0; rate=defaultrate; end;
+        dp=dt*rate;
+        points=2^floor(log(dp)/log(2));
+        ind=fmin/rate*points/simpl:fmax/rate*points/simpl;
+        f=abs(fft(w(1:points),1));
+        f=sum(matrix(f,points/simpl,simpl),'r')';
+        M=f(ind);
+        i=1;
+        i=i+dp;
+	while i+points <= n;
+                f=abs(fft(w(i:i+points-1),1));
+                f=sum(matrix(f,points/simpl,simpl),'r')';
+                M=[M;f(ind)];
+		i=i+dp;
+        end;
+	[nl,nc]=size(M);
+	if nl=1 ; return;end 
+	x_abs= (0:(nl-1))*(n/rate)/(nl-1);
+	y_abs= (0:(nc-1))/(nc-1);
+	y_abs= fmin*(y_abs-1) + fmax*(y_abs)
+	pause;
+	grayplot(x_abs,y_abs,-M)
+
+
+
+

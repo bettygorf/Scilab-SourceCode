@@ -1,0 +1,59 @@
+aff2ab - linear (affine) function to A,b conversion
+balanc - matrix or pencil balancing
+bdiag - block diagonalization, generalized eigenvectors
+chol - Cholesky factorization
+coff - resolvent (cofactor method)
+colcomp - column compression, kernel, nullspace
+cond - condition number
+det - determinant
+ereduc - computes  matrix column echelon form by qz transformations
+exp - element-wise exponential
+expm - square matrix exponential
+fstair - computes  pencil  column echelon form by qz transformations
+fullrf - full rank factorization
+fullrfk - full rank factorization of A^k
+givens - Givens transformation
+glever - inverse of matrix pencil 
+gschur - generalized Schur form (matrix pencils).
+gspec - eigenvalues of matrix pencil
+hess - Hessenberg form
+im_inv - inverse image
+inv - matrix inverse
+kernel - kernel, nullspace
+kroneck - Kronecker form of matrix pencil
+linsolve - linear equation solver
+lu - LU factors of Gaussian elimination
+ludel - utility function used with lufact
+lufact - sparse lu factorization
+luget - sparse lu factorization
+lusolve - sparse linear system solver
+lyap - Lyapunov equation
+nlev - Leverrier's algorithm 
+orth - orthogonal basis
+pbig - eigen-projection 
+pencan - canonical form of matrix pencil
+penlaur - Laurent coefficients of matrix pencil
+pinv - pseudoinverse
+polar - polar form
+proj - projection
+projspec - spectral operators 
+psmall - spectral projection
+qr - QR decomposition
+quaskro - quasi-Kronecker form
+randpencil - random pencil
+range - range (span) of A^k
+rank - rank
+rcond -  inverse condition number
+rowcomp - row compression, range
+rowshuff - shuffle algorithm
+rref - computes  matrix row echelon form by lu transformations
+schur - [ordered] Schur decomposition
+spaninter - subspace intersection
+spanplus - sum of subspaces
+spantwo - sum and intersection of subspaces
+spec - eigenvalues
+sqroot - W*W' hermitian factorization
+sva - singular value approximation
+svd -  singular value decomposition
+sylv - Sylvester equation.
+trace - trace

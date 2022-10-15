@@ -1,0 +1,11 @@
+ 
+clear;lines(0);
+ 
+s=poly(0,"s");p=1+s+2*s^2;
+ 
+A=rand(2,2);poly(A,"x")
+ ans  =
+ 
+                              2  
+    0.0696391 - 0.5416520x + x   
+ 

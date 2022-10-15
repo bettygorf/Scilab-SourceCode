@@ -1,0 +1,19 @@
+
+xbasc(2)                       Scilab Function                       xbasc(2)
+NAME
+  xbasc - clear a graphic window and erase associated recorded graphics
+
+CALLING SEQUENCE
+  xbasc([win_num])
+
+PARAMETERS
+
+  win_num   : integer scalar or vector
+
+DESCRIPTION
+  clears the graphic window win_num and erase the recorded graphics.  If
+  win_num is omitted, it's the current graphic window.  win_num can also be a
+  vector of window Id to clear a set of windows
+
+SEE ALSO
+  xclear

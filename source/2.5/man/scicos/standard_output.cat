@@ -1,0 +1,27 @@
+
+standard_output(Janvier 1997)                   standard_output(Janvier 1997)
+NAME
+  standard_output - get Scicos block output port positions
+
+CALLING SEQUENCE
+  [x,y,typ]=standard_output(o)
+
+PARAMETERS
+
+  o         : Scicos block data structure (see scicos_block)
+
+  x         : vector of x coordinates of the block regular and event output
+            ports
+
+  y         : vector of y coordinates of the block regular and event output
+            ports
+
+  typ       : vector of output ports types (+1 : regular port; -1:event port)
+DESCRIPTION
+  standard_output is the Scilab function used to get standard blocks output
+  port position and types in interfacing functions.
+
+  Port positions are computed, each time they are required, as a function of
+  block dimensions.
+SEE ALSO
+  scicos_block

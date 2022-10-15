@@ -1,0 +1,30 @@
+.TH leverrie 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+leverrier - Leverrier's algorithm
+.SH CALLING SEQUENCE
+.nf
+[NUM,DEN]=leverrier(H,F,G)
+.fi
+.SH PARAMETERS
+.TP 12
+H,F,G
+: real matrices of appropriate dimensions
+.TP 
+NUM
+: polynomial matrix
+.TP
+den
+: polynomial
+.SH DESCRIPTION
+.Vb [NUM,den]=leverrier(H,F,G)
+computes the transfer matrix \fVnum./den\fR
+such that:
+.LP
+\fVNUM./den = H*(s*eye-F)^(-1)*G\fR by Leverrier's algorithm.
+.SH Remark
+Use preferably ss2tf. 
+.SH SEE ALSO
+glever, coff, coffg, detr, determ, nlev
+
+

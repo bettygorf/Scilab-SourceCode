@@ -1,0 +1,7 @@
+
+LOOKUP_f(5)                      Scicos Block                     LOOKUP_f(5)
+NAME
+  LOOKUP_f - Scicos Lookup table with graphical editor
+
+DESCRIPTION
+  This block realizes a non-linear function defined using a graphical editor.

@@ -1,0 +1,66 @@
+
+
+
+xinit(2)                       Scilab Function                       xinit(2)
+
+
+
+
+
+
+NAME
+  xinit - initialisation of a graphic driver
+
+CALLING SEQUENCE
+  xinit([driver-name])
+
+PARAMETERS
+
+  driver-name    : string (default value : DISPLAY value or 'unix:0.0')
+
+DESCRIPTION
+  Initialisation of a given driver.
+
+  For X-Window driver-name must be a string which gives the name of a display
+  and this function creates a new graphic window. If the argument is omitted
+  the value of the environment variable DISPLAY is used if it exists or the
+  value 'unix:0.0' is used.
+
+  For Postscript or Xfig driver-name is a name of a file. The graphics opera-
+  tions will be recorded in the specified file.
+
+AUTHOR
+  J.Ph.C.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

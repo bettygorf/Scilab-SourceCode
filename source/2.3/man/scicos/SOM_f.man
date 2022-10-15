@@ -1,0 +1,24 @@
+.TH SOM_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+SOM_f - Scicos addition block
+.SH DIALOGUE PARAMETERS
+.TP 
+Input signs
+: a (1x3) vector of +1 and -1. If -1, the corresponding input is
+multiplied by -1 before addition.
+.SH DESCRIPTION
+This block is a sum. The output is the element-wise sum of the inputs.
+
+Input ports are located at up, left or right and down position.
+You must specify 3 gain numbers but if only two links are 
+connected only the first values are used, ports are numbered  anti-clock wise.
+.SH SEE ALSO
+GAIN_f
+
+
+
+
+
+
+

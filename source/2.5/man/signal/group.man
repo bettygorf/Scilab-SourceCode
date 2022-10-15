@@ -1,0 +1,54 @@
+.TH group 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+group - group delay for digital filter
+.SH CALLING SEQUENCE
+.nf
+[tg,fr]=group(npts,a1i,a2i,b1i,b2i)
+.fi
+.SH PARAMETERS
+.TP 10
+npts
+: integer : number of points desired in calculation of group delay
+.TP
+a1i
+: in coefficient, polynomial, rational polynomial, or
+cascade polynomial form this variable is the transfer
+function of the filter. In coefficient polynomial
+form this is a vector of coefficients (see below).
+.TP
+a2i
+: in coeff poly form this is a vector of coeffs
+.TP
+b1i
+: in coeff poly form this is a vector of coeffs
+.TP
+b2i
+: in coeff poly form this is a vector of coeffs
+.TP
+tg
+: values of group delay evaluated on the grid fr
+.TP
+fr
+: grid of frequency values where group delay is evaluated
+.SH DESCRIPTION
+Calculate the group delay of a digital filter
+with transfer function h(z).
+.LP
+The filter specification can be in coefficient form,
+polynomial form, rational polynomial form, cascade
+polynomial form, or in coefficient polynomial form.
+.LP
+In the coefficient polynomial form the transfer function is
+formulated by the following expression
+.LP
+ \fVh(z)=prod(a1i+a2i*z+z**2)/prod(b1i+b2i*z+z^2)\fR
+.SH EXAMPLE
+.nf
+z=poly(0,'z');
+h=z/(z-.5);
+[tg,fr]=group(100,h);
+plot(fr,tg)
+.fi
+.SH AUTHOR
+C. B.

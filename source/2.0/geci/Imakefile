@@ -1,0 +1,19 @@
+/**/include ../Path.incl
+#include "../Imake.incl"
+
+OBJS = buffer_dynamiques.o connexion.o formatage_messages.o gestion_memoire.o \
+	listes_chainees.o scr_applications.o scr_liaisons.o scr_messages.o \
+	scruteur.o utilitaires.o
+
+SRCS =$(OBJS:.o=.c)
+
+PROGRAM = $(SCIDIR)/bin/geci
+
+NP=NullParameter
+
+AllTarget($(PROGRAM))
+NormalProgramTarget($(PROGRAM),$(OBJS),$(NP),$(NP),$(NP))
+DependTarget()
+
+distclean:: clean
+

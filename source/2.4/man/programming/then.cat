@@ -1,0 +1,10 @@
+
+then(1)                        Scilab Function                        then(1)
+NAME
+  then - keyword in if-then-else
+
+DESCRIPTION
+  Used with if.
+
+SEE ALSO
+  if

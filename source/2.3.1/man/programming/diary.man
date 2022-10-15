@@ -1,0 +1,15 @@
+.TH diary 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+diary - diary of session
+.SH CALLING SEQUENCE
+.nf
+diary('file-name')
+.fi 
+.SH DESCRIPTION
+\fVdiary\fR creates a file which contains a copy of the current Scilab
+session. \fVdiary(0)\fR interrupts the diary.
+.SH SEE ALSO
+exec, unix
+
+

@@ -1,0 +1,18 @@
+.TH sign 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sign - sign function
+.SH DESCRIPTION
+ \fVX=sign(A)\fR returns the matrix made
+of the signs of \fVA(i,j)\fR.For complex \fVA\fR, \fVsign(A) = A./abs(A)\fR.
+function.
+.SH EXAMPLE
+.nf
+sign(rand(2,3))
+sign(1+%i)
+.fi
+.SH SEE ALSO
+abs
+
+
+

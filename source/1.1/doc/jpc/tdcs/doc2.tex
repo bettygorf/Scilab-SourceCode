@@ -1,0 +1,189 @@
+\documentstyle[modif.article]{article}
+\textheight=660pt 
+\textwidth=470pt 
+\topmargin=-27pt 
+\oddsidemargin=0pt 
+\evensidemargin=0pt 
+\title{Travaux dirig\'es 2}
+\author{J.Ph. Chancelier et M. Cohen de Lara}
+\begin{document}
+\maketitle 
+\def\cmarg{\hspace{1cm}}
+\def\tit#1{ \begin{center} \fbox{{\bf  #1}} \end{center}}
+
+\input{TdAuto2.tex}
+\centerline{{\bf Le fichier des macros de la s\'eance de T.D. 2}}
+
+\Mhlp
+
+La macro {\bf tdinit} doit \^etre appel\'ee par {\bf tdinit()} pour initialiser
+le T.D.
+
+\Mtdinit
+
+\section{Premi\`ere partie : un mod\`ele proie/pr\'edateur}
+
+\tit{pp}
+
+Cette macro d\'efinit le champ de vecteurs correspondant \`a une dynamique
+proie/pr\'edateur, avec pour param\`etre le taux de mortalit\'e $u$ d\^u \`a 
+un insecticide qui agit \`a la fois sur la proie et le pr\'edateur.
+\medskip
+
+\Mpp
+
+\tit{equilpp}
+
+Cette macro calcule les points d'\'equilibre du champ de vecteurs
+pr\'ec\'edent {\bf pp} pour un taux de mortalit\'e $ue$ donn\'e.
+\medskip
+
+\Mequilpp
+
+\centerline{{\sc Questions}}
+
+\begin{itemize}
+\item Taper la commande {\bf equilpp(0)} puis, en fonction du
+r\'esultat, choisir un cadre convenable et visualiser le champ de
+vecteurs {\bf pp} par une commande du type 
+{\bf fchamp(pp,0,?:?:?,?:?:?)}. Visualiser quelques trajectoires
+gr\^ace \`a la commande {\bf portrait(pp)}.
+\item Comment se d\'eplace le point d'\'equilibre lorsque la commande $u$
+cro\^{\i}t~? Commenter~!  Pour visualiser des trajectoires ou des champs de vecteurs correspondant \`a des valeurs non nulle de $u$,
+ on remplacera {\bf pp} par {\bf list(pp,u)} dans l'appel de portrait 
+ou de fchamp en donnant \`a u la valeur num\'erique souhait\'ee.
+\item Pour certaines valeurs de la commande $u$, on obtient un point 
+d'\'equilibre \`a composante n\'egative. Commenter.
+\end{itemize}
+
+
+
+\centerline{{\sc Questions}}
+
+Le macro {\bf tangent} permet d'obtenir les matrices $f,g$
+du mod\`ele {\bf pp}
+lin\'earis\'e autour du point d'\'equilibre donn\'e par {\bf equilpp$(ue)$}. 
+De plus cette macro renvoie comme dernier argument une nouvelle macro 
+qui donne la dynamique
+du syst\`eme lin\'earis\'e autour de {\bf (equilpp$(ue)$,$ue$)}.
+
+\begin{itemize}
+\item Utiliser la macro {\bf tangent}  pour d\'efinir un champ de vecteurs
+lin\'eaire {\bf pplin} qui repr\'esente la dynamique lin\'earis\'ee
+autour d'un point d'\'equilibre fix\'e {\bf $xe$ = equilpp$(ue)$}. 
+La syntaxe en est $<f,g,pplin>=$ {\bf tangent('pp',equilpp$(ue)$,$ue$)}.
+
+\item Superposer le champ {\bf pp} et le champ {\bf pplin}
+autour du point d'\'equilibre retenu. On fera attention au moment de l'appel
+ de {\bf champ} ou de {\bf portrait} \`a utiliser {\bf list(pplin,$ue$)} 
+pour donner la valeur de la commande {\bf ue}.
+Visualiser quelques trajectoires
+gr\^ace \`a la commande {\bf portrait}. Commenter.
+\end{itemize}
+
+\section{Deuxi\`eme partie : un mod\`ele de comp\'etition}
+
+\subsection{Le mod\`ele}
+
+\tit{compet}
+
+Cette macro d\'efinit le champ de vecteurs correspondant \`a une dynamique
+de comp\'etition pour une m\^eme ressource entre deux esp\`eces, 
+avec pour param\`etre $u$ l'inverse du niveau de la ressource.
+\medskip
+
+\Mcompet
+
+\tit{equilcom}
+
+Cette macro calcule les points d'\'equilibre du champ de vecteurs
+pr\'ec\'edent {\bf compet} pour un niveau de ressource $1/u$.
+\medskip
+
+\Mequilcom
+
+\centerline{{\sc Questions}}
+
+\begin{itemize}
+\item Taper la commande {\bf equilcom(1)} puis, en fonction du
+r\'esultat, choisir un cadre convenable et visualiser le champ de
+vecteurs {\bf compet} par une commande du type 
+{\bf fchamp(list(compet,1),0,?:?:?,?:?:?)}. Visualiser quelques trajectoires
+gr\^ace \`a la commande {\bf portrait(list(compet,1),\ldots)} et interpr\'eter.
+\item Observer le d\'eplacement du point d'\'equilibre 
+et la modification du champ de vecteurs lorsque la commande $u$
+varie. Commenter.
+\end{itemize}
+
+\subsection{Le mod\`ele lin\'earis\'e }
+
+\tit{lincomp}
+
+\Mlincomp
+
+\centerline{{\sc Questions}}
+Taper la commande $<f,g,h,complin>=${\bf lincomp$(ue)$} puis
+tester la commandabilit\'e et l'observabilit\'e du triplet
+$f$,$g$,$h$ pour diff\'erentes valeurs de $ue$ gr\^ace \`a la
+commande {\bf contr($f,g$)} (faire {\bf help contr}). 
+La macro {\bf complin} donne la dynamique du syst\`eme 
+lin\'earis\'e autour du point d'\'equilibre ({\bf equilcom}$(ue)$,$ue$) 
+et on peut visualiser les trajectoires 
+et le champ associ\'es avec les commandes 
+{\bf portrait(list(complin,$ue$),\ldots)} et 
+{\bf fchamp(list(complin,$ue$),\ldots)}.
+
+
+\subsection{Commande lin\'eaire par placement de p\^oles}
+
+\tit{gaincom}
+
+\Mgaincom
+
+\tit{gainobs}
+
+\Mgainobs
+
+\tit{simulcom}
+Cette macro simule le syst\`eme boucl\'e par observateur-contr\^oleur
+et affiche la deuxi\`eme composante de l'\'etat et son estim\'ee
+au cours du temps.
+
+\Mboucle
+
+\centerline{{\sc Questions}}
+\begin{itemize}
+ \item Apr\`es avoir cr\'e\'e les variables globales $xe$,$ue$,$f$,$g$,$h$,
+r\'egler les deux gains $k$ et $l$ de fa\c{c}on ``satisfaisante''
+( p\^oles de l'ordre de $- 1/100$).
+  \item Taper {\bf boucle('bcomp',\ldots)}, pour visualiser le syst\`eme 
+  observ\'e comand\'e. On choisira dans un premier temps n=200,pas=10.
+  Observer l'influence des non-lin\'earit\'es suivant le choix du point initial
+$x0$.
+ \item Bruiter la sortie en tapant {\bf boucle('bcomp',0.5)}
+Qu'observe-t-on~?
+ \item Changer les valeurs des gains sur l'observateur et la commande et 
+reprendre les questions ci-dessus.
+ \item La macro obscont permet de cr\'eer un syst\`eme dynamique 
+  observ\'e-control\'e \`a partir d'un syst\`eme donn\'e. 
+Taper {\bf compet1=obscont('compet')} et visualiser compet1 avec 
+{\bf disp(compet1)}. La macro {\bf boucle}
+int\`egre en fait une version en Fortran de la macro cr\'e\'ee et
+on peut maintenant utiliser {\bf compet1 } dans la macro {\bf boucle}.
+\end{itemize}
+
+\Mobscont	
+
+\tit{test}
+Cette macro fournit comme premier argument la partie lin\'eaire
+du syst\`eme boucl\'e par observateur-contr\^oleur calcul\'ee
+ par lin\'earisation. Son deuxi\`eme argument en est la valeur th\'eorique.
+\medskip
+
+\Mtest
+
+\centerline{{\sc Questions}}
+Tester~!
+
+\end{document}
+

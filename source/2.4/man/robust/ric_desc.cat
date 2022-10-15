@@ -1,0 +1,50 @@
+
+ric_desc(1)                    Scilab Function                    ric_desc(1)
+NAME
+  ric_desc - Riccati equation
+
+CALLING SEQUENCE
+  X=ric_desc(H [,E))
+  [X1,X2,zero]=ric_desc(H [,E])
+
+PARAMETERS
+
+  H,E         : real square matrices
+
+  X1,X2       : real square matrices
+
+  zero        : real number
+
+DESCRIPTION
+  Riccati solver with hamiltonian matrices as inputs.
+
+  In the continuous time case calling sequence is (one input): ric_descr(H)
+
+  Riccati equation is:
+    (Ec)   A'*X + X*A + X*R*X -Q = 0.
+  Defining the hamiltonian matrix H by:
+   H = [A  R;
+        Q -A']
+  with the calling sequence [X1,X2,zero]=ric_descr(H), the solution X is
+  given by X=X1/X2.
+
+  zero = L1 norm of rhs of (Ec)
+
+  The solution X is also given by X=riccati(A,Q,R,'c'))
+
+  In the discrete-time case calling sequence is (two inputs): ric_descr(H,E)
+
+  The Riccati equation is:
+     (Ed)  A'*X*A-(A'*X*B*(R+B'*X*B)^-1)*(B'*X*A)+C-X = 0.
+  Defining G=B/R*B' and the hamiltonian pencil (E,H) by:
+        E=[eye(n,n),G;               H=[A, 0*ones(n,n);
+           0*ones(n,n),A']             -C, eye(n,n)];
+  with the calling sequence [X1,X2,err]=ric_descr(H,E), the solution X is
+  given by X=X1/X2.
+
+  zero= L1 norm of rhs of (Ed)
+
+  The solution X is also given by X=riccati(A,G,C,'d') with G=B/R*B'
+
+SEE ALSO
+  riccati

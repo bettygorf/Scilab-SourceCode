@@ -1,0 +1,6 @@
+//exec('plot.4.code')
+//Demonstrate macro plzr
+   xinit('plot.4.ps');
+   hz=iir(3,'lp','butt',[.25 0],[0 0])
+   plzr(hz)
+   xend(),

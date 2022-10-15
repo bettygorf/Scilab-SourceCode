@@ -1,0 +1,60 @@
+.TH write 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME 
+write -  write in a formatted file
+.SH DESCRIPTION
+.nf
+write(file-desc,a,[format])
+write(file-desc,a,k,format)  
+.fi
+.SH PARAMETERS
+.TP 10
+file-desc
+: character string specifying the file name or integer value
+specifying logical unit (see file).
+.TP 10
+a         
+: real matrix or column vector of character strings.
+.TP 10
+format 
+: character string, specifies a "Fortran" format. This
+character string must begin with a right parenthesis and end with a
+left parenthesis. Formats cannot mix floating point , integer or
+character edition modes
+.TP 10
+k
+: integer vector 
+.SH DESCRIPTION
+writes row-by-row a real matrix or a column vector of character
+strings in a formatted file.  Each row of the \fVa\fR argument begin
+in a new line of \fVfile-desc\fR file. Depending on \fVformat\fR a
+given row of the \fVa\fR argument may be written in more than one line
+of \fVfile-desc\fR file.
+.LP
+Format examples : \fV(1x,e10.3,5x,3(f3.0))\fR  ,  \fV(10x,a20)\fR ;
+
+See a Fortran book for more precision.
+.LP
+Direct access files :
+\fVx=write(file_desc,a,k,format)\fR.
+Here \fVk\fR is the vector of records (one record by row, i.e. 
+\fVm=prod(size(k)\fR)
+.LP
+\fVwrite(%io(2),....)\fR writes on Scilab's window.
+.SH EXAMPLE
+.nf
+if MSDOS then unix('del asave');
+else unix('rm -f asave'); end
+A=rand(5,3); write('asave',A); A=read('asave',5,3);
+write(%io(2),A,'('' | '',3(f10.3,'' | ''))')
+write(%io(2),string(1:10))
+write(%io(2),strcat(string(1:10),','))
+write(%io(2),1:10,'(10(i2,3x))')
+
+if MSDOS then unix('del foo');
+else unix('rm -f foo'); end
+write('foo',A)
+.fi
+.SH SEE ALSO
+file, writb, read, print, string, fprintf, printf, sprintf
+

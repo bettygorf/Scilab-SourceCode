@@ -1,0 +1,23 @@
+
+chfact(G)                      Scilab Function                      chfact(G)
+NAME
+  chfact - sparse Cholesky factorization
+
+CALLING SEQUENCE
+  spcho=chfact(A)
+
+PARAMETERS
+
+  A    : square symmetric positive sparse matrix
+
+  spcho
+       : list containing the Cholesky factors in coded form
+
+DESCRIPTION
+  spcho=chfact(A) computes the sparse Cholesky factors of sparse matrix A,
+  assumed symmetric positive definite.  This function is based on the Ng-Pey-
+  ton programs (ORNL). See the Fortran programs for a complete description of
+  the variables in spcho. This function is to be used with chsolve.
+
+SEE ALSO
+  chsolve, sparse, lufact, luget, spchol

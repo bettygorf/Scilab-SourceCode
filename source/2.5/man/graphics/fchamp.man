@@ -1,0 +1,59 @@
+.TH fchamp 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+fchamp - direction field of a 2D first order ODE
+.SH CALLING SEQUENCE
+.nf
+fchamp(f,t,xr,yr,[arfact,rect,strf])
+.fi
+.SH PARAMETERS
+.TP 7
+f
+: An external (function or character string) or a list which describes the ODE. 
+.RS 
+.TP 3
+-
+It can be a function name \fVf\fR,
+where \fVf\fR is supposed to be a function of type \fVy=f(t,x,[u])\fR.
+\fVf\fR returns 
+a column vector of size 2, \fVy\fR, which gives the value of the 
+direction field
+\fVf\fR at point \fVx\fR and at time \fVt\fR.
+.TP
+-
+It can also be an object of type list,
+\fVlist(f,u1)\fR
+where \fVf\fR is a function of type \fVy=f(t,x,u)\fR and \fVu1\fR gives the value of the parameter \fVu\fR.
+.RE
+.TP 
+t 
+: The selected time.
+.TP 
+xr,yr
+: Two row vectors of size n1 and n2 which define the grid on which
+the direction field is computed. 
+.TP 
+arfact,rect,strf
+: Optional arguments, see \fVchamp\fR.
+.SH DESCRIPTION 
+\fVfchamp\fR is used to draw the direction field of a 2D first order ODE
+defined by the external function \fVf\fR. Note that if the ODE is autonomous,
+argument \fVt\fR is useless, but it must be given.
+
+Enter the command \fVfchamp()\fR to see a demo.
+.SH EXAMPLE
+.nf
+deff("[xdot] = derpol(t,x)",..
+        ["xd1 = x(2)";..
+         "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
+         "xdot = [ xd1 ; xd2 ]"])
+xf= -1:0.1:1;
+yf= -1:0.1:1;
+fchamp(derpol,0,xf,yf)
+xbasc()
+fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011")
+.fi
+.SH SEE ALSO
+champ, champ1
+.SH AUTHOR
+J.Ph.C.

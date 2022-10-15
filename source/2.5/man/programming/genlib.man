@@ -1,0 +1,39 @@
+.TH genlib 1 "April 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+genlib - building lib with all functions defined in a directory
+.SH CALLING SEQUENCE
+.nf
+getd(lib-name [,path])
+.fi
+.SH PARAMETERS
+.TP 10
+lib-name
+: Scilab string. The variable name of the library to (re)create
+.TP
+path
+: Scilab string. The directory pathname. Default value is the current
+directory
+
+.SH DESCRIPTION
+For each \fVxxxxx.sci\fR files (containing Scilab functions) defined
+in the \fVpath\fR directory, this function executes a getf of
+\fVxxxxx.sci\fR if \fVxxxxx.bin\fR does not exist or is older and
+saves the functions defined in the file in a \fVxxxxx.bin\fR file in
+the given directory
+
+When all \fVxxxxx.sci\fR files have been proceed \fVgenlib\fR creates
+a library variable named \fVlib-name\fR in the scilab environment and
+save it in the file named \fVlib\fR in the given directory
+
+.SH EXAMPLE
+.nf
+genlib('auto1','SCI/macros/auto')
+disp(auto1)
+.fi
+.SH SEE ALSO
+getf, lib
+
+
+
+

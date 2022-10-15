@@ -1,0 +1,27 @@
+.TH xfarc 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xfarc - fill a part of an ellipsis 
+.SH CALLING SEQUENCE
+.nf
+[]=xfarc(x,y,w,h,a1,a2)
+.fi
+.SH PARAMETERS
+.TP 15
+x,y,w,h
+: real scalars (rectangle def)
+.TP 15
+a1,a2
+: real scalars (angle def)
+.SH DESCRIPTION
+Fills a portion of an ellipsis contained in the rectangle \fV(x,y,w,h)\fR
+( upper-left point, width, height), and in the sector delimited by 
+the angle \fValpha1\fR and the angle \fValpha1+alpha2\fR. \fValpha1\fR and \fValpha2\fR are 
+given respectively by \fVa1/64\fR degrees and \fVa2/64\fR degrees.
+This function uses the current graphic state
+which can be set by calling a high level drawing function such as \fVplot2d\fR.
+.SH SEE ALSO
+xarcs,xarc.
+.SH AUTHOR
+J.Ph.C..
+

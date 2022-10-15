@@ -1,0 +1,37 @@
+.TH xsetech 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xsetech - set the current scale and frame
+.SH CALLING SEQUENCE
+.nf
+[]=xsetech(wrect [,frect])
+.fi
+.SH PARAMETERS
+.TP 10
+wrect
+: 4 real values (plotting rectangle def)
+.TP 10
+frect
+: 4 real values (graphic rectangle def, default value is [0,0,1,1])
+.SH DESCRIPTION
+This function fixes the current graphic scale. \fVfrect=[xmin,ymin,xmax,ymax]\fR
+stands for the boundaries that the user wants on his graphics.
+\fVwrect=[x,y,w,h]\fR ( Upper-Left Width Height ) is used to specify the 
+region of the graphic window that the user wants to use for plotting.
+The values in \fVwrect\fR are specified using proportion of the width 
+or height of the graphic window. 
+.LP
+This function sets the part of the graphic window which will be used 
+for graphics and the current graphic scales for 2D plottings
+and can be used in conjunction whith graphic routines which request
+the current graphic scale (for example \fVstrf="x0y"\fR in \fVplot2d\fR ).
+It is not yet fully released.
+.LP
+\fVwrect=[0,0,1.0,1.0]\fR means that all the graphic window will be used.
+.LP
+\fVwrect=[0.5,0,0.5,1.0]\fR means that the graphic region will be the right 
+half of the graphic window.
+.SH AUTHOR
+J.Ph.C.
+
+

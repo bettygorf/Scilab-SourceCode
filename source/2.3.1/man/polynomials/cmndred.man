@@ -1,0 +1,24 @@
+.TH cmndred 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+cmndred - common denominator form
+.SH CALLING SEQUENCE
+.nf
+[n,d]=cmndred(num,den)
+.fi
+.SH PARAMETERS
+.TP 10
+num, den
+: two polynomial matrices of same dimensions
+.SH DESCRIPTION
+.Vb [n,d]=cmndred(num,den)
+computes a polynomial matrix \fVn\fR and 
+a common denominator polynomial \fVd\fR such that:
+.LP
+\fVn/d=num./den\fR
+.LP
+The rational matrix defined by \fVnum./den\fR is \fVn/d\fR
+.SH SEE ALSO
+simp, clean
+
+

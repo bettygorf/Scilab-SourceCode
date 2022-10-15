@@ -1,0 +1,35 @@
+.TH asinh 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+asinh - hyperbolic sine inverse
+.SH CALLING SEQUENCE
+.nf
+[t]=asinh(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex vector/matrix
+.TP 10
+t
+: real or complex vector/matrix
+.SH DESCRIPTION
+The entries of \fVt\fR are the hyperbolic sine inverse of the 
+corresponding entries of \fVx\fR.
+Definition domain is ]-1,i[
+It takes his values in sets
+.IG
+.nf 
+  ]-inf,inf[ x ]-pi/2,pi/2[, 
+  ]-inf,0[ x [-pi/2] and   [0,inf] x [pi/2] (real x imag)
+.fi
+.FI
+\" This is for LaTeX 
+.LA    $$  ]-\infty +\infty[\times  ] -\pi/2,\pi/2[ $$
+.LA    $$ [-\infty,0[  \times [-\pi/2] \quad\mbox{and} 
+.LA   \quad [0,\infty] \times [\pi/2] \quad \mbox{(real x imag)} $$
+.SH EXAMPLE
+.nf
+A=[1,2;2,3]
+sinh(asinh(A))
+.fi

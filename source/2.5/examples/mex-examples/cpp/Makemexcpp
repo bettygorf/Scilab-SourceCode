@@ -1,0 +1,129 @@
+# Generated automatically from Makefile.in by configure.
+SHELL = /bin/sh
+
+
+#******************************************************************* 
+# A rajouter ds Makefile.incl.in pour que le configure de  libtool nous le 
+# donne
+
+top_builddir = $(SCIDIR)
+DLLTOOL = 
+LD = ld
+LIBM = 
+LIBTOOL = $(SHELL) $(top_builddir)/libtool
+LIBTOOL_DEPS = config/ltconfig config/ltmain.sh
+LN_S = ln -s
+NM = /usr/bin/nm -B
+OBJDUMP = 
+RANLIB = ranlib
+STATIC = 
+CC = gcc
+CPP = g++
+CPPFLAGS = 
+LDFLAGS = -lstdc++
+LIBS = 	-ltclsub -lg++ -lstdc++ -lgcc -lX11  -lm -lc 
+
+INCLUDES= -I$(SCIDIR)/routines 
+CFLAGS = $(CC_OPTIONS) $(CC_PICFLAGS) 
+COMPILE = $(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+CPPCOMPILE = $(CPP) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+LTCPPCOMPILE = $(LIBTOOL) --mode=compile $(CPP) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+LINK = $(LIBTOOL) --mode=link $(CC) $(CFLAGS) $(LDFLAGS) -o $@
+
+OBJECTS = $(MEXOBJECTS:.o=.lo) $(LIBRARY)_gateway.lo $(OTHEROBJECTS:.o=.lo)
+MEXOBJECTS = $(MEXSOURCES:.cpp=.o)
+OTHEROBJECTS = $(OTHERSOURCES:.cpp=.o)
+FUNCTIONS = $(MEXNAMES)
+#******************************************************************* 
+
+all::  CLEAROLD GATEWAYS $(OTHEROBJECTS) $(LIBRARY)_gateway.lo $(LIBRARY).la $(LIBRARY).sce 
+
+.SUFFIXES:
+.SUFFIXES: .c .lo .o .f .cpp
+
+$(LIBRARY).la : $(OBJECTS) 
+	@$(LINK) -rpath `pwd` -module -avoid-version -export-dynamic $(OBJECTS);
+	@$(LIBTOOL) --mode=install cp $(LIBRARY).la `pwd`/$(LIBRARY).la 
+
+.c.o:
+	@$(COMPILE) -c $<
+
+.c.lo:
+	@$(LTCOMPILE) -c $<
+
+.cpp.o:
+	@$(CPPCOMPILE) -c $<
+
+.cpp.lo :
+	@$(LTCPPCOMPILE) -c $<
+
+
+$(LIBRARY)_gateway.c: 
+	@echo "-- Generating the C function $(LIBRARY)_gateway.c";
+	@echo "#include \"mex.h\" " > $(LIBRARY)_gateway.c;
+	@for i in $(FUNCTIONS) ;\
+	do (\
+	echo "extern Gatefunc mex_$$i;" >> $(LIBRARY)_gateway.c; \
+	); \
+	done
+	@echo "static GenericTable Tab[]={" >> $(LIBRARY)_gateway.c;
+	@for i in $(FUNCTIONS) ;\
+	do (\
+	echo "{mex_gateway, mex_$$i , \"error msg\"}," >> $(LIBRARY)_gateway.c; \
+	); \
+	done
+	@echo "	 };" >> $(LIBRARY)_gateway.c;
+	@echo "int C2F($(LIBRARY)_gateway)()" >> $(LIBRARY)_gateway.c;
+	@echo "{  Rhs = Max(0, Rhs);" >> $(LIBRARY)_gateway.c;
+	@echo "(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);" >> $(LIBRARY)_gateway.c;
+	@echo "  return 0;" >> $(LIBRARY)_gateway.c;
+	@echo "}" >> $(LIBRARY)_gateway.c;
+	@rm -f  $(LIBRARY)_gateway.o ;
+
+$(LIBRARY).sce:
+	@echo "-- Generating the Scilab script $(LIBRARY).sce";
+	@echo "scilab_functions =[..." >> script;
+	@for i in $(FUNCTIONS) ;\
+	do (\
+	echo "                  \"$$i\"; " >> script; \
+	); \
+	done
+	@echo "           ];" >> script;
+	@echo "addinter(\"$(LIBRARY).so\",\"$(LIBRARY)_gateway\",scilab_functions);" >> script;
+	@mv script $(LIBRARY).sce; 
+	@rm -f script;
+	@echo "------------------------------------------";
+	@echo "To load $(FUNCTIONS)";
+	@echo "        functions, at Scilab prompt, enter:";
+	@echo "-->exec $(LIBRARY).sce";
+	@echo "------------------------------------------";
+	@echo "Don't forget: ";
+	@echo "LD_LIBRARY_PATH=`pwd`; export LD_LIBRARY_PATH";
+	@echo "or";
+	@echo "setenv LD_LIBRARY_PATH `pwd`";
+
+clean	::
+	$(RM) *.o *.lo
+	rm -f $(LIBRARY).sce
+	rm -f $(LIBRARY)_gateway.c
+	rm -f $(LIBRARY).la
+	rm -f $(LIBRARY).so
+	rm -f -r .libs
+
+distclean:: clean 
+	$(RM) -f -r .libs  $(LIBRARY).*
+	rm -f $(LIBRARY).sce
+	rm -f $(LIBRARY)_gateway.c
+
+$(LIBRARY)_gateway.lo: $(LIBRARY)_gateway.c
+	@$(LTCOMPILE) -c $(LIBRARY)_gateway.c
+
+
+GATEWAYS: $(MEXOURCES)
+	@./compilemex.sh '$(MEXSOURCES)' '$(MEXNAMES)' '$(LTCPPCOMPILE)'
+
+CLEAROLD:
+	rm -f $(LIBRARY).sce
+	rm -f $(LIBRARY)_gateway.c
+

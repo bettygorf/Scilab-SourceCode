@@ -1,0 +1,5 @@
+deff('[Cl]=compen(Sl,Kr,Ko)',[ '[A,B,C,D]=abcd(Sl);';
+       'A1=[A-B*Kr ,B*Kr; 0*A ,A-Ko*C]; Id=eye(A);';
+       'B1=[Id     ,0*Ko; Id  ,-Ko   ];';
+       'C1=[C ,0*C];Cl=syslin(''c'',A1,B1,C1)' ]) 
+comp(compen)

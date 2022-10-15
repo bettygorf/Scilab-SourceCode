@@ -1,0 +1,27 @@
+.TH analyze 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+analyze - frequency plot of a sound  signal
+.SH CALLING SEQUENCE
+ analyze (w [,fmin,fmax,rate,points])
+.fi
+.SH PARAMETERS
+fmin,fmax,rate,points
+: scalars. default values fmin=100,fmax=1500,rate=22050,points=8192;
+.SH DESCRIPTION
+Make a frequency plot of the signal \fVw\fR with sampling rate \fVrate\fR.
+The data must be at least \fVpoints\fR long.
+The maximal frequency plotted will be \fVfmax\fR, the minimal \fVfmin\fR.
+.SH EXAMPLE
+.nf
+// At first we create 0.5 seconds of sound parameters.
+t=soundsec(0.5);
+// Then we generate the sound.
+s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
+[nr,nc]=size(t);
+s(nc/2:nc)=sin(330*t(nc/2:nc));
+analyze(s);
+.fi 
+
+
+

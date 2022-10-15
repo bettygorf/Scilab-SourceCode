@@ -1,0 +1,66 @@
+
+
+
+RICC(G)                        Scilab Function                        RICC(G)
+
+
+
+
+
+
+NAME
+  ricc - Riccati equation
+
+CALLING SEQUENCE
+  [X]=ricc(A,B,C,"cont")
+  [X]=ricc(F,G,H,"disc")
+
+PARAMETERS
+
+  A,B,C     : real matrices of appropriate dimensions
+
+  F,G,H     : real matrices of appropriate dimensions
+
+  X         : real matrix
+
+  "cont","disc"' : imposed string (flag for continuous or discrete)
+
+DESCRIPTION
+  Riccati solver.
+
+   [1mContinuous time
+    [0mX=ricc(A,B,C,'cont')
+  gives a solution to the continuous time ARE
+    A'*X+X*A-X*B*X+C=0 .
+  B and C are assumed to be nonnegative definite.  (A,G) is assumed to be
+  stabilizable with G*G' a full rank factorization of B.
+
+  (A,H) is assumed to be detectable with H*H' a full rank factorization of C.
+
+
+   [1mDiscrete time
+    [0mX=ricc(F,G,H,'disc')
+  gives a solution  to the discrete time ARE
+    X=F'*X*F-F'*X*G1*((G2+G1'*X*G1)^-1)*G1'*X*F+H
+  F is assumed invertible and   G = G1*inv(G2)*G1'.
+
+  One  assumes  (F,G1) stabilizable and (C,F) detectable with C'*C full rank
+  factorization of H.
+
+SEE ALSO
+  riccati, ric_desc, schur, gschur
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

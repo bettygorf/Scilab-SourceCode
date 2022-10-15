@@ -1,0 +1,171 @@
+.TH overloading 1 "April 1993" "Scilab Group" "Scilab keyword"
+.so ../sci.an
+.SH NAME
+overloading - display, functions and operators overloading capabilities
+.SH DESCRIPTION
+In scilab, variable display, functions and operators may be defined
+for new objects using  functions (scilab coded or primitives).
+.TP 15
+Display 
+: The display of new objects defined by \fVtlist\fR structure
+may be overloaded (the default display is similar to \fVlist\fR's
+one). The overloading function must have no output argument a single
+input argument. It's name is formed as follow \fV%<tlist_type>_p\fR
+where \fV%<tlist_type>\fR stands for the first entry of the
+\fVtlist\fR type component.
+.TP
+Operators
+: Each operator which is not defined for given operands type may be
+defined. The overloading function must have a single output argument
+and one or two inputs according to the number of operands. The
+function name is formed as follow:
+.LP
+for binary operators:
+\fV%<first_operand_type>_<op_code>_<second_operand_type>\fR
+.LP
+for unary operators:
+\fV%<operand_type>_<op_code>\fR
+.LP
+extraction and insertion operators which are n-nary operators are
+described below.
+.LP
+\fV<operand_type>\fR, \fV<first_operand_type>\fR,
+\fV<second_operand_type>\fR  are sequence of characters associated
+with each data type as described in the following table:
+.IG
+.TS
+tab(@);
+l l.
+string@c
+polynomial@p
+function@m
+constant@s
+list@l
+tlist@<tlist_type>
+boolean@b
+sparse@sp
+boolean sparse@spb
+.TE
+.FI
+\" This is for LaTeX 
+.LA  \begin{tabular}{|l|l|} \hfill
+.LA  string&c\\ \hfill
+.LA  polynomial&p\\ \hfill
+.LA  function&m\\ \hfill
+.LA  constant&s\\ \hfill
+.LA  list&l\\ \hfill
+.LA  tlist&<tlist\_type>\\ \hfill
+.LA  boolean&b\\ \hfill
+.LA  sparse&sp\\ \hfill
+.LA  boolean sparse&spb\\ \hfill
+.LA  \end{tabular}
+
+\fV<op_code>\fR is a single character associated with each operator as
+described in the following table:
+.IG
+.TS
+tab(@);
+l l.
+ \fV'\fR@t
+ \fV+\fR@a
+ \fV-\fR@s
+ \fV*\fR@m
+ \fV/\fR@r
+ \fV\\\\\fR@l
+ \fV^\fR@p
+ \fV.*\fR@x
+ \fV./\fR@d
+ \fV.\\\\\fR@q
+ \fV.*.\fR@k
+ \fV./.\fR@y
+ \fV.\\\\.\fR@z
+ \fV:\fR@b
+ \fV.*\fR@u
+ \fV/.\fR@v
+ \fV\\\\.\fR@w
+ \fV[a,b]\fR@c
+ \fV[a;b]\fR@f
+ \fV()\fR extraction@e
+ \fV()\fR insertion@i
+ \fV==\fR@o
+ \fV<>\fR@n
+ \fV|\fR@g
+ \fV&\fR@h
+ \fV.^\fR@j
+ \fV~\fR@5
+ \fV.'\fR@0
+ \fV<\fR@1
+ \fV>\fR@2
+ \fV<=\fR@3
+ \fV>=\fR@4
+.TE
+.FI
+\" This is for LaTeX 
+.LA \begin{tabular}{|l|l|}
+.LA {\tt  '}  & t\\ \hfill
+.LA {\tt  +}  & a\\ \hfill
+.LA {\tt  -}  & s\\ \hfill
+.LA {\tt  *}  & m\\ \hfill
+.LA {\tt  /}  & r\\ \hfill
+.LA {\tt  \bs }  & l\\ \hfill
+.LA {\tt  \^{}}  & p\\ \hfill
+.LA {\tt  .*}  & x\\ \hfill
+.LA {\tt  ./}  & d\\ \hfill
+.LA {\tt  .\bs }  & q\\ \hfill
+.LA {\tt  .*.}  & k\\ \hfill
+.LA {\tt  ./.}  & y\\ \hfill
+.LA {\tt  .}  & z\\ \hfill
+.LA {\tt  :}  & b\\ \hfill
+.LA {\tt  .*}  & u\\ \hfill
+.LA {\tt  /.}  & v\\ \hfill
+.LA {\tt  \bs . }  & w\\ \hfill
+.LA {\tt [a,b] }  & c\\ \hfill
+.LA {\tt [a;b] }  & f\\ \hfill
+.LA {\tt () } extraction  & e\\ \hfill
+.LA {\tt () } insertion  & i\\ \hfill
+.LA {\tt  ==}  & o\\ \hfill
+.LA {\tt  $<$$>$}  & n\\ \hfill
+.LA {\tt  $|$}  & g\\ \hfill
+.LA {\tt  \&}  & h\\ \hfill
+.LA {\tt  .\^{}}  & j\\ \hfill
+.LA {\tt  \~{}}  & 5\\ \hfill
+.LA {\tt  .'}  & 0\\ \hfill
+.LA {\tt  <}  & 1\\ \hfill
+.LA {\tt  >}  & 2\\ \hfill
+.LA {\tt  <=}  & 3\\ \hfill
+.LA {\tt  >=}  & 4\\ \hfill
+.LA \end{tabular}
+The overloading function for extraction syntax \fVb=a(i1,...,in)\fR
+has the following calling sequence: \fVb=%<type_of_a>_e_(i1,...,in,a)\fR
+
+and the syntax
+\fV[x1,..,xm]=a(i1,...,in)\fR has the following calling sequence: 
+\fV[x1,..,xm]=%<type_of_a>_e_(i1,...,in,a)\fR
+.LP
+The overloading function associated to the insertion syntax
+\fVa(i1,...,in)=b\fR  has the following calling sequence: 
+\fVa=%<type_of_a>_i_<type_of_b>(i1,...,in,a,b)\fR.
+
+.TP
+Functions : Some basic primitive function may also be overloaded for new data type. When
+such a function is undefined for a particular data types the function
+\fV%<type_of_an_argument>_<function_name> is called. User may add in
+this called function the definition associated with the input data
+types.
+.SH SEE ALSO
+tlist, disp, symbols
+.SH EXAMPLES
+.nf
+//DISPLAY
+deff('[]=%tab_p(l)','disp([['' '';l(3)] [l(2);string(l(4))]])')
+tlist('tab',['a','b'],['x';'y'],rand(2,2))
+
+//OPERATOR
+deff('x=%c_a_s(a,b)','x=a+string(b)')
+'s'+1
+
+//FUNCTION
+deff('x=%c_sin(a)','x=''sin(''+a+'')''')
+sin('2*x')
+.fi
+

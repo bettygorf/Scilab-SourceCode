@@ -1,0 +1,35 @@
+.TH xaxis  2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xaxis - draws an axis 
+.SH CALLING SEQUENCE
+.nf
+[]=xaxis(alpha,nsteps,size,init)
+.fi
+.SH PARAMETERS
+.TP 10
+alpha
+: real (slope in degree of the axis)
+.TP
+nsteps
+: real vector of size 2 (number of big and small intervals)  
+.TP 
+size 
+: a real vector of size 3 (size of the intervals, the small and big tics)
+.SH DESCRIPTION
+Draw an axis in the \fValpha\fR (in degree ) direction; \fVnsteps\fR (\fV[n1,n2]\fR) gives the 
+number of big and small intervals separated by tics. \fVsize=[s1,s2,c1]\fR : \fVs1\fR gives 
+the size of the intervals , \fVs2\fR gives the size of the small tics along the axis and 
+\fVs2*c1\fR is the size of the big tics.
+.LP
+.nf 
+            ex : n1=3,n2=2,alpha =0
+ 				              (s2*c1) 
+            |     (s2)   |            |           |
+            |______|_____|_____|______|_____|_____|
+               s1
+.fi		       
+.SH AUTHOR
+J.Ph.C..
+
+

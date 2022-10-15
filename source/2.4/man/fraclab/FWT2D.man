@@ -1,0 +1,108 @@
+.TH "FWT2D" 2 " 01 June 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+FWT2D - 2D Forward Disrete Wavelet Transform
+.sp
+Author: Bertrand Guiheneuf
+.sp
+This routine computes \fIdiscrete wavelet transforms\fP of a 2D real signal. Two transforms are possible : Orthogonal and Biorthogonal
+.sp
+.sp
+.SH Usage
+\f(CR[\fPwt,index,length\f(CR]\fP=FWT2D(Input,NbIter,f1,\f(CR[\fPf2\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBInput\fP : real matrix \f(CR[\fPm,n\f(CR]\fP  
+Contains the signal to be decomposed. 
+
+.TP
+o 
+\fBNbIter\fP : real positive scalar 
+Number of decomposition Levels
+
+.TP
+o 
+\fBf1\fP : 
+Analysis filter 
+
+.TP
+o 
+\fBf2\fP : real unidimensional matrix \f(CR[\fPm,n\f(CR]\fP  
+Synthesis filter
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : real matrix 
+Wavelet transform. Contains all the datas of the decomposition.
+
+.TP
+o 
+\fBindex\fP : real matrix \f(CR[\fPNbIter,4\f(CR]\fP 
+Contains the indexes (in wt) of the projection of the signal on the multiresolution subspaces 
+
+.TP
+o 
+\fBlength\fP : real matrix \f(CR[\fPNbIter,2\f(CR]\fP 
+Contains the dimensions of each projection
+.RE
+
+.SH Description
+.SH Introduction 
+The 2D discrete wavelet transform of \fIInput\fP is a projection on 2D multiresolution Spaces.
+The number of scales \fINbIter\fP tells how many convolutions are computed. Each convolution is followed by a downsampling of the signal in both direction. For example, if the original matrix is (256,512), a resulting projection after the first iteration  is (128,256). In 2D, there are 4 projections for each iteration corresponding to 2 projections in the row directions and 2 in the column direction. In each direction, the 2 projections are obtained through the convolutions with a low-pass filter and its associated high-pass filter. The projections are then HL HH LH LL where the first letter represents the filter used for the row filtering and the second letter is the filter used for column filtering. H is High-Pass filter and L Low-pass filter. Except for the last level where the four convolutions are kept, the LL output is always used as the input of the following iteration.
+Two types of filters are available : \fIQuadrature Mirror Filters\fP (Orthogonal) or \fIConjugate Quadrature Filters\fP (Biorthogonal). Each one allows perfect reconstruction of the signal but only CQF pairs can be symetric. The advantage of QMF is that synthesis and reconstruction filters are the same.
+.SH Parameters  
+\fIInput\fP must be a real matrix. All dimensions are allowed but for a 1D vector, FWT is \fIbest\fP suited.
+\fINbIter\fP is the number of scales computed. It must be a positive integer greater than one and should be 
+smaller then log2(max(size(Input))) but this is not necessary. 
+\fIf1\fP is the linear FIR filter used for the analysis and might be  obtained with \fIMakeQMF()\fP or \fIMakeCQF()\fP
+\fIf2\fP is the linear FIR filter to use for the reconstruction. It is only necessary if \fIf1\fP has been obtained with MakeCQF(). 
+\fIwt\fP is the wavelet decomposition structure. The next two parametres must be used to read the wavelet coefficients.
+\fIindex\fP contains the indexes of the first coefficient of each output. At each scale \fIScale\fP, the output indexes are:
+index(Scale,1) : HL 
+index(Scale,2) : LH 
+index(Scale,3) : HH 
+index(Scale,4) : LL on the last scale and 0 otherwise 
+\fIlength\fP contains the dimensions (height, width) of each output at a given Iteration.
+.SH Algorithm details 
+Convolutions are computed through discrete linear convolutions in time domain. No FFT is used. 
+The signal is mirrored at its boundaries. 
+The wavelet structure (\fIwt\fP) is a vector and NOT a 2D matrix. It contains all the informatiosn 
+for the reconstruction: 
+wt(1) : height of the original signal 
+wt(2) : width of the original signal 
+wt(3) : Number of iterations 
+wt(4) : Number of causal coefficients of the synthesis filter
+wt(5) : Number of anticausal coefficients of the synthesis filter
+then the Synthesis filter coefficients and finaly the wavelet coefficient are stored .
+.SH Examples
+a=rand(256,256);
+q=MakeQMF('daubechies',4);
+wt,wti,wtl = FWT2D(a,3,q);
+V=WT2Dext(wt,1,2);
+viewmat(V);
+Then to suppress the Lowest Frequency component and then reconstruction:
+index=0;
+for i=1:wtl(3,1),
+for j=1:wtl(3,2),
+wt(wti(3,4)+index)=0;
+end;
+end;
+result=IWT2D(wt);
+.SH References
+\fBMeyer Y.\fP : Wavelets, Algorithms & Applications, SIAM.
+\fBMeyer Y.\fP : Ondelettes et Operateurs (I) : Hermann, Paris
+\fBDaubechies I.\fP : Ten Lectures on Wavelets, CBMS-NSF Regional conference series in applied mathematics.
+.SH See Also
+IWT2D, MakeQMF, MakeCQF, WT2Dext, WT2DVisu, WT2DStruct

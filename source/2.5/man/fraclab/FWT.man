@@ -1,0 +1,99 @@
+.TH "FWT" 2 " 01 June 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+FWT - 1D Forward Discrete Wavelet Transform
+.SH Usage
+\f(CR[\fPwt,index,length\f(CR]\fP=FWT(Input,NbIter,f1,\f(CR[\fPf2\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBInput\fP : real matrix \f(CR[\fP1,n\f(CR]\fP or \f(CR[\fPn,1\f(CR]\fP 
+Contains the signal to be decomposed. 
+
+.TP
+o 
+\fBNbIter\fP : real positive scalar 
+Number of decomposition Levels to compute
+
+.TP
+o 
+\fBf1\fP : 
+Analysis filter 
+
+.TP
+o 
+\fBf2\fP : real unidimensional matrix \f(CR[\fPm,n\f(CR]\fP  
+Synthesis filter. Useful only for biorthogonal transforms. If not precised,
+the filter \fIf1\fP is used for the synthesis.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : real matrix 
+Wavelet transform. Contains the wavelet coefficients plus other informations.
+
+.TP
+o 
+\fBindex\fP : real matrix \f(CR[\fP1,NbIter+1\f(CR]\fP 
+Contains the indexes (in wt) of the projection of the signal on the multiresolution subspaces 
+
+.TP
+o 
+\fBlength\fP : real matrix \f(CR[\fP1,NbIter+1\f(CR]\fP 
+Contains the dimension of each projection
+.RE
+
+.SH Description
+This routine computes \fIdiscrete wavelet transforms\fP of a 1D real signal. Two transforms are possible : Orthogonal and Biorthogonal
+
+.SH Introduction 
+The discrete wavelet transform of \fIInput\fP is a projection on multiresolution Spaces.
+The number of scales \fINbIter\fP tells how many convolutions are computed. Each convolution is followed by a downsampling of the output. For example, if the original signal size  is 500, the resulting size of the projection after the first iteration  is 250. Each iteration consists then in two convolution/downsampling steps. One is  high-pass (H) and the other one is low-pass (L). Except for the last iteration, the low-pass output is used as the input of the next iteration. Thus, only the high-pass is stored in \fIwt\fP except at the last iteration where both the outputs are stored. This explains why the \fIwti\fP array dimension is equal to \fINbIter+1\fP. The last index \fIindex(NbIter+1)\fP is the index of firts element of the last low-pass projection.
+Two types of filters are available : \fIQuadrature Mirror Filters\fP (Orthogonal) or \fIConjugate Quadrature Filters\fP (Biorthogonal). Each one allows perfect reconstruction of the signal but only CQF pairs can be symetric. The advantage of QMF is that synthesis and reconstruction filters are the same.
+.SH Parameters  
+\fIInput\fP must be a real unidimensional matrix.
+\fINbIter\fP is the number of scales computed. It must be a positive integer greater than one and should be 
+smaller than log2(max(size(Input))) but this is not necessary. 
+\fIf1\fP is the linear FIR filter used for the analysis and might be  obtained with \fIMakeQMF()\fP or \fIMakeCQF()\fP
+\fIf2\fP is the linear FIR filter to use for the reconstruction. It is only necessary if \fIf1\fP has been obtained with MakeCQF(). 
+\fIwt\fP is the wavelet decomposition structure. The next two parametres must be used to read the wavelet coefficients.
+\fIindex\fP contains the indexes of the first coefficient of each output.
+\fIlength\fP contains the dimension  of each output.
+.SH Algorithm details 
+Convolutions are computed through discrete linear convolutions in time domain. No FFT is used. 
+The signal is mirrored at its boundaries. 
+The wavelet structure contains all the informations
+for the reconstruction: 
+wt(1) : size of the original signal 
+wt(2) : Number of iterations 
+wt(3) : Number of causal coefficients of the synthesis filter
+wt(4) : Number of anticausal coefficients of the synthesis filter
+then the Synthesis filter coefficients and finaly the wavelet coefficient are stored .
+.SH Examples
+.nf
+a=rand(1,250);
+q=MakeQMF('daubechies',4);
+wt,wti,wtl = FWT(a,6,q);
+M=WTMultires(wt); 
+plot(M(2,:));
+//Then to suppress the Lowest Frequency component and then reconstruction:
+for i=1:wtl(6),wt(wti(6)+i-1)=0;end;
+result=IWT(wt);
+.fi
+.SH References
+\fBMeyer Y.\fP : Wavelets, Algorithms & Applications, SIAM.
+\fBMeyer Y.\fP : Ondelettes et Operateurs (I) : Hermann, Paris
+\fBDaubechies I.\fP : Ten Lectures on Wavelets, CBMS-NSF Regional conference series in applied mathematics.
+.SH AUTHOR
+Author: Bertrand Guiheneuf
+.SH See Also
+IWT, MakeQMF, MakeCQF, WTStruct, WTNbScales, WTMultires

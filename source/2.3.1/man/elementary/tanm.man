@@ -1,0 +1,28 @@
+.TH tanm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+tanm - matrix tangent
+.SH CALLING SEQUENCE
+.nf
+[t]=tanm(x)   
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: square real or complex matrix
+.TP 10
+t
+: square matrix
+.SH DESCRIPTION
+\fVtanm(x)\fR  is the matrix tangent of the square matrix x 
+.SH EXAMPLE
+.nf
+A=[1,2;3,4];
+tanm(A)
+.fi
+.SH SEE ALSO
+tan, expm, sinm, atanm
+
+
+
+

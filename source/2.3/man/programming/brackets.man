@@ -1,0 +1,42 @@
+.TH brackets 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+brackets ([,]) - left and right brackets
+.SH CALLING SEQUENCE
+.nf
+[a11,a12,...;a21,a22,...;...]
+[s1,s2,...]=func(...)
+.fi
+.SH PARAMETERS
+.TP 15
+a11,a12,...
+: any matrix (real, polynomial, rational,\fVsyslin\fR list ...) with appropriate dimensions
+.TP 15
+s1,s2,...
+: any possible variable name
+.SH DESCRIPTION
+Left and right brackets are used to note vector and matrix concatenation.
+These symbols are also used to denote a multiple left-hand-side for a function 
+call
+.LP
+Inside concatenation brackets, blank or comma characters mean 
+"column concatenation", semicolumn and carriage-return mean 
+"row concatenation".
+.LP
+Note : to avoid confusions it is safer to use commas instead of blank to
+separate columns.
+.LP
+Within multiple lhs brackets variable names must be separated by comma.
+.SH EXAMPLES
+.nf
+[6.9,9.64; sqrt(-1) 0]
+[1 +%i  2 -%i  3]
+[]
+['this is';'a string';'vector']
+s=poly(0,'s');[1/s,2/s]
+[tf2ss(1/s),tf2ss(2/s)]
+
+[u,s]=schur(rand(3,3))
+.fi
+.SH SEE ALSO
+comma, semicolumn

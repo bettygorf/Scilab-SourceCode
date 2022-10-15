@@ -1,0 +1,132 @@
+
+dassl(G)                       Scilab Function                       dassl(G)
+NAME
+  dassl - differential algebraic equation
+
+CALLING SEQUENCE
+  [r [,hd]]=dassl(x0,t0,t [,atol,[rtol]],res [,jac],info [,hd])
+
+PARAMETERS
+
+  x0        : is either y0 (ydot0 is estimated by dassl with zero as first
+            estimate) or the matrix [y0 ydot0]. g(t,y0,ydot0) must be equal
+            to zero. If you only know an estimate of ydot0 set info(7)=1
+
+            y0        : real column vector  of initial conditions.
+
+            ydot0     : real column vector of the time derivative of y at t0
+                      (may be an estimate).
+
+  t0        : real number is the initial instant.
+
+  t         : real scalar or vector. Gives instants for which you want the
+            solution. Note that you can get solution at each dassl's step
+            point by setting info(2)=1.
+
+  atol,rtol : real scalars or column vectors of same size as y. atol,rtol
+            give respectively  absolute and relative error tolerances of
+            solution. If vectors the tolerances are specified for each com-
+            ponent of y.
+
+  res       : external (function or list or string). Computes the  value of
+            g(t,y,ydot).
+
+            function
+                    : Its calling sequence must be [r,ires]=res(t,y,ydot) and
+                    res must return the residue r=g(t,y,ydot)  and error flag
+                    ires. ires = 0 if res succeeds to compute r, =-1 if resi-
+                    due is locally not defined for (t,y,ydot), =-2 if parame-
+                    ters are out of admissible range.
+
+            list    : it must be as follows:
+                    list(res,x1,x2,...)
+                    where the calling sequence of the function res is now
+                    r=res(t,y,ydot,x1,x2,...)
+                    res still returns r=g(t,y,ydot) as a function of
+                    (t,y,ydot,x1,x2,...).
+
+            string  : it must refer to the name of a fortran subroutine (see
+                    source code of fresd.f).
+
+  jac       : external (function or list or string). Computes the  value of
+            dg/dy+cj*dg/dydot for a given value of parameter cj
+
+            function
+                    : Its calling sequence must be r=jac(t,y,ydot,cj) and the
+                    jac function must return
+                    r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot where cj is a
+                    real scalar
+
+            list    : it must be as follows
+                    list(jac,x1,x2,...)
+                    where the calling sequence of the function jac is now
+                    r=jac(t,y,ydot,x1,x2,...)
+                    jac still returns dg/dy+cj*dg/dydot as a function of
+                    (t,y,ydot,cj,x1,x2,...).
+
+            character string
+                    : it must refer to the name of a fortran subroutine (see
+                    source code of jacdd.f).
+
+  info      : list which contains 7 elements:
+
+            info(1) : real scalar which gives the maximum time for which g is
+                    allowed to be evaluated or an empty matrix [] if no lim-
+                    its imposed for time.
+
+            info(2) : flag which indicates if dassl returns its intermediate
+                    computed values (flag=1) or only the user specified time
+                    point values (flag=0).
+
+            info(3) : 2 components vector which give the definition [ml,mu]
+                    of band matrix computed by jac; r(i - j + ml + mu + 1,j)
+                    = "dg(i)/dy(j)+cj*dg(i)/dydot(j)". If jac returns a full
+                    matrix set info(3)=[].
+
+            info(4) : real scalar which gives the maximum step size. Set
+                    info(4)=[] if no limitation.
+
+            info(5) : real scalar which gives the initial step size. Set
+                    info(4)=[] if not specified.
+
+            info(6) : set info(6)=1 if the solution is known to be non nega-
+                    tive, else set info(6)=0.
+
+            info(7) : set info(7)=1 if ydot0 is just an estimation, info(7)=0
+                    if g(t0,y0,ydot0)=0.
+
+  hd        : real vector which allows to store the dassl context and to
+            resume integration
+
+  r         : real matrix . Each column is the vector [t;x(t);xdot(t)] where
+            t is time index for which the solution had been computed
+
+DESCRIPTION
+  Solution of the implicit differential equation
+      g(t,y,ydot)=0
+      y(t0)=y0  and   ydot(t0)=ydot0
+  Detailed examples are given in SCIDIR/tests/dassldasrt.tst
+
+EXAMPLES
+   deff('[r,ires]=chemres(t,y,yd)',[
+           'r(1)=-0.04*y(1)+1d4*y(2)*y(3)-yd(1);';
+           'r(2)=0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2);'
+           'r(3)=y(1)+y(2)+y(3)-1;'
+           'ires=0']);
+   deff('[pd]=chemjac(x,y,yd,cj)',[
+           'pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);';
+           '0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);';
+           '1       , 1                      , 1       ]'])
+
+  y0=[1;0;0];
+  yd0=[-0.04;0.04;0];
+  t=[1.d-5:0.02:.4,0.41:.1:4,40,400,4000,40000,4d5,4d6,4d7,4d8,4d9,4d10];
+
+  info=list([],0,[],[],[],0,0);
+  y=dassl([y0,yd0],0,t,chemres,info);
+  info(2)=1;
+  y=dassl([y0,yd0],0,4d10,chemres,info);
+  y=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
+
+SEE ALSO
+  ode, dasrt, impl, fort, link, external

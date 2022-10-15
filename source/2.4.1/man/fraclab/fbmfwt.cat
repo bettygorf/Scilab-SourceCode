@@ -1,0 +1,38 @@
+
+fbmfwt(2)                      Scilab Function                      fbmfwt(2)
+NAME
+  fbmfwt - Discrete wavelet based synthesis of a fBm
+
+  Author: Paulo Goncalves
+
+  Generates a 1/f Gaussian process from a discrete wavelet transform
+
+Usage
+
+  [x] = fbmfwt(N,H,[noctave,Q,randseed]) ;
+Input parameters
+       o  N  : Positive integer Sample size of the fBm
+       o  H  : Real in [0,1] Holder exponent
+       o  noctave  : integer Maximum resolution level (should not exceeed
+         log2(N))
+       o  Q  : real vector.  Analyzing QMF (e.g.  Q = MakeQMF('daubechies',4)
+         )
+       o  randseed  : real scalar Random seed generator
+Output parameters
+       o  x  : real vector  [1,N] Time samples of the 1/f Gaussian process
+Algorithm details
+  Generates a 1/f Gaussian process by inverting a discrete wavelet transform.
+   Step 1:  generates  y  a [1,N] i.i.d. standard Gaussian noise
+   Step 2:  computes the discrete wavelet coefficients  y
+   Step 3:  weigth the wavelet coefficients  y  with the corresponding scale
+  power law
+   Step 4:  invert the weighted discrete wavelet transform
+
+See also:
+  fbmlevinson, synth2, FWT, MakeQMF
+Example:
+
+  Q = MakeQMF('daubechies',4) ;
+  [x] = fbmfwt(1024,0.5,10,Q) ;
+  [wt,scale,f] = contwt(x,2^(-8),2^(-1),64,8) ;
+  [H] = cwttrack(wt,scale,0,1,1,8,1,1) ;

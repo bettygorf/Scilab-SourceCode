@@ -1,0 +1,24 @@
+ 
+clear;lines(0);
+ 
+s=poly(0,'s');
+ 
+p=[s, s*(s+1)^2, 2*s^2+s^3];
+ 
+[Ar,U]=hermit(p'*p);
+ 
+clean(p'*p*U), det(U)
+ ans  =
+ 
+!              2          !
+!   0    0    s           !
+!                         !
+!              2    3   4 !
+!   0    0    s + 2s + s  !
+!                         !
+!               3   4     !
+!   0    0    2s + s      !
+ ans  =
+ 
+    1   
+ 

@@ -1,0 +1,10 @@
+
+% Dessin en bas a gauche de taille 300,212
+[0.5 0 0 -0.5 0 212] concat
+0 Thickness
+% 3 setalufunction
+-1 -1 2000 2000 setclipzone
+[] 0 setdash
+/Times-Roman findfont 10 scalefont setfont
+fillsolid
+/WhiteLev 16 def

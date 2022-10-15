@@ -1,0 +1,20 @@
+.TH COSBLK_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+COSBLK_f - Scicos cosine block
+.SH DIALOGUE PARAMETERS
+None.
+.SH DESCRIPTION
+This block realizes vector cosine operation. \fVy(i)=cos(u(i))\fR.
+The port input and output  port sizes are equal and determined by the
+context.
+.SH SEE ALSO
+SINBLK_f, GENSIN_f
+
+
+
+
+
+
+
+

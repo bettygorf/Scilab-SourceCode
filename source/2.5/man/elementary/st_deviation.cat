@@ -1,0 +1,40 @@
+
+st_deviation(1)                Scilab Function                st_deviation(1)
+NAME
+  st_deviation - standard deviation (row or column-wise) of vector/matrix
+  entries
+
+CALLING SEQUENCE
+  y=st_deviation(x)
+  y=st_deviation(x,'r')
+  y=st_deviation(x,'c')
+
+PARAMETERS
+
+  x         : real vector or matrix
+
+  y         : scalar or vector
+
+DESCRIPTION
+  st_deviation computes the "sample" standard deviation, that is, it is nor-
+  malized by N-1, where N is the sequence length.
+
+  For a vector or a matrix x, y=st_deviation(x)  returns in the scalar y the
+  standard deviation of all the entries of x.
+
+  y=st_deviation(x,'r') (or, equivalently, y=st_deviation(x,2)) is the row-
+  wise standard deviation. It returns in each entry of the column vector y
+  the standard deviation of each row of x.
+
+  y=st_deviation(x,'c') (or, equivalently, y=st_deviation(x,1)) is the colum-
+  nwise st_deviation. It returns in each entry of the row vector y the stan-
+  dard deviation of each column  of x.
+
+EXAMPLE
+  A=[1,2,10;7,7.1,7.01];
+  st_deviation(A)
+  st_deviation(A,'r')
+  st_deviation(A,'c')
+
+SEE ALSO
+  sum, median, mean

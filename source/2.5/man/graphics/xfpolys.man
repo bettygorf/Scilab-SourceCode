@@ -1,0 +1,50 @@
+.TH xfpolys 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xfpolys - fill a set of polygons
+.SH CALLING SEQUENCE
+.nf
+xfpolys(xpols,ypols,[fill])
+.fi
+.SH PARAMETERS
+.TP 13
+xpols,ypols
+: matrices of the same size (p,n) (points of the polygons).
+.TP 
+fill
+: vector of size n.
+.SH DESCRIPTION
+\fVxfpolys\fR fills a set of polygons of the same size defined by 
+the two matrices \fVxpols\fR and \fVypols\fR. 
+The coordinates of each polygon
+are stored in a column of \fVxpols\fR and \fVypols\fR.
+.LP
+The pattern for filling polygon number i is given by \fVfill(i)\fR:
+.TP 3
+-
+if \fVfill(i)<0\fR, the polygon is filled with pattern id
+\fV-fill(i)\fR.
+.TP
+-
+if \fVfill(i)=0\fR, the polygon is drawn
+with the current dash style (or current color).
+.TP
+-
+if \fVfill(i)>0\fR, the polygon is filled with pattern id \fVfill(i)\fR. 
+Then its contour is drawn with the current dash (or color) and closed if necessary.
+.SH EXAMPLE
+.nf
+plot2d(0,0,[-1],"012"," ",[0,-10,210,40])
+x1=[0,10,20,30,20,10,0]';
+y1=[15,30,30,15,0,0,15]';
+xpols=[x1 x1 x1 x1]; xpols=xpols+[0,60,120,180].*.ones(x1);
+ypols=[y1 y1 y1 y1];
+// setting the current dash (or line color)
+xset("dashes",5)
+xfpolys(xpols,ypols,[-1,0,1,2])
+xset("default")
+.fi 
+.SH SEE ALSO 
+xfpoly, xpoly, xpolys
+.SH AUTHOR
+J.Ph.C.

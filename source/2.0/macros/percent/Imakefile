@@ -1,0 +1,54 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+NAME=percentlib
+NAM=percent
+
+MACROS= %a2for.sci %c2for.sci %cc2for.sci %ce.sci %cic.sci\
+	%cnl.sci %col.sci %e2for.sci %i2for.sci %imp2for.sci\
+	%lnc.sci %lnl.sci %lnm.sci %lnp.sci %lns.sci\
+	%loc.sci %log2for.sci %lol.sci %lom.sci %lop.sci\
+	%los.sci %lssalss.sci %lssap.sci %lssar.sci %lssas.sci\
+	%lssclss.sci %lsscp.sci %lsscr.sci %lsscs.sci %lsse.sci\
+	%lssflss.sci %lssfp.sci %lssfr.sci %lssfs.sci %lssilss.sci\
+	%lssip.sci %lssir.sci %lssis.sci %lssllss.sci %lsslp.sci\
+	%lsslr.sci %lssls.sci %lssmlss.sci %lssmp.sci %lssmr.sci\
+	%lssms.sci %lssnlss.sci %lssnp.sci %lssnr.sci %lssns.sci\
+	%lssolss.sci %lssop.sci %lssor.sci %lssos.sci %lssrlss.sci\
+	%lssrp.sci %lssrr.sci %lssrs.sci %lsss.sci %lssslss.sci\
+	%lsssp.sci %lsssr.sci %lssss.sci %lsst.sci %lssvlss.sci\
+	%lssvp.sci %lssvr.sci %lssvs.sci %m2for.sci %mnl.sci\
+	%mol.sci %palss.sci %pap.sci %par.sci %pas.sci\
+	%pclss.sci %pcr.sci %pdp.sci %pdr.sci %pe.sci\
+	%pflss.sci %pfr.sci %pilss.sci %pip.sci %pir.sci\
+	%pis.sci %pllss.sci %plp.sci %plr.sci %pls.sci\
+	%pmlss.sci %pmr.sci %pnl.sci %pnlss.sci %pnr.sci\
+	%pol.sci %polss.sci %por.sci %pps.sci %pqp.sci\
+	%pqr.sci %pqs.sci %prlss.sci %prp.sci %prr.sci\
+	%pslss.sci %psr.sci %pvlss.sci %pvp.sci %pvr.sci\
+	%pvs.sci %pxr.sci %r2for.sci %ralss.sci %rap.sci\
+	%rar.sci %ras.sci %rc2for.sci %rclss.sci %rcp.sci\
+	%rcr.sci %rcs.sci %rdp.sci %rdr.sci %rds.sci\
+	%re.sci %rflss.sci %rfp.sci %rfr.sci %rfs.sci\
+	%rilss.sci %rip.sci %rir.sci %ris.sci %rllss.sci\
+	%rlp.sci %rlr.sci %rls.sci %rmlss.sci %rmp.sci\
+	%rmr.sci %rms.sci %rnlss.sci %rnp.sci %rnr.sci\
+	%rns.sci %rolss.sci %rop.sci %ror.sci %ros.sci\
+	%rps.sci %rqp.sci %rqr.sci %rqs.sci %rrlss.sci\
+	%rrp.sci %rrr.sci %rrs.sci %rs.sci %rslss.sci\
+	%rsp.sci %rsr.sci %rss.sci %rt.sci %rvlss.sci\
+	%rvp.sci %rvr.sci %rvs.sci %rxp.sci %rxr.sci\
+	%rxs.sci %s2for.sci %salss.sci %sap.sci %sar.sci\
+	%sclss.sci %scr.sci %sdp.sci %sdr.sci %se.sci\
+	%sflss.sci %sfr.sci %sic.sci %silss.sci %sip.sci\
+	%sir.sci %sis.sci %sllss.sci %slr.sci %smlss.sci\
+	%smr.sci %snl.sci %snlss.sci %snr.sci %sol.sci\
+	%solss.sci %sor.sci %sqr.sci %srlss.sci %srp.sci\
+	%srr.sci %sslss.sci %ssr.sci %svlss.sci %svp.sci\
+	%svr.sci %svs.sci %sxr.sci %t2for.sci
+
+OBJ=$(MACROS:.sci=.bin)
+MACROSN=$(MACROS:.sci=)
+
+SciLibTarget($(OBJ))
+NormalScilabObjectRule()
+DependTarget()

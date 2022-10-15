@@ -1,0 +1,48 @@
+
+mprintf(1)                     Scilab Function                     mprintf(1)
+NAME
+   mfprintf - converts, formats, and writes  data to a file
+   mprintf - converts, formats, and writes  data to the main scilab window
+   msprintf - converts, formats, and writes  data in a string
+
+CALLING SEQUENCE
+  mfprintf(fd,format,a1,...,an);
+
+  mprintf(format,a1,...,an);
+
+  str=msprintf(format,a1,...,an);
+PARAMETERS
+
+  fd : scalar, file descriptor given by mopen (it's a positive
+            integer). The value -1 refers to the default file ( i.e the last
+            opened file).
+
+  format    : a character string, a C like format. See cformat for details
+
+  str       : a character string, string to be scanned.
+
+  a1,...,an : variables to print.
+
+DESCRIPTION
+
+  The mprintf, mfprintf, and msprintf functions are interface for C-coded
+  version of fprintf, sprintf and printf functions.
+
+  The mprintf function converts, formats the ai parameters and display the
+  result in the main Scilab window
+
+  mfprintf function converts, formats the ai parameters and store the result
+  in the file given by the file descriptor fd.
+
+  msprintf function converts, formats the ai parameters and store the result
+  in the return variable str.
+
+EXAMPLE
+  mprintf('At iteration %i, Result is:0lpha=%f',33,0.535)
+
+  msprintf('%f %f',123,0.732)
+  msprintf('%f1f',123,0.732)
+
+SEE ALSO
+  mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr,
+  mopen, mprintf, mput, mputstr, mscanf, mseek, mtell

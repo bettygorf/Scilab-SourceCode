@@ -1,0 +1,38 @@
+
+ss2des(1)                      Scilab Function                      ss2des(1)
+NAME
+  ss2des - (polynomial) state-space to descriptor form
+
+CALLING SEQUENCE
+  S=ss2des(Sl)
+  S=ss2des(Sl,flag)
+
+PARAMETERS
+
+  Sl        : syslin list: proper or improper linear system.
+
+  flag      : character string "withD"
+
+  S         : list
+
+DESCRIPTION
+  Given the linear system in state-space representation Sl (syslin list),
+  with a D matrix which is either polynomial or constant, but not zero ss2des
+  returns a descriptor system as list('des',A,B,C,0,E) such that:
+  Sl=C*(s*E-A)^(-1)*B
+  If the flag "withD" is given,  S=list('des',A,B,C,D,E) with a D matrix of
+  maximal rank.
+
+EXAMPLE
+  s=poly(0,'s');
+  G=[1/(s+1),s;1+s^2,3*s^3];Sl=tf2ss(G);
+  S=ss2des(Sl)
+  S1=ss2des(Sl,"withD")
+  Des=des2ss(S);Des(5)=clean(Des(5))
+  Des1=des2ss(S1)
+
+SEE ALSO
+  pol2des, tf2des, des2ss
+
+AUTHOR
+  F. D.

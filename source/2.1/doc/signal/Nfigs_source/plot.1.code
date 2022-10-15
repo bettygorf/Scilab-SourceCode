@@ -1,0 +1,6 @@
+//Illustrate plot of FIR filter impulse response 'plot.1.code'
+   xinit('plot.1.ps')
+   [h,hm,fr]=wfir('bp',55,[.2 .25],'hm',[0 0]);
+   plot(h)
+   xend(),
+

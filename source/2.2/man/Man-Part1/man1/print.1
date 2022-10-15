@@ -1,0 +1,27 @@
+.TH print 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+print - prints variables  in a file 
+.SH CALLING SEQUENCE
+.nf
+print('file-name',x1,[x2,...xn]) 
+.fi
+.SH DESCRIPTION
+prints \fVxi\fR on file \fV'file-name'\fR
+with the current format, i.e. the format used by scilab to display
+the variables. All types of variables may be "\fVprint\fR"'ed
+.LP
+Note : \fVxi\fR must be a named variable, with expressions variable
+name part of the display is unpredictable.
+.LP
+\fVprint(%io(2),...)\fR prints on Scilab's window. this syntax may be
+used to display variables within a macro.
+.SH EXAMPLES
+.nf
+a=rand(3,3);p=poly([1,2,3],'s');l=list(1,'asdf',[1 2 3]);
+print(%io(2),a,p,l)
+write(%io(2),a)
+.fi
+.SH SEE ALSO
+write, read, format, printf, disp
+

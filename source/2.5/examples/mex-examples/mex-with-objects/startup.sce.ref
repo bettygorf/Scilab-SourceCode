@@ -1,0 +1,35 @@
+scilab_functions=[... 
+"mexfunction1";
+"mexfunction2";
+"mexfunction3";
+"mexfunction4";
+"mexfunction5";
+"mexfunction6";
+"mexfunction7";
+"mexfunction8";
+"mexfunction9";
+"mexfunction10";
+"mexfunction11";
+"mexfunction12";
+                 ]; 
+      
+      
+gateway_routines=[...
+"mexfunction1.o";
+"mexfunction2.o";
+"mexfunction3.o";
+"mexfunction4.o";
+"mexfunction5.o";
+"mexfunction6.o";
+"mexfunction7.o";
+"mexfunction8.o";
+"mexfunction9.o";
+"mexfunction10.o";
+"mexfunction11.o";
+"mexfunction12.o";
+]; 
+    
+util_routines =[...   
+             ]; 
+object_files=G_make(["generic_gateway.o";gateway_routines;util_routines],"generic.dll"); 
+addinter(object_files,"generic_gateway",scilab_functions); 

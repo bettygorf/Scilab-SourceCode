@@ -1,0 +1,37 @@
+.TH iirlp 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+iirlp - Lp IIR filter optimization
+.SH CALLING SEQUENCE
+.nf
+[cost,grad,ind]=iirlp(x,ind,p,[flag],lambda,omega,ad,wa,td,wt)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: 1X2 vector of the module and argument of the poles and the zeros of the filters
+.TP 10
+flag
+: string : \fV'a'\fR  for amplitude, 'gd' for group delay; default case for
+amplitude and group delay.
+.TP 10
+omega
+: frequencies where the filter specifications are given
+.TP 15
+wa,wt
+: weighting functions for the amplitude and the group delay
+.TP 15
+lambda
+: weighting (with \fV1-lambda\fR) of the costs (\fV'a'\fR and \fV'gd'\fR for
+getting the global cost.
+.TP 15
+ad, td
+: desired amplitude and group delay
+.TP 15
+cost, grad
+: criterium and gradient values
+.SH DESCRIPTION
+optimization of IIR filters for the Lp criterium for the
+amplitude and/or the group delay. (Rabiner & Gold pp270-273).
+
+

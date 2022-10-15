@@ -1,0 +1,30 @@
+
+fprintfMat(1)                  Scilab Function                  fprintfMat(1)
+NAME
+  fprintfMat - print a matrix in a file.
+
+CALLING SEQUENCE
+  fprintfMat(fil,M,format)
+
+PARAMETERS
+
+  fil : a string, path of the file
+
+  format    : a character string, a C like format.
+
+  M         : A matrix of real numbers.
+
+DESCRIPTION
+
+  The fprintfMat function prints a matrix in a formated file. Each row of the
+  matrix give a line in the file.
+
+EXAMPLE
+  n=50;
+  a=rand(n,n,'u');
+  fprintfMat(TMPDIR+'/Mat',a,'%5.2f');
+  a1=fscanfMat(TMPDIR+'/Mat');
+
+SEE ALSO
+  mclose, meof, mfprintf, mfscanf, fscanfMat, mget, mgetstr, mopen, mprintf,
+  mput, mputstr, mscanf, mseek, mtell

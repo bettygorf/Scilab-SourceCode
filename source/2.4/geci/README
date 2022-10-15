@@ -1,0 +1,27 @@
+________________________________________________________________________
+
+Copyright (c) 1994 by CalICo Project (LaBRI- Universite Bordeaux I)
+
+[geci-1.0] - N. Rouillon in the CalICo Project
+	     LaBRI- Universite Bordeaux I, France. 
+[geci-1.1] - Release with Scilab Group, 
+	     INRIA, Rocquencourt, France.
+
+GeCI is an interactive communication manager created in order to
+manage remote executions of softwares and allow exchanges of messages
+beetwen those softwares. It offers the possibility to exploit numerous
+machines on a network, as a virtual computer, by creating a
+distributed group of independent softwares. 
+
+If you copy it, please send an e-mail with your ident to 
+	     calico@labri.u-bordeaux.fr   or
+	     rouillon@labri.u-bordeaux.fr
+so we may keep you informed of any updating of the software.
+________________________________________________________________________
+
+gecid.c is the code of the daemon used for remote communications.
+See the manual of the Communication Toolbox.
+________________________________________________________________________
+
+Note that "libCom.h" is the same file as "../routines/libcomm/libCom.h".
+________________________________________________________________________

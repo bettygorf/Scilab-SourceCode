@@ -1,0 +1,16 @@
+
+
+
+
+	This application is a modified version of xterm 
+
+	The files 
+		wf_w_dir.c wf_w_file.c wf_w_util.c wf_w_cursor.c wf_resources.c wf_f_util.c wf_f_read.c \
+		 wf_w_msgpanel.c wf_w_setup.c wf_e_edit.c wf_w_init.c
+	are modified from the xfig application 
+
+	and the files 
+        	 windows.c  command.c  ScilabGraph.c utils.c inter.c
+	are modified from xxgdb 
+
+

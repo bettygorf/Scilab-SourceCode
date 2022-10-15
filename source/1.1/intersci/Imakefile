@@ -1,0 +1,21 @@
+#include "../Imake.incl"
+
+SBIN=$(SCIDIR)/bin
+PROGRAMS= $(SBIN)/intersci
+SRCS= intersci.c
+
+NP=NullParameter
+
+AllTarget($(PROGRAMS))
+NormalProgramTarget($(PROGRAMS),$(SRCS),$(NP),$(NP),$(NP))
+DependTarget()
+
+test: $(SCIDIR)/bin/intersci
+	$(SCIDIR)/bin/intersci ex1 1
+	$(SCIDIR)/bin/intersci ex2 1
+	$(SCIDIR)/bin/intersci ex3 1
+	$(SCIDIR)/bin/intersci ex4 1
+
+
+distclean:: clean
+	$(RM) $(PROGRAMS) *.fundef ex*.f

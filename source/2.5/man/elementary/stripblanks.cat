@@ -1,0 +1,19 @@
+
+stripblanks(G)                 Scilab Function                 stripblanks(G)
+NAME
+  stripblanks - strips leading and trailing blanks of strings
+
+CALLING SEQUENCE
+  txt=stripblanks(txt)
+
+PARAMETERS
+
+  txt  : string or matrix of strings
+
+DESCRIPTION
+  stripblanks strips leading and trailing blanks of strings
+
+EXAMPLE
+  a='  123   ';
+  a=['  123   ',' xyz']
+  strcat(stripblanks(a))

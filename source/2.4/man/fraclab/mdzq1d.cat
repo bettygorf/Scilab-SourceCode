@@ -1,0 +1,38 @@
+
+mdznq1d(2)                     Scilab Function                     mdznq1d(2)
+NAME
+  mdznq1d - Discrete partition function estimation on 1d measure
+
+  Author: Christophe Canus
+
+  This routine computes the discrete partition function on a pre-multifractal
+  1d measure.
+
+Usage
+  [mznq]=mdznq1d(mu_n,n,q)
+
+Input parameters
+       o mu_n : strictly positive real vector Contains the pre-multifractal
+         measure.
+       o n : strictly positive real (integer) vector Contains the resolu-
+         tions.
+       o q : strictly positive real vector Contains the exponents.
+Output parameters
+       o mznq : real matrix [size(q),size(n)] Contains the partition func-
+         tion.
+Description
+
+Parameters
+
+  The discrete partition function mznq is computed on the pre-multifractal 1d
+  measure mu_n.  The vector of resolutions n and the vector of exponents q
+  sets the size of the output real matrix mznq to size(q)*size(n).
+
+Algorithm details
+
+  The discrete partition function mznq is computed by coarse-graining masses
+  mu_n into non-overlapping boxes of increasing diameter (box method). If
+  nu_n is a power of 2, n corresponds to the resolution.
+
+See also
+  mdzq2d,reynitq,linearlt,mdfl1d,mdfl2d.

@@ -1,0 +1,36 @@
+#!/bin/sh
+# usage: formatman section1,...,sectionn
+formataman()
+{
+	echo "    processing $1.man"
+	tbl $1.man|neqn|nroff -man|sed -f ../strip.sed >$1.cat
+}
+format()
+{
+	while [ $# -gt 0 ]
+	do
+	file=`echo $1|sed -e 's/\.man$//'`
+	newest=`ls -t -1 $file.cat $file.man 2>/dev/null |sed -n -e '1p'`
+	if [ "$newest" = "$file.man" ]; then
+		formataman $file
+	fi
+	shift
+	done
+}
+
+for section in $*
+do
+  echo formatting section: $section ...
+  cd $section
+
+  allfiles=`ls -1 *.man | awk '{print " " $1 }'` 
+  format $allfiles
+  newest=`ls -t -1 whatis *.cat $file.man 2>/dev/null |sed -n -e '1p'`
+
+  if [ "$newest" != "whatis" ]; then
+	echo "    generating: $section/whatis table"
+        ../mkwhatis $allfiles
+  fi	
+  cd ..
+done
+exit 0

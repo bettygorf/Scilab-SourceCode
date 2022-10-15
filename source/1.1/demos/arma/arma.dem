@@ -1,0 +1,83 @@
+mode(7)
+//
+// An example of arma simulation and identification 
+// form ( K.J. Astrom)
+// The armax process with the following characteristics 
+//    a=[1,-2.851,2.717,-0.865]
+//    b=[0,1,1,1]
+//    d=[1,0.7,0.2]
+// is simulated with an input u of a pseudo random binary type
+//
+// We use the simulated trajectory zd
+// as an input to the armax identification macro 
+// The noise in the armax is coloured so we can expect armax 
+// to give a biaised estimator 
+
+a=[1,-2.851,2.717,-0.865]
+b=[0,1,1,1]
+d=[1,0.7,0.2]
+ar=armac(a,b,d,1,1,1);
+write(%io(2),"Simulation of an ARMAX process:");
+armap(ar);
+// The input
+u=-prbs_a(300,1,int([2.5,5,10,17.5,20,22,27,35]*100/12));
+// simulation with noise 
+zd=narsimul(a,b,d,1.0,u);
+// simulation without noise 
+z=narsimul(a,b,d,0.0,u);
+xselect();xbasc();
+plot2d2("enn",1,zd',[-1,1],"121","Simulated output");
+plot2d2("enn",1,1000*u',[-1,4],"100","Input [scaled]");
+halt();
+write(%io(2),"Identification ARX (least square):");
+[la,lb,sig,resid]=armax(3,3,zd,u,1,1);
+
+// A bidimensional version of the preceding example 
+
+a=[1,-2.851,2.717,-0.865].*.eye(2,2);
+b=[0,1,1,1].*.[1;1];
+d=[1,0.7,0.2].*.eye(2,2);
+sig=eye(2,2);
+ar=armac(a,b,d,2,1,sig);
+write(%io(2),"Simulation of an ARMAX process:");
+armap(ar);
+u=-prbs_a(300,1,int([2.5,5,10,17.5,20,22,27,35]*100/12));
+zd=narsimul(a,b,d,sig,u);
+z=narsimul(a,b,d,0.0*sig,u);
+write(%io(2),"Identification ARX (least square):");
+
+[la,lb,sig,resid]=armax(3,3,zd,u,1,1);
+
+// Spectral power estimation 
+// ( form Sawaragi et all) 
+
+m=18
+a=[1,-1.3136,1.4401,-1.0919,+0.83527]
+b=[0.0,0.13137,0.023543,0.10775,0.03516]
+rand('normal');
+u=rand(1,1000);
+z=arsimul(a,b,[0],0,u);
+//----Using macro mese 
+[sm,fr]=mese(z,m);
+//----The theorical result 
+deff('[gx]=gxx(z)',['gx=(abs( a* exp(-%i*2*%pi*z*(0:4))'')**2)';...
+      'gx=abs( b* exp(-%i*2*%pi*z*(0:4))'')**2/gx']);
+res=[];
+for x=fr,res=[ res, gxx(x)];end;
+//----using armax estimation of order  (4,4)
+// it's a bit tricky because we are not supposed to know the order
+//
+[la,lb,sig,resid]=armax(4,4,z,u);
+a=la(1);
+b=lb(1);
+res1=[];
+for x=fr,res1=[ res1, gxx(x)];end;
+//
+leg="log(p) :using macro mese @ theoriqal value@log(p) : arma identifcation"
+xbasc();
+xtitle('Spectral power','frequency','spectral estimate')
+plot2d([fr;fr;fr]',[20*log(sm/sm(1))/log(10);...
+  20*log(res/res(1))/log(10);...
+  20*log(res1/res1(1))/log(10)]',...
+ [-2,-1,1],"111",leg, [0,-70,0.5,60]);
+

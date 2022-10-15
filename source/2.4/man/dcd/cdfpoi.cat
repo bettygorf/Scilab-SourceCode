@@ -1,0 +1,42 @@
+
+cdfpoi(1)                      Scilab Function                      cdfpoi(1)
+NAME
+  cdfpoi - cumulative distribution function poisson distribution
+
+CALLING SEQUENCE
+  [P,Q]=cdfpoi("PQ",S,Xlam)
+  [S]=cdfpoi("S",Xlam,P,Q)
+  [Xlam]=cdfpoi("Xlam",P,Q,S);
+
+PARAMETERS
+
+  P,Q,S,Xlam
+            : four real vectors of the same size.
+
+  P,Q (Q=1-P)
+            :  The cumulation from 0 to S of the poisson density.  Input
+            range: [0,1].
+
+  S         :Upper limit of cumulation of the Poisson.  Input range: [0,
+            +infinity).  Search range: [0,1E300]
+
+  Xlam      :  Mean of the Poisson distribution.  Input range: [0, +infin-
+            ity).  Search range: [0,1E300]
+
+DESCRIPTION
+  Calculates any one parameter of the Poisson distribution given values for
+  the others.
+
+  Formula   26.4.21  of   Abramowitz  and   Stegun,   Handbook  of Mathemati-
+  cal Functions (1966) is used  to reduce the computation of  the cumulative
+  distribution function to that  of computing a chi-square, hence an incom-
+  plete gamma function.
+
+  Cumulative  distribution function  (P) is  calculated  directly.  Computa-
+  tion of other parameters involve a seach for a value that produces  the
+  desired value of  P.   The  search relies  on  the monotinicity of P with
+  the other parameter.
+
+  From DCDFLIB: Library of Fortran Routines for Cumulative Distribution Func-
+  tions, Inverses, and Other Parameters (February, 1994) Barry W. Brown,
+  James Lovato and Kathy Russell. The University of Texas.

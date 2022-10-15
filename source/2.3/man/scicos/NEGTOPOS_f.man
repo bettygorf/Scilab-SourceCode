@@ -1,0 +1,14 @@
+.TH NEGTOPOS_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+NEGTOPOS_f - Scicos negative to positive detector
+.SH DESCRIPTION
+An output event is generated when the unique input crosses zero
+with a positive slope.
+.SH SEE ALSO
+POSTONEG_f, ZCROSS_f, GENERAL_f
+
+
+
+
+

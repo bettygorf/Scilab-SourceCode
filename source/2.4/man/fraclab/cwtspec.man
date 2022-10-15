@@ -1,0 +1,100 @@
+.TH "cwtspec" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+cwtspec -  Continuous L1 wavelet based Legendre spectrum
+.sp
+Author: Paulo Goncalves
+.sp
+Estimates the multifractal Legendre spectrum of a 1-D signal from the
+wavelet coefficients of a \fBL1\fP continuous decomposition
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+[alpha,f_alpha,logpart] = cwtspec(wt,scale,Q[,FindMax,ChooseReg])
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : Real or complex matrix \f(CR[\fPN_scale,N\f(CR]\fP 
+Wavelet coefficients of a continuous wavelet transform (output of \fIcwt\fP)
+
+.TP
+o 
+\fBscale\fP : real vector  \f(CR[\fP1,N_scale\f(CR]\fP
+Analyzed scale vector
+
+.TP
+o 
+\fBQ\fP :  real vector \f(CR[\fP1,N_Q\f(CR]\fP
+Exponents of the partition function
+
+.TP
+o 
+\fBFindMax\fP : 0/1 flag. 
+\fIFindMax\fP = 0 : estimates the Legendre spectrum from all coefficients 
+\fIFindMax\fP = 1 : estimates the Legendre spectrum from the local Maxima
+coefficients of the wavelet transform 
+Default value is FindMax = 1
+
+.TP
+o 
+\fBChooseReg\fP : 0/1 flag or integer vector \f(CR[\fP1,N_reg\f(CR]\fP, 
+(\fIN_reg\fP <= \fIN_scale\fP)
+\fIChooseReg\fP = 0 : full scale range regression 
+\fIChooseReg\fP = 1 : asks online the scale indices setting the range for the linear
+regression of the partition function. 
+\fIChooseReg\fP = \f(CR[\fPn1 ... nN_reg\f(CR]\fP : scale indices for the linear
+regression of the partition function.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBalpha\fP : Real vector \f(CR[\fP1,N_alpha\f(CR]\fP, \fIN_alpha\fP <= \fIN_Q\fP
+Singularity support of the multifractal Legendre spectrum
+
+.TP
+o 
+\fBf_alpha\fP : real vector \f(CR[\fP1,N_alpha\f(CR]\fP
+Multifractal Legendre spectrum
+
+.TP
+o 
+\fBlogpart\fP : real matrix \f(CR[\fPN_scale,N_Q\f(CR]\fP
+Log-partition function
+
+.TP
+o 
+\fBtau\fP : real vector \f(CR[\fP1,N_Q\f(CR]\fP
+Regression function
+.RE
+
+.SH See also:
+cwt, contwtspec, contwt, dwtspec
+.SH Example:
+.sp
+.ft CR
+.nf
+N = 2048 ; H = 0.7 ; Q = linspace(-4,4,11) ;
+[x] = fbmlevinson(N,H) ;
+[wt,scale] = cwt(x,2^(-8),2^(-1),16,8) ;
+[alpha,f_alpha,logpart,tau] = cwtspec(wt,scale,Q,1,1) ;
+plot(alpha,f_alpha),
+.fi 
+.ec
+.ft P
+.sp

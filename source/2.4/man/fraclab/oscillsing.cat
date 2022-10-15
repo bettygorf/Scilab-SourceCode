@@ -1,0 +1,34 @@
+
+oscillsing(2)                  Scilab Function                  oscillsing(2)
+NAME
+  oscillsing - Oscillating Singularity synthesis
+
+  Author: Paulo Goncalves
+
+  Generates oscillating singularities located in the interval [0 .. 1]
+
+Usage
+  [x,Fj,Fs] = oscillsing(alpha,beta,sing_pos,N,show) ;
+
+Input parameters
+       o  alpha  : Real positive vector [1,n_sing] or [n_sing,1] Holder
+         strenghts of the singularities
+       o  beta  : Real positive vector [1,n_sing] or [n_sing,1] Chirp
+         exponents of the singularities
+       o  sing_pos  : Real vector [1,n_sing] or [n_sing,1] Location of the
+         singularities in the interval  [0 .. 1]
+       o  N  : Integer Sample size for the synthesized signal
+       o  show  : flag 0/1
+          flag  = 0 : no display
+          flag  = 1 : displays the instantaneous frequencies and the syn-
+         thesized signal
+Output parameters
+       o  x  : real vector  [1,N] Time samples of the synthesized signal
+       o  Fj  : real matrix [N,n_sing] instantaneous frequencies (each column
+         of Fj contains the frequency chirp of each singularity)
+       o  Fs  : real sampling frequency
+
+See also:
+
+Example:
+  [x,Fj,Fs] = oscillsing([1/2 1 2],[1 2 4],[-0.5 0 0.5],256,1) ;

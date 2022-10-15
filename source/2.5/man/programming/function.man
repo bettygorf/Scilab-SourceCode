@@ -1,0 +1,50 @@
+.TH function 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+function - Scilab procedure and Scilab object
+.SH DESCRIPTION
+Functions are Scilab procedures ("macro", "function" and "procedure"
+have the save meaning). Usually, they are defined 
+in files with an editor and loaded into Scilab by \fVgetf\fR or through
+a library (see \fVlib\fR). 
+.LP
+They can also be defined on-line (see \fVdeff\fR). 
+.LP
+In a  file  a function must begin by a "syntax definition" line as follows:
+.nf 
+function [y1,...,yn]=foo(x1,...,xm)
+.fi
+followed by a sequence of scilab instructions.
+.LP
+The "syntax definition" line gives the "full" calling syntax of this
+function. The \fVyi\fR are output variables calculated as functions of
+input variables \fVxi\fR and variables existing in Scilab when the
+function is executed. Shorter input or output argument list may be
+used.
+.LP
+Many functions may be written in the same file. A function is
+terminated by an \fVendfunction\fR keyword, the following
+\fVfunction\fR keyword or the \fVEOF\fR mark.
+.LP
+Collections of functions can be collected in libraries.  Functions
+which begin with \fV%\fR sign (e.g. \fV%foo\fR) are often used to
+overload (see \fVoverloading\fR) operations or functions for new data
+type.
+
+.LP
+
+For example if the file myfct.sci contains:
+.nf
+function [x,y]=myfct(a,b)
+x=a+b
+y=a-b
+.fi
+you can load and use it in the following way:
+.nf
+getf('pathname/myfct.sci','c')
+[a,b]=myfct(1,2)
+.fi
+.SH SEE ALSO
+deff, getf, comp, lib, function, overloading
+
+

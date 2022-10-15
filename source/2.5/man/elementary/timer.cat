@@ -1,0 +1,16 @@
+
+timer(3)                       Scilab Function                       timer(3)
+NAME
+  timer - cpu time
+
+CALLING SEQUENCE
+  timer()
+
+DESCRIPTION
+  Returns the CPU time from the preceding call to timer().
+
+EXAMPLE
+  timer();A=rand(100,100);timer()
+
+SEE ALSO
+  unix_g

@@ -1,0 +1,44 @@
+
+OBJ = $(MACROS:.sci=.bin)
+MACROSN = $(MACROS:.sci=)
+
+all	:: lib
+
+
+# recompile all the macros with just one call to Scilab 
+# really faster than the usual way 
+
+lib names : $(MACROS) 
+	@$(RM) Macros ;touch Macros;
+	@echo "mode(0);" > Macros
+	@for i in $? ; do ( $(RM) `basename $$i sci`bin ; \
+		echo Processing $$i );done ;
+	@for i in $? ; \
+	do  ( echo "getf('$$i'),save('`basename $$i sci`'+'bin'),clear" ); done \
+		>> Macros
+	@echo Starting Compilation
+	@SCI=$(SCIDIR);export SCI; \
+	cat Macros | $(SCIDIR)/bin/scilex -nw -ns 2>&1 1>report
+	@if (grep "\-\-error" report 1> /dev/null  2>&1); \
+	then grep error report;echo " "; \
+	   echo see `pwd`/report for more informations; \
+	   for i in $? ; do ( $(RM) `basename $$i sci`bin );done ;\
+	else rm -f report; \
+		echo generating lib and names; \
+		$(RM) names;touch names;\
+		for i in $(MACROSN); do  (echo $$i );done > names ;\
+		SCI=$(SCIDIR);export SCI; \
+		$(SCIDIR)/bin/scilab -lib $(NAME) SCI/macros/$(NAM);\
+	fi
+	@echo End of compilation
+	@$(RM) Macros 
+
+
+distclean::
+	$(RM) lib  *.bin
+
+.sci.bin:
+	@SCI=$(SCIDIR);export SCI;$(SCIDIR)/bin/scilab -comp  $*.sci
+
+
+

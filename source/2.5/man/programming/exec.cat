@@ -1,0 +1,74 @@
+
+exec(1)                        Scilab Function                        exec(1)
+NAME
+  exec - script file execution
+
+CALLING SEQUENCE
+  exec(path [,mode])
+  exec(fun [,mode])
+  ierr=exec(path,'errcatch' [,mode])
+  ierr=exec(fun,'errcatch' [,mode])
+
+PARAMETERS
+
+  path : a string, the path of the script file
+
+  mode : an integer scalar, the execution mode (see below)
+
+  fun  : a scilab function
+
+  ierr : integer, 0 or error number
+DESCRIPTION
+  exec(path [,mode]) executes sequentialy the scilab instructions contained
+  in the file given by path  with an optional execution mode mode .
+  The different cases for mode are :
+
+  00    : the default value
+
+  --11   : nothing is printed
+
+  11    : echo of each command line
+
+  22    : prompt --> is printed
+
+  33    : echoes + prompts
+
+  44    : stops before each prompt
+
+  77    : stops + prompts + echoes : useful mode for demos.
+
+  exec(fun [,mode]) executes function  fun as a script: no input nor output
+  argument nor specific variable environment. This form is more efficient,
+  because script code may be pre-compiled (see getf, comp). This method for
+  script evaluation allows to store scripts as function in libraries.
+
+  If an error is encountered while executing , if 'errcatch' flag is present
+  exec issues an error message, aborts execution of the
+   instructions and resume with ierr equal to the error number,if 'errcatch'
+  flag is not present, standard error handling works.
+
+REMARK
+  Last line of script file must be terminated by a newline to be taken into
+  account.
+EXAMPLES
+  // create a script file
+  write(TMPDIR+'/myscript','a=1;b=2')
+  // execute it
+  exec(TMPDIR+'/myscript')
+  who
+
+  //create a function
+  deff('y=foo(x)','a=x+1;y=a^2')
+  clear a b
+  //execute the function
+  foo(1)
+  // a is a variable created in the environment of the function foo
+  //    it is destroyed when foo returns
+  who
+
+  x=1 //create x to make it known by the script foo
+  exec(foo)
+  // a and y are created in the current environment
+  who
+SEE ALSO
+  getf, execstr, evstr, comp, mode, chdir, getcwd

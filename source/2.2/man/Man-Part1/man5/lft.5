@@ -1,0 +1,68 @@
+.TH lft 5 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+lft - linear fractional transformation
+.SH CALLING SEQUENCE
+.nf
+[P1]=LFT(P,K)
+[P1]=LFT(P,r,K)
+[P1,r1]=LFT(P,r,P#,r#)
+.fi
+.SH PARAMETERS
+.TP
+P
+: linear system (\fVsyslin\fR list), the ``augmented'' plant, implicitly
+partitioned into four blocks (two input ports and two output ports).
+.TP
+K
+: linear system (\fVsyslin\fR list), the controller (possibly
+an ordinary gain).
+.TP
+r
+: 1x2 row vector, dimension of \fVP22\fR
+.TP
+P#
+: linear system (\fVsyslin\fR list), implicitly
+partitioned into four blocks (two input ports and two output ports).
+.TP
+r#
+: 1x2 row vector, dimension of \fVP#22\fR
+.SH DESCRIPTION
+Linear fractional transform between two standard plants
+\fVP\fR and \fVP#\fR in state space form or in transfer form 
+(\fVsyslin\fR lists).
+.LP
+\fVr= size(P22) r#=size(P22#)\fR
+.LP
+\fVLFT(P,r, K)\fR is the linear fractional transform between \fVP\fR and
+a controller \fVK\fR (\fVK\fR may be a gain or a controller in
+state space form or in transfer form);
+.LP
+\fVLFT(P,K)\fR is \fVLFT(P,r,K)\fR with \fVr\fR=size of \fVK\fR transpose;
+.LP
+\fVP1= P11+P12*K* (I-P22*K)^-1 *P21\fR
+.LP
+.Vb [P1,r1]=LFT(P,r,P#,r#)
+returns the generalized (2 ports) lft of \fVP\fR and \fVP#\fR.
+.LP
+\fVP1\fR is the pair two-port interconnected plant and the partition
+of \fVP1\fR into 4 blocks in given by \fVr1\fR which is the dimension
+of the \fV22\fR block of \fVP1\fR.
+.LP
+\fVP\fR and \fVR\fR can be PSSDs i.e. may admit a polynomial \fVD\fR matrix.
+.SH EXAMPLE
+.nf
+s=poly(0,'s');
+P=[1/s, 1/(s+1); 1/(s+2),2/s]; K= 1/(s-1);
+lft(P,K)
+lft(P,[1,1],K)
+P(1,1)+P(1,2)*K*inv(1-P(2,2)*K)*P(2,1)   //Numerically dangerous!
+ss2tf(lft(tf2ss(P),tf2ss(K)))
+lft(P,-1)
+f=[0,0;0,1];w=P/.f; w(1,1)
+//Improper plant (PID control)
+W=[1,1;1,1/(s^2+0.1*s)];K=1+1/s+s
+lft(W,[1,1],K); ss2tf(lft(tf2ss(W),[1,1],tf2ss(K)))
+.fi
+.SH SEE ALSO
+sensi, augment, feedback, sysdiag

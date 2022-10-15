@@ -1,0 +1,23 @@
+.TH EVTDLY_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+EVTDLY_f - Scicos event delay block
+.SH DESCRIPTION
+One event is generated \fVDelay\fR after an event enters the unique input
+event port. Block may also generate an initial output event.
+.SH DIALOGUE PARAMETERS
+.TP 15
+Delay
+: scalar. Time delay between input and output event.
+.TP
+Auto-exec
+:  scalar. If \fVAuto-exec>=0\fR  block initially generates an output event at date \fVAuto-exec\fR.
+.SH SEE ALSO
+CLOCK_f
+
+
+
+
+
+
+

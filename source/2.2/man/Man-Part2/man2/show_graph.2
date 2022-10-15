@@ -1,0 +1,41 @@
+.TH show_graph 1 "September 1995" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME
+show_graph - display a graph
+.SH CALLING SEQUENCE
+.nf
+show_graph(g,[mode,scale])
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph-list
+.TP 5
+mode
+: string, mode value
+.TP 6
+scale
+: real value, scale factor
+.SH DESCRIPTION
+\fVshow_graph\fR displays the graph \fVg\fR in the current Metanet window. 
+If there is no current Metanet window, a Metanet window is created.
+If there is already a graph displayed in the current Metanet window,
+the optional argument \fVmode\fR must be equal to the string 'rep'
+to display the new graph instead.
+If the optional argument \fVmode\fR is equal to the string 'new', a new 
+Metanet window is created.
+The optional argument \fVscale\fR is the value of the scale factor when 
+drawing the graph. The default value is 1.
+
+The labels of the nodes and edges, if they exist, are displayed.
+.SH EXAMPLE
+.nf
+ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
+he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
+gt=make_graph('foo',1,17,ta,he);
+gt('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+gt('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+show_graph(gt,'rep',2);
+show_graph(gt,'rep',0.5);
+show_graph(gt,'rep',1);
+.fi

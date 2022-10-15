@@ -1,0 +1,29 @@
+.TH spones 1 "January 1995" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+spones -  sparse matrix 
+.SH SYNTAX
+sp=spones(A)
+.SH PARAMETERS
+.TP
+A
+: sparse matrix
+.TP
+sp
+: sparse matrix
+.SH DESCRIPTION
+\fVsp=spones(A)\fR generates a matrix with the same sparsity
+structure as \fVA\fR, but with ones in the nonzero positions;
+.SH EXAMPLE
+.nf
+A=sprand(10,12,0.1);
+sp=spones(A)
+B = A~=0
+bool2s(B)
+.fi
+.SH SEE ALSO
+sparse, full, eye, speye, spzeros
+
+
+
+                        

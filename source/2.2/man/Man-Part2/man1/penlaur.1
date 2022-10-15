@@ -1,0 +1,47 @@
+.TH penlaur 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+penlaur - Laurent coefficients of matrix pencil
+.SH CALLING SEQUENCE
+.nf
+[Si,Pi,Di,order]=penlaur(Fs)
+[Si,Pi,Di,order]=penlaur(E,A)
+.fi
+.SH PARAMETERS
+.TP 12
+Fs
+: a regular pencil \fVs*E-A\fR
+.TP 12
+E, A
+: two real square matrices
+.TP 12
+Si,Pi,Di
+: three real square matrices
+.TP
+order
+: integer
+.SH DESCRIPTION
+.Vb penlaur 
+computes the first Laurent coefficients of \fV(s*E-A)^-1\fR at
+infinity.
+.LP
+\fV(s*E-A)^-1 = ... + Si/s - Pi - s*Di + ...\fR at \fVs\fR = infinity.
+.LP
+\fVorder\fR = order of the singularity (order=index-1).
+.LP
+The matrix pencil \fVFs=s*E-A\fR should be invertible.
+.LP
+For a index-zero pencil, \fVPi, Di,...\fR are zero and \fVSi=inv(E)\fR.
+.LP
+For a index-one pencil (order=0),\fVDi\fR =0.
+.LP
+For higher-index pencils, the terms \fV -s^2 Di(2), -s^3 Di(3),... \fR are given by:
+.LP
+\fV Di(2)=Di*A*Di\fR, \fV Di(3)=Di*A*Di*A*Di \fR (up to \fVDi(order)\fR).
+.SH Remark
+Experimental version: troubles when bad conditioning of \fVso*E-A\fR
+.SH SEE ALSO
+glever, pencan, rowshuff
+.SH AUTHOR 
+F. D. (1988,1990) 
+

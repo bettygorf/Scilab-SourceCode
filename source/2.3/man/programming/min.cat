@@ -1,0 +1,10 @@
+
+min(1)                         Scilab Function                         min(1)
+NAME
+  min - minimum
+
+DESCRIPTION
+  See max. Note that min and mini are equivalent.
+
+SEE ALSO
+  mini, max

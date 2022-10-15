@@ -1,0 +1,8 @@
+
+ans(1)                         Scilab Function                         ans(1)
+NAME
+  ans - answer
+
+DESCRIPTION
+  ans means "answer".  Variable ans is created automatically when expressions
+  are not assigned. ans contains the last unassigned evaluated expression.

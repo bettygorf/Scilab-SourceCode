@@ -1,0 +1,29 @@
+.TH ones 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ones - matrix made of ones
+.SH CALLING SEQUENCE
+.nf
+y=ones(m,n)
+y=ones(x)
+y=ones()
+.fi
+.SH DESCRIPTION
+Returns a matrix made of ones.
+.TP
+ones(m,n) 
+returns a \fV(m,n)\fR matrix full of ones.
+.TP
+ones(x) 
+returns a matrix full of ones with the same size that \fVx\fR.
+.TP
+ones(x) 
+is also valid for \fVx\fR a \fVsyslin\fR list.
+.LP
+Note that \fVones(3)\fR is \fVones(a)\fR with \fVa=3\fR i.e it is NOT 
+a 3x3 matrix!
+.LP
+ones() is eqivalent to ones(1,1).
+.SH SEE ALSO
+eye, zeros
+

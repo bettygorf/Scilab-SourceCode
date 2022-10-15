@@ -1,0 +1,21 @@
+
+gammaln(3)                     Scilab Function                     gammaln(3)
+NAME
+  gammaln -  The logarithm of gamma function.
+
+CALLING SEQUENCE
+   y = gammaln(x)
+
+PARAMETERS
+
+  x    : real vector
+
+  y    : real vector with same size.
+
+DESCRIPTION
+  gammaln(x) evaluates the logarithm of gamma function at all the elements of
+  x, avoiding underflow and overflow.  x must be real.
+EXAMPLE
+  gammaln(0.5)
+SEE ALSO
+  gamma, dlgamma

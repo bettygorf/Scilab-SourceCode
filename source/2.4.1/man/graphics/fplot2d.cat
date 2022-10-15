@@ -1,0 +1,29 @@
+
+fplot2d(2)                     Scilab Function                     fplot2d(2)
+NAME
+  fplot2d  - 2D plot of a curve defined by an external
+
+CALLING SEQUENCE
+  fplot2d(xr,f,[style,strf,leg,rect,nax])
+
+PARAMETERS
+
+  xr             : vector of size (n1,1).
+
+  f              : external (of type [y]=f(x))
+
+  [rest]         : see plot2d
+
+DESCRIPTION
+  The curve is approximated by a piecewise linear interpolation using the
+  points (xr(i),f(xr(i)).
+
+  Enter the command fplot2d() to see a demo.
+
+EXAMPLE
+  deff("[y]=f(x)","y=sin(x)+cos(x)");
+  fplot2d((0:0.1:10)*%pi/10,f);
+  fplot2d((0:0.1:10)*%pi/10,f,5);
+
+AUTHOR
+  J.Ph.C..

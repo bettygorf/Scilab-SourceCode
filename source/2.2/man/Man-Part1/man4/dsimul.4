@@ -1,0 +1,34 @@
+.TH dsimul 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+dsimul - discrete time response
+.SH CALLING SEQUENCE
+.nf
+[y]=dsimul(sl,u) 
+.fi
+.SH PARAMETERS
+.TP
+sl
+: \fVsyslin\fR list for a state-space discrete time linear 
+ system, \fVsl=syslin('d',A,B,C,D,x0)\fR
+.TP
+u
+: matrix of inputs
+.TP
+y
+: matrix of outputs
+.SH DESCRIPTION
+Time response for the strictly proper discrete-time system 
+\fVsl\fR defined by:
+.nf
+   x(k+1)=A*x(k)+B*u(k)
+   y(k+1)=C*x(k+1)
+   x(0)=x0
+.fi
+with inputs \fVu=[u(1),....,u(n)]\fR (\fVu(i)\fR = vector of inputs
+at time \fVi\fR.
+.LP
+Note that the d matrix of \fVsl\fR is zero.
+.SH SEE ALSO
+rtitr, ltitr, dscr
+

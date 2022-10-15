@@ -1,0 +1,26 @@
+.TH COS G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+cos -  cosine function
+.SH CALLING SEQUENCE
+.nf
+[y]=cos(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x 
+: real or complex vector or real or complex symmetric matrix.
+.SH DESCRIPTION
+\fVcos(x)\fR is the cosine of the elements of \fVx\fR. 
+If \fVX\fR is a square and symmetric matrix \fVcos(X)\fR
+returns 
+\"LaTeX \ignore{ 
+.nf
+I - X^2 /2! + X^4 /4! + ....
+.fi
+\"LaTeX  }
+\"LaTeX  \[ I - X^2 /2! + X^4 /4! + \ldots \]
+
+
+
+

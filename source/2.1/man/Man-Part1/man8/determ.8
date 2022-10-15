@@ -1,0 +1,32 @@
+.TH determ 8 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+determ - determinant of polynomial matrix
+.SH CALLING SEQUENCE
+.nf
+res=determ(W [,k])
+.fi
+.SH PARAMETERS
+.TP
+W
+: real square polynomial matrix
+.TP
+k
+: integer (upper bound for the degree of the determinant of W)
+.SH DESCRIPTION
+.Vb res=determ(W [,k]) 
+returns the determinant of a real polynomial matrix 
+(computation made by FFT).
+.LP
+\fVk\fR is an integer larger than the actual degree of the determinant
+of \fVW\fR.
+.LP
+The default value of \fVk\fR is the smallest power of 2 which is larger
+than \fVn*maxi(degree(W))\fR.
+.LP
+Method: evaluate the determinant of \fVW\fR for the Fourier frequencies
+and apply inverse FFT to the coefficients of the determinant.
+.SH SEE ALSO
+det, detr, coffg
+.SH AUTHOR
+F.D.

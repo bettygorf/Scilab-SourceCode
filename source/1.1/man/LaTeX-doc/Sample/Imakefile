@@ -1,0 +1,31 @@
+
+#include "../../../Imake.incl"
+
+TR2TEX=../tr2latex/tr2tex 
+
+AllTarget(Readme.dvi)
+
+Readme.dvi: example.tex
+	latex Readme.tex
+
+$(TR2TEX)	:
+	cd ../tr2latex ; $(MAKE) $(MFLAGS) 
+
+Tr2texTarget(example.tex,example.1)
+DependTarget()
+
+clean 	::
+	$(RM) -f *.aux *.log  example.tex *.dvi
+
+distclean: clean 
+
+
+
+
+
+
+
+
+
+
+

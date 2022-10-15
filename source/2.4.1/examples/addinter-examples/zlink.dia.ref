@@ -1,0 +1,474 @@
+ 
+// Copyright INRIA
+ 
+ 
+files=G_make(['/tmp/ex1cI.o','/tmp/ex1c.o'],'ex1c.dll');
+ 
+addinter(strcat(files,' '),'cfoobar','foubare');
+ 
+ 
+a=1:10;b=a+1;c=ones(2,3)+2;
+ 
+ 
+[x,y,z,t]=foubare('mul',a,b,c);
+ 
+ 
+// Check the result
+ 
+if norm(t-(a*2)) > %eps then bugmes();quit;end
+ 
+if norm(z-(b*2) ) > %eps then bugmes();quit;end
+ 
+if norm(y-(c*2)) > %eps then bugmes();quit;end
+ 
+deff('[y]=f(i,j)','y=i+j');
+ 
+if norm(x- ( y.* feval(0:1,0:2,f))) > %eps then bugmes();quit;end
+ 
+ 
+[x,y,z,t]=foubare('add',a,b,c);
+ 
+ 
+// Check the result
+ 
+if norm(t-(a+2)) > %eps then bugmes();quit;end
+ 
+if norm(z-(b+2) ) > %eps then bugmes();quit;end
+ 
+if norm(y-(c+2)) > %eps then bugmes();quit;end
+ 
+deff('[y]=f(i,j)','y=i+j');
+ 
+if norm(x- ( c +2 + feval(0:1,0:2,f))) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+// Copyright INRIA
+ 
+ 
+files=G_make(['/tmp/ex1fi.o','/tmp/ex1f.o'],'ex1f.dll');
+ 
+addinter(strcat(files,' '),'foobarf','foubaref');
+ 
+ 
+a=1:10;b=a+1;c=ones(2,3)+2;
+ 
+[x,y,z,t]=foubaref('mul',a,b,c);
+ 
+ 
+// Check the result
+ 
+if norm(t-(a*2)) > %eps then bugmes();quit;end
+ 
+if norm(z-(b*2) ) > %eps then bugmes();quit;end
+ 
+if norm(y-(c*2)) > %eps then bugmes();quit;end
+ 
+deff('[y]=f(i,j)','y=i+j');
+ 
+if norm(x- ( y.* feval(1:2,1:3,f))) > %eps then bugmes();quit;end
+ 
+ 
+[x,y,z,t]=foubaref('add',a,b,c);
+ 
+ 
+// Check the result
+ 
+if norm(t-(a+2)) > %eps then bugmes();quit;end
+ 
+if norm(z-(b+2) ) > %eps then bugmes();quit;end
+ 
+if norm(y-(c+2)) > %eps then bugmes();quit;end
+ 
+deff('[y]=f(i,j)','y=i+j');
+ 
+if norm(x- ( c +2 + feval(1:2,1:3,f))) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+// Copyright INRIA
+ 
+ 
+// Example with optional argument specified with the
+ 
+// arg=value syntax
+ 
+// [a,b,c] = funcf1(x1,{ v1= arg1, v2=arg2}) , arg1 default value 99
+ 
+//					       arg2 default value 3
+ 
+// only v1 and v2 are recognized as optional argument names
+ 
+// the return value are a<--x1, b = 2*v2 , c = 3*v2
+ 
+//
+ 
+ 
+files=G_make(['/tmp/ex2cI.o','/tmp/ex2c.o'],'ex2c.dll');
+ 
+addinter(strcat(files,' '),'testcentry',['funcf1']);
+ 
+ 
+[a,b,c]=funcf1('test');
+ 
+ 
+if norm([99*2,3*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+[a,b,c]=funcf1('test',v1=[10,20]);
+ 
+ 
+if norm([[10,20]*2,3*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+[a,b,c]=funcf1('test',v1=[10,20],v2=8);
+ 
+ 
+if norm([[10,20]*2,8*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+[a,b,c]=funcf1('test',v2=8,v1=[10]);
+ 
+ 
+if norm([10*2,8*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+// Copyright INRIA
+ 
+ 
+// Example with optional argument specified with the
+ 
+// arg=value syntax
+ 
+// [a,b,c] = funcf1(x1,{ v1= arg1, v2=arg2}) , arg1 default value 99
+ 
+//					       arg2 default value 3
+ 
+// only v1 and v2 are recognized as optional argument names
+ 
+// the return value are a<--x1, b = 2*v2 , c = 3*v2
+ 
+//
+ 
+ 
+scifuncs=['funcf1'];  //Scilab functions
+ 
+files=G_make(['/tmp/ex2fi.o','/tmp/ex2f.o'],'ex2f.dll');
+ 
+addinter(strcat(files,' '),'testfentry',scifuncs);
+ 
+ 
+[a,b,c]=funcf1('test');
+ 
+ 
+if norm([99*2,3*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+[a,b,c]=funcf1('test',v1=[10,20]);
+ 
+ 
+if norm([[10,20]*2,3*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+[a,b,c]=funcf1('test',v1=[10,20],v2=8);
+ 
+ 
+if norm([[10,20]*2,8*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+[a,b,c]=funcf1('test',v2=8,v1=[10]);
+ 
+ 
+if norm([10*2,8*3]-[b,c]) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+// Copyright INRIA
+ 
+ 
+scifuncs=['funcc1','funcc2','funcc3','funcc4'];  //Scilab functions
+ 
+files=G_make(['/tmp/ex3cI.o','/tmp/ex3c.o'],'ex3c.dll');
+ 
+addinter(strcat(files,' '),'testcentry3',scifuncs)
+ 
+ 
+ 
+//matrix (double) created by C function
+ 
+x1=funcc1();
+ 
+if norm(x1-matrix((1:5*3),3,5)) > %eps then bugmes();quit;end
+ 
+ 
+//matrix (int) created by C function
+ 
+x2=funcc2();
+ 
+if norm(x2-matrix((1:5*3),3,5)) > %eps then bugmes();quit;end
+ 
+ 
+//Character string created by C function
+ 
+x3=funcc3();
+ 
+if x3<>"Scilab is0..." then bugmes();quit;end
+ 
+ 
+// all together
+ 
+ 
+[y1,y2,y3]=funcc4();
+ 
+if y1<>x3 then bugmes();quit;end
+ 
+if norm(y2-x2) > %eps then bugmes();quit;end
+ 
+if norm(y3-x1) > %eps then bugmes();quit;end
+ 
+ 
+ 
+// Copyright INRIA
+ 
+ 
+scifuncs=['funcf1','funcf2','funcf3','funcf4'];  //Scilab functions
+ 
+files=G_make(['/tmp/ex3fi.o','/tmp/ex3f.o'],'ex3f.dll');
+ 
+addinter(strcat(files,' '),'testfentry3',scifuncs);
+ 
+ 
+//matrix (double) created by C function
+ 
+x1=funcf1();
+ 
+if norm(x1-matrix((1:5*3),3,5)) > %eps then bugmes();quit;end
+ 
+ 
+//matrix (int) created by C function
+ 
+x2=funcf2();
+ 
+if norm(x2-matrix((1:5*3),3,5)) > %eps then bugmes();quit;end
+ 
+ 
+//Character string created by C function
+ 
+x3=funcf3();
+ 
+if x3<>"Scilab is0..." then bugmes();quit;end
+ 
+ 
+ 
+// all together
+ 
+ 
+[y1,y2,y3]=funcf4();
+ 
+if y1<>x3 then bugmes();quit;end
+ 
+if norm(y2-x2) > %eps then bugmes();quit;end
+ 
+if norm(y3-x1) > %eps then bugmes();quit;end
+ 
+// Copyright INRIA
+ 
+ 
+files=G_make(['/tmp/ex4cI.o'],'ex4c.dll') ;
+ 
+addinter(files,'cdgemmentry','dgemm');
+ 
+ 
+alfa=2;beta=3;m=3;n=4;C=ones(m,n);k=2;A=ones(m,k);B=ones(k,n);
+ 
+C1=dgemm(alfa,A,B,beta,C);
+ 
+if norm(C1-(alfa*A*B+beta*C)) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+// Copyright INRIA
+ 
+ 
+files=G_make(['/tmp/ex4fi.o'],'ex4f.dll');
+ 
+addinter(files,'fdgemmentry','dgemm');
+ 
+ 
+alfa=2;beta=3;m=3;n=4;C=ones(m,n);k=2;A=ones(m,k);B=ones(k,n);
+ 
+C1=dgemm(alfa,A,B,beta,C);
+ 
+if norm(C1-(alfa*A*B+beta*C)) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+ 
+// Copyright INRIA
+ 
+ 
+if ~c_link('cfunc') then
+   files=G_make(['/tmp/ex5cI.o','/tmp/ex5c.o'],'ex5c.dll');
+   addinter(strcat(files,' '),'cfunc','FuncEx');
+end
+ 
+ 
+deff('[z]=f(x,y)','z=x+y');
+Warning :redefining function: f                       
+ 
+ 
+res=FuncEx(1:3,4:6,f);
+ 
+if norm(res -feval(1:3,4:6,f)) > %eps then bugmes();quit;end
+ 
+ 
+res1=FuncEx(1:3,4:6,'fp1');
+ 
+if norm(res - res1 ) > %eps then bugmes();quit;end
+ 
+ 
+if ~c_link('fp3') then
+  files=G_make(['/tmp/ex5cm.o'],'ex5cm.dll');
+  link(files,'fp3','C') ;
+end
+ 
+ 
+res2=FuncEx(1:3,4:6,'fp3');
+ 
+if norm(res2 -cos(res)) > 100*%eps then bugmes();quit;end
+ 
+ 
+// Copyright INRIA
+ 
+ 
+scifuncs=['modstr','stacc'];  //Scilab functions
+ 
+files=G_make(['/tmp/ex6cI.o','/tmp/ex6c.o'],'ex6c.dll');
+ 
+addinter(strcat(files,' '),'intex6c',scifuncs);
+ 
+ 
+//a's to o's
+ 
+x=modstr('gaad');
+ 
+if x<>'good' then bugmes();quit;end
+ 
+ 
+//variable read in Scilab stack
+ 
+param=1:10;
+ 
+z=stacc();
+ 
+if norm(z-param) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+// Copyright INRIA
+ 
+ 
+scifuncs=['modstr','stacc'];  //Scilab functions
+ 
+files=G_make(['/tmp/ex6fi.o','/tmp/ex6f.o'],'ex6f.dll');
+ 
+addinter(strcat(files,' '),'intex6f',scifuncs);
+ 
+ 
+//a's to o's
+ 
+x=modstr('gaad');
+ 
+if x<>'good' then bugmes();quit;end
+ 
+ 
+//variable read in Scilab stack
+ 
+param=1:10;
+ 
+z=stacc();
+ 
+if norm(z-param) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+// Copyright INRIA
+ 
+ 
+files=G_make(['/tmp/ex7fi.o'],'ex7f.dll');
+ 
+addinter(files,'intex7','pipo');
+ 
+ 
+//pipo(2) ==> error  since g_abs is not defined
+ 
+ 
+deff('z=g_abs(x)','z=abs(x)+a')    //Now g_abs is defined
+ 
+ 
+a=33;
+ 
+y=pipo(33)-34;   //goes into Fortran interface ex7fi which calls g_abs
+ 
+if y<>32 then bugmes();quit;end
+ 
+ 
+ 
+ 
+// Copyright INRIA
+ 
+ 
+files=G_make(['/tmp/ex8fi.o'],'ex8f.dll');
+ 
+addinter(files,'entrypt','geval')
+ 
+ 
+//Function geval is executed within the interface program
+ 
+//ex8fi.f
+ 
+ 
+a_chain='hello';s=poly(0,'s');
+ 
+deff('[y1,y2,y3]=myfunction(x1,x2)','y1=x1+x2,y2=1+s,y3=a_chain')
+ 
+ 
+x1=1;x2=2;
+ 
+[y1,y2,y3]=myfunction(x1,x2);
+ 
+ 
+[u,v,w]=geval(x1,x2,myfunction);
+ 
+ 
+if u-y1 > %eps then bugmes();quit;end
+ 
+if v-y2<>0 then bugmes();quit;end
+ 
+if w<>y3 then bugmes();quit;end
+ 
+ 
+ 

@@ -1,0 +1,22 @@
+
+cotg(1)                        Scilab Function                        cotg(1)
+NAME
+  cotg - cotangent
+
+CALLING SEQUENCE
+  [t]=cotg(x)
+
+PARAMETERS
+
+  x,t       : real or complex vectors/matrices
+
+DESCRIPTION
+  The  elements  of  t are  the  cotangents of  the corresponding entries of
+  x.  t=cos(x)./sin(x)
+
+EXAMPLE
+  x=[1,%i];
+  cotg(x)-cos(x)./sin(x)
+
+SEE ALSO
+  tan

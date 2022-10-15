@@ -1,0 +1,66 @@
+
+
+
+scilink(1)                     Scilab Function                     scilink(1)
+
+
+
+
+
+
+NAME
+  scilink - Unix script to relink Scilab
+
+CALLING SEQUENCE
+  scilink <object-files>
+
+DESCRIPTION
+  This script is used to produce a local scilex (executable code of Scilab)
+  linked with the  additional files given by the user in <object-files>.
+
+  If in the list of object files some names are known scilex names (from
+  SCIDIR/routines/default ) then the scilex default files are omited and
+  replaced with the given ones .
+
+  This script also produces an xscilab script, which when called will ran the
+  new generated scilex file.
+
+  For example the command
+  scilink C/interf.o C/evol.o C/bib.a
+  will create a new scilex file in which the default interf.o file will be
+  replaced by C/interf.o.
+
+SEE ALSO
+  directory SCIDIR/routines/default
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

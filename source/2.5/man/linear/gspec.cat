@@ -1,0 +1,35 @@
+
+gspec(G)                       Scilab Function                       gspec(G)
+NAME
+  gspec - eigenvalues of matrix pencil
+
+CALLING SEQUENCE
+  [al,be]=gspec(A,E)
+  [al,be,Z]=gspec(A,E)
+
+PARAMETERS
+
+  A, E      : real square matrices
+
+  al, be    : real vectors
+
+  Z         : real square non-singular matrix
+
+DESCRIPTION
+  [al,be] = gspec(A,E) returns the spectrum of the matrix pencil s E - A,
+  i.e. the roots of the polynomial matrix s E - A.  The eigenvalues are given
+  by al./be and if be(i) = 0 the ith eigenvalue is at infinity. (For E =
+  eye(A), al./be is spec(A)).
+
+  [al,be,Z] = gspec(A,E) returns in addition the matrix Z of generalized
+  right eigenvectors of the pencil.
+
+EXAMPLE
+  A=rand(3,3);
+  [al,be,Z] = gspec(A,eye(A));al./be
+  clean(inv(Z)*A*Z)  //displaying the eigenvalues (generic matrix)
+  A=A+%i*rand(A);E=rand(A);
+  roots(det(%s*E-A))   //complex case
+
+SEE ALSO
+  gschur, balanc, spec, kroneck

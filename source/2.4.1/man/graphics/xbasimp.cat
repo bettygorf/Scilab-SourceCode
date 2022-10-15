@@ -1,0 +1,32 @@
+
+xbasimp(2)                     Scilab Function                     xbasimp(2)
+NAME
+  xbasimp - send graphics to a postscript printer or in a file
+
+CALLING SEQUENCE
+  xbasimp(win_num,[filen,printer])
+
+PARAMETERS
+
+  win_num   : an integer scalar or vector
+
+  filen     : string (Postscript file name). (default value=file). The window
+            number is appended to the filen.
+
+  printer   : string (Printer name). if printer is present or if there's only
+            one argument in the calling sequence, the created file is printed
+            on printer printer.
+
+DESCRIPTION
+  This function will send the recorded graphics of the window win_num in the
+  Postscript file filen and will print the Postscript file with the command
+  Blpr. This function will work only if the selected driver is "Rec"
+
+  If fwin_num is a vector several files are generated,one for each selected
+  window (with names filenxx), and the files are printed on a unique page
+  with the command Blpr,
+
+  The window number is appended to filen.
+
+SEE ALSO
+  printing

@@ -1,0 +1,40 @@
+.TH Maximum G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+maxi - maximum
+.SH CALLING SEQUENCE
+.nf
+[m [,k]]=maxi(A)
+[m [,k]]=maxi(A1,A2,...,An)
+[m [,k]]=maxi(list(A1,A2,...,An))
+.fi
+.SH PARAMETERS
+.TP 10
+A
+: real vector or matrix.
+.TP 10
+A1,...,An
+: a set of real vectors or matrices, all of the same size.
+.SH DESCRIPTION
+For \fVA\fR, a real  vector or matrix, \fVmaxi(A)\fR 
+is the largest element 
+\fVA\fR. \fV[m,k]=maxi(A)\fR gives in addition the index of the maximum.
+
+\fVm=maxi(A1,A2,...,An)\fR, where all the \fVAj\fR are matrices of the same 
+sizes,returns a vector or a matrix \fVm\fR of size \fVsize(m)=size(A1)\fR
+such that \fVm(i)= max( Aj(i)), j=1,...,n\fR. \fV[m,k]=maxi(A1,A2,...,An)\fR 
+gives in addition the vector or matrix \fVk\fR. for a fixed \fVi\fR,
+\fVk(i)\fR is the number of the first \fVAj(i)\fR achieving the maximum.
+
+\fV[m,k]=maxi(list(A1,...,An))\fR is an equivalent syntax of 
+\fV[m,k]=maxi(A1,A2,...,An)\fR
+.SH EXAMPLE
+.nf
+[m,n]=maxi([1,3,1])
+[m,n]=maxi([3,1,1],[1,3,1],[1,1,3])
+[m,n]=maxi(list([3,1,1],[1,3,1],[1,1,3]))
+[m,n]=maxi(list(1,3,1))
+.fi
+.SH SEE ALSO
+sort, find, mini
+

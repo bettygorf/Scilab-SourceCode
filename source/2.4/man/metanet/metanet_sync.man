@@ -1,0 +1,28 @@
+.TH metanet_sync 1 "September 1995" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+metanet_sync - asynchronous or synchronous mode in Metanet
+.SH CALLING SEQUENCE
+.nf
+res = metanet_sync([flag])
+.fi
+.SH PARAMETERS
+.TP 4
+res
+: integer
+.TP 5
+flag
+: integer
+.SH DESCRIPTION
+By default Metanet windows work with Scilab in asynchronous mode, ie Scilab
+proceeds without waiting for graphics commands sent to Metanet window to
+terminate: these commands are \fVshow_graph\fR, \fVshow_arcs\fR and
+\fVshow_nodes\fR. This mode is the most efficient. But when running a lots of
+such graphical commands, problems can arise.
+
+\fVmetanet_sync(0)\fR changes to asynchronous mode (default).
+
+\fVmetanet_sync(1)\fR changes to synchronous mode.
+
+\fVmetanet_sync()\fR returns the current mode (0 = asynchronous,
+1 = synchronous).

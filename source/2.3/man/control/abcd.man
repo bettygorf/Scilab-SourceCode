@@ -1,0 +1,40 @@
+.TH abcd 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+abcd - state-space matrices
+.SH CALLING SEQUENCE
+.nf
+[A,B,C,D]=abcd(sl)
+.fi
+.SH PARAMETERS
+.TP 8
+sl
+: linear system (\fVsyslin\fR list) in state-space or transfer form
+.TP
+A,B,C,D
+: real matrices of appropriate dimensions
+.SH DESCRIPTION
+returns the \fVA,B,C,D \fR matrices from a linear system \fVSl\fR.
+.LP
+Utility function. For transfer matrices \fVSl\fR is converted
+into state-space form by \fVtf2ss\fR.
+.LP
+The matrices \fVA,B,C,D\fR are the elements \fV2\fR to \fV5\fR of
+the \fVsyslin\fR list \fVSl\fR, i.e. \fV[A,B,C,D] = Sl(2:5)\fR .
+.SH EXAMPLE
+.nf
+A=diag([1,2,3]);B=[1;1;1];C=[2,2,2];
+sys=syslin('c',A,B,C);
+sys("A")
+sys("C")
+[A1,B1,C1,D1]=abcd(sys);
+A1
+systf=ss2tf(sys);
+[a,b,c,d]=abcd(systf)
+spec(a)
+c*b-C*B
+c*a*b-C*A*B
+.fi
+.SH SEE ALSO 
+syslin, ssrand
+

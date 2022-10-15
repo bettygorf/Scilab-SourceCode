@@ -1,0 +1,23 @@
+
+tanm(1)                        Scilab Function                        tanm(1)
+NAME
+  tanm - matrix tangent
+
+CALLING SEQUENCE
+  [t]=tanm(x)
+
+PARAMETERS
+
+  x         : square real or complex matrix
+
+  t         : square matrix
+
+DESCRIPTION
+  tanm(x)  is the matrix tangent of the square matrix x
+
+EXAMPLE
+  A=[1,2;3,4];
+  tanm(A)
+
+SEE ALSO
+  tan, expm, sinm, atanm

@@ -1,0 +1,23 @@
+
+translatepaths(1)              Scilab Function              translatepaths(1)
+NAME
+  translatepaths - translate a set of Matlab M_file directories to scilab
+
+CALLING SEQUENCE
+  translatepaths(dirs_path [,res_path])
+
+PARAMETERS
+
+  dir_path       : a character string vector which gives the paths of Matlab
+                 M_file directories  to translate
+
+  res_path       : a character string  which gives the path of the directory
+                 where the scilab functions are written to.
+DESCRIPTION
+  translatepaths, translate all Matlab M-file contained in a set of direc-
+  tories to Scilab functions. Each function is translated by mfile2sci.
+SEE ALSO
+  mfile2sci
+
+AUTHOR
+  Serge Steer, INRIA

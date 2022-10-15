@@ -1,0 +1,28 @@
+
+fourplan(1)                    Scilab Function                    fourplan(1)
+NAME
+  fourplan - augmented plant to four plants
+
+CALLING SEQUENCE
+  [P11,P12,P21,P22]=fourplan(P,r)
+
+PARAMETERS
+
+  P         : syslin list (linear system)
+
+  r         : 1x2 row vector, dimension of P22
+
+  P11,P12,P21,P22
+            : syslin lists.
+
+DESCRIPTION
+  Utility function.
+
+  P being partitioned as follows:
+  P=[ P11 P12;
+      P21 P22]
+  with size(P22)=r this function returns the four linear systems
+  P11,P12,P21,P22.
+
+SEE ALSO
+  lqg, lqg2stan, lqr, lqe, lft

@@ -1,0 +1,24 @@
+rand('seed',0);
+rand('normal');
+nx=5;   //number of state variables
+rk=4;   //rank of A
+nu=2;   //number of controls
+ny=2;   //number of measurements
+A=rand(nx,rk)*rand(rk,nx);
+B2=rand(nx,nu);
+C2=rand(ny,nx);
+D22=0*rand(C2*B2);
+dom='d'   //time domain  ('c' or 'd')
+P22=syslin(dom,A,B2,C2,D22);   //nominal plant
+Q=rand(nx,1)*rand(1,nx);Q=Q*Q';   //Weighting for x
+N=rand(nu,nu);N=N*N';             //Weighting for u
+S=zeros(nx,nu);                          //Cross term
+bigQ=[Q,S;S',N];
+R=rand(nx,1)*rand(1,nx);R=R*R';          //variance of noise for x
+V=rand(ny,ny);V=V*V';                    //variance of noise for y
+T=zeros(nx,ny);                                 //cross covariance
+bigR=[R,T;T',V];
+//r=syssize(P22);
+[P,r]=lqg2stan(P22,bigQ,bigR);     //Augmented plant
+K=lqg(P,r);
+

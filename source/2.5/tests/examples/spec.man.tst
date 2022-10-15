@@ -1,0 +1,11 @@
+clear;lines(0);
+A=diag([1,2,3]);X=rand(3,3);A=inv(X)*A*X;
+spec(A)
+//
+x=poly(0,'x');
+pol=det(x*eye()-A)
+roots(pol)
+//
+[Ab,X,bs]=bdiag(A);
+Ab
+clean(inv(X)*A*X)

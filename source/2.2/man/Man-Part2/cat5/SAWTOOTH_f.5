@@ -1,0 +1,66 @@
+
+
+
+SAWTOOTH_f(5)                   Scicos Block                   SAWTOOTH_f(5)
+
+
+
+
+
+
+NAME
+  SAWTOOTH - Scicos sawtooth wave generator
+
+DESCRIPTION
+  This block is a sawtooth wave generator: output is (t-t_i) from ti to
+  t_(i+1) where t_i and t_(i+1) denote the times of two successive input
+  events.
+
+DIALOG PARAMETERS
+  Block label    : A string defining the block label. This label is placed
+                 under the block.
+  dt             : a scalar. If 0, no ouput event port exists. If dt>0, an
+                 output event port exists. This port is initially fired and
+                 an event is generated dt after every input event. By feeding
+                 back this event output to the event input, a self clocked
+                 sawtooth wave generator can be costructed.
+
+SEE ALSO
+  GENSIN_f GENSQR_f RAND_f
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

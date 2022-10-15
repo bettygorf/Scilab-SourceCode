@@ -1,0 +1,71 @@
+2.1 to 2.2 Major improvements
+=============================
+- New simulation tools
+      * Scicos hybrid connected object simulator (Beta test version).
+
+      * A discrete/continuous ode solver odedc has been added.
+
+      * All ode solvers parameters are now available through %ODEOPTIONS
+        variable and odeoptions function.
+
+      * addition of DAE solver with root finder (dasrt).
+
+- New version of Metanet
+
+- New GUI utilities
+      * Choice menu for xset parameters (see xset() ).
+
+      * Menus to print/export graphics.
+
+      * It is now possible to interactively zoom 2d plots and rotate 3d
+        plots using the graphic window buttons.
+
+      * Function to create and handle new buttons (see addmenu).
+
+      * Function to get filenames (see xgetfile).
+
+      * It is now possible to kill graphic windows using menu or xdel
+        function.
+
+- Optimization
+      * New versions of optimization routines.
+
+      * Non differentiable optimization added (optim('nd',...).
+
+- Miscellaneous
+      * scilab stack size may now be allocated at startup time and within
+        scilab (see stacksize).
+
+      * It is now possible to read and write data in integer format.
+
+      * a new data type "typed-list" designed for "soft coded"
+        operations (see tlist).
+
+      * all the documentation of Scilab in Postscript compressed files 
+        is no longer distributed with Scilab distribution. You will find 
+        it by anonymous ftp on "ftp.inria.fr:/INRIA/Projects/Meta2/Scilab/doc"
+        (internet# 192.93.2.54).
+
+2.1 to 2.2 Incompatiblities
+===========================
+- Due to an initial inconsistency in  typed lists, a new data type 
+  ("typed-list") has been created to handle new objects associated 
+  with "soft coded" operations. The old way still works, but will be
+  discarded in the next realease.
+
+- x(:) extraction/insertion has been changed for string and polynomial 
+  matrices do be coherent with the usual matrices.
+
+- error message 48 split in 240 (read) et 241 (write)
+  check errcatch(48,..) usage in macros
+
+- an argument has been added to xsegs to set line style, It is no more
+  possible to use xset('dashes',n);xsegs(..) to set line styles.
+
+- Most of xset parameters are now attached to their particular window.
+
+- plot3di, fac3di interactive functions have been replaced by plot3d
+  and fac3d.
+
+- Metanet has been fully revisited, many metanet related functions
+  have been corrected and renamed.

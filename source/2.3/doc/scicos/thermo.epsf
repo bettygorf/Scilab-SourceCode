@@ -1,0 +1,5075 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%BoundingBox: 0 0 300 212
+%%Scilab Postscript File (1995 J.Ph Chancelier)
+%%EndComments
+/saved save def 
+/$pictdict 100 dict def
+$pictdict begin
+
+/dogrey
+{ /Arraybox exch def
+	/Arraygrey exch def
+	/nargs exch def 
+	/func exch cvx def
+	Arraybox 0 nargs getinterval Arraygrey 0 get func 
+	1 1 Arraygrey length 1 sub 
+	{/i exch def
+	Arraybox i nargs mul nargs getinterval 
+	Arraygrey i get func
+	}for
+} def
+%--------------------------------------------
+% [x y width height] nivgris drawbox 
+% si niv gris > 1.0 alors on fait un stroke 
+% sans closepath 
+%--------------------------------------------
+
+/scf 1.6 def
+/Scalefont {/s exch def
+	scf s mul scalefont} def
+
+/drawpoly
+	{/glev exch def /Ar exch def
+	newpath
+	Ar 0 get Ar 1 get moveto 
+	2 2 Ar length 1 sub 
+	{/i exch def
+	Ar i get Ar i 1 add get absolu {lineto} {rlineto} ifelse
+	}for
+	glev -1 le 
+	{ % filling the polygon with current pattern ( gray or color)
+	  closepath gsave glev neg 1 sub WhiteLev 2 add lmin 0 lmax Setgray eofill grestore }
+	{ glev 1 ge 
+	   { % drawing the polygon with current dash style or color 
+	     % XXXXX : a voir c'est pas clair il faudrait sauver 
+	     % and filling it with other color (glev) 
+	     closepath gsave glev 1 sub WhiteLev 2 add lmin 0 lmax Setgray 
+		 eofill grestore stroke }
+	   {% drawing the polygon with current style 
+	    closeflag {closepath} if stroke} 
+	ifelse }
+	ifelse 
+} def 
+
+
+/drawbox 
+	{/glev exch def /Ar exch def 
+	/x Ar 0 get def /y Ar 1 get def 
+	/w Ar 2 get def /h Ar 3 get def 
+	newpath
+	x y moveto
+	x w add y lineto
+	x w add y h add lineto
+	x y h add lineto
+	glev 1 ge 
+	{ % filling 
+	 closepath gsave glev 1 sub WhiteLev 2 add lmin 0 lmax Setgray eofill 
+		grestore}
+	{ 
+	  % drawing 
+	  glev -1 le 
+	  {
+    	  closepath gsave glev neg 1 sub WhiteLev 2 add lmin 0 lmax Setgray
+		 stroke grestore  }
+	  { closepath stroke} ifelse 
+	} ifelse
+} def 
+
+%--------------------------------------------
+% [x y width height] clearzone
+%--------------------------------------------
+/clearzone
+        {/Ar exch def
+        /x Ar 0 get def /y Ar 1 get def
+        /w Ar 2 get def /h Ar 3 get def
+        newpath
+        x y moveto
+        x w add y lineto
+        x w add y h add lineto
+        x y h add lineto
+	closepath WhiteLev Setgray eofill
+} def
+
+%------------------------------------------------------
+% polyline stroke or polygon fill or both 
+%------------------------------------------------------
+/absolu true def 
+/closeflag false def 
+
+/lmin { /y exch def /x exch def x y le { x  } {  y  } ifelse } def
+/lmax { /y exch def /x exch def x y le { y } {  x } ifelse } def 
+
+
+/drawpoly
+	{/glev exch def /Ar exch def
+	newpath
+	Ar 0 get Ar 1 get moveto 
+	2 2 Ar length 1 sub 
+	{/i exch def
+	Ar i get Ar i 1 add get absolu {lineto} {rlineto} ifelse
+	}for
+	glev -1 le 
+	{ % filling the polygon with current pattern ( gray or color)
+	  closepath gsave glev neg 1 sub WhiteLev 2 add lmin 0 lmax Setgray eofill grestore }
+	{ glev 1 ge 
+	   { % drawing the polygon with current dash style or color 
+	     % XXXXX : a voir c'est pas clair il faudrait sauver 
+	     % and filling it with other color (glev) 
+	     closepath gsave glev 1 sub WhiteLev 2 add lmin 0 lmax Setgray 
+		 eofill grestore stroke }
+	   {% drawing the polygon with current style 
+	    closeflag {closepath} if stroke} 
+	ifelse }
+	ifelse 
+} def 
+
+%------------------------------------------------------
+% segments non connectes 
+%------------------------------------------------------
+
+/drawsegs
+	{/glev exch def /Ar exch def
+	newpath
+	Ar 0 get Ar 1 get moveto Ar 2 get Ar 3 get lineto 
+	gsave glev Setgray stroke grestore
+	4 4 Ar length 3 sub 
+	{/i exch def
+	newpath 
+	Ar i get Ar i 1 add get moveto
+	Ar i 2 add get Ar i 3 add get lineto 
+	gsave glev Setgray stroke grestore
+	}for
+} def 
+
+
+%------------------------------------------------------
+% unconected arrows
+%-----------------------------------------------------
+
+/drawarrows
+	{/arsize10 exch def /Ar exch def
+	Ar 0 get  Ar 1 get Ar 2 get Ar 3 get arsize10 drawarrow
+	4 4 Ar length 3 sub 
+	{/i exch def
+	Ar i get Ar i 1 add get  Ar i 2 add get  Ar i 3 add get arsize10 
+	drawarrow
+	}for
+} def 
+		
+/cos20 20 cos def
+/sin20 20 sin def
+
+/drawarrow                                
+  { 
+      /arsize exch 10 div def 
+      /tipy exch def /tipx exch def       
+      /taily exch def /tailx exch def
+      /dx tipx tailx sub  def               
+      /dy tipy taily sub  def               
+      newpath tipx tipy moveto tailx taily lineto stroke   
+      /norme dx dx mul dy dy mul add sqrt def 
+      norme 1.e-8 ge 
+	{
+	 arsize dx mul norme div /dx1 exch def 
+	 arsize dy mul norme div /dy1 exch def 
+	 /depx tipx cos20 dx1 mul add def 
+	/depy  tipy cos20 dy1 mul add def 
+	newpath depx depy moveto 
+	cos20 neg dx1 mul sin20 dy1 mul sub depx add
+	sin20 dx1  mul cos20 dy1 mul sub depy add lineto 
+	cos20 neg dx1 mul sin20 dy1 mul add  depx add
+	sin20 neg dx1 mul cos20 dy1 mul sub depy add lineto closepath 
+	fill
+	} {} ifelse 
+  } def
+
+
+%------------------------------------------------------
+% cercle ou portions de cercle 
+% attention argument (x y w h angl1*64 angl2*64 )
+% devrait tracer une ellipse a modifier donc 
+%------------------------------------------------------
+
+/fillarc
+	{/glev exch def /Ar exch def
+	/cx Ar 0 get Ar 2 get 2 div add def 
+	/cy Ar 1 get Ar 3 get 2 div add def 
+	/hom Ar 3 get Ar 2 get div def 
+	/Cmsave1 matrix def Cmsave1 currentmatrix pop
+	%-- on change de transformation pour faire homothetie en (x,y) 
+	cx cy [1 0 0 hom 0 0 ] transform
+	/t1 exch neg cy add def 
+	/t2 exch neg cx add def 
+	[1 0 0 hom t2 t1 ] concat 
+	glev WhiteLev le
+	{ % filling 
+	newpath
+	cx cy moveto 
+	cx cy Ar 2 get 2 div Ar 5 get 64 div neg
+	 Ar 4 get 64 div neg  arc closepath
+	gsave glev Setgray eofill grestore}
+	{
+	%drawing with current dash or color unclosed path 
+	newpath
+	cx cy Ar 2 get 2 div Ar 5 get 64 div neg Ar 4 get 64 div neg arc
+	  stroke} ifelse 
+	Cmsave1 setmatrix } def 
+
+/drawarc
+	{/glev exch def /Ar exch def
+	/cx Ar 0 get Ar 2 get 2 div add def 
+	/cy Ar 1 get Ar 3 get 2 div add def 
+	/hom Ar 3 get Ar 2 get div def 
+	/Cmsave1 matrix def Cmsave1 currentmatrix pop
+	%-- on change de transformation pour faire homothetie en (x,y) 
+	cx cy [1 0 0 hom 0 0 ] transform
+	/t1 exch neg cy add def 
+	/t2 exch neg cx add def 
+	[1 0 0 hom t2 t1 ] concat 
+	newpath
+	cx cy Ar 2 get 2 div Ar 5 get 64 div neg Ar 4 get 64 div neg arc
+	closepath glev Setgray stroke
+	Cmsave1 setmatrix } def 
+
+%------------------------------------------------------
+% centred hard mark 
+%------------------------------------------------------
+
+% x y str ShowCString 
+% on fait un show mais string est centre autour du point (x,y) 
+
+/ShowCString { /str exch def /y exch def /x exch def 
+ newpath 
+ x y moveto 
+ str true charpath flattenpath pathbbox 
+ /y2 exch def /x2 exch def /y1 exch def /x1 exch def 
+ x 2 mul x2 x1 add 2 div sub 
+ y 2 mul y2 y1 add 2 div sub moveto str show 
+ } def 
+
+/drawpolymark {/glev exch def /Ar exch def 
+	Ar 0 get Ar 1 get HardMark ShowCString 
+	2 2 Ar length 1 sub 
+	{/i exch def
+	Ar i get Ar i 1 add get HardMark ShowCString
+	}for
+} def 
+
+%---------------------------------------------------
+% chaines de caracteres 
+%---------------------------------------------------
+/FBox {/Ar exch def /rot exch def /str exch def /y exch def /x exch def 
+ newpath Ar 0 get Ar 1 get moveto 
+	/sina rot sin def /cosa rot cos def 
+	/-sina sina neg def 
+	[cosa -sina sina cosa 0 0 ] CtmModif
+ Ar 2 get 0 rlineto 0 Ar 3 get neg rlineto Ar 2 get neg 0 rlineto 
+ 0 Ar 3 get  rlineto  stroke CtmRestore 
+ x y str rot ShowRotate 
+ } def 
+
+% x y str ang Showrotate 
+% inverse du sens trigo 
+
+/ShowRotate { /ang exch def /str exch def 
+	/y exch def /x exch def 
+	x y moveto 
+	/sina ang sin def /cosa ang cos def 
+	/-sina 0 sina sub def 
+	[cosa -sina sina cosa 0 0 ] CtmModif
+	str show 
+	CtmRestore 
+} def 
+
+/HardMark (0) def 
+
+%(Chaine de caracteres) x y flag angle [arfbox] Show
+
+/Show { /Ar exch def 
+	/rot exch def /flag exch def /y exch def /x exch def /str exch def 
+	flag 1 eq 
+	{x y str rot Ar FBox}
+	{x y str rot ShowRotate } ifelse} def 
+
+/L {/y2 exch def /x2 exch def /y1 exch def /x1 exch def 
+    newpath x1 y1 moveto x2 y2 lineto stroke } def 
+
+%---------------------------------------------------------
+% drawing an axis 
+% angle [nsep1,nsep2] ,[siz1,siz2,coeff] [x0,y0] drawaxis",
+%---------------------------------------------------------
+
+/drawaxis {/XX exch def /Arsize exch def /Arsep exch def /ang exch def 
+	/Cmsave1 matrix def Cmsave1 currentmatrix pop
+	/sina ang sin def /cosa ang cos def /-sina sina neg def 
+	/x XX 0 get def /y XX 1 get def
+	%-- on change de transformation pour tourner autour de (x,y) 
+	x y [cosa sina -sina cosa 0 0 ] transform
+	/t1 exch neg y add def 
+	/t2 exch neg x add def 
+	[cosa sina -sina cosa t2 t1 ] concat 
+	newpath x y moveto 0 Arsize 1 get Arsize 2 get mul rlineto
+	stroke 
+	0 1 Arsep 1 get 1 sub
+	{
+	 % i don't want the value of the for indice 
+	 pop
+	newpath 
+	x y moveto 
+	0 1 Arsep 0 get 1 sub
+		{
+		 % i don't want the value of the for indice 
+		 pop
+		 Arsize 0 get 0  rlineto
+		 0 Arsize 1 get rlineto 
+	 	0 Arsize 1 get  neg rlineto }
+		for 
+	currentpoint /y exch def /x exch def 
+	stroke 
+	newpath x y moveto 0 Arsize 1 get Arsize 2 get mul rlineto
+	stroke }
+	for 
+	Cmsave1 setmatrix } def 
+
+%---------------------------------------------------------
+% change and restore CTM
+%---------------------------------------------------------
+
+/CtmModif {
+	/arg exch def 
+	/Cmsave matrix def 
+	Cmsave currentmatrix pop
+	[1 0 0 -1 0 0 ] concat 
+	arg concat 
+} def 
+
+/CtmRestore { Cmsave setmatrix } def 
+
+/Thickness { /th exch def th 0 le {/th 0.1 def} if th setlinewidth} def 
+
+/WhiteLev 15 def
+
+/Setgray { WhiteLev div setgray} def 
+
+/fillsolid { 0 setgray } def 
+
+%--------------------------------------
+% clip zones ( rectangle ) 
+%-------------------------------------
+
+/setclipzone {initclip 
+	/h exch def /w exch def /y exch def /x exch def 
+	newpath x y moveto w 0 rlineto 0 h rlineto w neg 0 rlineto 
+	0 h neg rlineto closepath clip} def 
+
+%------------------
+% to change the position of a picture 
+%------------------
+/cm{28.346457 mul}def
+
+/DesPosi { /YH exch def /XW exch def /YP exch def /XP exch def 
+	XP cm YP cm neg translate 
+	XW cm 6000 div YH cm 4240 div  scale } def 
+
+0 setlinecap 
+2 setlinejoin 
+1 setlinewidth
+
+%-- Color database 
+/ColorR [0.000000 0.000000 0.000000 0.529412 0.498039 0.133333 0.000000 0.878431 0.000000 1.000000 1.000000 1.000000 0.933333 1.000000 1.000000 0.960784 1.000000 ] def
+/ColorG [0.000000 0.000000 0.000000 0.807843 1.000000 0.545098 1.000000 1.000000 1.000000 0.647059 0.000000 0.000000 0.509804 1.000000 0.843137 0.960784 1.000000 ] def
+/ColorB [0.000000 0.501961 1.000000 0.921569 0.831373 0.133333 0.000000 1.000000 1.000000 0.000000 0.000000 1.000000 0.933333 0.000000 0.000000 0.862745 1.000000 ] def
+
+/Setcolor {/i exch def ColorR i get ColorG i get ColorB i get setrgbcolor } def
+
+
+%------ End Main Program ------%
+% XP YP XW YW DesPosi in the following code 
+% will output the picture in the rectangle defined by 
+% upper left point (XP,YP) wide :XW Height: YW
+% the coordinates are given in centimeter and 
+% are the (0,0) point is the down-left point of the paper 
+
+/ColorR [0.000000 0.000000 0.000000 0.000000 1.000000 1.000000 1.000000 1.000000 0.000000 0.000000 0.000000 0.529412 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.564706 0.690196 0.815686 0.564706 0.690196 0.815686 0.501961 0.627451 0.752941 1.000000 1.000000 1.000000 1.000000 1.000000 0.0 1.0] def
+/ColorG [0.000000 0.000000 1.000000 1.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.807843 0.564706 0.690196 0.815686 0.564706 0.690196 0.815686 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.188235 0.250980 0.376471 0.501961 0.627451 0.752941 0.878431 0.843137 0.0 1.0] def
+/ColorB [0.000000 1.000000 0.000000 1.000000 0.000000 1.000000 0.000000 1.000000 0.564706 0.690196 0.815686 1.000000 0.000000 0.000000 0.000000 0.564706 0.690196 0.815686 0.000000 0.000000 0.000000 0.564706 0.690196 0.815686 0.000000 0.000000 0.000000 0.501961 0.627451 0.752941 0.878431 0.000000 0.0 1.0] def
+% Dessin en bas a gauche de taille 3000,2120
+[0.5 10 div 0 0 0.5 10 div neg  0 2120 10 div] concat
+% Init driver 
+5 Thickness
+% 3 setalufunction
+-1 -1 200000 200000 setclipzone
+0 Setcolor
+/Times-Roman findfont 100 Scalefont setfont
+fillsolid
+[] 0 setdash
+0 Setcolor
+%--use color 1 
+fillsolid
+[] 0 setdash
+0 Setcolor
+/WhiteLev 31 def
+/Setgray {/i exch def ColorR i get ColorG i get ColorB i get setrgbcolor } def 
+/Setcolor {/i exch def ColorR i get ColorG i get ColorB i get setrgbcolor } def 
+%--end use color 1 
+% End init driver 
+/WhiteLev 31 def
+%--use color 1 
+%--end use color 1 
+/Times-Roman findfont 100 Scalefont setfont
+5 Thickness
+-1 -1 200000 200000 setclipzone
+32 Setcolor
+0 Setcolor
+0 Setcolor
+ (drawbox) 4 [ 0]
+[750 530 4500 3180 
+] dogrey 
+0 Setcolor
+ 0 [2 10] [225.000000 31.800000 2.000000] [750 3710] drawaxis
+(0) 722 3906 0  0.00 [722 3816 57 120] Show
+(3) 1172 3906 0  0.00 [1172 3816 57 120] Show
+(6) 1622 3906 0  0.00 [1622 3816 57 120] Show
+(9) 2072 3906 0  0.00 [2072 3816 57 120] Show
+(12) 2493 3906 0  0.00 [2493 3816 114 120] Show
+(15) 2943 3906 0  0.00 [2943 3816 114 120] Show
+(18) 3393 3906 0  0.00 [3393 3816 114 120] Show
+(21) 3843 3906 0  0.00 [3843 3816 114 120] Show
+(24) 4293 3906 0  0.00 [4293 3816 114 120] Show
+(27) 4743 3906 0  0.00 [4743 3816 114 120] Show
+(30) 5193 3906 0  0.00 [5193 3816 114 120] Show
+ -90 [2 10] [159.000000 -30.000000 2.000000] [750 3710] drawaxis
+(-15) 506 3740 0  0.00 [506 3650 172 120] Show
+(-12) 506 3422 0  0.00 [506 3332 172 120] Show
+(-9) 564 3104 0  0.00 [564 3014 114 120] Show
+(-6) 564 2786 0  0.00 [564 2696 114 120] Show
+(-3) 564 2468 0  0.00 [564 2378 114 120] Show
+(0) 621 2150 0  0.00 [621 2060 57 120] Show
+(3) 621 1832 0  0.00 [621 1742 57 120] Show
+(6) 621 1514 0  0.00 [621 1424 57 120] Show
+(9) 621 1196 0  0.00 [621 1106 57 120] Show
+(12) 564 878 0  0.00 [564 788 114 120] Show
+(15) 564 560 0  0.00 [564 470 114 120] Show
+0 Setcolor
+750 530 4500 3180 setclipzone
+0 Setcolor
+/Symbol findfont 80 Scalefont setfont
+HardMark 0 16#2b put
+ (drawpolymark) 2 [ 0]
+[750 3710 
+] dogrey 
+/absolu true def
+/Times-Roman findfont 100 Scalefont setfont
+0 Setcolor
+-1 -1 200000 200000 setclipzone
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[765 2756 780 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[765 2345 780 2096 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[780 2756 795 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[780 2096 795 1979 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[795 2756 810 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[795 1979 810 1889 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[810 2756 825 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[810 1889 825 1818 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[825 2756 840 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[825 1818 840 1827 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[840 2756 855 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[840 1827 855 2036 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[855 2756 870 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[855 2036 870 1927 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[870 2756 885 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[870 1927 885 2030 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[885 2756 900 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[885 2030 900 2313 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[900 2756 915 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[900 2313 915 2572 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[915 2756 930 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[915 2572 930 2058 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[930 2756 945 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[930 2058 945 2484 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[945 2756 960 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[945 2484 960 2533 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[960 2756 975 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[960 2533 975 2888 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[975 2756 990 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[975 2888 990 2988 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[990 2756 1005 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[990 2988 1005 3180 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1005 2756 1020 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1005 3180 1020 3447 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1020 1484 1035 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1020 3447 1035 3466 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1035 1484 1050 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1035 3466 1050 3264 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1050 1484 1065 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1050 3264 1065 3349 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1065 1484 1080 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1065 3349 1080 3460 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1080 1484 1095 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1080 3460 1095 3157 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1095 1484 1110 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1095 3157 1110 3142 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1110 1484 1125 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1110 3142 1125 3128 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1125 1484 1140 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1125 3128 1140 2767 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1140 1484 1155 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1140 2767 1155 2635 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1155 1484 1170 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1155 2635 1170 2558 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1170 1484 1185 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1170 2558 1185 2534 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1185 1484 1200 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1185 2534 1200 2381 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1200 1484 1215 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1200 2381 1215 2475 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1215 1484 1230 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1215 2475 1230 2777 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1230 1484 1245 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1230 2777 1245 3077 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1245 1484 1260 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1245 3077 1260 2991 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1260 1484 1275 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1260 2991 1275 3200 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1275 1484 1290 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1275 3200 1290 3007 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1290 1484 1305 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1290 3007 1305 3024 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1305 1484 1320 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1305 3024 1320 2414 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1320 1484 1335 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1320 2414 1335 2448 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1335 1484 1350 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1335 2448 1350 2521 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1350 1484 1365 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1350 2521 1365 2455 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1365 1484 1380 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1365 2455 1380 2695 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1380 1484 1395 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1380 2695 1395 2261 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1395 1484 1410 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1395 2261 1410 2163 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1410 1484 1425 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1410 2163 1425 1904 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1425 1484 1440 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1425 1904 1440 1835 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1440 1484 1455 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1440 1835 1455 1603 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1455 1484 1470 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1455 1603 1470 1831 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1470 1484 1485 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1470 1831 1485 1960 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1485 1484 1500 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1485 1960 1500 1636 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1500 1484 1515 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1500 1636 1515 1669 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1515 1484 1530 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1515 1669 1530 1730 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1530 1484 1545 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1530 1730 1545 1618 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1545 1484 1560 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1545 1618 1560 1608 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1560 1484 1575 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1560 1608 1575 1292 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1575 1484 1590 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1575 1292 1590 896 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1590 2756 1605 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1590 896 1605 1239 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1605 2756 1620 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1605 1239 1620 1484 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1620 2756 1635 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1620 1484 1635 1485 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1635 2756 1650 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1635 1485 1650 1875 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1650 2756 1665 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1650 1875 1665 1829 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1665 2756 1680 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1665 1829 1680 1672 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1680 2756 1695 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1680 1672 1695 1206 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1695 2756 1710 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1695 1206 1710 1133 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1710 2756 1725 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1710 1133 1725 1291 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1725 2756 1740 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1725 1291 1740 1508 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1740 2756 1755 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1740 1508 1755 1688 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1755 2756 1770 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1755 1688 1770 1512 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1770 2756 1785 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1770 1512 1785 1865 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1785 2756 1800 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1785 1865 1800 2222 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1800 2756 1815 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1800 2222 1815 2631 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1815 2756 1830 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1815 2631 1830 2530 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1830 2756 1845 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1830 2530 1845 2828 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1845 2756 1860 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1845 2828 1860 2730 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1860 2756 1875 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1860 2730 1875 2934 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1875 2756 1890 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1875 2934 1890 2974 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1890 2756 1905 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1890 2974 1905 2880 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1905 2756 1920 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1905 2880 1920 2923 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1920 2756 1935 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1920 2923 1935 2924 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1935 2756 1950 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1935 2924 1950 2744 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1950 2756 1965 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1950 2744 1965 2751 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1965 2756 1980 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1965 2751 1980 2628 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1980 2756 1995 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1980 2628 1995 2908 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1995 2756 2010 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[1995 2908 2010 3332 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2010 1484 2025 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2010 3332 2025 3249 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2025 1484 2040 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2025 3249 2040 2924 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2040 1484 2055 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2040 2924 2055 2718 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2055 1484 2070 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2055 2718 2070 2595 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2070 1484 2085 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2070 2595 2085 2956 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2085 1484 2100 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2085 2956 2100 2643 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2100 1484 2115 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2100 2643 2115 2634 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2115 1484 2130 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2115 2634 2130 2605 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2130 1484 2145 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2130 2605 2145 2390 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2145 1484 2160 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2145 2390 2160 2584 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2160 1484 2175 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2160 2584 2175 3017 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2175 1484 2190 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2175 3017 2190 3388 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2190 1484 2205 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2190 3388 2205 3413 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2205 1484 2220 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2205 3413 2220 3408 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2220 1484 2235 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2220 3408 2235 3614 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2235 1484 2250 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2235 3614 2250 3755 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2250 1484 2265 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2250 3755 2265 3911 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2265 1484 2280 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2265 3911 2280 3773 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2280 1484 2295 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2280 3773 2295 3347 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2295 1484 2310 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2295 3347 2310 3673 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2310 1484 2325 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2310 3673 2325 3987 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2325 1484 2340 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2325 3987 2340 3935 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2340 1484 2355 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2340 3935 2355 4209 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2355 1484 2370 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2355 4209 2370 4200 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2370 1484 2385 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2370 4200 2385 4208 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2385 1484 2400 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2385 4208 2400 4275 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2400 1484 2415 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2400 4275 2415 4357 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2415 1484 2430 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2415 4357 2430 4371 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2430 1484 2445 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2430 4371 2445 4054 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2445 1484 2460 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2445 4054 2460 3911 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2460 1484 2475 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2460 3911 2475 4062 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2475 1484 2490 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2475 4062 2490 4249 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2490 1484 2505 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2490 4249 2505 4207 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2505 1484 2520 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2505 4207 2520 4170 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2520 1484 2535 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2520 4170 2535 4172 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2535 1484 2550 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2535 4172 2550 4107 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2550 1484 2565 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2550 4107 2565 4301 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2565 1484 2580 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2565 4301 2580 4101 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2580 1484 2595 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2580 4101 2595 3781 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2595 1484 2610 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2595 3781 2610 3338 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2610 1484 2625 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2610 3338 2625 3532 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2625 1484 2640 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2625 3532 2640 3772 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2640 1484 2655 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2640 3772 2655 3720 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2655 1484 2670 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2655 3720 2670 3531 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2670 1484 2685 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2670 3531 2685 3180 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2685 1484 2700 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2685 3180 2700 2920 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2700 1484 2715 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2700 2920 2715 2409 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2715 1484 2730 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2715 2409 2730 2338 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2730 1484 2745 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2730 2338 2745 1935 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2745 1484 2760 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2745 1935 2760 1915 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2760 1484 2775 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2760 1915 2775 2136 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2775 1484 2790 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2775 2136 2790 1748 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2790 1484 2805 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2790 1748 2805 1746 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2805 1484 2820 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2805 1746 2820 1477 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2820 1484 2835 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2820 1477 2835 1479 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2835 1484 2850 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2835 1479 2850 1258 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2850 1484 2865 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2850 1258 2865 1156 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2865 1484 2880 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2865 1156 2880 1085 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2880 1484 2895 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2880 1085 2895 931 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2895 2756 2910 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2895 931 2910 1174 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2910 2756 2925 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2910 1174 2925 1303 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2925 2756 2940 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2925 1303 2940 1552 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2940 2756 2955 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2940 1552 2955 1798 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2955 2756 2970 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2955 1798 2970 2106 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2970 2756 2985 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2970 2106 2985 2295 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2985 2756 3000 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[2985 2295 3000 2463 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3000 2756 3015 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3000 2463 3015 2255 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3015 2756 3030 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3015 2255 3030 2571 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3030 2756 3045 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3030 2571 3045 2860 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3045 2756 3060 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3045 2860 3060 2519 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3060 2756 3075 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3060 2519 3075 2667 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3075 2756 3090 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3075 2667 3090 2591 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3090 2756 3105 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3090 2591 3105 2457 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3105 2756 3120 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3105 2457 3120 2311 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3120 2756 3135 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3120 2311 3135 2291 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3135 2756 3150 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3135 2291 3150 2047 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3150 2756 3165 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3150 2047 3165 1895 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3165 2756 3180 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3165 1895 3180 1967 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3180 2756 3195 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3180 1967 3195 1752 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3195 2756 3210 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3195 1752 3210 2087 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3210 2756 3225 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3210 2087 3225 2315 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3225 2756 3240 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3225 2315 3240 2136 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3240 2756 3255 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3240 2136 3255 2497 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3255 2756 3270 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3255 2497 3270 2723 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3270 2756 3285 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3270 2723 3285 2470 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3285 2756 3300 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3285 2470 3300 2355 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3300 2756 3315 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3300 2355 3315 2457 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3315 2756 3330 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3315 2457 3330 2648 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3330 2756 3345 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3330 2648 3345 2612 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3345 2756 3360 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3345 2612 3360 2326 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3360 2756 3375 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3360 2326 3375 2592 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3375 2756 3390 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3375 2592 3390 2644 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3390 2756 3405 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3390 2644 3405 2929 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3405 2756 3420 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3405 2929 3420 3364 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3420 1484 3435 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3420 3364 3435 3610 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3435 1484 3450 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3435 3610 3450 3852 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3450 1484 3465 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3450 3852 3465 3606 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3465 1484 3480 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3465 3606 3480 3616 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3480 1484 3495 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3480 3616 3495 3575 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3495 1484 3510 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3495 3575 3510 3655 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3510 1484 3525 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3510 3655 3525 3366 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3525 1484 3540 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3525 3366 3540 3332 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3540 1484 3555 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3540 3332 3555 3426 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3555 1484 3570 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3555 3426 3570 3835 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3570 1484 3585 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3570 3835 3585 3588 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3585 1484 3600 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3585 3588 3600 3955 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3600 1484 3615 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3600 3955 3615 4305 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3615 1484 3630 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3615 4305 3630 4340 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3630 1484 3645 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3630 4340 3645 4313 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3645 1484 3660 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3645 4313 3660 4493 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3660 1484 3675 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3660 4493 3675 4572 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3675 1484 3690 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3675 4572 3690 4682 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3690 1484 3705 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3690 4682 3705 4611 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3705 1484 3720 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3705 4611 3720 4385 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3720 1484 3735 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3720 4385 3735 4368 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3735 1484 3750 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3735 4368 3750 3936 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3750 1484 3765 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3750 3936 3765 3742 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3765 1484 3780 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3765 3742 3780 3682 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3780 1484 3795 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3780 3682 3795 3665 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3795 1484 3810 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3795 3665 3810 3495 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3810 1484 3825 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3810 3495 3825 3553 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3825 1484 3840 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3825 3553 3840 3999 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3840 1484 3855 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3840 3999 3855 3925 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3855 1484 3870 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3855 3925 3870 3732 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3870 1484 3885 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3870 3732 3885 3686 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3885 1484 3900 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3885 3686 3900 3735 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3900 1484 3915 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3900 3735 3915 3789 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3915 1484 3930 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3915 3789 3930 4079 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3930 1484 3945 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3930 4079 3945 4227 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3945 1484 3960 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3945 4227 3960 4290 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3960 1484 3975 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3960 4290 3975 4184 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3975 1484 3990 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3975 4184 3990 3867 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3990 1484 4005 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[3990 3867 4005 3921 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4005 1484 4020 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4005 3921 4020 3838 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4020 1484 4035 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4020 3838 4035 3579 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4035 1484 4050 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4035 3579 4050 3635 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4050 1484 4065 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4050 3635 4065 3207 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4065 1484 4080 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4065 3207 4080 2988 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4080 1484 4095 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4080 2988 4095 2902 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4095 1484 4110 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4095 2902 4110 2495 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4110 1484 4125 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4110 2495 4125 2285 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4125 1484 4140 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4125 2285 4140 2268 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4140 1484 4155 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4140 2268 4155 2630 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4155 1484 4170 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4155 2630 4170 2341 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4170 1484 4185 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4170 2341 4185 2137 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4185 1484 4200 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4185 2137 4200 1774 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4200 1484 4215 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4200 1774 4215 1749 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4215 1484 4230 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4215 1749 4230 1870 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4230 1484 4245 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4230 1870 4245 2104 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4245 1484 4260 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4245 2104 4260 1873 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4260 1484 4275 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4260 1873 4275 1854 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4275 1484 4290 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4275 1854 4290 1433 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4290 1484 4305 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4290 1433 4305 1366 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4305 1484 4320 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4305 1366 4320 1619 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4320 1484 4335 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4320 1619 4335 1582 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4335 1484 4350 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4335 1582 4350 1862 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4350 1484 4365 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4350 1862 4365 1719 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4365 1484 4380 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4365 1719 4380 1763 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4380 1484 4395 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4380 1763 4395 2006 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4395 1484 4410 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4395 2006 4410 2126 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4410 1484 4425 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4410 2126 4425 1927 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4425 1484 4440 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4425 1927 4440 1651 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4440 1484 4455 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4440 1651 4455 1422 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4455 1484 4470 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4455 1422 4470 1007 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4470 2756 4485 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4470 1007 4485 1275 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4485 2756 4500 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4485 1275 4500 1704 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4500 2756 4515 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4500 1704 4515 1518 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4515 2756 4530 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4515 1518 4530 1677 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4530 2756 4545 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4530 1677 4545 1358 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4545 2756 4560 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4545 1358 4560 1432 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4560 2756 4575 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4560 1432 4575 1740 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4575 2756 4590 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4575 1740 4590 1894 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4590 2756 4605 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4590 1894 4605 2302 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4605 2756 4620 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4605 2302 4620 1930 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4620 2756 4635 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4620 1930 4635 2165 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4635 2756 4650 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4635 2165 4650 2389 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4650 2756 4665 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4650 2389 4665 2210 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4665 2756 4680 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4665 2210 4680 2228 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4680 2756 4695 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4680 2228 4695 2125 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4695 2756 4710 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4695 2125 4710 2023 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4710 2756 4725 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4710 2023 4725 2118 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4725 2756 4740 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4725 2118 4740 2335 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4740 2756 4755 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4740 2335 4755 2705 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4755 2756 4770 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4755 2705 4770 2785 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4770 2756 4785 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4770 2785 4785 2469 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4785 2756 4800 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4785 2469 4800 2293 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4800 2756 4815 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4800 2293 4815 2249 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4815 2756 4830 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4815 2249 4830 2345 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4830 2756 4845 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4830 2345 4845 2395 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4845 2756 4860 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4845 2395 4860 2835 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4860 2756 4875 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4860 2835 4875 2934 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4875 2756 4890 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4875 2934 4890 2963 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4890 2756 4905 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4890 2963 4905 2837 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4905 2756 4920 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4905 2837 4920 2735 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4920 2756 4935 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4920 2735 4935 2924 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4935 2756 4950 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4935 2924 4950 2763 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4950 2756 4965 2756 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4950 2763 4965 3092 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4965 2756 4980 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4965 3092 4980 3255 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4980 1484 4995 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4980 3255 4995 2941 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4995 1484 5010 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[4995 2941 5010 2874 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[5010 1484 5025 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[5010 2874 5025 2993 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[5025 1484 5040 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[5025 2993 5040 3324 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[5040 1484 5055 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[5040 3324 5055 3621 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[5055 1484 5070 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[5055 3621 5070 3751 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+0 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[5070 1484 5085 1484 
+] dogrey 
+0 Setcolor
+/absolu true def
+0 Setcolor
+2 Setcolor
+/closeflag false def
+ (drawpoly) 4 [ 0]
+[5070 3751 5085 3609 
+] dogrey 
+2 Setcolor
+/absolu true def
+0 Setcolor
+ showpage
+
+ end saved restore 

@@ -1,0 +1,37 @@
+.TH spget 1 "January 1995" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+spget - retrieves entries of sparse matrix
+.SH CALLING SEQUENCE
+.nf
+[ij,v,mn]=spget(sp)
+.fi
+.SH PARAMETERS
+.TP
+sp
+: real or complex sparse matrix
+.TP
+ij
+: two columns integer matrix (indices of non-zeros entries)
+.TP
+mn
+: integer vector with two entries (row-dimension, column-dimension)
+.TP
+v
+: column vector
+.SH DESCRIPTION
+\fVspget\fR is used to convert the internal representation of sparse
+matrices into the standard \fVij, v\fR representation.
+.LP
+Non zero entries of \fVsp\fR are located in rows and columns
+with indinces in \fVij\fR.
+.SH EXAMPLE
+.nf
+sp=sparse([1,2;4,5;3,10],[1,2,3])
+[ij,v,mn]=spget(sp);
+.fi
+.SH SEE ALSO
+sparse, sprand, speye, lufact
+
+
+                        

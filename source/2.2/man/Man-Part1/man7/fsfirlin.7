@@ -1,0 +1,24 @@
+.TH fsfirlin 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+fsfirlin - design of FIR, linear phase filters
+.SH CALLING SEQUENCE
+.nf
+[hst]=fsfirlin(hd,flag)
+.fi
+.SH PARAMETERS
+.TP
+hd
+: vector of desired frequency response samples
+.TP
+flag
+: is equal to 1 or 2, according to the choice of type 1 or type 2 design
+.TP
+hst
+: vector giving the approximated continuous response
+on a dense grid of frequencies
+.SH DESCRIPTION
+function for the design of FIR, linear phase filters
+using the frequency sampling technique
+.SH AUTHOR
+G. Le V.

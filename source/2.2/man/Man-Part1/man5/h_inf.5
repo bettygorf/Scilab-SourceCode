@@ -1,0 +1,62 @@
+.TH H_inf 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+h_inf - H-infinity (central) controller
+.SH CALLING SEQUENCE
+.nf
+[Sk,ro]=h_inf(P,r,romin,romax,nmax)
+[Sk,rk,ro]=h_inf(P,r,romin,romax,nmax)
+.fi
+.SH PARAMETERS
+.TP 15
+P 
+: \fVsyslin\fR list : continuous-time linear system (``augmented'' plant given in state-space form 
+or in transfer form)
+.TP
+r 
+: size of the \fVP22\fR plant i.e. 2-vector [#outputs,#inputs]
+.TP
+romin,romax 
+: a priori bounds on \fVro\fR with \fVro=1/gama^2\fR; (\fVromin=0\fR  usually)
+.TP
+nmax 
+: integer, maximum number of iterations in the gama-iteration.
+.SH DESCRIPTION
+\fVh_inf\fR computes H-infinity optimal controller for the 
+continuous-time plant \fVP\fR.
+.LP
+The partition of \fVP\fR into four sub-plants is given through
+the 2-vector \fVr\fR which is the size of the \fV22\fR part of \fVP\fR.
+.LP
+\fVP\fR is given in state-space 
+e.g. \fVP=syslin('c',A,B,C,D)\fR with \fVA,B,C,D\fR = constant matrices
+or \fVP=syslin('c',H)\fR with \fVH\fR a transfer matrix.
+.LP
+
+.Vb [Sk,ro]=H_inf(P,r,romin,romax,nmax)
+returns \fVro\fR in \fV[romin,romax]\fR and the central controller 
+\fVSk\fR in the same representation as \fVP\fR.
+.LP
+(All calculations are made in state-space, i.e conversion to state-space
+is done by the function, if necessary).
+.LP
+
+Invoked with three LHS parameters,
+.Vb [Sk,rk,ro]=H_inf(P,r,romin,romax,nmax) 
+returns \fVro\fR and the parameterization of all stabilizing 
+controllers:
+.LP
+a stabilizing controller \fVK\fR is obtained by 
+\fVK=lft(Sk,r,PHI)\fR where \fVPHI\fR is a linear system with 
+dimensions \fVr'\fR and satisfy:
+.LP 
+\fVH_norm(PHI) < gamma\fR.
+\fVrk (=r)\fR is the size of the \fVSk22\fR block and \fVro = 1/gama^2\fR 
+after \fVnmax\fR iterations.
+.LP
+Algorithm is adapted from Safonov-Limebeer. Note that \fVP\fR is assumed to be 
+a continuous-time plant.
+.SH SEE ALSO
+gamitg, ccontrg, leqr
+.SH AUTHOR
+F.D. (1990)

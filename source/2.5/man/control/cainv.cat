@@ -1,0 +1,90 @@
+
+cainv(1)                       Scilab Function                       cainv(1)
+NAME
+  cainv -  Dual of abinv
+
+CALLING SEQUENCE
+  [X,dims,J,Y,k,Z]=cainv(Sl,alfa,beta,flag)
+
+PARAMETERS
+
+  Sl        : syslin list containing the matrices [A,B,C,D].
+
+  alfa      : real number or vector (possibly complex, location of closed
+            loop poles)
+
+  beta      : real number or vector (possibly complex, location of closed
+            loop poles)
+
+  flag      : (optional) character string 'ge' (default) or 'st' or 'pp'
+
+  X         : orthogonal matrix of size nx (dim of state space).
+
+  dims      : integer row vector dims=[nd1,nu1,dimS,dimSg,dimN]  (5 entries,
+            nondecreasing order).If flag='st', (resp. 'pp'), dims has 4
+            (resp. 3) components.
+
+  J         : real matrix (output injection)
+
+  Y         : orthogonal matrix of size ny (dim of output space).
+
+  k         : integer (normal rank of Sl)
+
+  Z         : non-singular linear system (syslin list)
+
+DESCRIPTION
+  cainv finds a bases (X,Y) (of state space and output space resp.)  and out-
+  put injection matrix J such that the matrices of Sl in bases (X,Y) are dis-
+  played as:
+
+                    [A11,*,*,*,*,*]                [*]
+                    [0,A22,*,*,*,*]                [*]
+     X'*(A+J*C)*X = [0,0,A33,*,*,*]   X'*(B+J*D) = [*]
+                    [0,0,0,A44,*,*]                [0]
+                    [0,0,0,0,A55,*]                [0]
+                    [0,0,0,0,0,A66]                [0]
+
+            Y*C*X = [0,0,C13,*,*,*]          Y*D = [*]
+                    [0,0,0,0,0,C26]                [0]
+  The partition of X is defined by the vector dims=[nd1,nu1,dimS,dimSg,dimN]
+  and the partition of Y is determined by k.
+
+  Eigenvalues of A11 (nd1 x nd1) are unstable.  Eigenvalues of A22 (nu1-nd1 x
+  nu1-nd1) are stable.
+
+  The pair (A33, C13) (dimS-nu1 x dimS-nu1, k x dimS-nu1) is observable, and
+  eigenvalues of A33 are set to alfa.
+
+  Matrix A44 (dimSg-dimS x dimSg-dimS) is unstable.  Matrix A55 (dimN-
+  dimSg,dimN-dimSg) is stable
+
+  The pair (A66,C26) (nx-dimN x nx-dimN) is observable, and eigenvalues of
+  A66 set to beta.
+
+  The dimS first columns of X span S= smallest (C,A) invariant subspace which
+  contains Im(B), dimSg first columns of X span Sg the maximal "complementary
+  detectability subspace" of Sl
+
+  The dimN first columns of X span the maximal "complementary observability
+  subspace" of Sl.  (dimS=0 if B(ker(D))=0).
+
+  If flag='st' is given, a five blocks partition of the matrices is returned
+  and dims has four components. If flag='pp' is given a four blocks partition
+  is returned (see abinv).
+
+  This function can be used to calculate an unknown input observer:
+  // DDEP: dot(x)=A x + Bu + Gd
+  //           y= Cx   (observation)
+  //           z= Hx    (z=variable to be estimated, d=disturbance)
+  //  Find: dot(w) = Fw + Ey + Ru such that
+  //          zhat = Mw + Ny
+  //           z-Hx goes to zero at infinity
+  //  Solution exists iff Ker H contains Sg(A,C,G) inter KerC (assuming detectability)
+  //i.e. H is such that:
+  // For any W which makes a column compression of [Xp(1:dimSg,:);C]
+  // with Xp=X' and [X,dims,J,Y,k,Z]=cainv(syslin('c',A,G,C));
+  // [Xp(1:dimSg,:);C]*W = [0 | *] one has
+  // H*W = [0 | *]  (with at least as many aero columns as above).
+
+SEE ALSO
+  abinv, dt_ility, ui_observer

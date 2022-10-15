@@ -1,0 +1,28 @@
+
+reglin(1)                      Scilab Function                      reglin(1)
+NAME
+  reglin - Linear regression
+
+CALLING SEQUENCE
+  [a,b,sig]=reglin(x,y)
+
+DESCRIPTION
+  solve the regression problem y=a*x+ b in the least square sense. sig is the
+  standard deviation of the residual. x and y are two matrices of size x(p,n)
+  and y(q,n), so the estimator a is a matrix of size (q,p) and b is a vector
+  of size (q,1)
+
+EXAMPLE
+  // simulation of data for a(3,5) and b(3,1)
+  x=rand(5,100);
+  aa=testmatrix('magi',5);aa=aa(1:3,:);
+  bb=[9;10;11]
+  y=aa*x +bb*ones(1,100)+ 0.1*rand(3,100);
+  // identification
+  [a,b,sig]=reglin(x,y);
+  maxi(abs(aa-a))
+  maxi(abs(bb-b))
+  // an other example : fitting a polynom
+  f=1:100; x=[f.*f; f];
+  y= [ 2,3]*x+ 10*ones(f) + 0.1*rand(f);
+  [a,b]=reglin(x,y)

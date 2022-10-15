@@ -1,0 +1,44 @@
+.TH xrects 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xrects - draw or fill a set of rectangles
+.SH CALLING SEQUENCE
+.nf
+xrects(rects,[fill])
+.fi
+.SH PARAMETERS 
+.TP 7
+rects 
+: matrix of size (4,n).
+.TP
+fill
+: vector of size n.
+.SH DESCRIPTION
+\fVxrects\fR draws or fills a set of rectangles. 
+Each column of \fVrects\fR describes 
+a rectangle (upper-left point, width, height):
+\fVrects=[x1 y1 w1 h1;x2 y2 w2 h2;...]'\fR.
+
+\fVfill(i)\fR gives the pattern to use for filling or drawing rectangle i:
+.LP
+if \fVfill(i)<0\fR, rectangle \fVi\fR is drawn using the line style (or
+color) \fV-fill(i)\fR
+.LP
+if \fVfill(i)>0\fR, rectangle \fVi\fR is filled using the pattern (or
+color) \fVfill(n)\fR
+.LP
+if \fVfill(i)=0\fR, rectangle \fVi\fR is drawn using the current
+line style (or color).
+.SH EXAMPLE
+.nf
+plot2d([-100,500],[-50,50],[-1,-1],"022")
+cols=[-34,-33,-32,-20:5:20,32,33,34];
+x=400*(0:14)/14; step=20;
+rects=[x;10*ones(x);step*ones(x);30*ones(x)];
+xrects(rects,cols)
+xnumb(x,15*ones(x),cols)
+.fi 
+.SH SEE ALSO
+xfrect, xrect
+.SH AUTHOR
+J.Ph.C.

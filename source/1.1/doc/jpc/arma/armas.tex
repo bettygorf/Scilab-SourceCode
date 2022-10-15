@@ -1,0 +1,12 @@
+	\def\dessin#1#2{
+	\begin{figure}[hbtp]
+	\begin{center}
+	%If you prefer cm use the followin two lines
+	%\setlength{\unitlength}{1mm}
+	%\fbox{\begin{picture}(84,59)
+	\fbox{\begin{picture}(240.0,169.6)
+	\special{psfile='armas.ps.n' hscale=80.0 vscale=80.0}
+	\end{picture}}
+	\end{center}
+	\caption{\label{#2}#1}
+	\end{figure}}

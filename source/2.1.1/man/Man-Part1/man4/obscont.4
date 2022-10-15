@@ -1,0 +1,64 @@
+.TH obscont 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+obscont - observer based controller
+.SH CALLING SEQUENCE
+.nf
+[K]=obscont(P,Kc,Kf)
+[J,r]=obscont(P,Kc,Kf)
+.fi
+.SH PARAMETERS
+.TP 10
+P
+: \fVsyslin\fR list (nominal plant) in state-space form, continuous 
+or discrete time
+.TP
+Kc
+: real matrix, (full state) controller gain
+.TP
+Kf
+: real matrix, filter gain
+.TP
+K
+: \fVsyslin\fR list (controller)
+.TP
+J
+: \fVsyslin\fR list (extended controller)
+.TP
+r
+: 1x2 row vector
+.SH DESCRIPTION
+\fVobscont\fR  returns the observer-based controller associated with a 
+nominal plant \fVP=[A,B,C,D]\fR.
+.LP
+The full-state control gain is \fVKc\fR and the filter gain is \fVKf\fR.
+These gain can be computed, for example, by pole placement.
+.LP
+\fVA+B*Kc\fR and \fVA+C*Kf\fR are (usually) assumed stable.
+.LP
+\fVK\fR is calculated by: \fVK=[A+B*Kc+Kf*C+Kf*D*Kc,Kf,-Kc]\fR. 
+.LP
+Invoked with two output arguments \fVobscont\fR returns a
+(square) linear system \fVK\fR which parametrizes all the stabilizing
+feedbacks via a LFT.
+.LP
+Let \fVQ\fR an arbitrary stable linear system of dimension \fVr(2)\fRx\fVr(1)\fR
+i.e. number of inputs x number of outputs in \fVP\fR.
+Then any stabilizing controller \fVK\fR for \fVP\fR can be expressed as
+\fVK=lft(J,r,Q)\fR. The controller which corresponds to \fVQ=0\fR is
+\fVK=J(1:ny,1:nu)\fR (this \fVK\fR is returned by \fVK=obscont(P,Kc,Kf)\fR).
+\fVr\fR is \fVsize(P)\fR i.e the vector [number of outputs, number of inputs];
+.SH EXAMPLE
+.nf
+ny=2;nu=3;nx=4;P=ssrand(ny,nu,nx);[A,B,C,D]=abcd(P);
+Kc=-ppol(A,B,[-1,-1,-1,-1]);Kf=-ppol(A',C',[-2,-2,-2,-2]);Kf=Kf';
+[J,r]=obscont(P,Kc,Kf);
+Q=ssrand(nu,ny,3);Q(2)=Q(2)-(maxi(real(spec(Q(2))))+0.5)*eye(Q(2)) 
+//Q is a stable parameter
+K=lft(J,r,Q);
+spec(h_cl(P,K))  // closed-loop A matrix (should be stable);
+.fi
+.SH SEE ALSO
+ppol, lqg, lqr, lqe, h_inf, lft
+.SH AUTHOR
+F.D. 

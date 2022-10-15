@@ -1,0 +1,15 @@
+.TH contour2d 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+contour2d - level curves of surface on a 2D graphics
+.SH CALLING SEQUENCE
+.nf
+contour2d(x,y,z,nz,[style,strf,leg,rect,nax])
+.fi
+.SH DESCRIPTION
+see \fVcontour\fR
+.SH EXAMPLE
+.nf
+contour2d(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11]);
+.fi
+

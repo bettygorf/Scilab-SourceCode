@@ -1,0 +1,24 @@
+.TH pause 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+pause - pause mode, invoke keyboard
+.SH DESCRIPTION
+Switch to the \fVpause\fR mode;
+inserted in the code of a function, \fVpause\fR interrupts the execution
+of the function: one receives a prompt symbol which indicates
+the level of the \fVpause\fR (e.g. \fV-1->\fR). The user is
+then in a new session in which all the lower-level variables
+(and in particular all the variable of the function) are available.
+To return to lower session enter \fV"return"\fR
+.LP
+In this mode, \fV[...]=return(...) \fR
+returns the variables of the argument \fV(...)\fR to lower session with 
+names in the output \fV [...]\fR. Otherwise, the lower-level variables
+are protected and cannot be modified.
+.LP
+The \fVpause\fR is extremely useful for debugging purposes.
+.LP
+This mode is killed by the command \fV"abort"\fR.
+.SH SEE ALSO
+return, abort, quit, whereami, where
+

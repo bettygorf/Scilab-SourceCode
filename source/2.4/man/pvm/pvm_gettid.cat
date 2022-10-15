@@ -1,0 +1,28 @@
+
+pvm_gettid(1)                  Scilab function                  pvm_gettid(1)
+NAME
+  pvm_gettid - returns the tid of the process identified by a group name and
+  instance number.
+
+CALLING SEQUENCE
+  [tid] = pvm_gettid(group, inum)
+
+PARAMETERS
+
+  group
+       : string, string that contains the name of an existing group.
+
+  inum
+      : string, instance number of the process in the group.
+
+  tid : integer
+
+DESCRIPTION
+  pvm_gettid returns the tid of the PVM process identified by the group name
+  group and the instance number inum.  If pvm_gettid is successful, tid will
+  be > 0.  If some error occurs then tid will be < 0.
+EXAMPLE
+  tid = pvm_gettid("worker",0)
+
+SEE ALSO
+  pvm_joingroup, pvm_getinst

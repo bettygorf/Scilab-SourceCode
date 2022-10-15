@@ -1,0 +1,24 @@
+
+plzr(1)                        Scilab Function                        plzr(1)
+NAME
+  plzr - pole-zero plot
+
+CALLING SEQUENCE
+  plzr(sl)
+
+PARAMETERS
+
+  sl        : list ( syslin)
+
+DESCRIPTION
+  produces a pole-zero plot of the linear system sl (syslin list)
+
+EXAMPLE
+  s=poly(0,'s');
+  n=[1+s   2+3*s+4*s^2        5; 0        1-s             s];
+  d=[1+3*s   5-s^3           s+1;1+s     1+s+s^2      3*s-1];
+  h=syslin('c',n./d);
+  plzr(h);
+
+SEE ALSO
+  trzeros, roots, syslin

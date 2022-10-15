@@ -1,0 +1,27 @@
+.TH lstcat 1 "Jan 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+lstcat - list concatenation
+.SH CALLING SEQUENCE
+.nf
+lc=lstcat(l1,..ln)
+.fi
+.SH PARAMETERS
+.TP
+li
+: list or any other type of variable
+.TP
+lc
+: a list
+.SH DESCRIPTION
+\fVlc=lstcat(l1,..ln)\fR catenates components of \fVli\fR lists in a
+single list. If \fVli\fR are other type of variables they are simply
+added to the resulting list.
+.SH EXAMPLE
+.nf
+lstcat(list(1,2,3),33,list('foo',%s))
+lstcat(1,2,3)
+.fi
+.SH SEE ALSO
+list
+

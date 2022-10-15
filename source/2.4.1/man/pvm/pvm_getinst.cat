@@ -1,0 +1,28 @@
+
+pvm_getinst(1)                 Scilab function                 pvm_getinst(1)
+NAME
+  pvm_getinst - returns the instance number in a group of a PVM process.
+
+CALLING SEQUENCE
+  [inum] = pvm_getinst(group, tid)
+
+PARAMETERS
+
+  group
+       : string, string group name of an existing group.
+
+  tid : integer, task identifier of a PVM process.
+
+  inum
+      : integer, instance number returned by the routine.
+
+DESCRIPTION
+  pvm_getinst takes a group name group and a PVM task identifier tid and
+  returns the unique instance number that corresponds to the input.  It can
+  be called by any task whether in the group or not.  If pvm_getinst is suc-
+  cessful, inum will be >= 0.  If some error occurs then inum will be < 0.
+EXAMPLE
+  inum = pvm_getinst( "worker", pvm_mytid() )
+
+SEE ALSO
+  pvm_joingroup, pvm_gettid

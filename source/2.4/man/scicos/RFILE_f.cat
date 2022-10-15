@@ -1,0 +1,37 @@
+
+RFILE_f(5)                      Scicos Block                       RFILE_f(5)
+NAME
+  RFILE_f - Scicos "read from file" block
+
+DIALOGUE PARAMETERS
+
+  Time record Selection
+                      : an empty matrix or a positive integer. If an integer
+                      i is given the  ith element of the read record is
+                      assumed to be the date of the output event. If empty no
+                      output event exists.
+
+  Output record selection
+                      : a vector of positive integer. [k1,..,kn],The kith
+                      element of  the read record gives the value of ith out-
+                      put.
+
+  Input file name     : a character string defining the path of the file
+
+  Input Format        : a character string defining the Fortran format to use
+                      or nothing for an unformatted (binary) write
+
+  Buffer size         : To improve efficiency it is possible to buffer the
+                      input data. read on the file is only done after each
+                      Buffer size call to the block.
+
+  size of output      : a scalar. This fixes the number of "value" read.
+
+DESCRIPTION
+  This block allows user to read  datas in a file, in formatted or binary
+  mode. Output record selection and Time record Selection allows the user to
+  select data among file records.
+
+  Each call to the block advance one record in the file.
+SEE ALSO
+  WFILE_f

@@ -1,0 +1,25 @@
+.TH predef 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+predef - variable protection
+.SH CALLING SEQUENCE
+.nf
+predef([n])
+.fi
+.SH DESCRIPTION
+Utility function used for defining "predefined" variables.
+Predefined variables are protected and cannot be killed. They are not saved 
+by the \fV'save'\fR command.
+.LP
+\fVpredef()\fR sets all the current variables to predefined ones.
+.LP
+\fVpredef(n)\fR sets the \fVmax(n,7)\fR last defined variables as predefined.
+.LP
+.SH REMARK
+A number of predefined variables are set in the start-up file \fVscilab.star\fR.
+These variables are seen by typing \fVwho\fR when entering in Scilab.
+
+User may in particular set its own predefined variables in user's startup file
+\fVhome/.scilab\fR 
+.SH SEE ALSO
+clear save

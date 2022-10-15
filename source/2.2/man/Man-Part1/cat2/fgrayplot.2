@@ -1,0 +1,66 @@
+
+
+
+fgrayplot(2)                   Scilab Function                   fgrayplot(2)
+
+
+
+
+
+
+NAME
+  fgrayplot - 2D plot with gray levels
+
+CALLING SEQUENCE
+  fgrayplot(x,y,f,[strf,rect,nax])
+
+PARAMETERS
+
+  x,y       :  real vectors of size respectively (1,n1) and (1,n2).
+
+  f         : an external (analytic expression of the surface)
+
+  strf,rect,nax
+            : optional arguments, ( see plot2d)
+
+DESCRIPTION
+  2D plot of a surface using gray levels; f gives the analytic expression of
+  the surface. z=f(x,y) is first computed on the grid specified by xr.yr then
+  control is passed to the routine grayplot.
+
+  Enter the Scilab command fgrayplot() to see a demo.
+
+EXAMPLE
+  deff('[z]=surf(x,y)','z=x**2+y**2');
+  fgrayplot(-1:0.1:1,-1:0.1:1,surf,"111",[-2,-2,2,2]);
+
+AUTHOR
+  J.Ph.C..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+.TH orth 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+orth - orthogonal basis
+.SH CALLING SEQUENCE
+.nf
+Q=orth(A)
+.fi
+.SH PARAMETERS
+.TP
+A
+: real or complex matrix
+.TP
+Q
+: real or complex matrix
+.SH DESCRIPTION
+.Vb Q=orth(A)
+returns \fVQ\fR, an orthogonal basis for the span of \fVA\fR.
+Range(\fVQ\fR) = Range(\fVA\fR) and \fVQ'*Q=eye\fR.
+.LP
+The number of columns of \fVQ\fR is the rank of \fVA\fR as determined
+by the QR algorithm.
+.SH SEE ALSO
+qr, rowcomp, colcomp
+
+

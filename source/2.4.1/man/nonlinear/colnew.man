@@ -1,0 +1,7 @@
+.LA \def\sciverb#1{\mbox{\tt #1}}
+.TH colnew G "June 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+colnew - boundary value problems for ODE
+.SH CALLING SEQUENCE
+This function has been renamed bvode.

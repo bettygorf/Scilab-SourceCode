@@ -1,0 +1,247 @@
+.TH pvmd3 1 "January 1998" "Scilab // Group" "pvm daemon"
+.so ../sci.an
+.SH NAME
+pvmd3 - PVM  daemon
+.SH SYNOPSIS
+pvmd3 [ -options ] [ hostfile ] &
+.SH DESCRIPTION
+pvmd3 is a daemon process which coordinates hosts in a virtual
+machine. One pvmd must run on each host in the group. They provide
+the communication and process control functions needed by the user's
+PVM processes. The daemon can be started manually with a host file
+argument that will automatically start the remote pvmds. The local and
+remote pvmds can also be started from the PVM console program pvm.
+
+The name of the daemon executable is pvmd3. It is usually started by a
+shell script, $PVM_ROOT/lib/pvmd.
+
+Local daemon may also be started by the scilab instruction pvm_start()
+and remote daemons may also be started by the scilab function 
+pvm_addhosts
+
+.SH OPTIONS
+The following options may be specified on the command line when
+starting the master pvmd or PVM console:
+.TP
+- 
+dmask Set pvmd debug mask. Used to debug the pvmd or libpvm (not
+intended to be used to debug application programs). Mask is a
+hexadecimal number which is the sum of the following bits: Bit
+Information
+.RS
+.TP 3
+1
+     Packet routing 
+.TP
+2
+     Message routing and entry points 
+.TP
+4
+     Task management 
+.TP
+8
+     Slave pvmd startup 
+.TP
+10
+     Host table updates 
+.TP
+20
+     Select loop (below packet layer) 
+.TP
+40
+     IP network 
+.TP
+80
+     Multiprocessor port debugging 
+.TP
+100
+     Resource manager interface 
+.TP
+200
+     Application (messages with no destination, etc.)
+.RE
+.TP
+-nname 
+Specify an alternate hostname for the master pvmd to use. Useful when
+gethostname() returns a name not assigned to any network interface.
+.LP
+The following options are used by the master pvmd when starting slaves
+and are only of interest to someone writing a hoster. Don't just go
+using them, now.
+.TP
+-s 
+Start pvmd in slave mode. Hostfile cannot be used, five additional
+parameters must be supplied: master pvmd index, master IP, master MTU,
+slave pvmd index, and slave IP.
+.TP
+-S 
+Same as -s, but slave pvmd doesn't wait for its stdin to be closed
+after printing its parameters.  Used for manual startup.
+.TP
+-f 
+Slave doesn't fork after configuration (useful if the slave is to
+be controlled or monitored by some process).
+.LP
+Lines beginning with a splat ( # ), optionally preceded by whitespace,
+are ignored.
+.RE
+
+A simple host file might look like:
+.nf
+# my first host file
+thud
+fred
+wilma
+barney
+betty
+.fi
+This specifies the names of five hosts to be configured in the virtual
+machine.
+
+The master pvmd for a group is started by hand on the localhost, and
+it starts slaves on each of the remaining hosts using the rsh or rexec
+command. The master host may appear on any line of the hostfile, but
+must have an entry.
+
+The simple format above works fine if you have the same login name on
+all five machines and the name of the master host in your .rhosts
+files on the other four.
+
+There are several host file options available:
+.TP 10
+lo=NAME
+Specifies an alternate login name (NAME) to use.
+.TP
+so=pw 
+This is necessary when the remote host cannot trust the
+master. Causes the master pvmd to prompt for a password for the remote
+host in the tty of the pvmd (note you can't start the master using the
+console or background it when using this option) you will see:
+Password (honk.cs.utk.edu:manchek): you should type your password for
+the remote host. The startup will then continue as normal.
+.TP
+dx=FILE 
+Specifies the path of the pvmd executable. FILE may be a
+simple filename, an absolute pathname, or a path relative to the
+user's home directory on the remote host. This is mainly useful to aid
+in debugging new versions of PVM, but may have other uses.
+.TP
+ep=PATH 
+Specifies a path for the pvmd to search for executable program
+components when spawning a new process. The path may have multiple
+elements, separated by colons ( : ).
+.TP
+wd=PATH Specifies a working directory in which all spawned tasks on
+this host will execute.
+.TP
+sp=VALUE 
+Specifies the relative computational speed of this host
+compared to other hosts in the configuration. VALUE is an integer in
+the range [1 - 1000000]
+.TP
+bx=PATH 
+Specifies the debugger program path. Note: the environment
+variable PVM_DEBUGGER can also be set.
+.TP
+so=ms 
+Rarely used. Causes the master pvmd to request user to manually
+perform the startup of a pvmd on a slave host when rsh and rexec
+network services are disabled but IP connectivity exists. See section
+"MANUAL STARTUP".
+.RE
+
+A dollar sign ( $ ) in an option introduces a variable name, for
+example $PVM_ARCH. Names are expanded from environment variables by
+each pvmd.
+
+Each of the flags above has a default value. These are: 
+.TP 3
+lo
+     The loginname on the master host. 
+.TP
+so
+     Nothing 
+.TP
+dx
+     $PVM_ROOT/lib/pvmd (or environment variable PVM_DPATH) 
+.TP
+ep
+     pvm3/bin/$PVM_ARCH:$PVM_ROOT/bin/$PVM_ARCH 
+.TP
+wd
+     $HOME 
+.TP
+sp
+     1000 
+.TP
+bx
+     $PVM_ROOT/lib/debugger
+.RE
+You can change these by adding a line with a star ( * ) in the first
+field followed by the options, for example:
+.TP 20
+* lo=afriend so=pw
+This sets new default values for `lo' and `so' for the remainder of
+the host file, or until the next `*' line. Options set on the last `*'
+line also apply to hosts added dynamically using pvm_addhosts().
+.LP
+Host options can be set without starting the hosts
+automatically. Information on host file lines beginning with `&' is
+stored, but the hosts are not started until added using
+pvm_addhosts().
+.LP
+Example hostfile:
+.nf
+# hostfile for testing on various platforms fonebone
+refuge
+# installed in /usr/local/here
+
+sigi.cs
+     dx=/usr/local/pvm3/lib/pvmd # borrowed accts, "guest", don't trust fonebone 
+.fi
+.TP
+* lo=guest so=pw sn666.jrandom.com cubie.misc.edu # really painful one, must start it by
+     hand and share a homedir & igor.firewall.com lo=guest2 so=ms
+     ep=bob/pvm3/bin/$PVM_ARCH
+
+.SH MANUAL STARTUP
+
+When adding a host with this option set you will see on the tty of the
+pvmd:
+.nf
+*** Manual startup ***
+.fi
+Login to "honk" and type:
+.nf
+$PVM_ROOT/lib/pvmd -S -d0 -nhonk 1 80a9ca95:0cb6 4096 2 80a95c43:0000 Type response:
+.fi
+after typing the given command on host honk, you should see a line
+like:
+.nf
+ddpro<2312> arch<ALPHA> ip<80a95c43:0a8e> mtu<4096>
+.fi
+type this line on the tty of the master pvmd. You should then see:
+.nf
+Thanks
+.fi
+and the two pvmds should be able to communicate.
+
+Note you can't start the master using the console or background it
+when using this option.
+
+.SH STOPPING PVMD3
+
+The preferred method of stopping all the pvmds is to give the halt
+command in the PVM console.  This kills all pvm tasks, all the remote
+daemons, the local daemon, and finally the console itself. If the
+master pvmd is killed manually it should be sent a SIGTERM signal to
+allow it to kill the remote pvmds and clean up various files.
+
+The pvmd can be killed in a manner that leaves the file /tmp/pvmd.uid
+behind on one or more hosts. Uid is the numeric user ID (from
+/etc/passwd) of the user. This will prevent PVM from restarting on
+that host. Deletion of this file will fix this problem:
+.nf
+rm `( grep $user /etc/passwd || ypmatch $user passwd ) | \\
+	awk -F: `{print "/tmp/pvmd."$3; exit}'`
+.fi

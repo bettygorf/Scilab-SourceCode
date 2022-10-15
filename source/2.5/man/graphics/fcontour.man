@@ -1,0 +1,30 @@
+.TH fcontour 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+fcontour - level curves on a 3D surface defined by a function
+.SH CALLING SEQUENCE
+.nf
+fcontour(xr,yr,f,nz,[theta,alpha,leg,flag,ebox,zlev])
+.fi
+.SH PARAMETERS
+.TP 7
+xr,yr 
+: two real row vectors of size n1 and n2.
+.TP
+f
+: is an external which defines the surface
+\fVz=f(x,y)\fR. It is first computed on the grid specified by
+\fVxr,yr\fR. Then, control is passed to the routine \fVcontour\fR.
+.TP
+nz,[theta,alpha,leg,flag,ebox,zlev]
+: see \fVcontour\fR.
+.SH DESCRIPTION
+Draws level curves of a surface \fVz=f(x,y)\fR. The level curves are
+drawn on a 3D surface. The surface is given by the external function
+\fVf\fR. See \fVcontour\fR.
+
+Enter the command \fVfcontour()\fR to see a demo.
+.SH SEE ALSO
+contour, contour2d, fcontour2d
+.SH AUTHOR
+J.Ph.C.

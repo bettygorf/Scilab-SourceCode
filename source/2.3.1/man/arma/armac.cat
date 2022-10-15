@@ -1,0 +1,37 @@
+
+armac(1)                       Scilab Function                       armac(1)
+NAME
+  armac - Scilab description of an armax process
+
+CALLING SEQUENCE
+  [ar]=armac(a,b,d,ny,nu,sig)
+
+PARAMETERS
+
+  a=[Id,a1,..,a_r]    : is a matrix of size (ny,r*ny)
+
+  b=[b0,.....,b_s]    : is a matrix of size (ny,(s+1)*nu)
+
+  d=[Id,d1,..,d_p]    : is a matrix of size (ny,p*ny);
+
+  ny                  : dimension of the output  y
+
+  nu                  : dimension of the output  u
+
+  sig                 : a matrix of size (ny,ny)
+
+DESCRIPTION
+  this function creates a description as a list of an  ARMAX process
+
+     A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)
+
+EXAMPLE
+  a=[1,-2.851,2.717,-0.865].*.eye(2,2)
+  b=[0,1,1,1].*.[1;1];
+  d=[1,0.7,0.2].*.eye(2,2);
+  sig=eye(2,2);
+  ar=armac(a,b,d,2,1,sig);
+  armap(ar);
+
+SEE ALSO
+  armap

@@ -1,0 +1,25 @@
+#include "../../Imake.incl"
+
+SYS_LIBRARIES = 	-lm
+DEPLIBS =
+LOCAL_LIBRARIES = 	XawClientLibs
+
+SRCS =	actions.c alert.c attributes.c bezier.c choose.c color.c \
+	create.c dialog.c dialogs.c draw.c file.c find.c graph.c \
+	graphics.c init.c \
+	list.c load.c menu.c message.c metanet.c modify.c movedraw.c \
+	name.c save.c scilab.c show.c socket.c study.c text.c
+
+OBJS =	actions.o alert.o attributes.o bezier.o choose.o color.o \
+	create.o dialog.o dialogs.o draw.o file.o find.o graph.o \
+	graphics.o init.o \
+	list.o load.o menu.o message.o metanet.o modify.o movedraw.o \
+	name.o save.o scilab.o show.o socket.o study.o text.o
+
+PROGRAM = $(SCIDIR)/bin/xmetanet
+
+AllTarget($(PROGRAM))
+NormalProgramTarget($(PROGRAM),$(OBJS),$(DEPLIBS),$(LOCAL_LIBRARIES),$(SYS_LIBRARIE))
+DependTarget()
+
+distclean:: clean 

@@ -1,0 +1,339 @@
+
+\def\Mhlp{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=hlp()\\ 
+\cmarg \verb@// Travaux diriges : bibliotheque de macros generales@\\ 
+\cmarg \verb@//     @\\ 
+\cmarg \verb@// portrait : dessine un portrait de phase @\\ 
+\cmarg \verb@// orbite   : calcul d'une orbite (utilise par portrait)@\\ 
+\cmarg \verb@// fchamp   : visualise un champ de vecteurs  @\\ 
+\cmarg \verb@//	    faire help fchamp @\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// rgkport  : comme portrait mais methode de Runge-Kutta.@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg 0;\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mportrait{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=portrait(fch,xdim,npts,farrow,pinit)\\ 
+\cmarg //$<$$>$=portrait(f,$[$xdim,npts,farrow,pinit$]$)\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@// permet de tracer le portrait de phase du syst\ `eme dynamique @\\ 
+\cmarg \verb@// dx/dt=f(t,x,[u]) ( u est un param\ `etre contant )@\\ 
+\cmarg \verb@// dans le cadre xdim=<xmin,ymin,xmax,ymax>@\\ 
+\cmarg \verb@// Arguments:@\\ 
+\cmarg \verb@//    f : le  champ du syst\ `eme dynamique@\\ 
+\cmarg \verb@//       est soit un nom de macro qui calcule la valeur du champ en un point x@\\ 
+\cmarg \verb@//	     <y>=f(t,x,[u])@\\ 
+\cmarg \verb@//       soit un object de type liste list(f1,u1) ou f1 est une macro de type@\\ 
+\cmarg \verb@//        <y>=f1(t,x,u) et u1 est la valeur que l'on veut donner a u @\\ 
+\cmarg \verb@//       soit une chaine de caract\ `ere si le champ de vecteur @\\ 
+\cmarg \verb@//       est donne par un programme fortran (voir  ode)@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// Dans la forme d'appel par d\ 'efaut : portrait(fch) les valeurs@\\ 
+\cmarg \verb@// du cadre  et les pas d'int\ 'egration sont demand\ 'es interactivement.@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// Param\ `etres optionnels :@\\ 
+\cmarg \verb@//      @\\ 
+\cmarg \verb@// npts=<nombre-de-points,pas> ->  sert \ `a donner le nombre de points et @\\ 
+\cmarg \verb@//          le pas pour l'int\ 'egration num\ 'erique.@\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@// xdim=<xmin,ymin,xmax,ymax> -> sert \ `a donner le cadre du dessin @\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// farrow vaut 't' ou 'f' ( 'f' par defaut ) :@\\ 
+\cmarg \verb@//  s'il vaut 't' on rajoute des fl\ `eches le long des trajectoires @\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// enfin on peut donner les points de d\ 'epart des int\ 'egrations num\ 'eriques@\\ 
+\cmarg \verb@// dans un vecteur : ils ne seront alors pas demand\ 'ees interactivement@\\ 
+\cmarg \verb@// pinit -> sert \ `a donner des points de d\ 'epart pour l'int\ 'egration@\\ 
+\cmarg \verb@//          ex: pinit = <x0(1), x1(1); x0(2), x1(2)>.@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg addtitle(fch);\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg \verb@// appel minimal @\\ 
+\cmarg {\bf if} rhs$<$=3,farrow='f';{\bf end};\\ 
+\cmarg \verb@//Version interactive @\\ 
+\cmarg {\bf if} rhs $<$= 1,\\ 
+\cmarg \hspace{0.5cm}{\bf write}(\%io(2),'cadre du dessin : xmin,ymin,xmax,ymax'),\\ 
+\cmarg \hspace{0.5cm}xdim={\bf read}(\%io(1),1,4),\\ 
+\cmarg \verb@// Test sur le cadre @\\ 
+\cmarg \hspace{0.5cm}{\bf if} xdim(3) $<$= xdim(1),\\ 
+\cmarg \hspace{0.5cm}{\bf write}(\%io(2),'Erreur:  xmin $>$ xmax '),{\bf return},{\bf end}\\ 
+\cmarg \hspace{0.5cm}{\bf if} xdim(4) $<$= xdim(2),\\ 
+\cmarg \hspace{0.5cm}{\bf write}(\%io(2),'Erreur:  ymin $>$ ymax '),{\bf return},{\bf end}\\ 
+\cmarg {\bf end} \\ 
+\cmarg plot2d($<$xdim(1);xdim(1);xdim(3)$>$,$<$xdim(2);xdim(4);xdim(4)$>$)\\ 
+\cmarg {\bf if} rhs$<$=2,\\ 
+\cmarg \hspace{0.5cm}{\bf write}(\%io(2),'integration : nb points,pas du systeme '),\\ 
+\cmarg \hspace{0.5cm}npts={\bf read}(\%io(1),1,2),\\ 
+\cmarg {\bf end}\\ 
+\cmarg ylast=(1/2)$\star$$<$xdim(3)$-$xdim(1),xdim(4)$-$xdim(2)$>$;\\ 
+\cmarg {\bf if} rhs$<$=4\\ 
+\cmarg \verb@// Boucle sur les points de depart @\\ 
+\cmarg \hspace{0.5cm}goon=1\\ 
+\cmarg \hspace{0.5cm}{\bf while} goon=1,\\ 
+\cmarg \hspace{1.8cm}ftest=1;\\ 
+\cmarg \hspace{1.8cm}{\bf while} ftest=1,\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),'Utilisez la souris : ');\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),' $-$$>$ Bouton de gauche pour un nouveau point');\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),' $-$$>$ Bouton du milieu pour continuer la trajectoire ');\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),' $-$$>$ Bouton de droite pour quiter ');\\ 
+\cmarg \hspace{2.5cm}$<$n,x,y$>$=xclick()\\ 
+\cmarg \hspace{2.5cm}{\bf if} n=2,goon=0;{\bf return};{\bf end}\\ 
+\cmarg \hspace{2.5cm}x0=$<$x,y$>$;\\ 
+\cmarg \hspace{2.5cm}{\bf if} n=1,x0=ylast';{\bf end} \\ 
+\cmarg \hspace{2.5cm}ftest=desorb(x0',npts,fch,farrow,xdim);\\ 
+\cmarg \hspace{2.5cm}{\bf if} ftest=1;{\bf write}(\%io(2),'conditions initiales hors du cadre'),{\bf end}\\ 
+\cmarg \hspace{1.8cm}{\bf end}\\ 
+\cmarg \hspace{0.5cm}{\bf end}\\ 
+\cmarg {\bf else}\\ 
+\cmarg \verb@// Version sans poser de question @\\ 
+\cmarg res=desorb(pinit,npts,fch,farrow,xdim);\\ 
+\cmarg {\bf if} res=1,{\bf write}(\%io(2),'Points hors du cadre elimines ');{\bf end};\\ 
+\cmarg {\bf end}\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Maddtitle{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=addtitle(fch)\\ 
+\cmarg //$<$$>$=addtitle(fch)\\ 
+\cmarg \verb@// Ajoute des titres pour les portraits de phase des syt\ `emes@\\ 
+\cmarg \verb@// dynamiques des travaux dirig\ 'es.@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg {\bf if} fch=linear,xtitle("Systeme lineaire"," "," ",0);{\bf end}\\ 
+\cmarg {\bf if} fch=linper,xtitle("Systeme lineaire perturbe "," "," ",0);{\bf end}\\ 
+\cmarg {\bf if} fch=cycllim,xtitle("Systeme avec cycle limite "," "," ",0);{\bf end}\\ 
+\cmarg {\bf if} fch=bioreact,xtitle("Bioreacteur ","biomasse ","sucre ",0);{\bf end}\\ 
+\cmarg {\bf if} fch=lincom,xtitle("Systeme lineaire commande "," "," ",0);{\bf end}\\ 
+\cmarg {\bf if} fch=pp,xtitle("Modele proie$-$predateur ","proies ","predateurs ",0);{\bf end}\\ 
+\cmarg {\bf if} fch=compet,xtitle("Modele de competition ","population 1 "...\\ 
+\cmarg ,"population2 ",0);{\bf end}\\ 
+\cmarg {\bf if} fch='bcomp',xtitle("Modele de competition observe$-$comtrole ",...\\ 
+\cmarg \hspace{1.0cm}"population 1 ","population2 ",0);{\bf end}\\ 
+\cmarg {\bf if} fch='lcomp',xtitle("Modele de competition linearise observe$-$comtrole ",...\\ 
+\cmarg \hspace{1.0cm}"population 1 ","population2 ",0);{\bf end}\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mdesorb{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$res$>$=desorb(x0,n1,fch,farrow,xdim);\\ 
+\cmarg //$<$res$>$=desorb(x0,n1,fch,farrow,xdim);\\ 
+\cmarg \verb@// Calcule des orbites pour des points de @\\ 
+\cmarg \verb@// depart donn\ 'es dans x0 et les dessine@\\ 
+\cmarg \verb@// v\ 'erifie que les points de d\ 'epart sont a l'int\ 'erieur du @\\ 
+\cmarg \verb@// cadre. Si l'un des points est a l'exterieur la valeur renvoy\ 'ee @\\ 
+\cmarg \verb@// est 1@\\ 
+\cmarg \verb@// renvoit aussi une valeur dans xlast ( le dernier point de la derniere @\\ 
+\cmarg \verb@//  trajectoire)@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg res=0\\ 
+\cmarg $<$nn1,n2$>$={\bf size}(x0);\\ 
+\cmarg {\bf for} i=1:n2,\\ 
+\cmarg \hspace{1.0cm}ftest=1;\\ 
+\cmarg \hspace{1.0cm}{\bf if} x0(1,i) $>$ xdim(3), ftest=0;{\bf end}\\ 
+\cmarg \hspace{1.0cm}{\bf if} x0(1,i) $<$ xdim(1), ftest=0;{\bf end}\\ 
+\cmarg \hspace{1.0cm}{\bf if} x0(2,i) $>$ xdim(4), ftest=0;{\bf end}\\ 
+\cmarg \hspace{1.0cm}{\bf if} x0(2,i) $<$ xdim(2), ftest=0;{\bf end}\\ 
+\cmarg \hspace{1.0cm}{\bf if} ftest=0;res=1,{\bf else} \\ 
+\cmarg \hspace{1.0cm}{\bf write}(\%io(2),'Calculs en cours')\\ 
+\cmarg \hspace{1.0cm}y={\bf ode}($<$x0(1,i);x0(2,i)$>$,0,n1(2)$\star$(0:n1(1)),fch);\\ 
+\cmarg \hspace{1.0cm}// on coupe la trajectoire au temps d'arret T\\ 
+\cmarg \hspace{1.0cm}// T d'atteinte du bord du cadre \\ 
+\cmarg \hspace{1.0cm}$<$mi1,ki1$>$={\bf mini}(y(1,:),xdim(3)$\star${\bf ones}(0:n1(1)));\\ 
+\cmarg \hspace{1.0cm}$<$ma1,ka1$>$={\bf maxi}(y(1,:),xdim(1)$\star${\bf ones}(0:n1(1)));\\ 
+\cmarg \hspace{1.0cm}k1={\bf maxi}(ki1,ka1);\\ 
+\cmarg \\ 
+\cmarg \hspace{1.0cm}$<$mi2,ki2$>$={\bf mini}(y(2,:),xdim(4)$\star${\bf ones}(0:n1(1)));\\ 
+\cmarg \hspace{1.0cm}$<$ma2,ka2$>$={\bf maxi}(y(2,:),xdim(2)$\star${\bf ones}(0:n1(1)));\\ 
+\cmarg \hspace{1.0cm}k2={\bf maxi}(ki2,ka2);\\ 
+\cmarg \\ 
+\cmarg \hspace{1.0cm}$<$m11,k11$>$={\bf maxi}(k1);\\ 
+\cmarg \hspace{1.0cm}$<$m22,k22$>$={\bf maxi}(k2);\\ 
+\cmarg \hspace{1.0cm}{\bf if} k11=1,k11=n1(1);{\bf end}\\ 
+\cmarg \hspace{1.0cm}{\bf if} k22=1,k22=n1(1);{\bf end}\\ 
+\cmarg \hspace{1.0cm}kf={\bf mini}(k11,k22);\\ 
+\cmarg \hspace{1.0cm}{\bf if} kf=1, kf=n1(1),{\bf end}\\ 
+\cmarg \hspace{1.2cm}{\bf if} farrow='t',\\ 
+\cmarg \hspace{1.8cm}plot2d4("gnn",y(1,1:kf)',y(2,1:kf)',$<$$-$1$>$,"111"," ",xdim);\\ 
+\cmarg \hspace{1.2cm}{\bf else} \\ 
+\cmarg \hspace{1.8cm}plot2d(y(1,1:kf)',y(2,1:kf)',$<$$-$1$>$,"111"," ",xdim);\\ 
+\cmarg \hspace{1.2cm}{\bf end},\\ 
+\cmarg \hspace{1.0cm}{\bf end} \\ 
+\cmarg \hspace{1.0cm}ylast=y(:,kf);\\ 
+\cmarg {\bf end} \\ 
+\cmarg $<$ylast$>$={\bf resume}(ylast)\\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+
+\def\Mtangent{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$f,g,newm$>$=tangent(nl\_sys,xe,ue)\\ 
+\cmarg //$<$f,g,newm$>$=tangent(ff,xe,$[$ue$]$)\\ 
+\cmarg \verb@// lin\ 'earise autour du point d'\ 'equilibre (xe,ue)@\\ 
+\cmarg \verb@// le champ du syst\ `eme dynamique d\ 'efinit par xdot=ff(t,x,[u])@\\ 
+\cmarg \verb@// (suppos\ 'e en fait autonome)@\\ 
+\cmarg \verb@// Arguments : @\\ 
+\cmarg \verb@//    ff : chaine de caract\ `ere donnant le nom du syt\ `eme a lin\ 'eriser@\\ 
+\cmarg \verb@//    x0 : vecteur colonne@\\ 
+\cmarg \verb@//    u0 : constante. \ 'eventuellement absente s'il n'y a pas de commande@\\ 
+\cmarg \verb@//    @\\ 
+\cmarg \verb@// Valeurs de retour : @\\ 
+\cmarg \verb@//   f, g : deux matrices qui caract\ 'erisent @\\ 
+\cmarg \verb@//     le syst\ `eme dynamique lin\ 'earis\ 'e -> dxdot=f.dx + g.du@\\ 
+\cmarg \verb@//     s'il n'y a pas de commande g sera nulle@\\ 
+\cmarg \verb@//   newm : une macro de type <y>=newm(t,x,u) qui d\ 'ecrit la dynamique@\\ 
+\cmarg \verb@//     du syt\ 'eme lin\ 'eaire obtenu. (newm(t,xe,ue)=0)@\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs=3,{\bf deff}('$<$y,xdot$>$=fff(x,u)',$<$'xdot='+nl\_sys+'(0,x,u),y=x'$>$);\\ 
+\cmarg \hspace{0.5cm}{\bf else} ue=0;{\bf deff}('$<$y,xdot$>$=fff(x,u)',$<$'xdot='+nl\_sys+'(0,x),y=x'$>$);\\ 
+\cmarg {\bf end}\\ 
+\cmarg newm=0;\\ 
+\cmarg $<$yy,xx$>$=fff(xe,ue);\\ 
+\cmarg {\bf if} {\bf norm}(xx) $>$= 1.e$-$4,\\ 
+\cmarg \hspace{0.5cm}{\bf write}(\%io(2),' Votre point n''est pas un point d''equilibre !!');\\ 
+\cmarg \hspace{0.5cm}{\bf return}\\ 
+\cmarg {\bf end}\\ 
+\cmarg $<$f,g,h,void$>$=lin(fff,xe,ue);\\ 
+\cmarg fstr={\bf string}(f);gstr={\bf string}(g);\\ 
+\cmarg xestr={\bf string}(xe);uestr={\bf string}(ue);\\ 
+\cmarg {\bf deff}('$<$xdot$>$=newm(t,x,u)',$<$'$<$lhs,rhs$>$={\bf argn}(0);{\bf if} rhs $<$=2,u=0;{\bf end};',...\\ 
+\cmarg \hspace{0.8cm}'xdot(1)='+fstr(1,1)+'$\star$(x(1)$-$('+xestr(1)+'))+('+fstr(1,2)+...\\ 
+\cmarg \hspace{0.8cm}')$\star$(x(2)$-$('+xestr(2)+'))+('+gstr(1)+')$\star$(u$-$('+uestr+'))',...\\ 
+\cmarg \hspace{0.8cm}'xdot(2)='+fstr(2,1)+'$\star$(x(1)$-$('+xestr(1)+'))+('+fstr(2,2)+...\\ 
+\cmarg \hspace{0.8cm}')$\star$(x(2)$-$('+xestr(2)+'))+('+gstr(2)+')$\star$(u$-$('+uestr+'))'$>$);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+
+
+\def\Mrgkport{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=rgkport(fch,xdim,npts,farrow,pinit)\\ 
+\cmarg //$<$$>$=rgkport(f,$[$xdim,npts,farrow,pinit$]$)\\ 
+\cmarg \verb@// S'utilise comme la macro portrait @\\ 
+\cmarg \verb@// la m\ 'ethode num\ 'erique utilis\ 'e est une m\ 'ethode @\\ 
+\cmarg \verb@// de runge Kutta a pas variable.@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg addtitle(fch);\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg \verb@// appel minimal @\\ 
+\cmarg {\bf if} rhs$<$=3,farrow='f';{\bf end};\\ 
+\cmarg \verb@//Version interactive @\\ 
+\cmarg {\bf if} rhs $<$= 1,\\ 
+\cmarg \hspace{0.5cm}{\bf write}(\%io(2),'cadre du dessin : xmin,ymin,xmax,ymax'),\\ 
+\cmarg \hspace{0.5cm}xdim={\bf read}(\%io(1),1,4),\\ 
+\cmarg \verb@// Test sur le cadre @\\ 
+\cmarg \hspace{0.5cm}{\bf if} xdim(3) $<$= xdim(1),\\ 
+\cmarg \hspace{0.5cm}{\bf write}(\%io(2),'Erreur:  xmin $>$ xmax '),{\bf return},{\bf end}\\ 
+\cmarg \hspace{0.5cm}{\bf if} xdim(4) $<$= xdim(2),\\ 
+\cmarg \hspace{0.5cm}{\bf write}(\%io(2),'Erreur:  ymin $>$ ymax '),{\bf return},{\bf end}\\ 
+\cmarg {\bf end} \\ 
+\cmarg plot2d($<$xdim(1);xdim(1);xdim(3)$>$,$<$xdim(2);xdim(4);xdim(4)$>$)\\ 
+\cmarg {\bf if} rhs$<$=2,\\ 
+\cmarg \hspace{0.5cm}{\bf write}(\%io(2),'integration : nb points,pas du systeme '),\\ 
+\cmarg \hspace{0.5cm}npts={\bf read}(\%io(1),1,2),\\ 
+\cmarg {\bf end}\\ 
+\cmarg ylast=(1/2)$\star$$<$xdim(3)$-$xdim(1),xdim(4)$-$xdim(2)$>$;\\ 
+\cmarg {\bf if} rhs$<$=4\\ 
+\cmarg \verb@// Boucle sur les points de depart @\\ 
+\cmarg \hspace{0.5cm}goon=1\\ 
+\cmarg \hspace{0.5cm}{\bf while} goon=1,\\ 
+\cmarg \hspace{1.8cm}ftest=1;\\ 
+\cmarg \hspace{1.8cm}{\bf while} ftest=1,\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),'Utilisez la souris : ');\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),' $-$$>$ Bouton de gauche pour un nouveau point');\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),' $-$$>$ Bouton du milieu pour continuer la trajectoire ');\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),' $-$$>$ Bouton de droite pour quiter ');\\ 
+\cmarg \hspace{2.5cm}$<$n,x,y$>$=xclick()\\ 
+\cmarg \hspace{2.5cm}{\bf if} n=2,goon=0;{\bf return};{\bf end}\\ 
+\cmarg \hspace{2.5cm}x0=$<$x,y$>$;\\ 
+\cmarg \hspace{2.5cm}{\bf if} n=1,x0=ylast';{\bf end} \\ 
+\cmarg \hspace{2.5cm}ftest=desorb1(x0',npts,fch,farrow,xdim);\\ 
+\cmarg \hspace{2.5cm}{\bf if} ftest=1;{\bf write}(\%io(2),'conditions initiales hors du cadre'),{\bf end}\\ 
+\cmarg \hspace{1.8cm}{\bf end}\\ 
+\cmarg \hspace{0.5cm}{\bf end}\\ 
+\cmarg {\bf else}\\ 
+\cmarg \verb@// Version sans poser de question @\\ 
+\cmarg res=desorb1(pinit,npts,fch,farrow,xdim);\\ 
+\cmarg {\bf if} res=1,{\bf write}(\%io(2),'Points hors du cadre elimines ');{\bf end};\\ 
+\cmarg {\bf end}\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mdesorbu{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$res$>$=desorb1(x0,n1,fch,farrow,xdim);\\ 
+\cmarg //$<$res$>$=desorb1(x0,n1,fch,farrow,xdim);\\ 
+\cmarg \verb@// Calcule des orbites pour des points de @\\ 
+\cmarg \verb@// depart donn\ 'es dans x0 et les dessine@\\ 
+\cmarg \verb@// v\ 'erifie que les points de d\ 'epart sont a l'int\ 'erieur du @\\ 
+\cmarg \verb@// cadre. Si l'un des points est a l'exterieur la valeur renvoy\ 'ee @\\ 
+\cmarg \verb@// est 1@\\ 
+\cmarg \verb@// renvoit aussi une valeur dans xlast ( le dernier point de la derniere @\\ 
+\cmarg \verb@//  trajectoire)@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg res=0\\ 
+\cmarg $<$nn1,n2$>$={\bf size}(x0);\\ 
+\cmarg {\bf for} i=1:n2,\\ 
+\cmarg \hspace{1.0cm}ftest=1;\\ 
+\cmarg \hspace{1.0cm}{\bf if} x0(1,i) $>$ xdim(3), ftest=0;{\bf end}\\ 
+\cmarg \hspace{1.0cm}{\bf if} x0(1,i) $<$ xdim(1), ftest=0;{\bf end}\\ 
+\cmarg \hspace{1.0cm}{\bf if} x0(2,i) $>$ xdim(4), ftest=0;{\bf end}\\ 
+\cmarg \hspace{1.0cm}{\bf if} x0(2,i) $<$ xdim(2), ftest=0;{\bf end}\\ 
+\cmarg \hspace{1.0cm}{\bf if} ftest=0;res=1,{\bf else} \\ 
+\cmarg \hspace{1.0cm}{\bf write}(\%io(2),'Calculs en cours')\\ 
+\cmarg \hspace{1.0cm}y={\bf ode}('o',$<$x0(1,i);x0(2,i)$>$,0,n1(2)$\star$(0:n1(1)),1.0,1.e$-$3,fch);\\ 
+\cmarg \hspace{1.0cm}// on coupe la trajectoire au temps d'arret T\\ 
+\cmarg \hspace{1.0cm}// T d'atteinte du bord du cadre \\ 
+\cmarg \hspace{1.0cm}$<$mi1,ki1$>$={\bf mini}(y(1,:),xdim(3)$\star${\bf ones}(0:n1(1)));\\ 
+\cmarg \hspace{1.0cm}$<$ma1,ka1$>$={\bf maxi}(y(1,:),xdim(1)$\star${\bf ones}(0:n1(1)));\\ 
+\cmarg \hspace{1.0cm}k1={\bf maxi}(ki1,ka1);\\ 
+\cmarg \\ 
+\cmarg \hspace{1.0cm}$<$mi2,ki2$>$={\bf mini}(y(2,:),xdim(4)$\star${\bf ones}(0:n1(1)));\\ 
+\cmarg \hspace{1.0cm}$<$ma2,ka2$>$={\bf maxi}(y(2,:),xdim(2)$\star${\bf ones}(0:n1(1)));\\ 
+\cmarg \hspace{1.0cm}k2={\bf maxi}(ki2,ka2);\\ 
+\cmarg \\ 
+\cmarg \hspace{1.0cm}$<$m11,k11$>$={\bf maxi}(k1);\\ 
+\cmarg \hspace{1.0cm}$<$m22,k22$>$={\bf maxi}(k2);\\ 
+\cmarg \hspace{1.0cm}{\bf if} k11=1,k11=n1(1);{\bf end}\\ 
+\cmarg \hspace{1.0cm}{\bf if} k22=1,k22=n1(1);{\bf end}\\ 
+\cmarg \hspace{1.0cm}kf={\bf mini}(k11,k22);\\ 
+\cmarg \hspace{1.0cm}{\bf if} kf=1, kf=n1(1),{\bf end}\\ 
+\cmarg \hspace{1.2cm}{\bf if} farrow='t',\\ 
+\cmarg \hspace{1.8cm}plot2d4("gnn",y(1,1:kf)',y(2,1:kf)',$<$$-$1$>$,"111"," ",xdim);\\ 
+\cmarg \hspace{1.2cm}{\bf else} \\ 
+\cmarg \hspace{1.8cm}plot2d(y(1,1:kf)',y(2,1:kf)',$<$$-$1$>$,"111"," ",xdim);\\ 
+\cmarg \hspace{1.2cm}{\bf end},\\ 
+\cmarg \hspace{1.0cm}{\bf end} \\ 
+\cmarg \hspace{1.0cm}ylast=y(:,kf);\\ 
+\cmarg {\bf end} \\ 
+\cmarg $<$ylast$>$={\bf resume}(ylast)\\ 
+\cmarg //end }
+\end{flushleft}}
+

@@ -1,0 +1,56 @@
+.TH sparse 1 "January 1995" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+sparse -  sparse matrix definition
+.SH CALLING SEQUENCE
+.nf
+sp=sparse(X)
+sp=sparse(ij,v [,mn])
+.fi
+.SH PARAMETERS
+.TP
+X
+: real or complex full (or sparse) matrix
+.TP
+ij
+: two columns integer matrix (indices of non-zeros entries)
+.TP
+mn
+: integer vector with two entries (row-dimension, column-dimension)
+.TP
+sp
+: sparse matrix
+.SH DESCRIPTION
+\fVsparse\fR is used to build a sparse matrix. Only non-zero entries
+are stored.
+.LP
+\fVsp = sparse(X)\fR  converts a full matrix to sparse form by
+ squeezing out any zero elements. (If \fVX\fR is already sparse
+\fVsp\fR is \fVX\fR).
+.LP
+\fVsp=sparse(ij,v [,mn])\fR  builds an \fVmn(1)\fR-by-\fVmn(2)\fR
+sparse matrix with \fVsp(ij(k,1),ij(k,2))=v(k)\fR. 
+\fVij\fR and \fVv\fR must have the same column dimension.
+If optional \fVmn\fR parameter is not given the \fVsp\fR
+matrix dimensions are the max value of \fVij(:,1)\fR and \fVij(:,2)\fR
+respectively.
+.LP
+Operations (concatenation, addition, etc,) with sparse matrices are
+made using the same syntax as for full matrices. 
+.LP
+Elementary functions are also available (\fVabs,maxi,sum,diag,...\fR)
+for sparse matrices.
+.LP
+Mixed operations (full-sparse) are allowed. Results are full or sparse
+depending on the operations.
+.SH EXAMPLE
+.nf
+sp=sparse([1,2;4,5;3,10],[1,2,3])
+size(sp)
+x=rand(2,2);abs(x)-full(abs(sparse(x)))
+.fi
+.SH SEE ALSO
+full, spget, sprand, speye, lufact
+
+
+                        

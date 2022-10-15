@@ -1,0 +1,44 @@
+
+findobj(2)                     Scilab Function                     findobj(2)
+NAME
+  findobj - find an object with specified property
+
+  Author: Bertrand Guiheneuf
+
+  Allows to find a graphic tksci object testing the value of one of its pro-
+  perties.
+
+Usage
+  h=findobj(prop,value)
+
+Input parameter
+
+  o    prop : string character Name of the property to test.
+
+  o    value : string character specify the value the tested propoerty should
+       be equal to.
+
+Output parameters
+  handle of the found object.
+
+Description
+  This routine is currentlyt used to find objects knowing their 'tag' pro-
+  perty. It returns handle of the first found object which property 'prop' is
+  equal to 'value'. If such an object does not exist, the function returns a
+  void matrix.
+
+EXAMPLE
+  h=figure();
+  // creates  figure number 1.
+  uicontrol( h, 'style','text', ...
+   'string','This is a figure', ...
+   'position',[50 70 100 100], ...
+   'fontsize',15, ...
+   'tag','Alabel');
+  // put a  text in figure 1
+  lab=findobj('tag','Alabel');
+  // find the object which 'tag' value is 'Alabel'
+  disp('the handle of the label is '+string(lab));
+  close();
+See also
+  uicontrol, uimenu, set, get

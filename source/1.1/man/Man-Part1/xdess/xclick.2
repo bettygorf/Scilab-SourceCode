@@ -1,0 +1,37 @@
+.TH xclick 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xclick - wait for a mouse click
+.SH CALLING SEQUENCE
+.nf
+[c_i,c_x,c_y]=xclick()
+.fi
+.SH PARAMETERS
+.TP 10
+c_i
+: integer (button number)
+.TP 15
+c_x,c_y
+: real scalars (position) 
+.SH DESCRIPTION
+waits for a mouse click in the current graphic window
+and returns three values
+.TP
+c_i 
+: the number of the mouse button [0,1,2] fo [left,midle,right].
+.TP
+c_x,c_y
+: the coordinates in the current graphic scale 
+of the position of the mouse click.
+.SH KNOWN TROUBLES
+This function can return the message 
+\fVCan't grab the pointer\fR if the graphic window is iconified when 
+calling the function \fVxclick\fR.
+.SH SEE ALSO
+locate
+.SH AUTHOR
+J.Ph.C.
+
+
+
+

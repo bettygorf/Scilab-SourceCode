@@ -1,0 +1,35 @@
+
+ss2tf(1)                       Scilab Function                       ss2tf(1)
+NAME
+  ss2tf - conversion from state-space to transfer function
+
+CALLING SEQUENCE
+  [h]=ss2tf(sl)
+  [Ds,NUM,chi]=ss2tf(sl)
+
+PARAMETERS
+
+  sl        : linear system (syslin list)
+
+  h         : transfer matrix
+
+DESCRIPTION
+  Called with three outputs [Ds,NUM,chi]=ss2tf(sl) returns the numerator
+  polynomial matrix NUM, the characteristic polynomial chi and the polynomial
+  part Ds separately i.e.:
+  h=NUM/chi + Ds
+
+  Method:
+
+  One uses the characteristic polynomial and det(A+Eij)=det(A)+C(i,j) where C
+  is the adjugate matrix of A.
+
+EXAMPLE
+  s=poly(0,'s');
+  h=[1,1/s;1/(s^2+1),s/(s^2-2)]
+  sl=tf2ss(h);
+  h=clean(ss2tf(sl))
+  [Ds,NUM,chi]=ss2tf(sl)
+
+SEE ALSO
+  tf2ss, syslin, nlev, glever

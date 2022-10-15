@@ -1,0 +1,30 @@
+.TH asinh 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+asinh - hyperbolic sine inverse
+.SH CALLING SEQUENCE
+.nf
+[t]=asinh(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex vector
+.TP 10
+t
+: real or complex vector
+.SH DESCRIPTION
+The components of vector \fVt\fR are the hyperbolic sine inverse of the 
+corresponding entries of vector \fVx\fR.
+Definition domain is ]-1,i[
+It takes his values in sets
+\"LaTeX \ignore{
+.nf 
+  ]-inf,inf[ x ]-pi/2,pi/2[, 
+  ]-inf,0[ x [-pi/2] and   [0,inf] x [pi/2] (real x imag)
+.fi
+\"LaTeX }
+\" This is for LaTeX 
+\"LaTeX    \[  ]-\infty +\infty[\times  ] -\pi/2,\pi/2[ \]
+\"LaTeX    \[ [-\infty,0[  \times [-\pi/2] \quad\mbox{and} 
+\"LaTeX   \quad [0,\infty] \times [\pi/2] \quad \mbox{(real x imag)} \]

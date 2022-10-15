@@ -1,0 +1,56 @@
+
+linfn(1)                       Scilab Function                       linfn(1)
+NAME
+  linfn - infinity norm
+
+CALLING SEQUENCE
+  [x,freq]=linfn(G,PREC,RELTOL,options);
+
+PARAMETERS
+
+  G         : is a syslin list
+
+  PREC      : desired relative accuracy on the norm
+
+  RELTOL    : relative threshold to decide when an eigenvalue can be consid-
+            ered on the imaginary axis.
+
+  options   : available options are 'trace' or 'cond'
+
+  x         is the computed norm.
+
+  freq      : vector
+
+DESCRIPTION
+  Computes the Linf (or Hinf) norm of G This norm is well-defined as soon as
+  the realization G=(A,B,C,D) has no imaginary eigenvalue which is both con-
+  trollable and observable.
+
+  freq is a list of the frequencies for which ||G|| is attained,i.e., such
+  that ||G (j om)|| = ||G||.
+
+  If -1 is in the list, the norm is attained at infinity.
+
+  If -2 is in the list, G is all-pass in some direction so that ||G (j
+  omega)|| = ||G|| for all frequencies omega.
+
+  The algorithm follows the paper by G. Robel (AC-34 pp. 882-884, 1989).  The
+  case D=0 is not treated separately due to superior accuracy of the general
+  method when (A,B,C) is nearly non minimal.
+
+  The 'trace' option traces each bisection step, i.e., displays the lower and
+  upper bounds and the current test point.
+
+  The 'cond' option estimates a confidence index on the computed value and
+  issues a warning if computations are ill-conditioned
+
+  In the general case (A neither stable nor anti-stable), no upper bound is
+  prespecified.
+
+  If by contrast A is stable or anti stable, lower and upper bounds are com-
+  puted using the associated Lyapunov solutions.
+
+SEE ALSO
+  h_norm
+AUTHOR
+  P. Gahinet

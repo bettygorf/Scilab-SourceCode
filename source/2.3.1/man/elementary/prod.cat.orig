@@ -1,0 +1,33 @@
+
+prod(G)                        Scilab Function                        prod(G)
+NAME
+  prod - product
+
+CALLING SEQUENCE
+  y=prod(x)
+  y=prod(x,'r')
+  y=prod(x,'c')
+
+PARAMETERS
+
+  x    : real or complex vector or matrix
+
+  y    : real or complex scalar or matrix
+
+DESCRIPTION
+  For a vector or a matrix x, y=prod(x) (or, equivalently, y=prod(x,'*'))
+  returns in the scalar y the prod of all the entries of x, , e.g. prod(1:n)
+  is n!  y=prod(x,'r') (or, equivalently, y=prod(x,1)) returns in each entry
+  of the column vector y the prod of each row of x.  y=prod(x,'c') returns in
+  each entry of the row vector y the prod of each column of x.
+
+  prod is not implemented for sparse matrices.
+
+EXAMPLE
+  A=[1,2;0,100];
+  prod(A)
+  prod(A,'c')
+  prod(A,'r')
+
+SEE ALSO
+  sum, cumprod

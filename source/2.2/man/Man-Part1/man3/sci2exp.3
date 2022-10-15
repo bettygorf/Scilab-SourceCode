@@ -1,0 +1,46 @@
+.TH abs G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+sci2exp - converts  variable to a scilab expression
+.SH CALLING SEQUENCE
+.nf
+t=sci2exp(a [,nam])
+.fi
+.SH PARAMETERS
+.TP
+a  
+: a scilab variable, may be
+.RS
+.TP 10 
+-
+constant, 
+.TP 
+-
+polynomial 
+.TP
+-
+ string matrix
+.TP
+-
+ list
+.TP
+-
+boolean matrix
+.RE
+.TP
+nam
+: character string
+.TP
+t  
+: vector of string, contains the expression or instruction definition
+.SH DESCRIPTION 
+\fVsci2exp\fR converts  variable to an instruction if \fVnam\fR is
+given or to an expression .
+.SH Example
+.nf
+  a=[1 2;3 4]
+  sci2exp(a,'aa')
+  
+  sci2exp(ssrand(2,2,2))
+  sci2exp(poly([1 0 3 4],'s'),'fi')
+.fi

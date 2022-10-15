@@ -1,0 +1,15 @@
+ 
+clear;lines(0);
+ 
+isglobal(1)
+ ans  =
+ 
+  F  
+ 
+global a
+ 
+isglobal(a)
+ ans  =
+ 
+  T  
+ 

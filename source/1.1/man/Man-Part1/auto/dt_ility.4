@@ -1,0 +1,35 @@
+.TH dt_ility 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+dt_ility - detectability test
+.SH CALLING SEQUENCE
+.nf
+[n [,U [,Sld] ]]=dt_ility(Sl [,tol])
+.fi
+.SH PARAMETERS
+.TP 10
+Sl
+: linear system (\fVsyslin\fR list)
+.TP 10
+n
+: dimension of detectable subspace
+.TP
+U
+: orthogonal matrix
+.TP
+Sld
+: linear system (\fVsyslin\fR list)
+.TP
+tol
+: threshold for controllability test.
+.SH DESCRIPTION
+Detectability test for \fVsl\fR, a linear system in state-space
+representation.
+\fVU\fR is a basis whose \fVn\fR first columns span the
+detectable subspace of \fVsl\fR.
+.LP
+\fVsld = (U'*A*U,U'*B,C*U,D)\fR displays the detectable part 
+of \fVsl=(A,B,C,D)\fR.
+.SH SEE ALSO
+contr, st_ility
+

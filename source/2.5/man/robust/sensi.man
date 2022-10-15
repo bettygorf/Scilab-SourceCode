@@ -1,0 +1,59 @@
+.TH sensi 5 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sensi - sensitivity functions
+.SH CALLING SEQUENCE
+.nf
+[Se,Re,Te]=sensi(G,K)
+[Si,Ri,Ti]=sensi(G,K,flag)
+.fi
+.SH PARAMETERS
+.TP 10
+G 
+: standard plant (\fVsyslin\fR list)
+.TP
+K 
+: compensator (\fVsyslin\fR list)
+.TP
+flag
+: character string \fV'o'\fR (default value) or \fV'i'\fR
+.TP
+Se
+: output sensitivity function \fV(I+G*K)^-1\fR
+.TP
+Re
+: \fVK*Se\fR
+.TP
+Te
+: \fVG*K*Se\fR (output complementary sensitivity function)
+.SH DESCRIPTION
+\fVsensi\fR computes sensitivity functions. If \fVG\fR and \fVK\fR are
+given in state-space form, the systems returned are generically minimal. 
+Calculation is made by \fVlft\fR, e.g., 
+\fVSe\fR can be given by the commands 
+\fV P = augment(G,'S')\fR, \fVSe=lft(P,K)\fR.
+If \fVflag\fR = \fV'i'\fR, \fV[Si,Ri,Ti]=sensi(G,K,'i')\fR
+returns the input sensitivity functions.
+.LP
+.nf
+[Se;Re;Te]= [inv(eye()+G*K);K*inv(eye()+G*K);G*K*inv(eye()+G*K)];
+[Si;Ri;Ti]= [inv(eye()+K*G);G*inv(eye()+K*G);K*G*inv(eye()+K*G)];
+.fi
+.SH EXAMPLE
+.nf
+G=ssrand(1,1,3);K=ssrand(1,1,3);
+[Se,Re,Te]=sensi(G,K);
+Se1=inv(eye()+G*K);  //Other way to compute
+ss2tf(Se)    //Se seen in transfer form
+ss2tf(Se1)
+ss2tf(Te)
+ss2tf(G*K*Se1)
+[Si,Ri,Ti]=sensi(G,K,'i');
+w1=[ss2tf(Si);ss2tf(Ri);ss2tf(Ti)]
+w2=[ss2tf(inv(eye()+K*G));ss2tf(G*inv(eye()+K*G));ss2tf(K*G*inv(eye()+K*G))];
+clean(w1-w2)
+.fi
+.SH SEE ALSO
+augment, lft, h_cl
+
+

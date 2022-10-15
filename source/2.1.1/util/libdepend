@@ -1,0 +1,15 @@
+#!/bin/csh 
+foreach f ($*)
+	echo -n "$f :" >>! Makefile 
+	set x = $f:r
+	set x = $x:t
+	foreach ff (routines/$x/*.c routines/$x/*.h routines/$x/*.f routines/stack.h)
+   		echo -n $ff " " >> Makefile
+	end
+	echo " " >> Makefile 
+end
+
+	
+
+
+

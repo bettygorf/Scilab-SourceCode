@@ -1,0 +1,19 @@
+.TH SINBLK_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+SINBLK_f - Scicos sine block
+.SH DIALOGUE PARAMETERS
+None.
+.SH DESCRIPTION
+This block realizes vector sine operation. \fVy(i)=sin(u(i))\fR.
+The input and output  port sizes are equal and determined by the
+context.
+
+
+
+
+
+
+
+
+

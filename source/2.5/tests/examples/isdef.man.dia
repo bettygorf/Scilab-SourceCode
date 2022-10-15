@@ -1,0 +1,17 @@
+ 
+clear;lines(0);
+ 
+A=1;
+ 
+isdef('A')
+ ans  =
+ 
+  T  
+ 
+clear A
+ 
+isdef('A')
+ ans  =
+ 
+  F  
+ 

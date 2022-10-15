@@ -1,0 +1,27 @@
+.TH hypermatrices 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+hypermat - initialize an  N dimensional matrices 
+.SH CALLING SEQUENCE
+.nf
+M=hypermat(dims [,v])
+.fi
+.SH PARAMETERS
+.TP 10
+dims
+: vector of hypermatrix dimensions
+.TP 10
+v
+: vector of hypermatrix entries (default value \fVzeros(prod(dims),1)\fR)
+.SH DESCRIPTION
+Initialize an hypermatrix whose dimensions are given in the vector dims
+and entries are given in optional argument \fVv\fR
+
+M data structure contains the vector of matrix dimensions
+\fVM('dims')\fR and the vector of entries \fVM('entries')\fR such as
+the leftmost subcripts vary first
+\fV[M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]\fR
+.SH EXAMPLES
+.nf
+M=hypermat([2 3 2 2],1:24)
+.fi

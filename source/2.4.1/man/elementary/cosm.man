@@ -1,0 +1,24 @@
+.TH cosm G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+cosm -  matrix cosine function
+.SH CALLING SEQUENCE
+.nf
+t=cosm(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex square  matrix
+.SH DESCRIPTION
+\fVcosm(x)\fR is  the matrix cosine of the x matrix. 
+\fVt=0.5*(expm(%i*x)+expm(-%i*x))\fR.
+.SH EXAMPLE
+.nf
+A=[1,2;3,4]
+cosm(A)-0.5*(expm(%i*A)+expm(-%i*A))
+.fi
+.SH SEE ALSO
+cos, expm
+
+

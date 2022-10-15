@@ -1,0 +1,10 @@
+cc -g -ieee_with_inexact -I.. -c CWT1D_Convol.c
+cc -g -ieee_with_inexact -I.. -c CWT1D_DefWavelet.c
+cc -g -ieee_with_inexact -I.. -c CWT1D_WTransform.c
+cc -g -ieee_with_inexact -I.. -c CWT1D_Wavelet.c
+cc -g -ieee_with_inexact -I.. -c GIFS_alphacoefsigne.c
+cc -g -ieee_with_inexact -I.. -c GIFS_triangle2triangle.c
+cc -g -ieee_with_inexact -I.. -c GIFS_util.c
+cc -g -ieee_with_inexact -I.. -c HOLDER2D_meascalc.c
+cc -g -ieee_with_inexact -I.. -c Interf_fraclab.c
+Creation of ../../libs/fraclab.a

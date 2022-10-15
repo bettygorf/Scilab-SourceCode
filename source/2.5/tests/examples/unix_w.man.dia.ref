@@ -1,0 +1,37 @@
+ 
+clear;lines(0);
+ 
+if MSDOS then unix_w("dir "+WSCI+"\demos");
+else unix_w("ls $SCI/demos"); end
+Makefile
+alldems.dem
+anim
+arma
+bike
+control
+dialog
+fec
+flat
+fraclab
+graphics
+icse
+intro
+lmitool
+lqg
+metanet
+misc
+npend
+ode
+pendulum
+pvm
+random
+robust
+sci2for
+scicos
+signal
+sound
+surface
+tracking
+velpic
+wheel2
+ 

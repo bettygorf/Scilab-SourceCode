@@ -1,0 +1,19 @@
+.TH INTEGRAL_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+INTEGRAL_f - Scicos simple integrator
+.SH DESCRIPTION
+This block is an integrator. The output is the integral of the input.
+.SH DIALOGUE PARAMETERS
+.TP 15
+Initial state
+: a scalar. The initial condition of the integrator.
+.SH SEE ALSO
+CLSS_f, CLR_f
+
+
+
+
+
+
+

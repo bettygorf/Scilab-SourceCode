@@ -1,0 +1,26 @@
+.TH atanhm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+atanhm - matrix hyperbolic tangent inverse
+.SH CALLING SEQUENCE
+.nf
+t=atanhm(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex square matrix
+.TP 10
+t
+: real or complex square matrix
+.SH DESCRIPTION
+\fVatanhm(x)\fR is the matrix hyperbolic tangent inverse of matrix 
+\fVx\fR. Results may be inaccurate if \fVx\fR is not symmetric.
+.SH EXAMPLE
+.nf
+A=[1,2;3,4];
+tanhm(atanhm(A))
+.fi
+.SH SEE ALSO
+atanh, tanhm
+

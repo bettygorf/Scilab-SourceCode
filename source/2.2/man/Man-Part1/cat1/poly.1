@@ -1,0 +1,66 @@
+
+
+
+poly(1)                        Scilab Function                        poly(1)
+
+
+
+
+
+
+NAME
+  poly - polynomial definition
+
+CALLING SEQUENCE
+  [p]=poly(a,"x", ["flag"])
+
+PARAMETERS
+
+  a         : matrix or real number
+
+  x         : symbolic variable
+
+  "flag"    : string ("roots", "coeff")
+
+DESCRIPTION
+  If a is a matrix, p is the characteristic polynomial i.e.
+   determinant(x*eye-a), x being the symbolic variable.
+
+  If v  is a vector, poly(v,"x",["roots"])  is the polynomial with roots the
+  entries of v and "x" as formal variable.  (In this case,  roots and   poly
+  are inverse functions).
+
+  poly(v,"x","coeff") creates the polynomial with symbol "x" and with coeffi-
+  cients the entries of v. (Here poly and coeff are inverse functions).
+
+  s=poly(0,"s") is the seed for defining polynomials with symbol "s".
+
+EXAMPLE
+  s=poly(0,"s");p=1+s+2*s^2;
+  A=rand(2,2);poly(A,"x")
+
+SEE ALSO
+  coeff, matrices, rational
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

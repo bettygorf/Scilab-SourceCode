@@ -1,0 +1,9 @@
+clear;lines(0);
+funcprot(1)
+deff('[x]=foo(a)','x=a')
+deff('[x]=foo(a)','x=a+1')
+foo=33
+funcprot(0)
+deff('[x]=foo(a)','x=a')
+deff('[x]=foo(a)','x=a+1')
+foo=33

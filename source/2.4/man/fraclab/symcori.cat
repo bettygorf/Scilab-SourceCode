@@ -1,0 +1,22 @@
+
+symcori(2)                     Scilab Function                     symcori(2)
+NAME
+  symcori - Symmetrization of a periodic 2D correlation field
+
+  Author: B. Pesquet-Popescu (ENS-Cachan)
+
+  Symmetrization of a periodic 2D correlation field
+
+Usage
+
+  Ss = symcori(S) ;
+Input parameters
+       o  S  : Matrix [N/2+1 , N] Periodic 2D correlation field
+         S(1:N/2+1,1:N) of a complex 2D NxN field. Values of S(1,N/2+2:N) may
+         be arbitrary.
+Output parameters
+       o  Ss  :  Matrix [N , N] Symetrized correlation field
+See also:
+  synth2, strfbm
+
+Example:

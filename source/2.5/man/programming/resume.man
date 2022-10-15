@@ -1,0 +1,30 @@
+.TH resume 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+resume - return or resume execution and copy some local variables 
+.SH CALLING SEQUENCE
+.nf
+resume
+[x1,..,xn]=resume(a1,..,an)
+.fi
+.SH PARAMETERS
+.TP
+x 
+.SH DESCRIPTION
+In a function \fVresume\fR stops the execution of the function,
+\fV[..]=resume(..)\fR stops the execution of the function and put the
+local variables \fVai\fR in calling environnement under names
+\fVxi\fR.
+
+.LP
+In \fVpause\fR mode, it allows to return to lower level
+\fV[..]=resume(..)\fR returns to lower level and put the local variables
+\fVai\fR in calling environnement under names \fVxi\fR.
+.LP
+In an \fVexecstr\fR called by a function \fV[..]=resume(..)\fR stops
+the execution of the function and put the local variables 
+\fVai\fR in calling environnement under names \fVxi\fR.
+.LP
+\fVresume\fR is equivalent to \fVreturn\fR.
+.SH SEE ALSO
+abort, break

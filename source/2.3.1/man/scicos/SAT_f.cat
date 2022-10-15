@@ -1,0 +1,19 @@
+
+SAT_f(5)                        Scicos Block                         SAT_f(5)
+NAME
+  SAT_f - Scicos Saturation block
+
+DESCRIPTION
+  This block realizes the non-linear function: saturation.
+
+DIALOGUE PARAMETERS
+
+  Min            : a scalar. Lower saturation bound
+
+  Max            : a scalar. Upper saturation bound
+
+  Slope          : a scalar. The slope of the line going through the origin
+                 and describing the behaviour of the function around zero.
+
+SEE ALSO
+  LOOKUP_f

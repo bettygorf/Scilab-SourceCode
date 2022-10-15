@@ -1,0 +1,37 @@
+.TH repfreq 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+repfreq - frequency response
+.SH CALLING SEQUENCE
+.nf
+[frq,db,phi] =repfreq(sys,fmin,fmax [,step])
+[frq,db,phi] =repfreq(sys,frq)
+[ [frq,] repf]=repfreq(sys,fmin,fmax [,step])
+[ [frq,] repf]=repfreq(sys,frq)
+.fi
+.SH PARAMETERS
+.TP
+sys
+: \fVsyslin\fR list : SIMO linear system 
+.TP 15
+fmin,fmax  
+: two real numbers (frequency bounds)
+.TP
+frq        
+: vector of frequencies (Hz)
+.TP
+step        
+: logarithmic discretization step
+.TP
+db,phi         
+: vector of gains (db) and phases at \fVfrq\fR
+.TP
+repf       
+: vector of the complex frequency response
+.SH DESCRIPTION
+\fVrepfreq\fR returns the frequency response calculation of a linear
+system
+.SH SEE ALSO
+bode, freq, calfrq
+.SH AUTHOR
+S. S.

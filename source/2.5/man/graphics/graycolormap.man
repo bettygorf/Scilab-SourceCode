@@ -1,0 +1,25 @@
+.TH graycolormap 1 "November 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+graycolormap - linear gray colormap
+.SH CALLING SEQUENCE
+.nf
+cmap=graycolormap(n)
+.fi
+.SH PARAMETERS
+.TP 6
+n
+: integer >= 1, the colormap size.
+.TP
+cmap
+: matrix with 3 columns \fV[R,G,B]\fR.
+.SH DESCRIPTION
+\fVgraycolormap\fR computes a colormap with \fVn\fR gray colors
+varying linearly from black to white.
+.SH EXAMPLE
+.nf
+xset("colormap",graycolormap(32))
+plot3d1() 
+.fi
+.SH SEE ALSO
+colormap, hotcolormap, xset

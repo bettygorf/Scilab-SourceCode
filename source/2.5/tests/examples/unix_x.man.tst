@@ -1,0 +1,3 @@
+clear;lines(0);
+if MSDOS then unix_x("dir "+WSCI+"\demos");
+else unix_x("ls $SCI/demos"); end

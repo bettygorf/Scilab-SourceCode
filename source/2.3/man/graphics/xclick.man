@@ -1,0 +1,53 @@
+.TH xclick 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xclick - wait for a mouse click
+.SH CALLING SEQUENCE
+.nf
+[c_i,c_x,c_y]=xclick([flag])
+[c_i,c_x,c_y,c_w]=xclick()
+.fi
+.SH PARAMETERS
+.TP 10
+c_i
+: integer (button number)
+.TP 15
+c_x,c_y
+: real scalars (position) 
+.TP 
+c_w
+: integer (window number)
+.TP
+flag
+: an integer. If present, the click event queue is not cleared when entering xclick
+.SH DESCRIPTION
+if called with 3 lhs arguments waits for a mouse click in the current
+graphic window 
+.LP
+if called with 4 lhs arguments waits for a mouse click in any graphic
+window 
+.LP
+returned values:
+.TP
+c_i 
+: an integer which gives the number of the mouse button that was pressed [0,1,2] (for [left,middle,right]) or i=-1 in case of problems with xclick.
+.TP
+c_x,c_y
+: the coordinates in the current graphic scale 
+of the position of the mouse click.
+.TP 
+c_w
+: the window number where the click has occurred
+
+.SH KNOWN TROUBLES
+This function can return the message 
+\fVCan't grab the pointer\fR if the graphic window is iconified when 
+calling the function \fVxclick\fR.
+.SH SEE ALSO
+locate
+.SH AUTHOR
+J.Ph.C.
+
+
+
+

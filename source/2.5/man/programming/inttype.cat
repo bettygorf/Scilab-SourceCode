@@ -1,0 +1,36 @@
+
+inttype(1)                     Scilab Function                     inttype(1)
+NAME
+  inttype -  type integers used in integer data types
+
+CALLING SEQUENCE
+  [i]=inttype(x)
+
+PARAMETERS
+
+  x         : an matrix of integers (see int8,..)
+
+  i         : integer
+
+DESCRIPTION
+  inttype(x)  returns an integer which is the type of the entries of x as
+  following :
+
+  11    :  one byte integer representation
+
+  22    :  two bytes integer representation
+
+  44    :  four bytes integer representation
+
+  1111   :  one byte unsigned integer representation
+
+  1122   :  two bytes unsigned integer representation
+
+  1144   :  four bytes unsigned integer representation
+
+EXAMPLE
+  x=uint16(1:10);
+  inttype(x)
+
+SEE ALSO
+  int8

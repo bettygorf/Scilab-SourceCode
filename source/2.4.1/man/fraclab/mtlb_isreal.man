@@ -1,0 +1,32 @@
+.TH "mtlb_isreal" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mtlb_isreal - Check is an rarry is real
+.sp
+Author: Paulo Goncalves
+.sp
+\fImtlb_isreal\fP True for real array.  \fImtlb_isreal(x)\fP returns %T if all
+elements in \fIx\fP have zero imaginary part and %F otherwise. 
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+mtlb_isreal(x)
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : Real or complex valued matrix \f(CR[\fPrx,cx\f(CR]\fP
+.RE
+
+.SH See also:
+isempty, real, imag

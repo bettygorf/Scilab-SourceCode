@@ -1,0 +1,36 @@
+.TH hess G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+hess - Hessenberg form
+.SH CALLING SEQUENCE
+.nf
+H = hess(A)
+[U,H] = hess(A)
+.fi
+.SH PARAMETERS
+.TP
+A 
+: real or complex square matrix
+.TP
+H
+: real or complex square matrix
+.TP
+U
+: orthogonal or unitary square matrix
+.SH DESCRIPTION
+.Vb [U,H] = hess(A)
+produces a unitary matrix \fVU\fR and a Hessenberg matrix \fVH\fR so
+that \fVA = U*H*U'\fR and \fVU'*U\fR = Identity.  By itself, \fVhess(A)\fR
+returns \fVH\fR.
+.PP
+The Hessenberg form of a matrix is zero below the first 
+subdiagonal. If the matrix is symmetric or
+Hermitian, the form is tridiagonal.
+.SH EXAMPLE
+.nf
+A=rand(3,3);[U,H]=hess(A);
+and( abs(U*H*U'-A)<1.d-10 )
+.fi
+.SH SEE ALSO
+qr, contr, schur
+

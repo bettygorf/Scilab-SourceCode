@@ -1,0 +1,23 @@
+.TH p2ns 1 "April 1993" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME
+p2ns -  node sequence of a path
+.SH CALLING SEQUENCE
+.nf
+[ns]=p2ns(p,[g])
+.fi
+.SH PARAMETERS
+.TP 4
+p
+: row vector of arc numbers
+.TP
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP
+ns
+: row vector of node numbers
+.SH DESCRIPTION
+\fVp2ns\fR returns the node sequence \fVns\fR corresponding to the arc sequence
+\fVp\fR if this arc sequence forms a path.
+.SH SEE ALSO
+ns2p

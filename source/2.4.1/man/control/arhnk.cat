@@ -1,0 +1,29 @@
+
+arhnk(1)                       Scilab Function                       arhnk(1)
+NAME
+  arhnk - Hankel norm approximant
+
+CALLING SEQUENCE
+  [slm]=arhnk(sl,ord,[tol])
+
+PARAMETERS
+
+  sl   : linear system (syslin list)
+
+  ord  : integer, order of the approximant
+
+  tol  : threshold for rank determination in equil1
+
+DESCRIPTION
+  computes slm, the optimal Hankel norm approximant of the stable
+  continuous-time linear system sl with matrices [A,B,C,D].
+
+EXAMPLE
+  A=diag([-1,-2,-3,-4,-5]);B=rand(5,1);C=rand(1,5);
+  sl=syslin('c',A,B,C);
+  slapprox=arhnk(sl,2);
+  [nk,W]=hankelsv(sl);nk
+  [nkred,Wred]=hankelsv(slapprox);nkred
+
+SEE ALSO
+  equil, equil1, hankelsv

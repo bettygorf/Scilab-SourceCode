@@ -1,0 +1,36 @@
+.TH xgrid 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so man1/sci.an
+.SH NAME
+xgrid - add a grid on a graphic
+.SH CALLING SEQUENCE
+.nf
+xgrid(nax,[style,[flag]])
+.fi
+.SH PARAMETERS 
+.TP 10
+nax
+: a vector of type [n1,n2]
+.TP 
+style
+: an integer 
+.TP
+flag
+: one of the character string \fV"nn","ln","nl","ll"\fR
+.SH DESCRIPTION
+Adds a grid on a 2D plot, where \fVnax=[n1,n2]\fR describes the number of intervals
+to use resp. on the x and y axis. \fVstyle\fR stands for the dash 
+style to use for the grid plotting.
+.LP
+\fVflag\fR is used for scaling: \fV"nn","ln","nl","ll"\fR stands for
+x normal-y normal, x log-y normal, x normal-y log, x log-y log respectively.
+.SH EXAMPLE
+enter the command \fVxgrid()\fR
+to see a demo
+.SH SEE ALSO
+xset,plot2d
+.SH AUTHOR
+J.Ph.C..
+
+
+
+

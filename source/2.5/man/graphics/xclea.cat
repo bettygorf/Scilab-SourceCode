@@ -1,0 +1,23 @@
+
+xclea(2)                       Scilab Function                       xclea(2)
+NAME
+  xclea - erase a rectangle
+
+CALLING SEQUENCE
+  xclea(x,y,w,h)
+
+PARAMETERS
+
+  x,y,w,h  : real values defining the rectangle.
+
+DESCRIPTION
+  xclea clears the rectangle [x,y,w,h] (upper left point, width, height) in
+  the current graphics window.
+
+EXAMPLE
+  x=[0:0.1:2*%pi]';
+  plot2d(x,sin(x))
+  xclea(1,1,1,1)
+
+AUTHOR
+  J.Ph.C.

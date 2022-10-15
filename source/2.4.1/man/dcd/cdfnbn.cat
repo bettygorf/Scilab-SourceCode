@@ -1,0 +1,55 @@
+
+cdfnbn(1)                      Scilab Function                      cdfnbn(1)
+NAME
+  cdfnbn - cumulative distribution function  negative binomial distribution
+
+CALLING SEQUENCE
+  [P,Q]=cdfnbn("PQ",S,Xn,Pr,Ompr)
+  [S]=cdfnbn("S",Xn,Pr,Ompr,P,Q)
+  [Xn]=cdfnbn("Xn",Pr,Ompr,P,Q,S)
+  [Pr,Ompr]=cdfnbn("PrOmpr",P,Q,S,Xn)
+
+PARAMETERS
+
+  P,Q,S,Xn,Pr,Ompr
+            : six real vectors of the same size.
+
+  P,Q (Q=1-P)
+            : The cumulation from 0 to S of the  negative binomial distribu-
+            tion.  Input range: [0,1].
+
+  S         : The upper limit of cumulation of the binomial distribution.
+            There are F or fewer failures before the XNth success.  Input
+            range: [0, +infinity).  Search range: [0, 1E300]
+
+  Xn        :   The number of successes.  Input range: [0, +infinity).
+            Search range: [0, 1E300]
+
+  Pr        :   The probability of success in each binomial trial.  Input
+            range: [0,1].  Search range: [0,1].
+
+  Ompr      :   1-PR Input range: [0,1].  Search range: [0,1] PR + OMPR = 1.0
+
+DESCRIPTION
+  Calculates any one parameter of the negative binomial distribution given
+  values for the others.
+
+  The  cumulative  negative   binomial  distribution  returns  the probabil-
+  ity that there  will be  F or fewer failures before  the XNth success in
+  binomial trials each of which has probability of success PR.
+
+  The individual term of the negative binomial is the probability of S
+  failures before XN successes and is Choose( S, XN+S-1 ) * PR^(XN) * (1-
+  PR)^S
+
+  Formula   26.5.26   of   Abramowitz  and  Stegun,  Handbook   of Mathemati-
+  cal Functions (1966) is used  to  reduce calculation of the cumulative dis-
+  tribution  function to that of  an  incomplete beta.
+
+  Computation of other parameters involve a seach for a value that produces
+  the desired  value  of P.   The search relies  on  the monotinicity of P
+  with the other parameter.
+
+  From DCDFLIB: Library of Fortran Routines for Cumulative Distribution Func-
+  tions, Inverses, and Other Parameters (February, 1994) Barry W. Brown,
+  James Lovato and Kathy Russell. The University of Texas.

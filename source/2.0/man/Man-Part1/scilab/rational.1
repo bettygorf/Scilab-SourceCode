@@ -1,0 +1,28 @@
+.TH rational 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+"Scilab object : rationals" - rational in Scilab
+.SH DESCRIPTION
+A rational \fVr\fR is a quotient of two polynomials \fVr=num/den\fR.
+The internal representation of a rational is a list.
+\fVr=list('r',num,den,[])\fR is the same as \fVr=num/den\fR.
+A rational matrix can be defined with the usual syntax
+e.g. \fV[r11,r12;r21,r22]\fR is a 2x2 matrix where \fVrij\fR are 
+1x1 rationals.
+A rational matrix can also be defined as above as a list
+\fVlist('r',num,den,[])\fR with \fVnum\fR and \fVden\fR polynomial matrices.
+.SH EXAMPLES
+.nf
+s=poly(0,'s');
+W=[1/s,1/(s+1)]
+W'*W
+Num=[s,s+2;1,s];Den=[s*s,s;s,s*s];
+list('r',Num,Den,[])
+H=Num./Den
+syslin('c',Num,Den)
+syslin('c',H)
+[Num1,Den1]=simp(Num,Den)
+.fi
+.SH SEE ALSO
+poly, syslin, simp
+

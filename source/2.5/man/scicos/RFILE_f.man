@@ -1,0 +1,47 @@
+.TH RFILE_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+RFILE_f - Scicos "read from file" block
+.SH DIALOGUE PARAMETERS
+.TP 20
+Time record Selection
+: an empty matrix or a positive integer. If an integer \fVi\fR is given
+the  \fVi\fRth element of the read record is assumed to be the date of
+the output event. If empty no output event exists.
+.TP
+Output record selection
+: a vector of positive integer. \fV[k1,..,kn]\fR,The \fVki\fRth
+element of  the read record gives the value of \fVi\fRth output.
+.TP
+Input file name
+: a character string defining the path of the file 
+.TP
+Input Format
+: a character string defining the Fortran format to use or nothing for
+an unformatted (binary) write
+.TP
+Buffer size
+: To improve efficiency it is possible to buffer the input data. read
+on the file is only done after each \fVBuffer size\fR call to the
+block.
+.TP
+size of output
+: a scalar. This fixes the number of "value" read.
+.SH DESCRIPTION
+This block allows user to read  datas in a file, in formatted or binary
+mode. \fVOutput record selection\fR and \fVTime record Selection\fR
+allows the user to select data among file records.
+
+Each call to the block advance one record in the file. 
+
+.SH SEE ALSO
+WFILE_f
+
+
+
+
+
+
+
+
+

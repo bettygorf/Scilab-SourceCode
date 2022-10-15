@@ -1,0 +1,4 @@
+xinit('optiir5.ps')
+cx='normalized frequency';
+cy='magnitude in dB';
+plot(omega(1:45)/%pi/2,ld(1:45),cx,cy);

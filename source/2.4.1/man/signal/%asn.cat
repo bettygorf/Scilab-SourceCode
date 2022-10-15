@@ -1,0 +1,36 @@
+
+%asn(1)                        Scilab Function                        %asn(1)
+NAME
+  %asn - elliptic integral
+
+CALLING SEQUENCE
+  [y]=%asn(x,m)
+
+PARAMETERS
+
+  x    : upper limit of integral (x>0) (can be a vector)
+
+  m    : parameter of integral (0<m<1)
+
+  y    : value of the integral
+
+DESCRIPTION
+  Calculates the elliptic integral
+
+   y = integral from 0 to x of [1/(((1-t*t)^(1/2))(1-m*t*t)^(1/2))]
+  If x is a vector, y is a vector of same dimension as x.
+
+EXAMPLE
+  m=0.8;z=%asn(1/sqrt(m),m);K=real(z);Ktilde=imag(z);
+  x2max=1/sqrt(m);
+  x1=0:0.05:1;x2=1:((x2max-1)/20):x2max;x3=x2max:0.05:10;
+  x=[x1,x2,x3];
+  y=%asn(x,m);
+  rect=[0,-Ktilde,1.1*K,2*Ktilde];
+  plot2d(real(y)',imag(y)',1,'011',' ',rect)
+  //
+  deff('y=f(t)','y=1/sqrt((1-t^2)*(1-m*t^2))');
+  intg(0,0.9,f)-%asn(0.9,m)  //Works for real case only!
+
+AUTHOR
+  F. D.

@@ -1,0 +1,21 @@
+.TH log 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+log - logarithm
+.SH CALLING SEQUENCE
+.nf
+[y]=log(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: constant, vector or (symmetric positive definite) matrix
+.SH DESCRIPTION
+natural logarithm.If \fVx\fR is a vector \fVlog(x)=[log(x1),...,log(xn)]\fR.
+If \fVx\fR is a matrix \fVlog(x)\fR is the matrix logarithm of \fVx\fR.
+The result is complex if \fVx\fR is not positive or definite positive.
+(If \fVx\fR is a matrix, \fVx\fR must be symmetric and positive definite:
+then \fVexp(log(x))=x\fR).
+.SH SEE ALSO
+exp
+

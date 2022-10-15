@@ -1,0 +1,90 @@
+.TH aff2ab 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+aff2ab - linear (affine) function to A,b conversion
+.SH CALLING SEQUENCE
+.nf
+[A,b]=aff2ab(afunction,dimX,D [,flag])
+.fi
+.SH PARAMETERS
+.TP 10
+afunction
+: a scilab function \fV Y =fct(X,D) \fR where \fVX, D, Y\fR are
+\fVlist\fR of matrices
+.TP
+dimX
+: a p x 2 integer matrix (\fVp\fR is the number of matrices in \fVX\fR)
+.TP
+D
+: a \fVlist\fR of real matrices (or any other valid Scilab object).
+.TP
+flag
+: optional parameter (\fVflag='f'\fR or \fVflag='sp'\fR)
+.TP
+A
+: a real matrix
+.TP
+b
+: a real vector having same row dimension as \fVA\fR
+.SH DESCRIPTION
+\fVaff2ab\fR  returns the matrix representation of an affine
+function (in the canonical basis).
+.LP
+\fVafunction\fR is a function with imposed syntax:
+\fV Y=afunction(X,D) \fR where \fV X=list(X1,X2,...,Xp) \fR is
+a list of p real matrices, and \fV Y=list(Y1,...,Yq) \fR is
+a list of q real real matrices which depend linearly of
+the \fV Xi\fR's. The (optional) input \fV D\fR contains 
+parameters needed to compute Y as a function of X. 
+(It is generally a list of matrices).
+.LP
+\fV dimX\fR is a p x 2 matrix: \fVdimX(i)=[nri,nci]\fR
+is the actual number of rows and columns of matrix \fVXi\fR.
+These dimensions determine \fVna\fR, the column dimension of 
+the resulting matrix \fVA\fR: \fVna=nr1*nc1 +...+ nrp*ncp\fR.
+.LP
+If the optional parameter \fVflag='sp'\fR the resulting \fVA\fR
+matrix is returned as a sparse matrix.
+.LP
+This function is useful to solve a system of linear equations
+where the unknown variables are matrices.
+
+.SH EXAMPLE
+.nf
+// Lyapunov equation solver (one unknown variable, one constraint)
+deff('Y=lyapunov(X,D)','[A,Q]=D(:);Xm=X(:); Y=list(A''*Xm+Xm*A-Q)')
+A=rand(3,3);Q=rand(3,3);Q=Q+Q';D=list(A,Q);dimX=[3,3];
+[Aly,bly]=aff2ab(lyapunov,dimX,D);
+[Xl,kerA]=linsolve(Aly,bly); Xv=vec2list(Xl,dimX); lyapunov(Xv,D)
+Xm=Xv(:); A'*Xm+Xm*A-Q
+
+// Lyapunov equation solver with redundant constraint X=X'
+// (one variable, two constraints) D is global variable
+deff('Y=ly2(X,D)','[A,Q]=D(:);Xm=X(:); Y=list(A''*Xm+Xm*A-Q,Xm''-Xm)')
+A=rand(3,3);Q=rand(3,3);Q=Q+Q';D=list(A,Q);dimX=[3,3];
+[Aly,bly]=aff2ab(ly2,dimX,D);
+[Xl,kerA]=linsolve(Aly,bly); Xv=vec2list(Xl,dimX); ly2(Xv,D)
+
+// Francis equations
+// Find matrices X1 and X2 such that:
+// A1*X1 - X1*A2 + B*X2 -A3 = 0
+// D1*X1 -D2 = 0 
+deff('Y=bruce(X,D)','[A1,A2,A3,B,D1,D2]=D(:),...
+[X1,X2]=X(:);Y=list(A1*X1-X1*A2+B*X2-A3,D1*X1-D2)')
+A1=[-4,10;-1,2];A3=[1;2];B=[0;1];A2=1;D1=[0,1];D2=1;
+D=list(A1,A2,A3,B,D1,D2);
+[n1,m1]=size(A1);[n2,m2]=size(A2);[n3,m3]=size(B);
+dimX=[[m1,n2];[m3,m2]];
+[Af,bf]=aff2ab(bruce,dimX,D);
+[Xf,KerAf]=linsolve(Af,bf);Xsol=vec2list(Xf,dimX)
+bruce(Xsol,D)
+
+// Find all X which commute with A
+deff('y=f(X,D)','y=list(D(:)*X(:)-X(:)*D(:))')
+A=rand(3,3);dimX=[3,3];[Af,bf]=aff2ab(f,dimX,list(A));
+[Xf,KerAf]=linsolve(Af,bf);[p,q]=size(KerAf);
+Xsol=vec2list(Xf+KerAf*rand(q,1),dimX);
+C=Xsol(:); A*C-C*A
+.fi
+.SH SEE ALSO
+linsolve

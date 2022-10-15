@@ -1,0 +1,35 @@
+.TH xarc 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xarc - draw a part of an ellipse
+.SH CALLING SEQUENCE
+.nf
+xarc(x,y,w,h,a1,a2)
+.fi
+.SH PARAMETERS
+.TP 9
+x,y,w,h
+: four real values defining a rectangle.
+.TP
+a1,a2
+: real values defining a sector.
+.SH DESCRIPTION
+\fVxarc\fR draws a part of an ellipse contained in the rectangle 
+\fV(x,y,w,h)\fR (upper-left point, width, height), and in the sector 
+defined by 
+the angle \fValpha1\fR and the angle \fValpha1+alpha2\fR. 
+\fValpha1\fR and \fValpha2\fR are 
+given respectively by \fVa1/64\fR degrees and \fVa2/64\fR degrees.
+This function uses the current graphics style and scale.
+.SH EXAMPLE
+.nf
+// isoview scaling 
+plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
+xset("dashes",3)
+xarc(-1,1,2,2,0,90*64)
+xarc(-1.5,1.5,3,3,0,360*64)
+.fi
+.SH SEE ALSO
+xarcs, xfarc, xfarcs
+.SH AUTHOR
+J.Ph.C.

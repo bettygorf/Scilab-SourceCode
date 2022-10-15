@@ -1,0 +1,32 @@
+.TH ss2des 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+ss2des - (polynomial) state-space to descriptor form
+.SH CALLING SEQUENCE
+.nf
+[S]=ss2des(Sl)
+.fi
+.SH PARAMETERS
+.TP 10
+Sl
+: \fVsyslin\fR list: proper or improper linear system.
+.TP
+S
+: list
+.SH DESCRIPTION
+Given the linear system in state-space representation 
+\fVSl\fR (\fVsyslin\fR list), with a \fVD\fR matrix which is either
+polynomial or constant, but not zero \fVss2des\fR
+returns a descriptor system as \fVlist('d',A,B,C,0,E)\fR
+such that:
+.nf
+Sl=C*(s*E-A)^(-1)*B
+.fi
+Note that the (constant) \fV"D matrix"\fR of the descriptor system
+is zero but \fVSl\fR cannot be strictly proper. 
+.SH SEE ALSO
+pol2des, tf2des, des2ss
+.SH AUTHOR
+F. D.
+
+

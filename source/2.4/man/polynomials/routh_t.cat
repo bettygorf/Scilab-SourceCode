@@ -1,0 +1,18 @@
+
+routh_tX(1)                    Scilab Function                    routh_tX(1)
+NAME
+  routh_t - Routh's table
+
+CALLING SEQUENCE
+  r=routh_t(h [,k]).
+
+PARAMETERS
+
+  h    : square rational matrix
+
+DESCRIPTION
+  r=routh_t(h,k) computes Routh's table of denominator of the system
+  described by transfer matrix SISO h with the feedback by the gain k.
+
+  If  k=poly(0,'k') we will have a polynomial matrix with dummy variable k,
+  formal expression of the Routh table.

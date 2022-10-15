@@ -1,0 +1,54 @@
+
+sort(1)                        Scilab Function                        sort(1)
+NAME
+  sort - decreasing order sorting
+
+CALLING SEQUENCE
+  [s, [k]]=sort(v)
+  [s, [k]]=sort(v,'r')
+  [s, [k]]=sort(v,'c')
+
+PARAMETERS
+
+  v    : real or complex vector/matrix; sparse vector; character string
+       vector/matrix
+
+  s    : real or complex vector or matrix; sparse vector; character string
+       vector/matrix
+
+  k    : vector or matrix of integers
+
+DESCRIPTION
+  s=sort(v) (or, equivalently s=sort(v,'*')) sorts v  in decreasing order. If
+  v is a matrix, sorting is done columnwise, v being seen as the stacked vec-
+  tor v(:).  [s,k]=sort(v) gives in addition the indices of entries of s in
+  v, i.e. v(k(:))  is the vector s.
+
+  s=sort(v,'r') sorts the rows of v in decreasing order i.e.  each column of
+  s is obtained from each column of v by reordering it in decreasing order.
+  [s,k]=sort(v,'r') returns in addition in each column of k the indices such
+  that v(k(:,i),i)=s(:,i) for each column index i.
+
+  s=sort(v,'c') sorts the columns of v in decreasing order i.e.  each row of
+  s is obtained from each row of v by reordering it in decreasing order.
+  [s,k]=sort(v,'c') returns in addition in each row of k the indices such
+  that v(i,k(i,:))=s(i,:) for each row index i.
+
+  Complex matrices or vectors are sorted w.r.t their real part.
+
+  y=sort(A) is valid when A is a sparse vector. Column/row sorting is not
+  implemented for sparse matrices.
+
+EXAMPLE
+  [s,p]=sort(rand(1,10));
+  //p  is a random permutation of 1:10
+  A=[1,2,5;3,4,2];
+  [Asorted,q]=sort(A);A(q(:))-Asorted(:)
+  v=1:10;
+  sort(v)
+  sort(v')
+  sort(v,'r')  //Does nothing for row vectors
+  sort(v,'c')
+
+SEE ALSO
+  find

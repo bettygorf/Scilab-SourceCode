@@ -1,0 +1,25 @@
+.TH ROOTS G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+roots - roots of polynomials
+.SH CALLING SEQUENCE
+.nf
+[x]=roots(p)
+.fi
+.SH PARAMETERS
+.TP
+p 
+: polynomial with real or complex coefficients
+.SH DESCRIPTION
+\fVx=roots(p)\fR returns in the complex vector x the roots of the 
+polynomial \fVp\fR. Degree of \fVp\fR must be <=100.
+.SH EXAMPLE
+.nf
+p=poly([0,10,1+%i,1-%i],'x');
+roots(p)
+A=rand(3,3);roots(poly(A,'x'))    // Evals by characteristic polynomial
+spec(A) 
+.fi
+.SH SEE ALSO 
+poly
+

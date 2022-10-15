@@ -1,0 +1,31 @@
+.TH format 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+format - printing format
+.SH CALLING SEQUENCE
+.nf
+format([type],[long])
+.fi
+.SH PARAMETERS
+.TP 10
+type 
+: character string
+.TP 10
+long
+: integer ( max number of digits (default 10))
+.SH DESCRIPTION
+Sets the current printing format with the parameter \fVtype\fR ; it is one of the following :
+.TP
+\'v\'
+: for a variable format (default)
+.TP
+\'e\'
+: for the  e-format.
+.LP
+\fVlong\fR defines the max number of digits (default 10).
+\fVformat()\fR returns a vector for the current format:
+first component is the type of format (0 if \fVv\fR ; 1 if \fVe\fR );
+second component is the number of digits.
+.SH SEE ALSO
+write
+

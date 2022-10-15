@@ -1,0 +1,29 @@
+.TH tf2ss 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+tf2ss - transfer to state-space
+.SH CALLING SEQUENCE
+.nf
+sl=tf2ss(h)
+.fi
+.SH PARAMETERS
+.TP
+h
+: rational matrix
+.TP
+sl
+: linear system (\fVsyslin\fR list \fVsl=[A,B,C,D(s)]\fR)
+.SH DESCRIPTION
+transfer to state-space conversion: 
+.LP
+\fVh=C*(s*eye-A)^-1*B+D(s)\fR
+.SH EXAMPLE
+.nf
+s=poly(0,'s');
+H=[2/s,(s+1)/(s^2-5)];
+Sys=tf2ss(H)
+clean(ss2tf(Sys))
+.fi
+.SH SEE ALSO
+ss2tf, tf2des, des2tf
+

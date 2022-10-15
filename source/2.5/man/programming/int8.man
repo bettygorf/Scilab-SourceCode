@@ -1,0 +1,59 @@
+.TH int8 1 "October 99" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+int8  - conversion to one byte integer representation
+int16 - conversion to 2 bytes integer representation
+int32 - conversion to 4 bytes integer representation
+uint8  - conversion to one byte unsigned integer representation
+uint16 - conversion to 2 bytes unsigned integer representation
+uint32 - conversion to 4 bytes unsigned integer representation
+.SH CALLING SEQUENCE
+.nf
+y=int8(X)
+y=int16(X)
+y=int32(X)
+y=uint8(X)
+y=uint16(X)
+y=uint32(X)
+.fi
+.SH PARAMETERS
+.TP
+X 
+: matrix of floats or integers
+.TP
+y
+: matrix of integers coded on one, two or four bytes.
+.SH DESCRIPTION
+converts and stores data two one, two or four bytes integers. These
+data types are specialy useful to store big objects such as images,
+long signals,...
+.TP 12
+y=int8(X)
+: return numbers in the range [-128,127] 
+.TP 
+y=uint8(X)
+: return numbers in the range [0,255] 
+.TP
+y=int16(X)
+: return numbers in the range [-32768,32767] 
+.TP 
+y=uint16(X)
+: return numbers in the range [0, 65535] 
+.TP
+y=int32(X)
+: return numbers in the range [-2147483648,2147483647] 
+.TP 
+y=uint32(X)
+: return numbers in the range [0, 4294967295] 
+.SH EXAMPLE
+.nf
+int8([1 -120 127 312])
+uint8([1 -120 127 312])
+
+x=int32(-200:100:400)
+int8(x)
+.fi
+.SH SEE ALSO
+double, inttype, iconvert
+
+

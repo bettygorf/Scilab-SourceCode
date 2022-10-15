@@ -1,0 +1,138 @@
+# Generated automatically from Makefile.in by configure.
+SHELL = /bin/sh
+
+binary:
+	@if test -f .binary; then \
+		echo "Humm... this is a binary version"; \
+		config/findpath; \
+		cd scripts; make; \
+		echo "Installation done"; \
+	else \
+		echo "Humm... this is a source version,"; \
+		echo "  you'd better read the README file first."; \
+	fi
+
+SCIDIR=.
+include Makefile.incl
+
+all:: bin/scilex  
+
+world:: scilex-lib-world bin/scilex
+
+LIBRSCI = libs/system.a libs/interf.a libs/system2.a libs/optim.a \
+	libs/integ.a libs/control.a libs/scicos.a libs/signal.a \
+	libs/poly.a libs/calelm.a libs/lapack.a libs/graphics.a \
+	libs/sparse.a libs/metanet.a libs/sun.a libs/system.a libs/sun.a \
+	libs/intersci.a  libs/xsci.a libs/sun.a libs/graphics.a libs/menusX.a \
+	libs/libcomm.a libs/comm.a libs/sound.a 
+
+LIBR = $(XAW_LOCAL_LIB) $(LIBRSCI) $(DLDLIB)
+
+DEFAULTS = \
+	routines/default/FTables.o \
+	routines/default/Ex-colnew.o \
+	routines/default/Ex-corr.o \
+	routines/default/Ex-feval.o \
+	routines/default/Ex-fsolve.o \
+	routines/default/Ex-impl.o \
+	routines/default/Ex-intg.o \
+	routines/default/Ex-ode-more.o \
+	routines/default/Ex-ode.o \
+	routines/default/Ex-odedc.o \
+	routines/default/Ex-optim.o \
+	routines/default/Ex-schur.o \
+	routines/default/Ex-fort.o \
+	routines/default/Ex-dasrt.o \
+	routines/default/Ex-dassl.o \
+	routines/default/Ex-fbutn.o \
+	routines/default/mainsci.o \
+	routines/default/matusr.o  routines/default/matus2.o \
+	routines/default/Funtab.o  routines/default/msgstxt.o \
+	routines/default/scimem.o
+
+include config/Makefile.alpha
+
+distclean::
+	$(RM) bin/scilex
+
+SUBDIRS = scripts macros imp intersci xless xmetanet tests demos geci
+
+SUBDIRS-DOC = man doc
+
+scilex-lib:
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	cd routines; echo "making all in routines..."; \
+		$(MAKE) $(MFLAGS) all;
+
+scilex-lib-world:
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	cd routines; echo "making world in routines..."; \
+		$(MAKE) $(MFLAGS) world;
+
+all::
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in $(SUBDIRS) ;\
+	do \
+		(cd $$i ; echo "making" all "in $$i..."; \
+			$(MAKE) $(MFLAGS) all); \
+	done
+
+world::
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in $(SUBDIRS) $(SUBDIRS-DOC);\
+	do \
+		(cd $$i ; echo "making" world "in $$i..."; \
+			$(MAKE) $(MFLAGS) world); \
+	done
+
+
+distclean::
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in routines $(SUBDIRS) $(SUBDIRS-DOC);\
+	do \
+		(cd $$i ; echo "making" distclean "in $$i..."; \
+			$(MAKE) $(MFLAGS)  distclean); \
+	done
+
+clean::
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in routines $(SUBDIRS) $(SUBDIRS-DOC);\
+	do \
+		(cd $$i ; echo "making" clean "in $$i..."; \
+			$(MAKE) $(MFLAGS)  clean); \
+	done
+
+tests:
+	@echo "Type \"make tests\" in $(SCIDIR)/tests directory "
+	@echo "  to test the  distribution"
+
+distclean::
+	$(RM) config.cache config.log config.status .binary foo.f foo.o so_locations
+
+examples/callsci/Makefile: examples/callsci/Makefile.g
+	@sed -e "s|SCI_DIR|`pwd`|" \
+	-e "s|SCI_LIBR|$(LIBRSCI/*/SCI_DIR\/&) SCI_DIR/libs/system.a|" \
+	-e "s|SCI_DEF|$(DEFAULTS/*/SCI_DIR\/&)|" \
+	-e "s|SCI_DIR\/routines/default/mainsci.o||"\
+	-e "s|SCI_DIR|$$\(SCIDIR\)|g" examples/callsci/Makefile.g >examples/callsci/Makefile
+
+
+SCIBASE = scilab-2.3
+
+BINDISTFILES = \
+	$(SCIBASE)/CHANGES $(SCIBASE)/README $(SCIBASE)/README.win32 \
+	$(SCIBASE)/notice.ps $(SCIBASE)/notice.tex \
+	$(SCIBASE)/scilab.quit $(SCIBASE)/scilab.star \
+	$(SCIBASE)/configure $(SCIBASE)/config $(SCIBASE)/Makefile* \
+	$(SCIBASE)/Version.incl $(SCIBASE)/patchlevel.h \
+	$(SCIBASE)/X11_defaults \
+	$(SCIBASE)/bin $(SCIBASE)/demos $(SCIBASE)/examples \
+	$(SCIBASE)/imp/NperiPos.ps $(SCIBASE)/macros \
+	$(SCIBASE)/man \
+	$(SCIBASE)/maple $(SCIBASE)/scripts $(SCIBASE)/util \
+	$(SCIBASE)/.binary
+
+tarbindist:
+	touch .binary
+	cd .. ; tar cvf $(SCIDIR)/$(SCIBASE)-bin.tar $(BINDISTFILES)
+	$(RM) .binary

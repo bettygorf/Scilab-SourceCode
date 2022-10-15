@@ -1,0 +1,13 @@
+ 
+clear;lines(0);
+ 
+a=rand(2,2)
+ a  =
+ 
+!   0.2113249    0.0002211 !
+!   0.7560439    0.3303271 !
+ 
+deff('[ydot]=l_s(t,y)','ydot=a*y')
+ 
+portrait(l_s)
+ 

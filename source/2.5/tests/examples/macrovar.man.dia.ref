@@ -1,0 +1,31 @@
+ 
+clear;lines(0);
+ 
+deff('y=f(x1,x2)','loc=1;y=a*x1+x2-loc')
+ 
+vars=macrovar(f)
+ vars  =
+ 
+ 
+       vars(1)
+ 
+!x1  !
+!    !
+!x2  !
+ 
+       vars(2)
+ 
+ y   
+ 
+       vars(3)
+ 
+ a   
+ 
+       vars(4)
+ 
+     []
+ 
+       vars(5)
+ 
+ loc   
+ 

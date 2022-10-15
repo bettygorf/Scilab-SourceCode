@@ -1,0 +1,21 @@
+ 
+clear;lines(0);
+ 
+v=[1,10,2,1,0,10,100,100,0,100,50,50];
+ 
+g=gen_net('foo',1,v);
+ 
+show_graph(g)
+ ans  =
+ 
+    1.  
+ 
+// generating using dialogs
+ 
+g=gen_net();
+ 
+show_graph(g)
+ ans  =
+ 
+    1.  
+ 

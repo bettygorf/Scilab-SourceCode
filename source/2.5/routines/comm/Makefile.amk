@@ -1,0 +1,31 @@
+#-----------------------------
+# generated from Makefile: DO NOT EDIT
+# -----------------------------
+SHELL = /bin/sh
+SCIDIR=../..
+SCIDIR1=..\..
+
+LIBRARY = $(SCIDIR)/libs/comm.lib
+
+OBJSC = initcom.obj messages.obj
+
+OBJSF =
+
+include ../../Makefile.incl.amk
+
+CFLAGS = $(CC_OPTIONS)
+
+FFLAGS = $(FC_OPTIONS)
+
+include ../Make.lib.amk
+
+initcom.obj: ../machine.h ../libcomm/libCalCom.h ../libcomm/libCom.h
+messages.obj: ../machine.h ../libcomm/libCalCom.h ../libcomm/libCom.h
+
+#all:: Makefile.mak Makefile.libmk
+
+Makefile.mak	: Makefile
+	$(SCIDIR)/util/Mak2VCMak Makefile
+
+Makefile.libmk	: Makefile
+	$(SCIDIR)/util/Mak2ABSMak Makefile

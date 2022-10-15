@@ -1,0 +1,29 @@
+
+histplot(2)                    Scilab Function                    histplot(2)
+NAME
+  histplot - plot a histogram
+
+CALLING SEQUENCE
+  histplot(npoint,data,[style,strf,leg,rect,nax])
+
+PARAMETERS
+
+  npoint  : integer or a row vector of increasing values.
+
+  data    : real vector.
+
+  style,strf,leg,rect,nax
+          : see plot2d.
+
+DESCRIPTION
+
+  -  If npoint is an integer, histplot plots a histogram of the values stored
+     in data using npoint equally spaced classes.
+
+  -  If npoint is a vector histplot plots a histogram of the values stored in
+     data using the classes ]npoint(k),npoint(k+1)].
+
+  Enter the command histplot() to see a demo.
+
+SEE ALSO
+  hist3d, plot2d

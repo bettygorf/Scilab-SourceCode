@@ -1,0 +1,26 @@
+
+plot(2)                        Scilab Function                        plot(2)
+NAME
+  plot - simple plot
+
+CALLING SEQUENCE
+  plot(x,y,[xcap,ycap,caption])
+  plot(y,[xcap,ycap,caption])
+
+PARAMETERS
+
+  x,y            : two vectors.
+
+  caption, xcap, ycap
+                 : character strings or string matrices
+
+DESCRIPTION
+  plot y as function of x.  xcap and ycap are captions for x-axis and y-axis
+  respectively.  Invoked with one argument, plot(y) plots the y vector or, if
+  y is a matrix, its rows.
+
+SEE ALSO
+  plot2d
+
+AUTHOR
+  J.Ph.C..

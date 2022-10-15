@@ -1,0 +1,52 @@
+
+contour2d(2)                   Scilab Function                   contour2d(2)
+NAME
+  contour2d - level curves of a surface on a 2D plot
+
+CALLING SEQUENCE
+  contour2d(x,y,z,nz,[style,strf,leg,rect,nax])
+
+PARAMETERS
+
+  x,y  : two real row vectors of size n1 and n2: the grid.
+
+  z    : real matrix of size (n1,n2), the values of the function.
+
+  nz   : the level values or the number of levels.
+
+       -  If nz is an integer, its value gives the number of level curves
+          equally spaced from zmin to zmax.
+
+       -  If nz is a vector, nz(i) gives the value of the ith level curve.
+
+  style,strf,leg,rect,nax
+       : see plot2d. The argument style gives the dash styles or colors which
+       are to be used for level curves. It must have the same size as the
+       number of levels.
+
+DESCRIPTION
+  contour2d draws level curves of a surface z=f(x,y) on a 2D plot.  The val-
+  ues of f(x,y) are given by the matrix z at the grid points defined by x and
+  y.
+
+  You can change the format of the floating point number printed on the lev-
+  els by using xset("fpf",string) where string gives the format in C format
+  syntax (for example string="%.3f"). Use string="" to switch back to default
+  format.
+
+  Use contour to draw levels curves on a 3D surface.
+
+  Enter the command contour2d() to see a demo.
+
+EXAMPLE
+  contour2d(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
+  // changing the format of the printing of the levels
+  xset("fpf","%.2f")
+  xbasc()
+  contour2d(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
+
+SEE ALSO
+  contour, fcontour, fcontour2d, plot2d, xset
+
+AUTHOR
+  J.Ph.C.

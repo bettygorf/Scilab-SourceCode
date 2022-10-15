@@ -1,0 +1,23 @@
+#include "../../Imake.incl"
+
+OBJS= adr.o allops.o  banier.o sascii.o \
+	clause.o comand.o compcl.o   \
+	defmat.o eqid.o error.o expr.o fact.o funs.o \
+	getch.o  getlin.o getnum.o getstr.o getsym.o \
+	getval.o helpmg.o inibas.o \
+	logops.o macro.o mname.o nextj.o parse.o print.o \
+	prompt.o putid.o  run.o savlod.o size.o stackg.o \
+	stackp.o terme.o xchar.o  matla0.o \
+	majmin.o apropo.o basmsg.o whatln.o \
+	seteol.o setlnb.o skpins.o msgs.o userlk.o prntid.o \
+	cvname.o cvstr.o prntidn.o compil.o ptover.o ptrback.o
+
+FSRCS= $(OBJS:.o=.f)
+
+COBJS=str2int.o 
+
+SRCS= $(COBJS:.o=.c)
+
+LibraryTarget($(PATHO)/system.a,$(OBJS) $(COBJS))
+FortranDependTarget()
+DependTarget()

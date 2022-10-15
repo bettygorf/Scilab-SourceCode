@@ -1,0 +1,12 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS='$(CDEBUGFLAGS)'
+
+SUBDIRS = Maple
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS))
+

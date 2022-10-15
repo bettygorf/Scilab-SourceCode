@@ -1,0 +1,18 @@
+
+
+XLess*Background:white
+!XLess*Foreground:black
+XLess*Command.background:lightblue
+XLess*confirm.background:lightblue
+XLess*Cancel.background:orange red
+XLess*Ok !.background:spring green
+XLess*toolbox.*.background:skyblue
+XLess*toolbox.background:gray
+XLess*popup.form.background:gray
+XLess*popup.form.Search.background:skyblue
+XLess*popup.form.Cancel.background:skyblue
+XLess*popup.form.input.background:white
+XLess*popup.form.label.background:gray
+XLess*help_pane.help_quit.background:skyblue
+
+#include "XLess"

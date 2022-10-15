@@ -1,0 +1,37 @@
+.TH givens 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+givens - Givens transformation
+.SH CALLING SEQUENCE
+.nf
+U=givens(xy)
+U=givens(x,y)
+.fi
+.SH PARAMETERS
+.TP 5
+x,y
+: two real or complex numbers
+.TP
+xy
+: 1x2 real or complex matrix
+.TP
+U
+: 2x2 unitary matrix
+.SH DESCRIPTION
+\fVU = givens(x, y)\fR or \fVU = givens(xy)\fR with \fVxy = [x;y]\fR
+returns a \fV2\fRx\fV2\fR unitary matrix \fVU\fR such that:
+.LP
+\fVU*xy=[r;0]\fR.
+.LP
+Note that \fVgivens(x,y)\fR and \fVgivens([x;y])\fR are equivalent.
+.SH EXAMPLE
+.nf
+A=[3,4;5,6];
+U=givens(A(:,1));
+U*A
+.fi
+.SH SEE ALSO
+qr
+
+
+

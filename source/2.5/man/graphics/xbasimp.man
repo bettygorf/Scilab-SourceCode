@@ -1,0 +1,35 @@
+.TH xbasimp 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+xbasimp - send graphics to a Postscript printer or in a file
+.SH CALLING SEQUENCE
+.nf
+xbasimp(win_num,[filen,printer])
+.fi
+.SH PARAMETERS
+.TP 10
+win_num 
+: integer scalar or vector 
+.TP 10
+filen 
+: string, Postscript file name (default value is "file"). The window number 
+is appended to \fVfilen\fR.
+.TP
+printer
+: string, printer name. If \fVprinter\fR is present or if there is only 
+one argument in the 
+calling sequence, the created file is printed on printer \fVprinter\fR.
+.SH DESCRIPTION
+\fVxbasimp\fR sends the recorded graphics of the
+window \fVwin_num\fR into the Postscript file \fVfilen\fR
+and prints the Postscript file with the 
+command \fVBlpr\fR. This function works only if the selected 
+driver is \fV"Rec"\fR.
+.LP
+If \fVwin_num\fR is a vector, several files are generated, one for each 
+selected window (with names \fVfilenxx\fR), and the files are printed 
+on a unique page with the command \fVBlpr\fR.
+.LP
+The window number is appended to \fVfilen\fR.
+.SH SEE ALSO
+printing, xs2fig

@@ -1,0 +1,66 @@
+
+
+
+deff(1)                        Scilab Function                        deff(1)
+
+
+
+
+
+
+NAME
+  deff - on-line definition of function
+
+CALLING SEQUENCE
+  deff('[s1,s2,...]=newmacro(e1,e2,....)',text)
+
+PARAMETERS
+
+  e1,e2,...,     : input variables.
+
+  s1,s2,...,     : output variables.
+
+  text           : matrix of character strings
+
+DESCRIPTION
+  On-line definition of macro (user defined function): the name of the
+  created function is newmacro.  text is a sequence of instructions usually
+  set as a vector of character strings.
+
+  This command can be used inside a function and the new function can be an
+  input or output of any other function.
+
+  Usually, functions are defined in a file and loaded into Scilab by getf
+
+EXAMPLES
+  deff('[x]=myplus(y,z)','x=y+z')
+  deff('[x]=mymacro(y,z)',['instruc11,instruc12'; 'instruc21,x=instruc22'])
+
+SEE ALSO
+  getf, comp, exec, function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

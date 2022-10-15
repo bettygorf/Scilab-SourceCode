@@ -1,0 +1,32 @@
+
+lev(1)                         Scilab Function                         lev(1)
+NAME
+  lev - Yule-Walker equations (Levinson's algorithm)
+
+CALLING SEQUENCE
+  [ar,sigma2,rc]=lev(r)
+
+PARAMETERS
+
+  r           : correlation coefficients
+
+  ar          : auto-Regressive model parameters
+
+  sigma2      : scale constant
+
+  rc          : reflection coefficients
+
+DESCRIPTION
+  resolve the Yule-Walker equations
+
+        |R(0)   R(1)   ... R(N-1)|| ar(1) | |sigma2|
+        |R(1)   R(0)   ... R(N-2)|| ar(2) | |  0   |
+        |  :      :    ...    :  ||   :   |=|  0   |
+        |  :      :    ...    :  ||   :   | |  0   |
+        |R(N-1) R(N-2) ...  R(0) ||ar(N-1)| |  0   |
+  where
+         R(i)=r(i-1)
+  using Levinson's algorithm.
+
+AUTHOR
+  C. B.

@@ -1,0 +1,16 @@
+clear;lines(0);
+ txt=['magnitude';'frequency';'phase    '];
+ sig=x_mdialog('enter sine signal',txt,['1';'10';'0'])
+ mag=evstr(sig(1))
+ frq=evstr(sig(2))
+ ph=evstr(sig(3))
+
+ rep=x_mdialog(['System Simulation';'with PI regulator'],...
+                      ['P gain';'I gain '],[' ';' '])
+
+
+ n=5;m=4;mat=rand(n,m);
+ row='row';labelv=row(ones(1,n))+string(1:n)
+ col='col';labelh=col(ones(1,m))+string(1:m)
+ new=evstr(x_mdialog('Matrix to edit',labelv,labelh,string(mat)))
+

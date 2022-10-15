@@ -1,0 +1,53 @@
+
+scicos_graphics(Janvier 1997)                   scicos_graphics(Janvier 1997)
+NAME
+  scicos_graphics - Scicos block graphics data structure
+
+DEFINITION
+  graphics=list(orig,sz,flip,exprs,pin,pout,pein,peout,gr_i)
+
+PARAMETERS
+
+  orig : 2 x 1 vector, the coordinate of down-left point of the block shape.
+
+  sz   : vector [w,h], where w is the width and h the height of the block
+       shape.
+
+  flip : boolean, the block orientation. if true the input ports are on the
+       left of the box and output ports are on the right. if false  the input
+       ports are on the right of the box and output ports are on the left.
+
+  exprs
+       : column vector of strings,  contains expressions answered by the user
+       at block set time.
+
+  pin  : column vector of integers. If pin(k)<>0 then  kth input port is con-
+       nected to the pin(k)<>0 block, else the port is unconnected. If no
+       input port exist pin==[].
+
+  pout : column vector of integers.  If pout(k)<>0 then  kth output port is
+       connected to the pout(k)<>0 block, else the port is unconnected. If no
+       output port exist pout==[].
+
+  pein : column vector of ones. If pein(k)<>0 then  kth event input port is
+       connected to the pein(k)<>0 block, else the port is unconnected. If no
+       event input port exist pein==[].
+
+  peout
+       : column vector of integers.  If peout(k)<>0 then  kth event output
+       port is connected to the epout(k)<>0 block, else the port is uncon-
+       nected. If no event  output port exist peout==[].
+
+  gr_i : column vector of strings,  contains Scilab instructions used to cus-
+       tomize the block graphical aspect. This field may be set with "Icon"
+       sub_menu.
+
+  graphics
+       : Scilab list, Scicos block graphics data structure.
+
+DESCRIPTION
+  Scicos block graphics data structure contains all information relative to
+  graphical display of the block and to user dialogue. Fields may be fixed by
+  block definition or set as a result of user dialogue or connections.
+SEE ALSO
+  scicos,  scicos_model, scicos_main

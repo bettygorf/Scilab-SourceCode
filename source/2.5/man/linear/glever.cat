@@ -1,0 +1,44 @@
+
+glever(1)                      Scilab Function                      glever(1)
+NAME
+  glever - inverse of matrix pencil
+
+CALLING SEQUENCE
+  [Bfs,Bis,chis]=glever(E,A [,s])
+
+PARAMETERS
+
+  E, A        : two real square matrices of same dimensions
+
+  s           : character string (default value 's')
+
+  Bfs,Bis     : two polynomial matrices
+
+  chis        : polynomial
+
+DESCRIPTION
+  Computation of
+
+  (s*E-A)^-1
+   by generalized Leverrier's algorithm for a matrix pencil.
+  (s*E-A)^-1 = (Bfs/chis) - Bis.
+  chis = characteristic polynomial (up to a multiplicative constant).
+
+  Bfs  = numerator polynomial matrix.
+
+  Bis = polynomial matrix ( - expansion of (s*E-A)^-1 at infinity).
+
+  Note the - sign before Bis.
+Caution
+  This function uses cleanp to simplify Bfs,Bis and chis.
+
+EXAMPLE
+  s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
+  [Bfs,Bis,chis]=glever(F)
+  inv(F)-((Bfs/chis) - Bis)
+
+AUTHOR
+  F. D. (1988)
+
+SEE ALSO
+  rowshuff, det, invr, coffg, pencan, penlaur

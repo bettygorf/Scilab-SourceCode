@@ -1,0 +1,9 @@
+// Construction du TP reacteur chimique
+
+// Compilation et lien des routines en fortran
+//unix("f77 -c RC.f");
+if ~c_link('rc') then link(sci+'/tmp/reacteur/RC.o','rc');end
+
+// Chargement des fonctions
+getf('fun_RC','c');
+

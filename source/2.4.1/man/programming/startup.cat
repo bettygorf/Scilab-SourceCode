@@ -1,0 +1,13 @@
+
+startup(1)                     Scilab Function                     startup(1)
+NAME
+  startup - startup file
+
+DESCRIPTION
+  The startup files .scilab (in your home directory) and automatically exe-
+  cuted (if present) when Scilab is invoked, in addition with the file
+  scilab.star in the Scilab directory.
+
+REMARK
+  Last line of startup file must be terminated by a newline to be taken into
+  account.

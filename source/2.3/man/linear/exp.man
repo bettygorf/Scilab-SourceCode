@@ -1,0 +1,27 @@
+.TH exp G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+exp - element-wise exponential
+.SH CALLING SEQUENCE
+.nf
+exp(X)
+.fi
+.SH PARAMETERS
+.TP
+X
+: scalar,vector or matrix with real or complex entries.
+.LP
+.SH DESCRIPTION
+\fVexp(X)\fR is the (element-wise) exponential of the entries of \fVX\fR.
+
+.SH EXAMPLE
+.nf
+x=[1,2,3+%i];
+log(exp(x))  //element-wise
+2^x
+exp(x*log(2))
+
+.fi
+.SH SEE ALSO
+coff, log, expm
+

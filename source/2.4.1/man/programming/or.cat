@@ -1,0 +1,34 @@
+
+or(1)                          Scilab Function                          or(1)
+NAME
+  or | - logical or
+
+CALLING SEQUENCE
+  or(A),  or(A,'*')
+  or(A,'r'), or(A,1)
+
+  or(A,'c'), or(A,2)
+  A|B
+
+DESCRIPTION
+  or(A)  gives the  or of the elements of the  boolean matrix  A. or(A) is
+  true (%t) iff at least one entry of A is %t.
+
+  y=or(A,'r') (or, equivalently, y=or(A,1)) is the rowwise or. It returns in
+  each entry of the row vector y the or of the rows of x (The or is performed
+  on the row index : y(j)= or(A(i,j),i=1,m)).
+
+  y=or(A,'c') (or, equivalently, y=or(A,2)) is the columnwise or. It returns
+  in each entry of the column vector y the or of the columns of x (The or is
+  performed on the column index:  y(i)= or(A(i,j),j=1,n))).
+
+  A|B  gives the element-wise logical or of the booleans matrices
+   A and  B .A and  B must be matrices with the same
+   dimensions or one from them must be a single boolean.
+EXAMPLES
+  or([%t %t %f])
+  [%t %t %f]|[%f %t %t]
+  [%t %t %f]|%f
+
+SEE ALSO
+  and, not, find

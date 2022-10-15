@@ -1,0 +1,24 @@
+.TH unix_s 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+unix_s - shell (sh) command execution, no output
+.SH CALLING SEQUENCE
+.nf
+rep=unix_s(cmd)
+.fi
+.SH PARAMETERS
+.TP 10
+cmd 
+: a character string
+.SH DESCRIPTION
+sends a string \fVcmd\fR to Unix for execution by the sh
+shell. , the standard output  is redirected  to /dev/null.
+unix execution errors are trapped.
+
+.SH EXAMPLE
+.nf
+unix_s("rm foo");
+.fi
+.SH SEE ALSO
+edit, manedit, unix_g, unix_x, unix
+

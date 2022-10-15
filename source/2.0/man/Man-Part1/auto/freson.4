@@ -1,0 +1,28 @@
+.TH freson 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+freson - peak frequencies
+.SH CALLING SEQUENCE
+.nf
+[fr [,g]]=freson(h [,select])
+.fi
+.SH PARAMETERS
+.TP
+h
+: \fVsyslin\fR list
+.TP
+select
+: string (\fV'f'\fR or \fV'g'\fR)
+.TP
+fr,g
+: vectors (frequencies and gains)
+.SH DESCRIPTION
+returns the vector of peak frequencies for the SISO plant \fVh\fR.
+.LP
+\fVselect\fR =\fV'f'\fR or \fV'g'\fR (stands 
+for 'frequencies' (default) and 'gains').
+.LP
+optional output: \fVg\fR vector of gains.
+.SH SEE ALSO
+frep2tf, zgrid
+

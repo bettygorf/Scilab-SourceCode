@@ -1,0 +1,23 @@
+.TH sqrt 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sqrt - square root
+.SH CALLING SEQUENCE
+.nf
+y=sqrt(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex  scalar or vector
+.SH DESCRIPTION
+ \fVsqrt(x)\fR is the vector of the square root of the \fVx\fR elements. 
+Result is complex if \fVx\fR is negative.
+.SH EXAMPLE
+.nf
+sqrt([2,4])
+sqrt(-1)
+.fi
+.SH SEE ALSO
+hat, sqrtm
+

@@ -1,0 +1,72 @@
+How to play with bike:
+
+                SIMULATION
+                ----------
+If the files h.o , ii.o, gjx.o and constr.o do not exist then
+go through steps 1 and 2 below. Otherwise, go to 3.
+
+1. Call maple and run the file simul.maple (read `simul.maple`;)
+
+Several Fortran routines and Scilab macros are automatically generated:
+h.f
+ii.f
+gjx.f
+constr.f
+
+h.sci
+ii.sci
+iihs.sci
+gjx.sci
+constr.sci
+
+2. type "make simul" on the keyboard
+   to compile the fortran routines: h.f ii.f gjx.f constr.f
+   The object file are stored in /tmp/*.o 
+
+3. Call xscilab 
+
+4. Run the file init.simul.sci:
+   path=sci+'/demos/bike';exec(path+'/init.simul.sci');
+
+   (Note that the control is given in the macro "control" in the 
+   file macros.sci, Default is [0;0] you may change this).
+
+5. A trajectory is obtained by either:
+   "tmin=0;tmax=...;x=simulation(tmin,tmax);"
+   Change data in the file data.sci
+                                   or:
+   "x=bike(speed,bankangle,direction,tmax);"
+A nice example is: speed=5.5;bankangle=-5;direction=7;tmax=8;
+(Parameters of the bike are in file 'param.sci': set param(2)=delta=0
+for this example).
+Another example is: speed=5;bankangle=0.1;direction=0.1055;tmax=40;
+(param(20)=delta=0.). The resulting x can be obtained by:
+x=read('SCI/demos/bike/xdemo.dat',46,401,"(e24.18)");
+
+6. Animated plot may be obtained by:
+   phi=%pi/2-0.2;teta=%pi/2-0.1;show(x,phi,teta);
+
+
+                     CONTROL
+                     -------
+First make a simulation for necessary initializations.
+Additional fortran files are needed.
+The Fortran files needed are vecfin.o hamu.o emat.o fvec.o c.o psi.o.
+If they do not exist go through steps 1 and 2 below. 
+Otherwise go to step 3.
+
+1. Call maple and run the file contrbo.maple (read `contrbo.maple`;)
+
+The Fortran routines and Scilab macros are automatically generated:
+
+vecfin.f hamu.f emat.f fvec.f c.f psi.f
+
+2. Type "make control" on the keyboard
+   to compile the fortran routines.
+   The object file are stored in /tmp/*.o 
+
+3. (Call xscilab); set tmin and tmax.
+
+4. Run the file control.sci.ex:
+   path=sci+'/demos/bike';exec(path+'/control.sci.ex');
+

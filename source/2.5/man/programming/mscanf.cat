@@ -1,0 +1,61 @@
+
+mscanf(1)                      Scilab Function                      mscanf(1)
+NAME
+   mfscanf - scan data from  file
+   mscanf - scan data from input
+   msscanf - scan data from string
+
+CALLING SEQUENCE
+  [n,a1,...,am]=mfscanf(fd,format);
+  data=mfscanf(fd,format);
+
+  [n,a1,...,am]=mscanf(format);
+  data=mscanf(format);
+
+  [n,a1,...,am]=msscanf(str,format);
+  data=msscanf(str,format);
+
+PARAMETERS
+
+  fd : scalar, file descriptor given by mopen (it's a positive
+            integer). The value -1 refers to the default file ( i.e the last
+            opened file).
+
+  format    : a character string, a C like format.
+
+  str       : a character string, string to be scanned.
+
+  n         : a scalar integer, the number or data really read.
+
+  a1,...,am : Output variables. if m>n the n+1:n last ai' are set to [].
+
+  data      : a list formed by the data really read.
+
+DESCRIPTION
+  The mscanf(), mfscanf(), and msscanf() functions are interface for C-coded
+  version of fscanf, sscanf and scanf functions.
+
+  The mscanf(), mfscanf(), and msscanf() functions read character data,
+  interpret it according to a format (see cformat), and store the converted
+  results into variables. The format parameter contains conversion specifica-
+  tions used to interpret the input.
+
+  These functions read their input from the following sources:
+
+  mscanf()  :  Reads from the Scilab input.
+
+  mfscanf() : Reads from the file given by the file descriptor fd.
+
+  msscanf() : Reads from the character string specified by the str parameter.
+
+EXAMPLE
+  [n,a1,a2]=msscanf('123 456','%i %s')
+  [n,a1,a2,a3]=msscanf('123 456','%i %s')
+  data=msscanf('123 456','%i %s')
+
+  fd=mopen(SCI+'/scilab.star','r')
+  mfscanf(fd,'%s %s %s')
+  mclose(fd)
+SEE ALSO
+  mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr,
+  mopen, mprintf, mput, mputstr, mscanf, mseek, mtell

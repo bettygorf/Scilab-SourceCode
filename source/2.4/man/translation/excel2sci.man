@@ -1,0 +1,27 @@
+.TH excel2sci 3 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+excel2sci - reads ascii Excel files 
+.SH CALLING SEQUENCE
+.nf
+M=excel2sci(fname [,sep])
+.fi
+.SH PARAMETERS
+.TP 10
+fname
+: character string. The file path
+.TP
+sep
+: character string. Excel separator used, default value is ","
+.TP 10
+M
+: matrix of strings
+.SH DESCRIPTION
+Given an ascii  file created by Excel using "Text and comma" format
+\fVexel2sci(fname)\fR returns the corresponding Scilab matrix of
+strings. Use \fVexel2sci(fname,sep )\fR for an other choice of
+separator.
+
+Note: You may eval all or part ot \fVM\fR using function \fVevstr\fR.
+.SH SEE ALSO
+read, evstr

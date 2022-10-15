@@ -1,0 +1,66 @@
+
+
+
+unix(1)                        Scilab Function                        unix(1)
+
+
+
+
+
+
+NAME
+  unix - shell (sh) command execution
+
+CALLING SEQUENCE
+  unix(command-name)
+
+DESCRIPTION
+  Sends a string command-name to Unix for execution by the sh shell. Standard
+  output and standard errors of the shell command are written in the calling
+  shell.
+
+EXAMPLE
+  unix("ls $SCI/demos");
+  unix("emacs $SCI/demos/wheel2/Makefile");
+  deff('wd=pwd()','unix(''pwd>/tmp/path'');wd=read(''/tmp/path'',1,1,''(a)'')')
+  wd=pwd()
+
+SEE ALSO
+  edit, manedit, unix_g, unix_s, unix_w, unix_x
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

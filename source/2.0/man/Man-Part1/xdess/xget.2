@@ -1,0 +1,24 @@
+.TH xget 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xget - gets current values of the graphic context
+.SH CALLING SEQUENCE
+.nf
+[x1]=xget(str,flag)
+.fi
+.SH PARAMETERS
+.TP 10
+str
+: string
+.SH DESCRIPTION
+this function is used to get values from the graphic context
+on the topic specified by the string \fVstr\fR. 
+The possible values for \fVstr\fR are described in the manual of the function 
+\fVxset\fR except the added value \fVxget("white")\fR which gives the id of the 
+white pattern.
+.LP
+\fVflag\fR is an optional  flag which set to 1 gives a verbose mode.
+.SH AUTHOR
+J.Ph.C.
+
+

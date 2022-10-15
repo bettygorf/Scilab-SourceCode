@@ -1,0 +1,15 @@
+.TH getpid G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+getpid - get Scilab process identificator
+.SH CALLING SEQUENCE
+.nf
+id=getpid()
+.fi
+.SH DESCRIPTION
+Return an the scilab process identificator integer
+.SH EXAMPLE
+.nf
+d='SD_'+string(getpid())+'_'
+.fi
+

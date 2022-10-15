@@ -1,0 +1,66 @@
+
+
+
+xstringl(2)                    Scilab Function                    xstringl(2)
+
+
+
+
+
+
+NAME
+  xstringl - computes bounding box of the display of matrix of strings
+
+CALLING SEQUENCE
+  [rect]=xstringl(x,y,str)
+
+PARAMETERS
+
+  x,y            : real scalars (point coordinates)
+
+  str            : matrix of strings
+
+  rect           : vector of 4 real scalars (rectangle def [x,y,w,h])
+
+DESCRIPTION
+  returns in rect=[x,y,w,h] ( upper-left point, width, height) the size of a
+  rectangle in the current graphic scale. which if drawn would surround the
+  string str drawn at location x,y.
+
+REMARK
+  The result can be approximative under the Postscript driver
+
+EXAMPLE
+  plot2d([0;1],[0;1])
+  rect=xstringl(0.5,0.5,["Scilab","is" ; "not","Basile"])
+
+SEE ALSO
+  xstring
+
+AUTHOR
+  J.Ph.C..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

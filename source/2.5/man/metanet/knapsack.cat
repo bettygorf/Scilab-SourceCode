@@ -1,0 +1,56 @@
+
+knapsack(1)                    Scilab function                    knapsack(1)
+NAME
+  knapsack - solves a 0-1 multiple knapsack problem
+
+CALLING SEQUENCE
+  [earn,ind] = knapsack(profit,weight,capa,[bck])
+
+PARAMETERS
+
+  profit : integer row vector
+
+  weight : integer row vector
+
+  capa : integer row vector
+
+  bck : integer
+
+  earn : integer
+
+  ind : integer row vector
+
+DESCRIPTION
+  knapsack solve a 0-1 multiple knapsack problem with  n (n >= 2) items and
+  m  knapsacks (m >= 1).  profit is the vector of the (integer) profits of
+  the n items and weight is the vector of the corresponding (integer)
+  weights.  capa is the vector of the (integer) capacities of the m knap-
+  sacks.  bck is an optional integer: the maximum number of backtrackings to
+  be performed, if heuristic solution is required. If the exact solution is
+  required bck can be omitted or can have a negative value.  earn is the
+  value of the criterium for the "optimal" solution and ind is a vector giv-
+  ing the optimal location:  ind(i) gives the number of the knapsack where
+  item i is inserted and this value is 0 if the item i is not in the optimal
+  solution.
+
+  We recall that the problem to be solved is the following: p(i) and w denote
+  respectively the profit and the weight of the item i 1=1,...,n; c(j)
+  denotes the capacity of the knapsack j j=1,...,m; q(j,i) denotes the quan-
+  tity of item i in knapsack j (in fact 0 or 1).
+
+  We want to maximize the global profit E:
+   E=p(1)*[x(1,1)+...+x(m,1)]+...+p(n)*[x(1,n)+...+x(m,n)]
+
+  under the constraints:
+   [w(1)*x(j,1)+...+w(n)*x(j,m)] <= c(j) ; j=1,...,m
+   [x(1,i)+...+x(m,i)] <= 1 ; i=1,...,n
+   x(j,i)= 0 or 1
+   p(),w(),c() are positive integers.
+EXAMPLE
+  weight=ones(1,15).*.[1:4];
+  profit=ones(1,60);
+  capa=[15 45 30 60];
+  [earn,ind]=knapsack(profit,weight,capa)
+
+SEE ALSO
+  qassign

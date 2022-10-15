@@ -1,0 +1,52 @@
+.TH SCOPE_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+SCOPE_f - Scicos visualization block
+.SH DESCRIPTION
+This block realizes the visualization of the evolution of the signals
+on the standard input port(s) at instants of events on the event
+input port.
+.SH DIALOGUE PARAMETERS
+.TP 20
+Curve colors
+: a vector of integers. The i-th element is the color number (>0)
+or dash type (<0) used to draw the evolution of the i-th 
+input port signal. See \fVplot2d\fR for color (dash type) definitions.
+.TP
+Output window number
+: The number of graphic window used for the display. It is often good
+to use high values to avoid conflict with palettes and Super Block
+windows. If you have more than one scope, make sure they don't have
+the same window numbers (unless superposition of the curves is
+desired).
+.TP
+Output window position
+: a 2 vector specifying the coordinates of the upper left corner of
+the graphic window. Answer [] for default window position.
+.TP
+Output window size
+: a 2 vector specifying the width and height  of 
+the graphic window. Answer [] for default window dimensions.
+.TP
+Ymin, Ymax
+: Minimum and maximum values of the input; used to set up the Y-axis
+of the plot in the graphics window.
+.TP
+Refresh period
+: Maximum value on the X-axis (time). The plot is redrawn when time
+reaches a multiple of this value.
+.TP
+Buffer size
+: To improve efficiency it is possible to buffer the input data. The
+drawing is only done after each \fVBuffer size\fR call to the block.
+.SH REMARKS
+Output window number, Output window size, Output window
+position are only taken into account at the initialisation time of the
+simulation. 
+
+.SH SEE ALSO
+SCOPXY_f, EVENTSCOPE_f, ANIMXY_f
+
+
+
+

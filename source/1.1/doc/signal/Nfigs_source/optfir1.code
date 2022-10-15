@@ -1,0 +1,21 @@
+xinit('optfir1.ps');
+//
+//specifications
+//
+typ='lp';//lowpass filter
+n=64;//    filter length
+fc=.15;//  cut-off frequency
+tw=3/n;//  3 samples in the transition
+eps=.01;// passband tolerance
+//
+//computation of the filter
+//
+link('simplx.o','simplx');
+[ad,att,rp,flag,itrans,m,zz]=optfir(typ,n,fc,tw,eps);save('rp',rp);
+//
+//plotting the response in dB
+//
+dess(1)=22;
+plot(0:.5/n:.5,20*log([rp rp(n-1)])/log(10));
+xend();
+

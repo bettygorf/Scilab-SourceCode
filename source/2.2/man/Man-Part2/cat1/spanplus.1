@@ -1,0 +1,66 @@
+
+
+
+spanplus(1)                    Scilab Function                    spanplus(1)
+
+
+
+
+
+
+NAME
+  spanplus - sum of subspaces
+
+CALLING SEQUENCE
+  [X,dim,dima]=spanplus(A,B[,tol])
+
+PARAMETERS
+  A, B      : two real or complex matrices with equal number of rows
+  X         : orthogonal or unitary square matrix
+  dim, dima : integers, dimension of subspaces
+  tol       : nonnegative real number
+
+DESCRIPTION
+  [X,dim,dima]=spanplus(A,B) computes a  basis X such that:
+  the first dima columns of X span Range(A) and the following (dim-dima)
+  columns make a basis of A+B relative to A.
+  The dim first columns of X make a basis for A+B.
+  One has the following canonical form for [A,B]:
+           [*,*]    (dima rows)
+  X'*[A,B]=[0,*]    (dim-dima rows)
+           [0,0]
+  tol is an optional argument (see function code).
+
+SEE ALSO
+  spaninter, im_inv, spantwo
+
+AUTHOR
+  F. D.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

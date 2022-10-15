@@ -1,0 +1,19 @@
+.TH sin G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+sin -  sine function
+.SH CALLING SEQUENCE
+.nf
+[t]=sin(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: complex vector or symmetric matrix
+.SH DESCRIPTION
+For a vector, \fVsin(x)\fR is the sine of its elements . 
+For a symmetric matrix , \fVsin(X)\fR returns
+\"LaTeX \ignore{ 
+I- X^3/3! + X^5 /5! - ...
+\"LaTeX  }
+\"LaTeX \[ I- X^3/3! + X^5 /5! ... \]

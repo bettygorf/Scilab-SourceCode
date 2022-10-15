@@ -1,0 +1,98 @@
+mode(-1);
+m=228;
+n = fix(3/8*m);
+r = [(1:n)'/n; ones(m-n,1)];
+g = [zeros(n,1); (1:n)'/n; ones(m-2*n,1)];
+b = [zeros(2*n,1); (1:m-2*n)'/(m-2*n)];
+h = [r g b];
+r1=[(1:m)'/m];g1=zeros(r1);b1=g1;
+h1=[r1 g1 b1];
+h2=[r1 r1 r1];
+errcatch(-1,'continue','nomessage');
+xset('colormap',rand(500,3));
+errcatch(-1)
+isncf=iserror(-1);
+if(isncf==1) then
+//
+xsetech([0.,0.,0.5,0.5],[-1,1,-1,1]);
+xset('colormap',h);
+grayplot()
+//
+xsetech([0.5,0.,0.5,0.5],[-1,1,-1,1]);
+xset('colormap',h1);
+plot3d1()
+//
+xsetech([0.,0.5,0.5,0.5],[-1,1,-1,1]);
+xset('colormap',h2);
+grayplot()
+//
+xsetech([0.5,0.5,0.5,0.5],[-1,1,-1,1]);
+deff('[x,y,z]=knot(u,v)',['vv=ones(v)';'uu=ones(u);';
+'x=(5.*cos(u)+cos(u).*cos(v))';
+'y=(5.*sin(u)+sin(u).*cos(v))';
+'z=(uu.*sin(v))';])
+nx=60;Nx=(0:nx)/nx ;ny=20;Ny=(0:ny)/ny;
+uu=2*%pi*Nx ; vv=2*%pi*Ny;
+[xx,yy,zz]=eval3dp(knot,uu,vv);
+XXX=[-xx xx];YYY=[-yy zz];ZZZ=[-zz yy];
+kk1=[1:size(zz,2)];
+m=60;
+n = fix(3/8*m);
+r = [(1:n)'/n; ones(m-n,1)];
+g = [zeros(n,1); (1:n)'/n; ones(m-2*n,1)];
+b = [zeros(2*n,1); (1:m-2*n)'/(m-2*n)];
+hh = [r g b];
+xset('colormap',hh) ;
+kk1=modulo(kk1,60);kk2=kk1;
+KKK=list(ZZZ,[kk1 kk2]);
+plot3d(XXX,YYY,KKK,35,70," @ @ ",[2,1,4],[-6,6,-6,6,-6,6]);
+xset('colormap',h);
+xset('colormap',h1);
+xset('colormap',h2);
+xset('colormap',hh) ;
+xset('default');
+else
+//m=684;
+//n = fix(3/8*m);
+//r = [(1:n)'/n; ones(m-n,1)];
+//g = [zeros(n,1); (1:n)'/n; ones(m-2*n,1)];
+//b = [zeros(2*n,1); (1:m-2*n)'/(m-2*n)];
+//h = [r g b];
+xset('colormap',h);
+xsetech([0.,0.,0.5,0.5],[-1,1,-1,1]);
+grayplot();
+xsetech([0.5,0.,0.5,0.5],[-1,1,-1,1]);
+xset('colormap',h1) ;
+plot3d1()
+//
+xsetech([0.,0.5,0.5,0.5],[-1,1,-1,1]);
+xset('colormap',h2);
+grayplot()
+//
+xsetech([0.5,0.5,0.5,0.5],[-1,1,-1,1]);
+deff('[x,y,z]=knot(u,v)',['vv=ones(v)';'uu=ones(u);';
+'x=(5.*cos(u)+cos(u).*cos(v))';
+'y=(5.*sin(u)+sin(u).*cos(v))';
+'z=(uu.*sin(v))';])
+nx=60;Nx=(0:nx)/nx ;ny=20;Ny=(0:ny)/ny;
+uu=2*%pi*Nx ; vv=2*%pi*Ny;
+[xx,yy,zz]=eval3dp(knot,uu,vv);
+XXX=[-xx xx];YYY=[-yy zz];ZZZ=[-zz yy];
+kk1=[1:size(zz,2)];
+m=60;
+n = fix(3/8*m);
+r = [(1:n)'/n; ones(m-n,1)];
+g = [zeros(n,1); (1:n)'/n; ones(m-2*n,1)];
+b = [zeros(2*n,1); (1:m-2*n)'/(m-2*n)];
+hh = [r g b];
+xset('colormap',hh) ;
+kk1=modulo(kk1,60);kk2=kk1;
+KKK=list(ZZZ,[kk1 kk2]);
+plot3d(XXX,YYY,KKK,35,70," @ @ ",[2,1,4],[-6,6,-6,6,-6,6]);
+xset('colormap',h);
+xset('colormap',h1);
+xset('colormap',h2);
+xset('colormap',hh) ;
+xset('default');
+end
+

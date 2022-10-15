@@ -1,0 +1,116 @@
+.TH scicos_model  "Janvier 1997" "Scilab Group" "Scicos data structure"
+.so ../sci.an
+.SH NAME
+scicos_model - Scicos block functionality  data structure
+.SH DEFINITION
+.nf
+model=list(sim,in,out,evtin,evtout,state,dstate,..
+      rpar,ipar,blocktype,firing,dep_ut,label,import)
+.fi
+.SH PARAMETERS
+.TP 15
+sim
+: list(fun,typ) or fun. In the latest case typ is supposed to be 0.
+.RS
+.TP 10
+fun
+: character string, the name of the block simulation function (a 
+linked C or Fortran procedure  or a Scilab function).
+.TP
+typ
+: integer, calling sequence type of simulation function (see
+documentation for more precision).
+.RE
+.TP
+in
+: column vector of integers, input port sizes indexed from top to
+bottom of the block. If no input port exist \fVin==[]\fR.
+.TP
+out
+: column vector of integers, output port sizes indexed from top to
+bottom of the block. If no output port exist \fVin==[]\fR.
+.TP
+evtin
+: column vector of ones, the size of \fVevtin\fR gives the number of
+event input ports. If no event input port exists \fVevtin\fR must be equal
+to \fV[]\fR.
+.TP
+evtout
+: column vector of ones, the size of \fVevtout\fR gives the number of
+event output ports. If no event output port exists \fVevtout\fR must be equal
+to \fV[]\fR.
+.TP
+state
+: column vector, the initial continuous state of the block. Must be
+\fV[]\fR if no continuous state.
+.TP
+dstate
+: column vector, the initial discrete state of the block. Must be
+\fV[]\fR if no discrete state.
+.TP
+rpar
+: column vector, the vector of floating point block parameters. Must be
+\fV[]\fR if no floating point parameters.
+.TP
+ipar
+: column vector, the vector of integer  block parameters. Must be
+\fV[]\fR if no integer parameters.
+.TP
+blocktype
+: a character with possible values:
+.RS
+.TP
+:
+'c'  block output depend continuously of the time.
+.TP
+:
+'d' block output changes only on input events.
+.TP
+:
+'z' zero crossing block
+.TP
+:
+'l' logical block
+.RE
+.TP
+firing
+: a vector whose size is equal to the size of \fVevtout\fR> It contains
+output initial event dates (Events generated before any input event
+arises). Negative values stands for no initial event on the
+corresponding port.
+.TP
+dep_ut
+: 1x 2 vector of boolean \fV[dep_u, dep_t]\fR, \fVdep_u\fR must be
+true if output depends continuously of the input, \fVdep_t\fR must be
+true if output depends continuously of the time.
+.TP
+label
+: a character string, used as an identifier. 
+.TP
+import
+: Unused.
+.TP
+model
+: Scilab list, Scicos block model data structure.
+.SH DESCRIPTION
+Scicos block model data structure contains all information relative
+to the simulation functionality of the block. Fields may be
+fixed by block definition or set. 
+
+If block is a super block, the fields
+\fVstate\fR,\fVdstate\fR,\fVipar\fR,\fVblocktype\fR,\fVfiring\fR,
+\fVdep_ut\fR, are unused. 
+
+The \fVrpar\fR field contains a
+data structure similar to the \fVscicos_main\fR data structure.
+
+
+.SH SEE ALSO
+scicos,  scicos_model, scicos_main 
+
+
+
+
+
+
+

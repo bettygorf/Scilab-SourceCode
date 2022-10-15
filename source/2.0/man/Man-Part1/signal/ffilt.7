@@ -1,0 +1,49 @@
+.TH ffilt 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+ffilt - coefficients of FIR low-pass
+.SH CALLING SEQUENCE
+.nf
+[x]=ffilt(ft,n,fl,fh)
+.fi
+.SH PARAMETERS
+.TP 10
+ft
+: filter type where \fVft\fR can take the values
+.RS
+.TP 5
+"lp"
+: for low-pass filter
+.TP
+"hp"
+: for high-pass filter
+.TP
+"bp"
+: for band-pass filter
+.TP
+"sb"
+: for stop-band filter
+.RE
+.TP
+n
+: integer (number of filter samples desired)
+.TP
+fl
+: real (low frequency cut-off)
+.TP
+fh
+: real (high frequency cut-off)
+.TP
+x
+: vector of filter coefficients
+.SH DESCRIPTION
+Get \fVn\fR coefficients of a FIR low-pass,
+high-pass, band-pass, or stop-band filter.
+For low and high-pass filters one cut-off
+frequency must be specified whose value is
+given in \fVfl\fR. For band-pass and stop-band
+filters two cut-off frequencies must be
+specified for which the lower value is in
+\fVfl\fR and the higher value is in \fVfh\fR
+.SH AUTHOR
+C. B.

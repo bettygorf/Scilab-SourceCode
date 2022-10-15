@@ -1,0 +1,39 @@
+.TH genfac3d 2 "October 1995" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+genfac3d - convert  3d datas to four sides facets
+.SH CALLING SEQUENCE
+.nf
+[xx,yy,zz]=genfac3d(x,y,zmat [,mask])
+.fi
+.SH PARAMETERS
+.TP 15
+zmat      
+: matrix , zmat(i,j)= F(x(j),y(i))
+.TP
+x 
+:x axis coordinates vector
+.TP
+y 
+:y axis coordinates vector
+.TP
+mask     
+: boolean optional matrix with same size as zmat used to select 
+entries of zmat to be represented by facets
+.TP
+xx,yy,zz 
+:4xn  matrices. xx(:,i),yy(:,i),zz(:,i) are respectively the 
+ x-axis,y-axis and z-axis coordinates of the ith facet
+.SH DESCRIPTION
+Converts 3d datas to facets representation
+.SH EXAMPLE
+.nf
+t=(0:0.3:2*%pi)';
+zmat=sin(t)*cos(t');
+plot3d(t,t,zmat)
+[xx,yy,zz]=genfac3d(t,t,zmat);
+plot3d(xx,yy,zz)
+plot3d([xx xx],[yy yy],[zz 4+zz])
+.fi
+.SH SEE ALSO
+plot3d, eval3dp.

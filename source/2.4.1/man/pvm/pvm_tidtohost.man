@@ -1,0 +1,27 @@
+.TH pvm_tidtohost 1 "May 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_tidtohost - returns the host of the specified PVM process.
+.SH CALLING SEQUENCE
+.nf
+[dtid] = pvm_tidtohost(tid)
+.fi
+.SH PARAMETERS
+.TP 5
+tid
+: integer, task identifier of the PVM process in question.
+.TP 4
+dtid
+: integer, the tid of the host's pvmd3
+or a negative value if an error.
+.SH DESCRIPTION
+
+\fVpvm_tidtohost\fR returns the host id on which the process identified by
+.I tid is located.
+
+.SH EXAMPLE
+.nf
+dtid = pvm_tidtohost(pvm_mytid())
+.fi
+.SH SEE ALSO
+pvm_config, pvm_tasks

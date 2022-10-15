@@ -1,0 +1,32 @@
+
+det(2)                         Scilab Function                         det(2)
+NAME
+  det  - determinant
+
+CALLING SEQUENCE
+  det(X)
+  [e,m]=det(X)
+
+PARAMETERS
+
+  X    : real or complex square matrix, polynomial or rational matrix.
+
+  m    : real or complex number, the determinant base 10 mantissae
+
+  e    : integer, the determinant base 10 exponent
+DESCRIPTION
+  det(X) ( m*10^e is the determinant of the square matrix X.
+
+  For polynomial matrix det(X) is equivalent to determ(X).
+
+  For rational matrices det(X) is equivalent to detr(X).
+
+EXAMPLE
+  x=poly(0,'x');
+  det([x,1+x;2-x,x^2])
+  w=ssrand(2,2,4);roots(det(systmat(w))),trzeros(w)   //zeros of linear system
+  A=rand(3,3);
+  det(A), prod(spec(A))
+
+SEE ALSO
+  detr, determ

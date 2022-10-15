@@ -1,0 +1,94 @@
+.TH "stable_test" 2 " 1 April 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+stable_test - stable law conformicy test 
+.sp
+Author: Lotfi Belkacem
+.sp
+This routine tests the \fIstability property\fP of a signal. 
+.sp
+.sp
+.SH Usage
+\f(CR[\fPparam,sd_param\f(CR]\fP=stable_test(maxr,data)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBmaxr\fP : integer positive scalar. 
+maximum resolution witch depend on the size of the sample.
+
+.TP
+o 
+\fBdata\fP : real vector \f(CR[\fPsize,1\f(CR]\fP 
+corresponding to the data sample (increments of the signal).
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBparam\fP : real matrix \f(CR[\fPmaxr,4\f(CR]\fP 
+corresponding to the four estimated parameters  of the fited stable law at each level of resolution.
+param(i,:), for i=1, ...maxr, gives respectively alpha(characteristic exponent), beta (skewness parameter), mu (location parameter), gamma (scale parameter) estimated at the resolution i. 
+
+.TP
+o 
+\fBsd_param\fP : real matrix \f(CR[\fPmaxr,4\f(CR]\fP 
+corresponding to the estimated standard deviations of the four previous parameters at each level of resolution.
+sd_param(i,:), for i=1, ...maxr, gives respectively standard deviation of alpha, beta, mu and gamma estimated at the resolution i. 
+.RE
+
+.SH Description
+The stability test consists on estimating parameters of a fited alpha-satble law at different level of resolution. the variable is said to be stable if the charateristic exponent alpha remains approximatively constant at different resolution, and the scale parameter follows a scaling law with exponent (1/alpha)-1.   .SH Example
+under scilab type:
+\f(CR[\fPproc1_5,inc1_5\f(CR]\fP=sim_stable(1.5,0,0,1,20000);
+\f(CR[\fPparam,sd_param\f(CR]\fP=stable_test(7,inc1_5);
+alpha=param(:,1);
+m=(1:7)';
+lnm=log(m);
+plot2d(m,alpha,1,'111','alpha',\f(CR[\fP1,0,7,2\f(CR]\fP);
+gamma=param(:,4);
+lngamma=log(gamma);
+plot(lnm,lngamma);
+\f(CR[\fPa,b,sig\f(CR]\fP=reglin(lnm',lngamma');
+slope=a 
+th_slope=1/1.5-1 
+
+
+.RS
+
+.TP
+o 
+ we generate a standard 1.5-stable motion and its increments.
+
+.TP
+o 
+ we test the stability property of the previous simutated 1.5-stable random variable "inc1_5" at 7 resolutions. 
+
+.TP
+o 
+ we list estimated alpha at different scales.
+
+.TP
+o 
+ we visualize the stability of the shape parameter alpha.
+
+.TP
+o 
+ we list estimated gamma at different scales.
+
+.TP
+o 
+ we visualize the scaling law of the scale parameter gamma with a log-log plot in the space (scale,scale parameter).
+
+.TP
+o 
+ we compute the slope "a" of the fited line which will be compared to (1/alpha-1).
+.RE
+.SH 

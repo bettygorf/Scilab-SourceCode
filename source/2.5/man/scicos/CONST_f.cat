@@ -1,0 +1,13 @@
+
+CONST_f(5)                       Scicos Block                      CONST_f(5)
+NAME
+  CONST_f - Scicos constant value(s) generator
+
+DIALOGUE PARAMETERS
+
+  constants      : a real vector. The vector size gives the size of the out-
+                 put port. The value constants(i) is assigned to the ith com-
+                 ponent of the output.
+
+DESCRIPTION
+  This block is a constant value(s) generator.

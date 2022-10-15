@@ -1,0 +1,26 @@
+.TH xfrect 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME 
+xfrect - fill a rectangle
+.SH CALLING SEQUENCE
+.nf
+xfrect(x,y,w,h)
+.fi
+.SH PARAMETERS
+.TP 9
+x,y,w,h
+: four real values defining the rectangle.
+.SH DESCRIPTION
+\fVxrect\fR fills a rectangle defined by \fV[x,y,w,h]\fR 
+(upper-left point, width, height) using the current scale and style.
+.SH EXAMPLE
+.nf 
+plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
+xset("pattern",5)
+xfrect(-1,1,2,2)
+xset("default")
+.fi
+.SH SEE ALSO
+xrect, xrects
+.SH AUTHOR
+J.Ph.C.

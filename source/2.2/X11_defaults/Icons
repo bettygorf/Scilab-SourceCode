@@ -1,0 +1,17 @@
+For colored icons 
+[1] Add the xpm files in the directory where you store them 
+
+[2] For ctwm : add in ctwmrc in Icons 
+
+Icons {
+	....
+    "scilab"    "xpm:scilab-color.xpm"
+    "scilex"    "xpm:scilab-color.xpm"
+    "ScilabGraphic*"  "xpm:scilab-color.xpm"
+}
+
+[3] For fvwm : add in fvwmrc 
+
+Style "scilab"     Icon scilab-color.xpm
+Style "scilex"     Icon scilab-color.xpm 
+Style "ScilabGraphic*" Icon scilab-color.xpm ')

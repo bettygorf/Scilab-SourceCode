@@ -1,0 +1,43 @@
+.TH locate 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so man1/sci.an
+.SH NAME
+locate - mouse selection of a set of points 
+.SH CALLING SEQUENCE
+.nf
+[x]=locate([n,flag])
+.fi
+.SH PARAMETERS 
+.TP 15
+n, flag 
+: two integer values
+.TP
+x
+: vector (2,n1) ( n1=n if the parameter n is given)
+.LP
+.SH DESCRIPTION
+This function is used to get the coordinates of one or more 
+points selected with the mouse on a graphic window. The coordinates 
+are given using the current graphic scale. 
+.TP 15
+x=locate(n)
+: if n>0, n points are selected and their coordinates are returned in 
+x(2,n)
+.TP 
+x=locate(n)
+: If n<=0 points are selected until the user click with the left button 
+which stands for stop. The last point ( clicked with the left button) is 
+not returned.
+.TP
+x=locate()
+: same as \fVx=locate(-1)\fR
+.LP
+If \fVflag = 1\fR a cross is drawn at location point each time the mouse is clicked.
+.SH SEE ALSO
+xclick
+.SH AUTHOR
+S.S. & J.Ph.C
+
+
+
+
+

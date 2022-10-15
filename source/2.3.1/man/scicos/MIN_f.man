@@ -1,0 +1,13 @@
+.TH MIN_f 5 "Janvier 1997" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+MIN_f - Scicos min block
+.SH DIALOGUE PARAMETERS
+None.
+.SH DESCRIPTION
+The block outputs the minimum of the input vector:
+\fVy=min(u1,...un)\fR.
+The input vector size is determined by the compiler according to the
+connected blocks port sizes.
+.SH SEE ALSO
+MAX_f

@@ -1,0 +1,16 @@
+.TH sciargs 1 "January 1998" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sciargs - scilab command line arguments
+.SH CALLING SEQUENCE
+.nf
+args=sciargs()
+.fi
+.SH DESCRIPTION
+This function returns a vector of character strings containing the
+arguments of the Scilab command line. First \fVargs\fR entry contains
+the path of the lanched executable file.
+.LP
+This function correspond to the \fVgetarg\fR function in C langage
+.SH SEE ALSO
+getenv

@@ -1,0 +1,24 @@
+
+minss(1)                       Scilab Function                       minss(1)
+NAME
+  minss - minimal realization
+
+CALLING SEQUENCE
+  [slc]=minss( sl [,tol])
+
+PARAMETERS
+
+  sl,slc    : syslin lists (linear systems in state-space form)
+
+  tol       : real (threshold for rank determination (see contr))
+
+DESCRIPTION
+  minss returns in slc a minimal realization of sl.
+
+EXAMPLE
+  sl=syslin('c',[1 0;0 2],[1;0],[2 1]);
+  ssprint(sl);
+  ssprint(minss(sl))
+
+SEE ALSO
+  contr, minreal, arhnk, contrss, obsvss, balreal

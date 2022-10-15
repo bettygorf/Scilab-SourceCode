@@ -1,0 +1,59 @@
+.TH power 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+power - power operation  (^,.^) 
+.SH CALLING SEQUENCE
+.nf
+t=A^b
+t=A**b
+t=A.^b
+.fi
+.SH PARAMETERS
+.TP
+A,t
+: scalar, polynomial or rational matrix.
+.TP
+b
+:a scalar, a vector or a scalar matrix.
+.SH DESCRIPTION
+.TP
+(A:square)^(b:scalar)
+: If \fVA\fR is a square matrix and \fVb\fR is a scalar then 
+\fVA^b\fR is the matrix \fVA\fR to the power \fVb\fR.
+.TP
+(A:matrix).^(b:scalar)
+: If \fVb\fV is a scalar and \fVA\fR a matrix then \fVA.^b\fR 
+is the matrix formed by the element of \fVA\fR to the power \fVb\fR (elementwise power). If \fVA\fR is a vector and \fVb\fR is a scalar then 
+\fVA^b\fR and \fVA.^b\fR performs the same operation (i.e elementwise power).
+.TP
+(A:scalar).^(b:matrix)
+If \fVA\fR is a scalar  and \fVb\fR is a scalar matrix (or vector) \fVA^b\fR and
+\fVA.^b\fR are the matrices (or vectors) formed by  \fV a^(b(i,j))\fR.
+.TP
+(A:matrix).^(b:matrix)
+If \fVA\fR and \fVb\fR  are vectors (matrices) with compatible dimensions
+\fVA.^b\fR is the  \fVA(i)^b(i)\fR vector (\fVA(i,j)^b(i,j)\fR matrix).
+.LP 
+Notes:
+.IP -
+For square matrices \fVA^p\fR is computed through successive
+matrices multiplications if \fVp\fR is a positive integer, and by
+diagonalization if not.
+.IP -
+\fV**\fR and \fV^\fR operators are synonyms.
+.SH EXAMPLE
+.nf
+A=[1 2;3 4];
+A^2.5,
+A.^2.5
+(1:10)^2
+(1:10).^2
+
+s=poly(0,'s')
+s^(1:10)
+.fi
+.SH SEE ALSO
+exp
+
+
+

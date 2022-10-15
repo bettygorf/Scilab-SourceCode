@@ -1,0 +1,24 @@
+.TH icon_edit 2 "April 1998" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+icon_edit - simple interactive graphic block icon editor 
+.SH CALLING SEQUENCE
+.nf
+txt=icon_edit()
+.fi
+.SH PARAMETERS
+.TP 10
+txt
+: a vector of strings
+.SH DESCRIPTION
+\fVicon_edit\fR is a simple interactive graphic icon editor based on \fVgr_menu\fR
+\fVtxt\fR contains the scilab instructions necessary to draw the
+icon. These instructions may be entered in the scicos icon dialog.
+.SH AUTHOR
+Serge Steer INRIA 1998
+
+
+
+
+
+

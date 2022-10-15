@@ -1,0 +1,26 @@
+ 
+clear;lines(0);
+ 
+A=diag([-1,-2,-3,-4,-5]);B=rand(5,1);C=rand(1,5);
+ 
+sl=syslin('c',A,B,C);
+ 
+slapprox=arhnk(sl,2);
+ 
+[nk,W]=hankelsv(sl);nk
+ nk  =
+ 
+   1.0D-09 *
+ 
+!   65685008. !
+!   115819.75 !
+!   622.84972 !
+!   0.0131563 !
+!   0.        !
+ 
+[nkred,Wred]=hankelsv(slapprox);nkred
+ nkred  =
+ 
+!   0.0656853 !
+!   0.0001159 !
+ 

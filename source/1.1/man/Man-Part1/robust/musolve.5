@@ -1,0 +1,74 @@
+.TH musolve 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+musolve - structured singular value, mu, ssv
+.SH CALLING SEQUENCE
+.nf
+[D,G,mu] = musolve(M,K,T,[PARAMS])
+.fi
+.SH PARAMETERS
+.TP 10
+M
+: n by n matrix for which the upper bound of SSV is to be computed.
+.TP
+K
+: m by 1 vector contains the block structure. K(i), i=1:m, is the
+size of each block, and sum(K) should be equal to n.
+.TP
+T
+: m by 1 vector indicates the type of each block. For i=1:m,
+.RS
+.TP 10
+T(i)=1
+if the corresponding block is a repeated scalar real block
+.TP
+T(i)=2
+if the corresponding block is a full complex block.
+.TP
+T(i)=3 
+if the corresponding block is a repeated complex scalar block.
+.RE
+.TP
+PARAMS
+:[printflg #iter rtol utol ptol #psteps #dsteps]
+if PARAMS has less than 7 elements the right most ones are set
+to their default values:
+.RS
+.TP 10
+printflg = 0      
+: print flag, 0 - nothing is printed 
+.TP
+#iter    = 50     
+: # of iterations allowed
+.TP
+rtol     = 1.d-6  
+: required relative accuracy. 
+.TP
+utol     = 1.d-10 
+: tolerance for unfeasability
+.TP
+ptol     = 1.d-12 
+: tolerance for projection
+.TP
+#pstep   = 5      
+: number of primal dichotomy steps
+.TP
+#dstep   = 0      
+: number of dual Newton steps, 0 - default dual step
+.RE
+.TP
+D 
+: hermitian n by n matrix
+.TP
+G
+:hermitian n by n matrix
+.SH DESCRIPTION
+Minimize \fVmu\fR such that \fVD\fR and \fVG\fR matrices exist which verify :
+.nf
+    M'*D*M +%i*(G*M - M'*G) -mu^2*D<=0
+    D>=0
+.fi
+.SH SEE ALSO
+nemirov
+
+

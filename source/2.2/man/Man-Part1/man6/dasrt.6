@@ -1,0 +1,185 @@
+.TH dasrt G "June 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+dasrt - DAE solver with zero crossing
+.SH  CALLING SEQUENCE
+.nf
+[r,nn,[,hd]]=dasrt(x0,t0,t [,atol,[rtol]],res [,jac],ng, surf, info [,hd])
+.fi
+.SH PARAMETERS
+.TP 10
+x0  
+: is either \fVy0\fR (\fVydot0\fR is estimated by \fVdassl\fR with zero as first estimate) or the matrix \fV[y0 ydot0]\fR. 
+\fVg(t,y0,ydot0)\fR must be equal to zero. If you only know an estimate 
+of \fVydot0\fR set \fVinfo(7)=1\fR
+.RS
+.TP 10
+y0
+: real column vector  of initial conditions.
+.TP
+ydot0 
+: real column vector of the time derivative of \fVy\fR at \fVt0\fR
+(may be an estimate).
+.RE
+.TP
+t0 
+: real number is the initial instant.
+.TP
+t 
+: real scalar or vector. Gives instants for which you want the solution. Note that you can get solution at each dassl's step point by setting \fVinfo(2)=1\fR.
+.TP
+nn
+: times at which the surface is crossed
+.TP
+atol,rtol
+: real scalars or column vectors of same size as \fVy\fR. \fVatol,rtol\fR give respectively  absolute and relative error tolerances of solution. 
+If vectors the tolerances are specified for each component of \fVy\fR.
+.TP
+res 
+: external (function or list or string). Computes the  value of \fVg(t,y,ydot)\fR.
+.RS
+.TP 8
+function
+: Its calling sequence must be \fV[r,ires]=res(t,y,ydot)\fR
+and \fVres\fR must return the residue \fVr=g(t,y,ydot)\fR  and error flag 
+\fVires\fR. \fVires = 0\fR if \fVres\fR succeeds to compute \fVr\fR, \fV=-1\fR 
+if residue is locally not defined for \fV(t,y,ydot)\fR, \fV=-2\fR if 
+parameters are out of admissible range.
+.TP
+list
+: it must be as follows:
+.nf
+list(res,x1,x2,...)
+.fi 
+where the calling sequence of the function \fVres\fR is now
+.nf
+r=res(t,y,ydot,x1,x2,...)
+.fi
+\fVres\fR still returns \fVr=g(t,y,ydot)\fR as a function of
+\fV(t,y,ydot,x1,x2,...)\fR.
+.TP
+string
+: it must refer to the name of
+a fortran subroutine (see source code of \fVfresd.f\fR).
+.RE
+.TP
+jac
+: external (function or list or string). Computes the  value 
+of \fVdg/dy+cj*dg/dydot\fR for a given value of parameter \fVcj\fR
+.RS
+.TP 8
+function
+: Its calling sequence must be \fVr=jac(t,y,ydot,cj)\fR
+and the \fVjac\fR function must return
+\fVr=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot\fR where \fVcj\fR is a real scalar
+.TP
+list
+: it must be as follows
+.nf
+list(jac,x1,x2,...)
+.fi 
+where the calling sequence of the function \fVjac\fR is now
+.nf
+r=jac(t,y,ydot,x1,x2,...)
+.fi
+\fVjac\fR still returns \fVdg/dy+cj*dg/dydot\fR as a function of
+\fV(t,y,ydot,cj,x1,x2,...)\fR.
+.TP
+character string
+: it must refer to the name of a fortran subroutine 
+(see source code of \fVjacdd.f\fR).
+.RE
+.TP
+surf
+: external (function or list or string). Computes the  value 
+of the column vector \fVsurf(t,y,ydot)\fR with ng components.
+Each component defines a surface.
+.RS
+.TP 8
+function
+: Its calling sequence must be \fVsurf(t,y,ydot)\fR
+.TP
+list
+: it must be as follows
+.nf
+list(surf,x1,x2,...)
+.fi 
+where the calling sequence of the function \fVsurf\fR is now
+.nf
+r=surf(t,y,ydot,x1,x2,...)
+.fi
+.TP
+character string
+: it must refer to the name of a fortran subroutine 
+(see source code of \fVfsurfd.f\fR) in directory \fVSCDIR/default\fR
+.RE
+.TP
+info
+: list which contains \fV7\fR elements:
+.RS
+.TP 8
+info(1)
+: real scalar which gives the maximum time for which \fVg\fR is allowed 
+to be evaluated or an empty matrix \fV[]\fR if no limits imposed for time.
+.TP
+info(2)
+: flag which indicates if \fVdassl\fR returns its intermediate 
+computed values (\fVflag=1\fR) or only the user specified time point 
+values (\fVflag=0\fR).
+.TP
+info(3)
+: \fV2\fR components vector which give the definition \fV[ml,mu]\fR of band 
+matrix computed by \fVjac\fR;
+\fVr(i - j + ml + mu + 1,j) = "dg(i)/dy(j)+cj*dg(i)/dydot(j)"\fR. 
+If \fVjac\fR returns a full matrix set \fVinfo(3)=[]\fR.
+.TP
+info(4)
+: real scalar which gives the maximum step size. Set \fVinfo(4)=[]\fR if no 
+limitation.
+.TP
+info(5)
+: real scalar which gives the initial step size. Set \fVinfo(4)=[]\fR if 
+not specified.
+.TP
+info(6)
+: set \fVinfo(6)=1\fR if the solution is known to be non negative, 
+else set \fVinfo(6)=0\fR.
+.TP
+info(7)
+: set \fVinfo(7)=1\fR if \fVydot0\fR is just an estimation, \fVinfo(7)=0\fR
+if \fVg(t0,y0,ydot0)=0\fR.
+.RE
+.TP
+hd
+: real vector which allows to store the \fVdassl\fR context and to 
+resume integration
+.TP
+r
+: real matrix . Each column is the vector [t;x(t);xdot(t)] where t is time
+index for which the solution had been computed
+.SH DESCRIPTION
+Solution of the implicit differential equation
+.nf
+    g(t,y,ydot)=0
+    y(t0)=y0  and   ydot(t0)=ydot0
+.fi
+Returns the surface crossing instants and the number of the
+surface reached in \fVnn\fR. Detailed examples in SCIDIR/dassldasrt.tst
+.SH EXAMPLE
+.nf
+//dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1<=t<=6
+//g1 = ((2*log(y)+8)/t - 5)*y 
+//g2 = log(y) - 2.2491 
+y0=1;t=2:6;t0=1;y0d=3;
+info=list([],0,[],[],[],0,0);
+atol=1.d-6;rtol=0;ng=2;
+
+deff('[delta,ires]=res1(t,y,ydot)','ires=0;delta=ydot-((2*log(y)+8)/t-5)*y')
+deff('[rts]=gr1(t,y,yd)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
+comp(res1);comp(gr1);
+[yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,res1,ng,gr1,info);
+//(Should return nn=2.47...)
+.fi
+.SH SEE ALSO
+ode, dassl, impl, fort, link, external and directory SCIDIR/default
+

@@ -1,0 +1,59 @@
+.TH "IWT" 2 " 01 June 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+IWT - 1D Inverse Discrete Wavelet Transform
+.sp
+Author: Bertrand Guiheneuf
+.sp
+This routine computes \fIinverse discrete wavelet transforms\fP of a  real signal. Two inverse transforms are possible : Orthogonal and Biorthogonal
+.sp
+.sp
+.SH Usage
+\f(CR[\fPresult\f(CR]\fP=IWT2D(wt,\f(CR[\fPf\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : real unidimensional matrix \f(CR[\fPm,n\f(CR]\fP  
+Contains the wavelet transform (obtained with FWT). 
+
+.TP
+o 
+\fBf\fP : real unidimensional matrix \f(CR[\fPm,n\f(CR]\fP  
+Synthesis filter. 
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBresult\fP : real unidimensional matrix 
+Result of the reconstruction. 
+.RE
+
+.SH Description
+.SH Introduction 
+The wavelet transform is an invertible linear transform. This routines is the inverse transform. For details on the algorithm procedure, see FWT.
+.SH Parameters  
+\fIInput\fP must be a real matrix. It's generally obtained with FWT but can be created "by hand". In that case, it's strongly recommended to decompose a null signal with FWT.
+\fIf\fP is the linear FIR filter to use for the reconstruction. It is only necessary if the analysis filter had been obtained with MakeCQF() and the reconstruction filter had not been passed to FWT. If not specified the filter given in the synthesis is used. (See FWT).
+\fIresult\fP is the reconstructed signal. It has the same dimension as the original one.
+.SH Algorithm details 
+Convolutions are computed through discrete linear convolutions in time domain. No FFT is used. 
+The signal is mirrored at its boundaries. .SH Example
+a=rand(1,256);
+q=MakeQMF('daubechies',4);
+wt,wti,wtl = FWT(a,8,q);
+wt=abs(wt);
+result=IWT(wt);.SH References
+\fBMeyer Y.\fP : Wavelets, Algorithms & Applications, SIAM.
+\fBMeyer Y.\fP : Ondelettes et Operateurs (I) : Hermann, Paris
+\fBDaubechies I.\fP : Ten Lectures on Wavelets, CBMS-NSF Regional conference series in applied mathematics.
+.SH See Also
+FWT, MakeQMF, MakeCQF, WTMultires, WTStruct

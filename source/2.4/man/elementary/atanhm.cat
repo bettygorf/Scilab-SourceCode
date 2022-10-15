@@ -1,0 +1,24 @@
+
+atanhm(1)                      Scilab Function                      atanhm(1)
+NAME
+  atanhm - matrix hyperbolic tangent inverse
+
+CALLING SEQUENCE
+  t=atanhm(x)
+
+PARAMETERS
+
+  x         : real or complex square matrix
+
+  t         : real or complex square matrix
+
+DESCRIPTION
+  atanhm(x) is the matrix hyperbolic tangent inverse of matrix x. Results may
+  be inaccurate if x is not symmetric.
+
+EXAMPLE
+  A=[1,2;3,4];
+  tanhm(atanhm(A))
+
+SEE ALSO
+  atanh, tanhm

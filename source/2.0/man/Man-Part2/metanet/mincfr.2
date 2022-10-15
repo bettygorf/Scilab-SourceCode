@@ -1,0 +1,26 @@
+.TH mincfr 1 "October 1994" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME 
+mincfr - minimum linear cost flow (relaxation method)
+.SH CALLING SEQUENCE
+.nf
+[tcost,x] = mincfr([g])
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP 6
+tcost
+: real, cost value of the flow on the return arc (sink,source)
+.TP 2
+x
+: array of the flows on the arcs
+.SH DESCRIPTION
+\fVmincfr\fR returns the minimum linear cost flow from the source to the sink 
+for the directed graph \fVg\fR with only one source and one sink.
+The method used is a relaxation method.
+\fVtcost\fR is the cost value of the flow and \fVx\fR is the array 
+of the flows on the arcs.
+.SH SEE ALSO
+mincf0, minicf, minqflow

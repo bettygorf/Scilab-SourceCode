@@ -1,0 +1,26 @@
+.TH ssprint 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+ssprint - pretty print for linear system
+.SH CALLING SEQUENCE
+.nf
+ssprint(sl [,out])
+.fi
+.SH PARAMETERS
+.TP 10
+sl
+: list (\fVsyslin\fR list)
+.TP
+out
+: output (default value \fVout=%io(2)\fR)
+.SH DESCRIPTION
+pretty print of a linear system in state-space form
+\fVsl=(A,B,C,D) syslin\fR list.
+.SH EXAMPLE
+.nf
+ a=[1 1;0 1];b=[0 1;1 0];c=[1,1];d=[3,2];
+ ssprint(syslin('c',a,b,c,d))
+ ssprint(syslin('d',a,b,c,d))
+.fi
+.SH SEE ALSO
+texprint.

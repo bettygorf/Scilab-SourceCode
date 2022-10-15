@@ -1,0 +1,36 @@
+.TH fullrf 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+fullrf - full rank factorization
+.SH CALLING SEQUENCE
+.nf
+[Q,M,rk]=fullrf(A,[tol])
+.fi
+.SH PARAMETERS
+.TP 4
+A
+: real or complex matrix
+.TP
+tol
+: real number (threshold for rank determination)
+.TP
+Q,M
+: real or complex matrix
+.TP
+rk
+: integer (rank of \fVA\fR)
+.SH DESCRIPTION
+Full rank factorization : \fVfullrf\fR returns \fVQ\fR and \fVM\fR such
+that \fVA = Q*M\fR
+with range(\fVQ\fR)=range(\fVA\fR) and ker(\fVM\fR)=ker(\fVA\fR),
+\fVQ\fR full column rank , \fVM\fR full row rank,
+\fVrk\fR = rank(\fVA\fR) = #columns(\fVQ\fR) = #rows(\fVM\fR).
+.LP
+\fVtol\fR is an optional real parameter (default value is \fVsqrt(%eps)\fR).
+The rank \fVrk\fR of \fVA\fR is defined as the number of singular values
+larger than \fVnorm(A)*tol\fR.
+.SH SEE ALSO
+svd, qr, fullrfk
+.SH AUTHOR
+F.D.
+

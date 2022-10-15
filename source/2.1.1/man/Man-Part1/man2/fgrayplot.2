@@ -1,0 +1,29 @@
+.TH fgrayplot 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+fgrayplot - 2D plot with gray levels
+.SH CALLING SEQUENCE
+.nf
+fgrayplot(x,y,f)
+.fi
+.SH PARAMETERS
+.TP 10
+x,y
+:  real vectors of size respectively (1,n1) and (1,n2).
+.TP 
+f
+: an external (analytic expression of the surface)
+.SH DESCRIPTION
+2D plot of a surface using gray levels; \fVf\fR gives the analytic expression 
+of the surface. \fVz=f(x,y)\fR is first computed on the grid specified by 
+\fVxr.yr\fR then control is passed to the routine \fVgrayplot\fR. 
+.LP
+.SH EXAMPLE 
+enter the Scilab command
+.B fgrayplot() 
+to see a demo
+.SH AUTHOR
+J.Ph.C..
+
+
+

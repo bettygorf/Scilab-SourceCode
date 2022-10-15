@@ -1,0 +1,11 @@
+#!/bin/csh 
+set config=`egrep "include[ ]*config" ../../Makefile | sed -e "s/include[ ]*//"`
+\rm -f -r config 
+mkdir config
+sed -e "s+bin/scilex+callsci+" -e 's/scilex-lib/$(OBJS)/' -e 's/$(DEFAULTS)/$(OBJS) $(DEFAULTS)/' $1/$config > $config:r
+egrep "libs/|routines/default|DEFAULTS|LIBRSCI|LIBR" ../../Makefile | grep -v "mainsci" | sed -e 's+routines/+$(SCIDIR)/routines/+g' -e 's+libs/+$(SCIDIR)/libs/+g' > config/Makefile.Top
+sed -e "s+@SCI@+$1+" callsci.sh.in > callsci.sh
+chmod +x callsci.sh
+
+
+

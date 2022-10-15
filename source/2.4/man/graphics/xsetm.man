@@ -1,0 +1,18 @@
+.TH xsetm 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xsetm - dialog to set values of the graphic context
+.SH CALLING SEQUENCE
+.nf
+xsetm()
+.fi
+.SH DESCRIPTION
+\fVxsetm\fR is used to set values of the graphic context. A choice
+menu is created showing the current values and changes can be
+performed through toggle buttons.
+.SH SEE ALSO
+xset 
+.SH REFERENCE
+X11 documentation
+.SH AUTHOR
+J.Ph.C.

@@ -1,0 +1,16 @@
+.TH getcurblock 5 "Janvier 1996" "Scilab Group" "Scicos function"
+.so ../sci.an
+.SH NAME
+getcurblock - get Scicos current block number while running
+.SH CALLING SEQUENCE
+blk=getcurblock()
+.SH PARAMETERS
+.TP
+blk
+: the index of the Scicos block which has called \fVgetcurblock\fR
+.SH DESCRIPTION
+This function may be used in a Scilab block to get index of this block
+ while running. It may be used with \fVgetscicosvars\fR or
+\fVsetscicosvars\fR.
+.SH SEE ALSO
+getscicosvars, setscicosvars, scicosim 

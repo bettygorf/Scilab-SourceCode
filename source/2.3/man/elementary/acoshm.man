@@ -1,0 +1,28 @@
+.TH acoshm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+acoshm - matrix hyperbolic inverse cosine
+.SH CALLING SEQUENCE
+.nf
+t=acoshm(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x,t
+: real or complex square matrix
+.SH DESCRIPTION
+acoshm is the matrix hyperbolic  inverse cosine  of the matrix x.
+Uses the formula \fVt=logm(x+(x+eye)*sqrtm((x-eye)/(x+eye)))\fR
+For non symmetric matrices result may be inaccurate.
+.SH EXAMPLE
+.nf
+A=[1,2;3,4];
+coshm(acoshm(A))
+A(1,1)=A(1,1)+%i;
+coshm(acoshm(A))
+.fi
+.SH SEE ALSO
+acosh, logm, sqrtm
+
+
+

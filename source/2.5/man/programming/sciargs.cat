@@ -1,0 +1,17 @@
+
+sciargs(1)                     Scilab Function                     sciargs(1)
+NAME
+  sciargs - scilab command line arguments
+
+CALLING SEQUENCE
+  args=sciargs()
+
+DESCRIPTION
+  This function returns a vector of character strings containing the argu-
+  ments of the Scilab command line. First args entry contains the path of the
+  lanched executable file.
+
+  This function correspond to the getarg function in C langage
+
+SEE ALSO
+  getenv

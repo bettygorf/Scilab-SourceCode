@@ -1,0 +1,20 @@
+
+abs(G)                         Scilab Function                         abs(G)
+NAME
+  abs -  absolute value, magnitude
+
+CALLING SEQUENCE
+  t=abs(x)
+
+PARAMETERS
+
+  x    : real or complex vector or matrix
+
+  t    : real vector or matrix
+
+DESCRIPTION
+  abs(x) is the absolute value of the elements of x. When x is complex,
+  abs(x) is the complex modulus (magnitude) of the elements of x.
+
+EXAMPLE
+  abs([1,%i,-1,-%i,1+%i])

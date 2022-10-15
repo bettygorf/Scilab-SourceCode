@@ -1,0 +1,16 @@
+.TH CONST_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+CONST_f - Scicos constant value(s) generator
+.SH DIALOGUE PARAMETERS
+.TP 15
+constants
+: a real vector. The vector size gives the size of the output
+port. The value \fVconstants(i)\fR is assigned to the ith component of
+the output.
+.SH DESCRIPTION
+This block is a constant value(s) generator.
+
+
+
+

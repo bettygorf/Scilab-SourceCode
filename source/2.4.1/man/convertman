@@ -1,0 +1,15 @@
+#!/bin/sh
+convert()
+{
+	while [ $# -gt 0 ]
+	do
+	sed -e 's/^\.nr.*$//' -e 's/^\.if .*\././' -e 's/^\.DE .*$//' -e 's/^\.DS .*$//' $1>/tmp/$1
+	mv /tmp/$1 $1
+
+	shift
+	done
+}
+allfiles=`ls -1 *.man | awk '{print " " $1 }'` 
+convert $allfiles
+exit 0
+

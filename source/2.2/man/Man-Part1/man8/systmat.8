@@ -1,0 +1,31 @@
+.TH systmat 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+systmat - system matrix
+.SH CALLING SEQUENCE
+.nf
+[Sm]=systmat(Sl);
+.fi
+.SH PARAMETERS
+.TP
+Sl
+: linear system (\fVsyslin\fR list) or descriptor system
+.TP
+Sm
+: matrix pencil
+.SH DESCRIPTION
+System matrix of the linear system \fVSl\fR (\fVsyslin\fR list) 
+in state-space form (utility function).
+.nf
+ Sm = [-sI + A   B;
+      [    C     D]
+.fi
+For a descriptor system (\fVSl=list('des',A,B,C,D,E)\fR), \fVsystmat\fR returns:
+.nf
+ Sm = [-sE + A   B;
+      [    C     D]
+.fi
+.SH SEE ALSO
+ss2des, sm2des, sm2ss
+
+

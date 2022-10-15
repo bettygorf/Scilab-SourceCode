@@ -1,0 +1,51 @@
+.TH bdiag 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+bdiag - block diagonalization.
+.SH CALLING SEQUENCE
+.nf
+[Ab [,X [,bs]]]=bdiag(A [,rmax]) 
+.fi
+.SH PARAMETERS
+.TP
+A 
+: real or complex square matrix
+.TP 6
+rmax 
+: real number
+.TP 3
+Ab
+: real or complex square matrix
+.TP 2
+X
+: real or complex non-singular matrix
+.TP 3
+bs
+: vector of integers
+.SH DESCRIPTION
+.nf
+[Ab [,X [,bs]]]=bdiag(A [,rmax]) 
+.fi
+performs the block-diagonalization of matrix \fVA\fR.
+bs gives the structure of the blocks (respective sizes of the blocks).
+\fVX\fR is the change of basis i.e 
+.Vb Ab = inv(X)*A*X 
+is block diagonal.
+.LP
+\fVrmax\fR controls the conditioning of \fVX\fR; the default value is the 
+l1 norm of \fVA\fR. 
+.LP
+To get a diagonal form (if it exists) choose a large value for 
+\fVrmax\fR (\fVrmax=1/%eps\fR for example). 
+Generically (for real random A) the blocks are (1x1) and (2x2) and \fVX\fR 
+is the matrix of eigenvectors.
+.SH EXAMPLE
+.nf
+//Real case: 1x1 and 2x2 blocks
+a=rand(5,5);[ab,x,bs]=bdiag(a);ab
+//Complex case: complex 1x1 blocks
+[ab,x,bs]=bdiag(a+%i*0);ab
+.fi
+.SH SEE ALSO
+schur, sylv.
+

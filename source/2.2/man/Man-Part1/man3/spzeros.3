@@ -1,0 +1,35 @@
+.TH spzeros 1 "January 1995" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+spzeros -  sparse zero matrix
+.SH SYNTAX
+Zsp=spzeros(nrows,ncols)
+
+Zsp=spzeros(A)
+.SH PARAMETERS
+.TP 8
+nrows
+: integer (number of rows)
+.TP
+ncols
+: integer (number os columns)
+.TP
+A
+: sparse matrix
+.TP
+sp
+: sparse zero matrix
+.SH DESCRIPTION
+\fVZsp=spzeros(nrows,ncols,fill)\fR returns a sparse zero matrix \fVZsp\fR 
+with \fVnrows\fR rows, \fVncols\fR columns. 
+(Equivalent to \fVsparse([],[],[nrow,ncols])\fR)
+.LP
+\fVZsp=spzeros(A)\fR returns a sparse zero matrix with same
+dimensions as \fVA\fR. If \fV[m,n]=size(A)\fR, \fVspzeros(m,n)\fR and
+\fVspzeros(A)\fR are equivalent. In particular \fVspzeros(3)\fR is not
+equivalent to \fVspzeros(3,3)\fR.
+.SH SEE ALSO
+sparse, full, eye, speye
+
+
+                        

@@ -1,0 +1,3 @@
+Some examples require a Fortran compiler. It may be necessary to
+modify the file "../Makefile.incl" to set the good Fortran compiler in
+variable FC.

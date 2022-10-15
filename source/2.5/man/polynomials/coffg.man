@@ -1,0 +1,34 @@
+.TH coffg 8 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+coffg - inverse of polynomial matrix
+.SH CALLING SEQUENCE
+.nf
+[Ns,d]=coffg(Fs) 
+.fi
+.SH PARAMETERS
+.TP
+Fs
+: square polynomial matrix
+.SH DESCRIPTION
+\fVcoffg\fR computes \fVFs^-1\fR where \fVFs\fR is a polynomial
+matrix by co-factors method.
+.LP
+\fVFs\fR inverse = \fVNs/d\fR
+.LP
+\fVd\fR = common denominator; \fVNs\fR =  numerator (a polynomial matrix)
+.LP
+(For large matrices,be patient...results are generally reliable)
+.SH EXAMPLE
+.nf
+s=poly(0,'s')
+a=[ s, s^2+1; s  s^2-1];
+[a1,d]=coffg(a);
+(a1/d)-inv(a)
+.fi
+.SH SEE ALSO
+determ, detr, invr, penlaur, glever
+.SH AUTHOR
+F. D.
+
+

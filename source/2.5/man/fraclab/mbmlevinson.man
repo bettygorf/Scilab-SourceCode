@@ -1,0 +1,85 @@
+.TH "mbmlevinson" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mbmlevinson - Levinson synthesis of a multifractional Brownian motion
+.sp
+Author: Paulo Goncalves 
+.sp
+Generates a Multi-Fractional Brownian Motion (mBm) using Cholesky/Levinson factorization
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+[x,y,r] = mbmlevinson(N,H,[seed])
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fB N \fP : Positive integer 
+Sample size of the fBm
+
+.TP
+o 
+\fB H \fP : Real vector \f(CR[\fP1,N\f(CR]\fP of character string
+\fIH\fP real vector: contains the Holder exponents at each time. Each
+element in \f(CR[\fP0,1\f(CR]\fP. 
+\fIH\fP character string: analytic expression of the Holder function 
+(e.g. 'abs(0.5 * ( 1 + sin(16 t) ) )')
+
+.TP
+o 
+\fB seed \fP : real scalar
+Random seed generator
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fB x \fP : real vector  \f(CR[\fP1,N\f(CR]\fP 
+Time samples of the mBm
+
+.TP
+o 
+\fB y \fP : real vector \f(CR[\fP1,N\f(CR]\fP  
+Vector of N i.i.d. white standard Gaussian r.v.'s (input process of
+the generator)
+
+.TP
+o 
+\fB r \fP : real matrix \f(CR[\fPN,N\f(CR]\fP 
+Matrix containing columnwise each first row of the
+var/cov Toeplitz matrices R(n) of the non-stationary
+increment process w\f(CR[\fPn\f(CR]\fP = x\f(CR[\fPn+1\f(CR]\fP - x\f(CR[\fPn\f(CR]\fP.
+.RE
+
+.SH Algorithm details
+For each time \fIn\fP, a fbm process with constant Holder exponent
+H\f(CR[\fPn/\f(CR]\fP is synthesized over N points (see
+\fIfbmlevinson\fP). Only the sample at rank \fIn\fP is kept.  As a
+result of this computationally expensive procedure, only small sample
+sizes of mBms can be generated (typically less than 1024 samples).
+.SH See also:
+mbmlevinson
+.SH Example:
+.sp
+.ft CR
+.nf
+[x,y,r] = mbmlevinson(512,AtanH(512,2,1,0.5)) ; 
+plot(x) ;
+.fi 
+.ec
+.ft P
+.sp

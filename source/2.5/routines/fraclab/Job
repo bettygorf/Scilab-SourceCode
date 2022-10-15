@@ -1,0 +1,7 @@
+#!/bin/csh 
+# Job pipo 
+cp $1 $1.kp 
+unprotoize $1
+diff -D __STDC__ $1 $1.kp > $1.n
+\mv $1.n $1
+

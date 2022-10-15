@@ -1,0 +1,24 @@
+.TH code2str 1 "May 1994" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+code2str - returns character string associated with Scilab integer codes.
+.SH CALLING SEQUENCE
+.nf
+str=code2str(c)
+.fi
+.SH PARAMETERS
+.TP 
+str
+: a character string
+.TP
+c
+: vector of character integer codes
+.SH DESCRIPTION
+Returns character string associated with Scilab integer codes.str is
+such that  c(i) is the Scilab integer code of part(str,i))
+.SH EXAMPLE
+.nf
+code2str([-28 12 18 21 10 11])
+.fi
+.SH SEE ALSO
+str2code

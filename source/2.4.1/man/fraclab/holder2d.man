@@ -1,0 +1,76 @@
+.TH "holder2d" 2 " 17 June 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+holder2d - holder exponents of a measures defined on 2D real signal
+.sp
+Author: Pascal Mignot - Bertrand Guiheneuf
+.sp
+This routine computes \fIholder exponents\fP of a measures defined on 2D real signal. Several measures and capacities are available.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPholder\f(CR]\fP=holder2d(Input,\f(CR[\fPMeas\f(CR]\fP,\f(CR[\fPRes\f(CR]\fP,\f(CR[\fPRef\f(CR]\fP,\f(CR[\fPRefMeas\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBInput\fP : real matrix \f(CR[\fPm,n\f(CR]\fP  
+Contains the signal to be analysed. 
+
+.TP
+o 
+\fBMeas\fP : string 
+Analysing measure. Must choosen be in  
+{"sum", "var", "ecart", "min", "max", "iso", "riso",  
+"asym", "aplat", "contrast", "lognorm", "varlog", "rho",  
+"pow", "logpow", "frontmax", "frontmin", "diffh", "diffv",  
+"diffmin", "diffmax"} 
+(default : "sum")
+
+.TP
+o 
+\fBres\fP : 
+Number of resolutions used for the computation. (default : 1)
+
+.TP
+o 
+\fBRef\fP : real matrix \f(CR[\fPm,n\f(CR]\fP  
+Contains the reference signal i.e. the signal on which the reference measure
+will be computed. 
+Input and Ref must have the same dimensions. 
+
+.TP
+o 
+\fBRefMeas\fP : string 
+Reference measure. (default : "sum")
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBholder\fP : real matrix \f(CR[\fPm,n\f(CR]\fP
+Contains the Holder exponents. 
+.RE
+
+.SH Description
+.SH Introduction 
+This routines computes holder exponents by regressing an analysing measure (in a log-log plot) at different scales. 
+Given a pixel, one defines a (square) window around it. The window size is called the resolution.
+The specified measure (or capacity) is then evaluated on the set defined by the window.
+For example, in the case of the "sum" measure, at resolution 2, a 5x5 square center on a pixel p0 is 
+extracted from the input image. The mean of the gray levels of the obtained pixels defines the measure 
+at pixel p0 and resolution 2.
+The measure type is thus given by the input parameter \fIMeas\fP whereas the actual measure is obtained through the
+input signal.
+In the case of a simple measure analysis, the regression is computed with respect to the size of the window, this
+corresponds to comparing the analysing measure to  the Lebesgue measure.
+Nevertheless, it is possible to compute the regression by comparison with a reference measure given by the
+last two parameters.  
+.SH See Also

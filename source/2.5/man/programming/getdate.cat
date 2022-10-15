@@ -1,0 +1,52 @@
+
+getdate(1)                     Scilab Function                     getdate(1)
+NAME
+  getdate - get date and time information
+
+CALLING SEQUENCE
+  dt=getdate()
+
+PARAMETERS
+
+  dt   : an integer vector with 9 entries
+
+DESCRIPTION
+  dt=getdate() returns
+
+  dt(1)
+       : The year  as a number (with the century) between 0000 and 9999.
+
+  dt(2)
+       : The month of the year as a number between 01 and 12.
+
+  dt(3)
+       : The week number of the year (Monday as the first day of the week).
+       a decimal number between 1 and 53.  If the week containing January 1
+       has four or more days in the new year, then it is considered week 1;
+       otherwise, it is week 53 or the previous year, and the next week is
+       week 1.
+
+  dt(4)
+       : The Julian day of the year  as a number between 001 and 366.
+
+  dt(5)
+       : Specifies the weekday as a decimal number [1,7], with 1 representing
+       Monday.
+
+  dt(6)
+       : The day of the month as a number between 01 and 31.
+
+  dat(7)
+       : The hour of the day  as a number between 00 and 23.
+
+  dt(8)
+       : The minute  as a number between 00 and 59.
+
+  dt(9)
+       : The second is output as a number between 00 and 61.
+
+EXAMPLES
+  w=getdate()
+  mprintf("Year:%d,Month:%d,Day%d",w(1),w(2),w(7));
+SEE ALSO
+  date, timer

@@ -1,0 +1,41 @@
+.TH lines 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mtlb_mode - switch Matlab like operations
+.SH CALLING SEQUENCE
+.nf
+mmode=mtlb_mode()
+mtlb_mode(mmode)
+.fi
+.SH PARAMETERS
+.TP 10
+mmode
+: boolean
+.SH DESCRIPTION
+Scilab and Matlab additions and substractions work differently
+when used with empty matrices:
+.TP 10
+Scilab
+:
+.nf
+a+[] -->a
+a-[] -->a
+[]+a -->a
+[]-a -->-a
+.fi
+.TP
+Matlab
+.nf
+a+[] -->[]
+a-[] -->[]
+[]+a -->[]
+[]-a -->[]
+.fi
+
+\fV mtlb_mode(%t)\fR  switches to Matlab evaluation mode for additions and
+substractions. \fV mtlb_mode(%f)\fR  switches back to Scilab mode.
+
+\fV mtlb_mode()\fR return the current mmode' value
+.SH SEE ALSO
+empty
+

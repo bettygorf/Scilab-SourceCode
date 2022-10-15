@@ -1,0 +1,18 @@
+.TH ZCROSS_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+ZCROSS_f - Scicos zero crossing detector
+.SH DESCRIPTION
+An output event is generated when all inputs (if more than one)
+cross zero simultaneously.
+.SH DIALOGUE PARAMETERS
+.TP 20
+Number of inputs
+: a positive integer.
+.SH SEE ALSO
+POSTONEG_f, GENERAL_f
+
+
+
+
+

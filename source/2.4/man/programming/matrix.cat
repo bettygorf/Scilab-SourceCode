@@ -1,0 +1,31 @@
+
+matrix(1)                      Scilab Function                      matrix(1)
+NAME
+  matrix - reshape a vector or a matrix to a different size matrix
+
+CALLING SEQUENCE
+  [y]=matrix(v,n,m)
+
+PARAMETERS
+
+  v         : vector or a matrix with n x m entries.
+
+  n,m       : integers
+
+  y         : n x m matrix
+
+DESCRIPTION
+  transforms the v vector (or matrix) into an nxm matrix by stacking column-
+  wise the entries of x.
+
+  Old stuff:
+
+  matrix('magi',n) : returns a magic square of size n .
+
+  matrix('frk',n)  : returns the Franck matrix :
+
+  matrix('hilb',n) : is the inverse of the nxn Hilbert matrix
+                    (Hij= 1/(i+j-1)).
+
+SEE ALSO
+  matrices, ones, zeros, rand, poly, empty

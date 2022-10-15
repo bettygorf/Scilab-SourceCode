@@ -1,0 +1,66 @@
+
+
+
+dscr(1)                        Scilab Function                        dscr(1)
+
+
+
+
+
+
+NAME
+  dscr -  discretization of linear system
+
+CALLING SEQUENCE
+  [sld [,r]]=dscr(sl,dt [,m])
+
+PARAMETERS
+
+  sl        : syslin list containing [A,B,C,D].
+
+  dt        : real number, sampling period
+
+  m         : covariance of the input noise (continuous time)(default
+            value=0)
+
+  r         : covariance of the output noise (discrete time) given if m is
+            given as input
+
+  sld       : sampled (discrete-time) linear system, syslin list
+
+DESCRIPTION
+  Discretization of linear system. sl is a continuous-time system:
+
+  dx/dt=A*x+B*u (+ noise).
+
+  sld is the discrete-time system obtained by sampling sl with the sampling
+  period dt.
+
+SEE ALSO
+  flts, dsimul
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

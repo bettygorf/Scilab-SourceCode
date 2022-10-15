@@ -1,0 +1,32 @@
+.TH dtsi 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+dtsi - stable anti-stable decomposition
+.SH CALLING SEQUENCE
+.nf
+[Ga,Gs,Gi]=dtsi(G,[tol]) 
+.fi
+.SH PARAMETERS
+.TP 8
+G
+: linear system (\fVsyslin\fR list)
+.TP
+Ga
+: linear system (\fVsyslin\fR list) antistable and strictly proper
+.TP
+Gs
+: linear system (\fVsyslin\fR list) stable and strictly proper
+.TP
+Gi
+: real matrix (or polynomial matrix for improper systems)
+.TP
+tol
+: optional parameter for detecting stables poles. Default value: \fV100*%eps\fR
+.SH DESCRIPTION 
+returns the stable-antistable decomposition of \fVG\fR:
+.LP
+\fVG = Ga + Gs + Gi\fR,  \fV(Gi = G(oo))\fR
+.LP
+\fVG\fR can be given in state-space form or in transfer form.
+.SH SEE ALSO
+syslin, pbig, psmall, pfss

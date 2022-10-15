@@ -1,0 +1,29 @@
+.TH nnz 1 "January 1995" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+nnz -  number of non zero entries in a matrix
+.SH CALLING SEQUENCE
+.nf
+n=nnz(X)
+.fi
+.SH PARAMETERS
+.TP
+X
+: real or complex sparse (or full) matrix
+.TP
+n
+: integer, the number of non zero elements in X
+.SH DESCRIPTION
+\fVnnz\fR counts the number of non zero entries in a sparse or full matrix
+.SH EXAMPLE
+.nf
+sp=sparse([1,2;4,5;3,10],[1,2,3]);
+nnz(sp)
+a=[1 0 0 0 2];
+nnz(a)
+.fi
+.SH SEE ALSO
+spget
+
+
+                        

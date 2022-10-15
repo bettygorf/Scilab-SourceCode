@@ -1,0 +1,22 @@
+This directory contains utility functions:
+
+The Fortran routine newfun.f
+    generates the source code of the scilab routine
+    funtab.f (This last routine is the the scilab directory 
+    routines/"default" and a copy of it is in this directory).
+    newfun takes the two files fundef and funtab.f and from these
+    two files it makes the file funtab.f.new which is the new source code
+    of funtab.f. This new funtab.f manages all the primitives defined
+    in fundef. fundef is a three columns table: first column = name
+    of a primitive  second column = internal coding in scilab third column=
+    type of primitive (0 low-level, 1 system function, 2 macro-like primitive)
+
+
+The Fortran routine callsci.f 
+    is an example of calling scilab as a subroutine of a user's Fortran main
+    program (callsci.f).
+    This main program send matrices (call matz) and commands 
+    (call matlab) to scilab and gets the results back (call matz).
+
+
+

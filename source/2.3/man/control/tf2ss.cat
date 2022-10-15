@@ -1,0 +1,27 @@
+
+tf2ss(1)                       Scilab Function                       tf2ss(1)
+NAME
+  tf2ss - transfer to state-space
+
+CALLING SEQUENCE
+  sl=tf2ss(h)
+
+PARAMETERS
+
+  h    : rational matrix
+
+  sl   : linear system (syslin list sl=[A,B,C,D(s)])
+
+DESCRIPTION
+  transfer to state-space conversion:
+
+  h=C*(s*eye-A)^-1*B+D(s)
+
+EXAMPLE
+  s=poly(0,'s');
+  H=[2/s,(s+1)/(s^2-5)];
+  Sys=tf2ss(H)
+  clean(ss2tf(Sys))
+
+SEE ALSO
+  ss2tf, tf2des, des2tf

@@ -1,0 +1,66 @@
+
+
+
+contour(2)                     Scilab Function                     contour(2)
+
+
+
+
+
+
+NAME
+  contour - level curves of surface
+
+CALLING SEQUENCE
+  contour(x,y,z,nz,[theta,alpha,caption,flag,bbox,zlev])
+
+PARAMETERS
+
+  x,y       : two real vectors of size respectively (1,n1) and (1,n2).
+
+  z         : real matrix of size (n1,n2) (values)
+
+  nz        : real vector of size > 1 (the level values)  or an integer ( the
+            number of level curves ).
+
+  flag      : is a real vector of size three [mode,type,box]
+
+  zlev      : real number
+
+  [rest]    : see plot3d
+
+DESCRIPTION
+  Draws level curves of a surface z=f(x,y). The other arguments are optional,
+  they are the same as for the function plot3d (exept zlev) and their meaning
+  are the same. They control the drawing of level curves on a 3D plot.  Only
+  flag(1)=mode has a special meaning.
+
+       mode=0    : the level curves are drawn on the surface defined by
+                 (x,y,z)
+
+       mode=1    : the level curves are drawn on a 3D plot and on the plan
+                 defined by equation z=zlev
+
+       mode=2    : The level curves are drawn on a 2D plot.
+
+  Enter the command contour() to see a demo.
+
+SEE ALSO
+  fcontour
+
+AUTHOR
+  J.Ph.C..
+
+
+
+
+
+
+
+
+
+
+
+
+
+

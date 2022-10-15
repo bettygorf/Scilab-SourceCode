@@ -1,0 +1,27 @@
+.TH sinhm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sinhm - matrix hyperbolic sine
+.SH CALLING SEQUENCE
+.nf
+t=sinhm(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x,t
+: real or complex square matrix
+.SH DESCRIPTION
+sinhm is the matrix hyperbolic  sine  of the matrix x.
+\fVt=(expm(x)-expm(-x))/2\fR
+.SH EXAMPLE
+.nf
+A=[1,2;2,3]
+asinhm(sinhm(A))
+A(1,1)=%i;sinhm(A)-(expm(A)-expm(-A))/2   //Complex case
+.fi
+.SH SEE ALSO
+sinh
+
+
+
+

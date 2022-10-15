@@ -1,0 +1,472 @@
+.TH GUIDE 1 "April 1993" "Scilab Group" "Metanet Doc"
+.so man1/sci.an
+.SH NAME 
+guide - list of objects and commands of Metanet 
+.SH USING THIS GUIDE
+To the following alphabetic list of objects and properties correspond the names of the functions , macros and documentation sheets of Metanet accessible with
+the command manmeta ; the documentation sheets are denoted by (d).
+.SH LIST OF TERMS
+.TP 0
+adjacency matrix                
+.RS 
+adjacent                        
+.RS 0
+adjoint                         	
+.RS				       
+alternating                     
+.RS				       
+ancestor                        
+.RS					       
+anti-node                       
+.RS 0
+anti-symmetric                  
+.RS 0		       
+arborescence                    
+.RS 0				       
+arc                             
+.RS 0				       
+articulation point              
+.RS 0				       
+associated                     
+.RS 0				       
+	basis                           
+.RS 0				       
+associated number               
+.RS 0				       
+automorphism                    
+.RS 0				      
+balanced                       
+.RS 0			       
+basis                           
+.RS 0				       
+bicoloring                      
+.RS 0			       
+bi-connected                    
+.RS 0			       
+bipartite                       
+.RS 0			       
+block                          
+.RS 0				       
+boundary                        
+.RS 0				       
+boundary                        
+.RS 0   				       
+branch                          
+.RS 0				       
+cactus                          
+.RS 0				       
+capacity
+.RS 0
+        path of maximum                 chcm, maxcpp                        
+.RS 0		       
+cartesian                       
+.RS 0
+        product                 
+.RS 0
+        sum                             
+.RS 0
+cell                            
+.RS 0
+centre                          
+.RS 0
+chain
+.RS 0
+        eulerian                        euler                           
+.RS 0
+chord                           
+.RS 0
+chord                           
+.RS 0
+chromatic                       
+.RS 0
+        index                   
+.RS 0
+        number                  
+.RS 0
+        polynomial              
+.RS 0
+q-chromatic                     
+.RS 0
+circuit                         circuit                         
+.RS 0
+circuits                        
+.RS 0
+clique                          
+.RS 0
+closure                         
+.RS 0
+        transitive                      transc, transclo              
+.RS 0
+coboundary                      
+.RS 0
+cocircuit                       
+.RS 0
+cocycle                         
+.RS 0
+cocyclomatic                    
+.RS 0
+        number                  
+.RS 0
+coloring                        
+.RS 0
+comparability                   
+.RS 0
+        graph                   
+.RS 0
+comparability                   
+.RS 0
+complementary graph             
+.RS 0
+complete-bipartite              
+.RS 0
+component                       
+.RS 0
+composition                     
+.RS 0
+        product                 
+.RS 0
+conformal                       
+.RS 0
+conjugate                       
+.RS 0
+connected                       isconnex, connex                       
+.RS 0
+connected component             concom, concomp, connex
+.RS 0
+k-connected                     
+.RS 0
+contraction                     
+.RS 0
+cotree                          
+.RS 0
+cover                           
+.RS 0
+d-cover                         
+.RS 0
+critical                        
+.RS 0
+cubic                           
+.RS 0
+cut                             
+.RS 0
+cut-edge                        
+.RS 0
+cut-vertex                      
+.RS 0
+cycle                           
+.RS 0
+cyclomatic                      
+.RS 0
+        number                  
+.RS 0
+deficiency                      
+.RS 0
+degree                          
+.RS 0
+density                         
+.RS 0
+descendant                      
+.RS 0
+diameter                        
+.RS 0
+digital                         
+.RS 0
+        sum                     
+.RS 0
+directed distance               
+.RS 0
+dominating                      
+.RS 0
+dual                            
+.RS 0
+edge                            
+.RS 0
+edge cut-set                    
+.RS 0
+edge-connectivity               
+.RS 0
+k-edge-connected                
+.RS 0
+elementary chain                
+.RS 0
+elementary circuit              
+.RS 0
+elementary cocycle              
+.RS 0
+elementary cycle                
+.RS 0
+elementary path                 
+.RS 0
+Eulerian
+.RS 0
+        chain                           euler                        
+.RS 0
+face                            
+.RS 0
+factor                          
+.RS 0
+2-factor                        
+.RS 0
+flow  
+.RS 0
+        maximum                         maxflow, maxf
+.RS 0
+        minimal cost                    busack, kilter, minqflow, mincf0, minicf
+.RS 0
+fonctional                      
+.RS 0
+fonctional                      
+.RS 0
+forest                          
+.RS 0
+graph                           
+.RS 0
+graph of multiplicity p         
+.RS 0
+girth                           
+.RS 0
+group                           
+.RS 0
+heavy                           
+.RS 0
+hypergraph                      
+.RS 0
+incidence matrix                
+.RS 0
+incident                        
+.RS 0
+independent                     
+.RS 0
+independent set                 
+.RS 0
+induced subgraph                
+.RS 0
+injective                       
+.RS 0
+in-degree                       
+.RS 0
+in-valence                      
+.RS 0
+isolated                        
+.RS 0
+isomorphic                      
+.RS 0
+isthmus                         
+.RS 0
+junction point                  
+.RS 0
+kernel                          
+.RS 0
+length
+.RS 0
+        shortest path                   lsp                          
+.RS 0
+light                           
+.RS 0
+loop                            
+.RS 0
+matching
+.RS 0
+        maximum weight                  maxcpl
+.RS 0
+c-matching                      
+.RS 0
+matroid                         
+.RS 0
+maximal 
+.RS 0
+maximum capacity path           chcm, maxcpp
+.RS 0
+maximum flow                    maxflow, maxf
+.RS 0
+maximum weight matching         maxcpl
+.RS 0
+minimal cost flow               busack, kilter, minqflow, mincf0, minicf 
+.RS 0
+minimally-connected             
+.RS 0
+minimum
+.RS 0
+        weight tree                     dmtree, mintree
+.RS 0
+mixed                           
+.RS 0
+multiple                        
+.RS 0
+multiplicity                    
+.RS 0
+neighbour                       
+.RS 0
+network                         
+.RS 0
+node                            
+.RS 0
+order                           
+.RS 0
+ordinary graph                  
+.RS 0
+out-degree                      
+.RS 0
+out-valence                     
+.RS 0
+partial graph                   
+.RS 0
+partial hypergraph              
+.RS 0
+partial subgraph                
+.RS 0
+path                            path 
+.RS 0
+        length shortest                 lsp                           
+.RS 0
+        shortest                        ansp, dijkst, ford, johns, pcchna 
+.RS 0
+        maximum capacity                chcm, maxcpp               
+.RS 0
+p-graph                         
+.RS 0
+pendent                         
+.RS 0
+        vertex                  
+.RS 0
+perfect                         
+.RS 0
+piece                           
+.RS 0
+planar                          
+.RS 0
+potential                       
+.RS 0
+predecessor                     dfs                    
+.RS 0
+product                         
+.RS 0
+pseudo-cycle                    
+.RS 0
+pseudo-symmetric                
+.RS 0
+quadrilateral                   
+.RS 0
+quasi-strongly                  
+.RS 0
+        connected               
+.RS 0
+radius                          
+.RS 0
+rank                            frank                            
+.RS 0
+regular                         
+.RS 0
+representing graph              
+.RS 0
+return arc                      addra
+.RS 0
+root                            
+.RS 0
+rooted tree                     
+.RS 0
+rosace                          
+.RS 0
+saturated                       
+.RS 0
+scheduling                      
+.RS 0
+k-section                       
+.RS 0
+shrinkage
+.RS 0
+shortest path                   ansp, dijkst, ford, johns, pcchna
+.RS 0
+sieve                           
+.RS 0
+simple chain                    
+.RS 0
+simple circuit                  
+.RS 0
+simple graph                    
+.RS 0
+simple hypergraph               
+.RS 0
+simple path                     
+.RS 0
+sink                            
+.RS 0
+source                          
+.RS 0
+spanning tree                   
+.RS 0
+spanning subgraph               
+.RS 0
+stability number                
+.RS 0
+stigm                           
+.RS 0
+strong component
+.RS 0
+        node numbers                    sconcom, sconcomp                
+.RS 0
+strongly connected              
+.RS 0
+subgraph                        
+.RS 0
+subhypergraph                   
+.RS 0
+successor                       
+.RS 0
+sum                             
+.RS 0
+        cartesian               
+.RS 0
+        digital                 
+.RS 0
+symmetric graph                 
+.RS 0
+tension                         
+.RS 0
+topological graph               
+.RS 0
+track                           
+.RS 0
+transfer                        
+.RS 0
+transitive                      
+.RS 0
+        closure                         transc, transclo
+.RS 0
+transportation network          
+.RS 0
+transversal                     
+.RS 0
+transversal-number              
+.RS 0
+triangle                        
+.RS 0
+triangulated                    
+.RS 0
+trivalent                       
+.RS 0
+tree 				dmtree, umtree, umtree1, mintree
+.RS 0
+umultigraph                     
+.RS 0
+unattainable                    
+.RS 0
+undirected graph                makeund               
+.RS 0
+uniform                         
+.RS 0
+unimodular                      
+.RS 0
+unlabelled graph                
+.RS 0
+unsaturated                     
+.RS 0
+valency                         
+.RS 0
+vertex                          
+.RS 0
+vertex-connectivity             
+.RS 0
+        number                  
+.SH SEE ALSO
+dictionary_ef, dictionary_fe

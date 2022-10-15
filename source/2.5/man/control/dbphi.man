@@ -1,0 +1,23 @@
+.TH dbphi 1 "April 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+dbphi - frequency response to phase and magnitude representation 
+.SH CALLING SEQUENCE
+.nf
+[db,phi] =dbphi(repf)
+.fi
+.SH PARAMETERS
+.TP
+db,phi         
+: vector of gains (db) and phases (degrees)
+.TP
+repf       
+: vector of complex frequency response
+.SH DESCRIPTION
+.LP
+\fVdb(k)\fR is the magnitude of \fVrepf(k)\fR expressed in dB i.e.
+\fVdb(k)=20*log(abs(repf(k)))/log(10)\fR and \fVphi(k)\fR is the phase
+of \fVrepf(k)\fR expressed in degrees.
+.SH SEE ALSO
+repfreq, bode
+

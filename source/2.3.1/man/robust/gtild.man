@@ -1,0 +1,72 @@
+.TH gtild 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+gtild - tilde operation
+.SH CALLING SEQUENCE
+.nf
+Gt=gtild(G)
+Gt=gtild(G,flag)
+.fi
+.SH PARAMETERS
+.TP 10
+G
+: either a polynomial or a linear system (\fVsyslin\fR list) or a rational matrix
+.TP
+Gt
+: same as G
+.TP
+flag
+: character string: either \fV'c'\fR or \fV'd'\fR (optional parameter).
+.SH DESCRIPTION
+If \fVG\fR is a polynomial matrix (or a polynomial), \fVGt=gtild(G,'c')\fR
+returns the polynomial matrix \fVGt(s)=G(-s)'\fR.
+.LP
+If \fVG\fR is a polynomial matrix (or a polynomial),  \fVGt=gtild(G,'d')\fR 
+returns the polynomial matrix \fVGt=G(1/z)*z^n\fR where n is the maximum
+degree of \fVG\fR.
+.LP
+For continuous-time systems represented in state-space by a \fVsyslin\fR list,
+\fVGt = gtild(G,'c')\fR returns a state-space representation
+of \fVG(-s)'\fR i.e the \fVABCD\fR matrices of \fVGt\fR are
+\fVA',-C', B', D'\fR. If \fVG\fR is improper (\fV D= D(s)\fR) 
+the \fVD\fR matrix of \fVGt\fR is \fVD(-s)'\fR.
+.LP
+For  discrete-time systems represented in state-space by a \fVsyslin\fR list,
+\fVGt = gtild(G,'d')\fR returns a state-space representation
+of \fVG(-1/z)'\fR i.e the (possibly improper) state-space 
+representation of \fV-z*C*inv(z*A-B)*C + D(1/z) \fR. 
+.LP
+For rational matrices, \fVGt = gtild(G,'c')\fR returns the rational
+matrix \fVGt(s)=G(-s)\fR and \fVGt = gtild(G,'d')\fR returns the
+rational matrix \fVGt(z)= G(1/z)'\fR.
+.LP
+The parameter \fVflag\fR is necessary when \fVgtild\fR is called with
+a polynomial argument.
+.SH EXAMPLE
+.nf
+//Continuous time
+s=poly(0,'s');G=[s,s^3;2+s^3,s^2-5]
+Gt=gtild(G,'c')
+Gt-horner(G,-s)'   //continuous-time interpretation
+Gt=gtild(G,'d');
+Gt-horner(G,1/s)'*s^3  //discrete-time interpretation
+G=ssrand(2,2,3);Gt=gtild(G);   //State-space (G is cont. time by default)
+clean((horner(ss2tf(G),-s))'-ss2tf(Gt))   //Check
+// Discrete-time 
+z=poly(0,'z');
+Gss=ssrand(2,2,3);Gss(7)='d'; //discrete-time
+Gss(5)=[1,2;0,1];   //With a constant D matrix
+G=ss2tf(Gss);Gt1=horner(G,1/z)';
+Gt=gtild(Gss);
+Gt2=clean(ss2tf(Gt)); clean(Gt1-Gt2)  //Check
+//Improper systems
+z=poly(0,'z');
+Gss=ssrand(2,2,3);Gss(7)='d'; //discrete-time
+Gss(5)=[z,z^2;1+z,3];    //D(z) is polynomial 
+G=ss2tf(Gss);Gt1=horner(G,1/z)';  //Calculation in transfer form
+Gt=gtild(Gss);    //..in state-space 
+Gt2=clean(ss2tf(Gt));clean(Gt1-Gt2)  //Check
+.fi
+.SH SEE ALSO
+syslin, horner, factors
+

@@ -1,0 +1,46 @@
+
+integ(2)                       Scilab Function                       integ(2)
+NAME
+  integ -  Approximate 1-D integral
+
+  Author: Paulo Goncalves
+
+  Approximate 1-D integral. integ(y,x) approximates the integral of y with
+  respect to the variable x
+
+Usage
+
+  SOM = integ(y[,x])
+Input parameters
+       o y : real valued vector or matrix [ry,cy] Vector or matrix to be
+         integrated. For matrices, integ(Y) computes the integral of each
+         column of Y
+       o x :  row-vector [ry,1] Integration path of y. Default value is
+         (1:cy)
+Output parameters
+       o SOM : real valued vector [1,cy]  Finite sum approximating the
+         integral of y w.r.t the integration path x
+See also:
+  integ2d
+
+Example:
+   Cumulative Normal Distribution
+
+  sigma = 1 ; N = 100 ;
+  x = logspace(log10(0.001),log10(3),N/2) ;
+  x = [ -fliplr(x) x ] ;
+  y = 1/sqrt(2*pi) * exp( -(x.^2)./2 ) ;
+  plot(x,y)
+  for n = 1:N
+    PartialSom(n) = integ( y(1:n),x(1:n) ) ;
+  end
+
+   Vizualisation Matlab
+
+  plot(x,PartialSom,x,PartialSom,'or')
+  grid ; xlabel('x') ; title('int_{-infty}^{x} g(u) du')
+
+   Vizualisation Scilab
+
+  xbasc()
+  plot2d(x,PartialSom,-1)

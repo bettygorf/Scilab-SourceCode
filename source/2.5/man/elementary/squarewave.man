@@ -1,0 +1,35 @@
+.TH squarewave G "Sept 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+squarewave -  generates a square wave with period 2*%pi
+.SH CALLING SEQUENCE
+.nf
+x=squarewave(t [,%])
+.fi
+.SH PARAMETERS
+.TP 10
+t
+: real vector, time discretization
+.TP
+x
+: real vector, the wave value at each time point in set (-1,+1)
+.TP
+%
+: real positive scalar, the percent of the period in which the signal
+is positive. Defaut value is 50
+.SH DESCRIPTION
+\fVsquarewave(t)\fR generates the vector of the values of the square
+wave with period 2*%pi at each date given in the \fVt\fR vector.
+
+\fVsquarewave(t,%)\fR generates a square wave such that \fV%\fR  is
+the percent of the period in which the signal is positive.
+
+.SH EXAMPLE
+.nf
+t=(0:0.1:5*%pi)';
+plot2d1('onn',t,[2*sin(t),1.5*squarewave(t),squarewave(t,10)])
+.fi
+.SH SEE ALSO
+sin, cos
+
+

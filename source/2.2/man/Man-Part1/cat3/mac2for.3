@@ -1,0 +1,66 @@
+
+
+
+mac2for(1)                     Scilab Function                     mac2for(1)
+
+
+
+
+
+
+NAME
+  mac2for - function to fortran routine conversion
+
+CALLING SEQUENCE
+  [txt]=mac2for(lst,vtps)
+
+PARAMETERS
+
+  lst       : list
+
+  vtps      : list
+
+  txt       : string (fortran code)
+
+DESCRIPTION
+  lst is the output of Scilab's primitive macr2lst which converts a compiled
+  function into a list which codes the internal representation of the func-
+  tion. Thus, mac2for is usually invoked as:
+  txt=mac2for(macr2lst(function),vtps).
+  The elements of the list vtps give the type and dimensions of variables of
+  the calling sequence :
+  vtps(i)=list(typ,row_dim,col_dim)
+  where :
+
+       typ
+         : is a character string giving the type of the variable :
+
+         "0"
+           : constant,integer vector or matrix
+
+         "1"
+           : constant,double precision vector or matrix
+
+         "10"
+           : character string
+
+       row_dim
+         : character string (row dimension)
+
+       col_dim
+         : character string (column dimension)
+
+  txt  : fortran code
+
+REMARKS
+  the following keyword :
+   work,iwork,ierr
+   iw*  iiw*
+   ilbN   (N integer)
+  may not appear in the function code.
+
+SEE ALSO
+  function
+
+
+

@@ -1,0 +1,9 @@
+clear;lines(0);
+n=poly([0.2,2,5],'z');
+d=poly([0.1,0.3,7],'z');
+R=syslin('d',n,d);
+R1=factors(R,'d')
+roots(R1('num'))
+roots(R1('den'))
+w=exp(2*%i*%pi*[0:0.1:1]);
+norm(abs(horner(R1,w))-abs(horner(R,w)))

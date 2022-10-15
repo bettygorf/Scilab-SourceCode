@@ -1,0 +1,65 @@
+
+contour(2)                     Scilab Function                     contour(2)
+NAME
+  contour - level curves on a 3D surface
+
+CALLING SEQUENCE
+  contour(x,y,z,nz,[theta,alpha,leg,flag,ebox,zlev])
+
+PARAMETERS
+
+  x,y   : two real row vectors of size n1 and n2.
+
+  z     : real matrix of size (n1,n2), the values of the function.
+
+  nz    : the level values or the number of levels.
+
+        -  If nz is an integer, its value gives the number of level curves
+           equally spaced from zmin to zmax.
+
+        -  If nz is a vector, nz(i) gives the value of the ith level curve.
+
+  theta,alpha,leg,flag,ebox
+        : see plot3d.
+
+  zlev  : real number.
+
+DESCRIPTION
+  contour draws level curves of a surface z=f(x,y). The level curves are
+  drawn on a 3D surface. The optional arguments are the same as for the func-
+  tion plot3d (except zlev) and their meanings are the same.  They control
+  the drawing of level curves on a 3D plot.  Only flag(1)=mode has a special
+  meaning.
+
+       mode=0  : the level curves are drawn on the surface defined by
+               (x,y,z).
+
+       mode=1  : the level curves are drawn on a 3D plot and on the plan
+               defined by the equation z=zlev.
+
+       mode=2  : the level curves are drawn on a 2D plot.
+
+  You can change the format of the floating point number printed on the lev-
+  els by using xset("fpf",string) where string gives the format in C format
+  syntax (for example string="%.3f"). Use string="" to switch back to default
+  format.
+
+  Usually we use contour2d to draw levels curves on a 2D plot.
+
+  Enter the command contour() to see a demo.
+
+EXAMPLE
+  t=%pi*[-10:10]/10;
+  deff("[z]=surf(x,y)","z=sin(x)*cos(y)"); z=feval(t,t,surf);
+  rect=[-%pi,%pi,-%pi,%pi,-1,1];
+  contour(t,t,z,10,35,45," ",[0,1,0],rect)
+  // changing the format of the printing of the levels
+  xset("fpf","%.2f")
+  xbasc()
+  contour(t,t,z,10,35,45," ",[0,1,0],rect)
+
+SEE ALSO
+  contour2d, fcontour, fcontour2d, plot3d, xset
+
+AUTHOR
+  J.Ph.C.

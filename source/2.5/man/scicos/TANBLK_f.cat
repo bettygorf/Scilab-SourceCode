@@ -1,0 +1,14 @@
+
+TANBLK_f(5)                      Scicos Block                     TANBLK_f(5)
+NAME
+  TANBLK_f - Scicos tan block
+
+DIALOGUE PARAMETERS
+  None.
+
+DESCRIPTION
+  This block realizes vector tangent operation.  input (output) port size is
+  determined by the compiler.
+
+SEE ALSO
+  SINBLK_f

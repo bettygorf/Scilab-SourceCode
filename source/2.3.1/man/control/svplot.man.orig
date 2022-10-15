@@ -1,0 +1,52 @@
+.TH svplot 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+svplot - singular-value sigma-plot
+.SH CALLING SEQUENCE
+.nf
+[SVM]=svplot(sl,[w])
+.fi
+.SH PARAMETERS
+.TP
+sl
+: \fVsyslin\fR list
+.TP
+w
+: real vector (optional parameter)
+.SH DESCRIPTION
+computes for the system \fVsl=(A,B,C,D)\fR
+the singular values of its transfer function matrix:
+.nf
+             G(jw) = C(jw*I-A)B^-1+D
+or
+             G(exp(jw)) = C(exp(jw)*I-A)B^-1+D
+.fi
+evaluated over the frequency range specified by \fVw\fR.
+.LP
+\fVsl\fR is a \fVsyslin\fR list representing the system
+\fV[A,B,C,D]\fR in state-space form.
+.LP
+The \fVi\fR-th column of the output matrix \fVSVM\fR contains the singular
+values of \fVG(exp(jw))\fR for the \fVi\fR-th frequency value \fVw(i)\fR.
+.nf
+SVM = svplot(sl)
+.fi
+is equivalent to
+.nf
+SVM = svplot(sl,logspace(-3,3))  (continuous)
+.fi
+.nf
+SVM = svplot(sl,logspace(-3,%pi)) (discrete)
+.fi
+.SH EXAMPLE
+.nf
+x=logspace(-3,3);
+y=svplot(ssrand(2,2,4));
+xbasc();plot2d([log(x')/log(10),log(x')/log(10)],20*log(y')/log(10));
+xtitle("Singular values (db)");
+xbasc();gainplot(x,y);
+.fi
+.SH AUTHOR
+F.D
+
+

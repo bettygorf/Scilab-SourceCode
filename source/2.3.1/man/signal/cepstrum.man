@@ -1,0 +1,33 @@
+.TH cepstrum 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+cepstrum - cepstrum calculation
+.SH CALLING SEQUENCE
+.nf
+fresp = cepstrum(w,mag)
+.fi
+.SH PARAMETERS
+.TP 10
+w
+: positive real vector of frequencies (rad/sec)
+.TP
+mag
+: real vector of magnitudes (same size as \fVw\fR)
+.TP
+fresp
+: complex vector
+.SH DESCRIPTION
+\fVfresp = cepstrum(w,mag)\fR returns a frequency response \fVfresp(i)\fR
+whose magnitude at frequency \fVw(i)\fR equals \fVmag(i)\fR  and such
+that the phase of \fVfreq\fR corresponds to a stable and minimum phase
+system. \fVw\fR needs not to be sorted, but  minimal entry should not be
+close to zero and all the entries of \fVw\fR should be different.
+.SH EXAMPLE
+.nf
+w=0.1:0.1:5;mag=1+abs(sin(w));
+fresp=cepstrum(w,mag);
+plot2d([w',w'],[mag(:),abs(fresp)])
+.fi
+.SH SEE ALSO
+frfit
+

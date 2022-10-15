@@ -1,0 +1,66 @@
+
+
+
+find_freq(1)                   Scilab Function                   find_freq(1)
+
+
+
+
+
+
+NAME
+  find_freq - parameter compatibility for elliptic filter design
+
+CALLING SEQUENCE
+  [m]=find_freq(epsilon,A,n)
+
+PARAMETERS
+
+  epsilon   : passband ripple
+
+  A         : stopband attenuation
+
+  n         : filter order
+
+  m         : frequency needed for construction of elliptic filter
+
+DESCRIPTION
+  Search for m such that n=K(1-m1)K(m)/(K(m1)K(1-m)) with
+
+  m1=(epsilon*epsilon)/(A*A-1);
+
+  If m = omegar^2/omegac^2, the parameters epsilon,A,omegac,omegar and n are
+  then compatible for defining a prototype elliptic filter.
+
+AUTHOR
+  F. D.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

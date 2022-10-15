@@ -1,0 +1,42 @@
+/**/include ../../../Path.incl
+#include "../../../Imake.incl"
+
+.SUFFIXES: .gcode  .code .ps .tex   $(SUFFIXES) 
+
+SCILAB=$(SCIDIR)/bin/scilab
+BLATEXPR=$(SCIDIR)/bin/Blatexpr
+
+TEX= d7.1.tex d7.2.tex d7.3.tex d7.4.tex d7.5.tex d7.6.tex d7.7.tex \
+	d7.8.tex d7.9.tex d7.10.tex \
+	d7.11.tex d1.14.tex d1.7.tex d6.1.tex d6.2.tex
+
+PS=$(TEX:.tex=.ps)
+TESTS1=$(TEX:.tex=.ps.n)
+DIAGS=$(TEX:.tex=.dia)
+CODE=$(TEX:.tex=.code)
+
+AllTarget( $(PS) $(TEX))
+depend::
+
+distclean::
+	$(RM) $(TESTS) $(DIAGS) $(TEX) $(TESTS1) $(PS) d7.11.ps* 
+
+clean::
+	$(RM) $(TESTS) $(DIAGS) 
+
+
+.gcode.ps:
+	@$(RM) x.dat $*.ps $*.ps[0-9]
+	@$(SCIDIR)/util/scidem $(SCIDIR)/bin/scilab $*.gcode $*.dia
+	if [ $* = d7.11 ]; then \
+		$(SCIDIR)/bin/Blatexprs $* $*.ps[0-9]; \
+	fi;
+
+.ps.tex :
+	$(BLATEXPR) 0.8 0.8 $*.ps
+
+.code.ps:
+	@if [ -f $*.ps  ]; then	$(RM) $*.ps;fi;
+	@if [ -f x.dat  ]; then $(RM) x.dat;fi;
+	@$(SCIDIR)/util/scidem $(SCIDIR)/bin/scilab $*.code $*.dia
+

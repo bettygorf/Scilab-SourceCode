@@ -1,0 +1,20 @@
+.TH cothm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+cothm - matrix hyperbolic cotangent
+.SH CALLING SEQUENCE
+.nf
+[t]=cothm(x)
+.fi
+.SH DESCRIPTION
+\fVcothm(x)\fR is the matrix hyperbolic cotangent of the square matrix x.
+.SH EXAMPLE
+.nf
+A=[1,2;3,4];
+cothm(A)
+.fi
+.SH SEE ALSO
+coth
+
+
+

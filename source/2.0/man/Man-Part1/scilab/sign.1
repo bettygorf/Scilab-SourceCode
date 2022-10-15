@@ -1,0 +1,19 @@
+.TH sign 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+sign - sign function
+.SH DESCRIPTION
+For non-square matrices, \fVX=sign(A)\fR returns the matrix made
+of the signs of \fVA(i,j)\fR.
+For square and Hermitian matrices \fVX=sign(A)\fR is matrix sign
+function.
+.SH EXAMPLE
+.nf
+sign(rand(2,3));
+A=rand(4,4);B=A+A';X=sign(B);spec(X)
+.fi
+.SH SEE ALSO
+function msign in SCIDIR/macros/util
+
+
+

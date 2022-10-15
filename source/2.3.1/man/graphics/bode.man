@@ -1,0 +1,82 @@
+.TH bode 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+bode - Bode plot
+.SH CALLING SEQUENCE
+.nf
+bode(sl,[fmin,fmax] [,step] [,comments] )
+bode(sl,frq [,comments] )
+bode(frq,db,phi [,comments])
+bode(frq, repf  [,comments])
+.fi
+.SH PARAMETERS
+.TP 15
+sl
+: \fVsyslin\fR list (SISO or SIMO linear system) in continuous or 
+discrete time.
+.TP
+fmin,fmax
+: real (frequency bounds (in Hz)) 
+.TP
+step      
+: real (logarithmic step.)
+.TP
+comments 
+: vector of character strings (captions).
+.TP
+frq      
+: row vector or matrix (frequencies (in Hz) )
+(one row for each SISO subsystem).
+.TP
+db       
+: row vector or matrix ( magnitudes (in Db)).
+(one row for each SISO subsystem).
+.TP
+phi      
+: row vector or matrix ( phases (in degree))
+(one row for each SISO subsystem).
+.TP
+repf     
+: row vector or matrix of complex numbers (complex frequency response).
+.SH DESCRIPTION
+Bode plot, i.e magnitude and phase of the frequency response of \fVsl\fR.
+
+\fVsl\fR can be a continuous-time or discrete-time SIMO system (see \fVsyslin\fR).
+In case of multi-output the outputs are plotted with different
+symbols.
+
+.LP
+The frequencies are given by the bounds \fVfmin,fmax\fR (in Hz) or by a row-vector
+(or a matrix for multi-output) \fVfrq\fR.
+
+.LP
+\fVstep\fR is the ( logarithmic ) discretization step. (see \fVcalfrq\fR for the
+choice of default value).
+
+.LP
+\fVcomments \fR is a vector of character strings (captions).
+
+.LP
+\fVdb,phi\fR are the matrices of modulus (in Db) and phases (in degrees). 
+(One row for each response).
+
+.LP
+\fVrepf \fR matrix of complex numbers. One row for each response.
+
+.LP
+Default values for \fVfmin\fR and \fVfmax\fR are
+\fV1.d-3\fR, \fV1.d+3\fR if \fVsl\fR is continuous-time
+or \fV1.d-3\fR, \fV0.5\fR if \fVsl\fR is discrete-time.
+Automatic discretization of frequencies is made by \fVcalfrq\fR.
+.SH EXAMPLE
+.nf
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+title='(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)';
+bode(h,0.01,100,title);
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+xbasc()
+bode([h1;h],0.01,100,['h1';'h'])
+.fi
+.SH SEE ALSO
+black, nyquist, freq, repfreq, g_margin, p_margin, calfrq, phasemag

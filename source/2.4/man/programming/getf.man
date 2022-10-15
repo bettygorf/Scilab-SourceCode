@@ -1,0 +1,43 @@
+.TH getf 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+getf - loading function
+.SH CALLING SEQUENCE
+.nf
+getf(file-name [,opt])
+.fi
+.SH PARAMETERS
+.TP 10
+filename
+: Scilab string.
+.TP
+opt
+: optional character string 
+.RS
+.TP
+ "c"
+: loaded functions are "compiled" to be more efficient (default)
+.TP
+ "n" 
+: loaded functions are not "compiled"
+.RE
+
+.SH DESCRIPTION
+loads one or several 
+functions defined in the file \fV'file-name'\fR.
+The string \fVopt='c'\fR means that the functions are to be 
+compiled (pre-interpreted) when loaded.
+(see \fVcomp\fR).
+The first line of the file must be as follows:
+.nf
+function [s1,s2,..,slhs]=macr(e1,e2,...,erhs)  
+.fi
+\fVei\fR are input variables and \fVsi\fR are output variables.
+.SH EXAMPLE
+.nf
+	getf('SCI/macros/xdess/plot.sci')
+.fi
+.SH SEE ALSO
+comp, exec, edit
+
+

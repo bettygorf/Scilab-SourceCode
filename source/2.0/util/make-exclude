@@ -1,0 +1,14 @@
+#!/bin/csh
+#-----------------------------------------------------------
+# This script is used to create the exclude-tar file
+# files which are to be excluded fro a release tape 
+#-----------------------------------------------------------
+alias sciex "find . \( -name '*.o' -o -name '*.a' -o -name '*.aux' -o -name '*.log' -o -name '*.bin' -o -name '*.dvi' -o -name 'lib' -o -name 'names' -o -name '*.tar' -o  -name '*.tar.Z' -o -name 'TAGS' -name 'TIMETAMP' -name 'Makefile'  -name '*.*~' -name '*.bak' \) -exec echo {} \; "
+sciex >! util/exclude-tar
+ls ./tests/*.dia >> util/exclude-tar
+\ls ./bin/* >> util/exclude-tar 
+echo "./scilab.tar" >> util/exclude-tar 
+echo "./tar-update.tar" >> util/exclude-tar 
+sed -e "s+^./++" util/exclude-tar  >! util/exclude-tar1
+\rm -f eutil/xclude-tar 
+mv util/exclude-tar1 util/exclude-tar 

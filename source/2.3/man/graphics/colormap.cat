@@ -1,0 +1,10 @@
+
+colormap(2)                    Scilab Function                    colormap(2)
+NAME
+  colormap - Using colors in Scilab
+
+DESCRIPTION
+  Colormaps.
+
+SEE ALSO
+  xget, xset

@@ -1,0 +1,15 @@
+.TH ABSBLK_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+ABSBLK_f - Scicos abs block
+.SH DIALOGUE PARAMETERS
+None.
+.SH DESCRIPTION
+This block realizes element-wise vector absolute value operation. 
+This block has a single input and a single output port.
+Port dimension is determined by the context.
+
+
+
+
+

@@ -1,0 +1,66 @@
+
+
+
+PPOL(G)                        Scilab Function                        PPOL(G)
+
+
+
+
+
+
+NAME
+  ppol - pole placement
+
+CALLING SEQUENCE
+  [K]=ppol(A,B,poles)
+
+PARAMETERS
+
+  A,B       : real matrices of dimensions nxn and nxm.
+
+  poles     : real or complex vector of dimension n.
+
+  K         : real matrix
+
+DESCRIPTION
+  K=ppol(A,B,poles) returns a mxn gain matrix K such that the eigenvalues of
+  A-B*K are poles.  The pair (A,B) must be controllable. Complex number in
+  poles must appear in conjugate pairs.
+
+  An output-injection gain F for (A,C) is obtained as follows:
+
+  Ft=ppol(A',C',poles);  F=Ft'
+
+  The algorithm is by P.H. Petkov.
+
+SEE ALSO
+  canon, stabil
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

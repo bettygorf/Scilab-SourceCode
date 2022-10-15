@@ -1,0 +1,17 @@
+
+CLR_f(5)                         Scicos Block                        CLR_f(5)
+NAME
+  CLR_f - Scicos continuous-time linear system (SISO transfer function)
+
+DIALOGUE PARAMETERS
+
+  Numerator           : a polynomial in s.
+
+  Denominator         : a polynomial in s.
+
+DESCRIPTION
+  This block realizes a SISO linear system represented by its rational trans-
+  fer function Numerator/Denominator.  The rational function must be proper.
+
+SEE ALSO
+  CLSS_f, INTEGRAL_f

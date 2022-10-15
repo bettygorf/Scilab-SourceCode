@@ -1,0 +1,44 @@
+
+WT2DStruct(2)                  Scilab Function                  WT2DStruct(2)
+NAME
+  WT2DStruct - Retrieve the Structure of a 2D DWT
+
+  Author: Bertrand Guiheneuf
+
+  This routine retrieve the structure informations contained in a 2D Wavelet
+  Transform.
+
+Usage
+  [ScIndex, ScLength]=WT2DStruct(wt)
+
+Input parameters
+       o wt : real unidimensional matrix [m,n] Contains the wavelet transform
+         (obtained with FWT2D).
+Output parameters
+       o index : real matrix [NbIter,4] Contains the indexes (in wt) of the
+         projection of the signal on the multiresolution subspaces
+       o length : real matrix [NbIter,2] Contains the dimensions of each pro-
+         jection
+Description
+
+Introduction
+  This routine is used to retreive the structure information of a wavelet
+  transform. It must be used in all routine that might work on a wavelet
+  transform whose structure is not passed as an imput parameter. (That should
+  be the case of all routines taking a Wavelet Transform as input parameter
+  to minimize the input).see FWT2D.
+
+Parameters
+  Input must be a real matrix. It's generally obtained with FWT2D. It con-
+  tains the wavelet transform.  index contains the indexes of the first coef-
+  ficient of each output. At each scale Scale, the output indexes are:
+  index(Scale,1) : HL index(Scale,2) : LH index(Scale,3) : HH index(Scale,4)
+  : LL on the last scale and 0 otherwise length contains the dimensions
+  (height, width) of each output at a given Iteration.
+
+Example
+  a=rand(256,256); q=MakeQMF('daubechies',4); wt = FWT2D(a,8,q); (a few days
+  pass...)  wti, wtl=WT2DStruct(wt); wtl
+
+See Also
+  FWT2D, IWT2D, WT2Dext, WT2DVisu

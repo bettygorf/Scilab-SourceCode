@@ -1,0 +1,25 @@
+
+writb(1)                       Scilab Function                       writb(1)
+NAME
+  writb - binary write
+
+CALLING SEQUENCE
+  writb(file-name,a [,rec])
+
+PARAMETERS
+
+  file-name : string or integer
+
+  rec       : vector of positive integers. the selected records for direct
+            access.  This vector size must be equal to the number of rows of
+            a
+
+DESCRIPTION
+  writes in binary format the matrix a in the file
+
+  For direct record access, file must have been previously opened using file
+  function to set the record_length. file-name must be the result of the file
+  function.
+
+SEE ALSO
+  file, readb, write

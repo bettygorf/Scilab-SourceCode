@@ -1,0 +1,28 @@
+.TH xinit 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xinit - initialisation of a graphic driver
+.SH CALLING SEQUENCE
+.nf
+xinit([driver-name])
+.fi
+.SH PARAMETERS
+.TP 15
+driver-name
+: string (default value : DISPLAY value or 'unix:0.0')
+.SH DESCRIPTION
+Initialisation of a given driver.
+.LP
+For X-Window
+\fVdriver-name\fR must be a string which gives the name of a display
+and this function creates a new graphic window. If the argument is omitted 
+the value of the environment variable DISPLAY is used if it exists or 
+the value 'unix:0.0' is used.
+.LP
+For Postscript or Xfig \fVdriver-name\fR is a name of a file. The graphics operations
+will be recorded in the specified file.
+.SH AUTHOR
+J.Ph.C.
+
+
+

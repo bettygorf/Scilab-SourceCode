@@ -1,0 +1,45 @@
+.TH write 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME 
+write -  write in a formatted file
+.SH DESCRIPTION
+.nf
+write(file-name,a,[format])
+write(file-name,a,k,format)  
+.fi
+.SH PARAMETERS
+.TP 10
+file-name 
+: character string or integer (file name)
+.TP 10
+a         
+: real matrix or column vector of character strings.
+.TP 10
+format    
+: write format
+.TP 10
+k
+: vector 
+.SH DESCRIPTION
+writes row-by-row a real matrix or a 
+vector of character strings in a formatted file.
+.LP
+Format examples : \fV(1x,e10.3,5x,3(f3.0))\fR  ,  \fV(10x,a20)\fR ;
+integer format are not valid. (use e.g. \fVstring\fR to convert to string)
+.LP
+Direct access files :
+\fVx=write(file_desc,a,k,format)\fR.
+Here \fVk\fR is the vector of records (one record by row, i.e. 
+\fVm=prod(size(k)\fR)
+.LP
+\fVwrite(%io(2),....)\fR writes on Scilab's window.
+.SH EXAMPLE
+.nf
+A=rand(5,3); write('asave',A); A=read('asave',5,3);
+write(%io(2),A,'('' | '',3(f10.3,'' | ''))')
+write(%io(2),string(1:10))
+write(%io(2),strcat(string(1:10),','))
+.fi
+.SH SEE ALSO
+file, writb, read, print, string, fprintf, printf, sprintf
+

@@ -1,0 +1,43 @@
+.TH string 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+string - conversion to string
+.SH CALLING SEQUENCE
+.nf
+string(x)
+[out,in,text]=string(x)
+.fi
+.SH PARAMETERS
+.TP
+x
+: real matrix or function
+.SH DESCRIPTION
+converts a matrix into a matrix of strings.
+.LP
+If \fVx\fR is a function  \fV[out,in,text]=string(x)\fR  returns
+three vectors strings : \fVout\fR is the vector of output variables,
+\fVin\fR is the vector of input variables, and \fVtext\fR is
+the (column) vector of the source code of the function.
+.LP
+If  \fVx\fR is a \fVlib\fR variable, text is a character string column
+vector. The first element contains the path of library file and the 
+other the name of functions it defines.
+.LP
+Character strings are defined as \fV'string'\fR (between quotes) or
+\fV"string"\fR (between doublequotes);
+matrices of strings are defined as usual constant matrices.
+.LP
+Concatenation of strings is made by the \fV+\fR operation.
+.SH EXAMPLES
+.nf
+string(rand(2,2))
+deff('y=mymacro(x)','y=x+1')
+[out,in,text]=string(mymacro)
+x=123.356; 'Result is '+string(x)
+.fi
+.SH SEE ALSO
+part, length, format, quote, pol2str, evstr, execstr
+
+
+
+

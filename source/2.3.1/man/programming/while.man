@@ -1,0 +1,30 @@
+.TH while 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+while - while keyword 
+.SH DESCRIPTION
+\fVwhile\fR clause. Must be terminated by \fV"end"\fR
+.LP
+.Vb while expr ,instruction1,instruction2,...,end
+.LP
+.Vb while expr do instruction1,instruction2,...,end
+.LP
+.Vb while expr then instruction1,instruction2,...,end
+Notes:
+.TP
+-
+The only constraint is that each "then" or "do" keyword  must be on 
+the same line line as "while" keyword.
+.TP
+-
+The "keyword "then" or "do" can be replaced by a carriage return or a comma.
+
+.SH EXAMPLE
+.nf
+e=1; a=1; k=1;
+while norm(a-(a+e),1) > %eps, e=e/2; k=k+1; end
+e,k
+.fi
+.SH SEE ALSO
+for, select, break, return, pause
+

@@ -1,0 +1,125 @@
+adj2l (1)		- from adjacency matrix to adjacency vectors
+aff2ab (1)		- linear (affine) function to A,b conversion
+anpath (1)		- path between two nodes
+anshp (1)		- arc number shortest path  
+arma (1)		- Scilab arma library
+armac (1)		- Scilab description of an armax process
+armap (1)		- display of armax equations
+armax (1)		- armax identification 
+armax1 (1)		- armax identification
+arsimul (1)		- armax simulation 
+arspec (1)		- Spectral power estimation 
+artest (1)		- arnold dynamical system
+balanc (2)		- matrix or pencil balancing
+bdiag (2)		- block diagonalization.
+bifish (1)		- shows a bifurcation diagram in a fish population discrete time model 
+boucle (1)		- phase portrait of a dynamical system with observer
+chaintest (1)		- a three-species food chain model 
+chol (2)		- Cholesky factorization
+circuit (1)		- circuit
+coff (1)		- resolvent (cofactor method)
+colcomp (1)		- column compression, kernel, nullspace
+compht (1)		- from adjacency vectors to head-tail vectors
+compl2 (1)		- from directed to undirected adjacency vectors
+compla (1)		- from adjacency pointer and node arrays to arc array
+concomp (1)		- node set of a connected component  
+cond (1)		- condition number
+connex (1)		- connected components
+createg (1)		- new graph from a graph list
+det  (2)		- determinant
+epsfin (1)		- reduced pencil
+exar1 (1)		- armax identification example 
+exar2 (1)		- armax identification example 
+exar3 (1)		- armax identification example 
+exp (G)			- exponential, matrix exponential
+fineta (1)		- reduced pencil
+fullrf (1)		- full rank factorization
+fullrfk (1)		- full rank factorization of A^k
+fusee (1)		- a set of macro for a fusee problem 
+gbruit (1)		- noise generation 
+givens (1)		- Givens transformation
+glever (1)		- inverse of matrix pencil 
+gmaxflow (1)		- global maximum flow  
+gpeche (1)		- a fishing program
+graph (1)		- graph description 
+graph_list (1)		- description of the list representing a graph in Scilab
+gschur (G)		- generalized Schur form (matrix pencils).
+gspec (G)		- eigenvalues of matrix pencil
+guide (1)		- list of objects and commands of Metanet 
+hess (G)		- Hessenberg form
+im_inv (1)		- inverse image
+inv (G)			- matrix inverse
+isconnex (1)		- connectivity test  
+kernel (1)		- kernel, nullspace
+kroneck (1)		- Kronecker form of matrix pencil
+l2adj (1)		- from adjacency vectors to adjacency matrix
+l2g (1)			- graph from an adjacency description
+leverrier (1)		- Leverrier's algorithm
+linsolve (1)		- linear equation solver
+loadg (1)		- load an existing graph  
+lshp (1)		- length shortest path	
+lu (G)			- LU factors of Gaussian elimination
+ludel (G)		- utility function used with lufact
+lufact (G)		- sparse lu factorization
+luget (G)		- sparse lu factorization
+lusolve (G)		- sparse linear system solver
+lyap  (G)		- Lyapunov equation
+makeund (1)		- from directed to undirected graph 
+maxcpp (1)		- maximum capacity path 
+maxflow (1)		- maximum flow between two nodes  
+metanet (1)		- execute Metanet
+mincf0 (1)		- minimum linear cost flow  
+mincfr (1)		- minimum linear cost flow (relaxation method)
+mine (1)		- a mining problem 
+minicf (1)		- minimum linear cost for imposed flow	
+minqflow (1)		- minimal quadratic cost flow
+mintree (1)		- minimal weight tree 
+narsimul (1)		- armax simulation ( using rtitr) 
+netwindow (1)		- change Metanet window
+netwindows (1)		- get Metanet windows numbers
+nlev (1)		- Leverrier's algorithm 
+ns2p (1)		- path from a node sequence
+obs_cont (1)		- a controlled-observed system
+odedi (1)		- test of ode 
+orth (1)		- orthogonal basis
+p2ns (1)		- node sequence of a path
+pbig (1)		- eigen-projection 
+pencan (1)		- canonical form of matrix pencil
+penlaur (1)		- Laurent coefficients of matrix pencil
+pinv (G)		- pseudoinverse
+polar (1)		- polar form
+portr3d (1)		- 3 dimensional phase portrait.
+portrait (1)		- 2 dimensional phase portrait.
+prbs_a (1)		- pseudo random binary sequences generation 
+proj (1)		- projection
+projspec (1)		- spectral operators 
+psmall (1)		- spectral projection
+qr (G)			- QR decomposition
+quaskro (1)		- quasi-Kronecker form
+range (1)		- range (span) of A^k
+rank (G)		- rank
+rcond (1)		-  inverse condition number
+recur (1)		- a bilinear recurrent equation 
+reglin (1)		- Linear regression 
+rowcomp (1)		- row compression, range
+rowshuff (1)		- shuffle algorithm
+schur (G)		- [ordered] Schur decomposition
+sconcomp (1)		- node set of a strong connected component  
+sconnex (1)		- strong connected components 
+showns (1)		- highlight a set of nodes
+showp (1)		- highlight a set of arcs 
+spaninter (1)		- subspace intersection
+spanplus (1)		- sum of subspaces
+spantwo (1)		- sum and intersection of subspaces
+spclean (G)		- sparse matrix utility
+spec (G)		- eigenvalues
+sqroot (2)		- square root
+sva (1)			- singular value approximation
+svd  (G)		-  singular value decomposition
+sylv (G)		- Sylvester equation.
+systems	 (1)		- a collection of dynamical system 
+tangent (1)		- linearization of a dynamical system at an equiibrium point 
+tdinit (1)		- interactive initialization of the tdcs dynamical systems
+trace  (2)		- trace
+transclo (1)		- transitive closure 
+vp (1)			- ? 

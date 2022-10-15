@@ -1,0 +1,28 @@
+AdCommunications - advanced communication toolbox for parallel programming   @AdCommunications
+Example - just to test the environment   @Example
+pvm - communications with other applications using parallel virutal machine   @pvm
+pvm_addhosts - add hosts to the virtual machine.   @pvm_addhosts
+pvm_barrier - blocks the calling process until all processes   @pvm_barrier
+pvm_bcast - broacasts a message to all members of a group   @pvm_bcast
+pvm_config - sends a message   @pvm_config
+pvm_delhosts - deletes hosts from the virtual machine.   @pvm_delhosts
+pvm_exit - tells the local pvmd that this process is leaving pvm.   @pvm_exit
+pvm_get_timer - gets the system's notion of the current time.   @pvm_get_timer
+pvm_getinst - returns the instance number in a group of a pvm process.   @pvm_getinst
+pvm_gettid - returns the tid of the process identified by a   @pvm_gettid
+pvm_gsize - returns the number of members presently in the named group.   @pvm_gsize
+pvm_halt - stops the pvm daemon   @pvm_halt
+pvm_joingroup - enrolls the calling process in a named group.   @pvm_joingroup
+pvm_kill - terminates a specified pvm process.   @pvm_kill
+pvm_lvgroup - unenrolls the calling process from a named group.   @pvm_lvgroup
+pvm_mytid - returns the \fitid\fr of the calling process.   @pvm_mytid
+pvm_parent - returns the tid of the process that spawned   @pvm_parent
+pvm_recv - receive a message.   @pvm_recv
+pvm_send - immediately sends (or multicast) data.   @pvm_send
+pvm_set_timer - sets the system's notion of the current time.   @pvm_set_timer
+pvm_spawn - starts new scilab processes.   @pvm_spawn
+pvm_spawn_independent - starts new pvm processes.   @pvm_spawn_independent
+pvm_start - start the pvm daemon   @pvm_start
+pvm_tasks - returns information about the tasks running   @pvm_tasks
+pvm_tidtohost - returns the host of the specified pvm process.   @pvm_tidtohost
+pvmd3 - pvm daemon   @pvmd3

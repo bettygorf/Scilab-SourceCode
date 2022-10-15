@@ -1,0 +1,22 @@
+.TH texprint 3 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+texprint - TeX output of Scilab object
+.SH CALLING SEQUENCE
+.nf
+[text]= texprint(a) 
+.fi
+.SH PARAMETERS
+.TP 10
+a
+: Scilab object
+.TP 10
+text
+: list
+.SH DESCRIPTION
+returns the Tex source code of the Scilab variable \fVa\fR.
+\fVa\fR is a matrix (constant, polynomial, rational) or a linear system
+(\fVsyslin\fR list).
+.SH SEE ALSO
+pol2tex, pol2str
+

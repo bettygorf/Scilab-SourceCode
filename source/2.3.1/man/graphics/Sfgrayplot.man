@@ -1,0 +1,27 @@
+.TH Sfgrayplot 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+Sfgrayplot - 2D plot with gray levels
+.SH CALLING SEQUENCE
+.nf
+Sfgrayplot(x,y,f,[strf,rect,nax])
+.fi
+.SH DESCRIPTION
+Like \fVfgrayplot\fR but the function \fVfec\fR is used to smooth the 
+result. \fVf\fR is evaluated on the grid \fVx.*.y \fR  and the result is plotted assuming that \fVf\fR is linear on the triangles built on the \fVx.*.y \fR grid. Enter \fVSfgrayplot()\fR to see a demo.
+.nf
+    ______ 
+    | /| /| 
+    |/_|/_|  
+    | /| /|
+    |/_|/_|
+.fi
+.SH EXAMPLE 
+.nf
+Sfgrayplot()
+.fi 
+.SH AUTHOR
+J.Ph.C..
+.SH SEE ALSO
+Sgrayplot, fgrayplot, grayplot, fec 
+

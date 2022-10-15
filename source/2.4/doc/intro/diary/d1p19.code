@@ -1,0 +1,5 @@
+deff('[y]=calcul(x,method)','z=method(x),y=poly(z,''x'')')
+deff('[z]=meth1(x)','z=x')
+deff('[z]=meth2(x)','z=2*x')
+calcul([1,2,3],meth1)
+calcul([1,2,3],meth2)

@@ -1,0 +1,31 @@
+
+pvm_delhosts(1)                Scilab function                pvm_delhosts(1)
+NAME
+  pvm_delhosts - deletes hosts from the virtual machine.
+
+CALLING SEQUENCE
+  infos = pvm_delhosts(hosts)
+
+PARAMETERS
+
+  hosts
+       : row of strings, containing the names of the machines to be deleted.
+
+  infos
+      : row of integers, contains the status code returned by the routine for
+      the individual hosts.
+
+DESCRIPTION
+  pvm_delhosts deletes the computers of hosts from the existing configuration
+  of computers making up the virtual machine.  All PVM processes and the pvmd
+  running on these computers are killed as the computer is deleted.  The
+  array infos can be checked to determine the status of each host.  Values
+  less than zero indicate an error, while zero values indicate a success.
+  If a host fails, the PVM system will continue to function and will automat-
+  ically delete this host from the virtual machine.  It is the responsibility
+  of the application developer to make his application tolerant of host
+  failure.
+EXAMPLE
+  info = pvm_delhosts(["isostar","loop"])
+SEE ALSO
+  pvm_addhosts

@@ -1,0 +1,21 @@
+
+arc_number(1)                  Scilab function                  arc_number(1)
+NAME
+  arc_number - number of arcs of a graph
+
+CALLING SEQUENCE
+  ma = arc_number(g)
+
+PARAMETERS
+
+  g : graph list
+
+  ma : integer, number of arcs
+
+DESCRIPTION
+  arc_number returns the number ma of arcs of the graph.  If the graph is
+  directed, it is the number of edges.  If the graph is undirected, it is
+  twice the number of edges.
+
+SEE ALSO
+  edge_number, node_number

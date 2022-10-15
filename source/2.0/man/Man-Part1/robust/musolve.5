@@ -1,0 +1,72 @@
+.TH musolve 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+musolve - structured singular value, mu, ssv
+.SH CALLING SEQUENCE
+.nf
+[mu,D,G] = musolve(M,K,T,[prms])
+.fi
+.SH PARAMETERS
+.TP 8
+M
+: n by n matrix for which the upper bound of SSV is to be computed.
+.TP
+K
+: m by 1 vector contains the block structure. \fVK(i), i=1:m\fR, is the
+size of each block, and \fVsum(K)\fR should be equal to \fVn\fR.
+.TP
+T
+: m x 1 vector which indicates the type of each block. For i=1:m
+\fVT(i)=1\fR if ith perturbation block is repeated real (\fVD(i)\fR 
+and \fVG(i)\fR are full complex).
+\fVT(i)=2\fR if ith perturbation block is repeated complex (\fVD(i)\fR 
+is full complex and \fVG(i)=0\fR).
+\fVT(i)=3\fR if ith perturbation block is full complex (\fVD(i)\fR
+is repeated real and \fVG(i)=0\fR).
+.TP
+prms
+:vector \fV[pflg iter rtol utol ptol pstp dstp]\fR
+if \fVprms\fR has less than 7 elements the right most ones are set
+to their default values:
+.TP
+pflg      
+: print flag, if -1 (default) nothing is printed 
+.TP
+iter     
+: number of iterations allowed (default value=20)
+.TP
+rtol
+: required relative accuracy (default value=1.d-6) 
+.TP
+utol
+: tolerance for unfeasability (default value=1.d-10)
+.TP
+ptol 
+: tolerance for projection (default value=1.d-12)
+.TP
+pstp      
+: number of primal bisection steps (default value=5)
+.TP
+dstp     
+: number of dual Newton steps, (default value=5)
+.TP
+D 
+: block-diagonal positive hermitian n by n matrix
+.TP
+G
+: block diagonal hermitian n by n matrix
+.SH DESCRIPTION
+Minimize \fVmu\fR such that structured \fVD\fR and \fVG\fR matrices exist 
+which verify :
+.nf
+    M'*D*M + %i*(G*M - M'*G) - mu^2*D <= 0
+    D > 0
+.fi
+\fVmusolve(M,n,3)\fR is \fVmax(svd(M))\fR.
+.LP
+\fVmusolve(M,n,2)\fR is \fVmax(abs(spec(M)))\fR.
+.SH SEE ALSO
+nemirov
+
+
+

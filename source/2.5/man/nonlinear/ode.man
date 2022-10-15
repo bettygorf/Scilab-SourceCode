@@ -1,0 +1,235 @@
+.TH ode G "February 1998" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+ode - ordinary differential equation solver
+.SH CALLING SEQUENCE
+.nf
+y=ode(y0,t0,t,f)
+[y,w,iw]=ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
+[y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f  [,jac],ng,g [,w,iw])
+y=ode("discrete",y0,k0,kvect,f)
+.fi
+.SH PARAMETERS
+.TP 10
+y0 
+: real vector or matrix (initial conditions).
+.TP
+t0
+: real scalar (initial time).
+.TP
+t
+: real vector (times at which the solution is computed).
+.TP
+f
+: external (function or character string or list).
+.TP
+type 
+: one of the following character string:
+\fV"adams" "stiff" "rk" "rkf" "fix" "discrete" "roots"\fR
+.TP
+rtol,atol 
+: real constants or real vectors of the same size as \fVy\fR.
+.TP
+jac 
+: external (function or character string or list).
+.TP
+w,iw 
+: real vectors.
+.TP
+ng 
+: integer.
+.TP
+g 
+: external (function or character string or list).
+.TP
+k0
+: integer (initial time).
+kvect
+: integer vector.
+.SH DESCRIPTION
+\fVode\fR is the standard function for solving explicit ODE systems
+defined by:
+.LP
+ dy/dt=f(t,y) , y(t0)=y0.
+.LP
+It is an interface to various solvers, in particular to ODEPACK.
+The type of problem solved and the method used depend on the value of
+the first optional argument \fVtype\fR which can be one of the
+following strings:
+.TP 13
+<not given>: 
+\fVlsoda\fR solver of package ODEPACK is called by default. It automatically
+selects between nonstiff predictor-corrector Adams method and
+stiff Backward Differentiation Formula (BDF) method. It uses
+nonstiff method initially and dynamically 
+monitors data in order to decide which method to use.
+.TP 9
+"adams": 
+This is for nonstiff problems. \fVlsode\fR
+solver of package ODEPACK is called and it uses the Adams method.
+.TP 9
+"stiff": 
+This is for stiff problems. \fVlsode\fR
+solver of package ODEPACK is called and it uses the BDF method.
+.TP 6
+"rk": 
+Adaptive Runge-Kutta of order 4 (RK4) method.
+.TP 7
+"rkf": 
+The Shampine and Watts program based on Fehlberg's
+Runge-Kutta pair of order 4 and 5 (RKF45) method is
+used. This is for non-stiff and mildly stiff problems when
+derivative evaluations are inexpensive.  This method should
+generally not be used when the user is demanding high accuracy.
+.TP 7
+"fix": 
+Same solver as "rkf", but the
+user interface is very simple, i.e. only \fVrtol\fR and \fVatol\fR 
+parameters can be passed to the solver. This is the
+simplest method to try.
+.TP 9
+"root": 
+ODE solver with rootfinding capabilities. 
+The \fVlsodar\fR solver of package ODEPACK is used. It is a variant of the
+\fVlsoda\fR solver where it finds the roots of a given
+vector function. See help on ode_root for more details.
+.TP 12
+"discrete": 
+Discrete time simulation. See help on ode_discrete for more details.
+.RE
+In this help we only describe the use of \fVode\fR for standard
+explicit ODE systems.
+
+The simplest call of \fVode\fR is:
+\fVy=ode(y0,t0,t,f)\fR
+where \fVy0\fR is the vector of initial conditions, \fVt0\fR is the
+initial time, \fVt\fR is the vector of times at which the solution 
+\fVy\fR is computed and \fVy\fR is the solution vector 
+\fVy=[y(t(1)),y(t(2)),...]\fR.
+
+The input \fVf\fR to \fVode\fR is an external i.e. a function with
+specified syntax, or the name of a Fortran subroutine or a C function 
+(character string) with specified calling sequence or a list.
+.LP
+If \fVf\fR is a function, its syntax must be as follows:
+.nf
+ydot = f(t,y)
+.fi
+where \fVt\fR is a real scalar (time) and \fVy\fR a real vector (state).
+This function is the RHS of the differential equation dy/dt=f(t,y).
+
+If \fVf\fR is a character string, it refers to the name of a Fortran
+subroutine or a C function, i.e. if \fVode(y0,t0,t,"fex")\fR is the
+command, then the subroutine \fVfex\fR is called. 
+This routine must have the following calling
+sequence: \fVf(n,t,y,ydot)\fR. It can be dynamically linked to Scilab
+by the \fVlink\fR function. Examples of such programs can be seen in
+the files \fVSCIDIR/routines/default/README\fR and 
+\fVSCIDIR/routines/default/Ex-ode.f\fR.
+
+The \fVf\fR argument can also be a list:
+if \fVode(y0,t0,t,lst)\fR
+is the command, then \fVlst\fR must be a list with the following
+structure:
+.nf
+lst=list(f,u1,u2,...un)
+.fi
+where \fVf\fR is a function with syntax:
+.nf
+ydot = f(t,y,u1,u2,...,un)
+.fi
+this allows to use parameters as the arguments of \fVf\fR.
+
+The function \fVf\fR can return a \fVp x q\fR matrix instead of a vector. 
+With this matrix notation, we solve the \fVn=p+q\fR ODE's 
+system \fVdY/dt=F(t,Y)\fR where \fVY\fR is a \fVp x q\fR matrix.
+Then initial conditions, \fVY0\fR, must also be
+a \fVp x q\fR matrix and the result of \fVode\fR is the
+\fVp x q(T+1)\fR matrix \fV[Y(t_0),Y(t_1),...,Y(t_T)]\fR.
+
+Optional parameters can be given for the error of the solution:
+\fVrtol\fR and \fVatol\fR 
+are threshold for relative and absolute estimated errors. 
+The estimated error on \fVy(i)\fR is:
+.nf
+rtol(i)*abs(y(i))+atol(i)
+.fi
+and integration is carried out as far as this error is small
+for all components of the state.
+If \fVrtol\fR and/or \fVatol\fR is a constant \fVrtol(i)\fR and/or 
+\fVatol(i)\fR are
+set to this constant value. Default values for \fVrtol\fR and \fVatol\fR
+are respectively \fVrtol=1.d-5\fR and \fVatol=1.d-7\fR for most
+solvers and \fVrtol=1.d-3\fR and \fVatol=1.d-4\fR for \fV"rfk"\fR and 
+\fV"fix"\fR.
+
+For stiff problems, it is better to give the Jacobian of the RHS
+function as the optional argument \fVjac\fR.
+It is an external i.e. a function with
+specified syntax, or the name of a Fortran subroutine or a C function 
+(character string) with specified calling sequence or a list.
+.LP
+If \fVjac\fR is a function the syntax should be as follows:
+.nf
+J=jac(t,y)
+.fi
+where \fVt\fR is a real scalar (time) and \fVy\fR a real vector (state).
+The result matrix \fVJ\fR must evaluate to df/dx i.e. 
+\fVJ(k,i) = dfk /dxi\fR with \fVfk\fR = kth component of f.
+.LP
+If \fVjac\fR is a character string it refers to the name of a Fortran
+subroutine or a C function, with the following calling sequence: 
+\fVjac(n,t,y,ml,mu,J,nrpd)\fR. In most cases you have not to refer \fVml\fR,
+\fVmu\fR and \fVnrpd\fR (see source code in 
+\fVSCIDIR/routines/default/Ex-ode.f\fR for an example).
+.LP
+If \fVjac\fR is a list the same conventions as for \fVf\fR apply.
+
+Optional arguments \fVw\fR and \fViw\fR  are 
+vectors for storing information returned by the
+integration routine. When these vectors are provided in RHS
+of \fVode\fR the integration re-starts with the same  parameters as
+in its previous stop.
+
+More options can be given to ODEPACK solvers by using
+\fV%ODEOPTIONS\fR variable. See odeoptions help.
+.SH EXAMPLE
+.nf
+// Simple one dimension ODE
+// dy/dt=y^2-y sin(t)+cos(t), y(0)=0
+deff("[ydot]=f(t,y)","ydot=y^2-y*sin(t)+cos(t)")
+y0=0;t0=0;t=0:0.1:%pi;
+y=ode(y0,t0,t,f)
+plot(t,y)
+// Simulation of dx/dt = A x(t) + B u(t) with u(t)=sin(omega*t),
+// x0=[1;0]
+// solution x(t) desired at t=0.1, 0.2, 0.5 ,1.
+// A and u function are passed to RHS function in a list. 
+// B and omega are passed as global variables
+deff("[xdot]=linear(t,x,A,u)","xdot=A*x+B*u(t)")
+deff("[ut]=u(t)","ut=sin(omega*t)")
+A=[1 1;0 2];B=[1;1];omega=5;
+ode([1;0],0,[0.1,0.2,0.5,1],list(linear,A,u))
+//
+// Matrix notation
+// Integration of the Riccati differential equation
+// Xdot=A'*X + X*A - X'*B*X + C , X(0)=Identity
+// Solution at t=[1,2] 
+deff("[Xdot]=ric(t,X)","Xdot=A''*X+X*A-X''*B*X+C")   
+A=[1,1;0,2]; B=[1,0;0,1]; C=[1,0;0,1];
+t0=0;t=0:0.1:%pi;
+X=ode(eye(A),0,t,ric)
+//
+// Computation of exp(A)
+A=[1,1;0,2];
+deff("[xdot]=f(t,x)","xdot=A*x");
+ode(eye(A),0,1,f)
+ode("adams",eye(A),0,1,f)
+// with stiff matrix, Jacobian given
+A=[10,0;0,-1];
+deff("[xdot]=f(t,x)","xdot=A*x");
+deff("[J]=Jacobian(t,y)","J=A")
+ode("stiff",[0;1],0,1,f,Jacobian)
+.fi
+.SH SEE ALSO
+ode_discrete, ode_root, dassl, impl, odedc, odeoptions, csim, ltitr, rtitr

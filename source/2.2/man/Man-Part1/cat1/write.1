@@ -1,0 +1,66 @@
+
+
+
+write(1)                       Scilab Function                       write(1)
+
+
+
+
+
+
+NAME
+  write -  write in a formatted file
+
+DESCRIPTION
+  write(file-desc,a,[format])
+  write(file-desc,a,k,format)
+
+PARAMETERS
+
+  file-desc : character string specifying the file name or integer value
+            specifying logical unit (see file).
+
+  a         : real matrix or column vector of character strings.
+
+  format    : character string, specifies a "fortran" format. This character
+            string must begin with a right parenthesis and end with a left
+            parenthesis. Formats cannot mix floating point , integer or char-
+            acter edition modes
+
+  k         : integer vector
+
+DESCRIPTION
+  writes row-by-row a real matrix or a column vector of character strings in
+  a formatted file.  Each row of the a argument begin in a new line of file-
+  desc file. Depending on format a given row of the a argument may be written
+  in more than one line of file-desc file.
+
+  Format examples : (1x,e10.3,5x,3(f3.0))  ,  (10x,a20) ;
+
+  See a Fortran book for more precision.
+
+  Direct access files : x=write(file_desc,a,k,format).  Here k is the vector
+  of records (one record by row, i.e. m=prod(size(k))
+
+  write(%io(2),....) writes on Scilab's window.
+
+EXAMPLE
+  unix('rm asave')
+  A=rand(5,3); write('asave',A); A=read('asave',5,3);
+  write(%io(2),A,'('' | '',3(f10.3,'' | ''))')
+  write(%io(2),string(1:10))
+  write(%io(2),strcat(string(1:10),','))
+  write(%io(2),1:10,'(10(i2,3x))')
+
+  unix('rm foo')
+  write('foo',A)
+
+
+
+
+SEE ALSO
+  file, writb, read, print, string, fprintf, printf, sprintf
+
+
+
+

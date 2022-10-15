@@ -1,0 +1,40 @@
+
+cumprod(1)                     Scilab Function                     cumprod(1)
+NAME
+  cumprod - cumulative product
+
+CALLING SEQUENCE
+  y=cumprod(x)
+  y=cumprod(x,'r') or y=cumprod(x,1)
+  y=cumprod(x,'c') or y=cumprod(x,2)
+
+PARAMETERS
+
+  x         : vector or matrix (real or complex)
+
+  y         : vector or matrix (real or complex)
+
+DESCRIPTION
+  For a vector or a matrix x, y=cumprod(x)  returns in y the cumulative pro-
+  duct of all the entries of x taken columnwise.
+
+  y=cumprod(x,'c') (or, equivalently, y=cumprod(x,2)) returns in y the cumu-
+  lative elementwise product of the columns of x:  y(i,:)=cumprod(x(i,:))
+
+  y=cumprod(x,'r') (or, equivalently, y=cumprod(x,2)) returns in y the cumu-
+  lative elementwise product of the rows of x:  y(:,i)=cumprod(x(:,i)).
+
+EXAMPLE
+  A=[1,2;3,4];
+  cumprod(A)
+  cumprod(A,'r')
+  cumprod(A,'c')
+  rand('seed',0);
+  a=rand(3,4);
+  [m,n]=size(a);
+  w=zeros(a);
+  w(1,:)=a(1,:);
+  for k=2:m;w(k,:)=w(k-1,:).*a(k,:);end;w-cumprod(a,'r')
+
+SEE ALSO
+  cumprod, sum

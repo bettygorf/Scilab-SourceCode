@@ -1,0 +1,851 @@
+
+\def\Mhlp{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=hlp()\\ 
+\cmarg \verb@// Processus ARMAX@\\ 
+\cmarg \verb@// Auteur : JPh Chancelier ENPC Cergrene@\\ 
+\cmarg \verb@// Macros @\\ 
+\cmarg \verb@// ------@\\ 
+\cmarg \verb@// -arma  : Construit une liste representant un processus ARMAX@\\ 
+\cmarg \verb@// -armap : ``pretty'' print d'un processus ARMAX@\\ 
+\cmarg \verb@// -armax : identification des coefficients d'un ARX multidimensionnel@\\ 
+\cmarg \verb@//   A(z\^-1)y= B(z\^-1)u + sig*e(t) par une methode de moindre carres @\\ 
+\cmarg \verb@// -armax1 : identification des coefficients d'un ARMAX unidimensionnel@\\ 
+\cmarg \verb@// -arsimul : simulation d'un ARMAX ( ode )@\\ 
+\cmarg \verb@// -marsimul  : simulation d'un ARMAX ( rtitr) @\\ 
+\cmarg \verb@// -prbs    : tirages de P.R.B.S (Pseudo Random Binary Sequences)@\\ 
+\cmarg \verb@// -gbruit  : genere une macro bruit.@\\ 
+\cmarg \verb@// Exemples @\\ 
+\cmarg \verb@//---------@\\ 
+\cmarg \verb@// -exar1   : Simule et identifie un armax unidimensionnel  @\\ 
+\cmarg \verb@// -exar2   : Simule et identifie un armax 2-dimensionnel  @\\ 
+\cmarg \verb@// -exar3   : Calcul de puissances spectrales @\\ 
+\cmarg \verb@// -odedi   : Test de ode('discret') et de arsimul avec conditions initiales.@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Marma{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$ar$>$=arma(a,b,d,ny,nu,sig)\\ 
+\cmarg \verb@// Renvoit une liste Basile qui decrit un systeme ARMAX@\\ 
+\cmarg \verb@//   A(z\^-1)y= B(z\^-1)u + D(z\^-1)sig*e(t) @\\ 
+\cmarg \verb@//   a=<Id,a1,..,a\_r>; matrice (ny,r*ny)@\\ 
+\cmarg \verb@//   b=<b0,.....,b\_s>; matrice (ny,(s+1)*nu)@\\ 
+\cmarg \verb@//   d=<Id,d1,..,d\_p>; matrice (ny,p*ny);@\\ 
+\cmarg \verb@//   ny : dimension de l'observation y@\\ 
+\cmarg \verb@//   nu : dimension de la commande u@\\ 
+\cmarg \verb@//   sig : matrice (ny,ny);@\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$na,la$>$={\bf size}(a);\\ 
+\cmarg {\bf if} na$<$$>$ny,{\bf write}(\%io(2),"a(:,1) doit etre de dimension "+{\bf string}(ny));{\bf end}\\ 
+\cmarg $<$nb,lb$>$={\bf size}(b);\\ 
+\cmarg {\bf if} nb$<$$>$ny,{\bf write}(\%io(2),"b(:,1) doit etre de dimension "+{\bf string}(ny));{\bf end}\\ 
+\cmarg $<$nd,ld$>$={\bf size}(d);\\ 
+\cmarg {\bf if} nd$<$$>$ny,{\bf write}(\%io(2),"d(:,1) doit etre de dimension "+{\bf string}(ny));{\bf end}\\ 
+\cmarg ar={\bf list}('ar',a,b,d,ny,nu,sig)\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Marmap{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=armap(ar,out)\\ 
+\cmarg //$<$$>$=armap(ar,$[$out$]$)\\ 
+\cmarg \verb@//Imprime dans un ficher out ou a l'ecran les equations d'un ARMAX@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $[$lhs,rhs$]$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs=1 {\bf then} out=\%io(2),{\bf end}\\ 
+\cmarg {\bf deff}('$<$ta$>$=\%cv(x)',$[$'$[$m,n$]$={\bf size}(x);';\\ 
+\cmarg \hspace{5.0cm}'fmt={\bf format}();fmt=10$\star$$\star$fmt(2)/{\bf maxi}($<$1,{\bf norm}(x)$>$);';\\ 
+\cmarg \hspace{5.0cm}'x={\bf round}(fmt$\star$x)/fmt;';\\ 
+\cmarg \hspace{5.0cm}'t=$[$$]$;{\bf for} k=1:m,t=$[$t;''$|$''$]$,{\bf end};';\\ 
+\cmarg \hspace{5.0cm}'ta=t;{\bf for} k=1:n,';\\ 
+\cmarg \hspace{5.0cm}'        aa={\bf string}(x(:,k)),';\\ 
+\cmarg \hspace{5.0cm}'        {\bf for} l=1:m,';\\ 
+\cmarg \hspace{5.0cm}'           {\bf if} {\bf part}(aa(l),1)$<$$>$''$-$'' {\bf then} ';\\ 
+\cmarg \hspace{5.0cm}'               aa(l)='' ''+aa(l),';\\ 
+\cmarg \hspace{5.0cm}'           {\bf end},';\\ 
+\cmarg \hspace{5.0cm}'        {\bf end},';\\ 
+\cmarg \hspace{5.0cm}'        n={\bf maxi}({\bf length}(aa)),';\\ 
+\cmarg \hspace{5.0cm}'        aa={\bf part}(aa+blank,1:n),';\\ 
+\cmarg \hspace{5.0cm}'        ta=ta+aa+{\bf part}(blank,1),';\\ 
+\cmarg \hspace{5.0cm}'{\bf end};ta=ta+t;'$]$)\\ 
+\cmarg {\bf comp}(\%cv)\\ 
+\cmarg \verb@// D(x)=Ax + Bu@\\ 
+\cmarg \verb@//-------------@\\ 
+\cmarg {\bf write}(out,' ')\\ 
+\cmarg {\bf if} ar(1)$<$$>$'ar' {\bf then} {\bf write}(\%io(2)," Ce n''est pas un ARMAX");{\bf return};{\bf end};\\ 
+\cmarg \verb@//@\\ 
+\cmarg $<$ny,vid$>$={\bf size}(ar(2));\\ 
+\cmarg {\bf write}(out,"  A(z\verb+^+$-$1)y=B(z\verb+^+$-$1)u + D(z\verb+^+$-$1) e(t)");\\ 
+\cmarg {\bf write}(out,"  ");\\ 
+\cmarg M=$<$'A','B','D'$>$;\\ 
+\cmarg {\bf for} i=1:3;\\ 
+\cmarg \hspace{0.5cm}$[$a$]$=ar(i+1)\\ 
+\cmarg \hspace{0.5cm}$[$na,lna$]$={\bf size}(a)\\ 
+\cmarg \hspace{0.5cm}nli={\bf ent}((lna/na));\\ 
+\cmarg \hspace{0.5cm}{\bf if} i=2,nli={\bf ent}((lna/ar(6)));{\bf end};\\ 
+\cmarg \hspace{0.5cm}blank=$[$$]$;{\bf for} k=1:na,blank=$[$blank;'           '$]$,{\bf end}\\ 
+\cmarg \hspace{0.5cm}blank1={\bf part}(blank,1:8)\\ 
+\cmarg \hspace{0.5cm}blank1($<$na/2,na/2+1$>$)=$[$'        ';'  '+M(i)+'(s)= '$]$\\ 
+\cmarg \hspace{0.5cm}t=blank1;\\ 
+\cmarg \hspace{0.5cm}nna=na;\\ 
+\cmarg \hspace{0.5cm}{\bf if} i=2;nna=ar(6);{\bf end}\\ 
+\cmarg \hspace{0.5cm}{\bf for} j=1:nli;\\ 
+\cmarg \hspace{1.0cm}ta=a(:,1+(j$-$1)$\star$nna:j$\star$nna);\\ 
+\cmarg \hspace{1.0cm}{\bf if} t=$[$$]$,t=blank+\%cv(ta);{\bf else} t=t+\%cv(ta);{\bf end};\\ 
+\cmarg \hspace{1.0cm}str='s$\star$$\star$'+{\bf string}(j$-$1)\\ 
+\cmarg \hspace{1.0cm}{\bf if} {\bf length}(str)=4,str=str+' ';{\bf end}\\ 
+\cmarg \hspace{1.0cm}{\bf if} j$<$$>$nli;str=str+' + ';{\bf else} str=str+'   ';{\bf end}\\ 
+\cmarg \hspace{1.0cm}blank1($<$na/2,na/2+1$>$)=$[$'        ';str$]$;\\ 
+\cmarg \hspace{1.0cm}t=t+blank1\\ 
+\cmarg \hspace{1.0cm}{\bf if} {\bf length}(t(1))$>$=50,{\bf write}(out,t),{\bf write}(out," ");t=$[$$]$;{\bf end}\\ 
+\cmarg \hspace{0.5cm}{\bf end}\\ 
+\cmarg {\bf write}(out,t);\\ 
+\cmarg {\bf write}(out," ");\\ 
+\cmarg {\bf end}\\ 
+\cmarg {\bf write}(\%io(2),'  e(t)=Sig$\star$w(t); w(t) '+{\bf string}(ny)+'$-$dim bruit blanc');\\ 
+\cmarg {\bf write}(out," ");\\ 
+\cmarg \hspace{0.5cm}$[$a$]$=ar(7)\\ 
+\cmarg \hspace{0.5cm}$[$na,lna$]$={\bf size}(a)\\ 
+\cmarg \hspace{0.5cm}blank=$[$$]$;{\bf for} k=1:na,blank=$[$blank;'           '$]$,{\bf end}\\ 
+\cmarg \hspace{0.5cm}blank1={\bf part}(blank,1:8)\\ 
+\cmarg \hspace{0.5cm}blank1($<$na/2,na/2+1$>$)=$[$'        ';'  Sig=  '$]$\\ 
+\cmarg \hspace{0.5cm}t=blank1;\\ 
+\cmarg \hspace{0.5cm}ta=a;\\ 
+\cmarg \hspace{0.5cm}t=t+\%cv(ta);\\ 
+\cmarg {\bf write}(out,t);\\ 
+\cmarg {\bf write}(out," ");\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Marmax{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$la,lb,sig,resid$>$=armax(r,s,y,u,b0f,prf)\\ 
+\cmarg //$<$la,lb,sig,resid$>$=armax(r,s,y,u,$[$b0f,prf$]$)\\ 
+\cmarg \verb@// Identification ARX@\\ 
+\cmarg \verb@// Calcule les coefficients d'un ARX n-dimensionnel@\\ 
+\cmarg \verb@//   A(z\^-1)y= B(z\^-1)u + sig*e(t) @\\ 
+\cmarg \verb@//           e(t) est un bruit blanc de variance Id n-dimenssionnel@\\ 
+\cmarg \verb@//           sig: est une matrice (n,n)@\\ 
+\cmarg \verb@//           A(z)= 1+a1*z+...+a\_r*z\^r; ( r=0 => A(z)=1)@\\ 
+\cmarg \verb@//           B(z)= b0+b1*z+...+b\_s z\^s ( s=-1 => B(z)=0)@\\ 
+\cmarg \verb@// Methode :@\\ 
+\cmarg \verb@//     Cfre : Eykhoff (trends and progress in system identification) page 96@\\ 
+\cmarg \verb@//     En introduisant z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s)] et @\\ 
+\cmarg \verb@//     coef= [-a1,..,-ar,b0,...,b\_s]@\\ 
+\cmarg \verb@//     y(t)= coef* z(t) + sig*e(t) et l'algorithme consiste@\\ 
+\cmarg \verb@//     a trouver coef qui minimise  sum\_{t=1}\^N ( [y(t)- coef'z(t)]\^2)@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// Entree :@\\ 
+\cmarg \verb@//     y : serie de sortie y(ny,n); ny: dimension, @\\ 
+\cmarg \verb@//                                  n : taille de l'echantillon@\\ 
+\cmarg \verb@//     u : serie d'entree; u(nu,n); nu: dimension,@\\ 
+\cmarg \verb@//                                  n : taille de l'echantillon @\\ 
+\cmarg \verb@//     r et s : les ordres d'autoregression r >=0 et s >=-1@\\ 
+\cmarg \verb@//     b0f : est un parametre optionnel. Par defaut il vaut @\\ 
+\cmarg \verb@//         0, et signifie qu'il faut identifier b0. Si on lui @\\ 
+\cmarg \verb@//         donne la valeur 1, alors b0 est suppose valoir zero et @\\ 
+\cmarg \verb@//         n'est pas identifie.@\\ 
+\cmarg \verb@//     prf : parametre optionnel controlant le display@\\ 
+\cmarg \verb@//         si prf=1, un display est donne (c'est la valeur par defaut)@\\ 
+\cmarg \verb@// Sortie :@\\ 
+\cmarg \verb@//     la est la liste list(a,a+eta,a-eta);(eta : ecart type estime)@\\ 
+\cmarg \verb@//        a=<Id,a1,a2,...,ar> ai(ny,ny)@\\ 
+\cmarg \verb@//     lb est la liste list(b,b+etb,b-etb);(etb : ecart type estime)@\\ 
+\cmarg \verb@//        b=<b0,.....,b\_s> bi(nu,nu)@\\ 
+\cmarg \verb@//     sig est l'ecart type estime du bruit @\\ 
+\cmarg \verb@//     et resid=< sig*e(t0),....>; t0=maxi(maxi(r,s)+1,1));@\\ 
+\cmarg \verb@//     @\\ 
+\cmarg \verb@// Exemple :@\\ 
+\cmarg \verb@//     taper <a,b,sig,resid>=armax(); pour voir un exemple@\\ 
+\cmarg \verb@//     en dimension 1.@\\ 
+\cmarg \verb@// Auteur: J-Ph. Chancelier ENPC Cergrene@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs=0,{\bf write}(\%io(2),"/ / y\_t = 0.2$\star$u\_\{t$-$1\}+0.01$\star$e(t)"); \\ 
+\cmarg \hspace{2.0cm}{\bf write}(\%io(2)," {\bf rand}(''normal''); u={\bf rand}(1,1000);");\\ 
+\cmarg \hspace{2.0cm}{\bf write}(\%io(2)," y=arsimul($<$1$>$,$<$0,0.2$>$,1,0.01,u);");\\ 
+\cmarg \hspace{2.0cm}{\bf write}(\%io(2)," $<$a,b,sig,resid$>$=armax(0,1,y,u)");\\ 
+\cmarg \hspace{2.0cm}{\bf write}(\%io(2),"/ / on devrait trouver a=1,b=$<$0,0.2$>$''");\\ 
+\cmarg \hspace{2.0cm}{\bf rand}('normal'),u={\bf rand}(1,1000);\\ 
+\cmarg \hspace{2.0cm}y=arsimul($<$1$>$,$<$0,0.2$>$,1,0.01,u);\\ 
+\cmarg \hspace{2.0cm}$<$la,lb,sig,resid$>$=armax(0,1,y,u,1);\\ 
+\cmarg \hspace{2.0cm}{\bf return}\\ 
+\cmarg {\bf end} \\ 
+\cmarg {\bf if} rhs$<$=5,prf=1;{\bf end}\\ 
+\cmarg {\bf if} rhs$<$=4,b0f=0;{\bf end}\\ 
+\cmarg $<$ny,n2$>$={\bf size}(y)\\ 
+\cmarg $<$nu,n2u$>$={\bf size}(u)\\ 
+\cmarg \verb@// calul de la matrice zz telle que @\\ 
+\cmarg \verb@// zz(:,j)=[ y(t-1),...,y(t-r),u(t),...,u(t-s)]', avec  t=t0-1+j@\\ 
+\cmarg \verb@// on peut calcule zz a partir de t=t0; @\\ 
+\cmarg \hspace{0.2cm}t0={\bf maxi}({\bf maxi}(r,s)+1,1);\\ 
+\cmarg \hspace{0.2cm}{\bf if} r=0;{\bf if} s=$-$1;{\bf write}(\%io(2),"Il n''y a rien a identifier si r=0 et s=$-$1");\\ 
+\cmarg \hspace{0.2cm}{\bf return}\\ 
+\cmarg \hspace{0.2cm}{\bf end};{\bf end}\\ 
+\cmarg \hspace{0.2cm}z=$<$$>$;\\ 
+\cmarg \hspace{0.2cm}{\bf if} r$>$=1;{\bf for} i=1:r,z=$<$z ; y(:,t0$-$i:(n2$-$(i)))$>$;{\bf end};{\bf end}\\ 
+\cmarg \hspace{0.2cm}{\bf if} s$>$=$-$1;{\bf for} i=b0f:s,z=$<$z ; u(:,t0$-$i:(n2$-$(i)))$>$;{\bf end};{\bf end}\\ 
+\cmarg \hspace{0.2cm}zz= z$\star$z';\\ 
+\cmarg \hspace{0.2cm}zy= z$\star$y(:,t0:n2)';\\ 
+\cmarg \verb@// Test de rang @\\ 
+\cmarg \hspace{0.2cm}$<$nzl,nzc$>$={\bf size}(zz);\\ 
+\cmarg \hspace{0.2cm}k={\bf rank}(zz);\\ 
+\cmarg {\bf if} k$<$$>$nzl;{\bf write}(\%io(2),"Warning: z.z'' est singuliere a la precision donnee");\\ 
+\cmarg {\bf end};\\ 
+\cmarg \hspace{0.2cm}pv={\bf pinv}(zz);\\ 
+\cmarg \hspace{0.2cm}coef=(pv$\star$zy)';\\ 
+\cmarg \verb@//le bruit residuel @\\ 
+\cmarg \hspace{0.2cm}resid=y(:,t0:n2) $-$ coef$\star$z;\\ 
+\cmarg \verb@// la variance du bruit residuel@\\ 
+\cmarg \hspace{0.2cm}sig2= resid$\star$resid'/(n2$-$t0+1)\\ 
+\cmarg \verb@// l'ecart type @\\ 
+\cmarg \hspace{0.2cm}sig={\bf sqrt}(sig2);\\ 
+\cmarg \hspace{0.2cm}a=$<${\bf eye}(ny),$-$coef(:,1:r$\star$ny)$>$;\\ 
+\cmarg \hspace{0.2cm}{\bf if} b0f=0;b=coef(:,r$\star$ny+1:(s+1)$\star$nu+r$\star$ny);\\ 
+\cmarg \hspace{0.8cm}{\bf else} b=$<$0$\star${\bf ones}(ny,nu),coef(:,r$\star$ny+1:r$\star$ny+s$\star$nu)$>$;{\bf end}\\ 
+\cmarg \verb@// Pour les systemes SISO on rajoute les ecarts types des estimateur@\\ 
+\cmarg \verb@// cela reste a faire pour les MIMO @\\ 
+\cmarg \hspace{0.2cm}{\bf if} ny = 1,\\ 
+\cmarg \hspace{1.0cm}dve={\bf sqrt}({\bf diag}(sig$\star$pv,0))';\\ 
+\cmarg \hspace{1.0cm}la={\bf list}(a,a+$<$0,dve(1:r)$>$,a$-$$<$0,dve(1:r)$>$);\\ 
+\cmarg \hspace{1.0cm}{\bf if} b0f=0,lb={\bf list}(b,b+dve(r+1:r+s+1),b$-$dve(r+1:r+s+1)),\\ 
+\cmarg \hspace{1.8cm}{\bf else} \\ 
+\cmarg \hspace{1.8cm}lb={\bf list}(b,b+$<$0,dve(r+1:r+s)$>$,b$-$$<$0,dve(r+1:r+s)$>$);\\ 
+\cmarg \hspace{1.8cm}{\bf end}\\ 
+\cmarg \hspace{0.2cm}{\bf else} la=a;lb=b;{\bf end}\\ 
+\cmarg \verb@//si prf vaut 1 on donne un display @\\ 
+\cmarg {\bf if} prf=1;\\ 
+\cmarg \hspace{0.8cm}idar=arma(a,b,{\bf eye}(ny),ny,nu,sig);\\ 
+\cmarg \hspace{0.8cm}armap(idar);\\ 
+\cmarg \hspace{0.8cm}{\bf if} ny=1,\\ 
+\cmarg \hspace{1.2cm}{\bf write}(\%io(2),"  Ecart {\bf type} de l''estimateur  sur a :");\\ 
+\cmarg \hspace{1.2cm}{\bf write}(\%io(2),la(2)$-$a);\\ 
+\cmarg \hspace{1.2cm}{\bf write}(\%io(2),"  Ecart {\bf type} de l''estimateur  sur b :");\\ 
+\cmarg \hspace{1.2cm}{\bf write}(\%io(2),lb(2)$-$b);\\ 
+\cmarg \hspace{0.8cm}{\bf end}\\ 
+\cmarg {\bf end}\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Marmaxu{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$a,b,d,sig,resid$>$=armax1(r,s,q,y,u,b0f)\\ 
+\cmarg //$<$a,b,d,sig,resid$>$=armax1(r,s,q,y,u,$[$b0f$]$)\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// Calcule les coefficients d'un ARMAX monodimensionnel@\\ 
+\cmarg \verb@//   A(z\^-1)y= B(z\^-1)u + D(z\^-1)sig*e(t) @\\ 
+\cmarg \verb@//           e(t) est un bruit blanc de variance 1@\\ 
+\cmarg \verb@//           A(z)= 1+a1*z+...+a\_r*z\^r; ( r=0 => A(z)=1)@\\ 
+\cmarg \verb@//           B(z)= b0+b1*z+...+b\_s z\^s ( s=-1 => B(z)=0)@\\ 
+\cmarg \verb@//           D(z)= 1+d1*z+...+d\_q*z\^q  ( q=0 => D(z)=1)@\\ 
+\cmarg \verb@// Entree @\\ 
+\cmarg \verb@//     y : serie de sortie @\\ 
+\cmarg \verb@//     u : serie d'entree @\\ 
+\cmarg \verb@//     r,s et q : les ordres d'autoregression r >=0 et s >=-1 et @\\ 
+\cmarg \verb@//       moyenne mobile q@\\ 
+\cmarg \verb@//     b0f : est un parametre optionnel. Par defaut il vaut @\\ 
+\cmarg \verb@//         0, et signifie qu'il faut identifier b0. Si on lui @\\ 
+\cmarg \verb@//         donne la valeur 1, alors b0 est suppose valoir zero et @\\ 
+\cmarg \verb@//         n'est pas identifie.@\\ 
+\cmarg \verb@// Sortie @\\ 
+\cmarg \verb@//     a est le vecteur <1,a1,...,a\_r>@\\ 
+\cmarg \verb@//     b est le vecteur <b0,......,b\_s>@\\ 
+\cmarg \verb@//     d est le vecteur <1,d1,....,d\_q>@\\ 
+\cmarg \verb@//     sig et resid=< sig*echap(1),....,>;@\\ 
+\cmarg \verb@// Methode :@\\ 
+\cmarg \verb@//     Cfre : Eykhoff (trends and progress in system identification) page 91@\\ 
+\cmarg \verb@//     En introduisant @\\ 
+\cmarg \verb@//        z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s),e(t-1),...,e(t-q)] et @\\ 
+\cmarg \verb@//     coef= [-a1,..,-ar,b0,...,b\_s,d1,...,d\_q]'@\\ 
+\cmarg \verb@//     y(t)= coef'* z(t) + sig*e(t).@\\ 
+\cmarg \verb@//     on utilise alors la version sequentielle de l'estimation AR@\\ 
+\cmarg \verb@//     ou l'on remplace e(t-i) par son estimee@\\ 
+\cmarg \verb@//     Methode dite RLLS@\\ 
+\cmarg \verb@//     si q=0, C'est une version sequentielle de l'algorithme de @\\ 
+\cmarg \verb@//     moindre carre donne dans armax@\\ 
+\cmarg \verb@// Exemple :@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// Auteur: J-Ph. Chancelier ENPC Cergrene@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs$<$=5,b0f=0;{\bf end}\\ 
+\cmarg $<$n1,n2$>$={\bf size}(y)\\ 
+\cmarg \verb@//@\\ 
+\cmarg t0={\bf maxi}({\bf maxi}(r,s+1),1)+1;\\ 
+\cmarg {\bf pause};\\ 
+\cmarg \\ 
+\cmarg {\bf if} r$<$$>$0;XTM1=y((t0$-$1):$-$1:(t0$-$r));{\bf else} XTM1=$<$$>$;{\bf end}\\ 
+\cmarg {\bf if} s$<$$>$$-$1;UTM1=u(t0$-$b0f:$-$1:(t0$-$s));{\bf else} UTM1=$<$$>$;{\bf end}\\ 
+\cmarg {\bf if} q$<$$>$0;ETM1=0$\star${\bf ones}(1,q);{\bf else} ETM1=$<$$>$;{\bf end}\\ 
+\cmarg npar=r+s+1$-$b0f+q\\ 
+\cmarg CTM1=0$\star${\bf ones}(npar,1);\\ 
+\cmarg ZTM1=$<$XTM1,UTM1,ETM1$>$';\\ 
+\cmarg PTM1=10.0$\star${\bf eye}(npar,npar);\\ 
+\cmarg {\bf for} t=t0+1:n2,\\ 
+\cmarg \hspace{0.5cm}{\bf if} r$<$$>$0;XT=$<$ y(t$-$1), XTM1(1:(r$-$1))$>$;{\bf else} XT=$<$$>$;{\bf end}\\ 
+\cmarg \hspace{0.5cm}{\bf if} s$<$$>$$-$1;UT=$<$ u(t$-$b0f), UTM1(1:(s$-$b0f))$>$;{\bf else} UT=$<$$>$;{\bf end}\\ 
+\cmarg \hspace{0.5cm}eeTM1=y(t$-$1)$-$ CTM1'$\star$ZTM1;\\ 
+\cmarg \hspace{0.5cm}{\bf if} q$<$$>$0;ET=$<$ eeTM1, ETM1(1:(q$-$1))$>$;{\bf else} ET=$<$$>$;{\bf end}\\ 
+\cmarg \hspace{0.5cm}ZT=$<$XT,UT,ET$>$';\\ 
+\cmarg \hspace{0.5cm}//\\ 
+\cmarg \hspace{0.5cm}KT=PTM1$\star$ZT$\star$(1/(1+ ZT'$\star$PTM1$\star$ZT))\\ 
+\cmarg \hspace{0.5cm}CT=CTM1+KT$\star$(y(t)$-$ZT'$\star$CTM1)\\ 
+\cmarg \hspace{0.5cm}PT=PTM1$-$KT$\star$ZT'$\star$PTM1\\ 
+\cmarg \hspace{0.5cm}XTM1=XT;UTM1=UT;CTM1=CT;ETM1=ET;ZTM1=ZT;PTM1=PT;\\ 
+\cmarg {\bf end}\\ 
+\cmarg \verb@// On extrait les coefficients a,b,d@\\ 
+\cmarg \verb@//@\\ 
+\cmarg {\bf if} r$<$$>$0;a=$<$1;$-$CT(1:r)$>$';{\bf else} a=1;{\bf end}\\ 
+\cmarg {\bf if} s$<$$>$$-$1;\\ 
+\cmarg \hspace{1.2cm}{\bf if} b0f=1,b=$<$0;CT(r+1:(r+s+1$-$b0f))$>$';{\bf else} \\ 
+\cmarg \hspace{3.5cm}b=$<$CT(r+1:(r+s+1$-$b0f))$>$';{\bf end} \\ 
+\cmarg \hspace{1.2cm}{\bf if} q$<$$>$0;d=$<$1;CT(r+s+2$-$b0f:(r+s+q+1$-$b0f))$>$';{\bf else} d=$<$1$>$;{\bf end}\\ 
+\cmarg {\bf else} \\ 
+\cmarg \hspace{1.2cm}b=$<$0$>$;\\ 
+\cmarg \hspace{1.2cm}{\bf if} q$<$$>$0;d=$<$1;CT(r+s+1$-$b0f:(r+s+q$-$b0f))$>$';{\bf else} d=$<$1$>$;{\bf end}\\ 
+\cmarg {\bf end}\\ 
+\cmarg \verb@//On simule pour avoir l'erreur de prediction @\\ 
+\cmarg \verb@//@\\ 
+\cmarg $<$sig,resid$>$=epred(r,s,q,CTM1,y,u,b0f);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mepred{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$sig,resid$>$=epred(r,s,q,coef,y,u,b0f)\\ 
+\cmarg //$<$sig,resid$>$=epred(r,s,q,coef,y,u,b0f)\\ 
+\cmarg \verb@//  Utilisee par armax1 pour calculer l'erreur de prediction@\\ 
+\cmarg \verb@//     coef= [-a1,..,-ar,b0,...,b\_s,d1,...,d\_q]'@\\ 
+\cmarg \verb@// ou    coef= [-a1,..,-ar,b1,...,b\_s,d1,...,d\_q]' si b0f=1@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$n1,n2$>$={\bf size}(y);\\ 
+\cmarg t0={\bf maxi}({\bf maxi}(r,s+1),1)+1;\\ 
+\cmarg {\bf if} r$<$$>$0;XTM1=y((t0$-$1):$-$1:(t0$-$r));{\bf else} XTM1=$<$$>$;{\bf end}\\ 
+\cmarg {\bf if} s$<$$>$$-$1;UTM1=u(t0$-$b0f:$-$1:(t0$-$s));{\bf else} UTM1=$<$$>$;{\bf end}\\ 
+\cmarg {\bf if} q$<$$>$0;ETM1=0$\star${\bf ones}(1,q);{\bf else} ETM1=$<$$>$;{\bf end}\\ 
+\cmarg npar=r+s+1$-$b0f+q\\ 
+\cmarg ZTM1=$<$XTM1,UTM1,ETM1$>$';\\ 
+\cmarg resid=0$\star${\bf ones}(1,n2);\\ 
+\cmarg {\bf for} t=t0+1:n2,\\ 
+\cmarg \hspace{0.5cm}{\bf if} r$<$$>$0;XT=$<$ y(t$-$1), XTM1(1:(r$-$1))$>$;{\bf else} XT=$<$$>$;{\bf end}\\ 
+\cmarg \hspace{0.5cm}{\bf if} s$<$$>$$-$1;UT=$<$ u(t$-$b0f), UTM1(1:(s$-$b0f))$>$;{\bf else} UT=$<$$>$;{\bf end}\\ 
+\cmarg \hspace{0.5cm}resid(t)=y(t$-$1)$-$ coef'$\star$ZTM1;\\ 
+\cmarg \hspace{0.5cm}{\bf if} q$<$$>$0;ET=$<$ resid(t), ETM1(1:(q$-$1))$>$;{\bf else} ET=$<$$>$;{\bf end}\\ 
+\cmarg \hspace{0.5cm}ZT=$<$XT,UT,ET$>$';\\ 
+\cmarg \hspace{0.5cm}XTM1=XT;UTM1=UT;ETM1=ET;ZTM1=ZT;\\ 
+\cmarg {\bf end}\\ 
+\cmarg sig=1/(n2$-$t0)$\star${\bf sum}(resid.$\star$resid)\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Marmaxd{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$a,b,d,sig,resid$>$=armax2(r,s,q,y,u,b0f)\\ 
+\cmarg //$<$a,b,d,sig,resid$>$=armax2(r,s,q,y,u,$[$b0f$]$)\\ 
+\cmarg \verb@// Meme algorithme que pour armax1 @\\ 
+\cmarg \verb@// mais on utilise ici pour le calcul recurssif (ode version discret)@\\ 
+\cmarg \verb@// Auteur: J-Ph. Chancelier ENPC Cergrene@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs$<$=5,b0f=0;{\bf end}\\ 
+\cmarg $<$n1,n2$>$={\bf size}(y)\\ 
+\cmarg \verb@//@\\ 
+\cmarg t0={\bf maxi}({\bf maxi}(r,s+1),1)+1;\\ 
+\cmarg {\bf pause};\\ 
+\cmarg \\ 
+\cmarg {\bf if} r$<$$>$0;XTM1=y((t0$-$1):$-$1:(t0$-$r));{\bf else} XTM1=$<$$>$;{\bf end}\\ 
+\cmarg {\bf if} s$<$$>$$-$1;UTM1=u(t0$-$b0f:$-$1:(t0$-$s));{\bf else} UTM1=$<$$>$;{\bf end}\\ 
+\cmarg {\bf if} q$<$$>$0;ETM1=0$\star${\bf ones}(1,q);{\bf else} ETM1=$<$$>$;{\bf end}\\ 
+\cmarg npar=r+s+1$-$b0f+q\\ 
+\cmarg CTM1=0$\star${\bf ones}(npar,1);\\ 
+\cmarg ZTM1=$<$XTM1,UTM1,ETM1$>$';\\ 
+\cmarg PTM1=10.0$\star${\bf eye}(npar,npar);\\ 
+\cmarg {\bf for} t=t0+1:n2,\\ 
+\cmarg \hspace{0.5cm}{\bf if} r$<$$>$0;XT=$<$ y(t$-$1), XTM1(1:(r$-$1))$>$;{\bf else} XT=$<$$>$;{\bf end}\\ 
+\cmarg \hspace{0.5cm}{\bf if} s$<$$>$$-$1;UT=$<$ u(t$-$b0f), UTM1(1:(s$-$b0f))$>$;{\bf else} UT=$<$$>$;{\bf end}\\ 
+\cmarg \hspace{0.5cm}eeTM1=y(t$-$1)$-$ CTM1'$\star$ZTM1;\\ 
+\cmarg \hspace{0.5cm}{\bf if} q$<$$>$0;ET=$<$ eeTM1, ETM1(1:(q$-$1))$>$;{\bf else} ET=$<$$>$;{\bf end}\\ 
+\cmarg \hspace{0.5cm}ZT=$<$XT,UT,ET$>$';\\ 
+\cmarg \hspace{0.5cm}//\\ 
+\cmarg \hspace{0.5cm}KT=PTM1$\star$ZT$\star$(1/(1+ ZT'$\star$PTM1$\star$ZT))\\ 
+\cmarg \hspace{0.5cm}CT=CTM1+KT$\star$(y(t)$-$ZT'$\star$CTM1)\\ 
+\cmarg \hspace{0.5cm}PT=PTM1$-$KT$\star$ZT'$\star$PTM1\\ 
+\cmarg \hspace{0.5cm}XTM1=XT;UTM1=UT;CTM1=CT;ETM1=ET;ZTM1=ZT;PTM1=PT;\\ 
+\cmarg {\bf end}\\ 
+\cmarg \verb@// On extrait les coefficients a,b,d@\\ 
+\cmarg \verb@//@\\ 
+\cmarg {\bf if} r$<$$>$0;a=$<$1;$-$CT(1:r)$>$';{\bf else} a=1;{\bf end}\\ 
+\cmarg {\bf if} s$<$$>$$-$1;\\ 
+\cmarg \hspace{1.2cm}{\bf if} b0f=1,b=$<$0;CT(r+1:(r+s+1$-$b0f))$>$';{\bf else} \\ 
+\cmarg \hspace{3.5cm}b=$<$CT(r+1:(r+s+1$-$b0f))$>$';{\bf end} \\ 
+\cmarg \hspace{1.2cm}{\bf if} q$<$$>$0;d=$<$1;CT(r+s+2$-$b0f:(r+s+q+1$-$b0f))$>$';{\bf else} d=$<$1$>$;{\bf end}\\ 
+\cmarg {\bf else} \\ 
+\cmarg \hspace{1.2cm}b=$<$0$>$;\\ 
+\cmarg \hspace{1.2cm}{\bf if} q$<$$>$0;d=$<$1;CT(r+s+1$-$b0f:(r+s+q$-$b0f))$>$';{\bf else} d=$<$1$>$;{\bf end}\\ 
+\cmarg {\bf end}\\ 
+\cmarg \verb@//On simule pour avoir l'erreur de prediction @\\ 
+\cmarg \verb@//@\\ 
+\cmarg $<$sig,resid$>$=epred(r,s,q,CTM1,y,u,b0f);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mnarsimul{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$z$>$=narsimul(a,b,d,sig,u,up,yp,ep)\\ 
+\cmarg //$<$z$>$=narsimul(a,b,d,sig,u,$[$up,yp,ep$]$)\\ 
+\cmarg \verb@//            ou @\\ 
+\cmarg //$<$z$>$=narsimul(ar,u,$[$up,yp,ep$]$)\\ 
+\cmarg \verb@// Simule un ARMAX multidimensionnel@\\ 
+\cmarg \verb@// Le modele est donne par : @\\ 
+\cmarg \verb@//   A(z\^-1) z(k)= B(z\^-1)u(k) + D(z\^-1)*sig*e(k)@\\ 
+\cmarg \verb@//      (z\^-1) est l'operateur retard a1(z\^-i) y\_k= y\_{k-i}@\\ 
+\cmarg \verb@//   A(z)= Id+a1*z+...+a\_r*z\^r;  ( r=0  => A(z)=Id)@\\ 
+\cmarg \verb@//   B(z)= b0+b1*z+...+b\_s z\^s;  ( s=-1 => B(z)=0)@\\ 
+\cmarg \verb@//   D(z)= Id+d1*z+...+d\_t z\^t;  ( t=0  => D(z)=Id)@\\ 
+\cmarg \verb@// z et e sont a valeurs dans dans R\^n et u dans R\^m @\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@// En entree : @\\ 
+\cmarg \verb@//   a est la matrice <Id,a1,...,a\_r>     dimension (n,(r+1)*n)@\\ 
+\cmarg \verb@//   b est la matrice <b0,......,b\_s>     dimension (n,(s+1)*m)@\\ 
+\cmarg \verb@//   d est la matrice <Id,d\_1,......,d\_t> dimension (n,(t+1)*n)@\\ 
+\cmarg \verb@//   sig est une matrice (n,n), e\_{k} est une suite de v.a gaussiennes@\\ 
+\cmarg \verb@//   n-dimensionnelles de variance 1@\\ 
+\cmarg \verb@//   Au lieu de (a,b,d,sig) on peut donner  ar un processus arma (cfre arma)@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//   u est une matrice (m,N), donnant la chronique d'entree pour u@\\ 
+\cmarg \verb@//         u(:,j)=u\_j @\\ 
+\cmarg \verb@//   up et yp : sont optionnels et servent a d\ 'ecrire le pass\ 'e@\\ 
+\cmarg \verb@//      dont on a besoin pour calculer la sortie y(1),....y(N)@\\ 
+\cmarg \verb@//      up=< u\_0,u\_{-1},...,u\_{s-1}>;@\\ 
+\cmarg \verb@//      yp=< y\_0,y\_{-1},...,y\_{r-1}>;@\\ 
+\cmarg \verb@//      ep=< e\_0,e\_{-1},...,e\_{r-1}>;@\\ 
+\cmarg \verb@//      s'ils ne sont pas donnes on leur donne la valeur 0@\\ 
+\cmarg \verb@// En sortie on obtient :@\\ 
+\cmarg \verb@//      y(1),....,y(N)@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// On utilise le simulateur de syst\ `eme dynamique de Basile rtitr @\\ 
+\cmarg \verb@// Auteur : J-Ph. Chancelier ENPC Cergrene@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} {\bf type}(a)=15,\\ 
+\cmarg \hspace{0.8cm}{\bf if} rhs=2,z=narsimul(ar(2),ar(3),ar(4),ar(7),b);{\bf return};{\bf end}\\ 
+\cmarg \hspace{0.8cm}{\bf if} rhs=3,z=narsimul(ar(2),ar(3),ar(4),ar(7),b,d);{\bf return};{\bf end}\\ 
+\cmarg \hspace{0.8cm}{\bf if} rhs=4,z=narsimul(ar(2),ar(3),ar(4),ar(7),b,d,sig);{\bf return};{\bf end}\\ 
+\cmarg \hspace{0.8cm}{\bf if} rhs=5,z=narsimul(ar(2),ar(3),ar(4),ar(7),b,d,sig,u);{\bf return};{\bf end}\\ 
+\cmarg {\bf end} \\ 
+\cmarg \verb@// calcul de dimension @\\ 
+\cmarg \hspace{0.8cm}$<$al,ac$>$={\bf size}(a);adeg={\bf ent}(ac/al);\\ 
+\cmarg \hspace{0.8cm}$<$dl,dc$>$={\bf size}(d);ddeg={\bf ent}(dc/dl);\\ 
+\cmarg \hspace{0.8cm}$<$bl,bc$>$={\bf size}(b);$<$mmu,Nu$>$={\bf size}(u);bdeg={\bf ent}(bc/mmu);\\ 
+\cmarg \verb@// quelques tests a faire : bl=al=dl, @\\ 
+\cmarg \verb@// <i>deg*<i>l=<i>c, pour i=a,b,d@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// On genere d'abord y(k) solution de : A(z\^-1)y(k)=B\^(z-1)u(k)@\\ 
+\cmarg s={\bf poly}(0,'s');\\ 
+\cmarg \verb@// matrice polynomiale A(s)@\\ 
+\cmarg mata=a(:,1:al)$\star$(s$\star$$\star$(adeg$-$1));\\ 
+\cmarg {\bf for} j=2:adeg,mata= mata+(s$\star$$\star$(adeg$-$j))$\star$a(:,1+(j$-$1)$\star$al:j$\star$al);{\bf end}\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@// matrice polynomiale B(s)@\\ 
+\cmarg matb=b(:,1:mmu)$\star$(s$\star$$\star$(bdeg$-$1));\\ 
+\cmarg {\bf for} j=2:bdeg,matb= matb+(s$\star$$\star$(bdeg$-$j))$\star$b(:,1+(j$-$1)$\star$mmu:j$\star$mmu);{\bf end}\\ 
+\cmarg num=matb$\star$s$\star$$\star$(adeg$-$1)\\ 
+\cmarg den=mata$\star$s$\star$$\star$(bdeg$-$1);\\ 
+\cmarg \verb@// Utilisation des valeurs passees si elles sont donn\ 'ees@\\ 
+\cmarg \verb@// yp doit etre de taille (al,(adeg-1))@\\ 
+\cmarg \verb@// up doit etre de taille (al,(bdeg-1))@\\ 
+\cmarg \verb@// ep doit etre de taille (al,(adeg-1))@\\ 
+\cmarg \verb@//@\\ 
+\cmarg {\bf if} rhs $<$=5,\\ 
+\cmarg \hspace{0.8cm}up=0$\star${\bf ones}(mmu,(bdeg$-$1));\\ 
+\cmarg {\bf else} \\ 
+\cmarg \hspace{0.8cm}{\bf if} {\bf size}(up)$<$$>$$[$mmu,(bdeg$-$1)$]$,\\ 
+\cmarg \hspace{1.0cm}{\bf write}(\%io(2)," up=$<$u(0),u($-$1),..,$>$ doit etre de dimension ("...\\ 
+\cmarg \hspace{1.0cm}+strin(mmu)+','+{\bf string}(bdeg$-$1));\\ 
+\cmarg \hspace{1.0cm}{\bf return};{\bf end} \\ 
+\cmarg {\bf end}\\ 
+\cmarg {\bf if} rhs $<$=6, \\ 
+\cmarg \hspace{0.8cm}yp=0$\star${\bf ones}(al,(adeg$-$1));\\ 
+\cmarg {\bf else} \\ 
+\cmarg \hspace{0.5cm}{\bf if} {\bf size}(yp)$<$$>$$[$al,(adeg$-$1)$]$\\ 
+\cmarg \hspace{1.0cm}{\bf write}(\%io(2)," yp=$<$y(0),y($-$1),..,$>$ doit etre de dimension ("...\\ 
+\cmarg \hspace{1.0cm}+strin(al)+','+{\bf string}(adeg$-$1));\\ 
+\cmarg \hspace{1.0cm}{\bf return};{\bf end}\\ 
+\cmarg {\bf end}\\ 
+\cmarg {\bf if} rhs $<$=7, \\ 
+\cmarg \hspace{0.8cm}ep=0$\star${\bf ones}(al,(ddeg$-$1));\\ 
+\cmarg {\bf else} \\ 
+\cmarg \hspace{0.5cm}{\bf if} {\bf size}(ep)$<$$>$$[$al,(ddeg$-$1)$]$\\ 
+\cmarg \hspace{1.0cm}{\bf write}(\%io(2)," ep=$<$e(0),e($-$1),..,$>$ doit etre de dimension ("...\\ 
+\cmarg \hspace{1.0cm}+strin(al)+','+{\bf string}(ddeg$-$1));\\ 
+\cmarg \hspace{1.0cm}{\bf return};{\bf end}\\ 
+\cmarg {\bf end};\\ 
+\cmarg \verb@// Changement pour rtitr @\\ 
+\cmarg degnum={\bf maxi}({\bf degre}(den));\\ 
+\cmarg yp=$<$0$\star${\bf ones}(al,degnum+1$-$adeg),yp(:,(adeg$-$1):$-$1:1)$>$;\\ 
+\cmarg up=$<$0$\star${\bf ones}(mmu,degnum+1$-$bdeg),up(:,(bdeg$-$1):$-$1:1)$>$;\\ 
+\cmarg y={\bf rtitr}(num,den,u,up,yp);\\ 
+\cmarg \verb@// On genere bru t.q A(z\^-1)bru= D(z\^-1) sig*e(t)@\\ 
+\cmarg matd=d(:,1:dl)$\star$(s$\star$$\star$(ddeg$-$1));\\ 
+\cmarg {\bf for} j=2:ddeg,matd= matd+(s$\star$$\star$(ddeg$-$j))$\star$d(:,1+(j$-$1)$\star$dl:j$\star$dl);{\bf end}\\ 
+\cmarg num=matd$\star$s$\star$$\star$(adeg$-$1)\\ 
+\cmarg den=mata$\star$s$\star$$\star$(ddeg$-$1);\\ 
+\cmarg degnum={\bf maxi}({\bf degre}(den));\\ 
+\cmarg ep=$<$0$\star${\bf ones}(al,degnum+1$-$ddeg),ep(:,(ddeg$-$1):$-$1:1)$>$;\\ 
+\cmarg {\bf rand}('normal');\\ 
+\cmarg $<$n1,n2$>$={\bf size}(y);\\ 
+\cmarg br=sig$\star${\bf rand}(al,n2)\\ 
+\cmarg bru={\bf rtitr}(num,den,br,ep,0$\star${\bf ones}(ep));\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// z(k) = y(k) + bru(k) @\\ 
+\cmarg z=y+bru\\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+
+\def\Marsimul{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$z$>$=arsimul(a,b,d,sig,u,up,yp,ep)\\ 
+\cmarg //$<$z$>$=arsimul(a,b,d,sig,u,$[$up,yp,ep$]$)\\ 
+\cmarg \verb@//            ou @\\ 
+\cmarg //$<$z$>$=arsimul(ar,u,$[$up,yp,ep$]$)\\ 
+\cmarg \verb@// Simule un ARMAX multidimensionnel@\\ 
+\cmarg \verb@// Le modele est donne par : @\\ 
+\cmarg \verb@//   A(z\^-1) z(k)= B(z\^-1)u(k) + D(z\^-1)*sig*e(k)@\\ 
+\cmarg \verb@//      (z\^-1) est l'operateur retard a1(z\^-i) y\_k= y\_{k-i}@\\ 
+\cmarg \verb@//   A(z)= Id+a1*z+...+a\_r*z\^r;  ( r=0  => A(z)=Id)@\\ 
+\cmarg \verb@//   B(z)= b0+b1*z+...+b\_s z\^s;  ( s=-1 => B(z)=0)@\\ 
+\cmarg \verb@//   D(z)= Id+d1*z+...+d\_t z\^t;  ( t=0  => D(z)=Id)@\\ 
+\cmarg \verb@// z et e sont a valeurs dans dans R\^n et u dans R\^m @\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@// En entree :@\\ 
+\cmarg \verb@//   a est la matrice <Id,a1,...,a\_r>     dimension (n,(r+1)*n)@\\ 
+\cmarg \verb@//   b est la matrice <b0,......,b\_s>     dimension (n,(s+1)*m)@\\ 
+\cmarg \verb@//   d est la matrice <Id,d\_1,......,d\_t> dimension (n,(t+1)*n)@\\ 
+\cmarg \verb@//   u est une matrice (m,N), donnant la chronique d'entree pour u@\\ 
+\cmarg \verb@//         u(:,j)=u\_j @\\ 
+\cmarg \verb@//   sig est une matrice (n,n), e\_{k} est une suite de v.a gaussiennes@\\ 
+\cmarg \verb@//   n-dimensionnelles de variance 1@\\ 
+\cmarg \verb@//   up et yp : sont optionnels et servent a d\ 'ecrire le pass\ 'e@\\ 
+\cmarg \verb@//      dont on a besoin pour calculer la sortie y(1),....y(N)@\\ 
+\cmarg \verb@//      up=< u\_0,u\_{-1},...,u\_{s-1}>;@\\ 
+\cmarg \verb@//      yp=< y\_0,y\_{-1},...,y\_{r-1}>;@\\ 
+\cmarg \verb@//      ep=< e\_0,e\_{-1},...,e\_{r-1}>;@\\ 
+\cmarg \verb@//      s'ils ne sont pas donnes on leur donne la valeur 0@\\ 
+\cmarg \verb@// En sortie on obtient :@\\ 
+\cmarg \verb@//      y(1),....,y(N)@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// Methode : on contruit une representation d'etat  @\\ 
+\cmarg \verb@// et l'on utilise La version modifie de ode avec @\\ 
+\cmarg \verb@// l'option 'discret' qui simule un syst\ `eme discret @\\ 
+\cmarg \verb@// Auteur : J-Ph. Chancelier ENPC Cergrene@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg \verb@// @\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} {\bf type}(a)=15,\\ 
+\cmarg \hspace{0.8cm}{\bf if} rhs=2,z=arsimul(ar(2),ar(3),ar(4),ar(7),b);{\bf return};{\bf end}\\ 
+\cmarg \hspace{0.8cm}{\bf if} rhs=3,z=arsimul(ar(2),ar(3),ar(4),ar(7),b,d);{\bf return};{\bf end}\\ 
+\cmarg \hspace{0.8cm}{\bf if} rhs=4,z=arsimul(ar(2),ar(3),ar(4),ar(7),b,d,sig);{\bf return};{\bf end}\\ 
+\cmarg \hspace{0.8cm}{\bf if} rhs=5,z=arsimul(ar(2),ar(3),ar(4),ar(7),b,d,sig,u);{\bf return};{\bf end}\\ 
+\cmarg {\bf end} \\ 
+\cmarg z=0;\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg $<$bl,bc$>$={\bf size}(b);$<$al,ac$>$={\bf size}(a);$<$dl,dc$>$={\bf size}(d);\\ 
+\cmarg adeg={\bf ent}(ac/al);\\ 
+\cmarg $<$mmu,Nu$>$={\bf size}(u);\\ 
+\cmarg bdeg={\bf ent}(bc/mmu);\\ 
+\cmarg ddeg={\bf ent}(dc/dl);\\ 
+\cmarg \verb@// la dimension de la representation d'etat a retenir @\\ 
+\cmarg nn={\bf maxi}($<$adeg,bdeg,ddeg$>$)$-$1;\\ 
+\cmarg \verb@// Construction d'une representation d'etat@\\ 
+\cmarg \verb@// Y\_{n+1}= a\_fff*Y\_{n}  +b\_fff*u\_n +d\_fff* e(n)@\\ 
+\cmarg a1=$<$ $-$a(:,al+1:ac), 0$\star${\bf ones}(al,al$\star$(nn$-$adeg+1))$>$;\\ 
+\cmarg a\_fff=a1(:,1:al);\\ 
+\cmarg {\bf for} j=2:nn,a\_fff= $<$ a\_fff ; a1(:,1+(j$-$1)$\star$al:j$\star$al)$>$;{\bf end}\\ 
+\cmarg a2=$<${\bf diag}(1$\star${\bf ones}(1,nn$-$1),1).$\star$.{\bf eye}(al)$>$;\\ 
+\cmarg a\_fff=$<$a\_fff,a2(:,al+1:nn$\star$al)$>$;\\ 
+\cmarg \verb@//----b\_fff@\\ 
+\cmarg B1=$<$ b(:,mmu+1:bc), 0$\star${\bf ones}(al,mmu$\star$(nn$-$bdeg+1))$>$;\\ 
+\cmarg b\_fff=b1(:,1:mmu);\\ 
+\cmarg {\bf for} j=2:nn,b\_fff= $<$ b\_fff ; b1(:,1+(j$-$1)$\star$mmu:j$\star$mmu)$>$;{\bf end}\\ 
+\cmarg \verb@//----d\_fff@\\ 
+\cmarg D1=$<$ d(:,al+1:dc), 0$\star${\bf ones}(al,al$\star$(nn$-$ddeg+1))$>$;\\ 
+\cmarg d\_fff=d1(:,1:al)\\ 
+\cmarg {\bf for} j=2:nn,d\_fff= $<$ d\_fff ; d1(:,1+(j$-$1)$\star$al:j$\star$al)$>$;{\bf end}\\ 
+\cmarg d\_fff=d\_fff+a\_fff(:,1);\\ 
+\cmarg \verb@//@\\ 
+\cmarg {\bf deff}('$<$xdot$>$=fff(t,x)',$<$'xdot=a\_fff$\star$x+b\_fff$\star$u(:,t)+d\_fff$\star$br(:,t)'$>$);\\ 
+\cmarg \verb@// simulation de e(n) le bruit @\\ 
+\cmarg {\bf rand}('normal');\\ 
+\cmarg br=sig$\star${\bf rand}(al,Nu);\\ 
+\cmarg \verb@// Calcul des Conditions initiales pour le systeme en Y\_n @\\ 
+\cmarg \verb@// yp doit etre de taille (al,(adeg-1))@\\ 
+\cmarg \verb@// up doit etre de taille (al,(bdeg-1))@\\ 
+\cmarg \verb@// ep doit etre de taille (al,(adeg-1))@\\ 
+\cmarg {\bf if} rhs $<$=5,\\ 
+\cmarg \hspace{0.8cm}up=0$\star${\bf ones}(mmu,(bdeg$-$1));\\ 
+\cmarg {\bf else} \\ 
+\cmarg \hspace{0.8cm}{\bf if} {\bf size}(up)$<$$>$$[$mmu,(bdeg$-$1)$]$,\\ 
+\cmarg \hspace{1.0cm}{\bf write}(\%io(2)," up=$<$u(0),u($-$1),..,$>$ doit etre de dimension ("...\\ 
+\cmarg \hspace{1.0cm}+strin(mmu)+','+{\bf string}(bdeg$-$1));\\ 
+\cmarg \hspace{1.0cm}{\bf return};{\bf end} \\ 
+\cmarg {\bf end}\\ 
+\cmarg {\bf if} rhs $<$=6, \\ 
+\cmarg \hspace{0.8cm}yp=0$\star${\bf ones}(al,(adeg$-$1));\\ 
+\cmarg {\bf else} \\ 
+\cmarg \hspace{0.5cm}{\bf if} {\bf size}(yp)$<$$>$$[$al,(adeg$-$1)$]$\\ 
+\cmarg \hspace{1.0cm}{\bf write}(\%io(2)," yp=$<$y(0),y($-$1),..,$>$ doit etre de dimension ("...\\ 
+\cmarg \hspace{1.0cm}+strin(al)+','+{\bf string}(adeg$-$1));\\ 
+\cmarg \hspace{1.0cm}{\bf return};{\bf end}\\ 
+\cmarg {\bf end}\\ 
+\cmarg {\bf if} rhs $<$=7, \\ 
+\cmarg \hspace{0.8cm}ep=0$\star${\bf ones}(al,(ddeg$-$1));\\ 
+\cmarg {\bf else} \\ 
+\cmarg \hspace{0.5cm}{\bf if} {\bf size}(ep)$<$$>$$[$al,(ddeg$-$1)$]$\\ 
+\cmarg \hspace{1.0cm}{\bf write}(\%io(2)," ep=$<$e(0),e($-$1),..,$>$ doit etre de dimension ("...\\ 
+\cmarg \hspace{1.0cm}+strin(al)+','+{\bf string}(ddeg$-$1));\\ 
+\cmarg \hspace{1.0cm}{\bf return};{\bf end}\\ 
+\cmarg {\bf end};\\ 
+\cmarg yinit=$<$ yp, 0$\star${\bf ones}(al,al$\star$(nn$-$adeg+1))$>$;\\ 
+\cmarg uinit=$<$up, 0$\star${\bf ones}(al,mmu$\star$(nn$-$bdeg+1))$>$;\\ 
+\cmarg yinit={\bf matrix}(yinit,nn$\star$al,1);\\ 
+\cmarg uinit={\bf matrix}(uinit,nn$\star$mmu,1);\\ 
+\cmarg Y1=a1$\star$yinit+b1$\star$uinit;\\ 
+\cmarg {\bf for} i=1:nn$-$1, a1=$<$ $-$a1(:,al+1:nn$\star$al), 0$\star${\bf ones}(al,al)$>$;\\ 
+\cmarg \hspace{2.8cm}b1=$<$ b1(:,mmu+1:nn$\star$mmu), 0$\star${\bf ones}(al,mmu)$>$;\\ 
+\cmarg \hspace{2.8cm}y1=$<$y1;a1$\star$yinit+b1$\star$uinit$>$;\\ 
+\cmarg {\bf end};\\ 
+\cmarg \verb@// Simulation par ode et calcul de la sortie @\\ 
+\cmarg \verb@// z = premiere composante ``bloc'' de Y@\\ 
+\cmarg {\bf if} {\bf size}(a\_fff)$<$$>$$<$0,1$>$;\\ 
+\cmarg \hspace{0.8cm}z={\bf ode}('discret',y1,1,2:Nu,fff);z=$<$y1,z$>$;\\ 
+\cmarg \hspace{0.8cm}z=z(1:al,:)+b(1:al,1:mmu)$\star$u(:,:)+d(1:al,1:al)$\star$br(:,:);\\ 
+\cmarg {\bf else} \\ 
+\cmarg \hspace{0.8cm}z=b(1:al,1:mmu)$\star$u(:,:)+d(1:al,1:al)$\star$br(:,:);\\ 
+\cmarg {\bf end}\\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+
+\def\Modedi{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$y$>$=odedi()\\ 
+\cmarg //$<$y$>$=odedi()\\ 
+\cmarg \verb@// Tests simples de ode et arsimul @\\ 
+\cmarg \verb@// Test de l'option discrete de ode @\\ 
+\cmarg \verb@// x\_{n+1}=n*x\_{n}, x\_{1}=1;@\\ 
+\cmarg {\bf deff}('$<$xnp1$>$=ttt(n,xn)','xnp1=(xn$\star$$\star$2);');\\ 
+\cmarg \verb@// remarque sur la syntaxe a utiliser pour l'option discrete@\\ 
+\cmarg \verb@// utilizer y=ode('discret',y1,1,2:n,macro);y=<y1,y>@\\ 
+\cmarg \verb@// on a alors dans y=<y1,y2,....,y\_n>;@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg y={\bf ode}('discret',2,1,2:4,ttt);y=$<$2,y$>$;\\ 
+\cmarg {\bf if} y$<$$>$$<$2,4,16,256$>$;{\bf write}(\%io(2),"$[$1$]$probleme avec {\bf ode} option discrete");{\bf end}\\ 
+\cmarg \verb@// autre test @\\ 
+\cmarg y=arsimul($<$1$>$,$<$1$>$,$<$0$>$,0,1:10);\\ 
+\cmarg {\bf if} y$<$$>$(1:10);{\bf write}(\%io(2),"$[$2$]$probleme avec {\bf ode} option discrete");{\bf end}\\ 
+\cmarg y=arsimul($<$1$>$,$<$0,1$>$,$<$0$>$,0,1:10);\\ 
+\cmarg {\bf if} y$<$$>$$<$0,1:9$>$;{\bf write}(\%io(2),"$[$3$]$probleme avec {\bf ode} option discrete");{\bf end}\\ 
+\cmarg y=arsimul($<$1$>$,$<$0,1$>$,$<$0$>$,0,1:10,$<$$-$5$>$);\\ 
+\cmarg {\bf if} y$<$$>$$<$$-$5,1:9$>$;{\bf write}(\%io(2),"$[$4$]$probleme avec {\bf ode} option discrete");{\bf end}\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mexaru{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$z,zd,u,ar$>$=exar1()\\ 
+\cmarg //$<$z,zd,u,ar$>$=exar1()\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// Exemple de processus ARMAX ( K.J. Astrom)@\\ 
+\cmarg \verb@// On simule le processus armax caract\ 'eris\ 'e par @\\ 
+\cmarg \verb@//    a=<1,-2.851,2.717,-0.865>@\\ 
+\cmarg \verb@//    b=<0,1,1,1>@\\ 
+\cmarg \verb@//    d=<1,0.7,0.2>@\\ 
+\cmarg \verb@// exite par un PRBS@\\ 
+\cmarg \verb@//  z  : version sans bruit (d=0)@\\ 
+\cmarg \verb@//  zd : version bruite@\\ 
+\cmarg \verb@// Et on l'identifie avec armax ( comme le bruit est colore@\\ 
+\cmarg \verb@// armax doit donner des estimateurs biaises)@\\ 
+\cmarg \verb@// Sortie :@\\ 
+\cmarg \verb@//   z,zd,u,ar,  ar est une liste decrivant le processus arma @\\ 
+\cmarg \verb@//               voir arma et armap@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg a=$<$1,$-$2.851,2.717,$-$0.865$>$\\ 
+\cmarg b=$<$0,1,1,1$>$\\ 
+\cmarg d=$<$1,0.7,0.2$>$\\ 
+\cmarg ar=arma(a,b,d,1,1,1);\\ 
+\cmarg {\bf write}(\%io(2),"Simulation du processus ARMAX :");\\ 
+\cmarg armap(ar);\\ 
+\cmarg u=$-$prbs(300,1,{\bf ent}($<$2.5,5,10,17.5,20,22,27,35$>$$\star$100/12));\\ 
+\cmarg zd=narsimul(a,b,d,1.0,u);\\ 
+\cmarg z=narsimul(a,b,d,0.0,u);\\ 
+\cmarg {\bf write}(\%io(2),"Identification ARX (moindre carres):");\\ 
+\cmarg $<$la,lb,sig,resid$>$=armax(3,3,zd,u,1,1);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mexard{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$z,zd,u,ar$>$=exar2()\\ 
+\cmarg //$<$z,zd,u,ar$>$=exar2()\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// Exemple de processus ARMAX ( K.J. Astrom)@\\ 
+\cmarg \verb@// On simule une version bidimensionnelle @\\ 
+\cmarg \verb@// de l'exemple exar1();@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg a=$<$1,$-$2.851,2.717,$-$0.865$>$.$\star$.{\bf eye}(2)\\ 
+\cmarg b=$<$0,1,1,1$>$.$\star$.$<$1;1$>$;\\ 
+\cmarg d=$<$1,0.7,0.2$>$.$\star$.{\bf eye}(2);\\ 
+\cmarg sig={\bf eye}(2);\\ 
+\cmarg ar=arma(a,b,d,2,1,sig);\\ 
+\cmarg {\bf write}(\%io(2),"Simulation du processus ARMAX :");\\ 
+\cmarg armap(ar);\\ 
+\cmarg u=$-$prbs(300,1,{\bf ent}($<$2.5,5,10,17.5,20,22,27,35$>$$\star$100/12));\\ 
+\cmarg zd=narsimul(a,b,d,sig,u);\\ 
+\cmarg z=narsimul(a,b,d,0.0$\star$sig,u);\\ 
+\cmarg {\bf write}(\%io(2),"Identification ARX (moindre carres):");\\ 
+\cmarg $<$la,lb,sig,resid$>$=armax(3,3,zd,u,1,1);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mexart{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=exar3(m)\\ 
+\cmarg //$<$$>$=exar3(m)\\ 
+\cmarg \verb@// Estimation de la puissance spectrale d'un processus @\\ 
+\cmarg \verb@// ARMA@\\ 
+\cmarg \verb@// Exemple tire de Sawaragi et all@\\ 
+\cmarg \verb@// ou ils utilisent m=18@\\ 
+\cmarg \verb@// test de mese et de arsimul @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs=0,m=18;{\bf end}\\ 
+\cmarg a=$<$1,$-$1.3136,1.4401,$-$1.0919,+0.83527$>$\\ 
+\cmarg b=$<$0.0,0.13137,0.023543,0.10775,0.03516$>$\\ 
+\cmarg {\bf rand}('normal');\\ 
+\cmarg u={\bf rand}(1,1000)\\ 
+\cmarg z=arsimul(a,b,$<$0$>$,0,u)\\ 
+\cmarg \verb@//----En utilisant mese@\\ 
+\cmarg \verb@//calcul de la puissance spectrale estimee par la methode @\\ 
+\cmarg \verb@//du maximum d'entropie@\\ 
+\cmarg \verb@//macro mese de Basile corrigee@\\ 
+\cmarg $<$sm,fr$>$=mese(z,m);\\ 
+\cmarg \verb@//----le resultat theorique@\\ 
+\cmarg {\bf deff}('$<$gx$>$=gxx(z)',$<$'gx=({\bf abs}( a$\star$ {\bf exp}($-$\%i$\star$2$\star$\%pi$\star$x$\star$(0:4))'')$\star$$\star$2)',...\\ 
+\cmarg \hspace{1.8cm}'gx={\bf abs}( b$\star$ {\bf exp}($-$\%i$\star$2$\star$\%pi$\star$x$\star$(0:4))'')$\star$$\star$2/gx'$>$);\\ 
+\cmarg res=$<$$>$;\\ 
+\cmarg {\bf for} x=fr,res=$<$ res, gxx(x)$>$;{\bf end};\\ 
+\cmarg \verb@//----En utilisant une estimation arma d'ordre (4,4)@\\ 
+\cmarg \verb@// ce qui est un peu triche car a priori on ne connait pas l'ordre@\\ 
+\cmarg \verb@//@\\ 
+\cmarg $<$a,b,sig,resid$>$=armax(4,4,z,u)\\ 
+\cmarg res1=$<$$>$;\\ 
+\cmarg {\bf for} x=fr,res1=$<$ res1, gxx(x)$>$;{\bf end};\\ 
+\cmarg \verb@//@\\ 
+\cmarg plot2d($<$fr;fr;fr$>$',$<$20$\star${\bf log}(sm/sm(1))/{\bf log}(10);...\\ 
+\cmarg \hspace{0.5cm}20$\star${\bf log}(res/res(1))/{\bf log}(10);...\\ 
+\cmarg \hspace{0.5cm}20$\star${\bf log}(res1/res1(1))/{\bf log}(10)$>$',...\\ 
+\cmarg \hspace{0.2cm}$<$$-$2,$-$1,1$>$,"111","{\bf log}(p) : estimee ar @ valeur theorique@{\bf log}(p) : arma",...\\ 
+\cmarg \hspace{0.2cm}$<$0,$-$70,0.5,60$>$);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mprbs{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$u$>$=prbs(n,nc,ids)\\ 
+\cmarg //$<$u$>$=prbs(n,nc,$[$ids$]$)\\ 
+\cmarg \verb@// Tirage de PRBS @\\ 
+\cmarg \verb@// tirage de u=<u0,u1,...,u\_(n-1)>;@\\ 
+\cmarg \verb@// a valeurs dans {-1,1} et changeant nc fois de signe @\\ 
+\cmarg \verb@// au plus.@\\ 
+\cmarg \verb@// Si on veut fixer les dates de changement de signe on peut @\\ 
+\cmarg \verb@// fournir une variable de plus ids qui est un vecteur @\\ 
+\cmarg \verb@// donnant les indices de changement de signe de u (ordre quelconque)@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs $<$=2,\\ 
+\cmarg \hspace{0.5cm}{\bf rand}('uniform');\\ 
+\cmarg \hspace{0.5cm}yy= {\bf ent}({\bf mini}({\bf maxi}(n$\star${\bf rand}(1,nc),1$\star${\bf ones}(1,nc)),n$\star${\bf ones}(1,nc)));\\ 
+\cmarg \hspace{0.5cm}ids={\bf sort}(yy);ids=$<$n,ids,1$>$;\\ 
+\cmarg {\bf else} \\ 
+\cmarg \hspace{0.5cm}$<$n1,n2$>$={\bf size}(ids);\\ 
+\cmarg \hspace{0.5cm}ids=$<$n,{\bf mini}(n$\star${\bf ones}(ids),{\bf maxi}({\bf sort}(ids),1$\star${\bf ones}(ids))),1$>$;\\ 
+\cmarg {\bf end}\\ 
+\cmarg u=0$\star${\bf ones}(1,n);\\ 
+\cmarg $<$n1,n2$>$={\bf size}(ids);\\ 
+\cmarg val=1;\\ 
+\cmarg {\bf for} i=1:n2$-$1,\\ 
+\cmarg \hspace{2.0cm}{\bf if} ids(i)$<$$>$ids(i+1);\\ 
+\cmarg \hspace{2.0cm}u(ids(i+1):ids(i))=val$\star${\bf ones}(ids(i+1):ids(i));val=$-$1$\star$val;\\ 
+\cmarg \hspace{1.8cm}{\bf end}\\ 
+\cmarg {\bf end}\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mgbruit{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=gbruit(pas,Tmax,sig)\\ 
+\cmarg \verb@// genere une macro <b>=bruit(t)@\\ 
+\cmarg \verb@// bruit(t) fonction contante par morceau sur [k*0.1,(k+1)*0.1]@\\ 
+\cmarg \verb@// prenant des valeurs aleatoires tirees selon une loi normale@\\ 
+\cmarg \verb@// d'ecart type sig@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg {\bf rand}('normal');\\ 
+\cmarg dua\_g=sig$\star${\bf rand}(0:pas:Tmax);\\ 
+\cmarg $<$nn1,nn2$>$={\bf size}(dua\_g);\\ 
+\cmarg {\bf deff}('$<$b$>$=bruit(t)','b=dua\_g({\bf mini}({\bf maxi}((t/'+{\bf string}(Tmax)+...\\ 
+\cmarg \hspace{0.8cm}')$\star$'+{\bf string}(nn2)+',1),'+...\\ 
+\cmarg \hspace{0.8cm}{\bf string}(nn2)+'))');\\ 
+\cmarg $<$dua\_g,bruit$>$={\bf resume}(dua\_g,bruit);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+

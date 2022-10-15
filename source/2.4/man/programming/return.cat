@@ -1,0 +1,29 @@
+
+return(1)                      Scilab Function                      return(1)
+NAME
+  return - return or resume execution and copy some local variables
+
+CALLING SEQUENCE
+  return
+  [x1,..,xn]=return(a1,..,an)
+
+PARAMETERS
+
+  x
+
+DESCRIPTION
+  In a function return stops the execution of the function, [..]=return(..)
+  stops the execution of the function and put the local variables ai in cal-
+  ling environnement under names xi.
+  In pause mode, it allows to return to lower level [..]=return(..) returns
+  to lower level and put the local variables ai in calling environnement
+  under names xi.
+
+  In an execstr called by a function [..]=return(..) stops the execution of
+  the function and put the local variables ai in calling environnement under
+  names xi.
+
+  resume is equivalent to return.
+
+SEE ALSO
+  abort, break

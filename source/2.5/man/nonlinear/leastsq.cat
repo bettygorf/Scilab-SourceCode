@@ -1,0 +1,128 @@
+
+leastsq(G)                     Scilab Function                     leastsq(G)
+NAME
+  leastsq - Solves non-linear least squares problems
+
+CALLING SEQUENCE
+  [f,xopt]=leastsq([imp,] fun [,Dfun],x0)
+  [f,[xopt,[gradopt]]]=leastsq(fun [,Dfun],[contr],x0,['algo'],[df0,[mem]],
+       ,[stop],['in'])
+
+PARAMETERS
+
+  imp       : scalar argument used to set the trace mode. imp=0 nothing
+            (execpt errors) is reported, imp=1 initial and final reports,
+            imp=2 adds a report per iteration, imp>2 add reports on linear
+            search. Warning, most of these reports are written on the Scilab
+            standard output.
+  fun       : external, i.e Scilab function or string (fun is the function
+            defining the least square probleme: see below.
+
+  x0        : real vector (initial value of variable to be minimized).
+
+  f         : value of optimal least square value.
+
+  xopt      : best value of x found.
+
+  contr     : 'b',binf,bsup  with binf and bsup real vectors with same dimen-
+            sion as x0. binf and bsup are lower and upper bounds on x.
+
+  algo      : A string with possible values :'qn' or 'gc' or 'nd' . This
+            string stands for quasi-Newton (default), conjugate gradient or
+            non-differentiable respectively.  Note that 'nd' does not accept
+            bounds on x ).
+
+  df0       : real scalar. Guessed decreasing of f at first iteration.
+            (df0=1 is the default value).
+
+  mem :      integer, number of variables used to approximate the Hessian,
+            (algo='gc' or 'nd'). Default value is around 6.
+
+  stop      :  sequence of optional parameters controlling the convergence of
+            the algorithm.
+              stop=  'ar',nap, [iter [,epsg [,epsf [,epsx]]]]
+
+            "ar"
+              : reserved keyword for stopping rule selection defined as fol-
+              lows:
+
+            nap
+              : maximum number of calls to fun allowed.
+            iter
+              : maximum number of iterations allowed.
+
+            epsg
+              : threshold on gradient norm.
+
+            epsf
+              : threshold controlling decreasing of f
+
+            epsx
+              : threshold controlling variation of x.  This vector (possibly
+              matrix) of same size as x0 can be used to scale x.
+
+  "in"      : reserved  keyword for initialization of parameters used when
+            fun in given as a Fortran routine (see below).
+
+  gradopt   :  gradient of fun at xopt
+
+DESCRIPTION
+  Non-linear optimization routine for programs without constraints or with
+  bound constraints:
+  min sum(f(x).^2  w.r.t x.
+
+  fun  is an "external" i.e function, or list or Fortran routine (see "exter-
+       nal").  This external must return (f(x)) for a given x.
+
+  If fun is a function, the calling sequence for fun must be:
+  [f]=fun(x, [optional parameters]).
+  Here, fun is a function from R^n to R^m which returns f(x), a real vector (
+  value of function at x)
+
+  If fun is defined by a Fortran or C routine first argument must be a list:
+  t(fun_name,m,...)  If fun_name is a character string, it refers to the name
+  of the routine which must be linked to Scilab.
+
+  Here, the generic calling sequence for the Fortran subroutine is: subrou-
+  tine fun(m,n,x,td,f)
+  n is the dimension of x, x is an n vector, td are working arrays which may
+  also be used to pass parameters
+  If fun is given as a Fortran routine, it is possible to initialize parame-
+  ters or to send Scilab variables to this routine using sequence of argu-
+  ments 'td' , valtd. Then, the Fortran function fun(m,n , x, f, td) is eval-
+  uated with  td=valtd.  Thus, the Scilab variables  valtd  are sent to the
+  Fortran function fun.
+
+  Dfun is an "external".This external must return a matrix g such as
+       (g(i,j)=dfi/dxj) for a given x.
+
+  If Dfun is a function, the calling sequence for fun must be:
+  [g]=Dfun(x, [optional parameters]).
+
+  If Dfun is defined by a Fortran or C routine first argument must be a list:
+  t(fun_name,m,...)  If fun_name is a character string, it refers to the name
+  of the routine which must be linked to Scilab.
+
+  Here, the generic calling sequence for the Fortran subroutine is: subrou-
+  tine dfun(m,n,x,td,g)
+
+EXAMPLES
+
+  a=rand(3,2);b=[1;1;1];x0=[1;-1];
+  deff('f=fun(x,a,b)','f=a*x-b');
+  deff('g=dfun(x,a,b)','g=a');
+
+  [f,xopt]=leastsq(fun,x0)      //Simplest call
+  xopt-a//compare with linear algebra solution
+
+  [f,xopt]=leastsq(fun,dfun,x0)      //specify gradient
+
+  [f,xopt]=leastsq(list(fun,[1 2;3 4],[1;2]),x0)
+
+  deff('f=fun(x,a,b)','f=exp(a*x)-b');
+  deff('g=dfun(x,a,b)','g=a.*(exp(a*x)*ones(1,size(a,2)))');
+
+  [f,xopt]=leastsq(list(fun,[1 2;3 4],[1;2]),x0)
+
+SEE ALSO
+  external, quapro, linpro

@@ -1,0 +1,23 @@
+.TH logspace 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+logspace - logarithmically spaced vector
+.SH CALLING SEQUENCE
+.nf
+logspace(d1,d2, [n]) 
+.fi
+.SH PARAMETERS
+.TP 10
+d1,d2
+: real or complex scalar (special meaning for \fV%pi\fR)
+.TP 10
+n
+: integer (number of values) (default value = 50)
+.SH DESCRIPTION
+returns a row vector of \fVn\fR logarithmically
+equally spaced points between \fV10^d1\fR and \fV10^d2\fR.  If \fVd2=%pi\fR
+then the points are between \fV10^d1\fR and \fVpi\fR.
+.SH SEE ALSO
+linspace
+
+

@@ -1,0 +1,71 @@
+.TH scilab 1 "May 1994" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+scilab  - Major unix script to execute Scilab and miscellaneous tools
+.SH CALLING SEQUENCE
+.nf
+scilab [-ns -nw -display display -f file -args arguments]
+scilab -help [ <key> ]
+scilab -k <key>
+scilab -xk <key>
+scilab -link <objects>
+.fi
+.SH DESCRIPTION
+.TP
+scilab [-ns -nw -display display -f path -args arguments]
+: run scilab. 
+.RS
+.TP 
+\fV-ns\fR
+:if this option is  present the startup file
+\fVSCI/scilab.star\fR is not executed. 
+.TP
+\fV-nw\fR
+:if this option is present then 
+scilab is not run in an X window. 
+.TP
+\fV-f file\fR
+: if this option is present then Scilab script
+\fVfile\fR is executed first into Scilab. 
+.TP
+\fV-args arguments\fR
+: if this option is present arguments are passed to Scilab. They
+can then be got by sciargs function. For multi arguments passing use a
+quoted, blank separated sequence of words like:
+ \fVscilab -args 'foo1 foo2'\fR
+.RE
+.TP
+scilab -help <key>
+: write on-line documentation about <key> (usually automatically called 
+by scilab command "help <key>").
+Example:
+.nf
+scilab -help plot3d
+.fi
+.TP
+scilab -k <key>
+: gives the list of Scilab commands containing the 
+keyword <key> in their description (same as UNIX command \fVman -k\fR) 
+.TP
+scilab -xk <key>
+: gives the list of Scilab commands containing the 
+keyword <key> in their description in a X window.
+.TP
+scilab -link <objects>
+: Is used to produce a local \fVscilex\fR (executable code
+of Scilab) linked with the  additional files given by the 
+user in \fV<objects>\fR.
+
+If, in the list of object files, some names are known from 
+\fVSCIDIR/routines/default\fR, then the \fVscilex\fR default 
+files are omitted and replaced with the given ones .
+
+This command also produces an \fVxscilab\fR script, which when called 
+will ran the new generated scilex file.
+.LP
+For example:
+.nf
+scilab -link  C/interf.o C/evol.o C/bib.a
+.fi
+will create a new \fVscilex\fR file in which the default \fVinterf.o\fR 
+file will be replaced by \fVC/interf.o\fR.

@@ -1,0 +1,102 @@
+ 
+clear;lines(0);
+ 
+l=list(1,'qwerw',%s)
+ l  =
+ 
+ 
+       l(1)
+ 
+    1.  
+ 
+       l(2)
+ 
+ qwerw   
+ 
+       l(3)
+ 
+    s   
+ 
+l(1)='Changed'
+ l  =
+ 
+ 
+       l(1)
+ 
+ Changed   
+ 
+       l(2)
+ 
+ qwerw   
+ 
+       l(3)
+ 
+    s   
+ 
+l(0)='Added'
+ l  =
+ 
+ 
+       l(1)
+ 
+ Added   
+ 
+       l(2)
+ 
+ Changed   
+ 
+       l(3)
+ 
+ qwerw   
+ 
+       l(4)
+ 
+    s   
+ 
+l(6)=['one more';'added']
+ l  =
+ 
+ 
+       l(1)
+ 
+ Added   
+ 
+       l(2)
+ 
+ Changed   
+ 
+       l(3)
+ 
+ qwerw   
+ 
+       l(4)
+ 
+    s   
+ 
+       l(5)
+ 
+    Undefined
+ 
+       l(6)
+ 
+!one more  !
+!          !
+!added     !
+ 
+//
+ 
+ 
+a=hypermat([2,2,2],rand(1:2^3));// hypermatrices are coded using mlists
+ 
+setfield(3,1:8,a);a // set the filed value to 1:8
+ a  =
+ 
+(:,:,1)
+ 
+!   1.    3. !
+!   2.    4. !
+(:,:,2)
+ 
+!   5.    7. !
+!   6.    8. !
+ 

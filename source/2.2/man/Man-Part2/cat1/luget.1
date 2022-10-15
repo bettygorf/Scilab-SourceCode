@@ -1,0 +1,66 @@
+
+
+
+lufact(G)                      Scilab Function                      lufact(G)
+
+
+
+
+
+
+NAME
+  luget - sparse lu factorization
+
+CALLING SEQUENCE
+  [P,L,U,Q]=luget(ptr)
+
+PARAMETERS
+  ptr  : pointer, output of lufact
+  P    : sparse permutation matrix
+  L    : sparse matrix, lower triangular if ptr is obtained from a non singu-
+       lar matrix
+  U    : square non singular upper triangular sparse matrix with ones along
+       the main diagonal
+  Q    : sparse permutation matrix
+
+DESCRIPTION
+  [P,L,U,Q]=luget(ptr) with ptr obtained by the command [ptr,rk]=lufact(A)
+  with A a sparse matrix returns four sparse matrices such that P*L*U*Q=A.
+  The A matrix needs not be full rank but must be square (since A is assumed
+  sparse one may add zeros if necessary to squaring down A).
+  If A is singular, the L matrix is column compressed (with rk independent
+  nonzero columns):  the nonsingular sparse matrix Q'*inv(U) column
+  compresses A.
+
+EXAMPLE
+  a=rand(5,2)*rand(2,5);A=sparse(a);
+  [ptr,rk]=lufact(A);[P,L,U,Q]=luget(ptr);
+  full(L), P*L*U*Q-A
+  clean(P*L*U*Q-A)
+  ludel(ptr)
+
+SEE ALSO
+  sparse, lusolve, luget, spclean
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

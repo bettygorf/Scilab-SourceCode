@@ -1,0 +1,39 @@
+.TH besselk 3 "September 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+besselk -  Modified K sub ALPHA Bessel functions of the second kind.
+.SH CALLING SEQUENCE
+.nf
+ y = besselk(alpha,x)
+ y = besselk(alpha,x,ice)
+.fi
+.SH PARAMETERS
+.TP
+x
+: real vector with non negative entries
+.TP
+alpha
+: real vector with non negative entries regularly spaced with
+increment equal to one \fValpha=alpha0+(n1:n2)\fR
+.TP
+ice
+: integer flag, with default value 1
+.SH DESCRIPTION
+
+\fVbesselk(alpha,x)\fR computes K sub ALPHA modified Bessel functions of the
+second kind, for real, non-negative order \fValpha\fR 
+and argument \fVx\fR.  \fValpha\fR  and \fVx\fR may be vectors.
+The output is \fVm\fR-by-\fVn\fR with \fVm = size(x,'*')\fR,
+\fVn = size(alpha,'*')\fR whose \fV(i,j)\fR entry is
+\fVbesselk(alpha(j),x(i))\fR.
+
+If \fVice\fr is equal to 2 exponentialy scaled Bessel functions is
+computed 
+
+.SH EXAMPLE
+.nf
+besselk(0.5:3,1:4)
+besselk(0.5:3,1:4,2)
+.fi
+.SH SEE ALSO
+besselj, besseli, bessely

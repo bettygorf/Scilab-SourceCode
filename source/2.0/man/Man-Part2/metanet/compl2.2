@@ -1,0 +1,29 @@
+.TH compl2 1 "October 1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME 
+compl2 - from directed to undirected adjacency vectors
+.SH CALLING SEQUENCE
+.nf
+[la2,lp2,ls2] = compl2(la1,lp1,ls1,dir)
+.fi
+.SH PARAMETERS
+.TP 12
+la2,lp2,ls2
+: vectors of the adjacency description for undirected graph, 
+  la2 is the arc array, lp2 is the pointer array and ls2 is 
+  the node array
+.TP 12
+la1,lp1,ls1
+: vectors of the adjacency description for directed graph, 
+  la1 is the arc array, lp1 is the pointer array and ls1 is 
+  the node array
+.TP 4
+dir
+: integer flag, 1 if the graph is directed, 0 if the graph is 
+  undirected
+.SH DESCRIPTION
+\fVcompl2\fR computes the adjacency vectors for undirected graph from 
+the adjacency vectors of a graph. If dir is equal to 1, the obtained graph 
+is considered as directed.
+.SH SEE ALSO
+compla

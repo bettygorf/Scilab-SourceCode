@@ -1,0 +1,31 @@
+
+getblocklabel(Janvier 1997)                       getblocklabel(Janvier 1997)
+NAME
+  getblocklabel - get label of a Scicos block at running time
+
+CALLING SEQUENCE
+  label=getblocklabel()
+  label=getblocklabel(k)
+
+PARAMETERS
+
+  k    : integer, index of the block. if k is omitted kis supposed to be
+       equal to   curblock().
+
+  label
+       : a character string, The label of kth block (see  Label button in
+       Block menu.
+
+DESCRIPTION
+  For display or debug purpose it may be usefull to give label to particular
+  blocks of a diagram. This may be done using Scicos editor (Label button in
+  Block menu). During simulation, value of these labels may be obtained in
+  any Scilab block with getblocklabel Scilab primitive function.
+
+  For C or fortran computational functions, user may use
+   C2F(getlabel) to get a block label. See routines/scicos/import.c file for
+  more details
+
+  Block indexes are those relative to the compile structurecpr.
+SEE ALSO
+  curblock, getscicosvars, setscicosvars

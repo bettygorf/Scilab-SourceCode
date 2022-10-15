@@ -1,0 +1,12 @@
+
+LOGBLK_f(5)                      Scicos Block                     LOGBLK_f(5)
+NAME
+  LOGBLK_f - Scicos logarithm  block
+
+DIALOGUE PARAMETERS
+
+  a : real scalar greater than 1
+
+DESCRIPTION
+  This block realizes y(i)=log(u(i))/log(a). The input and output port sizes
+  are determined by the context.

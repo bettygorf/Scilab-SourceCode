@@ -1,0 +1,31 @@
+.TH gstacksize 1 "Mai 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+gstacksize - set/get scilab global stack size 
+.SH CALLING SEQUENCE
+.nf
+gstacksize(n)
+sz=gstacksize()
+.fi
+.SH PARAMETERS
+.TP 10
+n
+: integer, the required global stack size given in number of double precision
+words
+.TP
+sz
+: 2-vector [total used] 
+.SH DESCRIPTION
+Scilab stores gobal variables in a stack
+
+
+\fVgstacksize(n)\fR allows the user to increase or decrease the size of
+this stack. The maximum allowed size depends on the amount of
+free memory and swap space available at the time. Note that Scilab can
+increase automatically the global stacksize when needed
+
+
+\fVsz=gstacksize()\fR returns a 2-vector which contains  the current
+total and used global stack size. 
+.SH SEE ALSO
+who, stacksize

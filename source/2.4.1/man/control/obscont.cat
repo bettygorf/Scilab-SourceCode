@@ -1,0 +1,72 @@
+
+obscont(1)                     Scilab Function                     obscont(1)
+NAME
+  obscont - observer based controller
+
+CALLING SEQUENCE
+  [K]=obscont(P,Kc,Kf)
+  [J,r]=obscont(P,Kc,Kf)
+
+PARAMETERS
+
+  P         : syslin list (nominal plant) in state-space form, continuous or
+            discrete time
+
+  Kc        : real matrix, (full state) controller gain
+
+  Kf        : real matrix, filter gain
+
+  K         : syslin list (controller)
+
+  J         : syslin list (extended controller)
+
+  r         : 1x2 row vector
+
+DESCRIPTION
+  obscont  returns the observer-based controller associated with a nominal
+  plant P with matrices [A,B,C,D] (syslin list).
+
+  The full-state control gain is Kc and the filter gain is Kf.  These gains
+  can be computed, for example, by pole placement.
+
+  A+B*Kc and A+Kf*C are (usually) assumed stable.
+
+  K is a state-space representation of the compensator  K: y->u  in:
+
+   xdot = A x + B u,  y=C x + D u, zdot= (A + Kf C)z -Kf y +B u, u=Kc z
+
+  K is a linear system (syslin list) with matrices given by:
+   K=[A+B*Kc+Kf*C+Kf*D*Kc,Kf,-Kc].
+
+  The closed loop feedback system  Cl: v ->y  with (negative) feedback K
+  (i.e. y = P u, u = v - K y, or xdot = A x + B u, y = C x + D u, zdot = (A +
+  Kf C) z - Kf y + B u, u = v -F z) is given by Cl = P/.(-K)
+
+  The poles of Cl ( spec(cl('A')) ) are located at the eigenvalues of A+B*Kc
+  and A+Kf*C.
+
+  Invoked with two output arguments obscont returns a (square) linear system
+  K which parametrizes all the stabilizing feedbacks via a LFT.
+
+  Let Q an arbitrary stable linear system of dimension r(2)xr(1) i.e. number
+  of inputs x number of outputs in P.  Then any stabilizing controller K for
+  P can be expressed as K=lft(J,r,Q). The controller which corresponds to Q=0
+  is K=J(1:nu,1:ny) (this K is returned by K=obscont(P,Kc,Kf)).  r is size(P)
+  i.e the vector [number of outputs, number of inputs];
+
+EXAMPLE
+  ny=2;nu=3;nx=4;P=ssrand(ny,nu,nx);[A,B,C,D]=abcd(P);
+  Kc=-ppol(A,B,[-1,-1,-1,-1]);  //Controller gain
+  Kf=-ppol(A',C',[-2,-2,-2,-2]);Kf=Kf';    //Observer gain
+  cl=P/.(-obscont(P,Kc,Kf));spec(cl('A'))   //closed loop system
+  [J,r]=obscont(P,Kc,Kf);
+  Q=ssrand(nu,ny,3);Q('A')=Q('A')-(maxi(real(spec(Q('A'))))+0.5)*eye(Q('A'))
+  //Q is a stable parameter
+  K=lft(J,r,Q);
+  spec(h_cl(P,K))  // closed-loop A matrix (should be stable);
+
+SEE ALSO
+  ppol, lqg, lqr, lqe, h_inf, lft, syslin, feedback, observer
+
+AUTHOR
+  F.D.

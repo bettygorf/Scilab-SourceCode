@@ -1,0 +1,138 @@
+.TH "dimR2d" 2 " February 13th 1998" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+dimR2d - Regularization dimension of the surface of a 2d function
+.sp
+Author: Francois Roueff
+.sp
+Computes the regularization dimension of the surface of a 2d function.
+Two kernels are available:
+the \fIGaussian\fP or the \fIRectangle\fP.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPdim, handlefig\f(CR]\fP=dimR(x,sigma,voices,Nmin,Nmax,kernel,mirror,reg,graphs)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : Real or complex matrix \f(CR[\fPnt,pt\f(CR]\fP
+Space samples of the signal to be analyzed. 
+
+.TP
+o 
+\fBsigma\fP : Real positive number
+Standard Deviation of the noise. Its default value is null (noisefree)
+
+.TP
+o 
+\fBvoices\fP : Positive integer. 
+number of analyzing voices.  When not specified, this parameter is set to 128.
+
+.TP
+o 
+\fBNmin\fP : Integer in  \f(CR[\fP2,nt/3\f(CR]\fP
+Lower scale bound (lower width) of the analysing kernel. When not specified, this
+parameter is set to around nt/12.
+
+.TP
+o 
+\fBNmax\fP : Integer in  \f(CR[\fPNmin,2nt/3\f(CR]\fP
+Upper scale bound (upper width) of the analysing kernel. When not specified, this
+parameter is set to nt/3.
+
+.TP
+o 
+\fBkernel \fP : String
+specifies the analyzing kernel:
+"gauss": Gaussian kernel (default)
+"rect": Rectangle kernel
+
+.TP
+o 
+\fBmirror\fP : Boolean
+ 
+specifies wether the signal is to be mirrorized for the analyse (default: 0).
+
+.TP
+o 
+\fBreg\fP : Boolean
+ 
+specifies wether the regression is to be done by the user or automatically (default: 0).
+
+.TP
+o 
+\fBgraphs\fP : Boolean:
+ 
+specifies wether the regularized graphs have to be displayed (default: 0).
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBdim\fP : Real
+Estimated regularization dimension. 
+
+.TP
+o 
+\fBhandlefig\fP : Integer vector
+Handles of the figures opened during the procedure.
+.RE
+
+.SH Description
+This function is the same as dimR but adapted to 2d signals.
+For a more complete explanation of the regularization dimension, one can refer to:
+"A regularization approach to fractionnal dimension estimation", F. Roueff, J. Levy-Vehel, submitted to Fractal 98 conference.
+The regularized graphs of \fIx\fP are computed via convolutions of \fIx\fP with
+dilated versions of the kernel at different scales. The lengths of the
+regularized graphs are computed via convolutions of \fIx\fP with the 
+derivatives of the dilated versions of the kernel. The regularization
+dimension is computed either via an automatic range regression or via a 
+regression by hand on the loglog plot of the lengths versus scales.
+If sigma is strictly positive, an estimation of the lengths without noise is used for the regression. These lengths are displayed in red while those of the noisy signal are in black. They should seperate at fine scales.
+When one specifies the range regression, the loglog plot of the lengths versus scales appears. Above are either increments (when sigma is null) or a loglog plot of the noise prevalence in the lengths. One selects the scale range of the regression. In the case of noisefree signals, select a scale region with stable increments. In the case of a strictly positive sigma, select  a scale region where the noise prevalence is not too close to 1 (0 in log10): it should correspond to an approximately linear region for the red estimations.
+The number of scales (voices) tells how many convolutions are computed. The
+bigger it is, the slower the computation is. The scale
+axis is geometrically sampled (i.e. its log is arithmetically sampled). 
+The gaussian kernel should give a better result but the rectangle is faster.
+As a general rule, be careful of the size of the input signal and of the maximal size of the kernel (Nmax x Nmax) to avoid too long computing times.
+.SH See also:
+cwttrack, cwtspec.
+.SH Example:
+\fI Signal synthesis \fP 
+.sp
+.ft CR
+.nf
+x = GeneWei(100,0.6,2,1.0,0);
+y = GeneWei(100,0.4,3,1.0,1);
+w = x'*y;
+mesh(w);
+.fi 
+.ec
+.ft P
+.sp
+\fI Dimension of the graph with a regression by hand\fP 
+.sp
+.ft CR
+.nf
+[dim,H] = dimR2d(w,0,25,5,30,'gauss',0,1,0);
+.fi 
+.ec
+.ft P
+.sp
+\fI Close the figures \fP 
+.sp
+.ft CR
+.nf
+close(H) 
+.fi 
+.ec
+.ft P
+.sp

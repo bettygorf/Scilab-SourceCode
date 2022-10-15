@@ -1,0 +1,39 @@
+
+TK_EvalStr(2)                  Scilab Function                  TK_EvalStr(2)
+NAME
+  TK_EvalStr - Evaluate a string whithin the  tcl/tk interpreter
+
+  Author: Bertrand Guiheneuf
+
+  This routine allows to evaluate tcl/tk  instructions with the tcl/tk inter-
+  preter launched with scilab.
+
+Usage
+  TK_EvalStr(str)
+
+Input parameter
+
+  o    str : string character Contains the string to evaluate within tcl/tk
+
+Output parameters
+  None
+
+Description
+  When tcl/tk support is enabled in scilab, you can evaluate tcl/tk expres-
+  sion from scilab interpreter. In fact, scilab launches a slave tcl/tk
+  interpreter.  The scilab instruction TK_EvalStr() can be used to evaluate
+  expression without having to write a tcl/tk in a separated file (this is
+  done using TK_EvalFile).
+
+EXAMPLE
+  TK_EvalStr('toplevel .foo');
+  // creates a toplevel TK window.
+  TK_EvalStr('label .foo.l -text ""TK married Scilab !!!""');
+  // create a static label
+  TK_EvalStr('pack .foo.l');
+  // pack the label widget. It appears on the screen.
+  text='button .foo.b -text close -command {destroy .foo}';
+  TK_EvalStr(text);
+  TK_EvalStr('pack .foo.b');
+See also
+  ScilabEval, TK_EvalFile, TK_GetVar, TK_Setvar

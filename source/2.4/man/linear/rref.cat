@@ -1,0 +1,28 @@
+
+rref(1)                        Scilab Function                        rref(1)
+NAME
+  rref - computes  matrix row echelon form by lu transformations
+
+CALLING SEQUENCE
+  R=rref(A)
+
+PARAMETERS
+
+  A    :  m x n matrix with scalar entries
+
+  R    :  m x n matrix,row echelon form of a
+
+DESCRIPTION
+  rref computes the row echelon form of the given matrix by left lu decompo-
+  sition. If ones need the transformation used just call X=rref([A,eye(m,m)])
+  the row echelon form R is X(:,1:n) and the left transformation L is given
+  by X(:,n+1:n+m) such as L*A=R
+
+EXAMPLE
+  A=[1 2;3 4;5 6];
+  X=rref([A,eye(3,3)]);
+  R=X(:,1:2)
+  L=X(:,3:5);L*A
+
+SEE ALSO
+  lu, qr

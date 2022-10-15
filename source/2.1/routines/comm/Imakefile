@@ -1,0 +1,12 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+OBJSC = buf_dynam.o communicat.o format_mess.o \
+	gest_memoire.o gest_messages.o initcom.o list_chainees.o \
+	utilitaires.o
+
+SRCS =$(OBJSC:.o=.c)
+
+LibraryTarget($(PATHO)/comm.a,$(OBJSC))
+DependTarget()
+

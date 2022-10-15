@@ -1,0 +1,24 @@
+
+linf(1)                        Scilab Function                        linf(1)
+NAME
+  linf - infinity norm
+
+CALLING SEQUENCE
+  linf(g [,eps],[tol])
+
+PARAMETERS
+
+  g         : is a syslin linear system.
+
+  eps       : is error tolerance on n.
+
+  tol       : threshold for imaginary axis poles.
+
+DESCRIPTION
+  returns the L_infinity norm of g.
+      n=sup [sigmax(g(jw)]
+         w
+  (sigmax largest singular value).
+
+SEE ALSO
+  h_norm, linfn

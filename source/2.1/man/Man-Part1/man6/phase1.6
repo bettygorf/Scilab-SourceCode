@@ -1,0 +1,118 @@
+.TH phase1 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+phase1 - feasability test for semidefinite programming
+.SH CALLING SEQUENCE
+.nf
+[x,Z,z,ul,iters] = phase1(F,blck_szs,M,nu,abstol,maxiters);
+.fi
+.SH PARAMETERS
+.TP 10
+F
+: L x (m+1) real matrix
+.TP
+blck_szs
+:  p x 2 integer matrix (sizes of the blocks) defining the dimensions 
+of the (square) diagonal blocks \fVsize(Fi(j)=blck_szs(j) j=1,...,m+1\fR.
+.TP
+M
+: positive real number (should be big enough)
+.TP
+nu
+: real integer (default value is \fVnu=10\fR).
+.TP
+abstol
+: real number (absolute tolerance).
+.TP
+maxiters
+: integer (maximum number of iterations allowed).
+.TP
+x
+:  real m-vector
+.TP
+Z
+:  block-diagonal matrix stored as 
+\fV[vec(Z(1));vec(Z(2)); ... ;vec(Z(L))]\fR where \fVZ(i)\fR is the
+ith block
+.TP
+z
+:   real number
+.TP
+ul
+:        2-vector, primal and dual objective
+.TP
+iters
+:   integer  scalar (number of iterations performed)
+.SH DESCRIPTION
+Find an \fVx\fR s.t. \fVF(x) > 0\fR and \fVtrace(F(x)) < M\fR
+or prove that no such x exists.
+\fVphase1\fR solves the following primal-dual problem:
+.nf
+ minimize    t 
+ subject to  F(x) + t*I = F_0 + x_1*F_1 + ... + x_m*F_m + t*I >= 0 
+             Tr F(x) <= M
+
+ maximize    -Tr F_0*(Z-z*I) - M*z
+ subject to  0 = Tr F_i*(Z - z*I)
+             1 = Tr Z 
+             Z >= 0, z >= 0
+.fi
+.LP
+The \fVFi's\fR matrices are stored columnwise in \fVF\fR in
+compressed format: if F_i^j, i=0,..,m, j=1,...,L denote the jth 
+(symmetric) diagonal block of F_i, then
+.nf 
+    [ F_0^1(:)  F_1^1(:) ...  F_m^1(:) ]
+    [ F_0^2(:)  F_1^2(:) ...  F_m^2(:) ]
+F=  [   ...       ...          ...     ]
+    [ F_0^L(:)  F_1^L(:) ...  F_m^L(:) ]
+.fi
+.LP
+\fVblck_szs\fR gives the size of block \fVj\fR, ie, \fVF_i^j\fR has 
+size\fV blck_szs[j] x blck_szs[j]\fR.
+.LP
+Z is a block diagonal matrix with L blocks \fVZ^0, ..., Z^{L-1}\fR.
+\fVZ^j\fR has size \fVblck_szs[j] times blck_szs[j]\fR.
+.LP
+The 2 vector \fVul\fR contains the primal objective value \fVc'*x\fR
+and the dual objective value \fV-Tr F_0*Z\fR.
+.LP
+The entries of \fVoptions\fR are respectively:
+\fVnu\fR = a real parameter which ntrols the rate of convergence.
+\fVabstol\fR =   absolute tolerance.
+\fViters\fR =  on entry: maximum number of iterations >= 0, on exit: 
+the number of iterations taken.
+.SH EXAMPLE
+.nf
+F0=[2,1,0,0;
+    1,2,0,0;
+    0,0,3,1
+    0,0,1,3];
+F1=[1,2,0,0;
+    2,1,0,0;
+    0,0,1,3;
+    0,0,3,1]
+F2=[2,2,0,0;
+    2,2,0,0;
+    0,0,3,4;
+    0,0,4,4];
+blck_szs=[2,2];
+F01=F0(1:2,1:2);F02=F0(3:4,3:4);
+F11=F1(1:2,1:2);F12=F1(3:4,3:4);
+F21=F2(1:2,1:2);F22=F2(3:4,3:4);
+F=[[F01(:);F02(:)],[F11(:);F12(:)],[F21(:);F22(:)]]
+M=50;nu=2;abstol=1.d-10;iters=20;
+[x,Z,z,ul,iters] = phase1(F,blck_szs,M,nu,abstol,iters)
+w=vec2list(Z,[blck_szs;blck_szs]);Z=sysdiag(w(1),w(2))
+spec(F0+F1*x(1)+F2*x(2))
+trace(F1*(Z-z*eye))
+trace(F2*(Z-z*eye))
+.fi
+.SH SEE ALSO
+phase1, bigM
+.SH AUTHOR
+L. Vandenbergue, S. Boyd
+
+
+
+

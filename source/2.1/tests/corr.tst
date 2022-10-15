@@ -1,0 +1,35 @@
+Eps=100*%eps;
+rand('normal')
+x=rand(1,256);
+y=-x;
+deff('[z]=xx(inc,is)',...
+'z=x(is:is+inc-1)')
+deff('[z]=yy(inc,is)',...
+'z=y(is:is+inc-1)')
+comp(xx),comp(yy)
+[c,mxy]=corr(x,y,32);
+x=x-mxy(1)*ones(x);
+y=y-mxy(2)*ones(y);
+if abs(sum(x))> Eps  then pause,end
+if abs(sum(y))> Eps  then pause,end
+c1=corr(x,y,32);
+c2=corr(x,32);
+if norm(c1+c2,1)> Eps  then pause,end
+[c3,m3]=corr('fft',xx,yy,256,32);
+if norm(c1-c3,1)> Eps  then pause,end
+[c4,m4]=corr('fft',xx,256,32);
+if norm(m3,1) > Eps then pause,end;
+if norm(m4,1) > Eps then pause,end;
+if norm(c3-c1,1) > Eps then pause,end;
+if norm(c4-c2,1) > Eps then pause,end;
+x1=x(1:128);x2=x(129:256);
+y1=y(1:128);y2=y(129:256);
+w0=0*ones(1:64);   //on veut 32 coeffs
+[w1,xu]=corr('u',x1,y1,w0);
+w2=corr('u',x2,y2,w1,xu);
+zz=real(fft(w2,1))/256;c5=zz(1:32);
+if norm(c5-c1,1) > Eps then pause,end;
+[w1,xu]=corr('u',x1,w0);
+w2=corr('u',x2,w1,xu);
+zz=real(fft(w2,1))/256;c6=zz(1:32);
+if norm(c6-c2,1) > Eps then pause,end;

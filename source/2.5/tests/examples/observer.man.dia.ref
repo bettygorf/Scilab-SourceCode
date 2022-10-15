@@ -1,0 +1,55 @@
+ 
+clear;lines(0);
+ 
+nx=5;nu=1;ny=1;un=3;us=2;Sys=ssrand(ny,nu,nx,list('dt',us,us,un));
+ 
+//nx=5 states, nu=1 input, ny=1 output,
+ 
+//un=3 unobservable states, us=2 of them unstable.
+ 
+[Obs,U,m]=observer(Sys);  //Stable observer (default)
+ 
+W=U';H=W(m+1:nx,:);[A,B,C,D]=abcd(Sys);  //H*U=[0,eye(no,no)];
+ 
+Sys2=ss2tf(syslin('c',A,B,H))  //Transfer u-->z
+ Sys2  =
+ 
+!                                        2   !
+!   - 0.0656646 + 0.4172218s + 0.2206179s    !
+!   ---------------------------------------  !
+!                                      2   3 !
+!   0.0320753 - 0.3162098s - 0.2607206s + s  !
+!                                            !
+!     0.0425487 - 0.3252401s                 !
+!   --------------------------               !
+!                             2              !
+!   0.0641505 - 0.7607206s + s               !
+!                                            !
+!   - 0.2861983 + 0.2488247s                 !
+!   --------------------------               !
+!                             2              !
+!   0.0641505 - 0.7607206s + s               !
+ 
+Idu=eye(nu,nu);Sys3=ss2tf(H*U(:,m+1:$)*Obs*[Idu;Sys])
+ Sys3  =
+ 
+!                                        2   !
+!   - 0.0656646 + 0.4172218s + 0.2206179s    !
+!   ---------------------------------------  !
+!                                      2   3 !
+!   0.0320753 - 0.3162098s - 0.2607206s + s  !
+!                                            !
+!     0.0425487 - 0.3252401s                 !
+!   --------------------------               !
+!                             2              !
+!   0.0641505 - 0.7607206s + s               !
+!                                            !
+!   - 0.2861983 + 0.2488247s                 !
+!   --------------------------               !
+!                             2              !
+!   0.0641505 - 0.7607206s + s               !
+ 
+//Transfer u-->[u;y=Sys*u]-->Obs-->xhat-->HUxhat=zhat  i.e. u-->output of Obs
+ 
+//this transfer must equal Sys2, the u-->z transfer  (H2=eye).
+ 

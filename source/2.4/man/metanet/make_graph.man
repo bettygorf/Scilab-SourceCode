@@ -1,0 +1,63 @@
+.TH make_graph 1 "September 1995" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+make_graph - makes a graph list
+.SH CALLING SEQUENCE
+.nf
+g = make_graph(name,directed,n,tail,head)
+.fi
+.SH PARAMETERS
+.TP 5
+name
+: string, the name of the graph
+.TP 9
+directed
+: integer, 0 (undirected graph) or 1 (directed graph)
+.TP 2
+n
+: integer, the number of nodes of the graph
+.TP 5
+tail
+: row vector of the numbers of the tail nodes of the graph (its size is 
+the number of edges of the graph)
+.TP 5
+head
+: row vector of the numbers of the head nodes of the graph (its size is 
+the number of edges of the graph)
+.TP 2
+g
+: graph list
+.SH DESCRIPTION
+\fVmake_graph\fR makes a graph list according to its arguments which are
+respectively the name of the graph, a flag for directed or undirected, the
+number of nodes and the row vectors tail and head. These are the minimal data
+needed for a graph.
+
+If \fVn\fR is a positive number, graph \fVg\fR has \fVn\fR nodes; this
+number must be greater than or equal to \fVmax(max(tail),max(head))\fR. If
+it is greater than this number,graph \fVg\fR has isolated nodes. 
+The nodes names are taken as the nodes numbers.
+
+If \fVn\fR is equal to 0, graph \fVg\fR has no isolated node and the number
+of nodes is computed from \fVtail\fR and \fVhead\fR. The nodes names are
+taken from the numbers in \fVtail\fR and \fVhead\fR.
+
+.SH EXAMPLE
+.nf
+// creating a directed graph with 3 nodes and 4 arcs.
+g=make_graph('foo',1,3,[1,2,3,1],[2,3,1,3]);
+// creating a directed graph with 13 nodes and 14 arcs.
+ta=[1  1 2 7 8 9 10 10 10 10 11 12 13 13];
+he=[2 10 7 8 9 7  7 11 13 13 12 13  9 10];
+g=make_graph('foo',1,13,ta,he);
+g('node_x')=[120  98  87 188 439 698 226 127 342 467 711 779 477];
+g('node_y')=[ 21 184 308 426 435 428 129 360 435  55 109 320 321];
+show_graph(g)
+// creating same graph without isolated node and 14 arcs.
+g=make_graph('foo',1,0,ta,he);
+g('node_x')=[120  98 226 127 342 467 711 779 477];
+g('node_y')=[ 21 184 129 360 435  55 109 320 321];
+show_graph(g,'new')
+.fi
+.SH SEE ALSO
+graph-list

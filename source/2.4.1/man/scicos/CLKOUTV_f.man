@@ -1,0 +1,17 @@
+.TH CLKOUTV_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+CLKOUTV_f - Scicos Super Block event output port
+.SH DESCRIPTION
+This block must only be used inside Scicos Super Blocks to represent
+an event output port. 
+.LP
+In a Super_Block, the event output ports must be numbered from 1 to the
+number of event output ports.
+.SH DIALOGUE PARAMETERS
+.TP 15
+Port number
+: an integer giving the port number.
+.SH SEE ALSO
+IN_f, OUT_f, CLKINV_f
+

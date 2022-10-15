@@ -1,0 +1,89 @@
+.TH "fbmlevinson" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+fbmlevinson - Levinson synthesis of a fractional Brownian motion
+.sp
+Author: Paulo Goncalves 
+.sp
+Generates a Fractional Brownian Motion (fBm) using Cholesky/Levinson factorization
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+[x,y,r] = fbmlevinson(N,H,[seed])
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fB N \fP : Positive integer 
+Sample size of the fBm
+
+.TP
+o 
+\fB H \fP : Real in \f(CR[\fP0,1\f(CR]\fP
+Holder exponent
+
+.TP
+o 
+\fB seed \fP : real scalar
+Random seed generator
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fB x \fP : real vector  \f(CR[\fP1,N\f(CR]\fP 
+Time samples of the fBm
+
+.TP
+o 
+\fB y \fP : real vector \f(CR[\fP1,N\f(CR]\fP  
+Vector of N i.i.d. white standard Gaussian r.v.'s (input process of
+the generator)
+
+.TP
+o 
+\fB r \fP : real vector \f(CR[\fP1,N\f(CR]\fP 
+First  row of the var/cov Toeplitz matrix R of the increment
+process w\f(CR[\fPk\f(CR]\fP = x\f(CR[\fPk+1\f(CR]\fP - x\f(CR[\fPk\f(CR]\fP.
+.RE
+
+.SH Algorithm details
+Generates a Fractional Brownian Motion using Levinson algorithm to 
+triangularize the covariance matrix. 
+R = E W * W' being the variance/covariance matrix of the fBm increment  
+W\f(CR[\fPn ; shift\f(CR]\fP = X\f(CR[\fPn+shift\f(CR]\fP - X\f(CR[\fPn-shift\f(CR]\fP, 
+R = L*L', with L the lower left triangle matrix (Choleski or Levinson
+factorization). Then, we pose 
+Z = L\(ha(-1) * W  <=>  W = L * Z 
+with Rz the var/cov matrix of the process Z, 
+Rz = E \f(CR{\fP Z * Z' \f(CR}\fP  
+Rz = E \f(CR{\fP L\(ha(-1) * W * W' * (L\(ha(-1))' \f(CR}\fP 
+Rz = L\(ha(-1) * R * (L\(ha(-1))' 
+Rz = L\(ha(-1) * L * L' * (L\(ha(-1))' 
+Rz = I (identity) 
+Thus, Z is a white Gaussian noise with unit variance.
+.SH See also:
+mbmlevinson
+.SH Example:
+.sp
+.ft CR
+.nf
+[x,y,r] = fbmlevinson(1024,0.8) ;
+.fi 
+.ec
+.ft P
+.sp

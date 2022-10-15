@@ -1,0 +1,36 @@
+
+execstr(1)                     Scilab Function                     execstr(1)
+NAME
+  execstr - scilab instructions execution by evaluation of strings
+
+CALLING SEQUENCE
+  execstr(instr)
+  ierr=execstr(instr,'errcatch')
+
+PARAMETERS
+
+  instr     : vector of character strings, scilab instruction to be executed.
+
+  ierr      : integer, 0 or error number
+DESCRIPTION
+  executes the Scilab instructions given  in argument instr
+
+  If an error is encountered while executing instructions defined in instr,
+  if 'errcatch' flag is present execstr issues an error message, abort execu-
+  tion of the instr instructions and resume with ierr equal to the error
+  number,if 'errcatch' flag is not present, standard error handling works.
+EXAMPLE
+  execstr('a=1') // sets a=1.
+  execstr('1+1') // does nothing (while evstr('1+1') returns 2)
+
+  execstr(['if %t then';
+           '  a=1';
+           '  b=a+1';
+           'else'
+           ' b=0'
+           'end'])
+
+  execstr('a=zzzzzzz','errcatch')
+
+SEE ALSO
+  evstr

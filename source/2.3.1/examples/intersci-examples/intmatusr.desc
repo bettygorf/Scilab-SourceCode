@@ -1,0 +1,86 @@
+calc1	a b c
+a	matrix   ma na 
+b	matrix   mb nb
+c	matrix   mc nc
+
+fcalc1	a ma na b mb nb c mc nc
+a	integer
+b	double 
+c	real 
+
+out	sequence	a  b c 
+***********************
+calc2
+a	matrix   10 5 
+b	matrix   10 2
+c	matrix   10 3
+
+fcalc2	a 10 5 b 10 2 c 10 3
+a	integer
+b	double 
+c	real 
+
+out	sequence	a  b c 
+***********************
+calc3
+a	matrix m n 
+
+ccalc3	a m n
+a	cintf 
+m	integer
+n	integer
+
+out	sequence	a
+***********************
+calc4	a
+a	stringmat 	n	m
+
+ccalc4	a  n  m
+a	Cstringv
+
+out	sequence	a
+***********************
+calc5	
+a	stringmat	m n
+
+ccalc5	a  m n 
+a	Cstringv
+
+out	list	a
+***********************
+calc6    ll	
+ll	list    intmatusr-list
+
+fcalc1	a(ll) ma(ll) na(ll) b(ll) mb(ll) nb(ll) c(ll) mc(ll) nc(ll)
+a(ll)	integer
+b(ll)	double 
+c(ll)	real 
+
+out	list a(ll) b(ll) c(ll)
+******************************
+calc7	a {b  bb} [c tutu] [d (4)/1,2,3,4/]
+a	scalar 
+b	scalar 
+c	string	l
+d	matrix	1 l1
+
+fcalc7	a b c  d 
+a	integer
+b	double 
+c	char 
+d	integer 
+
+out	sequence	a b c d
+***********************
+calc8	a  {b ddef} {c cdef}
+a	matrix   ma na 
+b	matrix   mb nb
+c	matrix   mc nc
+
+fcalc1	a ma na b mb nb c mc nc
+a	integer
+b	double 
+c	real 
+
+out	sequence	a  b c 
+***********************

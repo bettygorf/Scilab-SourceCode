@@ -1,0 +1,29 @@
+
+xgetfile(3)                    Scilab Function                    xgetfile(3)
+NAME
+  xgetfile - dialog to get a file path
+
+CALLING SEQUENCE
+  path=xgetfile([file_mask], [dir])
+
+PARAMETERS
+
+  file_mask   : a character string which gives the file mask to use for file
+              selection. file_mask is written with Unix convention. the
+              default value is '*'.
+
+  dir         : a character string which gives the initial directory used for
+              file search. by default xgetfile uses the previously selected
+              directory.
+
+  path        : is the user selected file path if user answers "Ok" or the "
+              " string if user answers "Cancel"
+DESCRIPTION
+  Creates a dialog window for file selection
+
+EXAMPLE
+  xgetfile()
+  xgetfile('*.sci','SCI/macros/xdess')
+
+SEE ALSO
+  x_dialog, file, read, write, exec, getf

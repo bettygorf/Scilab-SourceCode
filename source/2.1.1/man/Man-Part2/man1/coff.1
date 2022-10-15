@@ -1,0 +1,49 @@
+.TH coff 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+coff - resolvent (cofactor method)
+.SH CALLING SEQUENCE
+.nf
+[N,d]=coff(M [,var]) 
+.fi
+.SH PARAMETERS
+.TP
+M
+: square real matrix
+.TP
+var
+: character string
+.TP
+N
+: polynomial matrix (same size as \fVM\fR)
+.TP
+d
+:
+polynomial (characteristic polynomial \fVpoly(A,'s')\fR)
+.SH DESCRIPTION
+\fVcoff\fR computes R=\fV(s*eye-M)^-1\fR for \fVM\fR a real matrix. 
+R is given by \fVN/d\fR.
+.LP
+\fVN\fR = numerator polynomial matrix.
+.LP
+\fVd\fR = common denominator.
+.LP
+\fVvar\fR character string ('\fVs\fR' if omitted)
+.SH EXAMPLE
+.nf
+M=[1,2;0,3];
+[N,d]=coff(M)
+ n         =
+
+! - 3 + s     2      !
+!                    !
+!   0       - 1 + s  !
+
+ d         =
+              2
+    3 - 4s + s
+.fi
+.SH SEE ALSO
+coffg, ss2tf, nlev
+
+

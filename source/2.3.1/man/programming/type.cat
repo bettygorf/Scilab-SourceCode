@@ -1,0 +1,41 @@
+
+type(1)                        Scilab Function                        type(1)
+NAME
+  type - variable type
+
+CALLING SEQUENCE
+  [i]=type(x)
+
+PARAMETERS
+
+  x         : Scilab object
+
+  i         : integer
+
+DESCRIPTION
+  type(x)  returns an integer which is the type of x as following :
+
+  11    :  real or complex constant matrix.
+
+  22    :  polynomial matrix.
+
+  44    :  boolean matrix.
+
+  55    :  sparse matrix.
+
+  1100   :  matrix of character strings.
+
+  1111   :  un-compiled function.
+
+  1133   :  compiled function.
+
+  1144   :  function library.
+
+  1155   :  list.
+
+  1166   :  typed list (tlist)
+
+  112288  : pointer
+
+SEE ALSO
+  typeof

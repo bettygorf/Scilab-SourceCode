@@ -1,0 +1,37 @@
+
+mfft(1)                        Scilab Function                        mfft(1)
+NAME
+  mfft - multi-dimensional fft
+
+CALLING SEQUENCE
+  [xk]=mfft(x,flag,dim)
+
+PARAMETERS
+
+  x    : x(i,j,k,...) input signal in the form of a row vector whose values
+       are arranged so that the i index runs the quickest, followed by the j
+       index, etc.
+
+  flag : (-1) FFT or (1) inverse FFT
+
+  dim  : dimension vector which gives the number of values of x for each of
+       its indices
+
+  xk   : output of multidimensional fft in same format as for x
+
+DESCRIPTION
+  FFT for a multi-dimensional signal
+
+  For example for a three dimensional vector which has three points along its
+  first dimension, two points along its second dimension and three points
+  along its third dimension the row vector is arranged as follows
+       x=[x(1,1,1),x(2,1,1),x(3,1,1),
+          x(1,2,1),x(2,2,1),x(3,2,1),
+                x(1,1,2),x(2,1,2),x(3,1,2),
+                x(1,2,2),x(2,2,2),x(3,2,2),
+                      x(1,1,3),x(2,1,3),x(3,1,3),
+                      x(1,2,3),x(2,2,3),x(3,2,3)]
+  and the dim vector is: dim=[3,2,3]
+
+AUTHOR
+  C. B.

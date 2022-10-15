@@ -1,0 +1,66 @@
+
+
+
+wiener(1)                      Scilab Function                      wiener(1)
+
+
+
+
+
+
+NAME
+  wiener -  Wiener estimate
+
+CALLING SEQUENCE
+  [xs,ps,xf,pf]=wiener(y,x0,p0,f,g,h,q,r)
+
+PARAMETERS
+
+  f, g, h   : system matrices in the interval [t0,tf]
+
+            f =[f0,f1,...,ff], and fk is a nxn matrix
+
+            g =[g0,g1,...,gf], and gk is a nxn matrix
+
+            h =[h0,h1,...,hf], and hk is a mxn matrix
+
+  q, r      : covariance matrices of dynamics and observation noise
+
+            q =[q0,q1,...,qf], and qk is a nxn matrix
+
+            r =[r0,r1,...,rf], and gk is a mxm matrix
+
+  x0, p0    : initial state estimate and error variance
+
+  y         : observations in the interval [t0,tf].  y=[y0,y1,...,yf], and yk
+            is a column m-vector
+
+  xs        : Smoothed state estimate xs= [xs0,xs1,...,xsf], and xsk is a
+            column n-vector
+
+  ps        : Error covariance of smoothed estimate ps=[p0,p1,...,pf], and pk
+            is a nxn matrix
+
+  xf        : Filtered state estimate xf= [xf0,xf1,...,xff], and xfk is a
+            column n-vector
+
+  pf        : Error covariance of filtered estimate pf=[p0,p1,...,pf], and pk
+            is a nxn matrix
+
+DESCRIPTION
+  function which gives the Wiener estimate using the forward-backward Kalman
+  filter formulation
+
+AUTHOR
+  C. B.
+
+
+
+
+
+
+
+
+
+
+

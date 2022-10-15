@@ -1,0 +1,26 @@
+\begin{picture}(0,0)%
+\epsfig{file=initi.pstex}%
+\end{picture}%
+\setlength{\unitlength}{0.00070000in}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined%
+\gdef\SetFigFont#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(4859,9674)(789,-9623)
+\put(2206,-1186){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{\rmdefault}{\bfdefault}{\updefault}Initialization}}}
+\put(2206,-1456){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{\rmdefault}{\bfdefault}{\updefault}flag 4 used once/block}}}
+\put(2251,-3526){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{\rmdefault}{\bfdefault}{\updefault}flag 1 using cord}}}
+\put(2206,-5146){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{\rmdefault}{\bfdefault}{\updefault}Re-initialization}}}
+\put(2206,-5416){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{\rmdefault}{\bfdefault}{\updefault}flag 6 (all blocks)}}}
+\put(2206,-6856){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{\rmdefault}{\bfdefault}{\updefault}Link registers update}}}
+\put(2251,-3256){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{\rmdefault}{\bfdefault}{\updefault}Link regiters update}}}
+\put(2206,-7126){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{\rmdefault}{\bfdefault}{\updefault}flag 1 using cord}}}
+\put(2656,-8791){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{\rmdefault}{\bfdefault}{\updefault}converge}}}
+\put(3961,-8521){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{\rmdefault}{\bfdefault}{\updefault}no}}}
+\put(3511,-9511){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{\rmdefault}{\bfdefault}{\updefault}yes}}}
+\put(4276,-9511){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{\rmdefault}{\bfdefault}{\updefault}To simulation}}}
+\put(946,-466){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{\rmdefault}{\bfdefault}{\updefault}from Scicos}}}
+\end{picture}

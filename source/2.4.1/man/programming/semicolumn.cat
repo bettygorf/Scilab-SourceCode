@@ -1,0 +1,12 @@
+
+semicolumn(1)                  Scilab Function                  semicolumn(1)
+NAME
+  semicolumn (;) -  ending expression and row separator
+
+DESCRIPTION
+  In a file, the line separator ``;'' suppresses the display of the line.
+
+  Within brackets ; denotes row separator in matrix definition.
+
+EXAMPLES
+  sin(%pi) sin(%pi); a=[1,2;3 4]

@@ -1,0 +1,45 @@
+.TH %sn 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+%sn - Jacobi 's elliptic function
+.SH CALLING SEQUENCE
+.nf
+[y]=%sn(x,m)
+.fi
+.SH PARAMETERS
+.TP
+x
+: a point inside the fundamental rectangle  defined by the elliptic integral;
+\fVx\fR is a vector of complex numbers
+.TP
+m
+: parameter of the elliptic integral (\fV0<m<1\fR)
+.TP
+y
+: result
+.SH DESCRIPTION
+Jacobi 's sn elliptic function with parameter \fVm\fR: the inverse 
+of the elliptic integral for the parameter \fVm\fR.
+.LP
+The amplitude am is computed in fortran and 
+the addition formulas for elliptic functions are applied
+.SH EXAMPLE
+.nf
+m=0.36;
+K=%k(m);
+P=4*K; //Real period
+real_val=0:(P/50):P;
+plot(real_val,real(%sn(real_val,m)))
+xbasc();
+KK=%k(1-m);
+Ip=2*KK;
+ima_val1=0:(Ip/50):KK-0.001;
+ima_val2=(KK+0.05):(Ip/25):(Ip+KK);
+z1=%sn(%i*ima_val1,m);z2=%sn(%i*ima_val2,m);
+plot2d([ima_val1',ima_val2'],[imag(z1)',imag(z2)']);
+xgrid(3)
+.fi
+.SH SEE ALSO
+%asn, %k
+.SH AUTHOR
+F. D.

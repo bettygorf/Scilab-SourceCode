@@ -1,0 +1,61 @@
+.TH "AtanH" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+AtanH - Arctangent variation
+.sp
+Author: Paulo Goncalves 
+.sp
+Generates an arc-tangent trajectory
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+Ht=AtanH(N,h1,h2,shape);
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fB N \fP : Positive integer 
+Sample size of the trajectory
+
+.TP
+o 
+\fB h1 \fP : Real scalar
+First value of the arc-tangent trajectory
+
+.TP
+o 
+\fB h2 \fP : Real scalar
+Last value of the arc-tangent trajectory
+
+.TP
+o 
+\fB shape \fP : real in \f(CR[\fP0,1\f(CR]\fP
+smoothness of the trajectory 
+\fIshape\fP = 0 : constant piecewise (step function) 
+\fIshape\fP = 1 : linear
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fB Ht \fP : real vector  \f(CR[\fP1,N\f(CR]\fP 
+Time samples of the arc-tangent trajectory
+.RE
+
+.SH See also:
+.SH Example:
+\f(CR[\fPHt\f(CR]\fP = AtanH(1024,0,1,0.9,0.01) ;

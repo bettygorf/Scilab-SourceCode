@@ -1,0 +1,17 @@
+
+lsslist(1)                     Scilab Function                     lsslist(1)
+NAME
+  lsslist - Scilab linear state space function definition
+
+CALLING SEQUENCE
+  lsslist()
+  lsslist(a1,....an)
+
+DESCRIPTION
+  lsslist(a1,....an) is a shortcut to  to
+  tlist(['lss','A';'B';'C';'X0','dt'], a1,....an)
+
+  Creates a tlist with  ['lss','A';'B';'C';'X0','dt'] as first entry and
+  ai's as next entries if any. No type nor size checking is done on ai's.
+SEE ALSO
+  tlist, syslin

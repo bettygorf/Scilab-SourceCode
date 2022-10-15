@@ -1,0 +1,42 @@
+.TH xfpolys 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xfpolys - fill a set of polygons of the same size 
+.SH CALLING SEQUENCE
+.nf
+[]=xfpolys(xpols,ypols,[fill])
+.fi
+.SH PARAMETERS
+.TP 10
+xpols,ypols
+: two matrices of size (n1,n2) (polygon def)
+.TP 
+fill
+: vector of size n2 (number of polygons) (pattern id's).
+.SH DESCRIPTION
+fills a set of polygons of the same size defined by 
+the two matrices \fVxpols,ypols\fR . \fVxpols= [ xpol1;xpol2;...]'\fR, 
+each column of the matrix \fVxpols\fR gives the x-values of the points
+of a polygon (i.e \fVypols\fR).
+.LP
+\fVfill(i)\fR gives the 
+id of the pattern for filling the polygon number i
+.RS
+.TP
+-
+if \fVfill(i) < xget("white")+1\fR,   the polygon is filled with pattern 
+\fVfill(i)\fR.
+.TP
+-
+if \fVfill(i) >= xget("white")+1\fR,  the polyline is only drawn.
+.TP
+-
+if \fVfill(i) >= xget("white")+2\fR,  the polygon is filled with the pattern id
+\fVfill(i)+2*WID +2\fR (WID is the id of the white pattern ). Then its contour 
+is drawn and closed if necessary 
+.RE
+.LP
+.SH AUTHOR
+J.Ph.C.
+
+

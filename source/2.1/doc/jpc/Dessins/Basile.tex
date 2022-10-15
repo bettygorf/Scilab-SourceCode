@@ -1,0 +1,46 @@
+
+
+\section{Fichiers obtenus avec Basile ou Neoclo  ins\'er\'es en \LaTeX} 
+
+\paragraph{}Cette partie traite de l'insertion de dessins Postscript 
+ obtenus soit avec Basile soit avec Xneoclo. Soit par exemple {\bf DesBasile.ps} 
+ un tel dessin. 
+
+On utilise la commande 
+\begin{verbatim}
+Blatexpr  xs ys  DesBasile.ps
+\end{verbatim}
+Pour r\'eduire le dessin de $1/2$ suivant l'axe horizontal et de $0.7$ suivant l'axe vertical ceci donne~:
+\begin{verbatim}
+Blatexpr 0.5  0.7  DesBasile.ps
+\end{verbatim}
+On obtient alors deux  fichiers {\bf DesBasile.tex} 
+ et {\bf DesBasile.ps.n}. Il suffit d'utiliser dans votre document 
+ \LaTeX\, la commande~:
+\begin{verbatim}
+\input DesBasile.tex 
+\dessin{Fonction $\sin(x)$}{deslabel2}
+\end{verbatim}
+pour obtenir le dessin~(\ref{deslabel2}) dans l'impression finale
+
+\input DesBasile.tex 
+\dessin{Fonction $\sin(x)$}{deslabel2}
+
+Votre fichier Postscript original n'est pas modifi\'e.
+
+La fonction Blatexprs vous permet de regrouper directement plusieurs 
+dessins issus de Basile ou Neoclo dans une figure \LaTeX. la syntaxe d'utilisation est la suivante~:
+\begin{verbatim}
+  Blatexprs Bas2 fichier1.ps fichier2.ps .... fichiern
+\end{verbatim}
+Cette commande va cr\'eer deux fichiers \verb+Bas2.ps+ et \verb+Bas2.tex+. Pour 
+obtenir la figure~(\ref{labdeux}) dans Basile utiliser~:
+\begin{verbatim}
+\input Bas2.tex 
+\dessin{Deux Dessins}{labdeux}
+\end{verbatim}
+\input Bas2.tex 
+\dessin{Deux Dessins}{labdeux}
+
+
+

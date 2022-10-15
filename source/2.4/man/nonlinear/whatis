@@ -1,0 +1,24 @@
+bvode - boundary value problems for ode  
+colnew - boundary value problems for ode  
+dasrt - dae solver with zero crossing  
+dassl - differential algebraic equation  
+fit_dat - parameter identification based on measured data  
+fsolve - find a zero of a system of n nonlinear functions  
+impl - differential algebraic equation  
+int2d - definite 2d integral by quadrature and cubature method  
+int3d - definite 3d integral by quadrature and cubature method  
+intc - cauchy integral  
+intg - definite integral  
+intl - cauchy integral  
+karmarkar - karmarkar (test program)  
+linpro - linear programming solver  
+lmisolver - linear matrix inequation solver  
+lmitool - tool for solving linear matrix inequations  
+ode - ordinary differential equation solver  
+ode_discrete - ordinary differential equation solver, discrete time simulation  
+ode_root - ordinary differential equation solver with root finding  
+odedc - discrete/continuous ode solver  
+odeoptions - sets options for ode solvers  
+optim - non-linear optimization routine  
+quapro - linear quadratic programming solver  
+semidef - semidefinite programming  

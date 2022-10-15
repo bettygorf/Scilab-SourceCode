@@ -1,0 +1,29 @@
+
+and(1)                         Scilab Function                         and(1)
+NAME
+  and (&) - logical and
+
+CALLING SEQUENCE
+  b=and(A),  b=and(A,'*')
+  b=and(A,'r'), b=and(A,1)
+  b=and(A,'c'), b=and(A,2)
+  A&B
+
+DESCRIPTION
+  and(A) is the logical AND of elements of the boolean matrix A. and(A)
+  returns %T ("true")  iff all entries of A are %T.
+
+  y=and(A,'r') (or, equivalently, y=and(A,1)) is the rowwise and. It returns
+  in each entry of the row vector y the and of the rows of x (The and is per-
+  formed on the row index : y(j)= and(A(i,j),i=1,m)).
+
+  y=and(A,'c') (or, equivalently, y=and(A,2)) is the columnwise and. It
+  returns in each entry of the column vector y the and of the columns of x
+  (The and is performed on the column index:  y(i)= and(A(i,j),j=1,n))).
+
+  A&B  gives the element-wise logical and of the booleans matrices
+   A and  B .A and  B must be matrices with the same
+   dimensions or one from them must be a single boolean.
+
+SEE ALSO
+  not, or

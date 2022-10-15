@@ -1,0 +1,97 @@
+.TH pvm_spawn 1 "January 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_spawn - Starts new Scilab processes.
+.SH CALLING SEQUENCE
+.nf
+[tids, numt] = pvm_spawn(task,  ntask, [where])
+.fi
+.SH PARAMETERS
+.TP 5
+task : string, which is the file name of the scilab script to be
+started. The Scilab script must already reside on the host on which it
+is to be started.  The name must an absolute path.
+.TP 4
+ntask
+: integer, specifying the number of copies of the  scilab script to start.
+.TP 4
+where
+: string (optional, default value is NULL), can be a host name such as ``tequila.ens-lyon.fr'' or a PVM architecture class such as ``SUN4''. 
+.TP 5
+numt
+: integer, the actual number of tasks started.
+Values less than zero indicate a system error.
+.TP4
+tids
+: row of integers, array of the tids of the PVM processes started 
+by this pvm_spawn call.
+.SH DESCRIPTION
+\fVpvm_spawn\fR 
+starts
+.I ntask
+copies of the scilab script
+.I task.
+On systems that support environment,
+spawn passes selected variables from parent environment to children tasks.
+If set, the envar \fIPVM_EXPORT\fR is passed.
+If PVM_EXPORT contains other names (separated by ':') they will
+be passed too.  This is useful for e.g.:
+.nf
+
+	setenv DISPLAY myworkstation:0.0
+	setenv MYSTERYVAR 13
+	setenv PVM_EXPORT DISPLAY:MYSTERYVAR
+.fi
+.PP
+The hosts on which
+the PVM processes are started are determined by 
+the
+.I where
+arguments. On return the array
+.I tids
+contains the PVM task identifiers for each process started.
+.PP
+If pvm_spawn starts one or more tasks,
+.I numt
+will be the actual number of tasks started.
+If a system error occurs then
+.I numt
+will be < 0.
+If
+.I numt
+is less than
+.I ntask
+then some executables
+have failed to start and the user should check the last
+.I ntask -
+.I numt
+locations in the
+.I tids
+array which will contain error codes
+(see below for meaning).
+The first
+.I numt
+tids in the array are always valid.
+.PP
+When
+the argument
+.I where
+is set to NULL 
+a heuristic (round-robin assignment) is used to distribute the
+.I ntask
+processes across the virtual machine.
+.PP
+In the special case where a multiprocessor is specified by
+.I where,
+pvm_spawn will start all
+.I ntask
+copies on this
+single machine using the vendor's underlying routines.
+
+
+.SH EXAMPLE
+.nf
+[tids, numt] = pvm_spawn("foo.sci",2,"loop")
+.fi
+.SH SEE ALSO
+pvm, pwm_spawn_independent

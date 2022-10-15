@@ -1,0 +1,187 @@
+/*------------------------------------------------------------------------
+    Missile 
+    XWindow and Postscript library for 2D and 3D plotting 
+    Copyright (C) 1998 Chancelier Jean-Philippe
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 1, or (at your option)
+    any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+    jpc@cergrene.enpc.fr 
+
+--------------------------------------------------------------------------*/
+#include <string.h>
+
+#ifdef __STDC__
+#include <stdlib.h>
+#else
+#include <malloc.h>
+#endif
+
+#include <stdio.h>
+#include <math.h>
+#include "Math.h"
+
+static void Plo2d1RealToPixel();
+
+/*--------------------------------------------------------------------
+  C2F(plot2d1)(xf,x,y,n1,n2,style,strflag,legend,brect,aint)
+  
+  similar to plot2d plus one additionnal argument xf 
+  and a special treatment for x 
+
+  there's a splecial treatment for x 
+  if xf[0]='e' for empty : x can point to nothing, the x -values 
+  are assumed to be x[i+(*n2)*j]= i 
+  if xf[0]='o' for one   : all the curves have the same x values 
+     x is of size *n2  xx[i+(*n2)*j] = x[i];
+  if xf[0]='g' for general : x is of size (*n2)*(n1);
+
+  xf[1]='l' or 'n' LogAxis or standard on X
+  xf[2]='l' or 'n' LogAxis or standard on Y
+--------------------------------------------------------------------------*/
+
+extern char GetDriver();
+  
+int C2F(plot2d1)(xf,x,y,n1,n2,style,strflag,legend,brect,aaint,l1,l2,l3)
+     double x[],y[],brect[];
+     integer   *n1,*n2,style[],aaint[];
+     char legend[],strflag[],xf[];
+     integer l1,l2,l3;
+{
+  double FRect[4],scx,scy,xofset,yofset;
+  integer IRect[4],err=0,*xm,*ym,job=1,Xdec[3],Ydec[3];
+  integer nn2=(*n2);
+  /* Storing values if using the Record driver */
+  if ( CheckxfParam(xf)== 1) return(0);
+  if (GetDriver()=='R') 
+    StorePlot("plot2d1",xf,x,y,n1,n2,style,strflag,legend,brect,aaint);
+  /** Boundaries of the frame **/
+  FrameBounds(xf,x,y,n1,n2,aaint,strflag,brect,FRect,Xdec,Ydec);
+  /** Scales **/
+  if ( (int)strlen(strflag) >=2 && strflag[1]=='0') job=0;
+  Scale2D(job,FRect,IRect,aaint,&scx,&scy,&xofset,&yofset,&xf[1],&xm,&ym,(*n1)*nn2,&err);
+  if ( err == 0) return(0);
+  /** Real to Pixel values **/
+  Plo2d1RealToPixel(n1,n2,x,y,xm,ym,xf,FRect,scx,scy,xofset,yofset);
+
+  AxisDraw(FRect,IRect,Xdec,Ydec,aaint,scx,scy,xofset,yofset,strflag,&xf[1]);
+  /** Drawing the curves **/
+  
+  C2F(dr)("xset","clipping",&IRect[0],&IRect[1],&IRect[2],&IRect[3]
+	  ,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xpolys","v",xm,ym,style,n1,&nn2
+	  ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xset","clipoff",PI0,PI0,PI0,PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /** Drawing the Legends **/
+  if ((int)strlen(strflag) >=1  && strflag[0] == '1')
+    Legends(IRect,style,n1,legend);
+ return(0);
+
+}
+
+
+static void Plo2d1RealToPixel(n1, n2, x, y, xm, ym, xf, FRect, scx, scy, xofset, yofset)
+     integer *n1;
+     integer *n2;
+     double *x;
+     double *y;
+     integer *xm;
+     integer *ym;
+     char *xf;
+     double *FRect;
+     double scx;
+     double scy;
+     double xofset;
+     double yofset;
+{
+  integer i,j;
+  /** Computing y-values **/
+  if ((int)strlen(xf) >= 3 && xf[2]=='l')	  
+    {
+      for ( i=0 ; i < (*n2) ; i++)
+	for (j=0 ; j< (*n1) ; j++)
+	  ym[i+(*n2)*j]=inint( scy*(-log10(y[i+(*n2)*j])+FRect[3])+yofset);
+    }
+  else 
+    {
+      for ( i=0 ; i < (*n2) ; i++)
+	for (j=0 ; j< (*n1) ; j++)
+	  ym[i+(*n2)*j]=inint( scy*(-(y[i+(*n2)*j])+FRect[3]) +yofset);
+    }
+  
+  /** Computing x-values **/
+  switch (xf[0])
+    {
+    case 'e' :
+      /** No X-value given by the user **/
+      if ((int)strlen(xf) >= 2 && xf[1]=='l')
+	for ( i=0 ; i < (*n2) ; i++)
+	  for (j=0 ; j< (*n1) ; j++)
+	    xm[i+(*n2)*j]=inint(scx*(log10(i+1.0)-FRect[0])+xofset);
+      else 
+	for ( i=0 ; i < (*n2) ; i++)
+	  for (j=0 ; j< (*n1) ; j++)
+	    xm[i+(*n2)*j]=inint(scx*((i+1.0)-FRect[0])+xofset);
+      break ;
+    case 'o' :
+      if ((int)strlen(xf) >= 2 && xf[1]=='l')
+	for ( i=0 ; i < (*n2) ; i++)
+	  for (j=0 ; j< (*n1) ; j++)
+	    xm[i+(*n2)*j]=inint(scx*(log10(x[i])-FRect[0]) + xofset);
+      else 
+	for ( i=0 ; i < (*n2) ; i++)
+	  for (j=0 ; j< (*n1) ; j++)
+	    xm[i+(*n2)*j]=inint(scx*(x[i] -FRect[0]) + xofset);
+      break;
+    case 'g' :
+    default:
+      if ((int)strlen(xf) >= 2 && xf[1]=='l')
+	for ( i=0 ; i < (*n2) ; i++)
+	  for (j=0 ; j< (*n1) ; j++)
+	    xm[i+(*n2)*j]=inint( scx*(log10(x[i+(*n2)*j]) -FRect[0])+xofset);
+      else 
+	for ( i=0 ; i < (*n2) ; i++)
+	  for (j=0 ; j< (*n1) ; j++)
+	    xm[i+(*n2)*j]=inint( scx*(x[i+(*n2)*j] -FRect[0])+xofset);
+      break;
+    }
+}
+
+
+int CheckxfParam(xf) 
+     char *xf ;
+{
+  if ( strlen(xf) < 3 ) 
+    {
+      sciprint("Error : first argument must be a string of length 3");
+      return(1);
+    }
+  if ( xf[0] != 'g' && xf[0] != 'e' && xf[0] != 'o' ) 
+    {
+      sciprint("Error : wrong first character in string \"%s\"\n",xf);
+      return(1) ;
+    }
+  if ( xf[1] != 'l' && xf[1] != 'n' ) 
+    {
+      sciprint("Error : wrong second character in string \"%s\"\n",xf);
+      return(1) ;
+    }
+  if ( xf[2] != 'l' && xf[2] != 'n' ) 
+    {
+      sciprint("Error : wrong third character in string \"%s\"\n",xf);
+      return(1) ;
+    }
+  return(0);
+}
+

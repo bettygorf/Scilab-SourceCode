@@ -1,0 +1,15 @@
+
+debug(1)                       Scilab Function                       debug(1)
+NAME
+  debug - debugging level
+
+CALLING SEQUENCE
+  debug(level-int)
+
+PARAMETERS
+
+  level-int      : integer (0 to 4)
+
+DESCRIPTION
+  For the values 0,1,2,3,4 of level-int , debug defines various levels of
+  debugging. (For Scilab experts only).

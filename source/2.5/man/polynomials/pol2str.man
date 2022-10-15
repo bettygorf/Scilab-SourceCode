@@ -1,0 +1,22 @@
+.TH pol2str 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+pol2str - polynomial to string conversion
+.SH CALLING SEQUENCE
+.nf
+[str]=pol2str(p) 
+.fi
+.SH PARAMETERS
+.TP
+p
+: real polynomial
+.TP
+str
+: character string
+.SH DESCRIPTION
+converts polynomial to character string (utility function).
+.SH SEE ALSO
+string, pol2tex
+
+
+

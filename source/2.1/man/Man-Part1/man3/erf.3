@@ -1,0 +1,26 @@
+.TH erf 3 "December 1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+erf -  The error function.
+.SH SYNTAX
+ y = erf(x)
+.SH PARAMETERS
+.TP
+x
+: real vector
+.TP
+y
+: real vector (of same size)
+.SH DESCRIPTION
+ \fVerf\fR computes the error function:
+.nf
+                      /x
+     y = 2/sqrt(pi) *|  exp(-t^2) dt
+                     /0
+.fi
+.SH SEE ALSO
+erfc erfcx calerf
+
+
+
+

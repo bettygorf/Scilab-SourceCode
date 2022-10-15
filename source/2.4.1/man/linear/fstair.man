@@ -1,0 +1,86 @@
+.TH fstair G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+fstair  - computes  pencil  column echelon form by qz transformations
+.SH CALLING SEQUENCE
+.nf
+[AE,EE,QE,ZE,blcks,muk,nuk,muk0,nuk0,mnei]=fstair(A,E,Q,Z,stair,rk,tol)
+.fi
+.SH PARAMETERS
+.TP
+A
+: m x n matrix with real  entries.
+.TP
+tol
+: real positive scalar.
+.TP
+E
+: column echelon form matrix
+.TP
+Q
+: m x m unitary matrix
+.TP
+Z
+: n x n unitary matrix
+.TP
+stair
+: vector of indexes (see ereduc)
+.TP
+rk 
+: integer, estimated rank of the matrix
+.TP
+AE
+: m x n matrix with real  entries.
+.TP
+EE
+: column echelon form matrix
+.TP
+QE
+: m x m unitary matrix
+.TP
+ZE
+: n x n unitary matrix
+.TP
+nblcks 
+:is the number of submatrices having full row rank >= 0  detected in
+matrix  A\fR.
+.TP
+muk:
+ integer array of dimension (n). Contains the column dimensions mu(k)
+ (k=1,...,nblcks) of the submatrices having full column
+ rank in the pencil sE(eps)-A(eps)
+.TP
+nuk:
+ integer array of dimension (m+1). Contains the row dimensions nu(k)
+ (k=1,...,nblcks) of the submatrices having full row
+ rank in the pencil sE(eps)-A(eps)
+.TP
+muk0:
+ integer array of dimension (n). Contains the column dimensions mu(k)
+ (k=1,...,nblcks) of the submatrices having full column
+ rank in the pencil sE(eps,inf)-A(eps,inf)
+.TP
+nuk:
+ integer array of dimension (m+1). Contains the row dimensions nu(k)
+ (k=1,...,nblcks) of the submatrices having full row
+ rank in the pencil sE(eps,inf)-A(eps,inf)
+.TP
+mnei:
+ integer array of dimension (4). mnei(1) = row dimension of sE(eps)-A(eps)
+
+.SH DESCRIPTION
+
+Given a pencil \fVsE-A\fR where matrix \fVE\fR is in column echelon form the
+function  \fVfstair\fR computes according to the wishes of the user a
+unitary transformed pencil \fVQE(sEE-AE)ZE\fR which is more or less similar
+to the generalized Schur form of the pencil \fVsE-A\fR.
+The function  yields also part of the Kronecker structure of
+the given pencil.
+.LP
+
+\fVQ,Z\fR are the unitary matrices used to compute the pencil where E
+is in column echelon form (see ereduc)
+.SH AUTHOR
+Th.G.J. Beelen (Philips Glass Eindhoven). SLICOT
+.SH SEE ALSO
+quaskro, ereduc

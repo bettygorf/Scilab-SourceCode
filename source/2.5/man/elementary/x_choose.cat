@@ -1,0 +1,31 @@
+
+x_choose(1)                    Scilab Function                    x_choose(1)
+NAME
+  x_choose - interactive Xwindow choice
+
+CALLING SEQUENCE
+  [num]=x_choose(items,title [,button])
+
+PARAMETERS
+
+  items
+       : column vector of string,  items to choose
+
+  title
+       : column vector of string, comment for the dialog
+
+  button
+       :  string, text to appear in the button. Default value is 'Cancel'
+
+  num  : integer, choosen item number or 0 if dialog resumed with "Cancel"
+       button
+
+DESCRIPTION
+  Returns in num the number of the chosen item.
+
+EXAMPLE
+  n=x_choose(['item1';'item2';'item3'],['that is a comment';'for the dialog'])
+  n=x_choose(['item1';'item2';'item3'],['that is a comment'],'Return')
+
+SEE ALSO
+  x_choices, x_mdialog, getvalue, unix_g

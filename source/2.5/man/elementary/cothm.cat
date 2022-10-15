@@ -1,0 +1,17 @@
+
+cothm(1)                       Scilab Function                       cothm(1)
+NAME
+  cothm - matrix hyperbolic cotangent
+
+CALLING SEQUENCE
+  [t]=cothm(x)
+
+DESCRIPTION
+  cothm(x) is the matrix hyperbolic cotangent of the square matrix x.
+
+EXAMPLE
+  A=[1,2;3,4];
+  cothm(A)
+
+SEE ALSO
+  coth

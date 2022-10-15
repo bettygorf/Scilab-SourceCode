@@ -1,0 +1,18 @@
+Metanet.drawWidth: 1000
+Metanet.drawHeight: 1000
+
+#ifdef  COLOR
+
+Metanet*foreground:black
+Metanet*background:gray
+Metanet*Command.background:lightblue
+Metanet*Box.background:lightblue
+Metanet*Form.background:gray
+Metanet*Label.background:white
+Metanet*Label.foreground:black
+Metanet*Scrollbar.background:gray
+Metanet*MenuButton.background:lightblue
+Metanet*SimpleMenu.background:lightblue
+Metanet*helpcommand.background:lightblue
+
+#endif

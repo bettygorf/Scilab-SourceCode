@@ -1,0 +1,66 @@
+
+
+
+intg(G)                        Scilab Function                        intg(G)
+
+
+
+
+
+
+NAME
+  intg - definite integral
+
+CALLING SEQUENCE
+  [v,err]=intg(a,b,f [,ea [,er])
+
+PARAMETERS
+
+  a,b       : real numbers
+
+  f         : external (function or list or string)
+
+  ea, er    : real numbers
+
+  ea        : absolute error required on the result. Default value: 0
+
+  er        : relative error required on the result. Default value: 1.d-8
+
+  err       : estimated absolute error on the result.
+
+DESCRIPTION
+  intg(a,b,f) evaluates the definite integral  from a to b of f(t)dt.  The
+  evaluation hopefully satisfies following claim for accuracy: abs(I-v)<=
+  max(ea,er*abs(I)) where I stands for the exact value of the integral.
+
+  f is an external :
+
+  If f is function its definition must be as follows
+   y = f(t)
+
+  If f is a list the list must be as follows:
+   list(f,x1,x2,...) where f is a function with calling sequence
+  f(t,x1,x2,...).
+
+  If f is a string it refers to a the name of a Fortran subroutine (see
+  source code of fintg.f)
+
+SEE ALSO
+  intc, intl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+
+load(1)                        Scilab Function                        load(1)
+NAME
+  load - load saved variable
+
+CALLING SEQUENCE
+  load('file-name' [,x1,...,xn])
+
+PARAMETERS
+
+  file-name : character string
+
+  xi        : arbitrary Scilab variable name(s) given as strings.
+
+DESCRIPTION
+  The load command can be used to reload in the Scilab session variables pre-
+  viously saved in a file with the save command.
+
+  load('file-name') loads the variables saved in file 'file-name'.
+
+  load('file-name','x','y',...,'z') loads only variables x,y,...,z stored in
+  file 'file-name'.
+
+EXAMPLES
+  a=eye(2,2);b=ones(a);
+  save('vals.dat',a,b);
+  clear a
+  clear b
+  load('vals.dat','a','b');
+
+SEE ALSO
+  save, getf

@@ -1,0 +1,54 @@
+.TH obs_gram 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+obs_gram - observability gramian
+.SH CALLING SEQUENCE
+.nf
+Go=obsv_gram(A,C [,dom])
+Go=obsv_gram(sl)
+.fi
+.SH PARAMETERS
+.TP 10
+A,C
+: real matrices (of appropriate dimensions)
+.TP 10
+dom
+: string (\fV"d'\fR or \fV"c"\fR (default value))
+.TP 10
+sl
+: \fVsyslin\fR list
+.SH DESCRIPTION
+Observability gramian of the pair \fV(A,C)\fR or linear 
+system \fVsl\fR (\fVsyslin\fR list).
+\fVdom\fR is the domain which can be 
+.TP 
+"c"
+:  continuous system (default)
+.TP
+"d" 
+:  discrete system
+.LP
+.IG	
+.nf
+                  /+inf                             ---+inf
+                  [  A't    At                      \\   k      k
+             Go = | e  C'C e   dt       or      Go = > A' C'C A
+                  ]                                 /
+                 /0                                 ---0
+.fi
+.FI
+.LA  $$ 
+.LA  Go = \int_0^{\infty} e^{A't}C'Ce^{At}dt 
+.LA  \qquad Go = \sum_{0}^{\infty} {A'}^k C'C{A}^k
+.LA  $$
+.SH EXAMPLE
+.nf
+A=rand(3,3);C=rand(2,3);
+Go=obs_gram(A,C,'c');     // <=> w=syslin('c',A,[],C); Go=obs_gram(w);
+norm(Go*A+A'*Go+C'*C,1)
+norm(lyap(A,-C'*C,'c')-Go,1)
+Go=obs_gram(A,C,'d');    //discrete time case
+norm(lyap(A,-C'*C,'d')-Go,1)
+.fi
+.SH SEE ALSO
+ctr_gram, obsvss, obsv_mat, lyap

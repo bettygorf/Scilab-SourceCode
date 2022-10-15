@@ -1,0 +1,21 @@
+.TH CLKSOM_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+CLKSOM_f - Scicos event addition block
+.SH DIALOGUE PARAMETERS
+None.
+.SH DESCRIPTION
+This block is an event addition block with up to three inputs. The
+output reproduces 
+the events on all the input ports. Strictly speaking, CLKSOM is not a
+Scicos block because it is discarded at the compilation phase. The
+inputs and output of CLKSOM are synchronized. 
+
+
+
+
+
+
+
+
+

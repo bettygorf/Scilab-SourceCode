@@ -1,0 +1,27 @@
+.TH abs G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+edit -  macro editing
+.SH CALLING SEQUENCE
+.nf
+newname=edit(macroname [, editor])
+.fi
+.SH PARAMETERS
+.TP 10
+macroname
+: character string
+.TP 10
+editor
+: character string
+.SH DESCRIPTION
+\fVedit(macroname ,[editor])\fR opens the file \fVmacroname.sci\fR
+in the editor given by \fVeditor\fR. When leaving the editor
+the modified macro is loaded into Scilab under the name \fVnewname\fR.
+Then for example \fVbez=edit('bez')\fR will redefine the macro \fVbez\fR.
+.LP
+Default editor is Emacs. This macro should be customized according
+to your needs.
+.SH SEE ALSO
+manedit
+
+

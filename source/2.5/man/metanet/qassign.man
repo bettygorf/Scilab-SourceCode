@@ -1,0 +1,46 @@
+.TH qassign 1 "September 1996" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+qassign - solves a quadratic assignment problem
+.SH CALLING SEQUENCE
+.nf
+[crit,order] = qassign(c,f,d)
+.fi
+.SH PARAMETERS
+.TP 2
+c
+: real matrix
+.TP 2
+f
+: real matrix
+.TP 2
+d
+: real matrix
+.TP 5
+crit
+: real scalar
+.TP 6
+order
+: integer row vector 
+.SH DESCRIPTION
+\fVqassign\fR solves the quadratic assignment problem i.e.
+minimize the global criterium:
+\fV crit = e(1)+...+e(n) \fR 
+where
+\fV e(i) = c(i,l(i))+ fd(i) \fR 
+where
+\fV fd(i) = f(i,1)*d(l(i),l(1))+...+f(i,n)*d(l(i),l(n)) \fR
+
+\fVc\fR, \fVf\fR and \fVd\fR are n x n real arrays; their diagonal entries
+are zero. 
+.SH EXAMPLE
+.nf
+n=15;
+d=100*rand(15,15);
+d=d-diag(diag(d));
+c=zeros(n,n);f=c;
+f(2:n,1)=ones(1:n-1)';
+[crit,order]=qassign(c,f,d)
+.fi
+.SH SEE ALSO
+knapsack

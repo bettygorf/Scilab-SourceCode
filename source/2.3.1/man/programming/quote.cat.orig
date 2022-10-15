@@ -1,0 +1,14 @@
+
+quote(1)                       Scilab Function                       quote(1)
+NAME
+  quote (') - transposition operator, string deleimiter
+
+DESCRIPTION
+  quote (')is used for (Conjugate) Transpose of matrix.
+
+  Quotes are also used to define character strings.  (Character strings are
+  defined between two quotes). A Quote within a character string is noted by
+  a double quote.
+
+EXAMPLES
+  [1 2]' x='This is a character string'

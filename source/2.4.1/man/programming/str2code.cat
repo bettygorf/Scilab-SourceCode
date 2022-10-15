@@ -1,0 +1,22 @@
+
+str2code(1)                    Scilab Function                    str2code(1)
+NAME
+  str2code - return scilab integer codes associated with a character string
+
+CALLING SEQUENCE
+  c=str2code(str)
+
+PARAMETERS
+
+  str  : a character string
+
+  c    : vector of character integer codes
+
+DESCRIPTION
+  Return c such that c(i) is the scilab integer code of part(str,i))
+
+EXAMPLE
+  str2code('Scilab')
+
+SEE ALSO
+  code2str

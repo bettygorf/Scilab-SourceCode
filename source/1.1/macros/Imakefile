@@ -1,0 +1,13 @@
+#include "../Imake.incl"
+
+#define IHaveSubdirs
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+SUBDIRS =  algebre arma auto calpol \
+	elem metanet optim percent robust sci2for \
+	signal tdcs util xdess
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS))
+

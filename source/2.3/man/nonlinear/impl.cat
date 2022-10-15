@@ -1,0 +1,98 @@
+
+impl(G)                        Scilab Function                        impl(G)
+NAME
+  impl - differential algebraic equation
+
+DESCRIPTION
+  y=impl(['type',]y0,ydot0,t0,t1[,atol,[rtol]],res,adda[,jac])
+
+PARAMETERS
+
+  y0,ydot0  : real vectors
+
+  t0        : real number
+
+  t         : real row vector
+
+  res,adda,jac   : externals (function or list or string)
+
+  type           : string 'adams' or 'stiff'
+
+  atol,rtol      : real numbers or real vectors
+
+DESCRIPTION
+  Solution of the implicit differential equation
+
+      A(t,y)ydot=g(t,y)
+      y(t0)=y0  and   ydot(t0)=ydot0
+
+  t0 is the initial instant.
+
+  y0 is the vector of initial conditions.
+
+  ydot0 is the vector of the time derivative of y at t0.
+
+  res  : External
+
+       a function
+         its syntax must be r=res(t,y,ydot) and res must return r=g(t,y)-
+         A(t,y)*ydot
+
+       a list
+         it must be : list(res,x1,x2,...) where the syntax of the function
+         res is now
+         r=res(t,y,ydot,x1,x2,...)
+         res still returns r=g(t,y)-A(t,y)*ydot as a function of
+         (t,y,ydot,x1,x2,...).
+
+       a string
+
+       it refer to the name of a fortran subroutine or C procedure (see
+       source code of fres.f).
+
+  adda : External
+
+       a function
+         its syntax must be r=adda(t,y,p) and adda must return  r=A(t,y)+p
+
+       a list
+         it must be : list(adda,x1,x2,...) where the syntax of the function
+         adda is now
+         r=adda(t,y,x1,x2,...)
+         adda still returns r=A(t,y)+p as a function of (t,y,x1,x2,...).
+
+       a string
+
+       it refer to the name of a fortran subroutine or C procedure (see
+       source code of fadda.f).
+  jac : External
+
+       a function
+         its syntax must be j=jac(t,y,ydot) and adda must return  the jaco-
+         bian of r=g(t,y)-A(t,y)*ydot
+
+       a list
+         it must be : list(jac,x1,x2,...) where the syntax of the function
+         jac is now
+         r=jac(t,y,ydot,x1,x2,...)
+         jac still returns the jacobian of r=g(t,y)-A(t,y)*ydot  as a func-
+         tion of (t,y,ydot,x1,x2,...).
+
+       a string
+
+       it refer to the name of a fortran subroutine or C procedure (see
+       source code of fjac.f).
+  More details are provided in help ode.
+
+  fortran call (see fres.f and fadda.f fjac.f )
+
+EXAMPLES
+  x=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
+  // Using hot restart
+  //[x1,w,iw]=impl([1;0;0],[-0.04;0.04;0],0,0.2,'resid','aplusp');
+  // hot start from previous call
+  //[x1]=impl([1;0;0],[-0.04;0.04;0],0.2,0.4,'resid','aplusp',w,iw);
+  //maxi(abs(x1-x))
+
+SEE ALSO
+  ode, external

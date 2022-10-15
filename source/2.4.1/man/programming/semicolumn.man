@@ -1,0 +1,13 @@
+.TH semicolumn 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+semicolumn (;) -  ending expression and row separator
+.SH DESCRIPTION
+In a file, the line separator ``;'' suppresses the display of the
+line.
+.LP
+Within brackets ; denotes row separator in matrix definition.
+.SH EXAMPLES
+sin(%pi)
+sin(%pi);
+a=[1,2;3 4]

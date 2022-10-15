@@ -1,0 +1,23 @@
+
+trace(2)                       Scilab Function                       trace(2)
+NAME
+  trace  - trace
+
+CALLING SEQUENCE
+  trace(X)
+
+PARAMETERS
+
+  X    : real or complex square matrix, polynomial or rational matrix.
+
+DESCRIPTION
+  trace(X) is the trace of the matrix X.
+
+  Same as sum(diag(X)).
+
+EXAMPLE
+  A=rand(3,3);
+  trace(A)-sum(spec(A))
+
+SEE ALSO
+  det

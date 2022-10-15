@@ -1,0 +1,59 @@
+.TH "gifs2wave" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+gifs2wave - wavelet coefficients from  new GIFS coefficients
+.sp
+Author: Khalid Daoudi
+.sp
+Computes the \fIwavelet c0efficients\fP of  the synthetic
+1\f(CR-\fPD real signal from its new GIFS coefficients.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPwt_new\f(CR]\fP=gifs2wave(Ci_new,wt,wt_idx,wt_lg)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBCi_new\fP : Real matrix
+Contains the new GIFS coefficients
+
+.TP
+o 
+\fBwt\fP : Real matrix  
+contains the wavelet coefficients (obtained using FWT)
+
+.TP
+o 
+\fBwt_idx\fP : Real matrix \f(CR[\fP1,n\f(CR]\fP
+contains the indexes (in wt) of the 
+projection of the signal on the multiresolution subspaces
+ 
+
+.TP
+o 
+\fBwt_lg\fP : Real matrix \f(CR[\fP1,n\f(CR]\fP
+contains the dimension of each projection
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBwi_new\fP : Real matrix 
+Contains the new wavelet coefficients plus other informations.
+.RE
+
+.SH Description
+.SH Parameters
+.SH Algorithm details
+.SH See also:
+ 
+wave2gifs.
+.SH Example:

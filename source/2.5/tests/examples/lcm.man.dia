@@ -1,0 +1,19 @@
+ 
+clear;lines(0);
+ 
+s=poly(0,'s');
+ 
+p=[s,s*(s+1)^2,s^2*(s+2)];
+ 
+[pp,fact]=lcm(p);
+ 
+p.*fact, pp
+ ans  =
+ 
+!     2    3    4   5      2    3    4   5      2    3    4   5 !
+!   2s + 5s + 4s + s     2s + 5s + 4s + s     2s + 5s + 4s + s  !
+ pp  =
+ 
+      2    3    4   5  
+    2s + 5s + 4s + s   
+ 

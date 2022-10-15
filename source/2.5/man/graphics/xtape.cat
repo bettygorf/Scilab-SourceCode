@@ -1,0 +1,35 @@
+
+xtape(2)                       Scilab Function                       xtape(2)
+NAME
+  xtape - set up the record process of graphics
+
+CALLING SEQUENCE
+  xtape(str,[num,rect])
+
+PARAMETERS
+
+  str   : string, "on", "clear", "replay" or "replaysc".
+
+  num   : integer.
+
+  rect  : row vector of size 4.
+
+DESCRIPTION
+  xtape is used to set up the record process of graphics:
+
+  xtape("on") just selects the driver "Rec" which records all the graphics
+  operations.
+
+  xtape("clear",num) clears the graphics window num and clears the recorded
+  graphics associated with window num.
+
+  xtape("replay",num) redisplays all the recorded graphics in the window num.
+
+  xtape("replaysc",num,rect) replots the graphics window num using
+  rect=[xmin,ymin,xmax,ymax] as x and y bounds.
+
+SEE ALSO
+  driver, replot, xbasc, xbasr
+
+AUTHOR
+  J.Ph.C.

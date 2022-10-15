@@ -1,0 +1,193 @@
+2.1 to 2.2 Major improvements
+=============================
+- New simulation tools
+      * Scicos hybrid connected object simulator (Beta test version).
+
+      * A discrete/continuous ode solver odedc has been added.
+
+      * All ode solvers parameters are now available through %ODEOPTIONS
+        variable and odeoptions function.
+
+      * addition of DAE solver with root finder (dasrt).
+
+- New version of Metanet
+
+- New GUI utilities
+      * Choice menu for xset parameters (see xset() ).
+
+      * Menus to print/export graphics.
+
+      * It is now possible to interactively zoom 2d plots and rotate 3d
+        plots using the graphic window buttons.
+
+      * Function to create and handle new buttons (see addmenu).
+
+      * Function to get filenames (see xgetfile).
+
+      * It is now possible to kill graphic windows using menu or xdel
+        function.
+
+- Optimization
+      * New versions of optimization routines.
+
+      * Non differentiable optimization added (optim('nd',...).
+
+- Miscellaneous
+      * scilab stack size may now be allocated at startup time and within
+        scilab (see stacksize).
+
+      * It is now possible to read and write data in integer format.
+
+      * a new data type "typed-list" designed for "soft coded"
+        operations (see tlist).
+
+      * all the documentation of Scilab in Postscript compressed files 
+        is no longer distributed with Scilab distribution. You will find 
+        it by anonymous ftp on "ftp.inria.fr:/INRIA/Projects/Meta2/Scilab/doc"
+        (internet# 192.93.2.54).
+
+2.1 to 2.2 Incompatiblities
+===========================
+- Due to an initial inconsistency in  typed lists, a new data type 
+  ("typed-list") has been created to handle new objects associated 
+  with "soft coded" operations. The old way still works, but will be
+  discarded in the next realease.
+
+- x(:) extraction/insertion has been changed for string and polynomial 
+  matrices do be coherent with the usual matrices.
+
+- error message 48 split in 240 (read) et 241 (write)
+  check errcatch(48,..) usage in macros
+
+- an argument has been added to xsegs to set line style, It is no more
+  possible to use xset('dashes',n);xsegs(..) to set line styles.
+
+- Most of xset parameters are now attached to their particular window.
+
+- plot3di, fac3di interactive functions have been replaced by plot3d
+  and fac3d.
+
+- Metanet has been fully revisited, many metanet related functions
+  have been corrected and renamed.
+
+2.2 to 2.3 improvements
+=======================
+*PORTABILITY
+- Scilab may now be compiled on  Window95/NT patforms (beta test
+version)
+
+*SYNTAX
+-------
+- .^ operand added
+
+- operation consistency revisited
+
+- $ formal symbol may be used to represent matrix row or column
+  dimension and list size within isertion and extraction operations
+
+- It is now possible to assign a list element of index greater than
+  the list size+1
+
+- list entries designation by their names
+
+- Square matrix elementary functions renamed to avoid inconsistencies
+
+- Comparison between empty matrix and scalar returns an empty matrix
+  instead of an error. find([]) also return an empty matrix instead of
+  an error. 
+
+- interpretation of [x (a+b)] and [a + b] modified to be more
+  convenient 
+
+- Hierarchic extraction/insertion of sub-list entries see 
+  help insertion and extraction
+
+- It is now possible to remove lines or column of a matrix inserting
+an empty matrix
+
+*NEW TOOLBOXES
+----------------
+- Beta test interprocess connection toolbox has been added see "help
+communications"
+
+*SCICOS
+-------
+- vector valued link may be defined between blocks
+- Formal expression of block parameters and context
+- Customisable block shapes
+
+*METANET
+--------
+- many new functions
+
+*GRAPHICS
+---------
+- It is now possible to set colors for each 3D facets
+
+- It is now possible to change the current colormap and to define as
+  many colors for scilab graphics as your system.
+
+- It is now possible to interactively zoom a part of a drawn 2D plot
+  and to change 3D plot point of view
+
+*MISC
+-----
+- Help manager modified to simplify addition of users toolboxes helps
+
+- Many helps revisited and complemented with examples
+
+- sort had been extended to character strings
+
+- matrix functions such as max, min, sum, prod ... had been extended
+  to column/row wise interpretation
+
+- cumsum / cumprod added
+
+- the $ character can be used to select the last entry of matrices
+
+2.2 to 2.3 Incompatiblities
+===========================
+*SYNTAX
+-------
+- Square matrix elementary functions renamed to avoid inconsistencies
+  ex: matrix square root must be called sqrtm(A). element wise square
+  root must be called sqrt(A)
+- old syntax for functions definition within file has been removed 
+  use 
+  function [....]=func(...)
+  instead of
+  //[....]=func(...)
+
+- //end special interpretation suppressed
+
+*GRAPHICS
+---------
+- Default colormap is different to the 2.2 colormap.
+
+- Now colors are numbered from 1 to N instead of 0 to 16
+
+- xrects(x,y,xget('white')+1) must be replaced by
+  xrects(x,y,xget('lastpattern ')+1)
+
+- plot2d style argument must be negated
+
+*C/FORTRAN INTERFACE
+--------------------
+
+- Addition of new hard coded function has been slightly modified:
+routines/default/fundef  has been modified to a C include file, newfun
+program is no more needed.
+
+-  hard coded external for non linear problems (ode, optim,....) hard
+link mechanism has been modified. 
+
+*METANET
+--------
+- metanet graph structures have been slighly modified (typed lists are used)
+As a consequence, you have to change the following:
+g('arc_number') => arc_number(g)
+g('node_number') => node_number(g)
+
+*SCICOS
+-------
+- Due to many changes old scicos diagrams may not work

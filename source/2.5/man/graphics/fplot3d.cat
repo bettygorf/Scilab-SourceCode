@@ -1,0 +1,30 @@
+
+fplot3d(2)                     Scilab Function                     fplot3d(2)
+NAME
+  fplot3d - 3D plot of a surface defined by a function
+
+CALLING SEQUENCE
+  fplot3d(xr,yr,f,[theta,alpha,leg,flag,ebox])
+
+PARAMETERS
+
+  xr        : row vector of size n1.
+
+  yr        : row vector of size n2.
+
+  f         : external of type z=f(x,y).
+
+  theta,alpha,leg,flag,ebox
+            : see plot3d.
+
+DESCRIPTION
+  fplot3d plots a surface defined by the external function f on the grid
+  defined by xr and yr.
+
+  Enter the command  fplot3d() to see a demo.
+
+SEE ALSO
+  plot3d
+
+AUTHOR
+  J.Ph.C.

@@ -1,0 +1,31 @@
+
+backslash(1)                   Scilab Function                   backslash(1)
+NAME
+  backslash (\) - left matrix division.
+
+CALLING SEQUENCE
+  x=A\b
+
+DESCRIPTION
+  Backslash denotes left matrix division. x=A\b is a solution to A*x=b.
+
+  If A is nonsingular x=A\b (uniquely defined) is equivalent to x=inv(A)*b.
+
+  If A is singular, x is a least square solution.  i.e. norm(A*x-b) is
+  minimal. If A is full column rank, the least square solution, x=A\b, is
+  uniquely defined (there is a unique x which minimizes norm(A*x-b)).  If A
+  is not full column rank, then the least square solution is not unique, and
+  x=A\b, in general, is not the solution with minimum norm (the minimum norm
+  solution is x=pinv(A)*b).
+
+  A.\B  is the matrix with (i,j) entry A(i,j)\B(i,j).  If A (or B) is a
+  scalar A.\B is equivalent to A*ones(B).\B (or A.\(B*ones(A))
+
+EXAMPLE
+  A=rand(3,2);b=[1;1;1]; x=A\b; y=pinv(A)*b;  x-y
+  A=rand(2,3);b=[1;1]; x=A\b; y=pinv(A)*b; x-y, A*x-b, A*y-b
+  A=rand(3,1)*rand(1,2); b=[1;1;1]; x=A\b; y=pinv(A)*b; A*x-b, A*y-b
+  A=rand(2,1)*rand(1,3); b=[1;1]; x=A\b; y=pinv(A)*b; A*x-b, A*y-b
+
+SEE ALSO
+  slash, inv, pinv, percent

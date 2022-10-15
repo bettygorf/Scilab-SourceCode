@@ -1,0 +1,31 @@
+.TH tangent 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+tangent - linearization of a dynamical system at an equilibrium point 
+.SH CALLING SEQUENCE
+.nf
+[f,g,newm]=tangent(ff,xe,[ue])
+.fi
+.SH PARAMETERS 
+.TP
+ff 
+: a string which gives the name of the Scilab macro which  codes  the system 
+.TP
+xe 
+: column vector which gives the equilibrium point for the value ue of the parameter
+.TP
+ue
+: real value.
+.TP
+f, g 
+: two matrices for the linearised  system  \fVdxdot=f.dx + g.du\fR
+.TP
+newm 
+: A new macro of type [y]=newm(t,x,u) which computes the field of the linearised system  (newm(t,xe,ue)=0)
+.SH DESCRIPTION 
+linearises around the equilibrium point \fV(xe,ue)\fR the vector field of 
+the dynamical system given by a Scilab macro \fVff\fR, \fVxdot=ff(t,x,[u])\fR.
+The dynamical system is supposed to be autonomous.
+
+
+

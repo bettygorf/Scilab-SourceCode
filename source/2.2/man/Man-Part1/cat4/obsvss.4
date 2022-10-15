@@ -1,0 +1,66 @@
+
+
+
+obsvss(1)                      Scilab Function                      obsvss(1)
+
+
+
+
+
+
+NAME
+  obsvss - observable part
+
+CALLING SEQUENCE
+  [Ao,Bo,Co]=obsvss(A,B,C [,tol])
+  [slo]=obsvss(sl [,tol])
+
+PARAMETERS
+
+  A,B,C,Ao,Bo,Co : real matrices
+
+  sl,slo         : syslin lists
+
+  tol            : real (threshold) (default value 100*%eps)
+
+DESCRIPTION
+  slo=(Ao,Bo,Co) is the observable part of linear system sl=(A,B,C) (syslin
+  list)
+
+  tol  threshold to test controllability (see contr); default value =
+  100*%eps
+
+SEE ALSO
+  contr, contrss, obsv_mat, obs_gram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

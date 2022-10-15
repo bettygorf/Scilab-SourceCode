@@ -1,0 +1,26 @@
+.TH pol2des 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+pol2des - polynomial matrix to descriptor form
+.SH CALLING SEQUENCE
+.nf
+[N,B,C]=pol2des(Ds)
+.fi
+.SH PARAMETERS
+.TP 12
+Ds
+: polynomial matrix
+.TP
+N, B, C 
+: three real matrices
+.SH DESCRIPTION
+Given the polynomial matrix \fVDs=D_0 +D_1 s +D_2 s^2 +... +D_k s^k\fR,
+\fVpol2des\fR returns three  matrices \fVN, B, C\fR, with \fVN\fR nilpotent 
+such that:
+.LP
+\fVDs = C (sN-Eye)^-1 B \fR
+.SH SEE ALSO
+ss2des, tf2des
+.SH AUTHOR
+F.D.
+

@@ -1,0 +1,12 @@
+.TH POWBLK_f 5 "Janvier 1997" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+POWBLK_f - Scicos u^a block
+.SH DIALOGUE PARAMETERS
+.TP
+a :
+real scalar
+.SH DESCRIPTION
+This block realizes \fVy(i)=u(i)^a\fR. The input and output port sizes
+are determined by the compiler according to the
+connected blocks port sizes.

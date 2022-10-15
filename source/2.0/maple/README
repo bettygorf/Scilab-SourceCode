@@ -1,0 +1,7 @@
+This directory contains the source code of Maple
+functions which allow the transfer of Maple objects
+into SCILAB functions. For efficiency, the transfer
+is made through Fortran.
+See documentation in SCIDIR/doc/intro/maple2scilab.tex
+(this is a section of the Introduction to Scilab manual).
+

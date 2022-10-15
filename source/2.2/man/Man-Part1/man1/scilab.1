@@ -1,0 +1,61 @@
+.TH scilab 1 "May 1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+scilab  - Major unix script to execute Scilab and miscellaneous tools
+.SH CALLING SEQUENCE
+.nf
+scilab [-ns -nw -display display]
+scilab -help [ <key> ]
+scilab -xhelp [-display display]
+scilab -k <key>
+scilab -link <objects>
+scilab -macro <macro-name>
+.fi
+.SH DESCRIPTION
+.TP 10
+scilab [-ns -nw -display display]
+: run scilab , if -ns option is present SCI/scilab.star is not
+executed. if -nw option is present then scilab is not run within
+an Xwindow widget
+.TP
+scilab -help <key>
+: write on-line documentation about <key> (usually automatically called 
+by scilab command "help <key>")
+Example:
+.nf
+scilab -help plot3d
+.fi
+.TP
+scilab -k <key>
+: gives the list of Scilab commands containing the 
+keyword <key> in their description ( same as man -k ) 
+.TP
+scilab -link <objects-files>
+: Is used to produce a local \fVscilex\fR (executable code
+of Scilab) linked with the  additional files given by the 
+user in \fV<object-files>\fR.
+
+If in the list of object files some names are known \fVscilex\fR names 
+(from \fVSCIDIR/routines/default\fR ) then the \fVscilex\fR default 
+files are omitted and replaced with the given ones .
+
+This script also produces an \fVxscilab\fR script, which when called 
+will ran the new generated scilex file.
+.LP
+For example:
+.nf
+scilab -link  C/interf.o C/evol.o C/bib.a
+.fi
+will create a new \fVscilex\fR file in which the default \fVinterf.o\fR 
+file will be replaced by \fVC/interf.o\fR.
+.nf
+scilab -function <function-name>
+.fi
+write brief description of calling sequence and description of
+scilab function \fVfunction_name\fR. (Usually automatically called by scilab 
+to display a compiled function).
+
+For example:
+.nf
+scilab -function bode
+.fi

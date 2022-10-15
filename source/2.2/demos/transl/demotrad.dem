@@ -1,0 +1,125 @@
+mode(-1)
+getf('SCI/demos/transl/printspecs.sci','c')
+deff('[]=message(txt)','write(%io(2),txt)')
+//[num]=x_choose(tochoose,comment)
+n=x_choose(['Clauses, loops and operations';
+          'Matrix concatenation';
+          'Concatenations and inversions';
+          'Call of simple primitives';
+          'Operation with complex numbers';
+          'Matrix divisions ';
+          ],'Which macro is to be translated ?')
+if n==0 then return,end
+nam='t'+string(n)
+select n,
+case 1 then,
+deff('[x]=t1(a,b,n)',[
+'z=n+m+n,'
+'c(1,1)=z,'
+'c(2,1)=z+1,'
+'c(1,2)=2,'
+'c(2,2)=0,'
+'if n=1 then,'
+' x=a+b+a,'
+'else,'
+' x=a+b-a''+b,'
+'end,'
+'y=a(3,z+1)-x(z,5),'
+'x=2*x*x*2.21,'
+'sel=1:5,'
+'t=a*b,'
+'for k=1:n,'
+' z1=z*a(k+1,k)+3,'
+'end,'
+'t(sel,5)=a(2:4,7),'
+'x=[a b;-b'' a'']'])
+//
+lt1=list();
+lt1(1)=list('1','m','m');
+lt1(2)=list('1','m','m');
+lt1(3)=list('0','1','1');
+printspecs(t1,lt1)
+
+comp(t1);
+txt=mac2for(macr2lst(t1),lt1);
+message(txt)
+case 2 then,
+deff('[x]=t2(a,b,c,d)',[
+'z=[a b b],'
+'y=[a;c;c],'
+'x=[a b;c d]*3.5'])
+
+lt2=list();
+lt2(1)=list('1','m1','n1');
+lt2(2)=list('1','m1','n2');
+lt2(3)=list('1','m2','n1');
+lt2(4)=list('1','m2','n2');
+
+printspecs(t2,lt2)
+
+comp(t2);
+txt=mac2for(macr2lst(t2),lt2);
+message(txt)
+case 3 then,
+deff('[x]=t3(a,b,c,d)','x=[a;c]/[a b;c d]*3.5')
+
+lt3=list();
+lt3(1)=list('1','m1','n1');
+lt3(2)=list('1','m1','n2');
+lt3(3)=list('1','m2','n1');
+lt3(4)=list('1','m2','n2');
+
+printspecs(t3,lt3)
+
+comp(t3);
+txt=mac2for(macr2lst(t3),lt3);
+message(txt)
+case 4 then,
+deff('[x]=t4(a,n)',[
+'[lhs,rhs]=argn(0),'
+'[m,n]=size(a),'
+'if m=n then error(''incorrect dimensions ''),end,'
+'x=sin(a),'
+'u=norm(x),'
+'if u=%eps then x=x/u,end,'])
+
+lt4=list();
+lt4(1)=list('1','m1','n1');
+
+printspecs(t4,lt4)
+
+comp(t4);
+txt=mac2for(macr2lst(t4),lt4);
+message(txt)
+case 5 then,
+deff('[x]=t5(a,b)','x=a+%i*b')
+
+lt5=list();
+lt5(1)=list('1','m1','n1',0);
+lt5(2)=list('1','m1','n1',0);
+
+printspecs(t5,lt5)
+
+comp(t5);
+txt=mac2for(macr2lst(t5),lt5);
+message(txt);
+case 6 then,
+deff('[x]=t(a,b)',[
+'c=b*b,'
+'x=(a/b)/2+2/c,'])
+
+lt=list();
+lt(1)=list('1','na','ma');
+lt(2)=list('1','ma','ma');
+
+printspecs(t,lt)
+
+comp(t);
+txt=mac2for(macr2lst(t),lt);
+message(txt)
+end
+
+
+
+
+

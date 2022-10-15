@@ -1,0 +1,20 @@
+.TH lines 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+lines - rows and columns used for display
+.SH CALLING SEQUENCE
+.nf
+[nl,nc]=lines([n [,nc]])
+.fi
+.SH DESCRIPTION
+\fVlines\fR handles Scilab display paging.
+
+\fVlines()\fR returns the vector [# columns, # rows] currently
+used by Scilab for displaying the results.
+.LP
+\fVlines(n)\fR sets the number of displayed lines (before user is asked
+for more) to \fVn\fR.
+.LP
+\fVlines(0)\fR disables vertical paging
+.LP
+\fVlines(n,nc)\fR changes also the size of the output to \fVnc\fR columns.

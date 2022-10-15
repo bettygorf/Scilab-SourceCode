@@ -1,0 +1,24 @@
+.TH RESIDU G "April 1993" "Scilab Group" "Scilab Function"
+.SH NAME
+residu - residue 
+.SH CALLING SEQUENCE
+.nf
+[V]=residu(P,Q1,Q2)
+.fi
+.SH PARAMETERS
+.TP
+P, Q1, Q2
+: polynomials or matrix polynomials with real or complex coefficients.
+.SH DESCRIPTION
+.Vb V=residu(P,Q1,Q2) 
+returns the matrix \fVV\fR such that \fVV(i,j)\fR
+is the sum of the residues of the rational fraction 
+\fVP(i,j)/(Q1(i,j)*Q2(i,j))\fR calculated at the zeros of \fVQ1(i,j)\fR.
+.LP
+\fVQ1(i,j)\fR and \fVQ2(i,j)\fR must not have any common root.
+.SH SEE ALSO
+partfrac, bdiag, roots, poly.
+.SH AUTHOR
+F.D.
+
+

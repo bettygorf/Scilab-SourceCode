@@ -1,0 +1,27 @@
+.TH bool2s 1 "September 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+bool2s - convert boolean matrix to a zero one matrix.
+.SH CALLING SEQUENCE
+.nf
+bool2s(x)
+.fi
+.SH PARAMETERS
+.TP
+x 
+: a boolean vector or a boolean matrix or a constant matrix
+.SH DESCRIPTION
+If \fVx\fR is a boolean matrix,
+\fVbool2s(x)\fR returns the matrix where "true" values are replaced by 1
+and "false" value by 0.
+.LP
+If \fVx\fR is a "standard" matrix,
+\fVbool2s(x)\fR returns the matrix where non-zero values are replaced by 1.
+
+.SH EXAMPLE
+.nf
+bool2s([%t %t %f %t])
+bool2s([2.3 0 10 -1])
+.fi
+.SH SEE ALSO
+boolean, find

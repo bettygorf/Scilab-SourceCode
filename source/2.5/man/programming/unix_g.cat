@@ -1,0 +1,29 @@
+
+unix_g(1)                      Scilab Function                      unix_g(1)
+NAME
+  unix_g - shell (sh) command execution, output redirected to a variable
+
+CALLING SEQUENCE
+  rep=unix_g(cmd)
+
+PARAMETERS
+
+  cmd       : a character string
+
+  rep       : a column vector of character strings
+
+DESCRIPTION
+  Sends a string cmd to Unix for execution by the sh shell. The standard out-
+  put is redirected to scilab variable rep.  Unix execution errors are
+  trapped; *NOTE* that only the last shell command error is reported when a
+  list of command separated by ";" is sent: this is not recommended.
+
+EXAMPLE
+  if MSDOS then unix_g('dir '+WSCI+'emos');
+  else unix_g("ls $SCI/demos"); end
+  deff('wd=pwd()','if MSDOS then wd=unix_g(''cd'');..
+                   else wd=unix_g(''pwd''); end')
+  wd=pwd()
+
+SEE ALSO
+  edit, manedit, unix_s, unix_w, unix_x, unix

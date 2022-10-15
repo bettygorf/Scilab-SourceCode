@@ -1,0 +1,106 @@
+.TH fusee 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+fusee - a set of Scilab macro for a landing rocket problem 
+.SH FUSEE
+.nf
+[xdot]=fusee(t,x)
+.fi
+Dynamical motion equation for the rocket 
+.SH FINIT
+.nf
+finit()
+.fi
+Initialises the following parameters for rocket landing.
+.TP
+k     
+: The acceleration of the rocket engines
+.TP
+gamma 
+: The moon gravity acceleration.
+.TP
+umax  
+: the gaz ejection flow out.
+.TP
+mcap  
+: the mass of the space capsule.
+.TP
+cpen  
+: penalisation in the cost function of the final state.
+.LP
+.SH FUSEEGRAD
+.nf
+[ukp1]=fuseegrad(niter,ukp1,pasg)
+.fi
+.TP
+niter
+: number of gradient iteration steps.
+.TP
+ukp1
+: initial control value ( vector of sie 135 )
+.TP
+pasg  
+: the gradient step value.
+.SH DESCRIPTION
+Iterate a gradient method and returns the computed control.
+.SH FUSEEP
+.nf
+[pdot]=fuseep(t,p)
+.fi
+.SH DESCRIPTION
+adjoint equation for the landing rocket problem.
+.SH POUSSE
+.nf
+[ut]=pousse(t)
+.fi
+return the value of a piece wise constant control 
+build on the discrete control \fVuk\fR
+.SH UBANG
+.nf
+[uk]=ubang(tf,tcom)
+.fi
+returns a bang-bang control, 0 form time 0 to tcom 
+and 1 form tcom to tf.
+.SH FCOUT
+.nf
+[c,xk,pk,ukp1]=fcout(tf,uk,pasg)
+.fi
+.SH DESCRITION
+optimise the following cost function by gradient iterations.
+.nf
+c = -m(tf) + C*( h(tf)**2 + v(tf)**2)
+.fi
+.SH SFUSEE
+.nf
+[]=sfusee(tau,h0,v0,m0,Tf)
+.fi
+.SH DESCRIPTION 
+computes the rocket trajectory when a bang-bang control is used 
+\fVtau\fR is the commutation time.
+.TP
+h0 
+: The initial position (high)
+.TP
+v0 
+: The initial speed ( negative if the rocket is landing )
+.TP
+m0 
+: The total initial mass ( capsule and fuel).
+.TP
+Tf 
+: Time horizon.
+.LP
+.SH EQUAD
+.SH DESCRIPTION
+.nf
+[xk,pk]=equad(tf,uk)
+.fi
+Computes the state and adjoint state of the rocket system for a given 
+control \fVur\fR.
+.SH TRAJ
+.nf
+[xt]=traj(t)
+.fi
+returns a piece wise value of the mass evolution.
+
+

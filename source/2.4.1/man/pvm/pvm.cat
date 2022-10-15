@@ -1,0 +1,33 @@
+
+pvm(1)                       Scilab description                        pvm(1)
+NAME
+  pvm - communications with other applications using Parallel Virutal Machine
+
+DESCRIPTION
+  PVM is a software system that enables a collection of heterogeneous comput-
+  ers to be used as a coherent and flexible concurrent computational
+  resource.
+
+  The individual computers may be shared- or local-memory multiprocessors,
+  vector supercomputers, specialized graphics engines, or scalar worksta-
+  tions, that may be interconnected by a variety of networks, such as ether-
+  net, FDDI.
+
+  Daemon programs (pvmd3) provide communication and process control between
+  computers (see PVM manpage and manual for more details).
+
+  Most important functions of the PVM communication library are included in
+  Scilab.
+WARNING
+  PVM must be installed in your envriromnent before using it in Scilab. PVM
+  scilab have been developped using the version 3.3.7 of the PVM library.
+AUTHORS
+  PVM have been developped by A. L. Beguelin, J. J. Dongarra, G. A. Geist, W.
+  C. Jiang, R. J. Manchek, B. K. Moore, V. S. Sunderam (see
+  http://www.netlib.org/pvm3)
+
+SEE ALSO
+  pvm_barrier, pvm_mytid, pvm_bcast, pvm_parent, pvm_config, pvm_delhosts,
+  pvm_recv, pvm_exit,  pvm_send, pvm_getinst, pvm_spawn, pvm_gettid,
+  pvm_spawn_independent, pvm_gsize, pvm_tasks, pvm_joingroup, pvm_tidtohost
+  pvm_kill, pvm_lvgroup, pvm_start, pvm_halt

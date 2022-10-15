@@ -1,0 +1,34 @@
+.TH fullrfk 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+fullrfk - full rank factorization of A^k
+.SH CALLING SEQUENCE
+.nf
+[Bk,Ck]=fullrfk(A,k)
+.fi
+.SH PARAMETERS
+.TP 10
+A
+: real or complex matrix
+.TP
+k
+: integer
+.TP
+Bk,Ck
+: real or complex matrices
+.SH DESCRIPTION
+This function computes the full rank factorization of \fVA^k\fR i.e.
+\fVBk*Ck=A^k\fR where \fVBk\fR is full column rank and \fVCk\fR full row rank.
+One has range(\fVBk\fR)=range(\fVA^k\fR) and ker(\fVCk\fR)=ker(\fVA^k\fR).
+.LP
+For \fVk=1\fR, \fVfullrfk\fR is equivalent to \fVfullrf\fR.
+.SH EXAMPLE
+.nf
+A=rand(5,2)*rand(2,5);[Bk,Ck]=fullrfk(A,3);
+norm(Bk*Ck-A^3,1)
+.fi
+.SH SEE ALSO
+fullrf, range
+.SH AUTHOR
+F.D (1990)
+

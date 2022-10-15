@@ -1,0 +1,11 @@
+
+SINBLK_f(5)                     Scicos Block                      SINBLK_f(5)
+NAME
+  SINBLK_f - Scicos sine block
+
+DIALOGUE PARAMETERS
+  None.
+
+DESCRIPTION
+  This block realizes vector sine operation. y(i)=sin(u(i)).  The input and
+  output  port sizes are equal and determined by the context.

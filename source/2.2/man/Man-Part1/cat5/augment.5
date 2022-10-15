@@ -1,0 +1,66 @@
+
+
+
+augment(5)                     Scilab Function                     augment(5)
+
+
+
+
+
+
+NAME
+  augment - augmented plant
+
+CALLING SEQUENCE
+  [P,r]=augment(G,[flag])
+
+PARAMETERS
+
+  G    : linear system (syslin list), the nominal plant
+
+  flag : one of the following (upper case) character string:
+        'S' ,  'R' ,  'T'
+        'SR' ,  'ST' ,  'RT'
+        'SRT'
+
+  P    : linear system (syslin list), the ``augmented'' plant
+
+  r    : 1x2 row vector, dimension of P22 = G
+
+DESCRIPTION
+  If flag='SRT' (default value), returns the "full" augmented plant
+      [ I | -G]   -->'S'
+      [ 0 |  I]   -->'R'
+  P = [ 0 |  G]   -->'T'
+      [-------]
+      [ I | -G]
+
+   'S' ,  'R' ,  'T'  refer to the first three (block) rows of P respec-
+  tively.
+
+  If one of these letters is absent in flag, the corresponding row in P is
+  missing.
+
+  Note that weighting functions can be introduced by left-multipying P by a
+  diagonal system of appropriate dimension, e.g.,
+   P = sysdiag(W1,W2,W3,eye(G))*P.
+
+  Sensitivity functions can be calculated by lft.
+
+SEE ALSO
+  lft, sensi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

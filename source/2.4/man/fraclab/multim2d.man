@@ -1,0 +1,242 @@
+.TH "multim2d" 2 "July 5th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+multim2d - multinomial 2d measure synthesis
+.sp
+Author: Christophe Canus
+.sp
+This C_LAB routine synthesizes a large range of pre-multifractal
+measures related to the multinomial 2d measure (deterministic,
+shuffled, pertubated) and computes linked theoretical functions
+(partition sum function, Reyni exponents function, generalized
+dimensions, multifractal spectrum).
+.sp
+.sp
+.SH Usage
+\f(CR[\fPvarargout,\f(CR[\fPoptvarargout\f(CR]\fP\f(CR]\fP=binom(bx,by,p,str,varargin,\f(CR[\fPoptvarargin\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBbx\fP : strictly positive real (integer) scalar 
+Contains the abscissa base of the multinomial.
+
+.TP
+o 
+\fBby\fP : strictly positive real (integer) scalar 
+Contains the ordonate base of the multinomial.
+
+.TP
+o 
+\fBp\fP : strictly positive real vector \f(CR[\fPby,bx\f(CR]\fP 
+Contains the weights of the multinomial.
+
+.TP
+o 
+\fBstr\fP : string 
+Contains the type of ouput.
+
+.TP
+o 
+\fBvarargin\fP : variable input argument 
+Contains the variable input argument.
+
+.TP
+o 
+\fBoptvarargin\fP : optional variable input arguments 
+Contains optional variable input arguments.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBvarargout\fP : variable output argument 
+Contains the variable output argument.
+
+.TP
+o 
+\fBoptvarargout\fP : optional variable output argument 
+Contains an optional variable output argument. 
+.RE
+
+.SH Description
+.SH Parameters 
+ 
+The multinomial 2d measure is completly characterized by its abscissa
+base \fIbx\fP, ordonate base \fIby\fP and its weights \fIp\fP(i) (i=1 to
+\fIbx\fP*\fIby\fP). The first two parameters \fIbx\fP and \fIby\fP must be
+\f(CR>\fP1. The third parameter must be a vector of size equal to
+\fIbx\fP*\fIby\fP. The weights \fIp\fP(i) must be \f(CR>\fP0., \f(CR<\fP1. and
+their sum must be =1. (the case of \fIp\fP(i)=1/(\fIbx\fP*\fIby\fP)
+corresponds to the Lebesgue measure) (i=1 to \fIbx\fP*\fIby\fP).
+The fourth parameter \fIstr\fP is a variable string used to determine
+the desired type of output. There are six suffix strings ('\fImeas\fP'
+for measure, '\fIcdf\fP' for cumulative distribution function
+, '\fIpdf\fP' for probability density function, '\fIpart\fP' for partition
+sum function, '\fIReyni\fP' for Reyni exponent function , '\fIspec\fP'
+for multifractal spectrum) for the deterministic multinomial measure
+and two prefix strings for related measures ('\fIshuf\fP' for shuffled
+, '\fIpert\fP' for pertubated) which can be added to the first ones to
+form composed strings. For example, '\fIshufmeas\fP' is for the
+synthesis of a shuffled multinomial 2d pre-multifractal measure. Note
+that all combinaisons of strings are not implemented yet.
+When a string containing suffix string '\fImeas\fP' is given as fourth
+input, a pre-multifractal measure \fImu_n\fP (first output argument) is
+synthesized on the \fIbx\fP-adic and \fIby\fP-adic intervals \fII_nx\fP
+and \fII_ny\fP (second and third optional output argument) of the unit
+square. In that case, the fifth input argument is a strictly positive
+real (integer) scalar \fIn\fP which contains the resolution of the
+pre-multifractal measure. The size of the output real matrix \fImu_n\fP
+is equal to \fIbx\fP\(ha\fIn\fP*\fIby\fP\(ha\fIn\fP and the one of the output
+real vectors \fII_nx\fP and \fII_ny\fP (if used) is equal to
+\fIbx\fP\(ha\fIn\fP and \fIby\fP\(ha\fIn\fP (so be aware the stack size
+;-)). This option is implemented for the deterministic ('\fImeas\fP'),
+shuffled ('\fIshufmeas\fP') and pertubated ('\fIpertmeas\fP')
+multinomial 2d measure.
+When a string containing prefix '\fIshuf\fP' is given as fourth input,
+the synthesis is made for a shuffled multinomial measure. At each
+level of the multiplicative cascade and for all nodes of the
+corresponding binary tree, the vector of weights \fIp\fP is
+shuffled. This option is implemented only for the multinomial 2d
+measure ('\fIshufmeas\fP').
+When a string containing prefix '\fIpert\fP' is given as fourth input,
+the synthesis is made for a pertubated multinomial measure. In that
+case, the fifth input argument is a strictly positive real scalar
+\fIepsilon\fP which contains the pertubation around weights. The
+weights are independant random variables identically distributed
+between \fIp\fP(i)-\fIepsilon\fP and \fIp\fP(i)+\fIepsilon\fP which must
+be \f(CR>\fP0., \f(CR<\fP1. (i=1 to \fIbx\fP*\fIby\fP). This option is
+implemented only for the multinomial 2d measure ('\fIpertmeas\fP').
+When replacing suffix string '\fImeas\fP' with suffix
+string '\fIcdf\fP', respectively suffix string '\fIpdf\fP', the cumulative
+distribution function \fIF_n\fP, respectively the probability density
+function \fIp_n\fP, related to this pre-multifractal measure is
+computed (first output argument).
+When string '\fIpart\fP' is given as fourth input, the partition sum
+function \fIznq\fP of multifractal measure is computed as sole output
+argument. In that case, the fifth input argument is a strictly positive
+real (integer) vector \fIvn\fP which contains the resolutions, and the
+sixth input argument is a real vector \fIq\fP which contains the
+measure exponents. The size of the output real matrix \fIznq\fP is
+equal to size(\fIq\fP)*size(\fIvn\fP). This option is implemented only
+for the multinomial 2d measure.
+When string '\fIReyni\fP' is given as third input, the Reyni exponents
+function \fItq\fP (and the generalized dimensions \fIDq\fP if used) of
+the multifractal measure is computed as first output argument (and
+second optional output argument if used). In that case, the fifth
+input argument is a real vector \fIq\fP which contains the measure's
+exponents. The size of the output real vector \fItq\fP is equal to
+size(\fIq\fP)). This option is implemented only for the multinomial 2d
+measure.
+When string '\fIspec\fP' is given as fourth input, the multifractal
+spectrum \fIf_alpha\fP (second output argument) is synthesized on the
+Hoelder exponents \fIalpha\fP (first output argument). In that case,
+the fifth input argument is a strictly positive real (integer) scalar
+\fIN\fP which contains the number of Hoelder exponents. The size of
+both output real vectors \fIalpha\fP and \fIf_alpha\fP is equal to
+\fIN\fP. This option is implemented only for the multinomial 2d measure.
+.SH Algorithm details
+ 
+For the deterministic multinomial, the pre-multifractal measure
+synthesis algorithm is implemented is a iterative way (supposed to run
+faster than a recursive one). For the shuffled or the pertubated
+multinomial, the synthesis algorithm is implemented is a recursive way
+(to be able to pick up a i.i.d. r.v. at each level of the
+multiplicative cascade and for all nodes of the corresponding binary
+tree w.r.t. the given law). In the case of the pertubated multinomial,
+the weights of each node are normalised by their sum for the measure
+to remain conservative. Note that the shuffled multinomial 2d measure
+is not conservative.
+.SH Examples
+.SH Matlab
+.sp
+.ft CR
+.nf
+bx=2;
+by=3;
+p=[.05 .1; .15 .2; .24 .26];
+n=5;
+% synthesizes a pre-multifractal multinomial 2d measure
+[mu_n,I_nx,I_ny]=multim2d(bx,by,p,'meas',n);
+mesh(I_nx,I_ny,mu_n);
+% synthesizes the cdf of a pre-multifractal shuffled multinomial 2d measure
+F_n=multim2d(bx,by,p,'shufcdf',n);
+mesh(I_nx,I_ny,F_n);
+e=.049;
+% synthesizes the pdf of a pre-multifractal pertubated multinomial 2d measure
+p_n=multim2d(bx,by,p,'pertpdf',n,e);
+mesh(I_nx,I_ny,p_n);
+vn=[1:1:8];
+q=[-5:.1:+5];
+% computes the partition sum function of a multinomial 2d measure
+znq=multim2d(bx,by,p,'part',vn,q);
+plot(-vn*log(2),log(znq));
+% computes the Reyni exponents function of a multinomial 2d measure
+tq=multim2d(bx,by,p,'Reyni',q);
+plot(q,tq);
+N=200;
+% computes the multifractal spectrum of a multinomial 2d measure
+[alpha,f_alpha]=multim2d(bx,by,p,'spec',N);
+plot(alpha,f_alpha);
+.fi 
+.ec
+.ft P
+.sp
+.SH Scilab
+.sp
+.ft CR
+.nf
+bx=2;
+by=3;
+p=[.05 .1; .15 .2; .24 .26];
+n=5;
+// synthesizes a pre-multifractal multinomial 2d measure
+[mu_n,I_nx,I_ny]=multim2d(bx,by,p,'meas',n);
+plot3d(I_nx,I_ny,mu_n);
+// synthesizes the cdf of a pre-multifractal shuffled multinomial 2d measure
+F_n=multim2d(bx,by,p,'shufcdf',n);
+plot3d(I_nx,I_ny,F_n);
+e=.049;
+// synthesizes the pdf of a pre-multifractal pertubated multinomial 2d measure
+p_n=multim2d(bx,by,p,'pertpdf',n,e);
+plot3d(I_nx,I_ny,p_n);
+xbasc();
+vn=[1:1:8];
+q=[-5:.1:+5];
+// computes the partition sum function of a multinomial 2d measure
+znq=multim2d(bx,by,p,'part',vn,q);
+mn=zeros(max(size(q)),max(size(vn)));
+for i=1:max(size(q))
+   mn(i,:)=-vn*log(2);
+end
+plot2d(mn',log(znq'));
+// computes the Reyni exponents function of a multinomial 2d measure
+tq=multim2d(bx,by,p,'Reyni',q);
+plot(q,tq);
+N=200;
+// computes the multifractal spectrum of a multinomial 2d measure
+[alpha,f_alpha]=multim2d(bx,by,p,'spec',N);
+plot(alpha,f_alpha);
+.fi 
+.ec
+.ft P
+.sp
+.SH References
+\fB"Multifractal Measures"\fP, Carl J. G. Evertsz and Benoit
+B. MandelBrot. \fIIn Chaos and Fractals, New Frontiers of Science,
+Appendix B. Edited by Peitgen, Juergens and Saupe, Springer Verlag,
+1992 pages 921-953\fP.
+\fB"A class of Multinomial Multifractal Measures with negative
+(latent) values for the "Dimension" f(alpha)"\fP, Benoit
+B. MandelBrot. \fIIn Fractals' Physical Origins and Properties,
+Proceeding of the Erice Meeting, 1988. Edited by L. Pietronero, Plenum
+Press, New York, 1989 pages 3-29\fP.  .SH See also
+\fBbinom, sbinom, multim1d, smultim1d, smultim2d\fP (C_LAB routines).
+\fBMFAS_measures, MFAS_dimensions, MFAS_spectra\fP (Matlab and/or Scilab demo scripts).

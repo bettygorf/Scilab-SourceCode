@@ -1,0 +1,25 @@
+.TH hotcolormap 1 "November 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+hotcolormap - red to yellow colormap
+.SH CALLING SEQUENCE
+.nf
+cmap=hotcolormap(n)
+.fi
+.SH PARAMETERS
+.TP 6
+n
+: integer >= 3, the colormap size.
+.TP
+cmap
+: matrix with 3 columns \fV[R,G,B]\fR.
+.SH DESCRIPTION
+\fVhotcolormap\fR computes a colormap with \fVn\fR hot colors
+varying from red to yellow.
+.SH EXAMPLE
+.nf
+xset("colormap",hotcolormap(32))
+plot3d1() 
+.fi
+.SH SEE ALSO
+colormap, graycolormap, xset

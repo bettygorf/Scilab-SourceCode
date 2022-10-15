@@ -1,0 +1,20 @@
+
+CLOCK_f(5)                      Scicos Block                       CLOCK_f(5)
+NAME
+  CLOCK_f - Scicos periodic event generator
+
+DESCRIPTION
+  This block is a Super Block constructed by feeding back the output of an
+  event delay block into its input event port. The unique output of this
+  block generates a regular train of events.
+
+DIALOGUE PARAMETERS
+
+  Period
+       : scalar. One over the frequency of the clock. Period is the time that
+       separates two output events.
+
+  Init time
+       : scalar. Starting date. if negative the clock never starts.
+SEE ALSO
+  EVTDLY_f

@@ -1,0 +1,23 @@
+.TH h2norm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+h2norm - H2 norm
+.SH CALLING SEQUENCE
+.nf
+[n]=h2norm(Sl [,tol])
+.fi
+.SH PARAMETERS
+.TP
+Sl
+: linear system (\fVsyslin\fR list)
+.TP
+n
+: real scalar
+.SH DESCRIPTION
+produces the H2 norm  of a linear continuous time system \fVSl\fR.
+.LP
+(For \fVSl\fR in state-space form \fVh2norm\fR uses the observability
+gramian and for \fVSl\fR in transfer form \fVh2norm\fR uses a residue method)
+
+
+

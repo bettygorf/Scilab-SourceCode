@@ -1,0 +1,27 @@
+
+householder(G)                 Scilab Function                 householder(G)
+NAME
+  householder - Householder orthogonal reflexion matrix
+
+CALLING SEQUENCE
+  u=householder(v [,w])
+
+PARAMETERS
+
+  v    : real or complex column vector
+
+  w    : real or complex column vector with same size as v. Default value is
+       eye(v)
+
+  u    : real or complex column vector
+
+DESCRIPTION
+  given 2 column vectors v,  w of same size, householder(v,w) returns a uni-
+  tary column vector u, such that  (eye()-2*u*u')*v is proportional to w.
+  (eye()-2*u*u') is the orthogonal Householder reflexion matrix .
+
+  w default value is  eye(v). In this case vector  (eye()-2*u*u')*v is the
+  vector   eye(v)*norm(v).
+
+SEE ALSO
+  qr, givens

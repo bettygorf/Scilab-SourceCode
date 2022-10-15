@@ -1,0 +1,36 @@
+.TH copfac 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+copfac - right coprime factorization
+.SH CALLING SEQUENCE
+.nf
+[N,M,XT,YT]=copfac(G [,polf,polc,tol]) 
+.fi
+.SH PARAMETERS
+.TP 12
+G 
+: \fVsyslin\fR list  (continuous-time linear system )
+.TP
+polf, polc
+: respectively the poles of \fVXT\fR and \fVYT\fR and the poles of \fVn\fR 
+and \fVM\fR (default values =-1).
+.TP
+tol
+: real threshold for detecting stable poles (default value \fV100*%eps\fR)
+.TP
+N,M,XT,YT
+: linear systems represented by \fVsyslin\fR lists
+.SH DESCRIPTION
+.Vb [N,M,XT,YT]=copfac(G,[polf,polc,[tol]]) 
+returns a right coprime factorization of \fVG\fR.
+.LP
+\fVG = N*M^-1\fR where \fVN\fR and \fVM\fR are stable, proper and right coprime.
+(i.e. \fV[N M]\fR left-invertible with stability)
+.LP
+\fVXT\fR and \fVYT\fR satisfy:
+.LP
+\fV[XT -YT].[M N]' = eye\fR (Bezout identity)
+.LP
+\fVG\fR is assumed stabilizable and detectable.
+.SH SEE ALSO
+syslin, lcf

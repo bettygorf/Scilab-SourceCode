@@ -1,0 +1,27 @@
+.TH mgetstr 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mgetstr - read a character string
+.SH CALLING SEQUENCE
+.nf
+str=mgetstr([n,fd]) 
+.fi
+.SH PARAMETERS
+.TP 10
+n
+:a positive scalar: The number of character to read.
+.TP
+fd
+: scalar. The \fVfd\fR parameter returned by the function
+\fVmopen\fR. -1 stands for last opened file. Default value is -1.
+.TP 
+str
+: a character string
+.SH DESCRIPTION
+mgetstr function allows to read a character string  in a binary file.
+If EOF is reached before
+read completion only the properly read values will be returned.
+.SH SEE ALSO
+mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr, mopen, mprintf, mput, mputstr, mscanf, mseek, mtell
+
+

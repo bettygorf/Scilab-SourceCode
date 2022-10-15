@@ -1,0 +1,66 @@
+
+
+
+chart(1)                       Scilab Function                       chart(1)
+
+
+
+
+
+
+NAME
+  chart - Nichols chart
+
+CALLING SEQUENCE
+  chart([flags])
+  chart(gain [,flags])
+  chart(gain,phase [,flags])
+
+PARAMETERS
+
+  gain      : real vector ( gains (in DB))
+
+  phase     : real vector (phases (in degree))
+
+  flags     : a list of at most 4 flags list(sup [,leg [,cm [,cphi]]])
+
+            sup
+              : 1 indicates superposition on the previous plot
+                0 no superposition is done
+
+            leg
+              : 1 indicates that legends are drawn, o: no legends
+
+            cm
+              : color number (see plot2d) for gain curves
+
+            cphi
+              :  color number (see plot2d) for phase curves
+
+DESCRIPTION
+  plot the Nichols'chart.
+
+  The default values for gain and phase are respectively :
+
+  [-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]
+
+  [-(1:10) , -(20:10:160)]
+
+EXAMPLE
+  s=poly(0,'s')
+  h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+  black(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
+  chart(list(1,0,-2,-3));
+  Another example :
+  h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+  black([h1;h],0.01,100,['h1';'h'])
+  chart([-8 -6 -4],[80 120],list(1,0));
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+ 
+clear;lines(0);
+ 
+rand('seed',0);sl=ssrand(2,2,5);[A,B,C,D]=abcd(sl);poles=spec(A)
+ poles  =
+ 
+! - 0.8675645 + 1.3551594i !
+! - 0.8675645 - 1.3551594i !
+!   0.3095515 + 0.2899645i !
+!   0.3095515 - 0.2899645i !
+! - 2.6609801              !
+ 
+[Q,M]=pbig(A,0,'c');  //keeping unstable poles
+ 
+slred=projsl(sl,Q,M);spec(slred('A'))
+ ans  =
+ 
+!   0.3095515 + 0.2899645i !
+!   0.3095515 - 0.2899645i !
+ 
+sl('D')=rand(2,2);  //making proper system
+ 
+trzeros(sl)  //zeros of sl
+ ans  =
+ 
+!   7.7337323              !
+! - 1.1224546 + 2.2086166i !
+! - 1.1224546 - 2.2086166i !
+! - 2.3050653              !
+! - 0.6752667              !
+ 
+wi=inv(sl);  //wi=inverse in state-space
+ 
+[q,m]=psmall(wi('A'),2,'d');  //keeping small zeros (poles of wi) i.e. abs(z)<2
+ 
+slred2=projsl(sl,q,m);
+ 
+trzeros(slred2)  //zeros of slred2 = small zeros of sl
+ ans  =
+ 
+  - 0.6752667  
+ 
+//  Example keeping second order modes
+ 
+A=diag([-1,-2,-3]);
+ 
+sl=syslin('c',A,rand(3,2),rand(2,3));[nk2,W]=hankelsv(sl)
+ W  =
+ 
+!   0.1222827    0.0326262    0.0389462 !
+!   0.0285660    0.0080088    0.0091462 !
+!   0.0462299    0.0123986    0.0149139 !
+ nk2  =
+ 
+!   0.1446763 !
+!   0.0003667 !
+!   0.0001624 !
+ 
+[Q,M]=pbig(W,nk2(2)-%eps,'c');    //keeping 2 eigenvalues of W
+ 
+slr=projsl(sl,Q,M);  //reduced model
+ 
+hankelsv(slr)
+ ans  =
+ 
+!   0.1446763 !
+!   0.0003667 !
+ 

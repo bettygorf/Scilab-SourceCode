@@ -1,0 +1,25 @@
+.TH graph_2_mat 1 "September 1995" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME
+graph_2_mat - node-arc incidence matrix from graph
+.SH CALLING SEQUENCE
+.nf
+[a] = graph_2_mat(g)
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph-list
+.TP 2
+a
+: sparse node-arc incidence matrix
+.SH DESCRIPTION
+\fVgraph_2_mat\fR computes the node-arc incidence matrix corresponding
+to the graph \fVg\fR.
+.SH EXAMPLE
+.nf
+g=load_graph(SCI+'/demos/metanet/colored');
+a=graph_2_mat(g)
+.fi
+.SH SEE ALSO
+mat_2_graph

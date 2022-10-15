@@ -1,0 +1,135 @@
+.TH fort 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+fort - Fortran or C user routines call
+.SH CALLING SEQUENCE
+.nf 
+[y1,...,yk]=fort("ident",x1,px1,"tx1",...,xn,pxn,"txn",
+                 "out",[ny1,my1],py1,"ty1",...,[nyl,myl],pyl,"tyl")
+[y1,....,yk]=fort("ident",x1,...,xn) 
+.fi
+.SH PARAMETERS
+.TP 10
+"ident"
+: string
+.TP
+xi
+: real matrix
+.TP
+pxi, pyi
+: integers
+.TP
+txi, tyi
+: character string \fV"d"\fR, \fV"r"\fR, \fV"i"\fR  or \fV"c"\fR.
+.SH DESCRIPTION
+Interactive call of Fortran (or C) user program from Scilab. The
+routine must be previously linked with Scilab. This link may be done:
+.RS
+.TP
+-
+with Scilab "\fVlink\fR" command (incremental "soft" linking) during the
+Scilab session.(see \fVlink\fR)
+.TP
+-
+by "hard" re-linking. Writing the routine call within Scilab routine
+"default/Ex-fort.f" and then re_linking all Scilab with the command \fVmake bin/scilex\fR 
+in main Scilab directory.
+.RE
+.LP
+The meaning of each parameter is described now:
+.RS
+.TP 15
+"ident"
+is the name of the subroutine called.
+.TP 
+x1,...,xn
+are input variables (real matrices) sent to the routine,
+.TP
+px1,...,pxn
+are the respective positions of these variables in the calling sequence of the routine and
+.TP
+tx1,...,txn
+are their types (\fV"r","i", "d",\fR  for real (float) , integer, double precision)
+(strings are denoted \fV"c"\fR and are treated as integers).
+.TP 
+"out"
+is a keyword used to separate input variables from output variables.
+.TP
+[ny1, my1]
+are the size (# of rows and columns) of output variables and
+.TP
+py1, ...
+are the positions of output variables (possibly equal to \fVpxi\fR ).
+The \fVpyi\fR's integers must be in increasing order.
+.TP
+"ty1", ...
+are the Fortran types of output variables.
+The  k  first output variables are put in \fVy1,..., yk\fR.
+.RE
+.LP
+If an output variable coincides with an input variable
+(i.e. \fVpyi=pxj\fR ) one can pass only its position \fVpyi\fR .
+The size and type of \fVyi\fR are the same as those of \fVxi\fR .
+.LP
+In the case of short syntax , \fV[y1,....,yk]=fort("ident",x1,...,xn)\fR,
+the input parameters \fVxi\fR's are sent to the interface routine
+\fVEx-fort\fR. \fVtxi, nyj, myj \fR and \fVtyj\fR are then given in 
+this routine (see the source code in the directory \fVSCIDIR/default\fR).
+.LP
+For example the following program:
+.nf
+	subroutine foof(c,a,b,n,m)
+	integer n,m
+	double precision a(*),b,c(*)
+	do 10 i=1,m*n 
+	  c(i) = sin(a(i))+b
+ 10	continue
+	end
+
+link("foof.o","foof")
+a=[1,2,3;4,5,6];b= %pi;
+[m,n]=size(a);
+// Inputs:
+// a is in position 2 and double
+// b                3     double
+// n                4     integer
+// m                5     integer
+// Outputs:
+// c is in position 1 and double with size [m,n]
+c=fort("foof",a,2,"d",b,3,"d",n,4,"i",m,5,"i","out",[m,n],1,"d");
+.fi
+returns the matrix \fVc=2*a+b\fR.
+
+If your machine is a DEC Alpha, SUN Solaris or SGI you may have to change the 
+previous command line \fVlink("foo.o","foo") \fR by one of the followings:
+.nf
+link('foof.o -lfor -lm -lc','foof').
+link('foof.o -lftn -lm -lc','foof').
+link('foof.o -L/opt/SUNWspro/SC3.0/lib/lib77 -lm -lc','foof').
+.fi
+
+The same example coded in  C:
+.nf
+	void fooc(c,a,b,m,n) 
+	double a[],*b,c[];
+	int *m,*n;
+      { double sin();
+	int i;
+	for ( i =0 ; i < (*m)*(*n) ; i++) 
+	       c[i] = sin(a[i]) + *b;	
+	}
+
+link("fooc.o","fooc","C") // note the third argument 
+a=[1,2,3;4,5,6];b= %pi;
+[m,n]=size(a);
+c=fort("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
+.fi
+.LP
+Characters strings are treated as integers. For passing the string 
+\fVmystring\fR, use the triple:
+.nf
+fort(..., str2code('mystring'),pxi,'c',....).
+.fi
+Upon return use \fVcode2str\fR to convert output integer vector to string.
+.SH SEE ALSO
+link, c_link, intersci, addinter

@@ -1,0 +1,38 @@
+
+sva(1)                         Scilab Function                         sva(1)
+NAME
+  sva - singular value approximation
+
+CALLING SEQUENCE
+  [U,s,V]=sva(A,k)
+  [U,s,V]=sva(A,tol)
+
+PARAMETERS
+
+  A       : real or complex matrix
+
+  k       : integer
+
+  tol     : nonnegative real number
+
+DESCRIPTION
+  Singular value approximation.
+
+  [U,S,V]=sva(A,k)
+   with k an integer >=1, returns U,S and V such that B=U*S*V' is the best L2
+  approximation of A with rank(B)=k.
+
+  [U,S,V]=sva(A,tol)
+   with tol a real number, returns U,S and V such that B=U*S*V' such that
+  L2-norm of  A-B is at most tol.
+
+EXAMPLE
+  A=rand(5,4)*rand(4,5);
+  [U,s,V]=sva(A,2);
+  B=U*s*V';
+  svd(A)
+  svd(B)
+  clean(svd(A-B))
+
+SEE ALSO
+  svd

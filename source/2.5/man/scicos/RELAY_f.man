@@ -1,0 +1,26 @@
+.TH Relay_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+RELAY_f - Scicos relay  block
+.SH DIALOGUE PARAMETERS
+.TP 20
+number of inputs
+: a scalar. Number of regular and event inputs.
+.TP
+initial connected input
+: an integer. It must be between 1 and the number of inputs.
+.SH DESCRIPTION
+This block routes one of the regular inputs to the unique regular
+output. the choice of which input is to be routed is done, initially
+by the "initial connected input" parameter. Then, every time an input
+event arrives on the i-th input event port, the i-th regular input
+port is routed to the regular output.
+
+
+
+
+
+
+
+
+

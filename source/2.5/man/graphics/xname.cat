@@ -1,0 +1,17 @@
+
+xname(2)                       Scilab Function                       xname(2)
+NAME
+  xname - change the name of the current graphics window
+
+CALLING SEQUENCE
+  xname(name)
+
+PARAMETERS
+
+  name  : string, new name of the graphics window.
+
+DESCRIPTION
+  xname changes the name of the current graphics window.
+
+AUTHOR
+  J.Ph.C.

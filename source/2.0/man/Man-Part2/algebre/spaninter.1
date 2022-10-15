@@ -1,0 +1,40 @@
+.TH spaninter 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+spaninter - subspace intersection
+.SH CALLING SEQUENCE
+.nf
+[X,dim]=spaninter(A,B [,tol])  
+.fi
+.SH PARAMETERS
+.TP 10
+A, B
+: two real or complex matrices with equal number of rows
+.TP
+X
+: orthogonal or unitary square matrix
+.TP
+dim 
+: integer, dimension of subspace range(\fVA\fR) inter range(\fVB\fR)
+.SH DESCRIPTION
+.Vb [X,dim]=spaninter(A,B)
+computes the intersection of range(\fVA\fR) and range(\fVB\fR).
+.LP
+The first \fVdim\fR columns of \fVX\fR span this intersection i.e.
+\fVX(:,1:dim)\fR is an orthogonal basis for 
+.IG
+range(\fVA\fR) inter range(\fVB\fR)
+.FI
+.LA \mbox{${\cal R}(A) \cap {\cal R}(B)$}
+.LP 
+In the \fVX\fR basis \fVA\fR and \fVB\fR are respectively represented by:
+.LP
+\fVX'*A\fR and \fVX'*B\fR.
+.LP
+\fVtol\fR is a threshold (\fVsqrt(%eps)\fR is the default value).
+.SH SEE ALSO
+spanplus, spantwo
+.SH AUTHOR
+F. D.
+
+

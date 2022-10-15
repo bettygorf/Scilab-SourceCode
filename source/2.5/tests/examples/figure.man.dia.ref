@@ -1,0 +1,45 @@
+ 
+clear;lines(0);
+ 
+h=figure(3);
+Sorry, TK has not been enabled this the session.
+
+ 
+// creates  figure number 1.
+ 
+uicontrol( h, 'style','text',0...
+ 'string','This is a figure',0...
+ 'position',[50 70 100 100],0...
+ 'fontsize',15);
+Sorry, TK has not been enabled this the session.
+
+ 
+// put a  text in figure 3
+ 
+figure();
+Sorry, TK has not been enabled this the session.
+
+ 
+// create figure 1
+ 
+uicontrol( 'style','text',0...
+ 'string','Another figure',0...
+ 'position',[50 70 100 100],0...
+ 'fontsize',15);
+Sorry, TK has not been enabled this the session.
+
+ 
+// put a text in figure 1
+ 
+close();
+Sorry, TK has not been enabled this the session.
+
+ 
+// close the current graphic window (ie fig. 1)
+ 
+close(h);
+Sorry, TK has not been enabled this the session.
+
+ 
+// close figure 3
+ 

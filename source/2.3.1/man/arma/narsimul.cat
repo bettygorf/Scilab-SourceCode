@@ -1,0 +1,15 @@
+
+narsimul(1)                    Scilab Function                    narsimul(1)
+NAME
+  narsimul - armax simulation ( using rtitr)
+
+CALLING SEQUENCE
+  [z]=narsimul(a,b,d,sig,u,[up,yp,ep])
+  [z]=narsimul(ar,u,[up,yp,ep])
+
+DESCRIPTION
+  ARMAX simulation. Same as arsimul but the method is different the simula-
+  tion is made with rtitr
+
+AUTHOR
+  J-Ph. Chancelier ENPC Cergrene

@@ -1,0 +1,138 @@
+.TH "icontwt" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+icontwt -  Inverse Continuous L2 wavelet transform
+.sp
+Author: Paulo Goncalves
+.sp
+Computes the \fIinverse continuous wavelet transform\fP: reconstructs a
+1\f(CR-\fPD signal from its wavelet coefficients. The scale operator is
+unitary with respect to the L2 norm. 
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+[x_back]=icontwt(wt,f,wl_length)
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP :  Real or complex matrix \f(CR[\fPN,nt\f(CR]\fP
+coefficient of the wavelet transform
+
+.TP
+o 
+\fBf\fP : real vector of size \f(CR[\fPN,1\f(CR]\fP or \f(CR[\fP1,N\f(CR]\fP
+which elements are in /\f(CR[\fP0,0.5\f(CR]\fP, in decreasing order.
+
+.TP
+o 
+\fBwl_length \fP : scalar or matrix
+specifies the reconstruction wavelet:
+0: Mexican hat wavelet (real)
+Positive real integer: real Morlet wavelet of size 2*\fIwl_length\fP+1) at
+finest scale 1
+Positive imaginary integer: analytic Morlet wavelet of size 2*\fIwl_length\fP+1) at
+finest scale 1
+Real valued matrix with \fI N \fP columns: each column contains a
+dilated versions of an arbitrary synthesis wavelet.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBx_back\fP : Real or complex vector \f(CR[\fP1,nt\f(CR]\fP
+Reconstructed signal.
+.RE
+
+.SH Description
+.SH Parameters
+
+
+.RS
+
+.TP
+o 
+\fIwt\fP : coefficient of the wavelet transform.
+X\f(CR-\fPcoordinated corresponds to time (uniformly sampled),
+Y\f(CR-\fPcoordinates correspond to frequency (or scale) voices
+(geometrically sampled between \fI fmax\fP (resp. 1) and \fIfmin\fP
+(resp. \fI fmax \fP/\fI fmin \fP). First row of wt corresponds to the
+highest analyzed frequency (finest scale). Usually, \fIwt\fP is the
+output matrix \fIwt\fP of \fI contwt \fP.
+
+.TP
+o 
+\fIscale\fP : analyzed scales (geometrically sampled between 1
+and \fI fmax \fP/\fIfmin\fP. Usually, \fIscale\fP is the output vector
+\fIscale\fP of \fI contwt \fP.
+
+.TP
+o 
+\fIwl_length \fP : specifies the synthesis wavelet:
+0: Mexican hat wavelet (real). The size of the wavelet is
+automatically fixed by the analyzing frequency
+Positive real integer: real Morlet wavelet of size 2*\fIwl_length\fP+1) at
+finest scale (1)
+Positive imaginary integer: analytic Morlet wavelet of size
+2\f(CR*\fP\f(CR|\fP\fIwl_length\fP\f(CR|\fP+1) at finest scale 1. The
+corresponding wavelet transform is then complex. May be usefull for
+event detection purposes.
+Real valued matrix: usually, for reconstruction \fIwl_length\fP is
+the output matrix \fIwavescaled\fP from \fIcontwt\fP.
+.RE
+
+.SH Algorithm details
+The reconstruction algorithm \fIInverse Wavelet Transform \fP,
+proceeds by convolving the wavelet coefficients (obtained from \fIcontwt \fP ) by the synthesis wavelet. As we deal with continuous
+wavelet decomposition, the analyzing wavelet and its dual for
+reconstruction are the same (continuous basis). This operation is
+iterated at each analyzed scale \fI j \fP yielding \fI N \fP
+corresponding band-passed signal versions. The reconstructed signal is
+the scale weighting sum of these \fI N \fP vectors.
+.SH See also:
+contwt, contwtmir
+.SH Example:
+\fI Signal synthesis \fP 
+.sp
+.ft CR
+.nf
+x = morlet(0.1,64) ;
+t = 1:129 ; 
+.fi 
+.ec
+.ft P
+.sp
+\fI A Morlet (of size 2*8+1 samples ) wavelet transform \fP 
+.sp
+.ft CR
+.nf
+[wtMorlet,scale,f,scaloMorlet] = contwt(x,0.01,0.5,128,8) ;
+viewmat(scaloMorlet,1:129,f,[1 1 24]) ;
+.fi 
+.ec
+.ft P
+.sp
+\fI Reconstruction with the same synthesis wavelet \fP 
+.sp
+.ft CR
+.nf
+[x_back] = icontwt(wtMorlet,f,8) ;
+plot([t(:) t(:)],[x(:) x_back(:)]) ;
+.fi 
+.ec
+.ft P
+.sp

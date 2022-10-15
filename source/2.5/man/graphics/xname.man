@@ -1,0 +1,17 @@
+.TH xname 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+xname - change the name of the current graphics window
+.SH CALLING SEQUENCE
+.nf
+xname(name)
+.fi
+.SH PARAMETERS
+.TP 6
+name
+: string, new name of the graphics window.
+.LP
+.SH DESCRIPTION
+\fVxname\fR changes the name of the current graphics window.
+.SH AUTHOR
+J.Ph.C.

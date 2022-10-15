@@ -1,0 +1,108 @@
+.TH plot3di 2 "September 1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+plot3di - surface plotting with interactive view selection
+.SH CALLING SEQUENCE
+.nf
+plot3d(x,y,z,theta,alpha,leg,flag,ebox)
+plot3d(x,y,z,theta,alpha,leg,[flag,ebox)]
+.fi
+.SH PARAMETERS
+.TP 15
+x,y
+: matrices of sizes (1,n1) and (1,n2) (point coordinates)
+.TP 15
+z
+: matrix of size (n1,n2) ( \fVz(i,j)\fR : value of f at the point (x(i),y(j))
+.TP
+theta, alpha 
+: real values giving in degree the initial spherical coordinates of 
+the observation point
+.TP
+leg 
+: string (captions for each axis. this is string 
+with @ as a field separator, for example : "X@Y@Z")
+.TP
+flag
+: is a real vector of size three \fVflag=[mode,type,box]\fR
+.RS 
+.TP
+mode 
+: string (treatment of hidden parts)
+.RS
+.TP 
+mode >=2
+the hidden parts of the surface are removed and the surface is painted 
+in gray (from low gray to black according to the value of mode)
+.TP
+mode = 1
+the hidden parts of the surface are drawn 
+.TP
+mode <= 0
+only the shadow of the surface is painted with a gray level depending
+on mode
+.RE
+.TP
+type 
+: scaling
+.RS 
+.TP 15
+if type = 0
+the plot is made using the current 3D scaling ( set by a previous call to
+\fVparam3d, plot3d, contour, plot3d1\fR)
+.TP
+if type = 1
+the boundaries are specified by the value of the parameter
+.LP
+\fVebox=[xmin,xmax,ymin,ymax,zmin,zmax]\fR
+.TP
+else
+the boundaries are computed with the given datas.
+.RE
+.TP
+box
+: frame display around the plot.
+.RS
+.TP
+box=0 
+nothing is drawn around the plot
+.TP
+box=1 
+unimplemented ( like box=0 )
+.TP
+box=2 
+only the axes behind the surface are drawn
+.TP
+box=3 
+a box surrounding the surface is drawn and captions are added
+.TP
+box=4
+a box surrounding the surface is drawn, captions are added and axes too.
+.RE
+.RE 
+.SH DESCRIPTION
+Draw the surface \fVf(x,y)\fR defined by a matrix of coordinates and
+allow the user to change the view with the mouse :
+
+
+Pick a point within the graphic window (Left mouse button) and drag
+the mouse (theta
+increases for left to right move and alpha increases for down to up
+move). When view is ok click with the left button to have the surface
+drawn. click rigth button  to exit.
+
+
+For Pos and Fig drivers plot3di works just like plot3d
+
+.SH EXAMPLE
+enter the command  \fVplot3di()\fR
+to see a demo 
+.LP
+another example :
+.LP
+\fVplot3di(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])\fR
+.SH AUTHOR
+S Steer (INRIA)
+
+
+

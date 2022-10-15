@@ -1,0 +1,23 @@
+
+c_link(1)                      Scilab Function                      c_link(1)
+NAME
+  c_link - check dynamic link
+
+CALLING SEQUENCE
+  c_link('routine-name')
+  [test,ilib]=c_link('routine-name')
+  test=c_link('routine-name',num)
+
+DESCRIPTION
+  c_links is a boolean function which checks if the routine a boolean value
+  true or false. When used with two return values, the function c_link
+  returns a boolean value in test and the number of the shared library which
+  contains 'routine-name' in ilib (when test is true).
+
+EXAMPLE
+  if c_link('foo') then link('foo.o','foo');end
+  // to unlink all the shared libarries which contain foo
+  a=%t; while a ;[a,b]=c_link('foo'); ulink(b);end
+
+SEE ALSO
+  link, fort

@@ -1,0 +1,300 @@
+
+grand(1)                       Scilab Function                       grand(1)
+NAME
+  grand - Random number generator
+
+CALLING SEQUENCE
+  Y=grand(m,n,'option' [,arg1,..,argn])
+  Y=grand(x,'option' [,arg1,....,argn])
+  Y=grand('option')
+  Y=grand('option'  [,arg1,....,argn])
+
+PARAMETERS
+
+  grand('advnst',K)
+       : Advances the state of the current generator by 2^K values and resets
+       the initial seed to that value.
+
+  Y=grand(m,n,'bet',A,B), Y=grand(x,'bet',A,B)
+       : Returns random deviates from the beta distribution with parameters A
+       and B. The density of the beta is x^(a-1) * (1-x)^(b-1) / B(a,b) for 0
+       < x < 1
+
+       Method: R. C. H. Cheng Generating Beta Variables with Nonintegral
+       Shape Parameters Communications of the ACM, 21:317-322 (1978) (Algo-
+       rithms BB and BC)
+
+  Y=grand(m,n,'bin',N,P), Y=grand(x,'bin',N,P)
+       : Generates random deviates from a binomial distribution whose number
+       of trials is N and whose  probability of an event in each trial is P.
+       N is the number of trials in the binomial distribution from which a
+       random deviate is to be generated.  P is the probability of an event
+       in each trial of the binomial distribution from which a random deviate
+       is to be generated.  (0.0 <= P <= 1.0)
+
+       Method: This is algorithm BTPE from:  Kachitvichyanukul, V. and
+       Schmeiser, B. W. Binomial Random Variate Generation. Communications of
+       the ACM, 31, 2 (February, 1988) 216.
+
+  Y=grand(m,n,'chi',Df), Y=grand(x,'chi',Df)
+       : Generates random deviates from the distribution of a chisquare with
+       DF degrees of freedom random variable.  Uses relation between
+       chisquare and gamma.
+
+  Y=grand(m,n,'def'), Y=grand(x,'def')
+       : Returns random floating point numbers from a uniform distribution
+       over 0 - 1 (endpoints of this interval are not returned) using the
+       current generator
+
+  Y=grand(m,n,'exp',Av), Y=grand(x,'exp',Av)
+       : Generates random deviates from an exponential distribution with mean
+       AV.  For details see:
+        Ahrens, J.H. and Dieter, U.
+        Computer Methods for Sampling From the
+        Exponential and Normal Distributions.
+        Comm. ACM, 15,10 (Oct. 1972), 873 - 882.
+
+  Y=grand(m,n,'f',Dfn,Dfd), Y=grand(x,'f',Dfn,Dfd)
+       : Generates random deviates from the F (variance ratio) distribution
+       with DFN degrees of freedom in the numerator and DFD degrees of free-
+       dom in the denominator.  Method: Directly generates ratio of chisquare
+       variates
+
+  Y=grand(m,n,'gam',Shape,Scale), Y=grand(x,'gam',Shape,Scale)
+       : Generates random deviates from the gamma distribution whose density
+       is  (Scale**Shape)/Gamma(Shape) * X**(Shape-1) * Exp(-Scale*X) For
+       details see:
+
+       (Case R >= 1.0)
+         : Ahrens, J.H. and Dieter, U.
+          Generating Gamma Variates by a
+          Modified Rejection Technique.
+          Comm. ACM, 25,1 (Jan. 1982), 47 - 54.
+          Algorithm GD
+
+       (Case 0.0 < R < 1.0)
+         : Ahrens, J.H. and Dieter, U.
+          Computer Methods for Sampling from Gamma,
+          Beta, Poisson and Binomial Distributions.
+          Computing, 12 (1974), 223-246/
+          Adapted algorithm GS.
+
+  G=grand('getcgn')
+       : Returns in G the number of the current random number generator
+       (1..32)
+
+  Sd=grand('getsd')
+       : Returns the value of two integer seeds of the current generator
+       Sd=[sd1,sd2]
+
+  grand('initgn',I)
+       : Reinitializes the state of the current generator
+
+       I = -1
+         : sets the state to its initial seed
+
+       I = 0
+         : sets the state to its last (previous) seed
+
+       I = 1
+         : sets the state to a new seed 2^w values from its last seed
+
+  Y=grand(m,n,'lgi'),Y=grand(x,'lgi')
+       : Returns random integers following a uniform distribution over
+        (1, 2147483562) using the current generator.
+
+  Y=grand(M,'mn',Mean,Cov)
+       :Generate M Multivariate Normal random deviates Mean must be a Nx1
+       matrix and Cov a NxN positive definite matrix Y is a NxM matrix
+
+  Y=grand(n,'markov',P,x0)
+       Generates n successive states of a Markov chain described by the tran-
+       sition matrix P. Initial state is  given by x0
+
+  Y=grand(M,'mul',N,P)
+       Generate M observation from the Multinomial distribution.  N is the
+       Number of events that will be classified into one of the categories
+       1..NCAT P is the vector of probabilities. P(i) is the probability that
+       an event will be classified into category i. Thus, P(i) must be [0,1].
+       P(i) is of size NCAT-1 ( P(NCAT) is 1.0 minus the sum of the first
+       NCAT-1 P(i).  Y(:,i) is an observation from multinomial distribution.
+       All Y(:,i)
+        will be nonnegative and their sum will be N. Y is of size NcatxM
+
+       Algorithm from page 559 of Devroye, Luc. Non-Uniform Random Variate
+       Generation. Springer-Verlag, New York, 1986.
+
+  Y=grand(m,n,'nbn',N,P),Y=grand(x,'nbn',N,P)
+       : Generates random deviates from a negative binomial
+        distribution.
+        N is the required number of events (N > 0).  P is The probability of
+       an event during a Bernoulli trial (0.0 < P < 1.0).
+
+       Method: Algorithm from page 480 of Devroye, Luc. Non-Uniform Random
+       Variate Generation. Springer-Verlag, New York, 1986.
+
+  Y=grand(m,n,'nch',Df,Xnon), Y=grand(x,'nch',Df,Xnon)
+       : Generates random deviates from the distribution of a noncentral
+       chisquare with DF degrees of freedom and noncentrality parameter
+       XNONC.  DF is he degrees of freedom of the chisquare (Must be >= 1.0)
+       XNON the Noncentrality parameter of the chisquare  (Must be >= 0.0)
+       Uses fact that noncentral chisquare is the sum of a chisquare deviate
+       with DF-1 degrees of freedom plus the square of a normal deviate with
+       mean XNONand standard deviation 1.
+
+  Y=grand(m,n,'nf',Dfn,Dfd,Xnon), Y=grand(x,'nf',Dfn,Dfd,Xnon)
+       : Generates random deviates from the noncentral F (variance ratio)
+       distribution with DFN degrees of freedom in the numerator, and DFD
+       degrees of freedom in the denominator, and noncentrality parameter
+       XNONC.  DFN is the numerator degrees of freedom  (Must be >= 1.0) DFD
+       is the Denominator degrees of freedom (Must be positive) XNON is the
+       Noncentrality parameter (Must be nonnegative) Method:  Directly gener-
+       ates ratio of noncentral numerator chisquare variate
+        to central denominator chisquare variate.
+
+  Y=grand(m,n,'nor',Av,Sd), Y=grand(x,'nor',Av,Sd)
+       : Generates random deviates from a normal distribution with mean, AV,
+       and standard deviation, SD.  AV is the mean of the normal distribu-
+       tion.  SD is the standard deviation of the normal distribution.  For
+       details see: Ahrens, J.H. and Dieter, U. Extensions of Forsythe's
+       Method for Random Sampling from the Normal Distribution. Math. Com-
+       put., 27,124 (Oct. 1973), 927 - 937.
+
+  Sd=grand('phr2sd','string')
+       : Uses a phrase (character string) to generate two seeds for the RGN
+       random number generator. Sd is an integer vector of size 2
+       Sd=[Sd1,Sd2]
+
+  Y=grand(m,n,'poi',mu), Y=grand(x,'poi',mu)
+       : Generates random deviates from a Poisson distribution with mean MU.
+       MU is the mean of the Poisson distribution from which random deviates
+       are to be generated (MU >= 0.0).  For details see:  Ahrens, J.H. and
+       Dieter, U.
+        Computer Generation of Poisson Deviates
+        From Modified Normal Distributions.
+        ACM Trans. Math. Software, 8, 2
+        (June 1982),163-179
+
+  Mat=grand(M,'prm',vect)
+       : Generate M random permutation of column vector vect. Mat is of size
+       (size(vect)xM)
+
+  grand('setall',ISEED1,ISEED2)
+       : Sets the initial seed of generator 1 to ISEED1 and ISEED2. The ini-
+       tial seeds of the other generators are set accordingly, and all
+       generators states are set to these seeds.
+
+  grand('setcgn',G)
+       : Sets the current generator to G. All references to a generator are
+       to the current generator.
+
+  grand('setsd',ISEED1,ISEED2)
+       : Resets the initial seed and state of generator g to ISEED1 and
+       ISEED2. The seeds and states of the other generators remain unchanged.
+
+  Y=grand(m,n,'uin',Low,High), Y=grand(x,'uin',Low,High)
+       : Generates integers uniformly distributed between LOW and HIGH.  Low
+       is the low bound (inclusive) on integer value to be generated.  High
+       is the high bound (inclusive) on integer value to be generated.  If
+       (HIGH-LOW) > 2,147,483,561 prints error message
+
+  Y=grand(m,n,'unf',Low,High),Y=grand(x,'unf',Low,High)
+       : Generates reals uniformly distributed between LOW and HIGH.  Low is
+       the  low bound (exclusive) on real value to be generated High is the
+       high bound (exclusive) on real value to be generated
+
+DESCRIPTION
+  Interface fo Library of Fortran Routines for Random Number Generation
+  (Barry W. Brown and James Lovato, Department of Biomathematics, The Univer-
+  sity of Texas, Houston)
+
+  This   set of programs contains   32 virtual random number generators.
+  Each generator can provide 1,048,576 blocks of numbers, and each block is
+  of length 1,073,741,824.  Any generator can be set to the beginning or end
+  of the current block or to its starting value.  The methods are from the
+  paper  cited  immediately below, and  most of the  code  is a translitera-
+  tion from the Pascal of the paper into Fortran.
+
+  P.  L'Ecuyer and S. Cote.   Implementing a Random  Number Package with
+  Splitting Facilities.  ACM Transactions on Mathematical Software 17:1, pp
+  98-111.
+
+  Most users won't need the sophisticated  capabilities of this package, and
+  will desire a single generator.  This single generator (which will have a
+  non-repeating length  of 2.3 X  10^18 numbers) is the  default.  In order
+  to accommodate this use, the concept of the current generator is added to
+  those of the  cited paper;  references to a  generator are always to the
+  current generator.  The  current generator  is initially generator number
+  1; it  can  be  changed by 'setcgn', and the ordinal number of the current
+  generator can be obtained from 'getcgn'.
+
+  The user of the default can set the  initial values of the two integer
+  seeds with 'setall'.   If the user does  not set the   seeds, the random
+  number   generation will  use   the  default   values, 1234567890  and
+  123456789.  The values of the current seeds can be  achieved by a call to
+  'getsd'.  Random number may be obtained as integers ranging from 1 to a
+  large integer by reference to option 'lgi' or as a floating point number
+  between 0 and 1 by a reference to option 'def'.  These are the only rou-
+  tines  needed by a user desiring   a single stream   of random numbers.
+
+CONCEPTS
+  A stream of pseudo-random numbers is a sequence, each member  of which can
+  be obtained either as an integer in  the range 1..2,147,483,563 or as a
+  floating point number in the range [0..1].  The user is in charge of which
+  representation is desired.
+
+  The method contains an algorithm  for generating a  stream with a very long
+  period, 2.3 X 10^18.   This  stream  in  partitioned into G (=32) virtual
+  generators.  Each virtual generator contains 2^20 (=1,048,576) blocks   of
+  non-overlapping   random  numbers.   Each  block is   2^30 (=1,073,741,824)
+  in length.
+  The state of a generator  is determined by two  integers called seeds.  The
+  seeds can be  initialized  by the  user; the initial values of the first
+  must lie between 1 and 2,147,483,562, that of the second between 1 and
+  2,147,483,398.  Each time a number is generated,  the  values of the seeds
+  change.   Three  values   of seeds are remembered   by  the generators  at
+  all times:  the   value with  which the  generator  was initialized, the
+  value at the beginning of the current block,  and the value at the begin-
+  ning of the next block.   The seeds of any generator can be set to any of
+  these three values at any time.
+
+  Of the  32 virtual   generators, exactly one    will  be  the  current gen-
+  erator, i.e., that one will  be used to  generate values for 'lgi' and
+  'def'.   Initially, the current generator is   set to number  one.  The
+  current generator may be changed by calling 'setcgn', and the number of the
+  current generator can be obtained using 'getcgn'.
+
+TEST EXAMPLE
+  An example of  the  need  for these capabilities   is as follows.  Two sta-
+  tistical techniques are being compared on  data of different sizes.  The
+  first  technique uses   bootstrapping  and is  thought to   be  as accurate
+  using less data   than the second method  which  employs only brute force.
+
+  For the first method, a data set of size uniformly distributed between 25
+  and 50 will be generated.  Then the data set  of the specified size will be
+  generated and alalyzed.  The second method will  choose a data set size
+  between 100 and 200, generate the data  and alalyze it.  This process will
+  be repeated 1000 times.
+
+  For  variance reduction, we  want the  random numbers  used in the two
+  methods to be the  same for each of  the 1000 comparisons.  But method two
+  will  use more random  numbers than   method one and  without this package,
+  synchronization might be difficult.
+
+  With the package, it is a snap.  Use generator 1 to obtain  the sample size
+  for  method one and generator 2  to obtain the  data.  Then reset the state
+  to the beginning  of the current  block and do the same  for the second
+  method.  This assures that the initial data  for method two is that used by
+  method  one.  When both  have concluded,  advance the block for both gener-
+  ators.
+
+INTERFACE
+  A random number is obtained either  as a random  integer between 1 and
+  2,147,483,562  by using option 'lgi' (large integer) or as a  random
+  floating point  number  between 0 and 1  by using option 'def'.
+
+  The  seed of the  first generator  can  be set by using option calculated
+  from this value.
+
+  The number of  the current generator can be set by using option 'setcgn'
+  The number of the current  generator can be obtained by using option

@@ -1,0 +1,15 @@
+.TH halt 3 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+halt - stop execution
+.SH CALLING SEQUENCE
+.nf
+halt()
+.fi
+.SH DESCRIPTION
+stops execution until something is entered in the keyboard.
+.SH SEE ALSO
+pause, return, exec
+
+
+

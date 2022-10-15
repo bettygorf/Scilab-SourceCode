@@ -1,0 +1,23 @@
+
+graycolormap(1)                Scilab Function                graycolormap(1)
+NAME
+  graycolormap - Linear gray colormap
+
+CALLING SEQUENCE
+  cmap=graycolormap(n)
+
+PARAMETERS
+
+  n         : an integer greater or equal than 1, the "colormap" size
+
+  cmap      : matrix with 3 column, [R,G,B] color definition
+
+DESCRIPTION
+  Computes a colormap with grays colors varying linearly
+
+SEE ALSO
+  colormap, xset, plot3d1, hotcolormap
+
+EXAMPLE
+  xset('colormap',graycolormap(32))
+  plot3d1()

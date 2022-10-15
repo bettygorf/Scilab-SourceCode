@@ -1,0 +1,31 @@
+.TH coeff 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+coeff - coefficients of matrix polynomial
+.SH CALLING SEQUENCE	
+.nf 
+[C]=coeff(Mp [,v])
+.fi
+.SH PARAMETERS
+.TP 10
+Mp 
+: polynomial matrix
+.TP 10
+v
+: interger (row or column) vector of selected degrees
+.TP 10
+C
+: big matrix of the coefficients
+.SH DESCRIPTION
+\fVC=coeff(Mp)\fR
+returns in a big matrix \fVC\fR the coefficients of the
+polynomial matrix \fVMp\fR . \fVC\fR is partitioned as 
+.Vb C=[C0,C1,...,Ck] 
+where the \fVCi\fR are arranged in increasing order 
+\fVk = maxi(degree(Mp))\fR
+.LP
+\fVC=coeff(Mp,v)\fR returns the matrix of coefficients with 
+degree in \fVv\fR . (\fVv\fR is a row or column vector).
+.SH SEE ALSO
+poly, degree
+

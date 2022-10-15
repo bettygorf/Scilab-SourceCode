@@ -1,0 +1,59 @@
+.TH qr G "April 1993" "Scilab Group" "Scilab Function"       
+.so ../sci.an
+.SH NAME
+qr - QR decomposition
+.SH CALLING SEQUENCE
+.nf
+[Q,R]=qr(X)
+[Q,R,E]=qr(X)
+[Q,R,rk,E]=qr(X [,tol])
+.fi
+.SH PARAMETERS
+.TP
+X 
+: real or complex matrix
+.TP
+tol
+: nonnegative real number
+.TP
+Q
+: square orthogonal or unitary matrix
+.TP
+R
+: matrix with same dimensions as \fVX\fR
+.TP
+E
+: permutation matrix
+.TP
+rk
+: integer (QR-rank of \fVX*E\fR)
+.SH DESCRIPTION
+.Vb [Q,R] = qr(X)
+produces an upper triangular matrix \fVR\fR of
+the same dimension as \fVX\fR and a unitary matrix \fVQ\fR so that
+\fVX = Q*R\fR.
+.LP
+.Vb [Q,R,E] = qr(X)
+produces a (column) permutation matrix \fVE\fR,
+an upper triangular \fVR\fR with decreasing diagonal elements and
+a unitary \fVQ\fR so that \fVX*E = Q*R\fR.
+.LP
+.Vb [Q,R,rk,E] = qr(X ,tol) 
+returns \fVrk\fR = rank estimate of \fVX\fR i.e.
+\fVrk\fR is the number of diagonal elements in \fVR\fR which are
+larger than \fVtol\fR.
+.LP
+.Vb [Q,R,rk,E] = qr(X) 
+returns \fVrk\fR = rank estimate of \fVX\fR i.e.
+\fVrk\fR is the number of diagonal elements in \fVR\fR which are
+larger than \fVR(1,1)*%eps*max(size(R)\fR.
+.SH EXAMPLE
+.nf
+A=rand(5,2)*rand(2,5);
+[Q,R,rk,E] = qr(A,1.d-10);
+norm(Q'*A-R)
+svd([A,Q(:,1:rk)])    //span(A) =span(Q(:,1:rk))
+.fi
+.SH SEE ALSO 
+rank, svd, rowcomp, colcomp
+

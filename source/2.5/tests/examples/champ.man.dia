@@ -1,0 +1,13 @@
+ 
+clear;lines(0);
+ 
+// using rect as plot boundaries
+ 
+champ(-5:5,-5:5,rand(11,11),rand(11,11),1,[-10,-10,10,10],"011")
+ 
+// using (x,y) to get boundaries
+ 
+xbasc()
+ 
+champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
+ 

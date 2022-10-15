@@ -1,0 +1,32 @@
+
+setfield(1)                    Scilab Function                    setfield(1)
+NAME
+  setfield -  list field insertion
+
+CALLING SEQUENCE
+  setfield(i,x,l)
+
+PARAMETERS
+
+  x              : matrix  of any  possible types
+
+  l              : list, tlist or mlist variable
+
+  i              : field index, see insertion for more details.
+
+DESCRIPTION
+  This function is an equivalent of l(i)=x syntax for field extraction with
+  the only difference that it also applies to mlist objects.
+
+EXAMPLE
+  l=list(1,'qwerw',%s)
+  l(1)='Changed'
+  l(0)='Added'
+  l(6)=['one more';'added']
+  //
+
+  a=hypermat([2,2,2],rand(1:2^3));// hypermatrices are coded using mlists
+  setfield(3,1:8,a);a // set the filed value to 1:8
+
+SEE ALSO
+  insertion

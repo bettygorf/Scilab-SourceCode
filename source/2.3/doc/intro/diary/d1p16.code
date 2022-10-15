@@ -1,0 +1,9 @@
+foo=['void foo(a,b,c)';
+     'double *a,*b,*c;'
+      '{ *c = *a + *b;}']
+write('foo.c',foo);
+unix_s('make foo.o') 
+link('foo.o','foo','C'); 
+deff('[c]=myplus(a,b)',...
+   'c=fort(''foo'',a,1,''d'',b,2,''d'',''out'',[1,1],3,''d'')')
+myplus(5,7)

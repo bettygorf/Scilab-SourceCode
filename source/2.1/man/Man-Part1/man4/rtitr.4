@@ -1,0 +1,60 @@
+.TH RTITR G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+rtitr - discrete time response (transfer matrix)
+.SH CALLING SEQUENCE
+.nf
+[y]=rtitr(Num,Den,u [,up,yp])
+.fi
+.SH PARAMETERS
+.TP 10 
+Num,Den 
+: polynomial  matrices (resp. dimensions : \fVn\fRx\fVm\fR and \fVn\fRx\fVn\fR)
+.TP
+u
+: real matrix (dimension \fVm\fRx\fV(t+1)\fR
+.TP
+up,yp 
+: real matrices (dimension \fVm \fRx\fV (maxi(degree(Den)))\fR (default values=\fV0\fR)
+.TP
+y
+: real matrix
+.SH DESCRIPTION
+\fVy=rtitr(Num,Den,u [,up,yp])\fR returns the time response of
+the discrete time linear system with transfer matrix \fVDen^-1 Num\fR 
+for the input \fVu\fR, i.e \fVy\fR and \fVu\fR are such that \fVDen y = Num u\fR at t=0,1,...
+.LP
+If \fVd1=maxi(degree(Den))\fR, and \fVd2=maxi(degree(Num))\fR the polynomial 
+matrices  \fVDen(z)\fR and \fVNum(z)\fR may be written respectively as:
+.nf
+  D(z)= D_0  + D_1  z + ... + D_d1   z^d1
+  N(z)= N_0  + N_1  z + ... + N_d2   z^d2
+.fi
+and \fVDen y = Num u\fR is interpreted as the recursion:
+.nf
+  D(0)y(t)+D(1)y(t+1)+...+ D(d1)y(t+d1)= N(0) u(t) +....+ N(d2) u(t+d2)
+.fi
+The columns of u are the inputs of the system at t=0,1,...,T:
+.nf
+  u=[u(0) , u(1),...,u(T)]
+.fi
+The outputs at \fVt=0,1,...,T+d1-d2\fR are the columns of the matrix \fVy\fR:
+.nf
+  y=[y(0), y(1),  .... y(t+d1-d2)]
+.fi
+\fVup\fR and \fVyp\fR define the initial conditions for t < 0 i.e
+.nf
+  up=[u(-d1), ..., u(-1)  ]
+  yp=[y(-d2), ...  y(-1)  ]
+.fi
+The default values of \fVup\fR and \fVyp\fR are zero:
+\fVup = 0*ones(m,d1), yp=0*ones(n,d2)\fR
+.SH EXAMPLE
+.nf
+z=poly(0,'z');
+Num=1+z;Den=1+z;u=[1,2,3,4,5];
+rtitr(Num,Den,u)-u
+.fi
+.SH SEE ALSO
+ltitr, exp, flts.
+

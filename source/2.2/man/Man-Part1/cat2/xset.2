@@ -1,0 +1,198 @@
+
+
+
+xset(2)                        Scilab Function                        xset(2)
+
+
+
+
+
+
+NAME
+  xset - set values of the graphic context
+
+CALLING SEQUENCE
+  xset(choice-name,x1,x2,x3,x4,x5)
+  xset()
+
+PARAMETERS
+
+  choice-name
+            : string
+
+  x1,...,x5      : depending on choice-name
+
+  xset("alufunction",number)
+                 : used to set the logical function for drawing, it works
+                 only under X11.  The logical function used is set by x1. The
+                 default value is 3.
+
+                  0
+                   : function  " 0 ",
+
+                  1
+                   : function " src AND dst "
+
+                  2
+                   : function " src AND NOT dst "
+
+                  3
+                   : function " src ",
+
+                  4
+                   : function " NOT src AND dst "
+
+                  5
+                   : function " dst ",
+
+                  6
+                   : function " src XOR dst ",
+
+                  7
+                   : function " src OR dst ",
+
+                  8
+                   : function " NOT src AND NOT dst ",
+
+                  9
+                   : function " NOT src XOR dst ",
+
+                 10
+                   : function " NOT dst ",
+
+
+                 11
+                   : function " src OR NOT dst ",
+
+                 12
+                   : function " NOT src ",
+
+                 13
+                   : function " NOT src OR dst ",
+
+                 14
+                   : function " NOT src OR NOT dst ",
+
+                 15
+                   : function " 1 ";
+
+  xset("clipping",x,y,w,h)
+                 :  set the clipping zone to the rectangle (x,y,w,h) (Upper-
+                 Left point Width Height).  This function uses the current
+                 scale
+
+  xset("default")
+                 : reset the graphic context to default values
+
+  xset("dashes",i)
+                 : set the dash style to style i (0 for solid line)
+
+  xset("font",fontid,fontsize)
+                 : to fix the current font and its current size.
+
+  xset("line mode",type);
+                 This function is used to fix the line drawing mode. Absolute
+                 mode is fixed withtype=1 an relative mode with type=0.
+                 (Warning : the mode type=0 is bugged )
+
+  xset("mark",markid,marksize)
+                 : is used to set the current mark and current mark size.
+
+  xset("pattern",value)
+                 : to set the current pattern for filling functions, value is
+                 an integer projected in the interval [0,whiteid]. 0 is used
+                 for black filling and whiteid for white. The value of whi-
+                 teid can be obtained with xget("white").
+
+  xset("thickness",value)
+                 : fixes the thickness of lines in pixel  ( 0 and 1 have the
+                 same meaning : 1 pixel thick)
+
+  xset("wdim",width,height)
+                 : fixes the width and height of the current graphic window.
+                 This option is not used by the postscript driver.
+
+  xset("wpos",x,y);
+                 : fixes the position of the upper left point of the graphic
+                 window.
+
+  xset("window",window-number)
+                 Set the current window to the window window-number and
+                 creates the window if it doesn't exists.
+
+  xset("use color",flag)
+                 if flag=1 then xset("pattern",.) or xset("dashes",.) will be
+                 used so as to change the default Color for drawing or for
+                 filling patterns. If flag=0 then we switch back to the gray
+                 and dashes mode.
+
+  xset("pixmap",flag)
+
+                 if
+                   flag=0 the graphics are directly displayed on the screen
+
+                 if
+                   flag=1 the graphics are done on a Pixmap and are send to
+                   the graphic window with the command  xset("wshow"). The
+                   Pixmap is cleared with the  command xset("wwpc") or with
+                   the usual command xbasc().
+
+  xset("wshow")  : see the function driver.
+
+  xset("wwpc")   : see the function driver.
+
+DESCRIPTION
+  xset is used to set values of the graphic context. When called no argu-
+  ments, a choice menu is created showing the current values and changes can
+  be performed through toggle buttons
+
+SEE ALSO
+  X11 documentation
+
+AUTHOR
+  J.Ph.C.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

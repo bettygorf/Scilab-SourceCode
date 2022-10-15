@@ -1,0 +1,19 @@
+.TH and 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+and (&) - logical and
+.SH CALLING SEQUENCE
+.nf
+b=and(A)
+A&B
+.fi
+.SH DESCRIPTION
+\fVand(A)\fR is the logical AND of elements of 
+the boolean matrix \fVA\fR. \fVand(A)\fR returns \fV%T\fR ("true")  iff 
+all entries of \fVA\fR are \fV%T\fR.
+.LP
+\fVA&B\fR  gives the element-wise logical \fVand\fR of the booleans matrices
+ \fVA\fR and  \fVB\fR .\fVA\fR and  \fVB\fR must be matrices with the same
+ dimensions or one from them must be a single boolean.
+.SH SEE ALSO
+not, or

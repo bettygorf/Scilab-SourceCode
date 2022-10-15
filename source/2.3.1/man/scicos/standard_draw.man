@@ -1,0 +1,24 @@
+.TH standard_draw  "Janvier 1997" "Scilab Group" "Scicos function"
+.so ../sci.an
+.SH NAME
+standard_draw - Scicos block drawing function
+.SH CALLING SEQUENCE
+.nf
+standard_draw(o)
+.fi
+.SH PARAMETERS
+.TP 10
+o
+: Scicos block data structure (see scicos_block)
+.SH DESCRIPTION
+\fVstandard_draw\fR is the Scilab function used to display
+standard blocks in interfacing functions. 
+.LP
+It draws a block with a rectangular shape with any number of regular
+or event input respectively on the left and right faces of the block
+(if not flipped), event input or output respectively on the top and
+bottom faces of the block. Number of ports, size, origin, orientation,
+background color, icon of the block are taken from the block data
+structure \fVo\fR.
+.SH SEE ALSO 
+scicos_block

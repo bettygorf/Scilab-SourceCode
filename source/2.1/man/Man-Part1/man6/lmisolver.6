@@ -1,0 +1,82 @@
+.TH lmisolver 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+lmisolver - linear matrix inequation solver
+.SH CALLING SEQUENCE
+.nf
+[XLISTF[,OPT]] = lmisolver(XLIST0,evalfunc [,options])
+.fi
+.SH PARAMETERS
+.TP 10
+XLIST0
+: a list of containing initial guess (e.g. \fVXLIST0=list(X1,X2,..,Xn)\fR)
+.TP
+evalfunc
+: a Scilab function ("external" function with specific syntax)
+.TP 10
+XLISTF
+: a list of matrices (e.g. \fVXLIST0=list(X1,X2,..,Xn)\fR)
+.TP
+options
+: optional parameter. If given, \fVoptions\fR is 
+a real row vector with 5 components
+\fV[Mbound,abstol,nu,maxiters,reltol]\fR
+.LP
+The syntax the function \fVevalfunc\fR must be as follows:
+.LP
+\fV[LME,LMI,OBJ]=evalfunct(X)\fR where \fVX\fR is a list of matrices,
+\fVLME, LMI\fR are lists and \fVOBJ\fR a real scalar.
+.SH DESCRIPTION
+\fVlmisolver\fV solves the following problem:
+.LP
+minimize \fVf(X1,X2,...,Xn)\fR a linear function of Xi's
+.LP
+under the linear constraints:
+\fVGi(X1,X2,...,Xn)=0\fR for i=1,...,p and LMI (linear matrix
+inequalities) constraints:
+.LP
+\fVHj(X1,X2,...,Xn) > 0\fR for j=1,...,q
+.LP
+The functions f, G, H are coded in the Scilab function \fVevalfunc\fR
+and the set of matrices Xi's in the list X (i.e.
+\fVX=list(X1,...,Xn)\fR).
+.LP
+The function \fVevalfun\fR must return in the list \fVLME\fR the matrices
+\fVG1(X),...,Gp(X)\fR (i.e. \fVLME(i)=Gi(X1,...,Xn),\fR i=1,...,p).
+\fVevalfun\fR must return in the list \fVLMI\fR the matrices
+\fVH1(X0),...,Hq(X)\fR (i.e. \fVLMI(j)=Hj(X1,...,Xn)\fR, j=1,...,q). 
+\fVevalfun\fR must return in \fVOBJ\fR the value of \fVf(X)\fR
+(i.e. \fVOBJ=f(X1,...,Xn)\fR).
+.LP
+\fVlmisolver\fR  returns in \fVXLISTF\fR, a list of real matrices,
+i. e. \fVXLIST=list(X1,X2,..,Xn)\fR where the Xi's solve the LMI
+problem: 
+.LP
+Defining \fVY,Z\fR and \fVcost\fR by:
+.LP
+\fV[Y,Z,cost]=evalfunc(XLIST)\fR, \fVY\fR is a list of zero matrices, 
+\fVY=list(Y1,...,Yp)\fR, \fVY1=0, Y2=0, ..., Yp=0\fR.
+.LP
+\fV Z \fR is a list of square symmetric matrices, 
+\fV Z=list(Z1,...,Zq) \fR, which are semi positive definite
+\fV Z1>0, Z2>0, ..., Zq>0 \fR (i.e. \fVspec(Z(j))\fR > 0),
+.LP
+\fVcost\fR is minimized.
+.LP
+\fVlmisolver\fR can also solve LMI problems in which the \fVXi's\fR 
+are not matrices but lists of matrices. More details are given in the 
+documentation of LMITOOL.
+.SH EXAMPLE
+.nf
+//Find diagonal matrix X (i.e. X=diag(diag(X), p=1) such that
+//A1'*X+X*A1+Q1 < 0, A2'*X+X*A2+Q2 < 0 (q=2) and trace(X) is maximized 
+n=2;A1=rand(n,n);A2=rand(n,n);
+Xs=diag(1:n);Q1=-(A1'*Xs+Xs*A1+0.1*eye);
+Q2=-(A2'*Xs+Xs*A2+0.2*eye);
+deff('[LME,LMI,OBJ]=evalf(Xlist)','X=Xlist(1),LME=X-diag(diag(X));...
+LMI=list(-(A1''*X+X*A1+Q1),-(A2''*X+X*A2+Q2)),OBJ= -sum(diag(X))  ');
+X=lmisolver(list(zeros(A1)),evalf);X=X(1)
+[Y,Z,c]=evalf(X)
+.fi
+.SH SEE ALSO
+lmitool

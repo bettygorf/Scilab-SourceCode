@@ -1,0 +1,20 @@
+
+log10(1)                       Scilab Function                       log10(1)
+NAME
+  log10 - logarithm
+
+CALLING SEQUENCE
+  y=log10(x)
+
+PARAMETERS
+
+  x         : vector or matrix
+
+DESCRIPTION
+  decimal logarithm.If x is a vector log10(x)=[log10(x1),...,log10(xn)].
+
+EXAMPLE
+  10.^log10([1,%i,-1,-%i])
+
+SEE ALSO
+  log, hat, ieee

@@ -1,0 +1,12 @@
+clear;lines(0);
+str=["Scilab" "is";"not" "elisaB"];
+plot2d(0,0,[-1,1],"010"," ",[0,0,1,1]);
+r=[0,0,1,0.5];
+xstringb(r(1),r(2),str,r(3),r(4),"fill");
+xrect(r(1),r(2)+r(4),r(3),r(4))
+r=[r(1),r(2)+r(4)+0.01,r(3),r(4)/2];
+xrect(r(1),r(2)+r(4),r(3),r(4))
+xstringb(r(1),r(2),str,r(3),r(4),"fill");
+r=[r(1),r(2)+r(4)+0.01,r(3),r(4)/2];
+xrect(r(1),r(2)+r(4),r(3),r(4))
+xstringb(r(1),r(2),str,r(3),r(4),"fill");

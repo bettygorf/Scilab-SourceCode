@@ -1,0 +1,58 @@
+.TH "Koutrouvelis" 2 " 1 April 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+Koutrouvelis - Stable Law parameters estimation (Koutrouvelis method)
+.sp
+Author: Lotfi Belkacem
+.sp
+This routine estimates parameters of a  \fIstable law\fP using the \fIKoutrouvelis\fP (1985) method. 
+.sp
+.sp
+.SH Usage
+\f(CR[\fPalpha,beta,mu,gamma\f(CR]\fP=Koutrouvelis(data)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBproc\fP : real vector \f(CR[\fPsize,1\f(CR]\fP 
+corresponding to the data sample.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBalpha\fP : real positive scalar between 0 and 2. 
+This parameter is often referred to as the characteristic exponent. 
+
+.TP
+o 
+\fBbeta\fP : real scalar between -1 and +1. 
+This parameter is often referred to as the skewness parameter.
+
+.TP
+o 
+\fBmu\fP : real scalar 
+This parameter is often referred to as the location parameter.
+It is equal to the expectation when alpha is greater than 1.
+
+.TP
+o 
+\fBgamma\fP : real positive scalar. 
+This parameter is often referred to as the scale parameter.
+It is equal to the standard deviation over two squared when alpha equal 2.
+.RE
+
+.SH Example
+\f(CR[\fPproc1,inc1\f(CR]\fP=sim_stable(1,0,0,1,10000);
+generates a standard 1-stable motion (Cauchy process).
+\f(CR[\fPalpha,beta,mu,gamma\f(CR]\fP=Koutrouvelis(inc1);
+estimates parameters of the previous simutated 1-stable random variable inc1.
+.SH Remarque
+Skewness and location parameters are badly estimated with this methode. 

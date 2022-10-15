@@ -1,0 +1,33 @@
+
+mtlb_diff(2)                   Scilab Function                   mtlb_diff(2)
+NAME
+  mtlb_diff - Difference and approximate derivative
+
+  Author: Paulo Goncalves
+
+  Difference and approximate derivative. If x is a matrix, the differences
+  are computed columnwise.
+
+Usage
+
+  [y] = mtlb_diff(x[,order])
+Input parameters
+       o x : real valued vector or matrix [rx,cx]
+       o order : positive integer specifying the difference order. Default
+         value is order = 1.
+Output parameters
+       o y : real valued vector or matrix [rx-order,cx] y = x(order+1:rx,:) -
+         x(1:rx-order,:) ;
+See also:
+
+Example:
+   Matrix synthesis:
+
+  N = 100 ;
+  t = 0:N-1 ;
+  x = sin(2*%pi*0.05*t) ;
+
+   approximate 1-st order derivative
+
+  y = mtlb_diff(x) ;
+  plot2d([t(:) t(:)] , [x(:) [y(:);0]]) ;

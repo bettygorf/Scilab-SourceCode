@@ -1,0 +1,18 @@
+#include "../../../Imake.incl"
+ 
+OBJS= /tmp/ener.o /tmp/npend.o /tmp/np.o
+
+
+#if defined(SparcArchitecture)
+FPL=  -Nl2000 -Nn6000
+#endif
+
+AllTarget($(OBJS))
+DependTarget()
+
+distclean::clean
+
+ObjectDemo(/tmp/ener.o,ener.f ,$(FPL))
+ObjectDemo(/tmp/np.o,np.f ,$(FPL))
+ObjectDemo(/tmp/npend.o,npend.f ,$(FPL))
+

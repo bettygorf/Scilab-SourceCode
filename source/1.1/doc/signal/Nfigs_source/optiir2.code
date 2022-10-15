@@ -1,0 +1,8 @@
+xinit('optiir2.ps')
+ld=20*log(r.*rp0)/log(10);
+cx='normalized frequency';
+cy='magnitude in dB';
+plot(omega/%pi/2,ld,cx,cy);
+dess(54)=1;
+plot([0 0.5],[-80 -80]);
+dess(54)=0;

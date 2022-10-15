@@ -1,0 +1,46 @@
+
+cdfbin(1)                      Scilab Function                      cdfbin(1)
+NAME
+  cdfbin - cumulative distribution function Binomial distribution
+
+CALLING SEQUENCE
+  [P,Q]=cdfbin("PQ",S,Xn,Pr,Ompr)
+  [S]=cdfbin("S",Xn,Pr,Ompr,P,Q)
+  [Xn]=cdfbin("Xn",Pr,Ompr,P,Q,S)
+  [Pr,Ompr]=cdfbin("PrOmpr",P,Q,S,Xn)
+
+PARAMETERS
+
+  P,Q,S,Xn,Pr,Ompr
+            : six real vectors of the same size.
+
+  P,Q (Q=1-P)
+            : The cumulation from 0 to S of the binomial distribution.
+            (Probablility of S or fewer successes in XN trials each with
+            probability of success PR.) Input range: [0,1].
+
+  S         : The number of successes observed.  Input range: [0, XN] Search
+            range: [0, XN]
+
+  Xn        : The number of binomial trials.  Input range: (0, +infinity).
+            Search range: [1E-300, 1E300]
+
+  Pr,Ompr (Ompr=1-Pr)
+            : The probability of success in each binomial trial.  Input
+            range: [0,1].  Search range: [0,1]
+
+DESCRIPTION
+  Calculates any one parameter of the binomial distribution given values for
+  the others.
+
+  Formula  26.5.24    of   Abramowitz  and    Stegun,  Handbook   of Mathe-
+  matical   Functions (1966) is   used  to reduce the  binomial distribution
+  to  the  cumulative incomplete    beta distribution.
+
+  Computation of other parameters involve a seach for a value that produces
+  the desired  value  of P.   The search relies  on  the monotinicity of P
+  with the other parameter.
+
+  From DCDFLIB: Library of Fortran Routines for Cumulative Distribution Func-
+  tions, Inverses, and Other Parameters (February, 1994) Barry W. Brown,
+  James Lovato and Kathy Russell. The University of Texas.

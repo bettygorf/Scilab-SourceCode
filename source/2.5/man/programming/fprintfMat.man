@@ -1,0 +1,31 @@
+.TH fprintfMat 1 "Aug 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+fprintfMat - print a matrix in a file.
+.SH CALLING SEQUENCE
+.nf
+fprintfMat(fil,M,format)
+.fi
+.SH PARAMETERS
+.TP 10
+fil : a string, path of the file
+.TP 
+format
+: a character string, a C like format.
+.TP 
+M
+: A matrix of real numbers.
+.SH DESCRIPTION
+
+The fprintfMat function prints a matrix in a formated file. Each row
+of the matrix give a line in the file.
+.SH EXAMPLE
+.nf
+n=50;
+a=rand(n,n,'u');
+fprintfMat(TMPDIR+'/Mat',a,'%5.2f');
+a1=fscanfMat(TMPDIR+'/Mat');
+.fi
+.SH SEE ALSO
+mclose, meof, mfprintf, mfscanf, fscanfMat, mget,
+mgetstr, mopen, mprintf, mput, mputstr, mscanf, mseek, mtell

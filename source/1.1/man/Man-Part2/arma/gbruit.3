@@ -1,0 +1,13 @@
+.TH gbruit 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+gbruit - noise generation 
+.SH DESCRIPTION
+[]=gbruit(pas,Tmax,sig)
+
+generates a Scilab macro [b]=bruit(t)
+where bruit(t) is a piecewise constant function 
+( constant on  [k*pas,(k+1)*pas] ). The value on each constant 
+interval are random values from  i.i.d  Gaussian variables of 
+standard deviation sig. The function is constant fo t<=0 and 
+t>=Tmax.

@@ -1,0 +1,5 @@
+mparo:=4:
+paramopt:=vector(mparo):
+psi:=paramopt[1]*(q[4]-Pi/4)^2 + paramopt[2]*(q[5]-Pi/2)^2 + 
+     paramopt[3]*qd[4]^2 + paramopt[4]*qd[5]^2:
+c:=0:

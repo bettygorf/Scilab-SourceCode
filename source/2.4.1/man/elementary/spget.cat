@@ -1,0 +1,30 @@
+
+spget(1)                       Scilab Function                       spget(1)
+NAME
+  spget - retrieves entries of sparse matrix
+
+CALLING SEQUENCE
+  [ij,v,mn]=spget(sp)
+
+PARAMETERS
+
+  sp   : real or complex sparse matrix
+
+  ij   : two columns integer matrix (indices of non-zeros entries)
+
+  mn   : integer vector with two entries (row-dimension, column-dimension)
+
+  v    : column vector
+
+DESCRIPTION
+  spget is used to convert the internal representation of sparse matrices
+  into the standard ij, v representation.
+
+  Non zero entries of sp are located in rows and columns with indices in ij.
+
+EXAMPLE
+  sp=sparse([1,2;4,5;3,10],[1,2,3])
+  [ij,v,mn]=spget(sp);
+
+SEE ALSO
+  sparse, sprand, speye, lufact

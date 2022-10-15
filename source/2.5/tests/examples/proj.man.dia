@@ -1,0 +1,28 @@
+ 
+clear;lines(0);
+ 
+X1=rand(5,2);X2=rand(5,3);
+ 
+P=proj(X1,X2);
+ 
+norm(P^2-P,1)
+ ans  =
+ 
+    4.707D-14  
+ 
+trace(P)    // This is dim(X2)
+ ans  =
+ 
+    3.  
+ 
+[Q,M]=fullrf(P);
+ 
+svd([Q,X2])   // span(Q) = span(X2)
+ ans  =
+ 
+!   5.7153502 !
+!   1.2516174 !
+!   1.1966201 !
+!   0.        !
+!   0.        !
+ 

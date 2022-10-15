@@ -1,0 +1,37 @@
+
+nlev(1)                        Scilab Function                        nlev(1)
+NAME
+  nlev - Leverrier's algorithm
+
+CALLING SEQUENCE
+  [num,den]=nlev(A,z [,rmax])
+
+PARAMETERS
+
+  A     : real square matrix
+
+  z     : character string
+
+  rmax  : optional parameter (see bdiag)
+DESCRIPTION
+  [num,den]=nlev(A,z [,rmax]) computes:
+
+  (z*eye-A)^(-1)
+  by block diagonalization of A followed by Leverrier's algorithm on each
+  block.
+
+Remark
+  This algorithm is better than the usual leverrier algorithm but still not
+  perfect!
+
+EXAMPLE
+  A=rand(3,3);x=poly(0,'x');
+  [NUM,den]=nlev(A,'x')
+  clean(den-poly(A,'x'))
+  clean(NUM/den-inv(x*eye-A))
+
+SEE ALSO
+  coff, coffg, glever, ss2tf
+
+AUTHOR
+  F. D., S. S.

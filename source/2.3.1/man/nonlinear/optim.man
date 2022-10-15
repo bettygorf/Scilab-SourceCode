@@ -1,0 +1,165 @@
+.TH optim G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+optim - non-linear optimization routine
+.SH CALLING SEQUENCE
+.nf
+[f,xopt]=optim(costf,x0)
+[f,[xopt,[gradopt,[work]]]]=optim(costf,[contr],x0,['algo'],[df0,[mem]],
+     [work],[stop],['in'])
+.fi
+.SH PARAMETERS
+.TP 10
+costf
+: external, i.e Scilab function or string (\fVcostf\fR is the cost function: see below its
+calling sequence (Scilab or Fortran)).
+.TP
+x0 
+: real vector (initial value of variable to be minimized).
+.TP
+f
+: value of optimal cost (\fVf=costf(xopt)\fR)
+.TP
+xopt
+: best value of \fVx\fR found.
+.TP
+contr 
+: \fV'b',binf,bsup\fR  with \fVbinf\fR and \fVbsup\fR real vectors with same
+dimension as \fVx0\fR. \fVbinf\fR and \fVbsup\fR are lower and upper bounds on \fVx\fR.
+.TP
+"algo"
+: \fV'qn'\fR or \fV'gc'\fR or \fV'nd'\fR . This string stands for quasi-Newton (default), 
+conjugate gradient or non-differentiable respectively. 
+Note that \fV'nd'\fR does not accept bounds on \fVx\fR ).
+.TP
+df0 
+: real scalar. Guessed decreasing of \fVf\fR at first iteration.
+(\fVdf0=1\fR is the default value).
+.TP
+mem :
+ integer, number of variables used to approximate the 
+Hessian, (\fValgo='gc' or 'nd'\fR). Default value is around 6.
+.TP
+stop 
+:  sequence of optional parameters controlling the 
+convergence of the algorithm.
+\fVstop=  'ar',nap, [iter [,epsg [,epsf [,epsx]]]]\fR
+.RS
+.TP
+"ar"
+: reserved keyword for stopping rule selection defined as follows:
+.TP
+nap 
+: maximum number of calls to \fVcostf\fR allowed.
+.TP
+iter  
+: maximum number of iterations allowed.
+.TP
+epsg  
+: threshold on gradient norm.
+.TP
+epsf  
+: threshold controlling decreasing of \fVf\fR
+.TP
+epsx 
+: threshold controlling variation of \fVx\fR.
+This vector (possibly matrix) of same size as \fVx0\fR can be used
+to scale \fVx\fR.
+.RE
+.TP
+"in" 
+: reserved  keyword for initialization of parameters
+used when \fVcostf\fR in given as a Fortran routine (see below).
+.TP
+gradopt
+:  gradient of \fVcostf\fR at \fVxopt\fR
+.TP
+work
+: working array for hot restart for quasi-Newton method.
+This array is automatically initialized by \fVoptim\fR when
+\fVoptim\fR is invoked. It can be used as input parameter to 
+speed-up the calculations.
+.SH DESCRIPTION
+Non-linear optimization routine for programs without constraints or with bound constraints: 
+.nf
+min costf(x) w.r.t x.
+.fi
+\fVcostf\fR is an "external" i.e function, or list or Fortran routine (see "external").
+This external must return \fVf\fR (\fVcostf(x)\fR) and \fVg\fR (gradient of \fVcostf\fR)
+given \fVx\fR.
+.LP
+If \fVcostf\fR is a function, the calling sequence for \fVcostf\fR must be:
+.nf
+[f,g,ind]=costf(x,ind).
+.fi
+Here, \fVcostf\fR is a function which returns \fVf\fR, value (real number) of
+cost function at \fVx\fR, and \fVg\fR, gradient vector of cost function at \fVx\fR.
+The variable \fVind\fR is used by \fVoptim\fR and is described below.
+.LP
+If \fVind=2\fR (resp. \fV3, 4\fR), \fVcostf\fR must provide \fVf\fR (resp. \fVg, f\fR and \fVg\fR).
+.LP
+If \fVind=1\fR nothing is computed (used for display purposes only).
+.LP
+On output, \fVind<0\fR  means that \fVf\fR cannot be evaluated at \fVx\fR and
+\fVind=0\fR interrupts the optimization.
+.LP
+If \fVcostf\fR is a character string, it refers to the name of a Fortran routine
+which must be linked to Scilab (see examples in the routines \fVfoptim.f\fR 
+and e.g. \fVgenros.f\fR in the directory SCIDIR/default)
+.LP
+Dynamic link of Fortran routine is also possible (help \fVlink\fR).
+.LP
+Here, the generic calling sequence for the Fortran subroutine is: 
+\fVfunction costf(ind,n,x,f,g,ti,tr,td)\fR
+.LP
+\fVind\fR has the same meaning as above if set to \fV0,1,2\fR but the 
+values \fVind=10\fR and \fVind=11\fR are now valid. 
+These values are used for initializations (see below).
+.LP
+\fVn\fR is the dimension of \fVx\fR, \fVx\fR is an \fVn\fR vector, 
+\fVti,tr,td\fR are working arrays.
+.LP
+The Fortran function \fVcostf\fR must return \fVf\fR and the vector \fVg\fR,
+given \fVx, ind, n, ti, tr, td\fR.
+.LP
+If \fVcostf\fR is given as a Fortran routine, it is possible to initialize
+parameters or to send Scilab variables to this routine. 
+.LP
+This facility is managed by the parameter \fV'in\fR.
+.LP
+If the string \fV'in'\fR is present, initialization is done by Fortran:
+\fVoptim\fR makes two calls to the Fortran function \fVcostf\fR, once with
+\fVind=10\fR and once with \fVind=11\fR. In this case, for \fVind=10\fR,
+\fVcostf\fR must set the dimensions \fVnti, ntr, ntd\fR of \fVti, tr, td\fR 
+in the \fVcommon/nird/nti, ntr, ntd\fR and, for \fVind=11\fR, \fVcostf\fR
+must initialize the vectors \fVti , tr, td\fR (integer vector, real vector,
+double precision vector respectively).
+.LP
+In the calling sequence of \fVoptim\fR, the string \fV'in'\fR can be 
+replaced by \fV'ti', valti ,'td' , valtd\fR. Then, the Fortran function
+\fVcostf(ind, x, f, g, ti, tr, td)\fR is evaluated with \fVti=valti\fR
+and \fVtd=valtd\fR whatever the value of \fVind\fR.
+Thus, the Scilab variables \fVvalti\fR and \fVvaltd\fR (integer vector and
+real vector) are sent to the Fortran function \fVcostf\fR.
+.LP
+It is also possible to save the content of of the working arrays
+\fVti\fR and \fVtd\fR. This is possible by adding the strings 'si' and/or 'sd'
+at the ned of the calling sequence of \fVoptim\fR.
+Then, the output variables must be: \fV[f,[x,[g],[to]]],[ti],[td]]\fR.
+.SH EXAMPLES
+.nf
+xref=[1;2;3];x0=[1;-1;1]
+deff('[f,g,ind]=cost(x,ind)','f=0.5*norm(x-xref)^2,g=x-xref');
+[f,xopt]=optim(cost,x0)      //Simplest call
+[f,xopt,gopt]=optim(cost,x0,'gc')  // By conjugate gradient
+[f,xopt,gopt]=optim(cost,x0,'nd')  //Seen as non differentiable
+[f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0) //  Bounds on x
+[f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc') //  Bounds on x
+[f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc','ar',3)
+// Here, 3 calls to cost are allowed.
+//Now calling the Fortran subroutine "genros.f" in SCIDIR/default 
+// (see also the interface foptim.f)
+[f,xopt,gopt]=optim('genros',[1;2;3])    //Rosenbrock's function
+.fi
+.SH SEE ALSO
+external, quapro, linpro

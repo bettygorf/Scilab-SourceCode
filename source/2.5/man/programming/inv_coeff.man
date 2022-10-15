@@ -1,0 +1,36 @@
+.TH inv_coeff 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+inv_coeff - build a polynomial matrix from its coefficients
+.SH CALLING SEQUENCE	
+.nf 
+[P]=inv_coeff(C,[,d,[name])
+.fi
+.SH PARAMETERS
+.TP 10
+C
+: big matrix of the coefficients
+.TP 10
+d
+: Polynomial matrix degree. optional parameter with default value 
+\fVd=-1+size(C,'c')/size(C,'r')\fR
+.TP 10
+name
+: string giving the polynomial variable name (default value \fV'x'\fR).
+.SH DESCRIPTION
+\fVP=inv_coeff(Mp,k)\fR. When \fvk\fR is compatible with \fVMp\fR  
+size it returns a polynomial matrix of degree k. \fVC=[C0,C1,...,Ck]\fR and 
+\fVP= C0 + C1*x +... +Ck*x^k\fR.
+.SH EXAMPLE 
+.nf
+A=int(10*rand(2,6))
+// Building a degree 1 polynomial matrix
+P=inv_coeff(A,1)
+norm(coeff(P)-A)
+// Using default value for degree
+P1=inv_coeff(A)
+norm(coeff(P1)-A)
+.fi
+.SH SEE ALSO
+poly, degree, coeff
+

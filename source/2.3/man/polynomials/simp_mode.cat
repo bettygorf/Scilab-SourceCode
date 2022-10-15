@@ -1,0 +1,32 @@
+
+SIMP_MODE(G)                   Scilab Function                   SIMP_MODE(G)
+NAME
+  simp_mode - toggle rational simplification
+
+CALLING SEQUENCE
+  mod=simp_mode()
+  simp_mode(mod)
+
+PARAMETERS
+
+  mod  : a boolean
+
+DESCRIPTION
+  rational simplification is called after nearly each operations on ration-
+  als. It is possible to toggle simplification on or off using simp_mode
+  function.
+
+  simp_mod(%t) set rational simplification mode on
+
+  simp_mod(%f) set rational simplification mode off
+
+  mod=simp_mod() returns in mod the current rational simplification mode
+
+EXAMPLES
+  s=poly(0,'s');
+  mod=simp_mode()
+  simp_mode(%f);hns=s/s
+  simp_mode(%t);hns=s/s
+  simp_mode(mod);
+SEE ALSO
+  simp

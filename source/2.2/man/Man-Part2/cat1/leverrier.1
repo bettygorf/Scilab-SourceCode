@@ -1,0 +1,66 @@
+
+
+
+leverrie(1)                    Scilab Function                    leverrie(1)
+
+
+
+
+
+
+NAME
+  leverrier - Leverrier's algorithm
+
+CALLING SEQUENCE
+  [NUM,DEN]=leverrier(H,F,G)
+
+PARAMETERS
+  H,F,G       : real matrices of appropriate dimensions
+  NUM         : polynomial matrix
+  den         : polynomial
+
+DESCRIPTION
+  [NUM,den]=leverrier(H,F,G) computes the transfer matrix num./den such that:
+  NUM./den = H*(s*eye-F)^(-1)*G by Leverrier's algorithm.
+
+Remark
+  Use preferably ss2tf.
+
+SEE ALSO
+  glever, coff, coffg, detr, determ, nlev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

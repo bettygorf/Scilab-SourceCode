@@ -1,0 +1,52 @@
+
+fchamp(2)                      Scilab Function                      fchamp(2)
+NAME
+  fchamp - direction field of a 2D first order ODE
+
+CALLING SEQUENCE
+  fchamp(f,t,xr,yr,[arfact,rect,strf])
+
+PARAMETERS
+
+  f      : An external (function or character string) or a list which
+         describes the ODE.
+
+         -  It can be a function name f, where f is supposed to be a function
+            of type y=f(t,x,[u]).  f returns a column vector of size 2, y,
+            which gives the value of the direction field f at point x and at
+            time t.
+
+         -  It can also be an object of type list, list(f,u1) where f is a
+            function of type y=f(t,x,u) and u1 gives the value of the parame-
+            ter u.
+
+  t      : The selected time.
+
+  xr,yr  : Two row vectors of size n1 and n2 which define the grid on which
+         the direction field is computed.
+
+  arfact,rect,strf
+         : Optional arguments, see champ.
+
+DESCRIPTION
+  fchamp is used to draw the direction field of a 2D first order ODE defined
+  by the external function f. Note that if the ODE is autonomous, argument t
+  is useless, but it must be given.
+
+  Enter the command fchamp() to see a demo.
+
+EXAMPLE
+  deff("[xdot] = derpol(t,x)",..
+          ["xd1 = x(2)";..
+           "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
+           "xdot = [ xd1 ; xd2 ]"])
+  xf= -1:0.1:1;
+  yf= -1:0.1:1;
+  fchamp(derpol,0,xf,yf)
+  xbasc()
+  fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011")
+
+SEE ALSO
+  champ, champ1
+AUTHOR
+  J.Ph.C.

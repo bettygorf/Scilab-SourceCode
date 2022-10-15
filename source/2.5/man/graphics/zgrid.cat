@@ -1,0 +1,17 @@
+
+zgrid(1)                       Scilab Function                       zgrid(1)
+NAME
+  zgrid - zgrid plot
+
+CALLING SEQUENCE
+  zgrid()
+
+DESCRIPTION
+  plots z-plane grid lines: lines of constant damping factor (zeta) and natu-
+  ral frequency (Wn) are drawn in within the unit Z-plane circle.
+
+  Iso-frequency curves are shown in frequency*step on the interval [0,0.5].
+  Upper limit corresponds to Shannon frequency ( 1/dt > 2*f ).
+
+SEE ALSO
+  frep2tf, freson

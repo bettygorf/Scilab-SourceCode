@@ -1,0 +1,30 @@
+.TH range 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+range - range (span) of A^k
+.SH CALLING SEQUENCE
+.nf
+[X,dim]=range(A,k)
+.fi
+.SH PARAMETERS
+.TP
+A
+: real square matrix
+.TP
+k
+: integer
+.TP
+X
+: non-singular real matrix
+.TP
+dim
+: integer (dimension of subspace)
+.SH DESCRIPTION
+Computation of Range \fVA^k\fR ; the first dim columns of \fVX\fR span the
+range of \fVA^k\fR.
+.SH SEE ALSO
+fullrfk, rowcomp
+.SH AUTHOR
+F. D.
+
+

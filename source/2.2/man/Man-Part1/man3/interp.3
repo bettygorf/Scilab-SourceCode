@@ -1,0 +1,44 @@
+.TH INTERP G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+interp - interpolation
+.SH CALLING SEQUENCE
+.nf
+[f0 [,f1 [,f2 [,f3]]]]=interp(xd,x,f,d)
+.fi
+.SH PARAMETERS
+.TP 10
+xd
+: real vector
+.TP 10
+x,f,d
+: real vectors from spline
+.TP 10
+fi
+: vectors (derivatives)
+.SH DESCRIPTION
+given three vectors \fV(x,f,d)\fR defining a spline function
+(see \fVsplin\fR) with \fVfi=S(xi), di = S'(xi)\fR this primitive
+evaluates \fVS\fR (resp. \fVS', S'', S'''\fR) at \fVxd(i)\fR.
+.TP 10
+x 
+: vector of \fVxi  (x(1) < x(2) < ...)\fR
+.TP
+f 
+: vector of \fVS(xi)\fR
+.TP 
+d 
+: vector of \fVS'(xi)\fR
+.TP
+f0 
+: vector \fV[S(xd(1),S(xd(2)),S(xd(3)),...]\fR
+.TP
+f(1 2 3) 
+: vector of first, second, third derivative of \fVS\fR at \fVxd=[xd(1),xd(2),...]\fR i.e.
+.LP 
+\fVf1 = [S'(xd(1)),S'(xd(2)),...]\fR
+.LP
+\fVf2 = [S''(xd(1)),S''(xd(2)),...]\fR
+.LP
+.SH SEE ALSO
+splin, smooth, interpln

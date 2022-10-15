@@ -1,0 +1,82 @@
+.TH "fbmfwt" 2 " June 30rd 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+fbmfwt - Discrete wavelet based synthesis of a fBm
+.sp
+Author: Paulo Goncalves 
+.sp
+Generates a 1/f Gaussian process from a discrete wavelet transform
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+[x] = fbmfwt(N,H,[noctave,Q,randseed]) ;
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fB N \fP : Positive integer 
+Sample size of the fBm
+
+.TP
+o 
+\fB H \fP : Real in \f(CR[\fP0,1\f(CR]\fP
+Holder exponent
+
+.TP
+o 
+\fB noctave \fP : integer
+Maximum resolution level (should not exceeed \fIlog2(N)\fP)
+
+.TP
+o 
+\fB Q \fP : real vector.
+Analyzing QMF (e.g. \fI Q = MakeQMF('daubechies',4) \fP)
+
+.TP
+o 
+\fB randseed \fP : real scalar
+Random seed generator
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fB x \fP : real vector  \f(CR[\fP1,N\f(CR]\fP 
+Time samples of the 1/f Gaussian process
+.RE
+
+.SH Algorithm details
+Generates a 1/f Gaussian process by inverting a discrete wavelet
+transform. 
+\fB Step 1: \fP generates \fI y \fP a \f(CR[\fP1,N\f(CR]\fP i.i.d. standard Gaussian noise
+\fB Step 2: \fP computes the discrete wavelet coefficients \fI y \fP
+\fB Step 3: \fP weigth the wavelet coefficients \fI y \fP with the corresponding scale power law
+\fB Step 4: \fP invert the weighted discrete wavelet transform
+.SH See also:
+fbmlevinson, synth2, FWT, MakeQMF
+.SH Example:
+.sp
+.ft CR
+.nf
+Q = MakeQMF('daubechies',4) ;
+[x] = fbmfwt(1024,0.5,10,Q) ;
+[wt,scale,f] = contwt(x,2^(-8),2^(-1),64,8) ;
+[H] = cwttrack(wt,scale,0,1,1,8,1,1) ;
+.fi 
+.ec
+.ft P
+.sp

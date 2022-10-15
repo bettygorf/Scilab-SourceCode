@@ -1,0 +1,51 @@
+.TH abs G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sci2exp - converts  variable to  expression
+.SH CALLING SEQUENCE
+.nf
+t=sci2exp(a [,nam] [,lmax])
+.fi
+.SH PARAMETERS
+.TP
+a  
+: a scilab variable, may be
+.RS
+.TP 10 
+-
+constant, 
+.TP 
+-
+polynomial 
+.TP
+-
+ string matrix
+.TP
+-
+ list
+.TP
+-
+boolean matrix
+.RE
+.TP
+nam
+: character string
+.TP
+t  
+: vector of string, contains the expression or instruction definition
+.TP
+lmax
+: integer, contains the maximum line length. default value is 90,
+\fVlmax=0\fR indicate  no line length control a single string is returned
+
+.SH DESCRIPTION 
+\fVsci2exp\fR converts  variable to an instruction if \fVnam\fR is
+given or to an expression .
+.SH EXAMPLE
+.nf
+  a=[1 2;3 4]
+  sci2exp(a,'aa')
+  sci2exp(a,'aa',0)
+  sci2exp(ssrand(2,2,2))
+  sci2exp(poly([1 0 3 4],'s'),'fi')
+.fi

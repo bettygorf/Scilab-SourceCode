@@ -1,0 +1,13 @@
+ 
+clear;lines(0);
+ 
+	getenv('SCI')
+ ans  =
+ 
+ /usr/local/lib/scilab   
+ 
+	getenv('FOO','foo')
+ ans  =
+ 
+ foo   
+ 

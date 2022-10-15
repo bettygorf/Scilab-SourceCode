@@ -1,0 +1,104 @@
+
+mfile2sci(1)                   Scilab Function                   mfile2sci(1)
+NAME
+  mfile2sci - Matlab M_file to scilab translation function
+
+CALLING SEQUENCE
+  mfile2sci(M_file_path [,result_path [,Imode [,Recmode]]])
+
+PARAMETERS
+
+  M_file_path    : a character string which gives the path of Matlab M_file
+                 to translate
+
+  result_path    : a character string which gives the directory where the
+                 result has to be written. Default value is current direc-
+                 tory.
+
+  Imode          : Boolean flag, If true mfile2sci ask user for variable type
+                 and sizes when he cannot infer them. Default value : %f
+  Recmode   : Boolean flag, used by translatepaths function. Must be %f to
+            translate a single mfile.
+DESCRIPTION
+  mfile2sci, is Matlab M-file to Scilab function traduction tools. It tries
+  whenever possible to replace call to Matlab functions by the equivalent
+  scilab primitives and functions.
+  To translate a Matlab M-file just enter the scilab instruction:
+  mfile2sci(file)
+
+  where file is a character string giving the path name of the M-file
+  mfile2sci will generate three files in the same directory
+
+  <function_name>.sci      : the scilab equivalent of the m_file
+
+  <function_name>.cat      : the scilab help file associated to the function
+
+  sci_<function_name>.sci  : the scilab function required to translate
+                             the calls to this  Matlab M_file in other Matlab
+  M_files.
+                             this function may be improved "by hand".
+
+  Some functions like eye, ones, size, sum,... behave differently according
+  to the dimension of their arguments. When mfile2sci cannot infer dimensions
+  it replaces these function call by a call to an emulation function named
+  mtlb_<function_name>. For efficiency these functions may be replaced by the
+  proper scilab equivalent instructions.
+
+  Some other functions like plot, has no straightforward translation in sci-
+  lab. They are also replaced by an emulation function named
+  mtlb_<function_name>.
+
+REMARKS
+  This function is a still under developpement and is delivered as beta test.
+
+  Some Matlab4 basic functions are yet translated. It is quite simple to add
+  it. See <SCIDIR>/macros/m2sci/README for more details.
+KNOWN BUGS
+
+  1-  : m_files scripts are translated but sci_<Matlab function name>
+         replaces the call to the m_file by an exec of
+         an exec (.sce) file, the .sce file path may be incorrect.
+
+  2-  : eval function instructions passed as strings are not translated.
+
+  3-  : Syntaxes like 2.3i or 0.7j to form imaginary numbers produces an
+      error. replace them by 2.3*i ,0.7*j
+
+  4-  : most of plot function are not yet translated
+
+  5-  : globals are not translated
+
+  6-  : if, for, endded by the end of file produce an error, add the closing
+      end's
+
+  7-  : Loop variable of for clause is available afterwards if loops ter-
+      minates
+         normally in matlab; it is cleared  in Scilab generated code.
+
+  8-  : Translation of insertion syntax such as v(:)=x or v(i,:)=x produces a
+         run time error  when v is an empty vector or matrix.
+         Use v=x or v(i,1:size(x,'*'))=x instead.
+
+EXMAPLE
+  //create a simple m_file
+  write(TMPDIR+'rot90.m',['function B = rot90(A,k)'
+  argin == 1'
+  == AA((nn::--11::11,,::));;''
+  == AA((mm::--11::11,,nn::--11::11));;''
+  == AA((mm::--11::11,,::));;''
+  == BB..'''';;''
+  == AA;;''
+  // translate it dor scilab
+  mfile2sci(TMPDIR+'rot90.m',TMPDIR)
+  // show the new code
+  write(%io(2),read(TMPDIR+'rot90.sci',-1,1,'(a)'))
+  // get it into scilab
+  getf(TMPDIR+'rot90.sci')
+  //execute it
+  m=rand(4,2);rot90(m,1)
+
+SEE ALSO
+  translatepaths
+
+AUTHOR
+  Serge Steer, INRIA

@@ -1,0 +1,93 @@
+.TH fac3d 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+fac3d - complex 3D surface plotting
+.SH CALLING SEQUENCE
+.nf
+fac3d(x,y,z,theta,alpha,leg,flag,ebox)
+fac3d(x,y,z,theta,alpha,leg,[flag,ebox)]
+.fi
+.SH PARAMETERS
+.TP 15
+x,y,z
+: matrices of sizes (nf,n1) (facets coordinates)
+.TP 15
+theta, alpha 
+: real values giving in degree the spherical coordinates of 
+the observation point
+.TP
+leg 
+: string (captions for each axis. this is string 
+with @ as a field separator, for example : "X@Y@Z")
+.TP
+flag
+: is a real vector of size three \fVflag=[mode,type,box]\fR or a
+list of size three flag=list(color,type,box)
+.RS 
+.TP
+mode 
+: string (treatment of hidden parts)
+.RS
+.TP 
+mode >=2
+the hidden parts of the surface are removed and the surface is painted 
+in gray (from low gray to black according to the value of mode)
+.TP
+mode = 1
+the hidden parts of the surface are drawn 
+.TP
+mode <= 0
+only the shadow of the surface is painted with a gray level depending
+on mode
+.RE
+.TP
+type 
+: scaling
+.RS 
+.TP 15
+if type = 0
+the plot is made using the current 3D scaling ( set by a previous call to
+\fVparam3d, fac3d, contour, plot3d1\fR)
+.TP
+if type = 1
+the boundaries are specified by the value of the parameter
+.LP
+\fVebox=[xmin,xmax,ymin,ymax,zmin,zmax]\fR
+.TP
+else
+the boundaries are computed with the given datas.
+.RE
+.TP
+box
+: frame display around the plot.
+.RS
+.TP
+box=0 
+nothing is drawn around the plot
+.TP
+box=1 
+unimplemented ( like box=0 )
+.TP
+box=2 
+only the axes behind the surface are drawn
+.TP
+box=3 
+a box surrounding the surface is drawn and captions are added
+.TP
+box=4
+a box surrounding the surface is drawn, captions are added and axes too.
+.RE
+.RE 
+.TP 10
+color : a n1 vector of color indices 
+.SH DESCRIPTION
+Draw the surface  defined by a set of facets of coordinates 
+x(:,i), y(:,i), z(:,i)
+.SH EXAMPLE
+enter the command  \fVfac3d()\fR
+to see a demo 
+.SH SEE ALSO
+plot3d, eval3dp.
+
+
+

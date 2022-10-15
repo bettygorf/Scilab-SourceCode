@@ -1,0 +1,26 @@
+
+abs(G)                         Scilab Function                         abs(G)
+NAME
+  manedit -  editing a manual item
+
+CALLING SEQUENCE
+  manedit(manitem ,[editor])
+
+PARAMETERS
+
+  manitem   : character string (usually, name of a function)
+
+  editor    : character string
+
+DESCRIPTION
+  edit(manitem ,[editor]) opens the file manitem in the editor given by edi-
+  tor.
+
+  Default editor is Emacs. This function should be customized according to
+  your needs.
+
+EXAMPLE
+  //manedit('lqg')
+
+SEE ALSO
+  whereis, edit

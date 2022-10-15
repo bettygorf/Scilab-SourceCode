@@ -1,0 +1,3 @@
+clear;lines(0);
+sin(%pi);
+a=[1,2;3 4]

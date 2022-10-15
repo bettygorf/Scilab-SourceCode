@@ -1,0 +1,7 @@
+.TH elseif 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+elseif - keyword in if-then-else
+.SH DESCRIPTION
+See \fVif,then,else\fR .
+

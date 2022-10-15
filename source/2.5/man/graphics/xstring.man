@@ -1,0 +1,53 @@
+.TH xstring 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xstring - draw strings
+.SH CALLING SEQUENCE
+.nf
+xstring(x,y,str,[angle,box])
+.fi
+.SH PARAMETERS 
+.TP 7
+x,y
+: real scalars, coordinates of the lower-left point of the strings.
+.TP
+str
+: matrix of strings.
+.TP
+angle
+: real, clockwise angle in degree; default is 0.
+.TP 
+box
+: integer, default is 0.
+.SH DESCRIPTION
+\fVxstring\fR draws the matrix of strings \fVstr\fR at location \fVx,y\fR
+(lower-left point) in the current graphic scale: each row of the matrix
+stands for a line of text and row elements stand for words separated by a
+white space.  If \fVangle\fR is given, it gives the slope in degree
+used for drawing the strings. If \fVbox\fR is 1 and \fVangle\fR is 0,
+a box is drawn around the strings.
+.SH EXAMPLE 
+.nf
+plot2d([0;1],[0;1],0)
+xstring(0.5,0.5,["Scilab" "is"; "not" "esilaB"])
+//Other example
+alphabet=["a" "b" "c" "d" "e" "f" "g" ..
+          "h" "i" "j" "k" "l" "m" "n" ..
+          "o" "p" "q" "r" "s" "t" "u" ..
+          "v" "w" "x" "y" "z"];
+xbasc()
+plot2d([0;1],[0;2],0)
+xstring(0.1,1.8,alphabet)     // alphabet
+xstring(0.1,1.6,alphabet,0,1) // alphabet in a box
+xstring(0.1,1.4,alphabet,20)  // angle
+xset("font",1,1)              // use symbol fonts
+xstring(0.1,0.1,alphabet)
+xset("font",1,3)              // change size font
+xstring(0.1,0.3,alphabet)
+xset("font",1,24); xstring(0.1,0.6,"a") //big alpha
+xset("default")
+.fi
+.SH SEE ALSO
+titlepage, xnumb, xstringb, xstringl, xtitle
+.SH AUTHOR
+J.Ph.C.

@@ -1,0 +1,51 @@
+.TH gr_menu 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+gr_menu - simple interactive graphic editor
+.SH CALLING SEQUENCE
+.nf
+[sd1]=gr_menu([sd,flag,no_frame])
+.fi
+.SH PARAMETERS
+.TP 10
+sd 
+: list (output of \fVgr_menu\fR), or vector of 
+length four \fV[xmin,ymin,xmax,ymax]\fR (boundaries of the plot). 
+.TP
+sd1
+: list (graphical objects created under \fVgr_menu\fR
+.TP
+flag,noframe
+: integers with 0, 1 value. Use \fVflag=1\fR for non interactive mode 
+(i.e to redraw saved \fVgr_menu\fR graphics) and \fVno_frame=1\fR to 
+avoid a frame around \fVgr_menu\fR graphics. 
+.SH DESCRIPTION
+\fVgr_menu\fR is a simple interactive graphic editor.
+When you execute \fVgr_menu()\fR, three new menus, \fVObjects\fR, 
+\fVSettings\fR and \fVEdit\fR are added to the current graphics window.
+Use the item \fVExit\fR of menu \fVEdit\fR to exit \fVgr_menu\fR.
+
+The created graphics are saved as a list which 
+can be given to \fVgr_menu\fR as an entry value.
+.TP 15
+\fV[sd]=gr_menu([xmin,ymin,xmax,ymax])\fR
+: enters \fVgr_menu\fR with a fixed frame
+.TP 
+\fV[sd]=gr_menu();\fR
+: enters \fVgr_menu\fR with the  fixed frame  [0 0 100 100].
+.TP
+\fV[sd]=gr_menu(sd)\fR
+: redraws the graphics stored in sd and enters interactive mode
+.TP
+\fV[sd]=gr_menu(sd,1)\fR
+: only draws the graphics stored in \fVsd\fR. 
+.TP
+\fV[sd]=gr_menu(sd,1,1)\fR
+: only draws the graphics stored in \fVsd\fR and no frame is added. 
+.SH AUTHOR
+S.S. & J.Ph.C.
+
+
+
+
+

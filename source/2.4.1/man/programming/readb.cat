@@ -1,0 +1,29 @@
+
+readb(1)                       Scilab Function                       readb(1)
+NAME
+  readb - fortran file binary read
+
+CALLING SEQUENCE
+  x=readb(file-name,m,n [,rec])
+
+PARAMETERS
+
+  file-name : string or integer
+
+  m, n      : integers (dimensions of the matrix x). Set m=-1 if you do not
+            know the numbers of rows, so all the file is read
+
+  rec       : vector of positive integers. the selected records for direct
+            access.  This vector size must be equal to the number of rows of
+            desired x.
+
+DESCRIPTION
+  binary read of the matrix x in the file file-name.  Matrix entries are sup-
+  posed to have been stored on 8 byte words.
+
+  For direct record access, file must have been previously opened using file
+  function to set the record_length. file-name must be the result of the file
+  function.
+
+SEE ALSO
+  file, write, writb, binary, read4b

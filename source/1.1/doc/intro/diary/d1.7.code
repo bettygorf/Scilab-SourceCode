@@ -1,0 +1,6 @@
+exec('d1.4.code');
+exec('d1.5.code');
+f21=f(2,1);v=0:0.01:%pi;frequencies=exp(%i*v);
+response=freq(f21(2),f21(3),frequencies);
+plot2d(v',abs(response)',[-1],'011',' ',[0,0,3.5,0.7],[5,4,5,7]);
+xtitle(' ','radians','magnitude');

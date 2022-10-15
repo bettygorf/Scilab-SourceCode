@@ -1,0 +1,25 @@
+
+acoshm(1)                      Scilab Function                      acoshm(1)
+NAME
+  acoshm - matrix hyperbolic inverse cosine
+
+CALLING SEQUENCE
+  t=acoshm(x)
+
+PARAMETERS
+
+  x,t       : real or complex square matrix
+
+DESCRIPTION
+  acoshm is the matrix hyperbolic  inverse cosine  of the matrix x.  Uses the
+  formula t=logm(x+(x+eye)*sqrtm((x-eye)/(x+eye))) For non symmetric matrices
+  result may be inaccurate.
+
+EXAMPLE
+  A=[1,2;3,4];
+  coshm(acoshm(A))
+  A(1,1)=A(1,1)+%i;
+  coshm(acoshm(A))
+
+SEE ALSO
+  acosh, logm, sqrtm

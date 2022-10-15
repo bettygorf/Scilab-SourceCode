@@ -1,0 +1,290 @@
+
+\def\Mhlp{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=hlp()\\ 
+\cmarg \verb@//@ Travaux diriges : bibliotheque de macros \\ 
+\cmarg \verb@//@ macros du T.P 4\\ 
+\cmarg \verb@//@ Un probleme de controle optimal sur l'alunisage d'une fusee\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//@ finit    :  initialise les donnees du td \\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//@ sfusee   :  simule l'evolution de la trajectoire pour une loi \\ 
+\cmarg \verb@//@          de commande bang-bang\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//@ fuseegrad:  effectue des iterations de gradient pour chercher \\ 
+\cmarg \verb@//@          une loi de commande optimale\\ 
+\cmarg \verb@//@ equad    : integre le systeme d'equations primales-duales\\ 
+\cmarg \verb@//@ ubang    : genere une loi de commande bang-bang\\ 
+\cmarg \verb@//@ fusee    : dynamique de la fusee\\ 
+\cmarg \verb@//@ fuseep   : dynamique de l'etat adjoint\\ 
+\cmarg \verb@//@! \\ 
+\cmarg 0\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mfinit{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=finit()\\ 
+\cmarg \verb@//@ Initialisation de parametres relatif au probleme \\ 
+\cmarg \verb@//@ de l'alunissage\\ 
+\cmarg \verb@//@k     : acceleration de poussee de la fusee\\ 
+\cmarg \verb@//@gamma : acceleration de la pesanteur sur la lune \\ 
+\cmarg \verb@//@umax  : debit maximum d'ejection des gaz \\ 
+\cmarg \verb@//@mcap  : masse de la capsule \\ 
+\cmarg \verb@//@cpen  : penalisation dans la fonction cout de l'etat final \\ 
+\cmarg \verb@//@!\\ 
+\cmarg k=100\\ 
+\cmarg gamma=1\\ 
+\cmarg umax = 1\\ 
+\cmarg mcap = 10\\ 
+\cmarg cpen =100;\\ 
+\cmarg $<$k,gamma,umax,mcap,cpen$>$={\bf resume}(k,gamma,umax,mcap,cpen)\\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+
+\def\Msfusee{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=sfusee(tau,h0,v0,m0,Tf)\\ 
+\cmarg //$<$$>$=sfusee(tau,h0,v0,m0,Tf)\\ 
+\cmarg \verb@//@  \\ 
+\cmarg \verb@//@ calcule la trajectoire de la fusee soumise a \\ 
+\cmarg \verb@//@ une commande bang-bang\\ 
+\cmarg \verb@//@ tau est la date de commutation \\ 
+\cmarg \verb@//@ h0 : la hauteur initiale \\ 
+\cmarg \verb@//@ v0 : la vitesse initiale ( negative si chute)\\ 
+\cmarg \verb@//@ m0 : la masse initiale ( carburant + capsule)\\ 
+\cmarg \verb@//@ Tf : l'horizon d'integration \\ 
+\cmarg \verb@//@!\\ 
+\cmarg \verb@//@ Premiere phase : chute libre\\ 
+\cmarg n=20;\\ 
+\cmarg ind=1:n;\\ 
+\cmarg t= ind$\star$tau/n;\\ 
+\cmarg m(ind)= m0$\star${\bf ones}(1,n);\\ 
+\cmarg v(ind)=$-$gamma$\star$(t)+v0$\star${\bf ones}(1,n);\\ 
+\cmarg h(ind)= $-$ gamma$\star$(t.$\star$t)/2 +  v0$\star$(t) + h0$\star${\bf ones}(1,n);\\ 
+\cmarg m = $<$ m0,m$>$\\ 
+\cmarg v=  $<$ v0,v$>$\\ 
+\cmarg h= $<$h0,h$>$\\ 
+\cmarg t= $<$ 0 t$>$\\ 
+\cmarg \verb@//@ Deuxieme phase : frein plein gaz\\ 
+\cmarg n1=40;\\ 
+\cmarg ind=1:n1;\\ 
+\cmarg ind1=0:(n1$-$1)\\ 
+\cmarg t1= ind1$\star$Tf/(n1$-$1) +tau$\star$ ((n1$-$1)$\star${\bf ones}(1,n1)$-$ind1)/(n1$-$1);\\ 
+\cmarg m1(ind)= ( m0+umax$\star$tau)$\star${\bf ones}(1,n1) $-$umax$\star$(t1);\\ 
+\cmarg mcapsul=mcap$\star${\bf ones}(1,n1);\\ 
+\cmarg m1={\bf maxi}(m1,mcapsul);\\ 
+\cmarg v1(ind)= $-$ gamma$\star$(t1)+ v0$\star${\bf ones}(1,n1) $-$k $\star${\bf log}( m1(ind)/m0);\\ 
+\cmarg h1(ind)= $-$ gamma$\star$(t1.$\star$t1)/2 +  v0$\star$(t1) + (h0$-$k$\star$tau)$\star${\bf ones}(1,n1)...\\ 
+\cmarg \hspace{1.5cm}+(k/umax)$\star$m1(ind).$\star${\bf log}(m1(ind)/m0)+k$\star$t1;\\ 
+\cmarg m=$<$m,m1$>$;\\ 
+\cmarg v=$<$v,v1$>$;\\ 
+\cmarg h=$<$h,h1$>$;\\ 
+\cmarg t=$<$t,t1$>$;\\ 
+\cmarg \verb@//@ a revoir \\ 
+\cmarg $<$m1,m2$>$={\bf maxi}(h,0$\star$h);\\ 
+\cmarg m2=2$\star${\bf ones}(m2)$-$m2;\\ 
+\cmarg $<$n1,n2$>$={\bf size}(m2);\\ 
+\cmarg ialu=1;\\ 
+\cmarg {\bf for} i=1:n2,{\bf if} m2(i)=0,ialu=$<$ialu,i$>$,{\bf end},{\bf end}\\ 
+\cmarg ialu=ialu(2);\\ 
+\cmarg {\bf write}(\%io(2),t(ialu),'('' Date alunissage'',f7.2)')\\ 
+\cmarg {\bf write}(\%io(2),m(ialu),'('' Masse  alunissage'',f7.2)')\\ 
+\cmarg {\bf write}(\%io(2),v(ialu),'('' Vitesse alunissage'',f7.2)')\\ 
+\cmarg xset("window",0)\\ 
+\cmarg xclear();\\ 
+\cmarg \verb@//@ Dessin \\ 
+\cmarg $<$q1,q2$>$={\bf size}(h)\\ 
+\cmarg h1=0$\star${\bf ones}(h);\\ 
+\cmarg \verb@//@h1(ialu:q2)=maxi(h)*ones(1,q2-ialu+1);\\ 
+\cmarg \verb@//@\\ 
+\cmarg plot2d($<$t$>$',$<$h$>$',$<$$-$1;1$>$,"111","distance par rapport au sol",...\\ 
+\cmarg \hspace{1.0cm}$<$0,0,tf,{\bf maxi}(h)$>$)\\ 
+\cmarg xset("window",1)\\ 
+\cmarg {\bf if} xget("window")=0 , xinit('unix:0.0'),xset("window",1),{\bf end}\\ 
+\cmarg xclear();\\ 
+\cmarg plot2d($<$t;t$>$',$<$v;0$\star$v$>$',$<$$-$1;$-$1$>$,"121",...\\ 
+\cmarg \hspace{1.8cm}"vitesse de la fusee (si + v ascent.)@0");\\ 
+\cmarg \verb@//@recherche de la date d'arrivee au sol \\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mfuseegrad{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$ukp1$>$=fuseegrad(niter,ukp1,pasg)\\ 
+\cmarg //$<$ukp1$>$=fuseegrad(niter,ukp1,pasg)\\ 
+\cmarg \verb@//@ niter : nombre d'iteration de gradient a faire a partir\\ 
+\cmarg \verb@//@ de ukp1 solution initiale de taille 135\\ 
+\cmarg \verb@//@ pasg  : le pas de gradient choisit\\ 
+\cmarg \verb@//@ la valeur renvoyee est la derniere loi de commande obtenue.\\ 
+\cmarg \verb@//@ l'optimum s'obtient avec ubang(135,50)\\ 
+\cmarg \verb@//@ (optimum du pb non penalise)\\ 
+\cmarg \verb@//@!\\ 
+\cmarg \verb@//@ fenetres graphiques\\ 
+\cmarg xset("window",0);xclear();\\ 
+\cmarg xset("window",1);\\ 
+\cmarg {\bf if} xget("window")=0 , xinit('unix:0.0'),xset("window",1),{\bf end}\\ 
+\cmarg xclear();\\ 
+\cmarg xset("window",2);\\ 
+\cmarg {\bf if} xget("window")=0 , xinit('unix:0.0'),xset("window",2),{\bf end}\\ 
+\cmarg xclear();\\ 
+\cmarg \verb@//@ on s'arrete a tf=135\\ 
+\cmarg tf=135\\ 
+\cmarg $<$n1,n2$>$={\bf size}(ukp1)\\ 
+\cmarg {\bf if} n2 $<$$>$135, {\bf print}(\%io(2),"uk doit etre un vecteur (1,135)")\\ 
+\cmarg \hspace{1.2cm}{\bf return},{\bf end}\\ 
+\cmarg \verb@//@ Calculs de gradient et dessins\\ 
+\cmarg {\bf for} i=1:niter, $<$c,xk,pk,ukp1$>$=fcout(tf,ukp1,pasg),\\ 
+\cmarg {\bf write}(\%io(2),c,'(''Cout : '',f20.2)');\\ 
+\cmarg {\bf write}(\%io(2),xk(3,135),'(''Masse de la fusee : '',f20.2)');\\ 
+\cmarg xset("window",0);\\ 
+\cmarg tt=1:tf;\\ 
+\cmarg plot2d(tt',xk(1,:)',$<$$-$1$>$,"111","Trajectoire",$<$1,0,tf,5200$>$);\\ 
+\cmarg xset("window",1);\\ 
+\cmarg plot2d(tt',xk(3,:)',$<$$-$1$>$,"111","Evolution de la masse",$<$1,10,tf,100$>$);\\ 
+\cmarg xset("window",2);\\ 
+\cmarg plot2d(tt',ukp1',$<$$-$1$>$,"111","Commande",$<$1,$-$1,tf,2$>$);\\ 
+\cmarg {\bf end}\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mequad{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xk,pk$>$=equad(tf,uk)\\ 
+\cmarg //$<$xk,pk$>$=equad(tf,uk)\\ 
+\cmarg \verb@//@ pour une loi de commande u(t)  stockee dans uk, calcule \\ 
+\cmarg \verb@//@ la trajectoire xk associee et l'etat adjoint pk\\ 
+\cmarg \verb@//@!\\ 
+\cmarg xk={\bf ode}($<$5220;$-$5;100$>$,1,1:tf,0.01,0.01,fusee);\\ 
+\cmarg {\bf deff}('$<$y$>$=gg(t,x)','y=$-$fuseep('+{\bf string}(tf)+'$-$t,x)');\\ 
+\cmarg \verb@//@ condition finales pour l'equation adjointe\\ 
+\cmarg \verb@//@ en fait on minimise -m(tf)**2+...\\ 
+\cmarg pk={\bf ode}($<$2$\star$cpen$\star$xk(1,tf);2$\star$cpen$\star$xk(2,tf);$-$xk(3,tf)$>$,0.01,0.01:tf,...\\ 
+\cmarg \hspace{1.0cm}1,1,gg);\\ 
+\cmarg pk(1,:)=pk(1,tf:$-$1:1);\\ 
+\cmarg pk(2,:)=pk(2,tf:$-$1:1);\\ 
+\cmarg pk(3,:)=pk(3,tf:$-$1:1);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mubang{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$uk$>$=ubang(tf,tcom)\\ 
+\cmarg //$<$uk$>$=ubang(tf,tcom)\\ 
+\cmarg \verb@//@ genere une loi bang-bang qui vaut 0 de 0 a tcom\\ 
+\cmarg \verb@//@ et 1 de tcom a tf\\ 
+\cmarg \verb@//@!\\ 
+\cmarg uk=0$\star${\bf ones}(1,tf)\\ 
+\cmarg uk(tcom:tf)=1$\star${\bf ones}(1,tf$-$tcom+1);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mfcout{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$c,xk,pk,ukp1$>$=fcout(tf,uk,pasg)\\ 
+\cmarg //$<$c,xk,pk,ukp1$>$=fcout(tf,uk,pasg)\\ 
+\cmarg \verb@//@ pour une loi de commande uk\\ 
+\cmarg \verb@//@ Calcule la fonction cout que l'on cherche a minimiser \\ 
+\cmarg \verb@//@ c = -m(tf) + C*( h(tf)**2 + v(tf)**2)\\ 
+\cmarg \verb@//@ (on veut minimiser la consommation et atteindre la \\ 
+\cmarg \verb@//@ cible h=0 avec une vitess nulle obtenue par penalisation)\\ 
+\cmarg \verb@//@ la trajectoire associee \\ 
+\cmarg \verb@//@ Calcule aussi une nouvelle loi de commande par une methode \\ 
+\cmarg \verb@//@ de gradient\\ 
+\cmarg \verb@//@!\\ 
+\cmarg $<$xk,pk$>$=equad(tf,uk);\\ 
+\cmarg c= $-$ xk(3,tf) +cpen$\star$(xk(1,tf)$\star$$\star$2 +xk(2,tf)$\star$$\star$2);\\ 
+\cmarg grad =   k$\star$pk(2,:)./xk(3,:) $-$pk(3,:);\\ 
+\cmarg \verb@//@gradient projete su [0,umax]\\ 
+\cmarg ukp1={\bf maxi}({\bf mini}(uk$-$ pasg$\star$grad,umax$\star${\bf ones}(1,tf)),0$\star${\bf ones}(1,tf));\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mfusee{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xdot$>$=fusee(t,x)\\ 
+\cmarg //$<$xdot$>$=fusee(t,x)\\ 
+\cmarg \verb@//@ dynamique de la fusee \\ 
+\cmarg \verb@//@!\\ 
+\cmarg xd= x(2);\\ 
+\cmarg {\bf if} x(3)$<$= 10, md=0\\ 
+\cmarg yd= $-$gamma;\\ 
+\cmarg ,{\bf else} md= $-$pousse(t),\\ 
+\cmarg yd= k$\star$pousse(t)/x(3)$-$gamma;\\ 
+\cmarg {\bf end};\\ 
+\cmarg xdot=$<$xd;yd;md$>$;\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mpousse{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$ut$>$=pousse(t)\\ 
+\cmarg //$<$ut$>$=pousse(t)\\ 
+\cmarg \verb@//@ la loi de commande u(t) constante par morceaux \\ 
+\cmarg \verb@//@ construite sur la loi de comande discrete uk\\ 
+\cmarg \verb@//@!\\ 
+\cmarg $<$n1,n2$>$={\bf size}(uk);\\ 
+\cmarg ut=uk({\bf mini}({\bf maxi}({\bf ent}(t),1),n2));\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mtraj{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xt$>$=traj(t)\\ 
+\cmarg //$<$xt$>$=traj(t)\\ 
+\cmarg \verb@//@ approximation constante par morceaux de l'evolution de la masse\\ 
+\cmarg \verb@//@ construite sur xk : trajectoire discrete.\\ 
+\cmarg \verb@//@! \\ 
+\cmarg xt=xk(3,{\bf maxi}({\bf ent}(t),1));\\ 
+\cmarg \verb@//@\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mfuseep{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$pdot$>$=fuseep(t,p)\\ 
+\cmarg //$<$pdot$>$=fuseep(t,p)\\ 
+\cmarg \verb@//@equation adjointe\\ 
+\cmarg \verb@//@!\\ 
+\cmarg xp=0 \\ 
+\cmarg yp=$-$p(1);\\ 
+\cmarg zp= p(2)$\star$k$\star$pousse(t)/(traj(t)$\star$$\star$2);\\ 
+\cmarg pdot=$<$xp;yp;zp$>$\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+

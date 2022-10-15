@@ -1,0 +1,27 @@
+
+strfbm(2)                      Scilab Function                      strfbm(2)
+NAME
+  strfbm - Structure Function of a Brownian Field
+
+  Author: B. Pesquet-Popescu (ENS-Cachan)
+
+  Creates the structure function of an isotropic fBm
+
+Usage
+
+  [Y] = strfbm(x,y,H)
+Input parameters
+       o  x  : Real vector [1,N] vertical coordinate
+       o  y  : Real scalar [1,M] horizontal coordinate
+       o  H  : Real in [0,1] Hurst parameter
+Output parameters
+       o  Y  : Matrix  [N,M] Matrix containing the values of the structure
+         function
+See also:
+  synth2
+
+Example:
+
+  x = 1:128 ;
+  y = 1:128 ;
+  [Y] = strfbm(x,y,0.8) ;

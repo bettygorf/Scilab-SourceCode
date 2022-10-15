@@ -1,0 +1,43 @@
+.TH wfir 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+wfir - linear-phase FIR filters
+.SH CALLING SEQUENCE
+.nf
+[wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)
+.fi
+.SH PARAMETERS
+.TP
+ftype
+: string : \fV'lp','hp','bp','sb'\fR (filter type)
+.TP
+forder
+: Filter order (pos integer)(odd for \fVftype='hp'\fR or \fV'sb'\fR)
+.TP
+cfreq
+: 2-vector of cutoff frequencies (\fV0<cfreq(1),cfreq(2)<.5\fR)
+ only \fVcfreq(1)\fR is used when \fVftype='lp'\fR or \fV'hp'\fR
+.TP
+wtype
+: Window type (\fV're','tr','hm','hn','kr','ch'\fR)
+.TP
+fpar
+: 2-vector of window parameters.
+Kaiser window \fVfpar(1)>0 fpar(2)=0\fR. Chebyshev window 
+\fVfpar(1)>0, fpar(2)<0\fR or \fVfpar(1)<0, 0<fpar(2)<.5\fR
+.TP
+wft
+: time domain filter coefficients
+.TP
+wfm
+: frequency domain filter response on the grid fr
+.TP
+fr
+: Frequency grid
+.SH DESCRIPTION
+Macro which makes linear-phase, FIR low-pass, band-pass,
+high-pass, and stop-band filters
+using the windowing technique.
+Works interactively if called with no arguments.
+.SH AUTHOR
+C. Bunks

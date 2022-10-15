@@ -1,0 +1,14 @@
+
+IFTHEL_f(5)                      Scicos Block                     IFTHEL_f(5)
+NAME
+  IFTHEL_f - Scicos if then else block
+
+DIALOGUE PARAMETERS
+  None.
+
+DESCRIPTION
+  One event is generated on one of the output event ports when an input event
+  arrives. Depending on the sign of the regular input, the event is generated
+  on the first or second output.
+
+  This is a synchro block, i.e., input and output event are synchronized.

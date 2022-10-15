@@ -1,0 +1,22 @@
+.TH log 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+log - natural logarithm
+.SH CALLING SEQUENCE
+.nf
+y=log(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: constant vector or constant matrix
+.SH DESCRIPTION
+\fVlog(x)\fR is the "element-wise" logarithm. \fVy(i,j)=log(x(i,j))\fR.
+For matrix logarithm see \fVlogm\fR.
+.SH EXAMPLE
+.nf
+exp(log([1,%i,-1,-%i]))
+.fi
+.SH SEE ALSO
+exp, logm, ieee
+

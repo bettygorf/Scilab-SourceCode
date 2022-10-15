@@ -1,0 +1,23 @@
+.TH link 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+link - dynamic link
+.SH CALLING SEQUENCE
+.nf
+link(files, sub-name)
+.fi
+.SH DESCRIPTION
+links (dynamically) a compiled C or Fortran routine to Scilab.
+With no arguments \fVlink()\fR returns the vectors of linked routines.
+.SH EXAMPLE
+.nf
+link('foo.o','foo').
+link('foo.o -lm ','foo').
+.fi
+\fVfoo.o\fR is the file of the object code (libraries if needed can be added 
+after \fVfoo.o\fR). \fVfoo\fR is the name of the fortran routine.
+.SH REMARK 
+Available only for SUN, RS6000, DEC and HP workstations.
+.SH SEE ALSO
+fort,c_link
+

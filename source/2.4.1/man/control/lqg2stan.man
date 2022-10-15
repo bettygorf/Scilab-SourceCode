@@ -1,0 +1,69 @@
+.TH lqg2stan 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+lqg2stan - LQG to standard problem
+.SH CALLING SEQUENCE
+.nf
+[P,r]=lqg2stan(P22,bigQ,bigR)
+.fi
+.SH PARAMETERS
+.TP 10
+P22
+: \fVsyslin\fR list (nominal plant) in state-space form
+.TP
+bigQ
+: \fV[Q,S;S',N]\fR (symmetric) weighting matrix
+.TP
+bigR
+: \fV[R,T;T',V]\fR (symmetric) covariance matrix
+.TP
+r
+: \fV1\fRx\fV2\fR row vector = (number of measurements, number of inputs)  (dimension of
+ the 2,2 part of \fVP\fR)
+.TP
+P
+: \fVsyslin\fR list (augmented plant)
+.SH DESCRIPTION
+\fVlqg2stan\fR  returns the augmented plant for linear LQG (H2) controller 
+design.
+.LP
+\fVP22=syslin(dom,A,B2,C2)\fR is the nominal plant; it can be in continuous 
+time (\fVdom='c'\fR) or discrete time (\fVdom='d'\fR).
+.nf
+  . 
+  x = Ax + w1 + B2u
+  y = C2x + w2
+.fi
+for continuous time plant.
+.nf
+  x[n+1]= Ax[n] + w1 + B2u
+      y = C2x + w2
+.fi
+for discrete time plant.
+.LP
+The (instantaneous) cost function is \fV[x' u'] bigQ [x;u]\fR.
+.LP
+The covariance of \fV[w1;w2]\fR is \fVE[w1;w2] [w1',w2'] = bigR\fR 
+.LP
+If \fV[B1;D21]\fR is a factor of \fVbigQ\fR, \fV[C1,D12]\fR
+is a factor of \fVbigR\fR and \fV[A,B2,C2,D22]\fR is
+a realization of P22, then \fVP\fR is a realization of
+\fV[A,[B1,B2],[C1,-C2],[0,D12;D21,D22]\fR.
+The (negative) feedback computed by \fVlqg\fR stabilizes \fVP22\fR,
+i.e. the poles of \fVcl=P22/.K\fR are stable.
+.SH EXAMPLE
+.nf
+ny=2;nu=3;nx=4;
+P22=ssrand(ny,nu,nx);
+bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';
+bigR=rand(nx+ny,nx+ny);bigR=bigR*bigR';
+[P,r]=lqg2stan(P22,bigQ,bigR);K=lqg(P,r);  //K=LQG-controller
+spec(h_cl(P,r,K))      //Closed loop should be stable
+//Same as Cl=P22/.K; spec(Cl('A'))
+s=poly(0,'s')
+lqg2stan(1/(s+2),eye(2,2),eye(2,2))
+.fi
+.SH SEE ALSO
+lqg, lqr, lqe, obscont, h_inf, augment, fstabst, feedback
+.SH AUTHOR
+F.D.

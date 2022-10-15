@@ -1,0 +1,16 @@
+ 
+clear;lines(0);
+ 
+deff('y=test(a)',['y=sin(a)+1';
+                  'y=t1(y)';
+                  'y=y+1'])
+ 
+deff('y=t1(y)',['y=y^2';'whereami()'])
+ 
+test(1)
+whereami called at line 3 of macro t1
+t1       called at line 3 of macro test
+ ans  =
+ 
+    4.3910154  
+ 

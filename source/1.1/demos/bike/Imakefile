@@ -1,0 +1,52 @@
+#include "../../Imake.incl"
+
+#if defined(SparcArchitecture)
+FPL=  -Nl2000 -Nn6000
+#endif
+ 
+OBJS= /tmp/constr.o /tmp/gjx.o /tmp/h.o /tmp/ii.o
+OBJC= /tmp/vecfin.o /tmp/hamu.o /tmp/emat.o /tmp/fvec.o /tmp/c.o /tmp/psi.o
+
+
+AllTarget( simul control) 
+DependTarget()
+distclean:: clean 
+
+
+simul	:	$(OBJS)
+
+control :	$(OBJC)
+
+
+/tmp/constr.o : constr.f
+	$(FC) $(FFLAGS) $(FPL) -c constr.f -o /tmp/constr.o
+
+/tmp/gjx.o : gjx.f
+	$(FC) $(FFLAGS) $(FPL) -c gjx.f -o /tmp/gjx.o
+
+/tmp/h.o : h.f
+	$(FC) $(FFLAGS) $(FPL) -c h.f -o /tmp/h.o
+
+/tmp/ii.o : ii.f
+	$(FC) $(FFLAGS) $(FPL) -c ii.f -o /tmp/ii.o
+
+
+/tmp/vecfin.o : vecfin.f
+	$(FC) $(FFLAGS) $(FPL) -c vecfin.f -o /tmp/vecfin.o
+
+/tmp/hamu.o : hamu.f
+	$(FC) $(FFLAGS) $(FPL) -c hamu.f -o /tmp/hamu.o
+
+/tmp/emat.o : emat.f
+	$(FC) $(FFLAGS) $(FPL) -c emat.f -o /tmp/emat.o
+
+/tmp/fvec.o : fvec.f
+	$(FC) $(FFLAGS) $(FPL) -c fvec.f -o /tmp/fvec.o
+
+/tmp/c.o : c.f
+	$(FC) $(FFLAGS) $(FPL) -c c.f -o /tmp/c.o
+
+/tmp/psi.o : psi.f
+	$(FC) $(FFLAGS) $(FPL) -c psi.f -o /tmp/psi.o
+
+

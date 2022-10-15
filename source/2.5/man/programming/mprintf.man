@@ -1,0 +1,52 @@
+.TH mprintf 1 "Aug 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ mfprintf - converts, formats, and writes  data to a file 
+ mprintf - converts, formats, and writes  data to the main scilab window
+ msprintf - converts, formats, and writes  data in a string
+.SH CALLING SEQUENCE
+.nf
+mfprintf(fd,format,a1,...,an);
+
+mprintf(format,a1,...,an);
+
+str=msprintf(format,a1,...,an);
+
+.fi
+.SH PARAMETERS
+.TP 10
+fd : scalar, file descriptor given by \fVmopen\fR (it's a positive
+integer). The value \fV-1\fR refers to the default file ( i.e the last
+opened file).
+.TP 
+format
+: a character string, a C like format. See cformat for details
+.TP 
+str
+: a character string, string to be scanned.
+.TP
+a1,...,an
+: variables to print. 
+.SH DESCRIPTION
+
+The mprintf, mfprintf, and msprintf functions are interface for C-coded version of \fVfprintf\fR, \fVsprintf\fR and
+\fVprintf\fR functions.
+.LP
+The mprintf function converts, formats the \fVai\fR parameters and
+display the result in the main Scilab window
+.LP
+mfprintf function converts, formats the \fVai\fR parameters and
+store the result in the file given by the file descriptor \fVfd\fR.
+.LP
+msprintf function converts, formats the \fVai\fR parameters and
+store the result in the return variable \fVstr\fR.
+.SH EXAMPLE
+.nf
+mprintf('At iteration %i, Result is:\nalpha=%f',33,0.535)
+
+msprintf('%f %f',123,0.732)
+msprintf('%f\n%f',123,0.732)
+.fi
+.SH SEE ALSO
+mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr, mopen, mprintf, mput, mputstr, mscanf, mseek, mtell
+

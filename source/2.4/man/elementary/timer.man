@@ -1,0 +1,19 @@
+.TH timer 3 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+timer - cpu time
+.SH CALLING SEQUENCE
+.nf
+timer() 
+.fi
+.SH DESCRIPTION
+Returns the CPU time from the preceding call to \fVtimer()\fR.
+.SH EXAMPLE
+.nf
+timer();A=rand(100,100);timer()
+.fi
+.SH SEE ALSO
+unix_g
+
+
+

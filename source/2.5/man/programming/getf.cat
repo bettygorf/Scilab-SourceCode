@@ -1,0 +1,48 @@
+
+getf(1)                        Scilab Function                        getf(1)
+NAME
+  getf - loading function
+
+CALLING SEQUENCE
+  getf(file-name [,opt])
+
+PARAMETERS
+
+  filename  : Scilab string.
+
+  opt       : optional character string
+
+             "c"
+              : loaded functions are "compiled" to be more efficient
+              (default)
+
+             "n"
+              : loaded functions are not "compiled"
+DESCRIPTION
+  loads one or several functions defined in the file 'file-name'.  The string
+  opt='n' means that the functions are not compiled (pre-interpreted) when
+  loaded. This can be useful for some debugging purpose (see comp). By
+  default, functions are compiled when loaded (i.e. opt='c' is used).
+
+  In the  file  a function must begin by a "syntax definition" line as fol-
+  lows:
+  function [y1,...,yn]=foo(x1,...,xm)
+  followed by a sequence of scilab instructions.
+
+  The "syntax definition" line gives the "full" calling syntax of this func-
+  tion. The yi are output variables calculated as functions of input vari-
+  ables xi and variables existing in Scilab when the function is executed.
+  Shorter input or output argument list may be used.
+
+  Many functions may be written in the same file. A function is terminated by
+  an endfunction keyword, the following function keyword or the EOF mark.
+
+REMARK
+  Last line of  the file must be terminated by a newline to be taken into
+  account.
+
+EXAMPLE
+          getf('SCI/macros/xdess/plot.sci')
+
+SEE ALSO
+  genlib, getd, exec, edit, comp

@@ -1,0 +1,37 @@
+.TH metanet 1 "September 1995" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+metanet - opens a Metanet window
+.SH CALLING SEQUENCE
+.nf
+window = metanet([path,winsize])
+.fi
+.SH PARAMETERS
+.TP 5
+path
+: string, directory where graph files are searched
+.TP 8
+winsize
+: row vector defining the size of Metanet window
+.TP 7
+window
+: integer, window number
+.SH DESCRIPTION
+This function is used to open a Metanet window from Scilab.
+
+\fVpath\fR is an optional argument; it is the directory where graph files 
+are searched. If this path is the pathname of a graph, this graph is 
+displayed in the Metanet window and the directory of this pathname
+becomes the default directory.
+By default, \fVpath\fR is the working directory.
+
+\fVwinsize\fR is an optional argument; it is a row vector \fV[width height]\fR
+giving the size in pixels of Metanet window. The default is
+\fV[1000 1000]\fR.
+
+Usually, \fVshow_graph\fR is used and \fVmetanet\fR is seldom used.
+
+Each time \fVmetanet\fR is executed, a new window is created and its
+number is incremented by 1.
+.SH SEE ALSO
+netclose, netwindow, netwindows, show_graph

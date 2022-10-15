@@ -1,0 +1,31 @@
+.TH PPOL G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+ppol - pole placement
+.SH CALLING SEQUENCE
+.nf
+[K]=ppol(A,B,poles)
+.fi
+.SH PARAMETERS
+.TP 10
+A,B 
+: real matrices of dimensions \fVnxn\fR and \fVnxm\fR.
+.TP
+poles 
+: real or complex vector of dimension \fVn\fR.
+.TP
+K
+: real matrix
+.SH DESCRIPTION
+\fVK=ppol(A,B,poles)\fR returns a mxn gain matrix \fVK\fR such that
+the eigenvalues of \fVA-B*K\fR are \fVpoles\fR.
+The pair \fV(A,B)\fR must be controllable. Complex number in \fVpoles\fR must appear in conjugate pairs.
+.LP
+An output-injection gain \fVF\fR for \fV(A,C)\fR is obtained as follows:
+.LP
+\fVFt=ppol(A',C',poles);  F=Ft'\fR
+.LP
+The algorithm is by P.H. Petkov.
+.SH SEE ALSO
+canon
+

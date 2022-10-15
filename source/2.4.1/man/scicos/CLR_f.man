@@ -1,0 +1,22 @@
+.TH CLR_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+CLR_f - Scicos continuous-time linear system (SISO transfer function)
+.SH DIALOGUE PARAMETERS
+.TP 20
+Numerator
+: a polynomial in s.
+.TP
+Denominator
+: a polynomial in s.
+.SH DESCRIPTION
+This block realizes a SISO linear system represented by its rational
+transfer function \fVNumerator/Denominator\fR.
+The rational function must be proper.
+.SH SEE ALSO
+CLSS_f, INTEGRAL_f
+
+
+
+
+

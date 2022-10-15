@@ -1,0 +1,27 @@
+.TH xarcs 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xarcs - drawing a set of ellipsis
+.SH DESCRIPTION
+.nf
+[]=xarcs(arcs,[fill])
+.fi
+.SH PARAMETERS
+.TP 
+arcs
+: matrix of size (6,n) (ellipsis description)
+.TP 
+fill
+: vector of size (1,n) (pattern id for filling the ellipsis) (default value=no filling)
+.SH DESCRIPTION
+draws or fills a set of ellipsis described by \fVarcs\fR. 
+\fVarcs= [ x,y,w,h,a1,a2 ; x,y,w,h,a1,a2 ;.....] '\fR : each ellipsis is defined by the 
+6 parameters \fV(x,y,w,h,a1,a2)\fR (see \fVxarc\fR)
+.LP
+\fVfill(i)\fR gives the pattern id which must be used to fill the ellipsis number \fVi\fR.
+If \fVfill(i)>= WID +1\fR the ellipsis is just drawn ( WID is the id of the white pattern 
+which can be obtained with \fVxget("white")\fR. If fill is omitted the ellipsis are just drawn 
+.SH AUTHOR
+J.Ph.C.
+
+

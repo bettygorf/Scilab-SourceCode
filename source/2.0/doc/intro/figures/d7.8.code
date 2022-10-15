@@ -1,0 +1,7 @@
+xinit('d7.8.ps');
+  t=(0:.05:1)';st=sin(2*%pi*t);
+  xsetech([0,0,1,0.5]);
+  plot2d2("onn",t,st);
+  xsetech([0,0.5,1,0.5]);
+  plot2d3("onn",t,st);
+  xsetech([0,0,1,1]);

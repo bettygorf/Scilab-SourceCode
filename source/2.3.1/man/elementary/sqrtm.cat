@@ -1,0 +1,25 @@
+
+sqrtm(1)                       Scilab Function                       sqrtm(1)
+NAME
+  sqrtm - matrix square root
+
+CALLING SEQUENCE
+  y=sqrtm(x)
+
+PARAMETERS
+
+  x         : real or complex  square matrix
+
+DESCRIPTION
+  y=sqrt(x) is the matrix square root of the x x matrix (x=y^2) Result may
+  not be accurate if x is not symmetric.
+
+EXAMPLE
+  x=[0 1;2 4]
+  w=sqrtm(x);
+  norm(w*w-x)
+  x(1,2)=%i;
+  w=sqrtm(x);norm(w*w-x,1)
+
+SEE ALSO
+  expm, sqroot

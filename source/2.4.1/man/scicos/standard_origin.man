@@ -1,0 +1,24 @@
+.TH standard_origin  "Janvier 1997" "Scilab Group" "Scicos function"
+.so ../sci.an
+.SH NAME
+standard_origin - Scicos block origin function
+.SH CALLING SEQUENCE
+.nf
+[x,y]=standard_draw(o)
+.fi
+.SH PARAMETERS
+.TP 10
+o
+: Scicos block data structure (see scicos_block)
+.TP
+x
+: x coordinate of the block origin (bottom left corner)
+.TP
+y
+: y coordinate of the block origin (bottom left corner)
+.SH DESCRIPTION
+\fVstandard_origin\fR is the Scilab function used to get
+standard blocks position in interfacing functions. 
+
+.SH SEE ALSO 
+scicos_block

@@ -1,0 +1,22 @@
+
+mputstr(1)                     Scilab Function                     mputstr(1)
+NAME
+  mputstr - write a character string in a file
+
+CALLING SEQUENCE
+  err=mputstr(str [, fd]);
+
+PARAMETERS
+
+  fd        : scalar. The fd parameter returned by the function mopen. -1
+            stands for last opened file. Default value is -1.
+
+  str       : a character string
+
+  err       : scalar. Error indicator
+DESCRIPTION
+  mputstr function allows to write a character string  in a binary file.
+
+SEE ALSO
+  mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr,
+  mopen, mprintf, mput, mputstr, mscanf, mseek, mtell

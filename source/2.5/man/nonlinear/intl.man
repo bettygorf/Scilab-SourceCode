@@ -1,0 +1,31 @@
+.TH intl 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+intl - Cauchy integral
+.SH CALLING SEQUENCE
+.nf
+[y]=intl(a,b,z0,r,f)
+.fi
+.SH PARAMETERS
+.TP 12
+z0
+: complex number
+.TP 
+a,b
+: two real numbers
+.TP
+r
+: positive real number
+.TP
+f
+: "external" function
+.SH DESCRIPTION
+If \fVf\fR is a complex-valued function, \fVintl(a,b,z0,r,f)\fR computes
+the integral of \fVf(z)dz\fR along the curve
+in the complex plane defined by \fVz0 + r.exp(%i*t)\fR for
+\fVa<=t<=b\fR .(part of the circle with center \fVz0\fR and radius \fVr\fR
+with phase between \fVa\fR and \fVb\fR)
+.SH SEE ALSO
+intc
+.SH AUTHOR
+F. D.

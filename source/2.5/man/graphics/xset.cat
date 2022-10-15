@@ -1,0 +1,164 @@
+
+xset(2)                        Scilab Function                        xset(2)
+NAME
+  xset - set values of the graphics context
+
+CALLING SEQUENCE
+  xset(choice-name,x1,x2,x3,x4,x5)
+  xset()
+
+PARAMETERS
+
+  choice-name  : string
+
+  x1,...,x5    : depending on choice-name
+
+  xset("alufunction",number)
+               : Used to set the logical function for drawing. It works only
+               under X11.  The logical function used is set by x1.  src is
+               the source ie what we want to draw.  dst is the destination ie
+               what is already drawn where we want to draw.
+
+               Usual values are: 3 for copying (default), 6 for animation and
+               0 for clearing.
+
+                0: clear ie "0"
+                1: and ie "src AND dst"
+                2: and reverse ie "src AND NOT dst"
+                3: copy ie "src"
+                4: and inverted ie "(NOT src) AND dst"
+                5: noop ie "dst"
+                6: xor ie "src XOR dst"
+                7: or ie "src OR dst"
+                8: nor ie "(NOT src) AND (NOT dst)"
+                9: equiv ie "(NOT src) XOR dst"
+               10: invert ie "NOT dst"
+               11: or reverse ie "src OR (NOT dst)"
+               12: copy inverted ie "NOT src"
+               13: or inverted ie "(NOT src) OR dst"
+               14: nand ie "(NOT src) OR (NOT dst)"
+               15: set ie "1"
+
+  xset("auto clear","on"|"off")
+               : Switch "on" or "off" the auto clear mode for graphics.  When
+               the auto clear mode is "on", successive plots are not super-
+               posed, ie an xbasc() operation (the graphics window is cleared
+               and the associated recorded graphics is erased) is performed
+               before each high level graphics function. Default value is
+               "off".
+
+  xset("background",color)
+               : Set the background color of the current graphics window.
+
+  xset("clipping",x,y,w,h)
+               : Set the clipping zone (the zone of the graphics window where
+               plots can be drawn) to the rectangle (x,y,w,h) (Upper-Left
+               point Width Height).  This function uses the current coordi-
+               nates of the plot.
+
+  xset("colormap",cmap)
+               : Set the colormap as a m x 3 matrix. m is the number of col-
+               ors.  Color number i is given as a 3-uple cmap(i,1),
+               cmap(i,2), cmap(i,3) corresponding respectively to red, green
+               and blue intensity between 0 and 1.
+
+  xset("dashes",i)
+               : Set the dash style to style i (0 for solid line). This is
+               used only when in black and white mode: xset("use color",0).
+               Use xset() to see the styles.
+
+  xset("default")
+               : Reset the graphics context to default values.
+
+  xset("font",fontid,fontsize)
+               : Set the current font and its current size.
+
+  xset("foreground",color)
+               : Set the foreground color of the current graphics window.
+
+  xset("fpf",string)
+               : Set the floating point format for number display in contour
+               functions. string is a string giving the format in C format
+               syntax (for example string="%.3f"). Use string="" to switch
+               back to default format.
+
+  xset("hidden3d",colorid)
+               : Set the color number for hidden faces in plot3d.
+
+  xset("line mode",type)
+               : This function is used to set the line drawing mode. Absolute
+               mode is set with type=1 and relative mode with type=0. (Warn-
+               ing: the mode type=0 has bugs)
+
+  xset("mark",markid,marksize)
+               : Set the current mark and the current mark size. Use xset()
+               to see the marks.
+
+  xset("pattern",value)
+               : Set the current pattern for filling functions. value is an
+               integer projected in the interval [0,whiteid]. 0 is used for
+               black filling and whiteid for white. The value of whiteid can
+               be obtained with xget("white").
+
+  xset("pixmap",flag)
+
+               If flag=0 the graphics are directly displayed on the screen.
+
+               If flag=1 the graphics are done on a pixmap and are sent to
+               the graphics window with the command xset("wshow"). The pixmap
+               is cleared with the  command xset("wwpc"). Note that the usual
+               command xbasc() also clears the pixmap.
+
+  xset("thickness",value)
+               : Set the thickness of lines in pixel  (0 and 1 have the same
+               meaning: 1 pixel thick).
+
+  xset("use color",flag)
+
+               If flag=1 then xset("pattern",.) or xset("dashes",.) will be
+               used so as to change the default color for drawing or for
+               filling patterns.
+
+               If flag=0 then we switch back to the gray and dashes mode.
+
+  xset("viewport",x,y)
+               : Set the position of the panner.
+
+  xset("wdim",width,height)
+               : Set the width and the height of the current graphics window.
+               This option is not used by the postscript driver.
+
+  xset("window",window-number)
+               : Set the current window to the window window-number and cre-
+               ates the window if it does not exist.
+
+  xset("wpos",x,y)
+               : Set the position of the upper left point of the graphics
+               window.
+
+  xset("wresize",flag)
+
+               If flag=1 then the graphic is automatically resized to fill
+               the graphics window.
+               xdel();xset("wresize",1);plot2d();xset("wdim",1000,500)
+
+               If flag=0 the scale of the graphic is left unchanged when the
+               graphics window is resized. Top left panner or keyboard arrows
+               may be used to scroll over the graphic.
+               xdel();plot2d();xset("wresize",0);xset("wdim",1000,500)
+
+  xset("wshow")
+               : See xset("pixmap",1) above.
+
+  xset("wwpc") : See xset("pixmap",1) above.
+
+DESCRIPTION
+  xset is used to set values of the graphics context. When called no argu-
+  ment, a choice menu is created showing the current values and changes can
+  be performed through toggle buttons.
+
+SEE ALSO
+  colormap, xget, getcolor, getsymbol
+
+AUTHOR
+  J.Ph.C.

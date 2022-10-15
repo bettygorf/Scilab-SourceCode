@@ -1,0 +1,20 @@
+
+savewave(1)                    Scilab Function                    savewave(1)
+NAME
+  savewave - save data into a sound <<wav>> file.
+
+CALLING SEQUENCE
+  savewave('file-name',x [, rate ]);
+
+PARAMETERS
+
+  x    : vector
+
+  rate : a scalar. 22050 is the default value.
+
+DESCRIPTION
+  save x into a  wav sound file. you can transform other sound files into wav
+  file with the sox program.
+
+SEE ALSO
+  loadwave,  analyze, mapsound

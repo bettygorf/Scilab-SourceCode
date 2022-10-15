@@ -1,0 +1,143 @@
+
+dasrt(G)                       Scilab Function                       dasrt(G)
+NAME
+  dasrt - DAE solver with zero crossing
+
+CALLING SEQUENCE
+  [r,nn,[,hd]]=dasrt(x0,t0,t [,atol,[rtol]],res [,jac],ng, surf, info [,hd])
+
+PARAMETERS
+
+  x0        : is either y0 (ydot0 is estimated by dassl with zero as first
+            estimate) or the matrix [y0 ydot0]. g(t,y0,ydot0) must be equal
+            to zero. If you only know an estimate of ydot0 set info(7)=1
+
+            y0        : real column vector  of initial conditions.
+
+            ydot0     : real column vector of the time derivative of y at t0
+                      (may be an estimate).
+
+  t0        : real number is the initial instant.
+
+  t         : real scalar or vector. Gives instants for which you want the
+            solution. Note that you can get solution at each dassl's step
+            point by setting info(2)=1.
+
+  nn        : times at which the surface is crossed
+
+  atol,rtol : real scalars or column vectors of same size as y. atol,rtol
+            give respectively  absolute and relative error tolerances of
+            solution. If vectors the tolerances are specified for each com-
+            ponent of y.
+
+  res       : external (function or list or string). Computes the  value of
+            g(t,y,ydot).
+
+            function
+                    : Its calling sequence must be [r,ires]=res(t,y,ydot) and
+                    res must return the residue r=g(t,y,ydot)  and error flag
+                    ires. ires = 0 if res succeeds to compute r, =-1 if resi-
+                    due is locally not defined for (t,y,ydot), =-2 if parame-
+                    ters are out of admissible range.
+
+            list    : it must be as follows:
+                    list(res,x1,x2,...)
+                    where the calling sequence of the function res is now
+                    r=res(t,y,ydot,x1,x2,...)
+                    res still returns r=g(t,y,ydot) as a function of
+                    (t,y,ydot,x1,x2,...).
+
+            string  : it must refer to the name of a fortran subroutine (see
+                    source code of fresd.f).
+
+  jac       : external (function or list or string). Computes the  value of
+            dg/dy+cj*dg/dydot for a given value of parameter cj
+
+            function
+                    : Its calling sequence must be r=jac(t,y,ydot,cj) and the
+                    jac function must return
+                    r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot where cj is a
+                    real scalar
+
+            list    : it must be as follows
+                    list(jac,x1,x2,...)
+                    where the calling sequence of the function jac is now
+                    r=jac(t,y,ydot,x1,x2,...)
+                    jac still returns dg/dy+cj*dg/dydot as a function of
+                    (t,y,ydot,cj,x1,x2,...).
+
+            character string
+                    : it must refer to the name of a fortran subroutine (see
+                    source code of jacdd.f).
+
+  surf      : external (function or list or string). Computes the  value of
+            the column vector surf(t,y,ydot) with ng components.  Each com-
+            ponent defines a surface.
+
+            function
+                    : Its calling sequence must be surf(t,y,ydot)
+
+            list    : it must be as follows
+                    list(surf,x1,x2,...)
+                    where the calling sequence of the function surf is now
+                    r=surf(t,y,ydot,x1,x2,...)
+
+            character string
+                    : it must refer to the name of a fortran subroutine (see
+                    source code of fsurfd.f) in directory SCDIR/default
+
+  info      : list which contains 7 elements:
+
+            info(1) : real scalar which gives the maximum time for which g is
+                    allowed to be evaluated or an empty matrix [] if no lim-
+                    its imposed for time.
+
+            info(2) : flag which indicates if dassl returns its intermediate
+                    computed values (flag=1) or only the user specified time
+                    point values (flag=0).
+
+            info(3) : 2 components vector which give the definition [ml,mu]
+                    of band matrix computed by jac; r(i - j + ml + mu + 1,j)
+                    = "dg(i)/dy(j)+cj*dg(i)/dydot(j)". If jac returns a full
+                    matrix set info(3)=[].
+
+            info(4) : real scalar which gives the maximum step size. Set
+                    info(4)=[] if no limitation.
+
+            info(5) : real scalar which gives the initial step size. Set
+                    info(4)=[] if not specified.
+
+            info(6) : set info(6)=1 if the solution is known to be non nega-
+                    tive, else set info(6)=0.
+
+            info(7) : set info(7)=1 if ydot0 is just an estimation, info(7)=0
+                    if g(t0,y0,ydot0)=0.
+
+  hd        : real vector which allows to store the dassl context and to
+            resume integration
+
+  r         : real matrix . Each column is the vector [t;x(t);xdot(t)] where
+            t is time index for which the solution had been computed
+DESCRIPTION
+  Solution of the implicit differential equation
+      g(t,y,ydot)=0
+      y(t0)=y0  and   ydot(t0)=ydot0
+  Returns the surface crossing instants and the number of the surface reached
+  in nn. Detailed examples in SCIDIR/dassldasrt.tst
+
+EXAMPLE
+  //dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1<=t<=6
+  //g1 = ((2*log(y)+8)/t - 5)*y
+  //g2 = log(y) - 2.2491
+  y0=1;t=2:6;t0=1;y0d=3;
+  info=list([],0,[],[],[],0,0);
+  atol=1.d-6;rtol=0;ng=2;
+
+  deff('[delta,ires]=res1(t,y,ydot)','ires=0;delta=ydot-((2*log(y)+8)/t-5)*y')
+  deff('[rts]=gr1(t,y,yd)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
+
+  [yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,res1,ng,gr1,info);
+  //(Should return nn=2.47...)
+
+SEE ALSO
+  ode, dassl, impl, fort, link, external

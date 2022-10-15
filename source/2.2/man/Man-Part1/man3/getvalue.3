@@ -1,0 +1,78 @@
+.TH getvalue 1 "November 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+getvalue - xwindow dialog for data acquisition 
+.SH CALLING SEQUENCE
+.nf
+[ok,x1,..,x11]=getvalue(desc,labels,typ,ini)
+.fi
+.SH PARAMETERS
+.TP
+desc    
+: column vector of strings, dialog general comment 
+.TP
+labels  
+: n column vector of strings, \fVlabels(i)\fR is the label of 
+the ith required value
+.TP
+typ     
+: \fVlist(typ1,dim1,..,typn,dimn)\fR
+.RS
+.TP
+typi 
+: defines the type of the ith value, may have the following values:
+.RS
+.TP
+"mat"
+: for constant matrix
+.TP
+"col"
+: for constant column vector
+.TP
+"row"
+: for constant row vector
+.TP
+"vec"
+: for  constant vector
+.TP
+"str"
+: for string
+.TP
+"lis"
+: for list
+.RE
+.TP
+dimi 
+: defines the size of the ith value
+it must be a integer or a 2-vector of integer,
+-1 stands for undefined dimension
+.RE
+.TP
+ini     
+: n column vector of strings, \fVini(i)\fR gives the suggested
+response for the ith required value
+.TP
+ok      
+: boolean ,%t if ok button pressed, %f if cancel button pressed
+.TP
+xi      
+: contains the ith value if ok=%t
+.SH DESCRIPTION
+This function encapsulate \fVx_mdialog\fR function with error checking,
+evaluation of numerical response, ...
+.SH REMARKS
+All valid expressions can be used as answers; for matrices 
+and vectors \fVgetvalues\fR automatically adds [ ] around the given answer
+before numeric evaluation.
+.SH EXAMPLE
+.nf
+labels=["magnitude";"frequency";"phase    "];
+[ok,mag,freq,ph]=getvalue("define sine signal",labels,...
+     list("vec",1,"vec",1,"vec",1),["0.85";"10^2";"%pi/3"])
+.fi
+.SH SEE ALSO
+x_mdialog, x_matrix, x_dialog
+.SH AUTHOR
+S. Steer 
+
+

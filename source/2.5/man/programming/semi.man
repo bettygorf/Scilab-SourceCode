@@ -1,0 +1,17 @@
+.TH semi 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+semi (;) - instruction and row separator
+.SH DESCRIPTION
+semicolumns  are used to separate rows in a matrix definition.
+.LP
+semicolumns may also be used at the end of an instruction. In this
+case it means that the result(s) are not displayed. Conversely use
+comma (,) to get the display
+.SH EXAMPLES
+.nf
+a=[1,2,3;4,5,6];
+a=1;b=1,c=2
+.fi
+.SH SEE ALSO
+comma, brackets

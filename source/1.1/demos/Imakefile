@@ -1,0 +1,13 @@
+#include "../Imake.incl"
+
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS=$(CDEBUGFLAGS) FDEBUGFLAGS=$(FDEBUGFLAGS)
+
+SUBDIRS = bike npend wheel2
+
+AllTarget()
+
+NamedMakeSubdirs(demos,$(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS))
+

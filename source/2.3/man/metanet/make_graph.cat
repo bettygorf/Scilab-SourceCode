@@ -1,0 +1,56 @@
+
+make_graph(1)                  Scilab function                  make_graph(1)
+NAME
+  make_graph - makes a graph list
+
+CALLING SEQUENCE
+  g = make_graph(name,directed,n,tail,head)
+
+PARAMETERS
+
+  name : string, the name of the graph
+
+  directed : integer, 0 (undirected graph) or 1 (directed graph)
+
+  n : integer, the number of nodes of the graph
+
+  tail : row vector of the numbers of the tail nodes of the graph (its size
+       is the number of edges of the graph)
+
+  head : row vector of the numbers of the head nodes of the graph (its size
+       is the number of edges of the graph)
+
+  g : graph list
+
+DESCRIPTION
+  make_graph makes a graph list according to its arguments which are respec-
+  tively the name of the graph, a flag for directed or undirected, the number
+  of nodes and the row vectors tail and head. These are the minimal data
+  needed for a graph.
+
+  If n is a positive number, graph g has n nodes; this number must be greater
+  than or equal to max(max(tail),max(head)). If it is greater than this
+  number,graph g has isolated nodes. The nodes names are taken as the nodes
+  numbers.
+
+  If n is equal to 0, graph g has no isolated node and the number of nodes is
+  computed from tail and head. The nodes names are taken from the numbers in
+  tail and head.
+EXAMPLE
+  // creating a directed graph with 3 nodes and 4 arcs.
+  g=make_graph('foo',1,3,[1,2,3,1],[2,3,1,3]);
+  // creating a directed graph with 13 nodes and 14 arcs.
+  ta=[1  1 2 7 8 9 10 10 10 10 11 12 13 13];
+  he=[2 10 7 8 9 7  7 11 13 13 12 13  9 10];
+  g=make_graph('foo',1,13,ta,he);
+  g('node_x')=[120  98  87 188 439 698 226 127 342 467 711 779 477];
+  g('node_y')=[ 21 184 308 426 435 428 129 360 435  55 109 320 321];
+  show_graph(g)
+  // creating same graph without isolated node and 14 arcs.
+  g=make_graph('foo',1,0,ta,he);
+  g('node_x')=[120  98 226 127 342 467 711 779 477];
+  g('node_y')=[ 21 184 129 360 435  55 109 320 321];
+  show_graph(g,'new')
+
+SEE ALSO
+  graph-list

@@ -1,0 +1,50 @@
+ 
+clear;lines(0);
+ 
+addmenu('foo')
+               !--error  1020 
+synchronous actions are not supported with -nw option                           
+ 
+ 
+foo='disp(''hello'')'
+ foo  =
+ 
+ disp('hello')   
+ 
+ 
+addmenu('Hello',['Franck';'Peter'])
+                                    !--error  1020 
+synchronous actions are not supported with -nw option                           
+ 
+ 
+Hello=['disp(''hello Franck'')';'disp(''hello Peter'')']
+ Hello  =
+ 
+!disp('hello Franck')  !
+!                      !
+!disp('hello Peter')   !
+ 
+ 
+addmenu(0,'Hello',['Franck';'Peter'])
+                                      !--error  1020 
+synchronous actions are not supported with -nw option                           
+ 
+ 
+Hello_0=['disp(''hello Franck'')';'disp(''hello Peter'')']
+ Hello_0  =
+ 
+!disp('hello Franck')  !
+!                      !
+!disp('hello Peter')   !
+ 
+ 
+addmenu('Bye',list(0,'French_Bye'))
+                                    !--error  1020 
+synchronous actions are not supported with -nw option                           
+ 
+ 
+French_Bye='disp(''Au revoir'')'
+ French_Bye  =
+ 
+ disp('Au revoir')   
+ 

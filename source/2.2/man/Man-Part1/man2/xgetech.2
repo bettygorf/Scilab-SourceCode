@@ -1,0 +1,39 @@
+.TH xgetech 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME 
+xgetech - get the current graphic 2d scale
+.SH CALLING SEQUENCE
+.nf
+[frect1,frect,[logflag]]=xgetech()
+.fi
+.SH PARAMETERS
+.TP 15
+frect1, frect
+: real vectors (rect. def)
+.TP 10
+logflag
+: a string of size 2 "xy".
+.SH DESCRIPTION
+This function returns the current graphic scale.
+If one uses the current graphic scale, the points in the 
+\fVfrect\fR rectangle [xmin,ymin,xmax,ymax] will be drawn in the 
+the region of the current graphic window specified by \fVfrect1\fR. 
+.LP
+\fVfrect1=[x,y,w,h]\fR ( Upper-Left Width Height ) describes a region inside 
+the graphic window. The values in \fVwrect1\fR are specified using proportion
+ of the width or height of the graphic window. 
+.LP
+\fVfrect1=[0,0,1.0,1.0]\fR means that all the graphic window will be used.
+.LP
+\fVfrect1=[0.5,0,0.5,1.0]\fR means that the graphic region will be the right 
+half of the graphic window.
+The \fVlogflag\fR is a string of size 2 "xy", where x and y can be "n" or "l". 
+It gives information on the log scale status for the current scale, "n" stands for 
+normal and "l" for logscale. x is for the x-axis and y for the y-axis.
+.SH SEE ALSO
+xsetech 
+.SH AUTHOR
+J.Ph.C.
+
+
+

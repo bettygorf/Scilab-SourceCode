@@ -1,0 +1,12 @@
+#include "../Imake.incl"
+
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS=$(CDEBUGFLAGS) FDEBUGFLAGS=$(FDEBUGFLAGS)
+
+SUBDIRS = X11G system default interf system2 optim integ control signal \ 
+          poly calelm sparse sun xwindow  metanet intersci 
+
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS))

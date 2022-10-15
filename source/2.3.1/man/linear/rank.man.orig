@@ -1,0 +1,36 @@
+.TH rank G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+rank - rank
+.SH CALLING SEQUENCE
+.nf
+[i]=rank(X)
+[i]=rank(X,tol)
+.fi
+.SH PARAMETERS
+.TP 8
+X
+: real or complex matrix
+.TP 
+tol
+: nonnegative real number
+.SH DESCRIPTION
+.Vb rank(X) 
+is the numerical rank of \fVX\fR i.e. the number of singular values  
+of X that are larger than \fVnorm(size(X),'inf') * norm(X) * %eps\fR.
+.LP 
+\fVrank(X,tol)\fR is the number of singular values of \fVX\fR that 
+are larger than \fVtol\fR.
+.SH Remark
+Note that the default value of \fVtol\fR is proportional to \fVnorm(X)\fR.
+As a consequence 
+.LP
+\fVrank([1.d-80,0;0,1.d-80])\fR is 2 !.
+.SH EXAMPLE
+.nf
+rank([1.d-80,0;0,1.d-80])
+rank([1,0;0,1.d-80])
+.fi
+.SH SEE ALSO 
+svd, qr, rowcomp, colcomp
+

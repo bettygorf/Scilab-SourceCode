@@ -1,0 +1,29 @@
+
+besselj(3)                     Scilab Function                     besselj(3)
+NAME
+  besselj -  Modified J sub ALPHA Bessel functions of the first kind.
+
+CALLING SEQUENCE
+   y = besselj(alpha,x)
+
+PARAMETERS
+
+  x    : real vector with non negative entries
+
+  alpha
+       : real vector with non negative entries regularly spaced with incre-
+       ment equal to one alpha=alpha0+(n1:n2)
+
+  ice  : integer flag, with default value 1
+
+DESCRIPTION
+
+  besselj(alpha,x) computes J sub ALPHA modified Bessel functions of the
+  first kind, for real, non-negative order alpha and argument x.  alpha  and
+  x may be vectors.  The output is m-by-n with m = size(x,'*'), n =
+  size(alpha,'*') whose (i,j) entry is besselj(alpha(j),x(i)).
+
+EXAMPLE
+  besselj(0.5:3,1:4)
+SEE ALSO
+  besseli, besselk

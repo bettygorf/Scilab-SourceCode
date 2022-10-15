@@ -1,0 +1,66 @@
+
+
+
+riccati(1)                     Scilab Function                     riccati(1)
+
+
+
+
+
+
+NAME
+  riccati - Riccati equation
+
+CALLING SEQUENCE
+  [X1,[X2]]=riccati(A,B,C,dom,[typ])
+
+PARAMETERS
+
+  A,B,C       : real matrices nxn, B and  C symetric.
+
+  dom         : 'c' or 'd' for the time domain (continuous or discrete)
+
+  typ         : string : 'eigen' for block diagonalization or schur' for
+              Schur method.
+
+DESCRIPTION
+  Riccati solver X=X1/X2 solves:
+  A'*X+X*A-X*B*X+C=0
+  in continuous time case, or:
+   A'*X*A-(A'*X*B1/(B2+B1'*X*B1))*(B1'*X*A)+C-X
+   with B=B1/B2*B1' in the discrete time case.  If called with LHS=1 (one
+  output argument) riccati returns X.
+
+SEE ALSO
+  ric_desc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

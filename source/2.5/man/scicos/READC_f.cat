@@ -1,0 +1,68 @@
+
+READC_f(5)                       Scicos Block                      READC_f(5)
+NAME
+  READC_f - Scicos "read from C binary file" block
+
+DIALOGUE PARAMETERS
+
+  Time record Selection
+                      : an empty matrix or a positive integer. If an integer
+                      i is given the  ith element of the read record is
+                      assumed to be the date of the output event. If empty no
+                      output event exists.
+
+  Output record selection
+                      : a vector of positive integer. [k1,..,kn],The kith
+                      element of  the read record gives the value of ith out-
+                      put.
+
+  Input file name     : a character string defining the path of the file
+
+  Input Format        : a character string defining the  format to use
+
+                      "l","s","ul","us","d","f","c","uc"
+                                   : for reading  respectively  long, ashort,
+                                   unsigned long,  unsigned short, double,
+                                   float,  char and  unsigned char. If
+                                   required by the swap mode, the bytes which
+                                   are read are automatically swapped if nec-
+                                   essary (by checking little-endian status)
+                                   in order to produce machine independent
+                                   binary files ( in little-endian mode).
+
+                      "ull","uls","ubl","ubs",
+                                   : can be used for reading respectively
+                                   unsigned little-endian long or short and
+                                   unsigned big-endian long or short.
+
+                      "dx","fx","lx","sx"
+                                   : with x=b or x=l can be used for reading
+                                   double, float, long or short as big or
+                                   little endian.
+
+  Record size         : The file is supposed to be formed by a sequence  of
+                      data with same format. these data are organized in a
+                      sequence of record each of them containing Record size
+                      data.
+
+  Buffer size         : To improve efficiency it is possible to buffer the
+                      input data. read on the file is only done after each
+                      Buffer size call to the block.
+
+  Initial record index
+                      : a scalar. This fixes the first record of the file to
+                      use.
+
+  Swap mode           : With Swap mode=1  the file is supposed to be coded in
+                      "little endian IEEE format" and data are swaped if nec-
+                      essary to match the IEEE format of the processor. If
+                      Swap mode=0  then automatic bytes swap is disabled.
+
+DESCRIPTION
+  This block allows user to read datas in a C file.  Output record selection
+  and Time record Selection allows the user to select data among file
+  records.
+
+  Each call to the block advance one record in the file.
+SEE ALSO
+  RFILE_f, mget

@@ -1,0 +1,35 @@
+#include "../../../Imake.incl"
+
+       SRCS = All.c xwidgets.c
+       OBJS = All.o xwidgets.o
+
+       PROGRAMS = xwidgets
+       DEPLIBS = XawClientDepLibs
+
+LIBGX=../../../libs/X11G.a
+CDEBUGFLAGS=-g
+
+AllTarget($(PROGRAMS))
+
+SpecialObjectRule(main.o,NullParameter,$(MAIN_DEFINES))
+SpecialObjectRule(misc.o,NullParameter,$(MISC_DEFINES))
+SpecialObjectRule(charproc.o,NullParameter,$(MISC_DEFINES))
+
+
+NormalProgramTarget(xwidgets,$(OBJS),$(DEPLIBS) $(LIBGX),$(LIBGX) XawClientLibs,-lm)
+
+
+SSS = ../periX11.c ../periPos.c ../periFig.c ../Xcall.c ../Xcall1.c \
+	../Contour.c ../Plo3d.c ../Math.c ../Axes.c ../Champ.c ../Plo2d.c \
+	../Plo2d1.c ../Plo2d2.c ../Plo2d3.c ../Plo2d4.c ../Plo2dEch.c \
+	../Rec.c ../Gray.c \
+	../Alloc.c ../Color.c 
+
+../../../libs/X11G.a :  $(SSS)
+	cd ../;$(MAKE) $(MFLAGS) 'CDEBUGFLAGS=-g' all;
+
+DependTarget()
+
+distclean:: clean 
+
+

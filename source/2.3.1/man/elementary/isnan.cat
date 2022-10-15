@@ -1,0 +1,22 @@
+
+isnan(G)                       Scilab Function                       isnan(G)
+NAME
+  isnan -  check for "Not a Number" entries
+
+CALLING SEQUENCE
+  r=isnan(x)
+
+PARAMETERS
+
+  x         : real or complex vector or  matrix r : boolean vector or matrix
+
+DESCRIPTION
+  isnan(x) returns a boolean vector or matrix which contains true entries
+  corresponding with "Not a Number" x entries and false entries corresponding
+  with regular x entries.
+
+EXAMPLE
+  isnan([1 0.01 -%nan %inf-%inf])
+
+SEE ALSO
+  isinf

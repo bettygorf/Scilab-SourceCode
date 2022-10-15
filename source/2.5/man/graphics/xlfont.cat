@@ -1,0 +1,44 @@
+
+xlfont(2)                      Scilab Function                      xlfont(2)
+NAME
+  xlfont - load a font in the graphics context or query loaded font
+
+CALLING SEQUENCE
+  xlfont(font-name,font-id)
+  fonts=xlfont()
+
+PARAMETERS
+
+  font-name  : string, name of the font family.
+
+  font-id   : integer between 0 and 6.
+
+  fonts     : a column vector of currently loaded font names.
+
+DESCRIPTION
+  Without any argument, xlfont() returns the list of currently loaded fonts.
+
+  With arguments, xlfont is used to load a new font at different sizes in the
+  graphics context. The font must be available with size 8, 10, 12, 14, 18
+  and 24.
+
+  Default fonts are "Courier Roman" (0), "Symbol" (1), "Times Roman" (2),
+  "Times Italic" (3), "Times Bold" (4) and "Times Bold Italic" (5).
+
+  font-name can be of 2 types:
+
+  - if it contains the character "%", it is supposed to be an X11 font name
+    with %s in the size field of the name, for example "-b&h-lucidabright-
+    demibold-r-normal--%s-*-75-75-p-*-iso8859-1"
+
+  - if it does not contain the character "%", it is supposed to be an alias
+    name and the fonts aliased by font-name08,...,font-name24 are loaded.
+
+  font-id
+    : give the id font-id to the loaded font font-name.
+
+SEE ALSO
+  xset
+
+AUTHOR
+  J.Ph.C.

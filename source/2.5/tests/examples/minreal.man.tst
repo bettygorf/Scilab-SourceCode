@@ -1,0 +1,10 @@
+clear;lines(0);
+A=[-eye(2,2),rand(2,2);zeros(2,2),-2*eye(2,2)];
+B=[rand(2,2);zeros(2,2)];C=rand(2,4);
+sl=syslin('c',A,B,C);
+slb=minreal(sl);
+ss2tf(sl)
+ss2tf(slb)
+ctr_gram(sl)
+clean(ctr_gram(slb))
+clean(obs_gram(slb))

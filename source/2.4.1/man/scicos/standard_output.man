@@ -1,0 +1,32 @@
+.TH standard_output  "Janvier 1997" "Scilab Group" "Scicos function"
+.so ../sci.an
+.SH NAME
+standard_output - get Scicos block output port positions
+.SH CALLING SEQUENCE
+.nf
+[x,y,typ]=standard_output(o)
+.fi
+.SH PARAMETERS
+.TP 10
+o
+: Scicos block data structure (see scicos_block)
+.TP
+x
+: vector of x coordinates of the block regular and event output ports
+.TP
+y
+: vector of y coordinates of the block regular and event output ports
+.TP
+typ
+: vector of output ports types (+1 : regular port; -1:event port)
+
+.SH DESCRIPTION
+\fVstandard_output\fR is the Scilab function used to get
+standard blocks output port position and types in interfacing
+functions. 
+.LP
+Port positions are computed, each time they are required, as a
+function of block dimensions.
+
+.SH SEE ALSO 
+scicos_block

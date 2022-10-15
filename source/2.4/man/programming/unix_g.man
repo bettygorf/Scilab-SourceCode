@@ -1,0 +1,29 @@
+.TH unix_g 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+unix_g - shell (sh) command execution, output redirected to a variable
+.SH CALLING SEQUENCE
+.nf
+rep=unix_g(cmd)
+.fi
+.SH PARAMETERS
+.TP 10
+cmd 
+: a character string
+.TP
+rep
+: a column vector of character strings
+.SH DESCRIPTION
+Sends a string \fVcmd\fR to Unix for execution by the sh
+shell. The standard output is redirected to scilab variable \fVrep\fR.
+Unix execution errors are trapped; *NOTE* that only the last shell command
+error is reported when a list of command separated by ";" is sent: this is
+not recommended.
+.SH EXAMPLE
+.nf
+unix_g("ls $SCI/demos");
+deff('wd=pwd()','wd=unix_g(''pwd'')')
+wd=pwd()
+.fi
+.SH SEE ALSO
+edit, manedit, unix_s, unix_w, unix_x, unix

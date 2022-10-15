@@ -1,0 +1,24 @@
+
+pvm_tidtohost(1)               Scilab function               pvm_tidtohost(1)
+NAME
+  pvm_tidtohost - returns the host of the specified PVM process.
+
+CALLING SEQUENCE
+  [dtid] = pvm_tidtohost(tid)
+
+PARAMETERS
+
+  tid  : integer, task identifier of the PVM process in question.
+
+  dtid
+      : integer, the tid of the host's pvmd3 or a negative value if an error.
+
+DESCRIPTION
+
+  pvm_tidtohost returns the host id on which the process identified by tid is
+  located.
+EXAMPLE
+  dtid = pvm_tidtohost(pvm_mytid())
+
+SEE ALSO
+  pvm_config, pvm_tasks

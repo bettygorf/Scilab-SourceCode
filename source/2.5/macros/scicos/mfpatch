@@ -1,0 +1,97 @@
+From - Thu Nov 18 16:45:25 1999
+Received: from concorde.inria.fr (concorde.inria.fr [192.93.2.39]) by nemirov.inria.fr (8.6.8/8.6.6) with ESMTP id VAA23705 for <mphilipp@nemirov.inria.fr>; Thu, 23 Sep 1999 21:20:34 +0200
+Received: from prieth.inria.fr (prieth.inria.fr [128.93.12.47])
+	by concorde.inria.fr (8.8.7/8.8.7) with ESMTP id VAA14220;
+	Thu, 23 Sep 1999 21:20:31 +0200 (MET DST)
+Received: from nez-perce.inria.fr (nez-perce.inria.fr [192.93.2.78]) by prieth.inria.fr (8.7.6/8.7.3) with ESMTP id VAA18224 for <scilab@prieth.inria.fr>; Thu, 23 Sep 1999 21:34:32 +0100 (WET DST)
+Received: from npri54exc11.npt.nuwc.navy.mil (relay.npt.nuwc.navy.mil [164.223.71.1])
+	by nez-perce.inria.fr (8.8.7/8.8.7) with ESMTP id VAA28418
+	for <scilab@inria.fr>; Thu, 23 Sep 1999 21:20:23 +0200 (MET DST)
+Received: by NPRI54EXC11.NPT.NUWC.NAVY.MIL with Internet Mail Service (5.5.2448.0)
+	id <TCSRYT59>; Thu, 23 Sep 1999 15:20:20 -0400
+Message-ID: <16622DC20193D2119F250001FA7E86CF379647@NPRI54EXC04.NPT.NUWC.NAVY.MIL>
+From: Sands Obed S DR NPRI <SandsOS@Npt.NUWC.Navy.Mil>
+To: "'Douglas Sturim'" <dsturim@yahoo.com>,
+        "'scilab@inria.fr'"
+	 <scilab@inria.fr>
+Subject: Scilab 2.5 patches
+Date: Thu, 23 Sep 1999 15:20:19 -0400
+MIME-Version: 1.0
+X-Mailer: Internet Mail Service (5.5.2448.0)
+Content-Type: multipart/mixed;
+	boundary="----_=_NextPart_000_01BF05F8.ACC57736"
+X-Mozilla-Status: 8001
+
+This message is in MIME format. Since your mail reader does not understand
+this format, some or all of this message may not be legible.
+
+------_=_NextPart_000_01BF05F8.ACC57736
+Content-Type: text/plain
+
+
+The attached files are necessary in order for the 
+install target to function properly in building Scilab 2.5 
+(20 Aug 1999) from scratch
+
+the patch file (I'll call it mfpatch) is needed to get the xless
+link to install properly and the patchlevel.h is necessary to
+reduce complaints by the tar program....
+
+To include patchlevel.h
+
+just put it in the ./scilab-2.5 directory
+
+To apply mfpatch
+
+put the patch file, mfpatch, in  the ./scilab-2.5 directory and type...
+
+patch < mfpatch
+./configure
+make all
+make install
+
+Cheers!
+
+oss
+
+ <<patchlevel.h>> 
+
+ <<mfpatch>> 
+
+------_=_NextPart_000_01BF05F8.ACC57736
+Content-Type: application/octet-stream;
+	name="patchlevel.h"
+Content-Disposition: attachment;
+	filename="patchlevel.h"
+
+#define VERSION  "2.5"
+
+
+------_=_NextPart_000_01BF05F8.ACC57736
+Content-Type: application/octet-stream;
+	name="mfpatch"
+Content-Disposition: attachment;
+	filename="mfpatch"
+
+*** Makefile.in.old	Fri Aug  6 09:07:25 1999
+--- Makefile.in	Thu Sep 23 15:08:12 1999
+***************
+*** 166,172 ****
+  	cd ${PREFIX}/share/scilab-2.5; make
+  	rm -f ${PREFIX}/bin/scilab
+  	ln -fs ${PREFIX}/share/scilab-2.5/bin/scilab ${PREFIX}/bin/scilab
+! 	ln -fs ${PREFIX}/bin/xless ${PREFIX}/share/scilab-2.5/bin/xless
+  	${BSD_INSTALL_DATA} ${PREFIX}/share/scilab-2.5/X11_defaults/Xscilab ${X11BASE}/lib/X11/app-defaults
+  	${BSD_INSTALL_DATA} ${PREFIX}/share/scilab-2.5/X11_defaults/Metanet-color ${X11BASE}/lib/X11/app-defaults
+  
+--- 166,172 ----
+  	cd ${PREFIX}/share/scilab-2.5; make
+  	rm -f ${PREFIX}/bin/scilab
+  	ln -fs ${PREFIX}/share/scilab-2.5/bin/scilab ${PREFIX}/bin/scilab
+! 	ln -fs ${PREFIX}/share/scilab-2.5/bin/xless ${PREFIX}/bin/xless
+  	${BSD_INSTALL_DATA} ${PREFIX}/share/scilab-2.5/X11_defaults/Xscilab ${X11BASE}/lib/X11/app-defaults
+  	${BSD_INSTALL_DATA} ${PREFIX}/share/scilab-2.5/X11_defaults/Metanet-color ${X11BASE}/lib/X11/app-defaults
+  
+
+------_=_NextPart_000_01BF05F8.ACC57736--
+

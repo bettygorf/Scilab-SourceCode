@@ -1,0 +1,23 @@
+.TH concomp 1 "October 1994" "Scilab Group" "Scilab Macro"
+.so man1/sci.an
+.SH NAME 
+concomp - node set of a connected component  
+.SH CALLING SEQUENCE
+.nf
+[ns] = concomp(i,[g])
+.fi
+.SH PARAMETERS
+.TP 2
+i 
+: integer, connected component number
+.TP 2
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP 3
+ns
+: row vector of node numbers 
+.SH DESCRIPTION 
+\fVconcomp\fR returns the row vector \fVns\fR of the node numbers which
+belong to the connected component number \fVi\fR.
+.SH SEE ALSO
+connex, isconnex

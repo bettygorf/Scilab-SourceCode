@@ -1,0 +1,39 @@
+.TH connect 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+connect - Scilab to Metanet remote connection
+.SH CALLING SEQUENCE
+.nf
+[sock] = connect(host,port)
+.fi
+.SH PARAMETERS
+.TP 5
+host
+: string, name of host to connect
+.TP 5
+port
+: integer, port number
+.TP 5
+sock
+: integer, socket number (screen number)
+.SH DESCRIPTION
+This function is used to connect \fVScilab\fR to \fVMetanet\fR running on
+a remote computer. 
+.LP
+The procedure is the following:
+.LP 
+1 - before using \fVconnect\fR, execute \fVxmetanet\fR on the remote 
+computer. It returns the port number. For instance:
+.PP
+   \fVxmetanet -s\fR
+.PP
+   \fVPort number: 2820\fR
+.LP
+2 - then execute \fVconnect\fR with the host name and the port number as 
+arguments. For instance:
+.PP
+   \fVmetawin=connect("foo.bar.fr",2820)\fR
+.LP
+\fVmetawin\fR is the screen number of \fVMetanet\fR window.
+.SH SEE ALSO
+metanet, screen

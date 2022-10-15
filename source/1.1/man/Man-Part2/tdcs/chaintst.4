@@ -1,0 +1,34 @@
+.TH chaintest 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+chaintest - a three-species food chain model 
+.SH CALLING SEQUENCE
+.nf
+chaintest([f_l,b1,odem,xdim,npts])
+chain(t,x)
+f1(u),f2(u)
+.fi
+.SH DESCRIPTION
+Phase portrait of  a three-species food chain model given by:
+.nf
+	ff1= f1(x(1))
+	ff2= f2(x(2))
+
+	xdot1= x(1)*(1-x(1)) - ff1*x(2)
+	xdot2= ff1*x(2) -  ff2*x(3) - 0.4*x(2)
+	xdot3= ff2*x(3) - 0.01*x(3)
+.fi
+and 
+.nf
+	f1(u)=5*u/(1+b1*u)
+	f2(u)z2=0.1*u/(1+2*u)
+.fi
+The default value for b1 is 3.0.
+.TP
+odem,xdim,npts
+: See portr3d
+.SH SEE ALSO
+portr3d,ode 
+
+
+

@@ -1,0 +1,83 @@
+.TH corr G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+corr - correlation, covariance
+.SH CALLING SEQUENCE
+.nf
+[cov,mean]=corr(x,[y],nlags)
+[cov,mean]=corr('fft',xmacro,[ymacro],n,sect)
+
+[w,xu]=corr('updt',x1,[y1],w0)
+[w,xu]=corr('updt',x2,[y2],w,xu)
+ ...
+[wk]=corr('updt',xk,[yk],w,xu)
+.fi
+.SH DESCRIPTION
+Computes
+\"LaTeX \ignore{	
+.nf
+                n - m - 1
+                 ====
+                 \
+        cov(m) =  >        (x  - xmean) (y      - ymean)
+                 /           k            m + k
+                 ====
+                 k = 0
+.fi
+\"LaTeX }
+\"LaTeX \[         cov(m) = \sum_0^{n-m-1} (x_k  - E(x)) (y_k - E(y)) \]
+for   m=0,..,\fVnlag-1\fR and two vectors \fVx=[x(1),..,x(n)]\fR
+ \fVy=[y(1),..,y(n)]\fR
+.LP
+
+\fBShort sequences\fR
+.LP
+.Vb [cov,mean]=corr(x,[y],nlags)
+returns the first nlags
+correlation coefficients and mean = mean of \fVx\fR
+(mean of \fV[x,y]\fR if \fVy\fR is an argument).
+The sequence \fVx\fR (resp. \fVy\fR) is assumed real, and \fVx\fR and \fVy\fR are of
+same dimension n.
+.LP
+
+\fBLong sequences\fR
+.LP
+.Vb [cov,mean]=corr('fft',xmacro,[ymacro],n,sect)
+.LP
+Here \fVxmacro\fR is either
+.TP
+-
+a macro of type \fV[xx]=xmacro(sect,istart)\fR which returns
+a vector \fVxx\fR of dimension \fVnsect\fR containing the part of the
+sequence with indices from \fVistart\fR to \fVistart+sect-1\fR.
+.TP
+-
+a fortran subroutine which performs the same calculation.
+(See the source code of \fVdgetx\fR for an example).
+\fVn\fR = total size of the sequence.
+\fVsect\fR = size of sections of the sequence. \fVsect\fR must be a power
+of 2. \fVcov\fR has dimension \fVsect\fR. Calculation is performed by FFT.
+.LP
+
+\fB"Updating method"\fR
+.nf
+[w,xu]=corr('updt',x1,[y1],w0)
+[w,xu]=corr('updt',x2,[y2],w,xu)
+ ...
+wk=corr('updt',xk,[yk],w,xu)
+.fi
+With this calling sequence the calculation is updated at each
+call to \fVcorr\fR.
+.nf
+w0 = 0*ones(1,2*nlags);
+nlags = power of 2.
+.fi
+\fVx1,x2,...\fR are parts of \fVx\fR such that \fVx=[x1,x2,...]\fR and sizes
+of \fVxi\fR a power of 2.
+To get \fVnlags\fR coefficients a final fft must be performed
+\fVc=fft(w,1)/n\fR; \fVcov=c(1nlags)\fR (\fVn\fR is the size of \fVx (y)\fR).
+Caution: this calling sequence assumes that \fVxmean = ymean = 0\fR.
+.fi
+.SH SEE ALSO
+fft
+

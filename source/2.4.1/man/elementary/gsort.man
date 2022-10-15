@@ -1,0 +1,63 @@
+.TH gsort 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+gsort - decreasing order sorting
+.SH CALLING SEQUENCE
+.nf
+[s, [k]]=gsort(v )
+[s, [k]]=gsort(v,flag1)
+[s, [k]]=gsort(v,flag1,flag2)
+.fi
+.SH PARAMETERS
+.TP
+v,s
+: real vector/matrix; character string vector/matrix
+.TP
+flag1
+: a string \fV'r'\fR, \fV'c'\fR,\fV'g'\fR,\fV'lr'\fR and \fV'lc'\fR.
+.TP
+flag2
+: a string \fV'i'\fR for increasing and \fV'd'\fR for decreasing
+order.
+k
+: vector or matrix of integers
+.SH DESCRIPTION
+\fVgsort\fR is similar to \fVsort\fR with additional properties. 
+The third argument can be used to chose between increasing or
+decreasing order. The second argument can be used for lexical orders.
+.LP
+\fV[s,k]=gsort(a,'g')\fR and \fV[s,k]=gsort(a,'g','d')\fR are  the
+same as \fV[s,k]=gsort(a)\fR. They perform a sort of the entries of 
+matrix \fVa\fR, \fVa\fR being seen as the stacked vector \fVa(:)\fR
+(columnwise). \fV[s,k]=gsort(a,'g','i')\fR performs the same 
+operation but in increasing order.
+.LP
+\fV[s,k]=gsort(a,'lr')\fR sort the rows of the matrix \fVint(a)\fR 
+( if \fVa\fR is a real matrix) or \fVa\fR (if \fVa\fR is a
+character string matrix)
+in lexical decreasing order. \fVs\fR is obtained by a permutation 
+of the rows of matrix \fVint(a)\fR (or \fVa\fR) given by the column vector \fVk\fR)
+in such a way that the rows of \fVs\fR verify \fVs(i,:) > s(j,:)\fR if
+\fVi<j\fR. \fV[s,k]=gsort(a,'lr','i')\fR performs the same operation 
+for increasing lexical order 
+.LP
+\fV[s,k]=gsort(a,'lc')\fR sort the columns of the matrix \fVint(a)\fR 
+( if \fVa\fR is a real matrix) or \fVa\fR (if \fVa\fR is a
+character string matrix)
+in lexical decreasing order. \fVs\fR is obtained by a permutation 
+of the columns of matrix \fVint(a)\fR (or \fVa\fR) given by the row vector \fVk\fR)
+in such a way that the columns of \fVs\fR verify \fVs(:,i) > s(:,j)\fR if
+\fVi<j\fR. \fV[s,k]=gsort(a,'lc','i')\fR performs the same operation 
+for increasing lexical order 
+.SH EXAMPLE
+.nf
+alr=[1,2,2;
+     1,2,1;
+     1,1,2;
+     1,1,1];
+[alr1,k]=gsort(alr,'lr','i')
+[alr1,k]=gsort(alr,'lc','i')
+.fi
+.SH SEE ALSO
+find
+

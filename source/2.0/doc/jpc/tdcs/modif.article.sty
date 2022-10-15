@@ -1,0 +1,58 @@
+% Fichier créé par Eric Dollinger pour personnaliser LaTeX.
+% Ce fichier modifie la mise en page (detail ci-dessous) et met les titres en 
+% Francais.
+
+% Version francaise pour le style `article' 
+
+% !!!!!!!!!! Lorsque vous modifiez une commande, vous pouvez utiliser la
+% commande \renewcommand{\nom de la commande}{arguments}. 
+
+%Lorsque vous creez une commande, faites \def\nomdelacommande{arguments}. Cette
+%dernière commande peut etre substituée à \renewcommand; dans ce cas, vous
+%recreez la commande. Attention a mettre TOUS les arguments
+
+\def\tableofcontents{\section*{Table des mati\`{e}res\markboth{CONTENTS}
+{CONTENTS}} \@starttoc{toc}}
+%
+% la table des matières est titrée en francais
+% il faut modifier la commande globale car elle fait appel à la commande
+% \section...
+%
+
+\def\listoffigures{\section*{Liste des Figures\markboth
+ {LIST OF FIGURES}{LIST OF FIGURES}}\@starttoc{lof}}
+%
+% idem...
+%
+
+\def\listoftables{\section*{Liste des Tableaux\markboth
+ {LIST OF TABLES}{LIST OF TABLES}}\@starttoc{lot}}
+%
+% idem...
+%
+
+
+\def\thebibliography#1{\section*{R\'{e}f\'{e}rences\markboth 
+ {REFERENCES}{REFERENCES}}\list 
+ {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+ \advance\leftmargin\labelsep
+ \usecounter{enumi}}
+ \def\newblock{\hskip .11em plus .33em minus -.07em}
+ \sloppy
+ \sfcode`\.=1000\relax}
+%
+
+\def\abstract{\if@twocolumn
+\section*{Abstract}
+\else \small
+\begin{center}
+{\bf R\'{e}sum\'{e}\vspace{-.5em}\vspace{0pt}}
+\end{center}
+\quotation
+\fi}
+% l'environnement Abstract est intitulé "Résumé" au lieu de "Abstract" 
+
+\def\today{\number\day \space \ifcase\month\or
+ Janvier\or F\'{e}vrier\or Mars\or Avril\or Mai\or Juin\or
+ Juillet\or Ao\^{u}t\or Septembre\or Octobre\or Novembre\or D\'{e}cembre\fi
+ \space\number\year}

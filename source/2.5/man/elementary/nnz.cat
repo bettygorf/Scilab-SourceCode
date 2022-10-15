@@ -1,0 +1,25 @@
+
+nnz(1)                         Scilab Function                         nnz(1)
+NAME
+  nnz -  number of non zero entries in a matrix
+
+CALLING SEQUENCE
+  n=nnz(X)
+
+PARAMETERS
+
+  X    : real or complex sparse (or full) matrix
+
+  n    : integer, the number of non zero elements in X
+
+DESCRIPTION
+  nnz counts the number of non zero entries in a sparse or full matrix
+
+EXAMPLE
+  sp=sparse([1,2;4,5;3,10],[1,2,3]);
+  nnz(sp)
+  a=[1 0 0 0 2];
+  nnz(a)
+
+SEE ALSO
+  spget

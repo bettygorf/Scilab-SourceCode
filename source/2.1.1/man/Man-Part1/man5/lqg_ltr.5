@@ -1,0 +1,53 @@
+.TH lqgltr 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+lqg_ltr - LQG with loop transform recovery
+.SH CALLING SEQUENCE
+.nf
+[kf,kc]=lqg_ltr(sl,mu,ro)
+.fi
+.SH PARAMETERS
+.TP 10
+sl
+: linear system in state-space form (\fVsyslin\fR list)
+.TP 
+mu,ro
+:  real positive numbers chosen ``small enough''
+.TP 
+kf,kc
+: controller and observer Kalman gains.
+.SH DESCRIPTION
+returns the Kalman gains for:
+.nf
+           x = a*x + b*u + l*w1   
+  (sl)
+           y = c*x + mu*I*w2
+
+           z = h*x
+.fi
+Cost function:
+.IG
+		/+oo
+               |
+      J    = E(| [z(t)'*z(t) + ro^2*u(t)'*u(t)]dt)
+       lqg     |
+               / 0
+.FI
+.LA $$ J_{lqg}= E ( \int_0^{\infty} [z(t)'*z(t) + ro^2*u(t)'*u(t)] dt) $$
+The lqg/ltr approach looks for \fVL,mu,H,ro\fR such that:
+J(lqg) = J(freq) where
+.IG
+              /+oo        *  *           *
+      J    =  | tr[S  W  W  S ] + tr[T  T]dw
+       freq   |
+              /0
+.FI
+.LA $$J_{freq}=\int_0^{\infty} tr[S W W^{\star} S^{\star}]+tr[T T^{\star}]dw $$
+and
+.nf 
+ S = (I + G*K)^(-1)  
+ T = G*K*(I+G*K)^(-1)
+.fi
+.SH SEE ALSO
+syslin
+

@@ -1,0 +1,20 @@
+
+k_dr=driver();
+driver("Wdp");
+if flag1=1;xset("use color",1);end
+xset("wwpc");
+plot3d1();
+xset("wshow");
+sp=1
+t=-%pi:0.3:%pi;
+for i=35:sp:80,xset("wwpc");
+	plot3d1(t,t,sin(t)'*cos(t),i,45," ",[1,0,4])
+	xset("wshow");
+end
+for i=45:sp:80,xset("wwpc");
+	plot3d1(t,t,sin(t)'*cos(t),80,i," ",[1,0,4])
+	xset("wshow");
+end
+
+driver(k_dr);
+

@@ -1,0 +1,32 @@
+.TH projspec 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+projspec - spectral operators 
+.SH CALLING SEQUENCE
+.nf
+[S,P,D,index]=projspec(A)
+.fi
+.SH PARAMETERS
+.TP 12
+A
+: square matrix
+.TP
+S, P, D
+: square matrices
+.TP
+index
+: integer
+.SH DESCRIPTION
+Spectral characteristics of \fVA\fR at 0.
+.LP
+\fVS\fR = reduced resolvent at 0 (\fVS\fR = -Drazin_inverse(\fVA\fR)).
+.LP
+\fVP\fR = spectral projection at 0.
+.LP
+\fVD\fR = nilpotent operator at 0.
+.LP
+\fVindex\fR = index of the 0 eigenvalue.
+.SH AUTHOR
+F. D.
+
+

@@ -1,0 +1,26 @@
+.TH CLOCK_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+CLOCK_f - Scicos periodic event generator
+.SH DESCRIPTION
+This block is a Super Block constructed by feeding back the output
+of an event delay block into its input event port. The unique
+output of this block generates a regular train of events.
+.SH DIALOGUE PARAMETERS
+.TP
+Period
+: scalar. One over the frequency of the clock. Period is the time that
+separates two output events.
+.TP
+Init time
+: scalar. Starting date. if negative the clock never starts.
+
+.SH SEE ALSO
+EVTDLY_f
+
+
+
+
+
+
+

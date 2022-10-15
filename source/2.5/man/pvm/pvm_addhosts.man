@@ -1,0 +1,54 @@
+.TH pvm_addhosts 1 "May 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_addhosts - add hosts to the virtual machine.
+.SH CALLING SEQUENCE
+.nf
+[infos] = pvm_addhosts(hosts)
+.fi
+
+.SH PARAMETERS
+.TP 5
+hosts
+: row of strings, naming the hosts to be added.
+.TP 4
+infos
+: row of integer,  corresponding to the status for each host.
+
+.SH DESCRIPTION
+\fVpvm_addhosts\fR
+adds the computers named in
+.I hosts
+to the configuration of computers making up the virtual machine.
+The names should have the same syntax as lines of a pvmd hostfile
+(see man page for pvmd3):
+A hostname followed by options of the form xx=y.
+.PP
+The array
+.I infos
+can be checked to determine the status for each host.
+Values less than zero indicate an error,
+while positive values are TIDs of the new hosts.
+.PP
+.\"If a host fails, the PVM system will continue to function.
+.\"The user can use this routine to increase the fault tolerance
+.\"of his PVM application.
+The status of hosts can be requested by the application using
+ \fIpvm_config\fR.
+If a host fails it will be automatically deleted from the configuration.
+Using pvm_addhosts a replacement host can be added by the application,
+however
+it is the responsibility of the
+application developer to make his application tolerant of host failure.
+Another use of this feature would be to add more hosts
+as they become available, for example on a weekend, or if the
+application dynamically determines it could use more computational power.
+.\".PP
+.\"pvm_addhosts requires the synchronization of the entire virtual machine.
+
+.SH EXAMPLE
+.nf
+info = pvm_addhosts(["isostar","loop"])
+.fi
+.SH SEE ALSO
+pvm_delhosts, pvm_config

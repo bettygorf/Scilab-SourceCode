@@ -1,0 +1,16 @@
+
+rlist(1)                       Scilab Function                       rlist(1)
+NAME
+  rlist - Scilab rational fraction function definition
+
+CALLING SEQUENCE
+  rlist()
+  rlist(a1,....an)
+
+DESCRIPTION
+  rlist(a1,....an) is a shortcut  to tlist(['r','num';'den','dt'], a1,....an)
+
+  Creates a tlist with  ['r','num';'den','dt'] as first entry and  ai's as
+  next entries if any. No type nor size checking is done on ai's.
+SEE ALSO
+  tlist, syslin

@@ -1,0 +1,34 @@
+.TH interpln 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+interpln - linear interpolation
+.SH CALLING SEQUENCE
+.nf
+[y]=interpln(xyd,x)  
+.fi
+.SH PARAMETERS
+.TP 10
+xyd
+: 2 row matrix (xy coordinates of points)
+.TP 10
+x
+: vector (abscissae)
+.TP 10
+y
+: vector (y-axis values)
+.SH DESCRIPTION
+given \fVxyd\fR a set of points in the xy-plane and \fVx\fR a set of
+increasing abscissae, this function computes \fVy\fR the corresponding
+y-axis values by linear interpolation.
+.SH EXAMPLE
+.nf
+x=[1 10 20 30 40];
+y=[1 30 -10 20 40];
+plot2d(x',y',[3],"011"," ",[-10,-40,50,50]);
+yi=interpln([x;y],-4:45);
+plot2d((-4:45)',yi',[-1],"000");
+.fi
+.SH SEE ALSO
+splin, interp, smooth.
+
+

@@ -1,0 +1,43 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+#if defined(SparcArchitecture)
+FPL=  -Nl2000 -Nn6000
+#endif
+ 
+OBJS= /tmp/constr.o /tmp/gjx.o /tmp/h.o /tmp/ii.o
+OBJC= /tmp/vecfin.o /tmp/hamu.o /tmp/emat.o /tmp/fvec.o /tmp/c.o /tmp/psi.o
+
+
+AllTarget( simul control) 
+DependTarget()
+distclean:: clean 
+
+
+simul	:	$(OBJS)
+
+control :	$(OBJC)
+
+/** Warning : don't put white spaces before source names  in the following rules **/
+
+ObjectDemo(/tmp/constr.o,constr.f,$(FPL))
+
+ObjectDemo(/tmp/gjx.o,gjx.f,$(FPL))
+
+ObjectDemo(/tmp/h.o,h.f,$(FPL))
+
+ObjectDemo(/tmp/ii.o,ii.f,$(FPL))
+
+ObjectDemo(/tmp/vecfin.o,vecfin.f,$(FPL))
+
+ObjectDemo(/tmp/hamu.o,hamu.f,$(FPL))
+
+ObjectDemo(/tmp/emat.o,emat.f,$(FPL))
+
+ObjectDemo(/tmp/fvec.o,fvec.f,$(FPL))
+
+ObjectDemo(/tmp/c.o,c.f,$(FPL))
+
+ObjectDemo(/tmp/psi.o,psi.f,$(FPL))
+
+

@@ -1,0 +1,50 @@
+
+champ(2)                       Scilab Function                       champ(2)
+NAME
+  champ - 2D vector field plot
+
+CALLING SEQUENCE
+  champ(x,y,fx,fy,[arfact,rect,strf])
+
+PARAMETERS
+
+  x,y     : two vectors which define the grid.
+
+  fx      : a matrix which describes the x component of the vector field.
+          fx(i,j) is the x component of the vector field at point
+          (x(i),y(j)).
+
+  fy      : a matrix which describes the y component of the vector field.
+          fy(i,j) is the y component of the vector field at point
+          (x(i),y(j)).
+
+  arfact  : an optional argument of type real which gives a scale factor for
+          the display of the arrow heads on the plot (default value is 1.0).
+
+  rect    : a vector rect=[xmin,ymin,xmax,ymax] which gives the boundaries of
+          the graphics frame to use.
+
+  strf    : a string of length 3 "xyz" which has the same meaning as the strf
+          parameter of plot2d. The first character x has no effect with
+          champ.
+
+DESCRIPTION
+  champ draws a 2D vector field. The length of the arrows is proportional to
+  the intensity of the field.
+
+  If you want colored arrows with the color of the arrows depending on the
+  intensity of the field, use champ1.
+
+  Enter the command champ() to see a demo.
+
+EXAMPLE
+  // using rect as plot boundaries
+  champ(-5:5,-5:5,rand(11,11),rand(11,11),1,[-10,-10,10,10],"011")
+  // using (x,y) to get boundaries
+  xbasc()
+  champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
+
+SEE ALSO
+  champ1, fchamp, plot2d
+AUTHOR
+  J.Ph.C.

@@ -1,0 +1,42 @@
+
+lqgltr(1)                      Scilab Function                      lqgltr(1)
+NAME
+  lqg_ltr - LQG with loop transform recovery
+
+CALLING SEQUENCE
+  [kf,kc]=lqg_ltr(sl,mu,ro)
+
+PARAMETERS
+
+  sl        : linear system in state-space form (syslin list)
+
+  mu,ro     :  real positive numbers chosen ``small enough''
+
+  kf,kc     : controller and observer Kalman gains.
+
+DESCRIPTION
+  returns the Kalman gains for:
+             x = a*x + b*u + l*w1
+    (sl)
+             y = c*x + mu*I*w2
+
+             z = h*x
+  Cost function:
+
+                  /+oo
+                 |
+        J    = E(| [z(t)'*z(t) + ro^2*u(t)'*u(t)]dt)
+         lqg     |
+                 / 0
+  The lqg/ltr approach looks for L,mu,H,ro such that: J(lqg) = J(freq) where
+
+                /+oo        *  *           *
+        J    =  | tr[S  W  W  S ] + tr[T  T]dw
+         freq   |
+                /0
+  and
+   S = (I + G*K)^(-1)
+   T = G*K*(I+G*K)^(-1)
+
+SEE ALSO
+  syslin

@@ -1,0 +1,25 @@
+\begin{picture}(0,0)%
+\epsfig{file=test2.pstex}%
+\end{picture}%
+\setlength{\unitlength}{0.00039400in}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined%
+\gdef\SetFigFont#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(11493,9661)(262,-8993)
+\put(8911,-1231){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}output registers}}}
+\put(3601,-4111){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}discrete state z register}}}
+\put(496,-7711){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}real parameters}}}
+\put(496,-8881){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}integer parameters}}}
+\put(496,-3841){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}inputs}}}
+\put(4681,119){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}event}}}
+\put(4681,-151){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}inputs}}}
+\put(4726,-6271){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}event}}}
+\put(4726,-6541){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}outputs}}}
+\put(1171,-3841){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}u}}}
+\put(7831,-3931){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}outputs y}}}
+\put(3556,-5236){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}outputs events times register}}}
+\end{picture}

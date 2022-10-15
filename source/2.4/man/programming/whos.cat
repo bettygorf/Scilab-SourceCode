@@ -1,0 +1,13 @@
+
+whos(1)                        Scilab Function                        whos(1)
+NAME
+  whos - listing of variables in long form
+
+CALLING SEQUENCE
+  whos()
+
+DESCRIPTION
+  who displays current variable names, types and memory used
+
+SEE ALSO
+  who

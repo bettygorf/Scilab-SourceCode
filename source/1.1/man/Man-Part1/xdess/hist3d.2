@@ -1,0 +1,52 @@
+.TH hist3d 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so man1/sci.an
+.SH NAME
+hist3d - 3D representation of an histogram
+.SH CALLING SEQUENCE
+.nf
+hist3d(f,captions,view)
+.fi
+.SH PARAMETERS
+.TP 10
+f    
+: matrix or list :
+.RS
+.TP
+-
+matrix \fVf(i,j)= F(x(i),y(j))\fR,  \fVx\fR and \fVy\fR  taken as 
+\fV0:m\fR and \fV0:n\fR, ( (m,n) is the size of f).
+.TP
+- 
+list of size 3; \fVlist(f,x,y)\fR where f is a matrix of size (m,n)
+and x and y two vectors of size (1,n+1) and (1,m+1)
+.RE
+.TP
+captions
+: vector of strings : \fVcaptions=[legx,legy,legz]\fR
+.TP 
+view
+: vector of size \fVview=[gain,theta,phi [,gray]]\fR
+.RS
+.TP 15
+gain 
+: scaling factor on the Z-axis. If  gain=0, the value of gain 
+is computed automatically.
+.TP
+theta,phi
+: spherical angles of the observation point in 
+.B radian. The default value is [0 ,%pi/4 ,%pi/3].
+.TP
+gray 
+: Optional parameter giving the gray level used to plot the surface.
+.RE
+.SH DESCRIPTION
+3 dimensional representation of an 2d histogram :
+the values associated to the intervals \fV([x(i) x(i+1)[ X [y(i) y(i+1)[)\fR
+.SH EXAMPLE
+enter the command \fVhist3d()\fR to see a demo 
+.SH AUTHOR
+Steer S.
+
+
+
+

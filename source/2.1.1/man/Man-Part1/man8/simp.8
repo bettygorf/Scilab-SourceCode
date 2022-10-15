@@ -1,0 +1,30 @@
+.TH SIMP G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+simp - rational simplification
+.SH CALLING SEQUENCE
+.nf
+[N1,D1]=simp(N,D)
+H1=simp(H)
+.fi
+.SH PARAMETERS
+.TP
+N,D 
+: real polynomials or real matrix polynomials
+.TP
+H 
+: rational matrix (i.e matrix with entries \fVn/d\fR ,\fVn\fR and \fVd\fR real polynomials) 
+.SH DESCRIPTION
+\fV[n1,d1]=simp(n,d)\fR calculates two polynomials \fVn1\fR and \fVd1\fR
+such that \fVn1/d1 = n/d\fR.
+.LP
+If \fVN\fR and \fVD\fR are polynomial matrices the calculation
+is performed element-wise.
+.LP
+\fVH1=simp(H)\fR is also valid (each entry of \fVH\fR is 
+simplified in \fVH1\fR).
+.LP
+Caution: no threshold is given i.e. \fVsimp\fR cannot forces a simplification.
+.SH SEE ALSO
+roots, trfmod, poly, clean
+

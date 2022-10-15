@@ -1,0 +1,24 @@
+.TH polar 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+polar - polar form
+.SH CALLING SEQUENCE
+.nf
+[Ro,Theta]=polar(A)
+.fi
+.SH PARAMETERS
+.TP
+A
+: real or complex square matrix
+.TP
+Ro, Theta
+: real matrices
+.SH DESCRIPTION
+.Vb [Ro,Theta]=polar(A)
+returns the polar form of \fVA\fR i.e.:
+.LP
+\fVA=Ro*exp(%i*Theta)\fR \fVRo\fR symmetric >=0 and \fVTheta\fR hermitian >=0.
+.SH AUTHOR
+F. D.
+
+

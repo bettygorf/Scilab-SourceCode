@@ -1,0 +1,233 @@
+
+\def\Mhlp{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=hlp()\\ 
+\cmarg \verb@// Travaux diriges : bibliotheque de macros @\\ 
+\cmarg \verb@// macros du T.P 3@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// tdinit3  :   macro d'initialisation @\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//    PREMIERE PARTIE @\\ 
+\cmarg \verb@// recur    :   equation recurrente bilineaire @\\ 
+\cmarg \verb@//              pilotee par un bruit gaussien@\\ 
+\cmarg \verb@// logr     :   calcul theorique de l'exposant de lyapunov@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//    DEUXIEME PARTIE @\\ 
+\cmarg \verb@// mine     :   extraction optimale d'un minerai d'une mine@\\ 
+\cmarg \verb@//              a ciel ouvert@\\ 
+\cmarg \verb@// trajopt  :   calcule et dessine la trajectoire et le controle @\\ 
+\cmarg \verb@//              optimaux pour le probleme mine @\\ 
+\cmarg \verb@// ff\_o       :   gain instantane apparaissant dans le critere @\\ 
+\cmarg \verb@//              du programme mine.@\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg 0;\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mtdinitt{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=tdinit3()\\ 
+\cmarg \verb@// Macro qui initialise les donnees du @\\ 
+\cmarg \verb@// td3@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg n1=20\\ 
+\cmarg n2=20;\\ 
+\cmarg te=0;\\ 
+\cmarg xe=$-$0.1;\\ 
+\cmarg k0=100;\\ 
+\cmarg kc=1;\\ 
+\cmarg $<$n1,n2,te,xe,k0,kc$>$={\bf resume}(...\\ 
+\cmarg \hspace{2.0cm}n1,n2,te,xe,k0,kc);\\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+
+\def\Mrecur{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$y$>$=recur(x0,var,k,n)\\ 
+\cmarg //$<$y$>$=recur(x0,var,k,n)\\ 
+\cmarg \verb@// equation recurrente bilineaire @\\ 
+\cmarg \verb@// x(i+1)=-x(i)*(k + sqrt(var)*br(i))@\\ 
+\cmarg \verb@// partant de x0 et @\\ 
+\cmarg \verb@// pilotee par un bruit gaussien de variance var.@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// le programme dessine la trajectoire et @\\ 
+\cmarg \verb@// retourne l'exposant de Liapunov empirique y @\\ 
+\cmarg \verb@// ( x(i) est peu different de exp(y*i) )@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg {\bf rand}('normal');\\ 
+\cmarg br={\bf rand}(1,n);\\ 
+\cmarg x={\bf ones}(1,n);\\ 
+\cmarg x(1)=x0;\\ 
+\cmarg {\bf for} i=2:n,x(i+1)=$-$x(i)$\star$(k+{\bf sqrt}(var)$\star$br(i));{\bf end};\\ 
+\cmarg xclear();\\ 
+\cmarg plot2d((1:n)',x',$<$$-$1$>$,"111"," suite x(n)",$<$0,$-$10,n,10$>$);\\ 
+\cmarg y={\bf log}({\bf abs}(k$\star${\bf ones}(br)+{\bf sqrt}(var)$\star$br));\\ 
+\cmarg y={\bf sum}(y)/n;\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mlogr{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$integr$>$=logr(k,var)\\ 
+\cmarg //$<$integr$>$=logr(k,var)\\ 
+\cmarg \verb@// calcul theorique de l'exposant de Liapunov y@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg {\bf deff}('$<$y$>$=fff(x)',...\\ 
+\cmarg \hspace{0.8cm}'y={\bf log}({\bf abs}('+{\bf string}(k)+'+x))$\star${\bf exp}($-$x$\star$$\star$2/(2$\star$'+{\bf string}(var)'+'))');\\ 
+\cmarg integr={\bf intg}($-$100,100,fff)\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+
+
+\def\Mmine{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$cout,feed$>$=mine(n1,n2,uvect)\\ 
+\cmarg //$<$cout,feed$>$=mine(n1,n2,uvect)\\ 
+\cmarg \verb@// extraction optimale d'un minerai d'une mine a ciel ouvert@\\ 
+\cmarg \verb@// en avancant progressivement (k=1,2,...,n2) et en@\\ 
+\cmarg \verb@// prelevant a l'abcisse k+1 la tranche de profondeur x(k+1)@\\ 
+\cmarg \verb@// par une commande u a partir de la profondeur x(k)@\\ 
+\cmarg \verb@// a l'abcisse k.@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// la resolution du probleme se fait par programmation dynamique @\\ 
+\cmarg \verb@// en calculant la commande optimale maximisant le critere :@\\ 
+\cmarg \verb@//  @\\ 
+\cmarg \verb@//   -- n2-1@\\ 
+\cmarg \verb@//   \          @\\ 
+\cmarg \verb@//   /        f(x(k),k) + V\_F(x,n2) @\\ 
+\cmarg \verb@//   -- k=1@\\ 
+\cmarg \verb@//  avec : x(k+1)=x(k) + u@\\ 
+\cmarg \verb@//  x(k) est la profondeur de la mine a l'abcisse k (x=1@\\ 
+\cmarg \verb@//      est le niveau du sol)@\\ 
+\cmarg \verb@// la fonction gain instantane f(i,k) represente le benefice@\\ 
+\cmarg \verb@//      si on creuse la profondeur i a l'abcisse k@\\ 
+\cmarg \verb@//  V\_F(i,n2) est un cout final destine a forcer l'etat final@\\ 
+\cmarg \verb@//       a valoir 1 (pour sortir de la mine ...)@\\ 
+\cmarg \verb@//       V\_F(i,n2) vaut -10000 en tout les points i\ ne1 et 0@\\ 
+\cmarg \verb@//       pour i=1@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// le programme mine necessite de connaitre@\\ 
+\cmarg \verb@//    n1    : l'etat est discretise en n1 points @\\ 
+\cmarg \verb@//    n2    : nombre d'etapes@\\ 
+\cmarg \verb@//    uvect : vecteur ligne des valeurs discretes que peut@\\ 
+\cmarg \verb@//          prendre u (3 valeurs, on monte, on descend ou on avance)@\\ 
+\cmarg \verb@// et le programme mine retourne alors deux matrices@\\ 
+\cmarg \verb@//    cout(n1,n2) : valeurs de la fonction de Bellman@\\ 
+\cmarg \verb@//    feed(n1,n2) : valeurs de la commande a appliquer@\\ 
+\cmarg \verb@//          lorsque l'etat varie de 1 a n1 et @\\ 
+\cmarg \verb@//          l'etape de 1 a n2.@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xgr=1:(n1+2)\\ 
+\cmarg \verb@// tableau ou l'on stocke la fonction de Bellman@\\ 
+\cmarg cout=0$\star${\bf ones}(n1+2,n2);\\ 
+\cmarg \verb@// tableau ou l'on stocke le feedback u(x,t)@\\ 
+\cmarg feed=0$\star${\bf ones}(n1,n2);\\ 
+\cmarg \verb@// calul de la fonction de Bellman au  temps final@\\ 
+\cmarg penal=10000; \\ 
+\cmarg cout(:,n2)=$-$penal$\star${\bf ones}(n1+2,1);\\ 
+\cmarg cout(2,n2)=0;\\ 
+\cmarg \verb@// calcul retrograde de la fonction de Bellman et@\\ 
+\cmarg \verb@// du controle optimal au temps temp par l'equation de Bellman @\\ 
+\cmarg {\bf for} temp=n2:$-$1:2,\\ 
+\cmarg \hspace{0.5cm}loc=0$\star${\bf ones}(n1+2,3);\\ 
+\cmarg \hspace{0.5cm}{\bf for} i=1:3,\\ 
+\cmarg \hspace{1.0cm}newx={\bf mini}({\bf maxi}(xgr+uvect(i)$\star${\bf ones}(xgr),1$\star${\bf ones}(xgr)),(n1+2)$\star${\bf ones}(xgr)),\\ 
+\cmarg \hspace{1.0cm}loc(:,i)=cout(newx,temp)+ff\_o(xgr,temp$-$1),\\ 
+\cmarg \hspace{0.5cm}{\bf end};\\ 
+\cmarg \hspace{0.5cm}$<$mm,kk$>$={\bf maxi}(loc(:,1),loc(:,2),loc(:,3)),\\ 
+\cmarg \hspace{0.5cm}cout(xgr,temp$-$1)=mm;\\ 
+\cmarg \hspace{0.5cm}cout(1,temp$-$1)=$-$penal;\\ 
+\cmarg \hspace{0.5cm}cout(n1+2,temp$-$1)=$-$penal;\\ 
+\cmarg \hspace{0.5cm}feed(xgr,temp$-$1)=uvect(kk)';\\ 
+\cmarg {\bf end}\\ 
+\cmarg feed=feed(2:(n1+1),1:(n2$-$1));\\ 
+\cmarg cout=cout(2:(n1+1),:);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mtrajopt{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=trajopt(feed)\\ 
+\cmarg //$<$$>$=trajopt(feed)\\ 
+\cmarg \verb@// feed est la matrice de feedback calculee par mine @\\ 
+\cmarg \verb@// trajopt calcule et dessine la trajectoire et le controle @\\ 
+\cmarg \verb@// optimaux pour un point de depart (1,1)@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$n1,n2$>$={\bf size}(feed)\\ 
+\cmarg xopt=0$\star${\bf ones}(1,n2)\\ 
+\cmarg uopt=0$\star${\bf ones}(1,n2+1)\\ 
+\cmarg xopt(1)=1;\\ 
+\cmarg {\bf for} i=2:(n2+1),xopt(i)=feed(xopt(i$-$1),i$-$1)+xopt(i$-$1),\\ 
+\cmarg \hspace{3.2cm}uopt(i$-$1)=feed(xopt(i$-$1),i$-$1),{\bf end}\\ 
+\cmarg plot2d($<$1:(n2+1);1:(n2+1)$>$',$<$uopt;$-$xopt$>$',$<$$-$1,$-$2$>$,"111",...\\ 
+\cmarg \hspace{1.8cm}"commande optimale@trajectoire optimale",...\\ 
+\cmarg \hspace{1.8cm}$<$1,$-$10,n2,2$>$);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mshowcost{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=showcost(n1,n2,teta,alpha)\\ 
+\cmarg //$<$$>$=showcost(n1,n2,teta,alpha)\\ 
+\cmarg \verb@// Montre en 3d la fonction de gain instantanee (ff)@\\ 
+\cmarg \verb@// x: profondeur (n1)@\\ 
+\cmarg \verb@// y: abscisse  (n2)@\\ 
+\cmarg \verb@// en z : valeur de ff\_o(x,t)@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs=2,teta=45,alpha=45,{\bf end}\\ 
+\cmarg m=$<$$>$; \\ 
+\cmarg {\bf for} i=1:n2,m=$<$m,ff\_o(1:n1,i)$>$,{\bf end}\\ 
+\cmarg plot3d(1:n1,1:n2,m,teta,alpha,"profondeur @ abscisse @ gain inst",$<$2,1$>$);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mffo{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$y$>$=ff\_o(x,t)\\ 
+\cmarg //$<$y$>$=ff\_o(x,t)\\ 
+\cmarg \verb@// gain instantane apparaissant dans le critere du@\\ 
+\cmarg \verb@// programme mine.@\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@// pour des raisons techniques, l'argument x doit@\\ 
+\cmarg \verb@// etre un vecteur colonne et donc egalement la sortie y. @\\ 
+\cmarg \verb@// en sortie y=< ff\_0(x(1),t),...ff\_o(x(n),t)>;@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xxloc={\bf ones}(x);\\ 
+\cmarg y= k0$\star$(1$-$ (t$-$te)$\star$$\star$2/n2)$\star$xxloc + (x$-$xe$\star$xxloc)$\star$$\star$3/(n1$\star$$\star$3) $-$kc$\star$x\\ 
+\cmarg y=y';\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+
+

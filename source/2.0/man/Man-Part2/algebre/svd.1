@@ -1,0 +1,44 @@
+.TH svd G "April 1993" "Scilab Group" "Scilab Function" 
+.so man1/sci.an 
+.SH NAME
+svd  -  singular value decomposition
+.SH CALLING SEQUENCE
+.nf
+s=svd(X)
+[U,S,V]=svd(X)
+[U,S,V,rk]=svd(X [,tol])
+.fi
+.SH PARAMETERS
+.TP 10
+X 
+: a real or complex matrix
+.TP
+s
+: real vector (singular values)
+.TP
+S
+: real diagonal matrix (singular values)
+.TP
+U,V
+: orthogonal or unitary square matrices (singular vectors).
+.TP
+tol
+: real number
+.SH DESCRIPTION
+.Vb [U,S,V] = svd(X) 
+produces a diagonal matrix \fVS\fR , of the same 
+dimension as \fVX\fR and with nonnegative diagonal elements in 
+decreasing order, and unitary matrices \fVU\fR and \fVV\fR so that 
+\fVX = U*S*V'\fR.
+.LP
+.Vb s = svd(X)
+by itself, returns a vector \fVs\fR containing the singular values.
+.LP
+.Vb [U,S,V,rk]=svd(X,tol)
+gives in addition \fVrk\fR, the numerical rank of \fVX\fR i.e. the number of 
+singular values larger than \fVtol\fR.
+.LP
+The default value of \fVtol\fR is the same as in \fVrank\fR.
+.SH SEE ALSO
+rank, qr, colcomp, rowcomp.
+

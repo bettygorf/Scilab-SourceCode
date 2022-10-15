@@ -1,0 +1,132 @@
+
+
+
+cainv(1)                       Scilab Function                       cainv(1)
+
+
+
+
+
+
+NAME
+  cainv -  Dual of abinv
+
+CALLING SEQUENCE
+  [Y,ns,nsg,nn,J,k,Z]=cainv(Sl,alfa)
+
+PARAMETERS
+
+  sl        : syslin list containing the matrices [A,B,C,D].
+
+  alpha     : real number or vector (possibly complex, location of closed
+            loop poles)
+
+  Y         : orthogonal matrix of size nx (dim of state space).
+
+  ns,nsg,nn : three integers
+
+  J         : real matrix (output injection)
+
+  k         : integer (normal rank of Sl)
+
+  Z         : non-singular linear system (syslin list)
+
+DESCRIPTION
+  cainv finds a basis Y and output injection J such that the abcd matrices of
+  ss2ss(Sl,Y,[],J)) are:
+                    [*,*,*,*]             [*]
+    (Y'A + J*C)*Y = [0,u,*,*]   B + J*D = [0]
+                    [0,0,s,*]             [0]
+                    [0,0,0,*]             [0]
+
+              C*Y = [*,*,*,*]          D= [*]
+                    [0,0,0,*]             [0]
+  where the modes of A22 (u) are unstable, modes of A33 (s) are stable, pair
+  (A44, C24) is observable, poles of A44 set to alfa.
+
+  The ns first columns of Y span S= smallest (C,A) invariant subspace which
+  contains Im(B), nsg first columns of Y span Sg, nn first columns of Y span
+  N=S+V. (ns=0 iff B(ker(D))=0).
+
+  // DDEP: dot(x)=A x + Bu + Gd
+  //           y= Cx   (observation)
+  //           z= Hx    (z=variable to be estimated, d=disturbance)
+  //  Find: dot(w) = Fw + Ey + Ru such that
+  //          zhat = Mw + Ny
+  //           z-Hx goes to zero at infinity
+  //  Solution exists iff Ker H contains Sg(A,C,G) inter KerC
+  //i.e. H is such that:
+  // For any W which makes a column compression of [Yp(1:nsg,:);C]
+  // with Yp=Y' and [Y,ns,nsg,nn,J,k,Z]=cainv(syslin('c',A,G,C));
+  // [Yp(1:nsg,:);C]*W = [0 | *] one has
+  // H*W = [0 | *]  (with at least as many columns as above).
+
+
+
+
+SEE ALSO
+  abinv, dt_ility
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

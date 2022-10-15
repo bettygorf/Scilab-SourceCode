@@ -1,0 +1,21 @@
+
+titlepage(2)                   Scilab Function                   titlepage(2)
+NAME
+  titlepage - add a title in the middle of a graphics window
+
+CALLING SEQUENCE
+  titlepage(str)
+
+PARAMETERS
+
+  str  : matrix of strings
+
+DESCRIPTION
+  titlepage displays the matrix of strings str in the middle of the current
+  graphics window with a font as big as possible.
+
+SEE ALSO
+  xtitle
+
+AUTHOR
+  S. S.

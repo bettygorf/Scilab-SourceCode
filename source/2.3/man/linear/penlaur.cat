@@ -1,0 +1,52 @@
+
+penlaur(1)                     Scilab Function                     penlaur(1)
+NAME
+  penlaur - Laurent coefficients of matrix pencil
+
+CALLING SEQUENCE
+  [Si,Pi,Di,order]=penlaur(Fs)
+  [Si,Pi,Di,order]=penlaur(E,A)
+
+PARAMETERS
+
+  Fs          : a regular pencil s*E-A
+
+  E, A        : two real square matrices
+
+  Si,Pi,Di    : three real square matrices
+
+  order       : integer
+
+DESCRIPTION
+  penlaur computes the first Laurent coefficients of (s*E-A)^-1 at infinity.
+
+  (s*E-A)^-1 = ... + Si/s - Pi - s*Di + ... at s = infinity.
+
+  order = order of the singularity (order=index-1).
+
+  The matrix pencil Fs=s*E-A should be invertible.
+
+  For a index-zero pencil, Pi, Di,... are zero and Si=inv(E).
+
+  For a index-one pencil (order=0),Di =0.
+
+  For higher-index pencils, the terms  -s^2 Di(2), -s^3 Di(3),...  are given
+  by:
+
+   Di(2)=Di*A*Di,  Di(3)=Di*A*Di*A*Di  (up to Di(order)).
+
+Remark
+  Experimental version: troubles when bad conditioning of so*E-A
+
+EXAMPLE
+  F=randpencil([],[1,2],[1,2,3],[]);
+  F=rand(6,6)*F*rand(6,6);[E,A]=pen2ea(F);
+  [Si,Pi,Di]=penlaur(F);
+  [Bfs,Bis,chis]=glever(F);
+  norm(coeff(Bis,1)-Di,1)
+
+SEE ALSO
+  glever, pencan, rowshuff
+
+AUTHOR
+  F. D. (1988,1990)

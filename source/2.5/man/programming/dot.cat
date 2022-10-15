@@ -1,0 +1,35 @@
+
+dot(1)                          Scilab Symbol                          dot(1)
+NAME
+  dot (.) -  symbol
+
+CALLING SEQUENCE
+  123.33
+  a.*b
+  [123,..
+   456]
+
+DESCRIPTION
+
+  Dot is used to mark decimal point for numbers : 3.25 and 0.001
+
+  used in cunjunction with other operator symbols (* / \ ^ ') to form
+        other operators.  Element-by-element multiplicative operations are
+        obtained using .* , .^ , ./ , .\ or .'.  For example, C = A ./ B is
+        the matrix with elements c(i,j) = a(i,j)/b(i,j). Kronecker product is
+        noted .*. .
+
+        Note that when dot follows a number it is alway prt of the number so
+        2.*x is evaluated as 2.0*x and 2 .*x is evaluated as (2).*x
+
+  Continuation.  Two or more decimal points at the end of
+        a line causes the following line to be a continuation.
+
+EXAMPLE
+  1.345
+  x=[1 2 3];x.^2 .*x // a space is required between 2 and dot
+  [123,..
+   456]
+
+SEE ALSO
+  star, hat, slash, backslash

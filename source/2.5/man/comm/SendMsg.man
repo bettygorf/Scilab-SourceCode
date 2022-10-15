@@ -1,0 +1,19 @@
+.TH SendMsg 1 "March 1997" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+SendMsg - sends a message
+.SH CALLING SEQUENCE
+.nf
+SendMsg(type,msg)
+.fi
+.SH PARAMETERS
+.TP 5
+type
+: string
+.TP 4
+msg
+: string
+.SH DESCRIPTION
+\fVSendMsg\fR sends a message to ALL applications linked to this application. 
+.SH SEE ALSO
+CreateLink, SendMsg, WaitMsg

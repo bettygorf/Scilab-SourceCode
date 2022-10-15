@@ -1,0 +1,14 @@
+while %t do
+  n=x_choose(['LQG','Mixed-sensitivity','PID'],'Select a demo');
+  select n
+  case 0
+    break
+  case 1
+    exec(SCI+'/demos/control/lqg.dem')
+  case 2
+    exec(SCI+'/demos/control/mixed.dem')
+  case 3
+    exec(SCI+'/demos/control/pid.dem')
+  end
+end
+

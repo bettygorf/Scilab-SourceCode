@@ -1,0 +1,21 @@
+// A small example of MESH Creation 
+// and visualisation of a linear on triangles function 
+getf('SCI/demos/fec/macros.sci')
+xset("use color",0);
+flag1=x_choose(['Yes';'No'],'Have you a color display');
+if flag1=1;xset("use color",1);end
+// An more complex example from NSCK2E  (Inria)
+// With a Mesh of amdba type 
+path='SCI/demos/fec/';
+amdbaR(path+'MESH')
+meshvisu()
+halt()
+xbasc()
+xset("use color",1)
+emc2C(1,6,path+'MESH.VAL')
+halt()
+xbasc()
+xset("use color",1)
+emc2C(1,6,path+'MESH.VAL',[-2,-2,2,2])
+halt()
+xbasc()

@@ -1,0 +1,23 @@
+.TH imrep2ss 4 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+imrep2ss - state-space realization of an impulse response 
+.SH CALLING SEQUENCE
+.nf
+[sl]=imrep2ss(v [,deg])
+.fi
+.SH PARAMETERS
+.TP 10
+v 
+: vector coefficients of impulse response, \fVv(:,k)\fR is the kth sample
+.TP
+deg
+: integer (order required)
+.TP
+sl
+: \fVsyslin\fR list
+.SH DESCRIPTION
+Impulse response to linear system conversipon (one input)
+.SH SEE ALSO
+frep2tf, arl2, time_id , armax
+

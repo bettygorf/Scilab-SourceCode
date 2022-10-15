@@ -1,0 +1,79 @@
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Fri Feb 13 19:38:48 1998
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: example.1
+%
+\phead{errcatch}{1}{April\ 1993}{Scilab\ Group}{Scilab\ Function}
+
+
+\Sdoc{errcatch}{ error trapping}\index{errcatch}\label{errcatch}
+
+\Shead{CALLING SEQUENCE}
+\begin{verbatim}
+errcatch(n [,'action'] [,'option']) 
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\tt n}]
+: integer 
+\item[{\tt action, option }]
+: strings
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+%
+\tt errcatch %
+\rm gives an "action" (error-handler)  to be 
+performed when an error of type %
+\tt n %
+\rm occurs.
+%
+\tt n %
+\rm has the followin meaning:
+\par
+if %
+\tt n$>$0%
+\rm , %
+\tt n %
+\rm is the error number to trap
+\par
+if %
+\tt n$<$0 %
+\rm  all errors are to be trapped
+\par\noindent
+%
+\tt action %
+\rm is one of the following character strings:
+\ind{1\parindent}
+\ind{2\parindent}
+\begin{scitem}
+\item[{\tt "pause"}]
+: a pause is executed when trapping the error. This option is useful
+for debugging purposes.
+\item[{\tt "continue"}]
+: next instruction in the function or exec files is executed, current
+instruction is ignored. This option is useful for error recovery.
+\item[{\tt "kill"}]
+: default mode, all intermediate functions are killed, scilab goes
+back to the level 0 prompt.
+\item[{\tt "stop"}]
+: interrupts the current Scilab session (useful when 
+Scilab is called from an external program).
+\ind{1\parindent}
+\ind{0\parindent}
+\end{scitem}% end Env
+\par\noindent
+%
+\tt option %
+\rm is the character string %
+\tt 'nomessage' %
+\rm for killing
+error message.
+\Seealso{SEE ALSO}
+{\verb?errclear?} \pageref{errclear},{\verb? iserror?} \pageref{iserror}
+

@@ -1,0 +1,78 @@
+.TH gschur G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+gschur - generalized Schur form (matrix pencils).
+.SH CALLING SEQUENCE
+.nf
+[As,Es]=gschur(A,E)
+[As,Es,Q,Z]=gschur(A,E)
+[As,Es,Q,dim] = gschur(A,E,flag) 
+[As,Es,Q,dim]= gschur(A,E,extern)
+.fi
+.SH PARAMETERS
+.TP 10
+A, E
+: two real square matrices
+.TP
+flag
+: character string (\fV'c'\fR or \fV'd'\fR)
+.TP
+extern
+: Scilab ``external'' function (usual case). Could be also a list or a character
+string
+.TP
+As,Es
+: two real square matrices
+.TP
+Q, Z
+: two non-singular real matrices
+.TP
+dim
+: integer (dimension of subspace)
+.SH DESCRIPTION
+.LP
+\fBSchur form of matrix pencils (QZ algorithm)\fR
+.nf
+[As,Es] = gschur(A,E)
+.fi
+produces a quasi triangular \fVAs\fR matrix
+and a triangular \fVEs\fR matrix which are the generalized
+Schur form of the pair \fVA, E\fR.
+.LP
+.nf
+[As,Es,Q,Z] = gschur(A,E)
+.fi
+returns in addition two unitary matrices
+\fVQ\fR and \fVZ\fR such that \fVAs=Q*A*Z\fR and \fVEs=Q*E*Z\fR. 
+.LP
+\fBOrdered stable form\fR
+.nf
+[As,Es,Q,dim] = gschur(A,E,'c')
+.fi
+returns the real generalized
+Schur form of the pencil \fVs*E-A\fR. In addition, the dim first columns 
+of \fVQ\fR span a basis of the right eigenspace  associated with 
+eigenvalues with negative real parts (stable "continuous
+time" generalized eigenspace).
+.nf
+[As,Es,Q,dim] = gschur(A,E,'d')
+.fi
+returns the real generalized
+Schur form of the pencil \fVs*E-A\fR. In addition, the dim first columns 
+of \fVQ\fR make a basis of the right eigenspace  associated with 
+eigenvalues with magnitude lower than 1 (stable "discrete
+time" generalized eigenspace).
+.LP
+\fBGeneral subspace\fR
+.nf
+[As,Es,Q,dim] = gschur(A,E,extern)
+.fi
+returns the real generalized Schur form of the pencil \fVs*E-A\fR. 
+In addition, the dim first columns 
+of \fVQ\fR make a basis of the right eigenspace  associated with 
+eigenvalues of the pencil which are selected according to a
+rule which is given by the scilab function extern.
+(See \fVschur\fR for definition of this function).
+.SH SEE ALSO
+external, gspec, pencan, penlaur, coffg, balanc
+

@@ -1,0 +1,54 @@
+
+mine(1)                        Scilab Function                        mine(1)
+NAME
+  mine - a mining problem
+
+CALLING SEQUENCE
+  [cout,feed]=mine(n1,n2,uvect)
+
+PARAMETERS
+
+  n1   : Number of discrete point for the state.
+
+  n2   : Number of time step
+
+  uvect
+       : a row vector which gives the possible control value ( integer values
+       ).  for example u=[-1,0,1] means that at each step we come down one
+       step or stay at the same level or rise one step ).
+
+  cout(n1,n2)
+       : The Bellman values.
+
+  feed(n1,n2)
+       : The feedback Law.
+
+DESCRIPTION
+  Dynamic programming applied to an optimal extraction of ore in an opencast
+  mine. The extraction is done as follows : the steam shovel move forward for
+  (k=1,2,...,n2) at each step it takes the ore, then move up or down (or stay
+  at the same level) according to the control value to reach another level at
+  next step. The extraction process must maximise the following cost :
+     -- n2-1
+     \
+     /        f(x(k),k) + V_F(x,n2)
+     -- k=1
+  with x(k+1)=x(k) + u. x(k) is the trajectory depth at step k (x=1 is the
+  ground level).
+
+  The instantaneous  cost f(i,k) stands for the benefit of digging at depth i
+  at position k.  It must be given as a Scilab macro ff_o
+  [y]=ff_o(x,k)
+  and for efficiency ff_o must accept and return  column vectors for x and y.
+
+  V_F(i,n2) is a final cost which is set so as to impose the steam shovel to
+  be at ground level at position n2
+
+FF_o
+
+SHOWCOST
+
+CALLING SEQUENCE
+  []=showcost(n1,n2,teta,alpha)
+DESCRIPTION
+  Shows a 3D representation of the instantaneous cost.

@@ -1,0 +1,11 @@
+
+TIME_f(5)                        Scicos Block                       TIME_f(5)
+NAME
+  TIME_f - Scicos time generator
+
+DIALOGUE PARAMETERS
+  None.
+
+DESCRIPTION
+  This block is a time generator. The unique regular output is the current
+  time.

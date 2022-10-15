@@ -1,0 +1,66 @@
+
+
+
+eval3dp(2)                     Scilab Function                     eval3dp(2)
+
+
+
+
+
+
+NAME
+  eval3dp - computes facets of a 3D parametrized surface
+
+CALLING SEQUENCE
+  [x,y,z]=eval3dp(fun,p1,p2)
+
+PARAMETERS
+
+  fun       : a function [X,Y,Z]=fun(p1,p2) which may compute the coordinate
+            of the
+              surface for each values of the parameters p1 p2
+              [X(i),Y(i),Z(i)]=fun(p1(1),p2(i)
+
+  p1        : a vector of size n
+
+  p2        : a vector of size m
+
+  x,y,z     : 4x(n*n) matrices
+
+
+DESCRIPTION
+  Computes a set of facets for a 3d parametrized surface
+
+EXAMPLE
+    deff('[x,y,z]=scp(p1,p2)',['x=p1.*sin(p1).*cos(p2)';
+                               'y=p1.*cos(p1).*cos(p2)';
+                               'z=p1.*sin(p2)'])
+    [x,y,z]=eval3dp(scp,0:0.3:2*%pi,-%pi:0.3:%pi);
+
+SEE ALSO
+  eval3dp plot3d
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

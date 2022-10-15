@@ -1,0 +1,23 @@
+
+sinhm(1)                       Scilab Function                       sinhm(1)
+NAME
+  sinhm - matrix hyperbolic sine
+
+CALLING SEQUENCE
+  t=sinhm(x)
+
+PARAMETERS
+
+  x,t       : real or complex square matrix
+
+DESCRIPTION
+  sinhm is the matrix hyperbolic  sine  of the matrix x.  t=(expm(x)-expm(-
+  x))/2
+
+EXAMPLE
+  A=[1,2;2,3]
+  asinhm(sinhm(A))
+  A(1,1)=%i;sinhm(A)-(expm(A)-expm(-A))/2   //Complex case
+
+SEE ALSO
+  sinh

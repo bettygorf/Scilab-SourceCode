@@ -1,0 +1,62 @@
+.TH ric_desc 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+ric_desc - Riccati equation
+.SH CALLING SEQUENCE
+.nf
+[X1,X2,zero]=ric_desc(H,E)
+[X1,X2,zero]=ric_desc(H [,E])
+.fi
+.SH PARAMETERS
+.TP 12
+H,E
+: real square matrices
+.TP
+X1,X2
+: real square matrices
+.TP
+zero
+: real number
+.SH DESCRIPTION
+Riccati solver with hamiltonian matrices as inputs.
+.LP
+In the continuous time case calling sequence is (one input):
+.Vb ric_descr(H)
+.LP
+Riccati equation is: 
+.nf
+  (Ec)   A'*X + X*A + X*R*X -Q = 0.
+.fi
+Defining the hamiltonian matrix \fVH\fR by:
+.nf
+ H = [A  R;
+      Q -A']
+.fi
+with the calling sequence \fV[X1,X2,err]=ric_descr(H)\fR, the 
+solution \fVX\fR is given by \fVX=X1/X2\fR.
+.LP
+\fVzero\fR = L1 norm of rhs of (\fVEc\fR)
+.LP
+The solution \fVX\fR is also given by \fVX=riccati(A,Q,R,'c'))\fR
+.LP
+In the discrete-time case calling sequence is (two inputs):
+.Vb ric_descr(H,E) 
+.LP
+The Riccati equation is:
+.nf
+   (Ed)  A'*X*A-(A'*X*B*(R+B'*X*B)^-1)*(B'*X*A)+C-X = 0.
+.fi
+Defining \fVG=B/R*B'\fR and the hamiltonian pencil \fV(E,H)\fR by: 
+.nf
+      E=[eye(n,n),G;               H=[A, 0*ones(n,n);
+         0*ones(n,n),A']             -C, eye(n,n)];
+.fi
+with the calling sequence \fV[X1,X2,err]=ric_descr(H,E)\fR, the 
+solution \fVX\fR is given by \fVX=X1/X2\fR.
+.LP
+\fVzero\fR= L1 norm of rhs of (\fVEd\fR)
+.LP
+The solution \fVX\fR is also given by \fVX=riccati(A,G,C,'d')\fR  
+with \fVG=B/R*B'\fR
+.SH SEE ALSO
+riccati

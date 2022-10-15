@@ -1,0 +1,32 @@
+
+Sgrayplot(2)                   Scilab Function                   Sgrayplot(2)
+NAME
+  Sgrayplot - smooth 2D plot of a surface using colors
+
+CALLING SEQUENCE
+  Sgrayplot(x,y,z,[strf,rect,nax])
+
+DESCRIPTION
+  Sgrayplot is the same as grayplot but the plot is smoothed.  The function
+  fec is used for smoothing.  The surface is plotted assuming that it is lin-
+  ear on a set of triangles built from the grid:
+      ______
+      | /| /|
+      |/_|/_|
+      | /| /|
+      |/_|/_|
+
+  Enter the command Sgrayplot() to see a demo.
+
+EXAMPLE
+  x=-10:10; y=-10:10;m =rand(21,21);
+  Sgrayplot(x,y,m,"111",[-20,-20,20,20])
+  t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
+  xbasc()
+  Sgrayplot(t,t,m)
+
+SEE ALSO
+  fec, fgrayplot, grayplot, Sfgrayplot
+
+AUTHOR
+  J.Ph.C.

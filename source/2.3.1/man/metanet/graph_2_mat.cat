@@ -1,0 +1,35 @@
+
+graph_2_mat(1)                 Scilab function                 graph_2_mat(1)
+NAME
+  graph_2_mat - node-arc incidence matrix of a graph
+
+CALLING SEQUENCE
+  a = graph_2_mat(g)
+
+PARAMETERS
+
+  g : graph list
+
+  a : sparse node-arc incidence matrix
+
+DESCRIPTION
+  graph_2_mat computes the node-arc incidence matrix corresponding to the
+  graph g. If n is the number of nodes of the graph and m is the number of
+  edges of the graph, it is a Scilab sparse matrix of size (n,m).
+
+  It is defined as follows. If the graph is directed:
+
+  a(i,j) = +1 if node i is the tail of arc j
+
+  a(i,j) = -1 if node i is the head of arc j
+
+  If the graph is undirected:
+
+  a(i,j) = 1 if node i is the tail or the head of arc j
+
+EXAMPLE
+  g=load_graph(SCI+'/demos/metanet/colored');
+  a=graph_2_mat(g)
+
+SEE ALSO
+  mat_2_graph

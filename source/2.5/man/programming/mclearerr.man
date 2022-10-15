@@ -1,0 +1,20 @@
+.TH mclearerr 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mclearerr - reset binary file access errors 
+.SH CALLING SEQUENCE
+.nf
+mclearerr([fd])	
+.fi
+.SH PARAMETERS
+.TP 10
+fd
+: scalar. The \fVfd\fR parameter returned by the function
+\fVmopen\fR. -1 stands for last opened file. Default value is -1.
+.SH DESCRIPTION
+The function \fVclearerr\fR is used to resets the error indicator and
+EOF  indicator to zero.
+.SH SEE ALSO
+mclose, mopen, mput, mget, mgetstr, mputstr, meof, mseek, mtell,
+file, read, write, save, load
+

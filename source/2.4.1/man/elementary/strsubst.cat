@@ -1,0 +1,31 @@
+
+strsubst(3)                    Scilab Function                    strsubst(3)
+NAME
+  strsubst - substitute  a character string by another in a  character
+  string.
+
+CALLING SEQUENCE
+  str=strsubst(str1,str2,str3)
+
+PARAMETERS
+
+  str1           : a matrix of character string. The strings where to search
+                 occurrences of str2
+
+  str2           : a character string. The string to search in str1.
+
+  str3           : a character string. The replacement string.
+
+  str            : a matrix of character string. The result of the substitu-
+                 tion on
+                  str2 by  str3 in  str1
+
+DESCRIPTION
+  strsubst replaces all occurrences of str2 in str1 by str3.
+
+EXAMPLE
+  strsubst('SCI/demos/scicos','SCI','.')
+  strsubst('SCI/demos/scicos','/',' ')
+
+SEE ALSO
+  string, strings

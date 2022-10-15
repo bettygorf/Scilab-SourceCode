@@ -1,0 +1,72 @@
+///////////////////////////
+// Demo : vol en palier ///
+///////////////////////////
+
+// Duree de la simulation
+tf =200000;
+
+// Conditions initiales
+x0=[0; 0; -4000;  
+    180; 0.1; 0;  
+    0; 0.5; 0.2;   
+    0; 0; -0];
+
+// Commande 
+u0=[0; -0.0485; 0; 0.6];
+
+// Simulation (le dernier argument de simul est une chaine de caracteres
+// contenant la commande)
+[xf,x,tvec]=simul("F4",tf,x0,"u0");
+
+// Affichage
+voirbo(tvec,x)
+
+// Point d'equilibre ?
+xd=F4(0,xf,u0)
+
+// Recalage
+xe = xf;
+xe(1) = 0;
+xe(2) = 0;
+xe(8) = 0;
+xd=F4(0,xe,u0)
+
+// Lineaire tangent et ses valeurs propres
+[A,B] = linmod("F4",xe,u0);
+vp = spec(A);
+
+slon = [1,4,3,7,5,11];
+alon = A(slon,slon)
+blon = B(slon,[2,4])
+vplon = spec(alon)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

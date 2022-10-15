@@ -1,0 +1,35 @@
+.TH fplot2d 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+fplot2d  - 2D plot of a curve defined by a function
+.SH CALLING SEQUENCE
+.nf
+fplot2d(xr,f,[style,strf,leg,rect,nax])
+.fi
+.SH PARAMETERS
+.TP 15
+xr
+: vector.
+.TP 
+f 
+: external of type \fVy=f(x)\fR.
+.TP
+style,strf,leg,rect,nax
+: see \fVplot2d\fR
+.LP
+.SH DESCRIPTION
+\fVfplot2d\fR plots a curve defined by the external function \fVf\fR.
+The curve is approximated by a piecewise linear interpolation using the points 
+\fV(xr(i),f(xr(i))\fR.
+
+Enter the command \fVfplot2d()\fR to see a demo.
+.SH EXAMPLE 
+.nf
+deff("[y]=f(x)","y=sin(x)+cos(x)")
+x=[0:0.1:10]*%pi/10;
+fplot2d(x,f)
+.fi
+.SH SEE ALSO
+plot2d
+.SH AUTHOR
+J.Ph.C.

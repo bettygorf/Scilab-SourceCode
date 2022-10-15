@@ -1,0 +1,62 @@
+include ../../Path.incl
+#include "../../Imake.incl"
+
+
+               FILES = Chap1.tex Chap2.tex Chap3.tex Chap4.tex Chap5.tex \
+			Chap6.tex Chap7.tex Chap8.tex Chapl.tex Chapn.tex
+                MAN1 = $(SCIDIR)/man/Man-Part1
+                MAN2 = $(SCIDIR)/man/Man-Part2
+              TR2TEX =tr2latex/tr2tex 
+
+AllTarget(info )
+
+info:
+	@echo " The manual document file is Docu.ps.Z "
+	@echo " type : rm Docu.ps.Z ; make doc"
+	@echo " to recreate it from scratch"
+
+doc :Docu.ps.Z
+
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS='$(CDEBUGFLAGS)'
+
+SUBDIRS=tr2latex Test Sample 
+
+NamedMakeSubdirs(subs,$(SUBDIRS) )
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS))
+
+Docu.ps.Z : chapters 
+	latex Docu
+	makeindex -s Docu.isty Docu
+	latex Docu
+	dvips -o Docu.ps Docu.dvi 
+	compress Docu.ps 
+
+chapters : $(FILES)
+
+$(TR2TEX):
+	cd tr2latex ; $(MAKE) $(MFLAGS) 
+
+Tr2texTarget(Chap1.tex,$(MAN1)/man1/?*.1)
+Tr2texTarget(Chap2.tex,$(MAN1)/man2/?*.2)
+Tr2texTarget(Chap3.tex,$(MAN1)/man3/?*.3)
+Tr2texTarget(Chap4.tex,$(MAN1)/man4/?*.4)
+Tr2texTarget(Chap5.tex,$(MAN1)/man5/?*.5)
+Tr2texTarget(Chap6.tex,$(MAN1)/man6/?*.6)
+Tr2texTarget(Chap7.tex,$(MAN1)/man7/?*.7)
+Tr2texTarget(Chap8.tex,$(MAN1)/man8/?*.8)
+Tr2texTarget(Chapl.tex,$(MAN2)/man1/?*.1)
+Tr2texTarget(Chapn.tex,$(MAN2)/man2/?*.2)
+
+clean 	::
+	$(RM)  *.aux *.log Chap*.tex *.dvi *.ind *.idx *.ilg  *.toc Docu.ps
+
+distclean:: 
+	$(RM)  *.aux *.log Chap*.tex *.dvi *.ind *.idx *.ilg *.toc Docu.ps
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+
+floor(1)                       Scilab Function                       floor(1)
+NAME
+  floor - rounding down
+
+CALLING SEQUENCE
+  [y]=floor(x)
+
+PARAMETERS
+
+  x    : a real matrix
+
+  y    : integer matrix
+
+DESCRIPTION
+  floor(x) returns an integer matrix made of nearest rounded down integers.
+
+EXAMPLE
+  floor([1.9 -2.5])-[1,-3]
+  floor(-%inf)
+  x=rand()*10^20;floor(x)-x
+
+SEE ALSO
+  round, fix, ceil

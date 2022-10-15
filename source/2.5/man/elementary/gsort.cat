@@ -1,0 +1,55 @@
+
+gsort(1)                       Scilab Function                       gsort(1)
+NAME
+  gsort - decreasing order sorting
+
+CALLING SEQUENCE
+  [s, [k]]=gsort(v )
+  [s, [k]]=gsort(v,flag1)
+  [s, [k]]=gsort(v,flag1,flag2)
+
+PARAMETERS
+
+  v,s  : real vector/matrix; character string vector/matrix
+
+  flag1
+       : a string 'r', 'c','g','lr' and 'lc'.
+
+  flag2
+       : a string 'i' for increasing and 'd' for decreasing order.  k : vec-
+       tor or matrix of integers
+
+DESCRIPTION
+  gsort is similar to sort with additional properties.  The third argument
+  can be used to chose between increasing or decreasing order. The second
+  argument can be used for lexical orders.
+
+  [s,k]=gsort(a,'g') and [s,k]=gsort(a,'g','d') are  the same as
+  [s,k]=gsort(a). They perform a sort of the entries of matrix a, a being
+  seen as the stacked vector a(:) (columnwise). [s,k]=gsort(a,'g','i') per-
+  forms the same operation but in increasing order.
+
+  [s,k]=gsort(a,'lr') sort the rows of the matrix int(a) ( if a is a real
+  matrix) or a (if a is a character string matrix) in lexical decreasing
+  order. s is obtained by a permutation of the rows of matrix int(a) (or a)
+  given by the column vector k) in such a way that the rows of s verify
+  s(i,:) > s(j,:) if i<j. [s,k]=gsort(a,'lr','i') performs the same operation
+  for increasing lexical order
+
+  [s,k]=gsort(a,'lc') sort the columns of the matrix int(a) ( if a is a real
+  matrix) or a (if a is a character string matrix) in lexical decreasing
+  order. s is obtained by a permutation of the columns of matrix int(a) (or
+  a) given by the row vector k) in such a way that the columns of s verify
+  s(:,i) > s(:,j) if i<j. [s,k]=gsort(a,'lc','i') performs the same operation
+  for increasing lexical order
+
+EXAMPLE
+  alr=[1,2,2;
+       1,2,1;
+       1,1,2;
+       1,1,1];
+  [alr1,k]=gsort(alr,'lr','i')
+  [alr1,k]=gsort(alr,'lc','i')
+
+SEE ALSO
+  find

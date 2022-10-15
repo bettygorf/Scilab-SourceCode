@@ -1,0 +1,48 @@
+
+param3d(2)                     Scilab Function                     param3d(2)
+NAME
+  param3d1 - set of points or parametric curves in 3-D
+
+CALLING SEQUENCE
+  param3d1(x,y,z,[theta,alpha,leg,flag,ebox]
+  param3d1(x,y,list(z,colors),[theta,alpha,leg,flag,ebox]
+
+PARAMETERS
+
+  x,y,z          : three matrices of the same size [nl,nc]. Each column of
+                 the matrix code one curve except when nl=1 and nc>0 in which
+                 case It is assumed that there's only one curve. If colors is
+                 specified, it must be a vector of size nc which gives for
+                 each curve its color ( if color[i] >0  ) or the mark which
+                 is to be used ( if  color[i] <= 0  ).
+
+  theta, alpha   : gives the coordinates in spherical angle of the observa-
+                 tion point
+
+  leg            : string describing the caption for each axis, the different
+                 fields in the string are separated by the symbol @, for
+                 example : "X@Y@Z"
+
+  flag =[type,box] :
+                 where  type and  box have the same meaning as in plot3d
+
+  ebox           : a vector of size (1,6) which gives the boundaries of the
+                 plot [xmin,xmax,ymin,ymax,zmin,zmax] when the value of type
+                 is 1
+
+DESCRIPTION
+  param3d() is used to obtain a graphic of a parametric curve in R3, and can
+  also be used to see a set of points in R3
+
+  Enter the command param3d() to see a demo.
+
+EXAMPLE
+  t=0:0.1:5*%pi; t=t';
+  param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],...
+          list([t/10,sin(t)],[3,2]),35,45,"X@Y@Z",[2,3])
+
+SEE ALSO
+  param3d
+
+AUTHOR
+  J.Ph.C.

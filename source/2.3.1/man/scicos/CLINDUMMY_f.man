@@ -1,0 +1,19 @@
+.TH CLINDUMMY_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+CLINDUMMY_f - Scicos dummy continuous system with state
+.SH DESCRIPTION
+This block should be placed in any block diagram that contains a
+zero-crossing block but no continuous system with state. The reason 
+for that is that it is the ode solver that find zero crossing
+surfaces.
+.SH SEE ALSO
+ZCROSS_f
+
+
+
+
+
+
+
+

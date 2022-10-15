@@ -1,0 +1,18 @@
+.TH circuit 1 "October 1994" "Scilab Group" "Scilab Macro"
+.so man1/sci.an
+.SH NAME 
+circuit - circuit
+.SH CALLING SEQUENCE
+.nf
+[p] = circuit([g])
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP 2
+p
+: vector of arc numbers 
+.SH DESCRIPTION 
+\fVcircuit\fR tries to find a circuit for the graph \fVg\fR
+and returns the corresponding path \fVp\fR of the arc numbers of the circuit.

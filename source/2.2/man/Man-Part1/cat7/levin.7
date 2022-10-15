@@ -1,0 +1,132 @@
+
+
+
+levin(1)                       Scilab Function                       levin(1)
+
+
+
+
+
+
+NAME
+  levin - Toeplitz system solver
+
+CALLING SEQUENCE
+  [la,sig,lb]=levin(n,cov)
+
+PARAMETERS
+
+  n           : maximum order of the filter
+
+  cov         : matrix containing the
+
+              (d x d matrices for a d-dimensional process). It must be given
+              the following way :
+
+                              |  R0  |
+                              |  R1  |
+                              |  R2  |
+                              |  .   |
+                              |  .   |
+                              | Rnlag|
+
+
+
+  la          : list-type variable, giving the successively calculated poly-
+              nomials (degree 1 to degree n), with coefficients Ak
+
+  sig         : list-type variable, giving the successive mean-square errors.
+
+DESCRIPTION
+  function which solves recursively on n the following Toeplitz system (nor-
+  mal equations)
+
+                  |R1   R2   . . . Rn  |
+                  |R0   R1   . . . Rn-1|
+                  |R-1  R0   . . . Rn-2|
+                  | .    .   . . .  .  |
+  |I -A1 .. -An|  | .    .   . . .  .  | = 0
+                  | .    .   . . .  .  |
+                  | .    .   . . .  .  |
+                  |R2-n R3-n . . . R1  |
+                  |R1-n R2-n . . . R0  |
+
+
+
+
+
+
+
+
+
+  where {Rk;k=1,nlag} is the sequence of nlag empirical covariances
+
+
+
+
+AUTHOR
+  G. Le V.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+
+flt(2)                         Scilab Function                         flt(2)
+NAME
+  flt -  Fast Legendre transform
+
+  Author: Paulo Goncalves
+
+  Computes the Legendre transform of y  y*(s) = sup_{x in X}[s.x - y(x)]
+
+Usage
+
+  [u,s] = flt(x,y[,ccv])
+Input parameters
+       o x : real valued vector [1,N] samples support of the function y
+       o y :  real valued vector [1,N] samples of function y = y(x)
+       o ccv : optional argument to choose between convex (ccv = 0) and con-
+         cave (ccv = 1) envelope.  Default value is ccv = 1 (concave)
+Output parameters
+       o u : real valued vector [1,M]  Legendre transform of input y. Note
+         that, since u stems from the envelope of y, in general M <= N.
+       o s : real valued vector [1,M] Variable of the Legendre transform of
+         y.
+See also:
+
+Example:
+   Function synthesis
+
+  m0 = .55 ; m1 = 1 - m0 ;
+  m2 = .95 ; m3 = 1 - m2 ;
+  q = linspace(-20,20,201) ;
+  tau1 = - log2(exp(q.*log(m0)) + exp(q.*log(m1))) ;
+  tau2 = - log2(exp(q.*log(m2)) + exp(q.*log(m3))) ;
+  tau3 = min(tau1 , tau2) ;
+
+   Legendre Transforms
+
+  [u1,s1] = flt(q,tau1) ;
+  [u2,s2] = flt(q,tau2) ;
+  [u3,s3] = flt(q,tau3) ;
+
+   Vizualisation - Matlab
+
+  plot(s1,u1,'g',s2,u2,'b',s3,u3,'r') ; grid ;
+  legend('u(tau1(q))','u(tau2(q))','u(tau3(q))') ;
+
+   Vizualisation - Scilab
+
+  plot2d(s3,u3,17) ; plot2d(s1,u1,18,'001') ; plot2d(s2,u2,19,'001') ;

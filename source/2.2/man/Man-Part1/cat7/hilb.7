@@ -1,0 +1,66 @@
+
+
+
+hilb(1)                        Scilab Function                        hilb(1)
+
+
+
+
+
+
+NAME
+  hilb - Hilbert transform
+
+CALLING SEQUENCE
+  [xh]=hilb(n[,wtype][,par])
+
+PARAMETERS
+
+  n         : odd integer : number of points in filter
+
+  wtype     : string : window type ('re','tr','hn','hm','kr','ch') (default
+            ='re')
+
+  par       : window parameter for wtype='kr' or 'ch' default par=[0 0] see
+            the function window for more help
+
+  xh        : Hilbert transform
+
+DESCRIPTION
+  returns the first n points of the Hilbert transform centered around the
+  origin.
+
+  That is, xh=(2/(n*pi))*(sin(n*pi/2))^2.
+
+AUTHOR
+  C. B.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

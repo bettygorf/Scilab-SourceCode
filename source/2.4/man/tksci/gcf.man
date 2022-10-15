@@ -1,0 +1,39 @@
+.TH "gcf" 2 " 04 June 1998" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+gcf - gets the current figure
+.sp
+Author: Bertrand Guiheneuf
+.sp
+Retrieve the current active tksci figure (toplevel window).
+.sp
+.sp
+.SH Usage
+h=gcf()
+.SH Input parameter
+None
+.SH Output parameters
+handle of the current figure.
+.SH Description
+The current figure is the last created (and still existent) figure.
+.SH EXAMPLE
+.nf
+figure(5);
+figure();
+figure();
+gcf()
+// returns 2
+close(gcf());
+// close figure 2
+gcf()
+// returns 1
+close(1);
+gcf()
+// returns 5
+close(5);
+.fi 
+.ec
+.ft P
+.sp
+.SH See also
+figure, close

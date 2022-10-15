@@ -1,0 +1,13 @@
+
+sign(1)                        Scilab Function                        sign(1)
+NAME
+  sign - sign function
+
+DESCRIPTION
+   X=sign(A) returns the matrix made of the signs of A(i,j).  function.
+
+EXAMPLE
+  sign(rand(2,3));
+
+SEE ALSO
+  sign

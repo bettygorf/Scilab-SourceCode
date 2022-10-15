@@ -1,0 +1,21 @@
+.TH ascii 3 "April 1998" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ascii - string ascii conversions 
+.SH CALLING SEQUENCE
+.nf
+a=ascii(txt)
+txt=ascii(a)
+.fi
+.SH PARAMETERS
+.TP 10
+txt
+: character string. 
+.TP
+a
+: vector of integer ascii codes
+.SH DESCRIPTION
+This function convert Scilab string to a vector of ascii code or
+vector of ascii code to Scilab strings
+.SH SEE ALSO
+code2str, str2code

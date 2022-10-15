@@ -1,0 +1,30 @@
+.TH xnumb 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xnumb - draw numbers
+.SH CALLING SEQUENCE
+.nf
+xnumb(x,y,nums,[box])
+.fi
+.SH PARAMETERS
+.TP 10
+x,y,nums
+: vectors of same size.
+.TP
+box 
+: integer value.
+.LP 
+.SH DESCRIPTION
+\fVxnumb\fR draws the value of \fVnums(i)\fR
+at position \fVx(i),y(i)\fR in the current scale.
+If \fVbox\fR is 1, a box is drawn around the numbers.
+.SH EXAMPLE 
+.nf
+plot2d([-100,500],[-100,600],[-1,-1],"022")
+x=0:100:200;
+xnumb(x,500*ones(x),[10,20,35],1)
+.fi
+.SH SEE ALSO
+xstring
+.SH AUTHOR
+J.Ph.C.

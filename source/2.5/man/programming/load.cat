@@ -1,0 +1,40 @@
+
+load(1)                        Scilab Function                        load(1)
+NAME
+  load - load saved variable
+
+CALLING SEQUENCE
+  load(filename [,x1,...,xn])
+  load(fd [,x1,...,xn])
+
+PARAMETERS
+
+  filename  : character string containing the path of the file
+
+  fd        : a file descriptor given by a call to mopen
+
+  xi        : arbitrary Scilab variable name(s) given as strings.
+
+DESCRIPTION
+  The load command can be used to reload in the Scilab session variables pre-
+  viously saved in a file with the save command.
+
+  load(filename) loads the variables saved in file given by its path file-
+  name.
+
+  load(fd) loads the variables saved in file given by its descriptor fd.
+  load(filename,'x','y') or load(fd,'x','y') loads only variables x,y.
+COMPATIBLITY
+  Even if the binary file format has changed with 2.5 version, load(file-
+  name,...) is able to read old format files. Previous file format can be
+  accessed for a while using function oldsave ans oldload.
+
+EXAMPLES
+  a=eye(2,2);b=ones(a);
+  save('vals.dat',a,b);
+  clear a
+  clear b
+  load('vals.dat','a','b');
+
+SEE ALSO
+  save, getf, mopen

@@ -1,0 +1,32 @@
+.TH stacksize 1 "October 1995" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+stacksize - set scilab stack size 
+.SH CALLING SEQUENCE
+.nf
+stacksize(n)
+szstacksize()
+.fi
+.SH PARAMETERS
+.TP 10
+n
+: integer, the required stack size given in number of double precision
+words
+.TP
+sz
+: 2-vector [total used] 
+.SH DESCRIPTION
+Scilab stores all variables in a unique stack
+\fVstk\fR. 
+
+\fVstacksize(n)\fR allows the user to increase or decrease this
+stack current size. The maximum allowed size depends on the amount of
+cpu memory and swap space, and on the others tools running.
+
+This function with the \fVn\fR argument may only be called at the main
+prompt time. It cannot be called within a scilab function. 
+
+\fVsz=stacksize()\fR returns a 2-vector which contains  the current
+total and used stack size. It can be used everywhere.
+.SH SEE ALSO
+who

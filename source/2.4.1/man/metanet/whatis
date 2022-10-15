@@ -1,0 +1,76 @@
+add_edge - adds an edge or an arc between two nodes  
+add_node - adds a disconnected node to a graph  
+adj_lists - computes adjacency lists  
+arc_graph - graph with nodes corresponding to arcs  
+arc_number - number of arcs of a graph  
+articul - finds one or more articulation points  
+bandwr - bandwidth reduction for a sparse matrix  
+best_match - best matching of a graph  
+chain_struct - chained structure from adjacency lists of a graph  
+check_graph - checks a scilab graph list  
+circuit - finds a circuit or the rank function in a directed graph  
+con_nodes - set of nodes of a connected component  
+connex - connected components  
+contract_edge - contracts edges between two nodes  
+convex_hull - convex hull of a set of points in the plane  
+cycle_basis - basis of cycle of a simple undirected graph  
+delete_arcs - deletes all the arcs or edges between a set of nodes  
+delete_nodes - deletes nodes  
+edge_number - number of edges of a graph  
+find_path - finds a path between two nodes  
+gen_net - generation of a network  
+girth - girth of a directed graph  
+glist - graph list creation  
+graph-list - description of graph list  
+graph_2_mat - node-arc or node-node incidence matrix of a graph  
+graph_center - center of a graph  
+graph_complement - complement of a graph  
+graph_diameter - diameter of a graph  
+graph_power - kth power of a directed 1-graph  
+graph_simp - converts a graph to a simple undirected graph  
+graph_sum - sum of two graphs  
+graph_union - union of two graphs  
+hamilton - hamiltonian circuit of a graph  
+is_connex - connectivity test  
+knapsack - solves a 0-1 multiple knapsack problem  
+line_graph - graph with nodes corresponding to edges  
+load_graph - loads a graph  
+make_graph - makes a graph list  
+mat_2_graph - graph from node-arc or node-node incidence matrix  
+max_cap_path - maximum capacity path  
+max_clique - maximum clique of a graph  
+max_flow - maximum flow between two nodes  
+mesh2d - triangulation of n points in the plane  
+metanet - opens a metanet window  
+metanet_sync - asynchronous or synchronous mode in metanet  
+min_lcost_cflow - minimum linear cost constrained flow  
+min_lcost_flow1 - minimum linear cost flow  
+min_lcost_flow2 - minimum linear cost flow  
+min_qcost_flow - minimum quadratic cost flow  
+min_weight_tree - minimum weight spanning tree  
+neighbors - nodes connected to a node  
+netclose - closes a metanet window  
+netwindow - chooses a metanet window  
+netwindows - gets the numbers of metanet windows  
+node_number - number of nodes of a graph  
+nodes_2_path - path from a set of nodes  
+nodes_degrees - degrees of the nodes of a graph  
+path_2_nodes - set of nodes from a path  
+perfect_match - min-cost perfect matching  
+pipe_network - solves the pipe network problem  
+plot_graph - general plot of a graph  
+predecessors - tail nodes of incoming arcs of a node  
+qassign - solves a quadratic assignment problem  
+salesman - solves the travelling salesman problem  
+save_graph - saves a graph  
+shortest_path - shortest path  
+show_arcs - highlights a set of arcs  
+show_graph - displays a graph  
+show_nodes - highlights a set of nodes  
+split_edge - splits an edge by inserting a node  
+strong_con_nodes - set of nodes of a strong connected component  
+strong_connex - strong connected components  
+subgraph - subgraph of a graph  
+successors - head nodes of outgoing arcs of a node  
+supernode - replaces a group of nodes with a single node  
+trans_closure - transitive closure  

@@ -1,0 +1,44 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+SYS_LIBRARIES = 	../../libs/comm.a -lm
+DEPLIBS =
+
+#if defined(WithLocalXaw)
+XAWLIB = ../../libs/libXaw.a 
+XMULIB = ../../libs/libXmu.a
+XMULIBONLY = ../../libs/libXmu.a
+#endif
+
+LOCAL_LIBRARIES = XawClientLibs
+
+SRCS =	actions.c alert.c attributes.c bezier.c choose.c color.c \
+	comm.c create.c dialog.c dialogs.c draw.c file.c find.c font.c \
+	graph.c \
+	graphics.c init.c \
+	list.c load.c menu.c message.c metanet.c modify.c movedraw.c \
+	name.c save.c scilab.c show.c study.c text.c
+
+OBJS =	actions.o alert.o attributes.o bezier.o choose.o color.o \
+	comm.o create.o dialog.o dialogs.o draw.o file.o find.o font.o \
+	graph.o \
+	graphics.o init.o \
+	list.o load.o menu.o message.o metanet.o modify.o movedraw.o \
+	name.o save.o scilab.o show.o study.o text.o
+
+PROGRAM = $(SCIDIR)/bin/xmetanet
+XMETANET_DEFAULT = $(SCIDIR)/X11_defaults/Metanet-color
+
+AllTarget($(PROGRAM) $(XMETANET_DEFAULT))
+NormalProgramTarget($(PROGRAM),$(OBJS),$(DEPLIBS),$(LOCAL_LIBRARIES),$(SYS_LIBRARIE))
+DependTarget()
+
+$(XMETANET_DEFAULT): Metanet-color.ad
+	rm -f $(SCIDIR)/X11_defaults/Metanet-color
+	cp Metanet-color.ad $(XMETANET_DEFAULT)
+
+distclean:: clean 
+
+clean::
+	rm -f $(XMETANET_DEFAULT)
+

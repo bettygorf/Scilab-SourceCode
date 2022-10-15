@@ -1,0 +1,66 @@
+
+
+
+SFACT(G)                       Scilab Function                       SFACT(G)
+
+
+
+
+
+
+NAME
+  sfact - discrete spectral factorization
+
+CALLING SEQUENCE
+  [F]=sfact(P)
+
+PARAMETERS
+
+  P    : real polynomial matrix
+
+DESCRIPTION
+  Finds a spectral factor of P. P is a polynomial matrix assumed such that
+  each root of P has a mirror image w.r.t the unit circle.
+
+  sfact(P) returns a Hurwitz (stable) polynomial matrix such that
+
+  P = F(z)* F(1/z) *z^n
+
+  For scalar polynomials a specific algorithm is implemented.  Algorithms are
+  from Kucera's book.
+
+SEE ALSO
+  fspec, fspecg.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

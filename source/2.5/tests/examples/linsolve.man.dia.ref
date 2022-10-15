@@ -1,0 +1,45 @@
+ 
+clear;lines(0);
+ 
+A=rand(5,3)*rand(3,8);
+ 
+b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   //compatible b
+ ans  =
+ 
+   1.0D-14 *
+ 
+! - 0.1776357 !
+! - 0.1776357 !
+! - 0.1776357 !
+! - 0.1776357 !
+! - 0.1776357 !
+ 
+b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   //uncompatible b
+WARNING:Conflicting linear constraints!
+ ans  =
+ 
+!   1. !
+!   1. !
+!   1. !
+!   1. !
+!   1. !
+ 
+A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x is unique
+ kerA  =
+ 
+     []
+ x  =
+ 
+!   4.3109081 !
+!   1.2677427 !
+!   2.4554233 !
+! - 8.1041534 !
+!   1.7909285 !
+ ans  =
+ 
+!   4.3109081 !
+!   1.2677427 !
+!   2.4554233 !
+! - 8.1041534 !
+!   1.7909285 !
+ 

@@ -1,0 +1,31 @@
+
+AFFICH_f(5)                     Scicos Block                      AFFICH_f(5)
+NAME
+  AFFICH_f - Scicos numerical display
+
+DIALOGUE PARAMETERS
+
+  font           : integer, the selected font number (see xset)
+
+  fontsize       : integer, the selected font size (set xset)
+
+  color          : integer, the selected color for the text (see xset)
+
+  Total numer of digits
+                 : an integer greater than 3, the maximum number of digits
+                 used to represent the number (sign, integer part and
+                 rational part)
+
+  rational part number of digits
+                 : an integer greater than or equal 0, the number of digits
+                 used to represent the  rational part
+DESCRIPTION
+  This block  displays the value of its unique input inside the block (in the
+  diagram) during simulation. The block must be located in the main Scicos
+  window.
+
+  Warning: each time the block is moved user must click on it to set its
+  parameters. The display position is then automatically updated.
+
+SEE ALSO
+  SCOPE_f

@@ -1,0 +1,10 @@
+
+fcontour2d(2)                  Scilab Function                  fcontour2d(2)
+NAME
+  fcontour2d - level curves of surface on a 2D graphics
+
+CALLING SEQUENCE
+  fcontour2d(x,y,z,nz,[style,strf,leg,rect,nax])
+
+DESCRIPTION
+  see fcontour

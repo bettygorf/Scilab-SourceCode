@@ -1,0 +1,25 @@
+.TH hrmt 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+hrmt - gcd of polynomials
+.SH CALLING SEQUENCE
+.nf
+[pg,U]=hrmt(v)
+.fi
+.SH PARAMETERS
+.TP
+v
+: row of polynomials i.e. \fV1\fRx\fVk\fR polynomial matrix
+.TP
+pg
+: polynomial
+.TP
+U
+: unimodular matrix polynomial
+.SH DESCRIPTION
+.Vb [pg,U]=hrmt(v)
+returns a unimodular matrix \fVU\fR and  \fVpg\fR = gcd of row of 
+polynomials \fVv\fR such that \fVv*U = [pg,0]\fR.
+.SH SEE ALSO
+gcd
+

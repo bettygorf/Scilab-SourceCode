@@ -1,0 +1,33 @@
+.TH hankelsv 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+hankelsv - Hankel singular values
+.SH CALLING SEQUENCE
+.nf
+[nk2,W]=hankelsv(sl [,tol])
+[nk2]=hankelsv(sl [,tol])
+.fi
+.SH PARAMETERS
+.TP 10
+sl
+: \fVsyslin\fR list representing the linear system (state-space).
+.TP
+tol
+: tolerance parameter for detecting imaginary axis modes
+(default value is \fV1000*%eps\fR).
+.SH DESCRIPTION
+returns \fVnk2\fR, the squared Hankel singular values of \fVsl\fR
+and \fVW = P*Q\fR = controllability gramian times observability
+gramian.
+.LP
+\fVnk2\fR is the vector of eigenvalues of \fVW\fR.
+.SH EXAMPLE
+.nf
+A=diag([-1,-2,-3]);
+sl=syslin('c',A,rand(3,2),rand(2,3));[nk2,W]=hankelsv(sl)
+[Q,M]=pbig(W,nk2(2)-%eps,'c');
+slr=projsl(sl,Q,M);hankelsv(slr)
+.fi
+.SH SEE ALSO
+balreal, equil, equil1 
+

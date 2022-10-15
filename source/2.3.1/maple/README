@@ -1,0 +1,6 @@
+This directory contains the source code of Maple
+functions which allow the transfer of Maple objects
+into Scilab functions. For efficiency, the transfer
+is made through Fortran.
+
+"examples.maple" gives Maple examples of the use of "maple2scilab" procedure.

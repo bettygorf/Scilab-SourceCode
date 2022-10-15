@@ -1,0 +1,67 @@
+.TH sysconv 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sysconv - system conversion
+.SH CALLING SEQUENCE
+.nf
+[s1,s2]=sysconv(s1,s2)
+.fi
+.SH PARAMETERS
+s1,s2
+: list (linear \fVsyslin\fR systems)
+.SH DESCRIPTION
+Converts \fVs1\fR and \fVs2\fR into common representation in order that
+system interconnexion operations can be applied. Utility function for
+experts. The conversion rules in given in the following table.
+.TP 8
+"c"  
+: continuous time system
+.TP
+"d"  
+: discrete time system
+.TP
+n
+: sampled system with sampling period n
+.TP
+[]
+: system with undefined time domain
+
+For mixed systems \fVs1\fR and \fVs2\fR are put in state-space representation.
+.nf
+ s1\\s2|    "c"     |     "d"     |      n2        |     []     |
+ ---------------------------------------------------------------
+ "c"   | nothing    |uncompatible | c2e(s1,n2)     |  c(s2)     |
+ ---------------------------------------------------------------
+ "d"   |uncompatible| nothing     | e(s1,n2)       |  d(s2)     |
+ ---------------------------------------------------------------
+ n1    | c2e(s2,n1) | e(s2,n1)    | n1<>n2 uncomp  |  e(s2,n1)  |
+       |            |             | n1=n2  nothing |            |
+ ---------------------------------------------------------------
+ []    | c(s1)      | d(s1)       | e(s1,n2)       |  nothing   |
+ ---------------------------------------------------------------
+.fi
+With the following meaning:
+.TP 12
+n1,n2    
+: sampling period
+.TP
+c2e(s,n) 
+: the continuous-time system s is transformed into
+a sampled system with sampling period n.
+.TP
+c(s)     
+: conversion to continuous (time domain is \fV"c"\fR)
+.TP
+d(s)     
+: conversion to discrete (time domain is \fV"d"\fR)
+.TP
+e(s,n)   
+: conversion to samples system with period \fVn\fR
+.SH EXAMPLE
+.nf
+s1=ssrand(1,1,2);
+s2=ss2tf(s1);
+[s1,s2]=sysconv(s1,s2);
+.fi
+.SH SEE ALSO
+syslin, ss2tf, tf2ss

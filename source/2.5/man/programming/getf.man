@@ -1,0 +1,60 @@
+.TH getf 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+getf - loading function
+.SH CALLING SEQUENCE
+.nf
+getf(file-name [,opt])
+.fi
+.SH PARAMETERS
+.TP 10
+filename
+: Scilab string.
+.TP
+opt
+: optional character string 
+.RS
+.TP
+ "c"
+: loaded functions are "compiled" to be more efficient (default)
+.TP
+ "n" 
+: loaded functions are not "compiled"
+.RE
+
+.SH DESCRIPTION
+loads one or several 
+functions defined in the file \fV'file-name'\fR.
+The string \fVopt='n'\fR means that the functions are not  
+compiled (pre-interpreted) when loaded. This can be useful for some 
+debugging purpose (see \fVcomp\fR). By default, functions are compiled
+when loaded (i.e. \fVopt='c'\fR is used).
+.LP
+In the  file  a function must begin by a "syntax definition" line as follows:
+.nf 
+function [y1,...,yn]=foo(x1,...,xm)
+.fi
+followed by a sequence of scilab instructions.
+.LP
+The "syntax definition" line gives the "full" calling syntax of this
+function. The \fVyi\fR are output variables calculated as functions of
+input variables \fVxi\fR and variables existing in Scilab when the
+function is executed. Shorter input or output argument list may be
+used.
+.LP
+Many functions may be written in the same file. A function is
+terminated by an \fVendfunction\fR keyword, the following
+\fVfunction\fR keyword or the \fVEOF\fR mark.
+.LP
+.SH REMARK
+Last line of  the file must be terminated by a newline to be taken
+into account.
+.SH EXAMPLE
+.nf
+	getf('SCI/macros/xdess/plot.sci')
+.fi
+.SH SEE ALSO
+genlib, getd, exec, edit, comp
+
+
+

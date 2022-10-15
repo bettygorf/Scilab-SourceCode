@@ -1,0 +1,39 @@
+.TH varn 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+varn - symbolic variable of a polynomial
+.SH CALLING SEQUENCE
+.nf
+[symb]=varn(p)
+[pm]=varn(x,var)
+.fi
+.SH PARAMETERS
+.TP 10
+p
+: polynomial (or matrix polynomial)
+.TP 10
+symb
+: character string
+.TP 10
+x
+: polynomial or polynomial matrix
+.TP 10
+var
+: symbolic variable (character string)
+.TP 10
+pm
+: matrix or polynomial matrix
+.SH DESCRIPTION
+\fVsymb=varn(p)\fR returns in \fVsymb\fR the symbolic variable of the polynomial \fVp\fR
+(i.e. \fVvarn(poly(0,'x'))\fR is \fV'x'\fR).
+.LP
+\fVvarn(x,'s')\fR returns a polynomial matrix with same coefficients
+as \fVx\fR but with \fV's'\fR as symbolic variable (change of variable name).
+.SH EXAMPLE
+.nf
+s=poly(0,'s');p=[s^2+1,s];
+.fi
+\fVvarn(p)\fR is the string \fV's'\fR and \fVvarn(p,'x')\fR is the polynomial matrix
+\fV[x^2+1,x]\fR
+.SH SEE ALSO
+horner, poly

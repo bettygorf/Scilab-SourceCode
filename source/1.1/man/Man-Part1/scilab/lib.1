@@ -1,0 +1,52 @@
+.TH lib 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+lib - library definition
+.SH CALLING SEQUENCE
+.nf
+[xlib]=lib('lib_path')
+.fi
+.SH PARAMETERS
+.TP 10
+lib_path
+: character string
+.SH DESCRIPTION
+\fVlib_path\fR is a character string defining the path of a
+directory containing macros . This directory must contain the binary files \fVnames(i).bin\fR and
+an additional file \fVnames\fR (which contains the names of the macros).
+After the command \fVlib\fR all the macros of \fVlib_path\fR can be called interactively by Scilab.
+Such a binary file, for example \fVfoo.bin\fR can be created
+by Scilab using the command \fVsave(lib_path+'/foo.bin',foo)\fR.
+.SH EXAMPLE
+.nf
+ deff('[z]=myplus(x,y)','z=x+y')
+ deff('[z]=yourplus(x,y)','x=x-y')
+.fi
+are two macros and \fVlib_path\fR is : \fVlib_path='/usr/mymachine/mydirectory'\fR
+.LP
+This directory contains the file \fVnames\fR including \fVmyplus 
+(first line of the file) and yourplus\fR (second line of the file).
+.LP
+\fVmyplus\fR and \fVyourplus\fR are compiled macros respectively saved 
+in the files 
+.LP
+.Vb '/usr/mymachine/mydirectory/myplus.bin'
+.LP
+.Vb '/usr/mymachine/mydirectory/yourplus.bin'
+.LP
+by the command:
+.nf
+ save(lib_path+'/myplus.bin',myplus)
+ save(lib_path+'/yourplus.bin',yourplus)
+.fi
+A library can now be created with the command:
+.nf
+ xlib=lib(lib_path+'/')
+.fi
+\fVxlib\fR is then a Scilab variable which can be saved and loaded
+in a future session of Scilab or defined on-line or
+put in the startup file. The macros in this library are known by
+Scilab which loads them when necessary.
+.SH SEE ALSO
+save, macros, whereis, SCIDIR/macros subdirectories
+

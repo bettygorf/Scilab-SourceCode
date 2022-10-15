@@ -1,0 +1,40 @@
+
+holder2d(2)                    Scilab Function                    holder2d(2)
+NAME
+  holder2d - holder exponents of a measures defined on 2D real signal
+
+Usage
+  [holder]=holder2d(Input,[Meas],[Res],[Ref],[RefMeas])
+
+Input parameters
+       o Input : real matrix [m,n] Contains the signal to be analysed.
+       o Meas : string Analysing measure. Must choosen be in {"sum", "var",
+         "ecart", "min", "max", "iso", "riso", "asym", "aplat", "contrast",
+         "lognorm", "varlog", "rho", "pow", "logpow", "frontmax", "frontmin",
+         "diffh", "diffv", "diffmin", "diffmax"} (default : "sum")
+       o res : Number of resolutions used for the computation. (default : 1)
+       o Ref : real matrix [m,n] Contains the reference signal i.e. the sig-
+         nal on which the reference measure will be computed.  Input and Ref
+         must have the same dimensions.
+       o RefMeas : string Reference measure. (default : "sum")
+Output parameters
+       o holder : real matrix [m,n] Contains the Holder exponents.
+Description
+
+Introduction
+  This routines computes holder exponents by regressing an analysing measure
+  (in a log-log plot) at different scales.  Given a pixel, one defines a
+  (square) window around it. The window size is called the resolution.  The
+  specified measure (or capacity) is then evaluated on the set defined by the
+  window.  For example, in the case of the "sum" measure, at resolution 2, a
+  5x5 square center on a pixel p0 is extracted from the input image. The mean
+  of the gray levels of the obtained pixels defines the measure at pixel p0
+  and resolution 2.  The measure type is thus given by the input parameter
+  Meas whereas the actual measure is obtained through the input signal.  In
+  the case of a simple measure analysis, the regression is computed with
+  respect to the size of the window, this corresponds to comparing the
+  analysing measure to  the Lebesgue measure.  Nevertheless, it is possible
+  to compute the regression by comparison with a reference measure given by
+  the last two parameters.
+AUTHOR
+  Author: Pascal Mignot - Bertrand Guiheneuf

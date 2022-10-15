@@ -1,0 +1,32 @@
+
+pvm_kill(1)                    Scilab function                    pvm_kill(1)
+NAME
+  pvm_kill -  Terminates a specified PVM process.
+
+CALLING SEQUENCE
+  [infos] = pvm_kill(tids)
+
+PARAMETERS
+
+  tids : row of integer, task identifier of the PVM process to be killed (not
+       yourself).
+
+  infos
+      : row of integer, status code returned by the routine.  Values less
+      than zero indicate an error.
+
+DESCRIPTION
+  pvm_kill sends a terminate (SIGTERM) signal to the PVM process identified
+  by tids.  In the case of multiprocessors the terminate signal is replaced
+  with a host dependent method for killing a process.  If pvm_kill is suc-
+  cessful,
+  The array infos can be checked to determine the status for each process.
+  Values less than zero indicate an error, while zero values indicate a suc-
+  cess.
+
+  pvm_kill is not designed to kill the calling process.  To kill yourself in
+  C call pvm_exit() followed by quit().
+EXAMPLE
+  info = pvm_kill(262153)
+SEE ALSO
+  pvm_exit

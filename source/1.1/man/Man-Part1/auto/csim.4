@@ -1,0 +1,51 @@
+.TH csim 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+csim - simulation (time response) of linear system
+.SH CALLING SEQUENCE
+.nf
+[y [,x]]=csim(u,t,sl,[x0])
+.fi
+.SH PARAMETERS
+.TP 
+u
+: macro,list or string (control)
+.TP 
+t
+: real vector specifying times  with, \fVt(1)\fR is the initial 
+time (\fVx0=x(t(1))\fR).
+.TP
+sl
+: list (\fVsyslin\fR)
+.TP
+y
+: a  matrix such that   \fVy=[y(t(i)]\fR, i=1,..,n
+.TP
+x
+: a  matrix such that   \fVx=[x(t(i)]\fR, i=1,..,n
+.SH DESCRIPTION
+simulation of the controlled linear system \fVsl\fR.
+\fVsl\fR is assumed to be a continuous-time system 
+represented by a \fVsyslin\fR list.
+.LP
+\fVu\fR is the control and \fVx0\fR the initial state.
+.LP
+\fVy\fR is the output and \fVx\fR the state.
+.LP
+The control can be:
+.LP
+1. a macro : \fV[inputs]=u(t)\fR
+.LP
+2. a list : \fVlist(ut,parameter1,....,parametern)\fR such that:
+\fVinputs=ut(t,parameter1,....,parametern)\fR (\fVut\fR is a macro)
+.LP
+3. the string \fV"impuls"\fR for impulse response calculation
+(here \fVsl\fR is assumed SISO without direct feed through and \fVx0=0\fR)
+.LP
+4. the string \fV"step"\fR for step response calculation 
+(here \fVsl\fR is assumed SISO without direct feed-through and \fVx0=0\fR)
+.SH SEE ALSO
+syslin, dsimul, flts, ltitr, rtitr, ode, impl
+
+
+

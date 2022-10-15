@@ -1,0 +1,32 @@
+ 
+clear;lines(0);
+ 
+[1,2]+1
+ ans  =
+ 
+!   2.    3. !
+ 
+[]+2
+ ans  =
+ 
+    2.  
+ 
+s=poly(0,"s");
+ 
+s+2
+ ans  =
+ 
+    2 + s   
+ 
+1/s+2
+ ans  =
+ 
+    1 + 2s   
+    ------   
+      s      
+ 
+"cat"+"enate"
+ ans  =
+ 
+ catenate   
+ 

@@ -1,0 +1,24 @@
+
+AtanH(2)                       Scilab Function                       AtanH(2)
+NAME
+  AtanH - Arctangent variation
+
+  Author: Paulo Goncalves
+
+  Generates an arc-tangent trajectory
+
+Usage
+
+  Ht=AtanH(N,h1,h2,shape);
+Input parameters
+       o  N  : Positive integer Sample size of the trajectory
+       o  h1  : Real scalar First value of the arc-tangent trajectory
+       o  h2  : Real scalar Last value of the arc-tangent trajectory
+       o  shape  : real in [0,1] smoothness of the trajectory shape = 0 :
+         constant piecewise (step function) shape = 1 : linear
+Output parameters
+       o  Ht  : real vector  [1,N] Time samples of the arc-tangent trajectory
+See also:
+
+Example:
+  [Ht] = AtanH(1024,0,1,0.9,0.01) ;

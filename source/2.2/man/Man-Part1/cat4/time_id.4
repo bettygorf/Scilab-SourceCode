@@ -1,0 +1,66 @@
+
+
+
+time_id(4)                     Scilab Function                     time_id(4)
+
+
+
+
+
+
+NAME
+  time_id - SISO least square identification
+
+CALLING SEQUENCE
+  [H [,err]]=time_id(n,u,y)
+
+PARAMETERS
+
+  n         : order of transfer
+
+  u         : one of the following
+
+            u1          :a vector of inputs to the system
+
+            "impuls"    : if y is an impulse response
+
+            "step"      : if y is a step response.
+
+  y         : vector of response.
+
+  H         : rational function with degree n denominator and degree n-1
+            numerator.
+
+  err       : ||y - impuls(H,npt)||^2, where impuls(H,npt) are the npt first
+            coefficients of impulse response of H
+
+DESCRIPTION
+  identification of discrete time response (least square).
+
+AUTHOR
+  Serge Steer INRIA
+
+SEE ALSO
+  imrep2ss , arl2 , armax, frep2tf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+.TH savewave 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+savewave - save data into a sound <<wav>> file.
+.SH CALLING SEQUENCE
+.nf
+savewave('file-name',x [, rate ]);
+.fi
+.SH PARAMETERS
+.TP
+x
+: vector 
+.TP
+rate
+: a scalar. 22050 is the default value.
+.SH DESCRIPTION 
+save x into a  wav sound file. you can transform other sound files
+into wav file with the \fVsox\fR program.
+.SH EXAMPLE
+.nf
+// At first we create 0.5 seconds of sound parameters.
+t=soundsec(0.5);
+// Then we generate the sound.
+s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
+[nr,nc]=size(t);
+s(nc/2:nc)=sin(330*t(nc/2:nc));
+savewave(TMPDIR+'/foo.wav',s);
+.fi
+.SH SEE ALSO
+loadwave,  analyze, mapsound
+
+
+

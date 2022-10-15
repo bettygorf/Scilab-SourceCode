@@ -1,0 +1,106 @@
+
+overloading(1)                  Scilab keyword                 overloading(1)
+NAME
+  overloading - display, functions and operators overloading capabilities
+
+DESCRIPTION
+  In scilab, variable display, functions and operators may be defined for new
+  objects using  functions (scilab coded or primitives).
+
+  Display        : The display of new objects defined by tlist structure may
+                 be overloaded (the default display is similar to list's
+                 one). The overloading function must have no output argument
+                 a single input argument. It's name is formed as follow
+                 %<tlist_type>_p where %<tlist_type> stands for the first
+                 entry of the tlist type component.
+
+  Operators      : Each operator which is not defined for given operands type
+                 may be defined. The overloading function must have a single
+                 output argument and one or two inputs according to the num-
+                 ber of operands. The function name is formed as follow:
+
+  for binary operators: %<first_operand_type>_<op_code>_<second_operand_type>
+
+  for unary operators: %<operand_type>_<op_code>
+
+  extraction and insertion operators which are n-nary operators are described
+  below.
+
+  <operand_type>, <first_operand_type>, <second_operand_type>  are sequence
+  of characters associated with each data type as described in the following
+  table:
+
+  string           c
+  polynomial       p
+  function         m
+  constant         s
+  list             l
+  tlist            <tlist_type>
+  boolean          b
+  sparse           sp
+  boolean sparse   spb
+  <op_code> is a single character associated with each operator as described
+  in the following table:
+
+   '               t
+   +               a
+   -               s
+   *               m
+   /               r
+   \\              l
+   ^               p
+   .*              x
+   ./              d
+   .\\             q
+   .*.             k
+   ./.             y
+   .\\.            z
+   :               b
+   .*              u
+   /.              v
+   \\.             w
+   [a,b]           c
+   [a;b]           f
+   () extraction   e
+   () insertion    i
+   ==              o
+   <>              n
+   |               g
+   &               h
+   .^              j
+   ~               5
+   .'              0
+   <               1
+   >               2
+   <=              3
+   >=              4
+  The overloading function for extraction syntax b=a(i1,...,in) has the fol-
+  lowing calling sequence: b=%<type_of_a>_e_(i1,...,in,a)
+
+  and the syntax [x1,..,xm]=a(i1,...,in) has the following calling sequence:
+  [x1,..,xm]=%<type_of_a>_e_(i1,...,in,a)
+
+  The overloading function associated to the insertion syntax a(i1,...,in)=b
+  has the following calling sequence:
+  a=%<type_of_a>_i_<type_of_b>(i1,...,in,a,b).
+type. When
+  Functions : Some basic primitive function may also be overloaded for new
+       data
+       such a function is undefined for a particular data types the function
+       %<type_of_an_argument>_<function_name> is called. User may add in this
+       called function the definition associated with the input data types.
+
+SEE ALSO
+  tlist, disp, symbols
+
+EXAMPLES
+  //DISPLAY
+  deff('[]=%tab_p(l)','disp([['' '';l(3)] [l(2);string(l(4))]])')
+  tlist('tab',['a','b'],['x';'y'],rand(2,2))
+
+  //OPERATOR
+  deff('x=%c_a_s(a,b)','x=a+string(b)')
+
+  //FUNCTION
+  deff('x=%c_sin(a)','x=''sin(''+a+'')''')
+  sin('2*x')

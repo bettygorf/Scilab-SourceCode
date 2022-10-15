@@ -1,0 +1,258 @@
+.TH printf 1 "May 1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+printf,fprintf,sprintf - Emulator of C language printf functions
+.SH SYNOPSIS
+.nf
+printf(format,value_1,..,value_n)
+fprintf(file,format,value_1,..,value_n)
+str=sprintf(format,value_1,..,value_n)
+.fi
+.SH PARAMETERS
+.TP 10
+format
+: Specifies a character string combining literal characters with conversion
+specifications.
+.TP
+value_i
+: Specifies the data to be converted according to the format parameter.
+.TP
+str
+: column vector of character strings
+.SH DESCRIPTION
+The \fVprintf(\|)\fR function converts, formats, and writes its
+\fVvalue\fR parameters, under control of the \fVformat\fR parameter,
+to the standard output.
+.PP
+The \fVfprintf(\|)\fR function converts, formats, and writes
+its \fVvalue\fR parameters, under control of the \fVformat\fR
+parameter, to the file specified by its \fVfile\fR parameter.
+.PP
+The \fVsprintf\fR function converts, formats, and stores its
+\fVvalue\fR parameters, under control of the \fVformat\fR parameter.
+.PP
+The \fVformat\fR parameter is a character string that contains two
+types of objects:
+.TP 10
+Literal characters
+: which are copied to the output stream.
+.TP
+Conversion specifications
+: each of which causes zero or more items
+to be fetched from the \fVvalue\fR parameter list.
+.PP
+
+If there are not enough items for \fVformat\fR in the
+\fVvalue\fR parameter list, \fVsprintf\fR generate an error.
+If any \fVvalue\fRs remain after the entire \fVformat\fR has been
+processed, they are ignored.
+
+Conversion Specifications
+
+Each conversion specification in the \fVformat\fR parameter
+has the following syntax:
+
+.TP 10
+A % (percent) sign.
+.TP
+Zero or more \fVoptions\fR, which modify the meaning of the
+conversion specification.
+The following list contains the \fVoption\fR characters and their
+meanings:
+.RS
+.TP 8
+-
+: Left align, within the field, the result of the conversion.
+.TP
++
+: Begin the result of a signed conversion with a sign (+ or -).
+.TP
+"space"
+: Prefix a space character to the result if the first character of a
+signed conversion is not a sign.
+If both the (space) and + options appear, the (space) option is
+ignored.
+.TP
+#
+: Convert the value to an alternate form.
+For \fVc\fR, \fVd\fR, \fVi\fR, \fVs\fR, and \fVu\fR conversions, the \fV#\fR
+option has no effect.
+For \fVo\fR conversion, \fV#\fR increases the precision to force the first
+digit of the result to be a 0 (zero).
+For \fVx\fR and \fVX\fR conversions, a nonzero result has 0x or 0X
+prefixed to it.
+For \fVe, E, f, g,\fR and \fVG\fR conversions, the result always
+contains a decimal point, even if no digits follow it.
+For \fVg\fR and \fVG\fR conversions, trailing zeros are not removed
+from the result.
+.TP
+0
+: Pad to the field width, using leading zeros (following any indication of
+sign or base) for \fVd\fR, \fVi\fR, \fVo\fR, \fVu\fR, \fVx\fR,
+\fVX\fR, \fVe\fR, \fVE\fR, \fVf\fR, \fVg\fR, and \fVG\fR conversions;
+no space padding is performed.
+If the \fV0\fR and \fV\-\fR (dash) flags both appear, the \fV0\fR flag
+is ignored.
+For \fVd\fR, \fVi\fR, \fVo\fR \fVu\fR, \fVx\fR, and \fVX\fR
+conversions, if a precision is specified, the \fV0\fR flag is also
+ignored.
+.RE
+.PP
+An optional decimal digit string that specifies the minimum field
+width.
+If the converted value has fewer characters than the field width, the
+field is padded on the left to the length specified by the field
+width.
+If the left-adjustment option is specified, the field is padded on the
+right.
+.PP
+An optional precision.
+The precision is a \fV.\fR (dot) followed by a decimal digit string.
+If no precision is given, the parameter is treated as 0 (zero).
+The precision specifies:
+.RS
+.TP
+The minimum number of digits to appear for \fVd\fR, \fVu\fR,
+\fVo\fR, \fVx\fR, or \fVX\fR conversions
+.TP
+The number of digits to appear after the decimal point for
+\fVe\fR, \fVE\fR, and \fVf\fR conversions
+.TP
+The maximum number of significant digits for \fVg\fR and \fVG\fR
+conversions
+.TP
+The maximum number of characters to be printed from a string in
+an \fVs\fR conversion
+.RE
+.TP 
+A character that indicates the type of conversion to be applied:
+.RS
+.TP 6
+%
+: Performs no conversion.  Displays %.
+.TP
+d,i
+:Accepts an integer \fVvalue\fR and converts it to signed decimal
+notation.
+The precision specifies the minimum number of digits to appear.
+If the value being converted can be represented in fewer digits, it is
+expanded with leading zeros.
+The default precision is 1.
+The result of converting a zero value with a precision of zero is a
+null string.
+Specifying a field width with a zero as a leading character causes the
+field width value to be padded with leading zeros.
+.TP 
+u
+:Accepts an integer \fVvalue\fR and converts it to unsigned decimal
+notation.
+The precision specifies the minimum number of digits to appear.
+If the value being converted can be represented in fewer digits, it is
+expanded with leading zeros.
+The default precision is 1.
+The result of converting a zero value with a precision of zero is a
+null string.
+Specifying a field width with a zero as the leading character causes the
+field width value to be padded with leading zeros.
+.TP 
+o
+:Accepts an integer \fVvalue\fR and converts it to unsigned octal notation.
+The precision specifies the minimum number of digits to appear.
+If the value being converted can be represented in fewer digits, it is
+expanded with leading zeros.  The default precision is 1.
+The result of converting a zero value with a precision of zero is
+a null string.
+Specifying a field width with a zero as the leading character causes the
+field width value to be padded with leading zeros.
+An octal value for field width is not implied.
+.TP 
+x, X
+:Accepts an integer \fVvalue\fR and converts it to unsigned hexadecimal
+notation.
+The letters ``abcdef'' are used for the \fVx\fR conversion;
+the letters ``ABCDEF'' are used for the \fVX\fR conversion.
+The precision specifies the minimum number of digits to appear.
+If the value being converted can be represented in fewer digits, it is
+expanded with leading zeros.  The default precision is 1.
+The result of converting a zero value with a precision of zero is a
+null string.
+Specifying a field width with a zero as the leading character causes the
+field width value to be padded with leading zeros.
+.TP 
+f
+: Accepts a float or double \fVvalue\fR and converts it to decimal
+notation in the format %[\-]\fVddd.ddd\fR.
+The number of digits after the decimal point is equal to the precision
+specification.
+.RS
+.TP
+If no precision is specified, six digits are output.
+.TP
+If the precision is zero, no decimal point appears and the system
+outputs a number rounded to the integer nearest to \fVvalue\fR.
+.TP
+If a decimal point is output, at least one digit is output before it.
+.RE
+.TP
+e, E
+:Accepts a real  and converts it to the
+exponential form %[\-]\fVd.ddd\fVe\fR+/\-\fVdd\fR.
+There is one digit before the decimal point, and the number of digits
+after the decimal point is equal to the precision specification.
+.RS
+.TP 30
+If no precision is specified,
+, six digits are output.
+.TP
+If the precision is zero,
+, no decimal point appears.
+.TP
+The \fVE\fR conversion character 
+produces a number with E instead of e before the exponent.
+The exponent always contains at least two digits.
+If the value is zero, the exponent is zero.
+.RE
+.TP 
+g, G
+: Accepts a real  and converts it in
+the style of the \fVe\fR, \fVE\fR, or \fVf\fR conversion characters,
+with the precision specifying the number of significant digits.
+Trailing zeros are removed from the result.
+A decimal point appears only if it is followed by a digit.
+The style used depends on the value converted.
+Style \fVe\fR (\fVE\fR, if \fVG\fR is the flag used) results only if
+the exponent resulting from the conversion is less than \-4, or if it
+is greater or equal to the precision.
+.TP 
+c
+:Accepts and displays an integer value converted to a character.
+.TP 
+s
+:Accepts a string \fVvalue\fR  and displays
+characters from the string to the end or the number of characters indicated by the precision is
+reached.
+If no precision is specified, all characters up to the end
+are displayed.
+.RE
+A field width or precision can be indicated by an \fV*\fR (asterisk)
+instead of a digit string.
+In this case, an integer \fVvalue\fR parameter supplies the field
+width or precision.
+The \fVvalue\fR parameter converted for output is not fetched until
+the conversion letter is reached, so the parameters specifying field
+width or precision must appear before the value to be converted (if any).
+
+If the result of a conversion is wider than the field width, the field
+is expanded to contain the converted result.
+
+The representation of the plus sign depends on whether the
+\fV+\fR or (space) formatting option is specified.
+.SH SEE ALSO
+string, print, write, format, disp
+.SH EXAMPLES
+.nf
+fahr=120
+sprintf('%3d Fahrenheit = %6.1f Celsius',fahr,(5/9)*(fahr-32)) 
+
+printf('Result is:\nalpha=%f",0.535)
+.fi

@@ -1,0 +1,25 @@
+
+mclose(1)                      Scilab Function                      mclose(1)
+NAME
+  mclose - close an opened file
+
+CALLING SEQUENCE
+  err=mclose([fd])
+
+PARAMETERS
+
+  fd        : scalar. The fd parameter returned by the function mopen is used
+            as a file descriptor (it's a positive integer).
+
+  err       : a scalar. Error indicator : vector
+
+DESCRIPTION
+  mclose must be used to close a file opened by mopen. If fd is omitted
+  mclose closes the last opend file.
+
+  To close  files opened using file('open',...) use function
+  file('close',...).
+
+SEE ALSO
+  mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr,
+  mopen, mprintf, mput, mputstr, mscanf, mseek, mtell

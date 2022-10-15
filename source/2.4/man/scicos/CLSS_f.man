@@ -1,0 +1,34 @@
+.TH CLSS_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+CLSS_f - Scicos continuous-time linear state-space system
+.SH DESCRIPTION
+This block realizes a continuous-time linear state-space system.
+.nf
+xdot=A*x+B*u
+y   =C*x+D*u
+.fi
+The system is defined by the (A,B,C,D) matrices and the initial
+state x0. The dimensions must be compatible.
+.SH DIALOGUE PARAMETERS
+.TP 20
+A
+: square matrix. The A matrix
+.TP
+B
+: the \fVB\fR matrix, \fV[]\fR if system has no input
+.TP
+C
+: the \fVC\fR matrix , \fV[]\fR if system has no output
+.TP
+D
+: the \fVD\fR matrix, \fV[]\fR if system has no \fVD\fR term.
+.TP
+x0
+: vector. The initial state of the system.
+.SH SEE ALSO
+CLR_f, INTEGRAL_f
+
+
+
+

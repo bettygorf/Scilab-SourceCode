@@ -1,0 +1,59 @@
+ 
+clear;lines(0);
+ 
+A=[1,2;3,4];
+ 
+trace(A)-sum(diag(A))
+ ans  =
+ 
+    0.  
+ 
+sum(A,'c')-A*ones(2,1)
+ ans  =
+ 
+!   0. !
+!   0. !
+ 
+sum(A+%i)
+ ans  =
+ 
+    10. + 4.i  
+ 
+A=sparse(A);sum(A,'c')-A*ones(2,1)
+ ans  =
+ 
+!   0. !
+!   0. !
+ 
+s=poly(0,'s');
+ 
+M=[s,%i+s;s^2,1];
+ 
+sum(M),sum(M,2)
+ ans  =
+ 
+real part
+ 
+ 
+              2  
+    1 + 2s + s   
+imaginary part
+ 
+ 
+    1   
+ ans  =
+ 
+real part
+ 
+ 
+!   2s     !
+!          !
+!        2 !
+!   1 + s  !
+imaginary part
+ 
+ 
+!   1  !
+!      !
+!   0  !
+ 

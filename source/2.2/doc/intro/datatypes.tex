@@ -1,0 +1,842 @@
+\chapter{Data Types}
+\label{ch2}
+\index{data types}
+
+	Scilab recognizes several primitive data types.
+ Scalar objects are constants, booleans, polynomials, strings and 
+rationals (quotients of polynomials). These objects in turn allow to 
+define matrices which admit these scalars as entries.
+Other basic objects are lists and functions. Only constant and boolean
+sparse matrices are defined.
+%
+The objective of this chapter is to describe the use of each of 
+these data types.
+
+\section{Special Constants}
+\label{s2.1}
+\index{data types!constants}
+\index{constants}
+
+	Scilab provides special constants {\tt \%i}, {\tt \%pi},
+{\tt \%e}, and {\tt \%eps} as primitives.  The {\tt \%i} constant
+represents $\sqrt{-1}$, {\tt \%pi} is $\pi=3.1415927\cdots$ , {\tt \%e}
+is the trigonometric constant $e=2.7182818\cdots$, and {\tt \%eps}
+is a constant representing the precision of the machine ({\tt \%eps}
+is the biggest number for which $1+\mbox{\tt \%eps}=1$). {\tt \%inf}
+and {\tt \%nan} stand for ``infinity'' and ``NotANumber'' respectively.
+
+Finally boolean constants are {\tt \%t} and {\tt \%f} which stand for
+``true'' and ``false'' respectively. Note that {\tt \%t} is the
+same as {\tt 1==1} and {\tt \%f} is the same as {\verb!~%t!}.
+
+These variables are considered as ``predefined''. They are protected, cannot 
+be deleted and are not saved by the {\tt save} command. It is possible
+for a user to have his own ``predefined'' variables by using the
+{\tt predef} command. The best way is probably to set these special variables
+in his own startup file {\tt <home dir>/.scilab}.
+
+\section{Constant Matrices}
+\label{s2.2}
+\index{data types!matrices}
+
+	Scilab considers a number of data objects as matrices.  
+Scalars, vectors, and matrices whose entries are either real or complex
+are all considered as matrices.  The details of the use
+of these objects are revealed in the following Scilab sessions.
+
+\paragraph{Scalars}\index{scalars}
+Scalars are either real or complex numbers.  The values of
+scalars can be assigned to variable names chosen by the user.
+\begin{verbatim}
+--> a=5+2*%i
+ a         =
+ 
+    5. + 2.i  
+ 
+--> B=-2+%i;
+
+--> b=4-3*%i
+ b  =
+ 
+    4. - 3.i 
+ 
+--> a*b
+ ans  =
+ 
+    26. - 7.i  
+ 
+-->a*B
+ ans  =
+ 
+  - 12. + i    
+ 
+--> c=a+b;
+ 
+-->c
+ c  =
+ 
+    9. - i    
+ 
+\end{verbatim}
+Note that Scilab evaluates immediately lines that
+end with a carriage return.  Instructions that end in a semi-colon
+are evaluated but are not displayed on screen. Scilab is case 
+sensitive now (Version 2.0 was not case sensitive). 
+
+\paragraph{Vectors}\index{vectors}
+The usual way of creating vectors is as follows
+\begin{verbatim}
+ 
+--> v=[2,-3+%i,7]
+ v         =
+ 
+!   2.  - 3. + i      7. !
+ 
+--> v'
+ ans       =
+ 
+!   2.       !
+! - 3. - i   !
+!   7.       !
+ 
+--> w=[-3;-3-%i;2]
+ w         =
+ 
+! - 3.       !
+! - 3. - i   !
+!   2.       !
+ 
+--> v'+w
+ ans       =
+ 
+! - 1.       !
+! - 6. - 2.i !
+!   9.       !
+ 
+--> v*w
+ ans       =
+ 
+    18.  
+ 
+--> w'.*v
+ ans       =
+ 
+! - 6.    8. - 6.i    14. !
+\end{verbatim}
+Notice that vector elements that are separated by commas (or by blanks)
+yield row vectors and those separated by semi-colons give column vectors.
+Note also that a single quote is used for transposing a 
+vector\index{vectors!transpose} 
+(one obtains the complex conjugate for complex entries).  Vectors of same
+dimension can be added and subtracted.  The scalar product of a row and
+column vector is demonstrated above.  Element-wise
+multiplication ({\tt .*}) and division ({\tt ./}) is also possible 
+as was demonstrated.
+
+Note with the following example the role of the position of the blank:
+\begin{verbatim}
+-->v=[1 +3]
+ v  =
+ 
+!   1.    3. !
+ 
+-->w=[1 + 3]
+ w  =
+ 
+!   1.    3. !
+ 
+-->w=[1+ 3] 
+ w  =
+ 
+    4. 
+ 
+-->u=[1, + 8- 7]
+ u  =
+ 
+!   1.    1. !
+
+\end{verbatim}
+
+	Vectors\index{vectors!incremental} of elements which increase
+or decrease incrementely are constructed as follows 
+\begin{verbatim}
+ 
+--> v=5:-.5:3
+ v         =
+ 
+!   5.    4.5    4.    3.5    3. !
+\end{verbatim}
+The resulting vector begins with the first value and ends
+with the third value stepping in increments of the second value.
+When not specified the default increment is one.  A constant vector
+can be created using the {\tt ones}\index{ones@{\tt ones}}\index{vectors!constant} and {\tt zeros} facility 
+\begin{verbatim}
+ 
+--> v=[1 5 6]
+ v         =
+ 
+!   1.    5.    6. !
+ 
+--> ones(v)
+ ans       =
+ 
+!   1.    1.    1. !
+ 
+--> ones(v')
+ ans       =
+ 
+!   1. !
+!   1. !
+!   1. !
+ 
+--> ones(1:4)
+ ans       =
+ 
+!   1.    1.    1.    1. !
+ 
+--> 3*ones(1:4)
+ ans       =
+ 
+!   3.    3.    3.    3. !
+
+-->zeros(v)
+ ans  =
+ 
+!   0.    0.    0. !
+ 
+-->zeros(1:5)
+ ans  =
+ 
+!   0.    0.    0.    0.    0. !
+ 
+\end{verbatim}
+Notice that {\tt ones} or {\tt zeros} replace its vector argument by a vector 
+of equivalent dimensions filled with ones or zeros.
+
+\paragraph{Matrices}\index{matrices}\index{data types!matrices}
+Row elements are separated by commas or spaces
+ and column elements by semi-colons.  Multiplication
+of matrices by scalars, vectors, or other matrices is in the usual
+sense.  Addition and
+subtraction of matrices is element-wise and element-wise
+multiplication and division can be accomplished with the {\tt .*}
+and {\tt ./} operators.
+\begin{verbatim}
+ 
+--> a=[2 1 4;5 -8 2]
+ a         =
+ 
+!   2.    1.    4. !
+!   5.  - 8.    2. !
+ 
+--> b=ones(2,3)
+ b         =
+ 
+!   1.    1.    1. !
+!   1.    1.    1. !
+ 
+--> a.*b
+ ans       =
+ 
+!   2.    1.    4. !
+!   5.  - 8.    2. !
+ 
+--> a*b'
+ ans       =
+ 
+!   7.    7. !
+! - 1.  - 1. !
+\end{verbatim}
+Notice that the {\tt ones}\index{ones@{\tt ones}}\index{matrices!constant}
+operator with two real numbers as arguments separated
+by a comma creates a matrix of ones using the arguments as
+dimensions (same for {\tt zeros}).
+Matrices can be used as elements to larger 
+matrices\index{matrices!block construction}.  Furthermore,
+the dimensions of a matrix can be changed.
+\begin{verbatim}
+ 
+--> a=[1 2;3 4]
+ a         =
+ 
+!   1.    2. !
+!   3.    4. !
+ 
+--> b=[5 6;7 8]
+ b         =
+ 
+!   5.    6. !
+!   7.    8. !
+ 
+--> c=[9 10;11 12]
+ c         =
+ 
+!   9.     10. !
+!   11.    12. !
+ 
+--> d=[a,b,c]
+ d         =
+ 
+!   1.    2.    5.    6.    9.     10. !
+!   3.    4.    7.    8.    11.    12. !
+ 
+--> e=matrix(d,3,4)
+ e         =
+ 
+!   1.    4.    6.    11. !
+!   3.    5.    8.    10. !
+!   2.    7.    9.    12. !
+
+-->f=eye(e)
+ f  =
+ 
+!   1.    0.    0.    0. !
+!   0.    1.    0.    0. !
+!   0.    0.    1.    0. !
+ 
+-->g=eye(4,3)
+ g  =
+ 
+!   1.    0.    0. !
+!   0.    1.    0. !
+!   0.    0.    1. !
+!   0.    0.    0. !
+ 
+\end{verbatim}
+Notice that matrix {\tt d} is created by using other matrix
+elements.  The {\tt matrix}\index{matrix@{\tt matrix}} 
+primitive creates a new matrix {\tt e} with the elements of the
+matrix {\tt d} using
+the dimensions specified by the second two arguments.  The element
+ordering in the matrix {\tt d} is top to bottom and then left to right
+which explains the ordering of the re-arranged matrix in {\tt e}.
+
+The function {\tt eye} creates an $m\times n$ matrix with 1 along the main
+diagonal (if the argument is a matrix {\tt e} , $m$ and $n$ are the 
+dimensions of {\tt e} ) .
+
+Sparse constant matrices are defined through their nonzero entries 
+(type help {\tt sparse} for more details). Once defined, they are
+manipulated as full matrices.
+
+
+\section{Matrices of Character Strings}
+\label{s2.3}
+\index{data types!character strings}
+\index{character strings}
+
+	Character strings can be created by using single quotes.
+Concatenation of strings is performed by the {\tt +} operation.
+Matrices of character strings are constructed as ordinary matrices,
+e.g. using brackets.  A very important feature of matrices of
+character strings is the capacity to manipulate and create functions.
+Furthermore, symbolic manipulation of mathematical objects can be
+implemented using matrices of character strings.  The following
+illustrates some of these features.
+\begin{verbatim}
+ 
+--> x=1;y=2;z=3;w=4;v=5;
+ 
+--> a=['x' 'y';'z' 'w+v']
+ a         =
+ 
+!x  y    !
+!        !
+!z  w+v  !
+ 
+--> at=trianfml(a)
+ at        =
+ 
+!z  w+v          !
+!                !
+!0  z*y-x*(w+v)  !
+ 
+--> evstr(at)
+ ans       =
+ 
+!   3.    9. !
+!   0.  - 3. !
+\end{verbatim}
+Note that in the above Scilab session the function 
+{\tt trianfml}\index{trianfml@{\tt trianfml}}\index{symbolic triangularization}
+performs the symbolic triangularization of the matrix {\tt a}.
+The value of the resulting symbolic matrix can be obtained by
+using {\tt evstr}.  
+
+	A very important aspect of character strings is that they
+can be used to automatically create new functions (for more on functions
+see Section~\ref{s4.2}).  An example of automatically creating a 
+function is illustrated in the following Scilab session where it is
+desired to study a polynomial of two variables {\tt s} and {\tt t}.
+Since polynomials in two independent variables are not directly 
+supported in Scilab, we can construct a new data structure using
+a list (see Section~\ref{s2.5}).
+The polynomial to be studied is $(t^2+2t^3)-(t+t^2)s+ts^2+s^3$.
+\begin{verbatim}
+-->getf("macros/make_macro.sci");
+ 
+-->s=poly(0,'s');
+ 
+-->t=poly(0,'t');
+ 
+-->p=list(t^2+2*t^3,-t-t^2,t,1+0*t);
+ 
+-->pst=makefunction(p)
+ pst       =
+ 
+[p]=pst(t)
+ 
+-->pst
+ pst       =
+ 
+[p]=pst(t)
+ 
+-->pst(1)
+ ans       =
+ 
+              2   3  
+    3 - 2s + s + s   
+\end{verbatim}
+Here the polynomial is represented by the command which puts
+the coefficients of the variable {\tt s} in the list {\tt p}.
+The list {\tt p} is then processed by the function {\tt makefunction}
+which makes a new function {\tt pst}.  The contents of the new function
+can be displayed and this function can be evaluated
+at values of {\tt t}.  The creation of the new function {\tt pst}
+is accomplished as follows
+
+\verbatok{macros/make_macro.sci}
+\end{verbatim}
+
+Here the function {\tt makefunction} takes the list {\tt p} and creates the
+function {\tt pst}.  Inside of {\tt makefunction} there is a call to another 
+function {\tt makestr} which makes the string which represents each 
+term of the new two variable polynomial.  The functions {\tt addf} and
+{\tt mulf} are for adding and multiplying strings (i.e. 
+{\tt addf(x,y)} yields the string {\tt x+y}).  Finally, the 
+essential command for creating the new function 
+is the primitive {\tt deff}.  The {\tt deff} primitive 
+creates a function defined by two matrices
+of character strings.  Here the 
+function {\tt p} is defined by the two character strings
+{\tt '[p]=newfunction(t)'} and {\tt text} where the string {\tt text}
+evaluates to the polynomial in two variables.
+
+\section{Polynomials and Polynomial Matrices}
+\label{s2.4}
+\index{data types!polynomials}
+\index{polynomials}
+
+	Polynomials are easily created and manipulated in Scilab.
+Manipulation of polynomial matrices is essentially identical
+to that of constant matrices.
+The {\tt poly}\index{poly@{\tt poly}} 
+primitive in Scilab can be used to specify the coefficients
+of a polynomial or the roots of a polynomial.
+\begin{verbatim}
+--> p=poly([1 2],'s')
+ p         =
+ 
+              2  
+    2 - 3s + s   
+ 
+--> q=poly([1 2],'s','c')
+ q         =
+ 
+    1 + 2s   
+ 
+--> p+q
+ ans       =
+ 
+             2  
+    3 - s + s   
+ 
+--> p*q
+ ans       =
+ 
+              2    3  
+    2 + s - 5s + 2s   
+ 
+--> q/p
+ ans       =
+ 
+      1 + 2s     
+    -----------  
+              2  
+    2 - 3s + s   
+\end{verbatim}
+Note that the polynomial {\tt p} has the {\em roots}
+1 and 2 whereas the polynomial {\tt q} has the {\em coefficients}
+1 and 2.  It is the third argument in the {\tt poly} primitive which
+specifies the coefficient flag option.  
+In the case where the first argument of {\tt poly} is a square matrix
+and the roots option is in effect the result is the characteristic
+polynomial of the matrix.
+\begin{verbatim}
+ 
+--> poly([1 2;3 4],'s')
+ ans       =
+ 
+              2  
+  - 2 - 5s + s   
+\end{verbatim}
+Polynomials can be added,
+subtracted, multiplied, and divided, as usual, but only between polynomials
+of same formal variable.
+
+	Polynomials, like real and complex constants, can be used
+as elements in matrices.  This is a very useful feature of Scilab
+for systems theory.
+\begin{verbatim}
+ 
+--> s=poly(0,'s')
+ s         =
+ 
+    s   
+ 
+--> a=[1 s;s 1+s^2]
+ a         =
+ 
+!   1     s      !
+!                !
+!              2 !
+!   s     1 + s  !
+ 
+--> b=[1/s 1/(1+s);1/(1+s) 1/s^2]
+ b         =
+ 
+!   1           1    !
+! ------      ------ !
+!   s         1 + s  !
+!                    !
+!     1       1      !
+!    ---     ---     !
+!              2     !
+!   1 + s     s      !
+
+\end{verbatim}
+From the above examples it can be seen that matrices can be constructed
+from polynomials and rationals.
+
+\section{Boolean Matrices}
+\index{data types!booleans}
+\index{boolean}
+
+Boolean constants are {\tt \%t} and {\tt \%f}. They can be used in
+boolean matrices. The syntax is the same as for ordinary matrices i.e.
+they can be concatenated, transposed, etc...
+
+Operations symbols used with boolean matrices or used to create
+boolean matrices are {\tt ==} and \verb!~!. 
+
+If {\tt B} is a matrix of booleans {\tt or(B)} and {\tt and(B)} 
+perform the logical {\tt or} and {\tt and}.
+\begin{verbatim}
+-->%t
+ %t  =
+ 
+  T  
+ 
+-->[1,2]==[1,3]
+ ans  =
+ 
+! T F !
+ 
+-->[1,2]==1
+ ans  =
+ 
+! T F !
+ 
+-->a=1:5; a(a>2)
+ ans  =
+ 
+!   3.    4.    5. !
+
+-->A=[%t,%f,%t,%f,%f,%f];   
+ 
+-->B=[%t,%f,%t,%f,%t,%t]
+ B  =
+ 
+! T F T F T T !
+ 
+-->A|B
+ ans  =
+ 
+! T F T F T T !
+
+-->A&B
+ ans  =
+ 
+! T F T F F F !
+ 
+\end{verbatim} 
+
+Sparse boolean matrices are generated when, e.g., two constant sparse
+matrices are compared. These matrices are handled as ordinary boolean
+matrices.
+
+\section{Lists, Linear Systems}
+\label{s2.5}
+\index{data types!lists}
+\index{lists}
+
+	Scilab has a list data type.  The list is a collection of data
+objects not necessarily of the same type.  A list can contain any of
+the already discussed data types as well as other lists, functions, and
+libraries.  Lists are useful for defining structured data objects.
+For example, in Scilab linear systems are treated as lists.
+The basic function which is used for defining linear systems is {\tt syslin}.
+This function receives as parameters the constant matrices which
+define a linear system in state-space form or, in the case of
+system in transfer form its input must be a rational matrix.
+To be more specific, the calling sequence of {\tt syslin} is
+either {\tt Sl=syslin('dom',A,B,C,D,x0)} or {\tt Sl=syslin('dom',trmat)}.
+{\tt dom} is one of the character strings {\tt 'c'} or {\tt 'd'}
+for continuous time or discrete time systems respectively.
+It is useful to note that {\tt D} can be a polynomial matrix 
+(improper systems); {\tt D} and {\tt x0} are optional arguments.
+{\tt trmat} is a rational matrix i.e. it is defined as a matrix
+of rationals (ratios of polynomials).
+Conversion from a representation to another is done by {\tt ss2tf}
+or {\tt tf2ss}. Improper systems are also treated.
+
+\verbatok{\Diary syslin.dia}
+\end{verbatim}
+
+As can be seen by the above Scilab session the list {\tt h} begins
+with the character string {\tt 'lss'} which in this case 
+indicates that the list represents a linear system.
+The five ensuing list elements are matrices which give the
+state space description of the linear system and its initial condition
+($\dot{x}=Ax+Bu$, $y=Cx+Du$, $x(0)=x_0$).  Finally, the last element
+{\tt 'c'} indicates that the list represents a continuous linear system.
+
+	The list representation allows manipulating linear systems as
+abstract data objects.  For example, the linear system can be combined
+with other linear systems or the transfer function representation of
+the linear system can be obtained as was done above using {\tt ss2tf}.
+Note that the transfer function representation of the linear system
+is itself a list. The list consists of four elements: the first element 
+is the character string {\tt 'r'} which indicates
+that the list represents a rational polynomial matrix, the 
+second and third elements are the numerator and
+denominator polynomials, and finally, the fourth element is the character
+string {\tt 'c'} which indicates that the transfer function is that of
+a continuous system.
+	A very useful aspect of
+the manipulation of systems in Scilab  is that a system can
+be handled as a data object.
+Linear systems can be 
+inter-connected\index{linear systems!inter-connection of},
+their representation
+can easily be changed from state-space to transfer function
+and vice versa.
+
+	The inter-connection of linear systems can be made
+as illustrated in Figure~\ref{f3.2}.
+%
+%\begin{figure}[tb]
+\begin{figure}
+\center{
+\begin{picture}(200,330)(0,-60)
+
+\put(180,270){\makebox(0,0)[lb]{\tt s1*s2}}
+\put(9,270){\circle{2}}
+\put(10,270){\vector(1,0){20}}
+\put(30,260){\framebox(30,20){$s_1$}}
+\put(60,270){\vector(1,0){30}}
+\put(90,260){\framebox(30,20){$s_2$}}
+\put(120,270){\vector(1,0){20}}
+\put(141,270){\circle{2}}
+
+\put(180,220){\makebox(0,0)[lb]{\tt s1+s2}}
+\put(29,220){\circle{2}}
+\put(30,220){\line(1,0){20}}
+\put(50,220){\circle*{2}}
+\put(50,200){\line(0,1){40}}
+\put(50,200){\vector(1,0){20}}
+\put(50,240){\vector(1,0){20}}
+\put(70,190){\framebox(30,20){$s_2$}}
+\put(70,230){\framebox(30,20){$s_1$}}
+\put(100,200){\line(1,0){20}}
+\put(100,240){\line(1,0){20}}
+\put(120,240){\vector(0,-1){15}}
+\put(120,200){\vector(0,1){15}}
+\put(120,220){\circle{10}}
+\put(120,220){\framebox(0,0){$+$}}
+\put(125,220){\vector(1,0){15}}
+\put(141,220){\circle{2}}
+
+\put(180,140){\makebox(0,0)[lb]{\verb![s1,s2]!}}
+\put(49,160){\circle{2}}
+\put(49,120){\circle{2}}
+\put(50,120){\vector(1,0){20}}
+\put(50,160){\vector(1,0){20}}
+\put(70,110){\framebox(30,20){$s_2$}}
+\put(70,150){\framebox(30,20){$s_1$}}
+\put(100,120){\line(1,0){20}}
+\put(100,160){\line(1,0){20}}
+\put(120,160){\vector(0,-1){15}}
+\put(120,120){\vector(0,1){15}}
+\put(120,140){\circle{10}}
+\put(120,140){\framebox(0,0){$+$}}
+\put(125,140){\vector(1,0){15}}
+\put(141,140){\circle{2}}
+
+\put(180,50){\makebox(0,0)[lb]{\tt [s1 ; s2]}}
+\put(49,50){\circle{2}}
+\put(50,50){\line(1,0){20}}
+\put(70,50){\circle*{2}}
+\put(70,30){\line(0,1){40}}
+\put(70,30){\vector(1,0){20}}
+\put(70,70){\vector(1,0){20}}
+\put(90,20){\framebox(30,20){$s_2$}}
+\put(90,60){\framebox(30,20){$s_1$}}
+\put(120,30){\vector(1,0){20}}
+\put(120,70){\vector(1,0){20}}
+\put(141,30){\circle{2}}
+\put(141,70){\circle{2}}
+
+\put(180,-40){\makebox(0,0)[lb]{\verb! s1/.s2!}}
+\put(69,-20){\circle{2}}
+%\put(50,-40){\line(1,0){20}}
+%\put(70,-40){\circle*{2}}
+\put(70,-60){\line(0,1){40}}
+\put(70,-60){\line(1,0){20}}
+\put(70,-20){\vector(1,0){20}}
+\put(90,-70){\framebox(30,20){$s_2$}}
+\put(90,-30){\framebox(30,20){$s_1$}}
+\put(140,-60){\vector(-1,0){20}}
+\put(120,-20){\line(1,0){20}}
+%\put(141,-60){\circle{2}}
+\put(141,-20){\circle{2}}
+\put(140,-60){\line(0,1){40}}
+\end{picture}
+}
+\caption{Inter-Connection of Linear Systems}
+\label{f3.2}
+\end{figure}
+%
+For each of the possible inter-connections of two systems
+{\tt s1} and {\tt s2} the command which makes the inter-connection
+is shown on the right side of the corresponding block diagram in
+Figure~\ref{f3.2}. Note that feedback interconnection is performed by
+\verb!s1/.s2!. 
+
+	The representation of linear systems can be in state-space
+form or in transfer function form.  These two representations can
+be interchanged by using the functions 
+{\tt tf2ss}\index{linear systems!{\tt tf2ss}}\index{tf2ss@{\tt tf2ss}} and 
+{\tt ss2tf}\index{linear systems!{\tt ss2tf}}\index{ss2tf@{\tt ss2tf}}
+which change the representations of systems from transfer function
+to state-space and from state-space to transfer function, respectively.
+An example of the creation, the change in representation, and the
+inter-connection of linear systems is demonstrated in the following
+Scilab session.
+
+\verbatok{\Diary connect.dia}
+\end{verbatim}
+
+The above session is a bit long but illustrates some very important
+aspects of the handling of linear systems.  First, two linear systems
+are created in transfer function form using the primitive 
+{\tt syslin}\index{linear systems!{\tt syslin}}\index{syslin@{\tt syslin}}.
+This primitive was used to label the systems in this example 
+as being continuous (as opposed to
+being discrete).  The primitive {\tt tf2ss} is used to convert one of the
+two transfer functions to its equivalent state-space representation
+which is in list form (note that the function {\tt ssprint} creates a more
+readable format for the state-space linear system).
+The following multiplication of the two systems yields their
+series inter-connection.  Notice that the inter-connection 
+of the two systems is effected even though one of the systems is
+in state-space form and the other is in transfer function form.
+The resulting inter-connection is given in state-space form.
+Finally, the primitive {\tt ss2tf} is used to convert the resulting
+inter-connected systems to the equivalent transfer function representation.
+
+\section{Functions (Macros)}
+\label{s2.6}
+\index{data types!functions}
+\index{functions}
+
+	Functions (also called macros) are a very useful aspect 
+of Scilab.  Functions
+are collections of commands which are executed in a
+new environment thus isolating function variables from the original
+environments variables.  Functions
+can be created and executed in a number of different ways.
+Furthermore, functions can pass arguments, have programming features
+such as conditionals and loops, and can be recursively called.
+Functions can be arguments
+to other functions and can be elements in lists.  The most useful
+way of creating functions is by using a text editor, however, functions
+can be created directly in the Scilab environment using the 
+{\tt deff}\index{deff@{\tt deff}}\index{functions!{\tt deff}} primitive.
+\begin{verbatim}
+ 
+--> deff('[x]=foo(y)','if y>0 then, x=1; else, x=-1; end')
+ 
+--> foo(5)
+ ans       =
+ 
+    1.  
+ 
+--> foo(-3)
+ ans       =
+ 
+  - 1.  
+\end{verbatim}
+Usually functions are defined in a file using an editor and loaded
+into Scilab with {\tt getf('filename')} or {\tt getf('filename','c')}.
+This can be done also by clicking in the {\tt File operation} button.
+This latter syntax loads the function(s) in {\tt filename} and compiles
+them.
+The first line of {\tt filename} must be as follows:
+\begin{verbatim}
+function [y1,...,yn]=macname(x1,...,xk)
+\end{verbatim}
+where the {\tt yi}'s are output variables and the {\tt xi}'s the
+input variables.
+
+For more on the use and creation of functions see Section~\ref{s4.2}.
+
+\section{Libraries}
+\label{s2.7}
+\index{data types!libraries}
+\index{libraries}
+
+	Libraries are collections of functions which can be either 
+automatically loaded into the Scilab environment when
+Scilab is called, or loaded when desired by the user.  
+Libraries are created by the {\tt lib} command. Examples of librairies
+are given in the {\tt SCIDIR/macros} directory. Note that in these
+directory there is an ASCII file ``names'' which contains the names
+of each function of the library, a set of {\tt .sci} files which
+contains the source code of the functions and a set of {\tt .bin} files
+which contains the compiled code of the functions. The Makefile invokes
+{\tt scilab} for compiling the functions and generating the {\tt .bin}
+files. The compiled functions of a library are automatically loaded 
+into Scilab at their first call.
+
+\section{Objects}
+We conclude this chapter by noting that the function {\tt typeof}
+returns the type of the various Scilab objects. The following objects
+are defined:
+\begin{itemize}
+\item{\tt usual} 	for matrices with real or complex entries.
+\item{\tt polynomial} 	for polynomial matrices: coefficients can be 
+real or complex.
+\item{\tt boolean} 	for boolean matrices.
+\item{\tt character} 	for matrices of character strings.
+\item{\tt uncompiled function} 	for un-compiled functions.
+\item{\tt function} 	for compiled functionds.
+\item{\tt rational} 	for rational matrices (or linear systems in
+transfer matrix representation ({\tt syslin} lists)
+\item{\tt state-space} 	for linear systems in state-space 
+form ({\tt syslin} lists).
+\item{\tt sparse} 	for sparse matrices.
+\item{\tt list} 	for ordinary lists i.e. lists which do not represent
+linear systems ({\tt syslin} lists).
+\item{\tt library} 	for library definition.
+\end{itemize}

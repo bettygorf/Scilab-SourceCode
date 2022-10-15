@@ -1,0 +1,61 @@
+.TH "mdznq2d" 2 "March 12,1998" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mdznq2d - Discrete partition function estimation on 2d measure
+.sp
+Author: Christophe Canus
+.sp
+This routine computes the discrete partition function on a
+pre-multifractal 2d measure.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPmznq\f(CR]\fP=mdznq2d(mu_n,n,q)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBmu_n\fP : strictly positive real matrix 
+Contains the pre-multifractal measure. 
+
+.TP
+o 
+\fBn\fP : strictly positive real (integer) vector 
+Contains the resolutions.
+
+.TP
+o 
+\fBq\fP : strictly positive real vector 
+Contains the exponents.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBmznq\fP : real matrix \f(CR[\fPsize(q),size(n)\f(CR]\fP 
+Contains the discrete partition function.
+.RE
+
+.SH Description
+.SH Parameters 
+ 
+The discrete partition function \fImznq\fP is computed on the
+pre-multifractal 2d measure \fImu_n\fP.
+The vector of resolutions \fIn\fP and the vector of exponents \fIq\fP
+sets the size of the output real matrix \fImznq\fP to
+size(\fIq\fP)*size(\fIn\fP).
+.SH Algorithm details 
+ 
+The discrete partition function \fImznq\fP is computed by
+coarse-graining masses mu_n into non-overlapping boxes of increasing
+diameter (box method). If \fInux_n\fP and \fInuy_n\fP are power of 2, \fIn\fP
+corresponds to the resolution. 
+.SH See also
+\fBmdznq1d,reynitq,linearlt,mdfl1d,mdfl2d\fP.

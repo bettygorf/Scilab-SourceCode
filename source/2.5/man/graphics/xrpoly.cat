@@ -1,0 +1,30 @@
+
+xrpoly(2)                      Scilab Function                      xrpoly(2)
+NAME
+  xrpoly -  draw a regular polygon
+
+CALLING SEQUENCE
+  xrpoly(orig,n,r,[theta])
+
+PARAMETERS
+
+  orig   : vector of size 2.
+
+  n      : integer, number of sides.
+
+  r      : real scalar.
+
+  theta  : real, angle in radian; 0 is the default value.
+
+DESCRIPTION
+  xrpoly draws a regular polygon with n sides contained in the circle of
+  diameter r and with the origin of the circle set at point orig.  theta
+  specifies a rotation angle in radian. This function uses the current graph-
+  ics scales.
+
+EXAMPLE
+  plot2d(0,0,-1,"012"," ",[0,0,10,10])
+  xrpoly([5,5],5,5)
+
+SEE ALSO
+  xrect

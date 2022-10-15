@@ -1,0 +1,67 @@
+%asn - elliptic integral  
+%k - jacobi's complete elliptic integral  
+%sn - jacobi 's elliptic function  
+Signal - signal manual description  
+analpf - create analog low-pass filter  
+buttmag - response of butterworth filter  
+casc - cascade realization of filter from coefficients  
+cepstrum - cepstrum calculation  
+cheb1mag - response of chebyshev type 1 filter  
+cheb2mag - response of type 2 chebyshev filter  
+chepol - chebychev polynomial  
+convol - convolution  
+corr - correlation, covariance  
+cspect - spectral estimation (periodogram method)  
+czt - chirp z-transform algorithm  
+dft - discrete fourier transform  
+ell1mag - magnitude of elliptic filter  
+eqfir - minimax approximation of fir filter  
+eqiir - design of iir filters  
+faurre - filter  
+ffilt - coefficients of fir low-pass  
+fft - fast fourier transform.  
+filter - modelling filter  
+find_freq - parameter compatibility for elliptic filter design  
+findm - for elliptic filter design  
+frfit - frequency response fit  
+frmag - magnitude of fir and iir filters  
+fsfirlin - design of fir, linear phase filters, frequency sampling technique  
+group - group delay for digital filter  
+hank - covariance to hankel matrix  
+hilb - hilbert transform  
+iir - iir digital filter  
+iirgroup - group delay lp iir filter optimization  
+iirlp - lp iir filter optimization  
+intdec - changes sampling rate of a signal  
+jmat - row or column block permutation  
+kalm - kalman update  
+lattn - recursive solution of normal equations  
+lattp - lattp  
+lev - yule-walker equations (levinson's algorithm)  
+levin - toeplitz system solver by levinson algorithm (multidimensional)  
+lgfft - utility for fft  
+lindquist - lindquist's algorithm  
+mese - maximum entropy spectral estimation  
+mfft - multi-dimensional fft  
+mrfit - frequency response fit  
+phc - markovian representation  
+pspect - cross-spectral estimate between 2 series  
+remez - remez's algorithm  
+remezb - minimax approximation of magnitude response  
+rpem - rpem estimation  
+sinc - samples of sinc function  
+sincd - sinc function  
+srfaur - square-root algorithm  
+srkf - square root kalman filter  
+sskf - steady-state kalman filter  
+system - observation update  
+trans - low-pass to other filter transform  
+wfir - linear-phase fir filters  
+wiener - wiener estimate  
+wigner - 'time-frequency' wigner spectrum  
+window - symmetric window  
+yulewalk - least-square filter design  
+zpbutt - butterworth analog filter  
+zpch1 - chebyshev analog filter  
+zpch2 - chebyshev analog filter  
+zpell - lowpass elliptic filter  

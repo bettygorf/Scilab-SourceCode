@@ -1,0 +1,32 @@
+.TH expm G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+expm - square matrix exponential
+.SH CALLING SEQUENCE
+.nf
+expm(X)
+.fi
+.SH PARAMETERS
+.TP
+X
+: square matrix with real or complex entries.
+.LP
+.SH DESCRIPTION
+
+ \fVX\fR is a square matrix \fVexpm(X)\fR is the matrix 
+.LA $$ exp(X) = I + X + X^2/2 + ... $$
+.IG
+expm(X) = I + X + X^2 /2 + ...
+.FI
+The computation is performed by first 
+block-diagonalizing \fVX\fR and then applying a Pade approximation 
+on each block.
+.SH EXAMPLE
+.nf
+X=[1 2;3 4]
+expm(X)
+logm(expm(X))    
+.fi
+.SH SEE ALSO
+logm, bdiag, coff, log, exp
+

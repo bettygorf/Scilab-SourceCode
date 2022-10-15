@@ -1,0 +1,128 @@
+
+contwt(2)                      Scilab Function                      contwt(2)
+NAME
+  contwt -  Continuous L2 wavelet transform
+
+  Author: Paulo Goncalves
+
+  Computes a continuous wavelet transform of a 1-D signal (real or complex).
+  The scale operator is unitary with respect to the L2 norm.  Two closed form
+  wavelets are available: the Mexican Hat or the Morlet Wavelet (real or ana-
+  lytic). For arbitrary analyzing wavelets, numerical approximation is
+  achieved using a Fast Mellin Transform.
+
+Usage
+  [wt,scale,f,scalo,wavescaled]=contwt(x,[fmin,fmax,N,wvlt_length])
+
+Input parameters
+       o x : Real or complex vector [1,nt] or [nt,1] Time samples of the sig-
+         nal to be analyzed.
+       o fmin : real scalar in  [0,0.5] Lower frequency bound of the analy-
+         sis. When not specified, this parameter forces the program to inter-
+         active mode.
+       o fmax :  real scalar [0,0.5] and fmax > Upper frequency bound of the
+         analysis. When not specified, this parameter forces the program to
+         interactive mode.
+       o N : positive integer.  number of analyzing voices.  When not speci-
+         fied, this parameter forces the program to interactive mode.
+       o wvlt_length  : scalar or vector specifies the analyzing wavelet: 0:
+         Mexican hat wavelet (real) Positive real integer: real Morlet
+         wavelet of size 2*wvlt_length+1) at finest scale 1 Positive imagi-
+         nary integer: analytic Morlet wavelet of size 2*wvlt_length+1) at
+         finest scale 1 Real valued vector: waveform samples of an arbitrary
+         bandpass function.
+
+Output parameters
+       o wt : Real or complex matrix [N,nt] coefficients of the wavelet
+         transform.
+       o scale : real vector [1,N] analyzed scales
+       o f : real vector [1,N] analyzed frequencies
+       o scalo : real positive valued matrix [N,nt] Scalogram coefficients
+         (squared magnitude of the wavelet coefficients  wt )
+       o wavescaled : Scalar or real valued matrix [length(wavelet at coarser
+         scale)+1,N]
+
+         Dilated versions of the analyzing wavelet
+Description
+
+Parameters
+       o x : signal to be analyzed. Real or complex vector
+
+       o fmin : lower frequency bound of the analysis. fmin is real scalar
+         comprised in  [0,0.5]
+       o fmax : upper frequency bound of the analysis. fmax is a real scalar
+         comprised in [0,0.5] and fmax > fmin
+       o N : number of analyzing voices geometrically sampled between minimum
+         scale fmax/fmax and maximum scale fmax/fmin.
+       o wvlt_length  : specifies the analyzing wavelet: 0: Mexican hat
+         wavelet (real). The size of the wavelet is automatically fixed by
+         the analyzing frequency Positive real integer: real Morlet wavelet
+         of size 2*wvlt_length+1) at finest scale (1) Positive imaginary
+         integer: analytic Morlet wavelet of size 2*|wvlt_length|+1) at
+         finest scale 1. The corresponding wavelet transform is then complex.
+         May be usefull for event detection purposes.  Real valued vector:
+         corresponds to the time samples waveform of any arbitrary bandpass
+         function viewed as the analyzing wavelet at any given scale. Then,
+         an approximation of the scaled wavelet versions is achieved using
+         the Fast Mellin Transform (see dmt and dilate).
+       o wt : coefficients of the wavelet transform.  X-coordinated corre-
+         sponds to time (uniformly sampled), Y-coordinates correspond to fre-
+         quency (or scale) voices (geometrically sampled between  fmax (resp.
+         1) and fmin (resp.  fmax / fmin ). First row of wt corresponds to
+         the highest analyzed frequency (finest scale).
+
+       o scale : analyzed scales (geometrically sampled between 1  and  fmax
+         /fmin
+       o f : analyzed frequencies (geometrically sampled between
+          fmax  and  fmin . f corresponds to fmax/scale
+       o scalo : Scalogram coefficients (squared magnitude of the wavelet
+         coefficients  wt )
+       o wavescaled : If  wvlt_length  is a real or Imaginary pure scalar,
+         then  wavescaled equal  wvlt_length . If wvlt_length  is a vector
+         (containing the waveform samples of an arbitrary analyzing wavelet),
+         then  wavescaled  contains columnwise all scaled version of
+         wvlt_length  used for the analysis. In this latter case, first ele-
+         ment of each column gives the effective time support of the analyz-
+         ing wavelet at the corresponding scale.  wavescaled can be used for
+         reconstructing the signal (see icontwt)
+Algorithm details
+  The wavelet transform of x is computed via convolutions of dilated and
+  translated versions of a single function called the "mother wavelet". The
+  scales are given by the dilatation factor. As the scales are not absolute,
+  the scale factor is determined through the specification of the minimum and
+  maximum frequency of the decomposition considered as a time/frequency
+  transform. The maximum frequency might not be greater than the Nyquist Fre-
+  quency i.e. 0.5 as the wavelet at this scale would be undersampled (and
+  therefore would create aliasing).  The number of scales tells how many con-
+  volutions are computed. The bigger it is, the slower the transform is. The
+  frequency (or scale) axis is geometrically sampled. The resulting scales
+  and frequencies values can be obtained as output parameters.  The meaning
+  of the wavelet length parameter is manyfold. When non zero integer, it
+  tells the routine to use a real Morlet Wavelet and gives its length at
+  scale 1 (maximum frequency). When it is a positive imaginary integer, the
+  analytic Morlet wavelet is used. If  wvlt_length = 0, the Mexican Hat is
+  used. The resulting wavelet transform is then real but has a quite poor
+  frequency resolution.  If  wvlt_length is a real vector, it corresponds to
+  the analyzing wavelet waveform in time at any arbitrary scale. Dilated and
+  compressed version of it (according to the range [ fmin , fmax] are com-
+  puted directly from  wvlt_length using a Fast Mellin Transform.  For all
+  choices of wavelet, approximative reconstruction of the decomposed signal
+  is possible (see icontwt).
+
+See also:
+  icontwt, contwtmir and cwt
+
+Example:
+   Signal synthesis
+
+  x = morlet(0.1,128) ;
+
+   A Morlet (of size 2*8+1 samples ) wavelet transform
+
+  [wtMorlet,scale,f,scaloMorlet] = contwt(x,0.01,0.5,128,8) ;
+  viewmat(scalomor,1:257,1:128);
+
+   Compared with a Mexican hat wavelet transform
+
+  [wtMex,scale,f,scaloMex] = contwt(x,0.01,0.5,128,0) ;
+  viewmat(scaloMex,1:257,1:128);

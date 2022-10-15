@@ -1,0 +1,66 @@
+
+
+
+bifish(1)                      Scilab Function                      bifish(1)
+
+
+
+
+
+
+NAME
+  bifish - shows a bifurcation diagram in a fish population discrete time
+  model
+
+CALLING SEQUENCE
+  bifish([f_ch])
+
+PARAMETERS
+  f_ch : can be one of fish, fishr and fishr2. This option selects the popu-
+       lation model.
+
+DESCRIPTION
+  The dynamical system fish is the following :
+             y=b*exp(-0.1*(x(k)_1+x(k)_2));
+             x(k+1)=[ y 2*y ; s 0.0]*x(k);
+  and the parameters s evolves to show the bifurcation diagram.  fishr and
+  fishr2 are constructed as above but with added white noises.
+          fishr
+          y=b*exp(-0.1*(xk(1)+xk(2)))
+          xkp1=[ y 2*y ; s*(1+0.1*(rand-0.5)) 0.0]*xk
+
+          fishr2
+          z=exp(-0.1*(xk(1)+xk(2)))
+          xkp1=[ b*z**(1+0.1*(rand-0.5)) 2*b*z**(1+0.1*(rand-0.5)) ; s 0.0]*xk
+  The three macros fish, fishr, fishr2 are loaded in Scilab when calling bif-
+  ish.
+
+SEE ALSO
+  ode
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

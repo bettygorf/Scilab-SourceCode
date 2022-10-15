@@ -1,0 +1,47 @@
+
+gr_menu(2)                     Scilab Function                     gr_menu(2)
+NAME
+  gr_menu - simple interactive graphic editor
+
+CALLING SEQUENCE
+  [sd1]=gr_menu([sd,flag,no_frame])
+
+PARAMETERS
+
+  sd        : list (output of gr_menu), or vector of length four
+            [xmin,ymin,xmax,ymax] (boundaries of the plot).
+
+  sd1       : list (graphical objects created under gr_menu
+
+  flag,noframe
+            : integers with 0, 1 value. Use flag=1 for non interactive mode
+            (i.e to redraw saved gr_menu graphics) and no_frame=1 to avoid a
+            frame around gr_menu graphics.
+
+DESCRIPTION
+  gr_menu is a simple interactive graphic editor.  When you execute
+  gr_menu(), three new menus, Objects, Settings and Edit are added to the
+  current graphics window.  Use the item Exit of menu Edit to exit gr_menu.
+
+  The created graphics are saved as a list which can be given to gr_menu as
+  an entry value.
+
+  [sd]=gr_menu([xmin,ymin,xmax,ymax])
+                 : enters gr_menu with a fixed frame
+
+  [sd]=gr_menu();
+                 : enters gr_menu with the  fixed frame  [0 0 100 100].
+
+  [sd]=gr_menu(sd)
+                 : redraws the graphics stored in sd and enters interactive
+                 mode
+
+  [sd]=gr_menu(sd,1)
+                 : only draws the graphics stored in sd.
+
+  [sd]=gr_menu(sd,1,1)
+                 : only draws the graphics stored in sd and no frame is
+                 added.
+
+AUTHOR
+  S.S. & J.Ph.C.

@@ -1,0 +1,33 @@
+
+morlet(2)                      Scilab Function                      morlet(2)
+NAME
+  morlet -  Morlet wavelet
+
+  Author: Paulo Goncalves
+
+  Computes a Morlet wavelet.
+
+Usage
+  [wavelet,alpha] = morlet(nu,[N,analytic])
+
+Input parameters
+       o nu :  real scalar between 0 and 1/2 Central (reduced) frequency of
+         the wavelet
+       o N : Positive integer Half length of the wavelet transform. Default
+         value corresponds to a total length of 4.5 periods.
+       o analytic : boolean (0/1) under Matalb or (%F/%T) under Scilab.  0 or
+         %F : real Morlet wavelet 1 or %T : analytic Morlet wavelet
+Output parameters
+       o wavelet : real or complex vector [1,2*N+1] Morlet wavelet in time.
+       o alpha : real scalar Attenuation exponent of the Gaussian enveloppe
+         of the Morlet wavelet.
+See also:
+  mexhat, contwt
+
+Example:
+   wavelet synthesis
+
+  wavelet1 = morlet(0.1,64) ;
+  wavelet2 = morlet(0.1) ;
+  plot(wavelet1) ; pause
+  plot(wavelet2)

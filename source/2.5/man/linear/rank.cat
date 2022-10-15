@@ -1,0 +1,33 @@
+
+rank(G)                        Scilab Function                        rank(G)
+NAME
+  rank - rank
+
+CALLING SEQUENCE
+  [i]=rank(X)
+  [i]=rank(X,tol)
+
+PARAMETERS
+
+  X       : real or complex matrix
+
+  tol     : nonnegative real number
+
+DESCRIPTION
+  rank(X) is the numerical rank of X i.e. the number of singular values of X
+  that are larger than norm(size(X),'inf') * norm(X) * %eps.
+
+  rank(X,tol) is the number of singular values of X that are larger than tol.
+
+Remark
+  Note that the default value of tol is proportional to norm(X).  As a conse-
+  quence
+
+  rank([1.d-80,0;0,1.d-80]) is 2 !.
+
+EXAMPLE
+  rank([1.d-80,0;0,1.d-80])
+  rank([1,0;0,1.d-80])
+
+SEE ALSO
+  svd, qr, rowcomp, colcomp, lu

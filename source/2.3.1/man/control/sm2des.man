@@ -1,0 +1,24 @@
+.TH sm2des 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+sm2des - system matrix to descriptor
+.SH CALLING SEQUENCE
+.nf
+[Des]=sm2des(Sm);
+.fi
+.SH PARAMETERS
+.TP
+Sm
+: polynomial matrix (pencil system matrix)
+.TP
+Des
+: descriptor system (\fVlist('des',A,B,C,D,E)\fR)
+.SH DESCRIPTION
+Utility function: converts the system matrix:
+.nf
+ Sm = [-sE + A   B;
+      [    C     D]
+.fi
+to descriptor system \fVDes=list('des',A,B,C,D,E)\fR).
+.SH SEE ALSO
+ss2des, sm2ss

@@ -1,0 +1,19 @@
+.TH screen 1 "April 1993" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME
+screen - change Metanet window
+.SH CALLING SEQUENCE
+.nf
+screen(sock)
+.fi
+.SH PARAMETERS
+.TP 5
+sock
+: integer, socket number (screen number)
+.SH DESCRIPTION
+This function is used to change the \fVMetanet\fR window. Each \fVMetanet\fR 
+window has a screen number returned by the \fVconnect\fR or the \fVmetanet\fR 
+function. To use the \fVMetanet\fR window associated to screen number 
+\fVsock\fR, use \fVscreen(sock)\fR.
+.SH SEE ALSO
+metanet, screen

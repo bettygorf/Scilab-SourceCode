@@ -1,0 +1,62 @@
+SHELL = /bin/sh
+
+include ../Path.incl
+include $(SCIDIR)/Version.incl
+include $(SCIDIR)/Makefile.incl
+
+
+all:: callsci
+
+LIBRSCI = $(SCIDIR)/libs/system.a $(SCIDIR)/libs/interf.a \
+	$(SCIDIR)/libs/system2.a $(SCIDIR)/libs/optim.a \
+	$(SCIDIR)/libs/integ.a $(SCIDIR)/libs/control.a \
+	$(SCIDIR)/libs/signal.a $(SCIDIR)/libs/sparse.a \
+	$(SCIDIR)/libs/poly.a $(SCIDIR)/libs/calelm.a \
+	$(SCIDIR)/libs/lapack.a $(SCIDIR)/libs/X11G.a \
+	$(SCIDIR)/libs/metanet.a $(SCIDIR)/libs/sun.a \
+	$(SCIDIR)/libs/intersci.a $(SCIDIR)/libs/xwindow.a \
+	$(SCIDIR)/libs/xsci.a $(SCIDIR)/libs/comm.a $(SCIDIR)/libs/system.a
+
+LIBR = $(XAW_LOCAL_LIB) $(LIBRSCI) $(DLDLIB)
+
+DEFAULTS = $(SCIDIR)/routines/default/interf.o $(SCIDIR)/routines/default/bidon.o \
+	$(SCIDIR)/routines/default/fydot.o $(SCIDIR)/routines/default/fjac.o \
+	$(SCIDIR)/routines/default/fex.o $(SCIDIR)/routines/default/jex.o \
+	$(SCIDIR)/routines/default/fydotd.o \
+	$(SCIDIR)/routines/default/ffeval.o  \
+	$(SCIDIR)/routines/default/foptim.o $(SCIDIR)/routines/default/genros.o \
+	$(SCIDIR)/routines/default/topt2.o \
+	$(SCIDIR)/routines/default/fsolvf.o $(SCIDIR)/routines/default/fsolvj.o \
+	$(SCIDIR)/routines/default/fintg.o \
+	$(SCIDIR)/routines/default/fschur.o \
+	$(SCIDIR)/routines/default/dgetx.o $(SCIDIR)/routines/default/dgety.o \
+	$(SCIDIR)/routines/default/fres.o $(SCIDIR)/routines/default/fadda.o \
+	$(SCIDIR)/routines/default/fj2.o $(SCIDIR)/routines/default/aplusp.o \
+	$(SCIDIR)/routines/default/dgbydy.o $(SCIDIR)/routines/default/resid.o \
+	$(SCIDIR)/routines/default/fsurf.o \
+	$(SCIDIR)/routines/default/fresd.o $(SCIDIR)/routines/default/fjacd.o \
+	$(SCIDIR)/routines/default/fcol.o \
+	$(SCIDIR)/routines/default/icsemc.o \
+	callsci.o $(SCIDIR)/routines/default/scimem.o\
+	$(SCIDIR)/routines/default/matusr.o $(SCIDIR)/routines/default/matus2.o \
+	$(SCIDIR)/routines/default/funtab.o $(SCIDIR)/routines/default/msgstxt.o
+
+FFLAGS = $(FC_OPTIONS)
+
+callsci: callsci.o
+	@x=1;if test -f $@; then  \
+		x=`find $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \) \
+		-newer $@ -print | wc -l `; \
+	fi;\
+	if test $$x -ne 0; then \
+		$(RM) $@; \
+		echo "linking"; \
+		$(FC) $(FFLAGS) -o $@ $(DEFAULTS) $(LIBR) $(FC_LDFLAGS) $(XLIBS) \
+			$(TERMCAPLIB); \
+	else \
+		echo bin/scilex is up to date ; \
+	fi
+
+distclean::
+	$(RM) callsci
+

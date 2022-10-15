@@ -1,0 +1,32 @@
+.TH minicf 1 "April 1993" "Scilab Group" "Scilab macro"
+.so man1/sci.an
+.SH NAME 
+minicf -  minimum linear cost for imposed flow  
+.SH CALLING SEQUENCE
+.nf
+[c,f,v] = minicf(iv,[g])
+.fi
+.SH PARAMETERS
+.TP 3
+iv
+: integer, imposed value for the flow
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP
+c
+: integer, cost value of the flow on the return arc (sink,source)
+.TP
+f
+: array of the flows on the arcs
+v
+: value of the return flow
+.SH DESCRIPTION
+\fVmincf0\fR returns the minimum linear cost for the imposed flow 
+\fViv\fR from the source to 
+the sink 
+for the directed graph \fVg\fR with only one source and one sink.
+\fVf\fR is the array of the flows 
+on the arcs,  f is the array of the flows on the arcs and v the value of the 
+flow on the return arc.
+.SH SEE ALSO
+mincfr, mincf0, minqflow

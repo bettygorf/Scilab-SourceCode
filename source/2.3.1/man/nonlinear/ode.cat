@@ -1,0 +1,186 @@
+
+ode(G)                         Scilab Function                         ode(G)
+NAME
+  ode - ordinary differential equation solver
+
+CALLING SEQUENCE
+  [yt]=ode(y0,t0,t,f)
+  [yt,w,iw]=ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
+  [yt,rd,w,iw]=ode('root',y0,t0,t [,rtol  [,atol]],f  [,jac],ng,g [,w,iw])
+  [yt]=ode('discrete',y0,k0,kvect,f)
+
+PARAMETERS
+
+  y0        : real vector or matrix (initial conditions).
+
+  t0,       : real scalar (initial time).
+
+  t         : real (row) vector.
+
+  f         : Scilab "external" i.e. function or character string or list.
+
+  type      : one of the following character string:
+               'adams' 'stiff' 'rgk' 'discrete' 'roots'
+
+  rtol,atol : real constants or real vector of the same size as y.
+
+  jac       : external i.e. function or character string or list.
+
+  w,iw      : real vectors.
+
+  ng        : integer.
+
+  g         : external i.e. function or character string or list.
+
+  k0,kvect  : k0 an integer ( initial time). kvect integer vector.
+
+DESCRIPTION
+  1.Simple call:
+
+  y=ode(y0,t0,t,f) computes the solution to the system of differential equa-
+  tions
+
+   dy/dt=f(t, y) , y(t0)=y0.
+
+  t is a vector of instants where the solution y is computed.
+
+  y is the vector y=[y(t(1)),y(t(2)),...].
+
+  The input f to ode is an external i.e. a function with specified syntax or
+  the name a fortran subroutine (character string) with specified  calling
+  sequence or a list.
+
+  If f is a function, its syntax must be as follows:
+  ydot = f(t,y)
+  Where t is a real scalar and y a real vector or matrix.
+
+  This function evaluates dy/dt as a function of the scalar t and the real
+  vector or matrix y (f is the RHS of the differential equation
+  dy/dt=f(t,y)).
+
+  If f is a character string, it refers to the name of a Fortran subroutine
+  i.e. if ode(y0,t0,t,'fex') is the command, then the subroutine fex is
+  called. This routine can be dynamically linked to Scilab by the link func-
+  tion. See the source code of subroutine fydot.f (in directory default) for
+  an example.
+
+  The f argument can also be a list:
+
+  if ode(y0,t0,t,lst) is the command, then lst must be a list with the fol-
+  lowing structure:
+  lst=list(f,u1,u2,...un)
+  where f is a function with syntax:
+  ydot = f(t,y,u1,u2,...,un)
+  2.Extended call:
+
+  This command allows to integrate the differential system
+  dy/dt=f(t,y,u1,u2,...,un)
+  the ui's can be any Scilab object e.g. vectors or matrices or functions...
+
+  type      : is the character string which indicates the method used by the
+            integration routine:
+
+            "adams"
+              : Adams method
+
+            "stiff"
+              :  BDF method
+
+            "rgk"
+              : Runge Kutta method
+
+  rtol, atol
+            :  are threshold for relative and absolute estimated errors. The
+            estimated error on y(i) is rtol(i)*abs(y(i)) + 0.01*atol(i) and
+            integration is carried out as far as this error is small for all
+            components of the state.  If rtol and/or atol is a constant
+            rtol(i) and/or atol(i) are set to this constant value. Default
+            values for atol and rtol are respectively rtol=1.d-5 and
+            atol=1.d-7.
+
+  jac       : is a function or character string or list which returns the
+            Jacobian of the RHS function.
+
+  If jac is function the syntax should be as follows:
+  J=jac(t,y)
+  Matrix J must evaluate to df/dx i.e. J(k,i) = d fk /d xi with fk = kth com-
+  ponent of f.
+
+  If jac is a character string it refers to the name of a Fortran subroutine
+  (see source code fjac.f for an example)
+
+  If jac is a list the same conventions as for f apply.
+
+  w,iw : vectors for storing information returned by the integration routine.
+       When these vectors are provided in RHS of ode the integration re-
+       starts with the same  parameters as in its previous stop.
+  3.Integration with a stopping time:
+
+  [yt,rd]=ode('root',y0,t0,t,f,ng,g)
+
+  computes the solution of the differential equation dy/dt=f(t,y) until the
+  state y(t) traverses the surface
+  g(t,y)=0.
+  Here g can be a function or a list or character string (which refers to the
+  name of a Fortran subroutine). g should give the equation of the surface.
+  If g is a function its syntax must be surface = g(t,y) and it returns a
+  vector of size ng which corresponds to the ng constraints. Conventions con-
+  cerning Fortran routine are found in fsurf.f. Conventions concerning g as a
+  list are the usual ones (see f above).  Ouput rd is a 1xk vector. The first
+  entry contains the stopping time. Other entries indicate which components
+  of g have changed sign. k larger than two indicates that more than one sur-
+  face (k-1) has been simultaneously traversed.
+
+  4.Discrete time simulation
+
+  yt=ode('discrete',y0,k0,kvect,f)
+
+  computes recursively  y(k+1)=f(k,y(k))  from an initial state y(k0) and
+  returns  y(k) for k in kvect.  kvect(1) must be greater or equal to k0.
+
+  Optional parameters can be given by a global variable. For this enter
+  odeoptions().
+
+  Below are a few examples.
+  y=ode('discrete',y1,1,1:n,function);
+  y=ode('discrete',y1,1,3:2:9,function);
+  in the second example y evaluates to y=[y3,y5,y7,y9];
+
+  For example
+
+  [1]  Computation of exp(A) with A=[1,1;0,2];
+       deff('[xdot]=f(t,x)','xdot=A*x');
+       ode(eye(A),0,1,f)
+       Same example integrated with Adams integration routine
+       ode('adams',0,1,f)
+       Same example with stiff f (Jacobian provided) A=[10,0;0,-1]
+       deff('[J]=Jacobian(t,y)','J=A')
+       ode('stiff',[0;1],0,1,f,Jacobian)
+
+  [2]  Integration of the Riccati differential equation Xdot=A'*X + X*A -
+       X'*B*X + C ,  X(0)=Identity Solution at t=[1,2]
+       deff('[Xdot]=ric(t,X)','Xdot=A''*X+X*A-X''*B*X+C')
+       A=[1,1;0,2]; B=[1,0;0,1]; C=[1,0;0,1];
+       X=ode(eye(A),0,t,ric)
+
+  [3]  Simulation of dx/dt = A x(t) + B u(t) with u(t)=sin(omega*t), x0=[1;0]
+       ; solution x(t) desired at t=0.1, 0.2, 0.5 ,1.  Here the A matrix and
+       the u function are passed to the RHS function in a list. B and omega
+       are passed through the environment.
+       deff('[xdot]=linear(t,x,A,u)','xdot=A*x+B*u(t)')
+       deff('[ut]=u(t)','ut=sin(omega*t)')
+       A=[1 1;0 2];B=[1;1];omega=5;
+       ode([1;0],0,[0.1,0.2,0.5,1],list(linear,A,u))
+
+  [4]  Stopping time Integration of the differential equation ydot = y ,
+       y(0)= y0=1; and finds To=inf{t such that y(t)=2}
+       deff('[ydot]=f(t,y)','ydot=y')
+       deff('[surface]=g(t,y)','surface=y-2')
+       ng=1;
+       [y,rd]=ode('roots',y0,0,2,f,ng,g)
+
+  [5]  Fortran called (see source code of fydot.f and fjac.f)
+       y0=[1;0;0]; t0=0; t=[0.4,4]
+       ode('stiff',y0,t0,t,'fex','jex')
+SEE ALSO
+  odeoptions, impl, ltitr, rtitr, exp, csim, external

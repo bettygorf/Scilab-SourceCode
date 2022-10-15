@@ -1,0 +1,27 @@
+.TH minreal 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+minreal - minimal balanced realization
+.SH CALLING SEQUENCE
+.nf
+[slb]=minreal(sl [,tol])
+.fi
+.SH PARAMETERS
+.TP 15
+sl,slb
+: \fVsyslin\fR lists
+.TP 10
+tol
+: real (threshold)
+.SH DESCRIPTION
+\fV[ae,be,ce]=minreal(a,b,c,domain [,tol]) \fR
+returns the balanced realization of linear 
+system \fVsl\fR (\fVsyslin\fR list). 
+.LP
+\fVsl\fR is assumed stable.
+.LP
+\fVtol\fR threshold used in \fVequil1\fR.
+.SH SEE ALSO
+balreal, arhnk, equil, equil1, hoalg
+.SH AUTHOR
+S. Steer INRIA 1987

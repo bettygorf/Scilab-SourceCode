@@ -1,0 +1,22 @@
+
+MCLOCK_f(5)                      Scicos Block                     MCLOCK_f(5)
+NAME
+  MCLOCK_f - Scicos 2 frequency event clock
+
+DESCRIPTION
+  This block is a Super Block constructed by feeding back the outputs of an
+  MFCLCK block into its input event port. The two outputs of this block gen-
+  erate regular train of events, the frequency of the first input being equal
+  to that of the second output divided by an integer n. The two outputs are
+  synchronized (this is impossible for standard blocks; this is a Super
+  Block).
+
+DIALOGUE PARAMETERS
+
+  Basic period   : scalar. equals 1/f, f being the highest frequency.
+
+  n              : an intger >1. the frequency of the first output event is
+                 f/n.
+
+SEE ALSO
+  MFCLCK_f, CLOCK_f

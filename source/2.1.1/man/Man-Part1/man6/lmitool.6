@@ -1,0 +1,43 @@
+.TH lmitool 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+lmitool - tool for solving linear matrix inequations
+.SH CALLING SEQUENCE
+.nf
+lmitool()
+
+lmitool(filename)
+
+txt=lmitool(probname,varlist,datalist)
+.fi
+.SH PARAMETERS
+.TP 10
+filename
+: a string referring to a \fV.sci\fR function
+.TP
+probname
+: a string containing the name of the problem
+.TP 
+varlist
+: a string containing the names of the unknown matrices
+(separated by commas if there are more than one)
+.TP
+datalist
+:  a string containing the names of  data matrices (separated
+by commas if there are more than one)
+.TP
+txt
+: a string providing information on what the user should do
+next
+.SH DESCRIPTION
+\fVlmitool()\fR or \fVlmitool(filename)\fR is used to define 
+interactively a LMI problem.
+In the non interactive mode,
+\fVtxt=lmitool(probname,varlist,datalist)\fR
+generates a file in the current directory. The name of this file 
+is obtained by adding \fV.sci\fR to the end of \fVprobname\fR. 
+This file is the skeleton of a solver function and the corresponding 
+evaluation function needed by \fVlmisolver\fR.
+.SH SEE ALSO
+lmisolver
+

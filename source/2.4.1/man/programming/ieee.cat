@@ -1,0 +1,33 @@
+
+ieee(1)                        Scilab Function                        ieee(1)
+NAME
+  ieee - set floating point exception mode
+
+CALLING SEQUENCE
+  mod=ieee()
+  ieee(mod)
+
+PARAMETERS
+
+  mod : integer scalar whose possible values are 0,1,or 2
+
+DESCRIPTION
+  ieee() returns the current floating point exception mode.
+
+  0: floating point exception produce an error
+    1: floating point exception produce a warning 2: floating point exception
+    procudes Inf or Nan
+
+  ieee(mod) sets the current floating point exception mode.
+
+  The initial mode value is 0.
+REMARKS
+  Floating point exeception arizing inside some library algorithms are not
+  yet handled by ieee modes.
+
+EXAMPLE
+  ieee(1);1/0
+  ieee(2);1/0,log(0)
+
+SEE ALSO
+  errcatch

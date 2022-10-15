@@ -1,0 +1,24 @@
+.TH pen2ea G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+pen2ea - pencil to E,A conversion
+.SH CALLING SEQUENCE
+.nf
+[E,A]=pen2ea(Fs)
+.fi
+.SH PARAMETERS
+.TP
+Fs
+: matrix pencil \fVs*E-A\fR
+.TP
+E,A
+: two matrices such that \fVFs=s*E-A\fR
+.SH DESCRIPTION
+Utility function. Given the pencil \fVFs=s*E-A\fR,
+returns the matrices \fVE\fR and \fVA\fR.
+.SH EXAMPLE
+.nf
+E=[1,0];A=[1,2];s=poly(0,'s');
+[E,A]=pen2ea(s*E-A)
+.fi
+

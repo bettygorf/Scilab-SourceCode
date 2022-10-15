@@ -1,0 +1,27 @@
+
+srkf(1)                        Scilab Function                        srkf(1)
+NAME
+  srkf - square root Kalman filter
+
+CALLING SEQUENCE
+  [x1,p1]=srkf(y,x0,p0,f,h,q,r)
+
+PARAMETERS
+
+  f, h      : current system matrices
+
+  q, r      : covariance matrices of dynamics and observation noise
+
+  x0, p0    : state estimate and error variance at t=0 based on data up to
+            t=-1
+
+  y         : current observation Output from the function is
+
+  x1, p1    : updated estimate and error covariance at t=1 based on data up
+            to t=0
+
+DESCRIPTION
+  square root Kalman filter algorithm
+
+AUTHOR
+  C. B.

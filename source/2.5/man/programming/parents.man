@@ -1,0 +1,73 @@
+.TH parents 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+parents ( ) - left and right parenthesis
+.SH CALLING SEQUENCE
+.nf
+(expression)
+[...]=func(e1,e2,...)
+[x1,x2,...]=(e1,e2,...)
+x(i,j)
+v(i)
+[...]=l(i)
+.fi
+.SH PARAMETERS
+.TP 15
+x
+: matrix of any  possible type
+
+.TP 15
+v
+: row or column vector of any  possible type
+.TP 15
+l
+: list variable
+.TP 15
+func
+: any function name
+.TP 15
+e1,e2,...
+: any possible type expression
+.SH DESCRIPTION
+Left and right parenthesis are used to 
+.IP *
+Specify evaluation order within expressions, 
+.IP *
+Form right-hand-side functions argument list. Within multiple rhs
+arguments must be separated by comma. 
+.IP *
+Select elements within vectors, matrices and lists.
+see help on extraction and insertion for more precisions
+.IP *
+[x1,x2,...]=(e1,e2,...) is equivalent to x1=e1, x2=e2, ...
+
+.SH EXAMPLE
+.nf
+3^(-1)
+x=poly(0,"x");
+//
+(x+10)/2
+i3=eye(3,3)
+//
+a=[1 2 3;4 5 6;7 8 9],a(1,3),a([1 3],:),a(:,3)
+a(:,3)=[]
+a(1,$)=33
+a(2,[$ $-1])
+a(:,$+1)=[10;11;12]
+//
+w=ssrand(2,2,2);ssprint(w)
+ssprint(w(:,1))
+ss2tf(w(:,1)) 
+//
+l=list(1,2,3,4)
+[a,b,c,d]=l(:)
+l($+1)='new'
+//
+v=%t([1 1 1 1 1])
+//
+[x,y,z]=(1,2,3)
+.fi
+.SH SEE ALSO
+colon, comma, brackets, list, extraction, insertion
+
+

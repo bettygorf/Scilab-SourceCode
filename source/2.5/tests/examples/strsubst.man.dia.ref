@@ -1,0 +1,13 @@
+ 
+clear;lines(0);
+ 
+strsubst('SCI/demos/scicos','SCI','.')
+ ans  =
+ 
+0./demos/scicos   
+ 
+strsubst('SCI/demos/scicos','/',' ')
+ ans  =
+ 
+ SCI demos scicos   
+ 

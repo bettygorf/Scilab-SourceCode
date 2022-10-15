@@ -1,0 +1,18 @@
+
+scaling(2)                     Scilab Function                     scaling(2)
+NAME
+  scaling - affine transform of a set of points
+
+CALLING SEQUENCE
+  [xy1]=scaling(xy,factor,orig)
+
+PARAMETERS
+
+  xy,xy1         :  matrices of size (2,.)
+
+  factor         : real scalar (linear transform coef)
+
+  orig           : shift vector (default value =[0;0] )
+
+DESCRIPTION
+  xy1(:,i) = factor *xy(:,i) + orig

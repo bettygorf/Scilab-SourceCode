@@ -1,0 +1,30 @@
+.TH projsl 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+projsl - linear system projection
+.SH CALLING SEQUENCE
+.nf
+[slp]=projsl(sl,Q,M)
+.fi
+.SH PARAMETERS
+.TP 15
+sl,slp
+: \fVsyslin\fR lists
+.TP 15
+Q,M
+: matrices (projection factorization)
+.SH DESCRIPTION
+\fVslp\fR= projected model of \fVsl\fR where \fVQ*M\fR is the full rank 
+factorization of the projection.
+.LP
+If \fV(A,B,C,D)\fR is the representation of \fVsl\fR, the projected model
+is given by \fV(M*A*Q,M*B,C*Q,D)\fR.
+.LP
+Usually, the projection \fVQ*M\fR is obtained as the spectral projection
+of an appropriate auxiliary matrix \fVW\fR e.g. \fVW\fR = product
+of (weighted) gramians or product of Riccati equations.
+.SH SEE ALSO
+pbig
+.SH AUTHOR
+F. D.
+

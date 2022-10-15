@@ -1,0 +1,179 @@
+.TH nemirov 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+nemirov - Nemirovskii - Nesterov's program
+.SH CALLING SEQUENCE
+.nf
+[xout,t,info]=nemirov(Ac,bc,Qc,pc,m [,list(tmax,xin)] [,params])
+.fi
+.SH PARAMETERS
+.TP
+Ac 
+: vector \fV[A1c,...,Anc]\fR where \fVAic\fR is the "compressed" form of
+the \fVAi\fR's matrices
+.TP
+bc 
+: vector which contains the "compressed" form of the \fVb\fR matrix
+.TP
+Qc 
+: vector \fV[Q1c,...,Qnc]\fR where \fVQic\fR is the "compressed" form of
+the \fVQi\fR's matrices.
+.TP
+pc 
+: vector which contains the "compressed" form of the \fVp\fR matrix
+.TP
+m 
+: vector of \fV(Ai,b,Qi,p)\fR matrices block size. 
+All these matrices are assumed to have the same block structure.
+.TP
+tmax
+: initial upper bound of \fVt\fR
+.TP
+xin 
+: n vector, initial value of \fVx\fR
+.TP
+params 
+: \fV[printflg #iter rtol utol ptol #psteps #dsteps projflg cholflg]\fR
+.RS
+.TP
+printflg 
+: printlevel: default -1
+.RS
+.TP
+-1 
+: no message
+.TP
+0 
+: brief comments at the termination
+.TP
+1 
+: brief on-line messages
+.TP
+2 
+: full on-line messages
+.RE
+.TP
+#iter 
+: number of iterations allowed,default 20
+.TP
+rtol 
+: required relative accuracy. (default 1.d-6) 
+Theoretically, after successful run value vr of 
+the objective at the resulting approximate solution 
+is larger than the optimal value by no more than 
+\fVmax{1,|vr|}*rtol\fR
+.TP
+utol 
+: tolerance for "unfeasibility",default 1.d-10 
+.TP
+ptol 
+: tolerance for projection,default 1.d-12
+.TP
+#psteps 
+: number of primal bisection steps,default 5 
+.TP
+#dsteps 
+: number of dual Newton steps,default 5
+.TP
+projflg 
+: 0/1 Y/N on improved projection,default 0
+.TP
+cholflg 
+: 0/1 Y/N on Choleski for termination,default 0
+the rigthest elements of \fVparams\fR may be omitted.
+.RE
+.TP
+xout 
+: n vector final value of \fVx\fR
+.TP
+t 
+: final value of \fVt\fR
+.TP
+info 
+: 2 components vector \fV[flag,niter]\fR
+.RS
+.TP
+flag 
+: what is found
+.RS
+.TP
+2 
+: optimal solution found
+.TP
+1 
+: required accuracy achieved
+.TP
+0 
+: feasible solution found
+.TP
+-1 
+: unfeasibility found
+.TP
+-2 
+: below unboundedness found
+.TP
+-3 
+: below unboundedness or unfeasibility found
+.TP
+-4 
+: nothing found
+.RE
+.TP
+niter 
+: number of iterations performed
+.RE
+.SH DESCRIPTION
+generalized linear-fractional problem on the cone of positive
+semidefinite matrices by projective  method.
+.LP
+This code implements the projective polynomial time potential
+reduction method as applied to the following problem (P):
+\"LaTeX \ignore{
+.nf
+     (P)        minimize t subject to
+                 ---
+                 \  x(i)*A  + b  >=0                   (1)
+                 /        i
+                 ---
+                 i=1,n
+.fi
+\"LaTeX }
+\"LaTeX \ignore{
+.nf
+                 ---                 ---
+             t*( \  x(i)*A  + b ) >= \  x(i)*Q  + p    (2)
+                 /        i          /        i
+                 ---                 ---
+                 i=1,n               i=1,n
+.fi
+\"LaTeX }
+\"LaTeX \ignore{
+.nf
+                   t         >= tmin                    (3)
+.fi
+\"LaTeX }
+.LA \[ (P) minimize t subject to \]
+.LA \[ \sum_{i=1}^{n} {x(i)A_i +b} \geq 0 \]
+.LA \[ t ( \sum_{i=1}^n{x(i)A_i +b}) \geq \sum_{i=1}^n{ x(i)Q_i + p} \]
+.LA \[ t \geq t_{min} \]
+With \fVAi, Qi, b , p\fR  symmetric block-diagonal matrices
+and >= means "positive semidefinite"
+.SH REMARK
+Definition of "compressed forms". If \fVR\fR is a symmetric block-diagonal 
+matrix 
+.nf
+[R1 0 ... 0;0 R2, ..., 0;0 0, ... Rk]
+.fi
+and m the k vector of block sizes, then
+.nf
+Rc=[R1c,...,Rkc] 
+.fi
+with
+.nf
+Rjc=[Rj(1,1),Rj(2,1),Rj(2,2),...,Rj(m(k),1),...,Rj(m(k),m(k))]
+.fi
+.SH AUTHOR
+A.S. Nemirovskii & Yu.E. Nesterov. Version 1.1 of November 25, 1991
+
+
+

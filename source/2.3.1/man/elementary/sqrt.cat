@@ -1,0 +1,22 @@
+
+sqrt(1)                        Scilab Function                        sqrt(1)
+NAME
+  sqrt - square root
+
+CALLING SEQUENCE
+  y=sqrt(x)
+
+PARAMETERS
+
+  x         : real or complex  scalar or vector
+
+DESCRIPTION
+   sqrt(x) is the vector of the square root of the x elements. Result is com-
+  plex if x is negative.
+
+EXAMPLE
+  sqrt([2,4])
+  sqrt(-1)
+
+SEE ALSO
+  hat, sqrtm

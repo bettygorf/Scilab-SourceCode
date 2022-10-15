@@ -1,0 +1,83 @@
+.TH "mdfl1d" 2 "March 12, 1998" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mdfl1d - Discrete Legendre spectrum estimation on 1d measure 
+.sp
+Author: Christophe Canus
+.sp
+This routine estimates the discrete Legendre Spectrum on 1d measure.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPalpha,f_alpha\f(CR]\fP=mdfl1d(mu_n,N,n)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBmu_n\fP : strictly positive real vector \f(CR[\fP1,nu_n\f(CR]\fP
+Contains the pre-multifractal measure.
+
+.TP
+o 
+\fBN\fP : strictly positive real (integer) scalar 
+Contains the number of Hoelder exponents.
+
+.TP
+o 
+\fBn\fP : strictly positive real (integer) scalar 
+Contains the final resolution.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBalpha\fP : real vector \f(CR[\fP1,N\f(CR]\fP
+Contains the Hoelder exponents.
+
+.TP
+o 
+\fBf_alpha\fP : real vector \f(CR[\fP1,N\f(CR]\fP
+Contains the dimensions.
+.RE
+
+.SH Description
+.SH Parameters 
+The discrete Legendre spectrum \fIf_alpha\fP is estimated on the finite
+finer resolution of the pre-multifractal 1d measure \fImu_n\fP. The
+three steps of the estimatation are:
+
+
+.RS
+
+.TP
+o 
+estimation of the partition function;
+
+.TP
+o 
+estimation of the Reyni exponents;
+
+.TP
+o 
+estimation of the Legendre transform.
+.RE
+
+.SH Algorithm details 
+ 
+The discrete partition function is estimated by coarse-graining masses
+mu_n into non-overlapping boxes of increasing diameter (box
+method). If \fInu_n\fP is a power of 2, 2\(ha\fIn\fP
+corresponds to the coarser scale.
+The reyni exponents are estimated by least square
+linear regression.
+The Legendre transform of the mass exponent function is estimated with
+the linear-time Legendre transform. 
+.SH See also
+\fBmdzq1d,mdzq2d,reynitq,linearlt,mdfl2d\fP.

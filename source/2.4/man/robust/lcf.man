@@ -1,0 +1,24 @@
+.TH lcf 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+lcf - normalized coprime factorization
+.SH CALLING SEQUENCE
+.nf
+[N,M]=lcf(sl)
+.fi
+.SH PARAMETERS
+.TP 10
+sl  
+: linear system given in state space or transfer function (\fVsyslin\fR list)
+.TP
+N,M 
+: two linear systems (\fVsyslin\fR list) 
+.SH DESCRIPTION
+Computes normalized coprime factorization of the linear dynamic 
+system \fVsl\fR.
+.LP
+\fVsl = M^-1 N\fR
+.SH AUTHOR
+F. D.
+
+

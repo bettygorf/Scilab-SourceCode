@@ -1,0 +1,36 @@
+
+gauss(2)                       Scilab Function                       gauss(2)
+NAME
+  gauss -  Gaussian window
+
+  Author: Paulo Goncalves
+
+  Returns a Gaussian window
+
+Usage
+
+  Win = gauss(N[,A])
+Input parameters
+       o N :  Positive integer Number of points defining the time support of
+         the window
+       o A : Real positive scalar Attenuation in dB at the end of the window
+         (10(-A)). Default value is A = 2.
+Output parameters
+       o Win : real vector [1,N] Gaussian window in time.
+See also:
+  mexhat, morlet
+
+Example:
+
+  t = linspace(-1,1,128) ;
+  Win1 = gauss(128,2) ;
+  Win2 = gauss(128,5) ;
+
+   Vizualisation - Matlab
+
+  plot(t,win1,'b',t,win2,'r') ;
+  legend('Gaussian window 1','Gaussian window 2')
+
+   Vizualisation - Scilab
+
+  plot2d([t(:) t(:)],[Win1(:) Win2(:)],[17 19])

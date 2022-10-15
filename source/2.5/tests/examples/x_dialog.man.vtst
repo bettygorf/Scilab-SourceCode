@@ -1,0 +1,4 @@
+clear;lines(0);
+//gain=evstr(x_dialog('value of gain ?','0.235'))
+//x_dialog(['Method';'enter sampling period'],'1')
+//m=evstr(x_dialog('enter a  3x3 matrix ',['[0 0 0';'0 0 0';'0 0 0]']))

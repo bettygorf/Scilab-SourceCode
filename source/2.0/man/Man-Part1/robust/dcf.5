@@ -1,0 +1,40 @@
+.TH dcf 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+dcf - double coprime factorization
+.SH CALLING SEQUENCE
+.nf
+[N,M,X,Y,NT,MT,XT,YT]=dcf(G,[polf,polc,[tol]]) 
+.fi
+.SH PARAMETERS
+.TP 12
+G 
+: \fVsyslin\fR list (continuous-time linear system)
+.TP
+polf, polc
+: respectively the poles of \fVXT\fR and \fVYT\fR and the poles of \fVN\fR 
+and \fVM\fR (default values =\fV-1\fR).
+.TP
+tol
+: real threshold for detecting stable poles (default value \fV100*%eps\fR).
+.TP
+N,M,XT,YT,NT,MT,X,Y
+: linear systems represented by \fVsyslin\fR lists
+
+.SH DESCRIPTION
+returns eight stable systems \fV(N,M,X,Y,NT,MT,XT,YT) \fR
+for the doubly coprime factorization
+\"LaTeX \ignore{	
+.nf
+                 !XT  -YT! ! M  Y !
+                 !       !*!      ! = eye
+                 !-NT  MT! ! N  X !
+.fi
+\"LaTeX }
+\"LaTeX \[ \left( \begin{array}{cc} XT & -YT \\ -NT & MT \end{array}\right)
+\"LaTeX * \left( \begin{array}{cc} M & Y \\ M & X \end{array}\right)
+\"LaTeX 	= eye \]
+\fVG\fR must be stabilizable and detectable.
+.SH SEE ALSO
+copfac
+

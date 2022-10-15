@@ -1,0 +1,6 @@
+.TH mini 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mini - minimum 
+.SH SEE ALSO
+min, max

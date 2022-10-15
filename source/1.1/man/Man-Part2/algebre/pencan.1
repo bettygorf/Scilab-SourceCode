@@ -1,0 +1,41 @@
+.TH pencan 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+pencan - canonical form of matrix pencil
+.SH CALLING SEQUENCE
+.nf
+[Q,M,i1]=pencan(E,A)
+.fi
+.SH PARAMETERS
+.TP 8
+E,A
+: two real square matrices
+.TP 8
+Q,M
+: two non-singular real matrices
+.TP
+i1
+: integer
+.SH DESCRIPTION
+Given the regular pencil \fVs*E-A\fR, \fVpencan\fR returns matrices \fVQ\fR 
+and \fVM\fR
+such than \fVM*(s*E-A)*Q\fR is in "canonical" form.
+.LP
+\fVM*E*Q\fR is a block matrix 
+.nf 
+[I,0;
+ 0,N]
+.fi
+with \fVN\fR nilpotent and \fVi1\fR = size of the \fVI\fR matrix above.
+.LP
+\fVM*A*Q\fR is a block matrix:
+.nf
+[Ar,0;
+ 0,I]
+.fi
+.SH SEE ALSO
+glever,  penlaur
+.SH AUTHOR
+F. D.
+
+

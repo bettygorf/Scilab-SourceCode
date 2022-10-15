@@ -1,0 +1,43 @@
+.TH "mtlb_mean" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mtlb_mean - rithmetic mean.
+.sp
+Author: Paulo Goncalves
+.sp
+Arithmetic mean.
+    \fIy = mtlb_mean(x)\fP is the arithmetic mean of the elements of \fIx\fP.
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+y = mtlb_mean(x) ;
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : Complex valued vector \f(CR[\fP1,N\f(CR]\fP
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBy\fP : Complex scalar  
+Arithmetic mean of the elements of input vector \fIx\fP.
+.RE
+
+.SH See also:
+sum

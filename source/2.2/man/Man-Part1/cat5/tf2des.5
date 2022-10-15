@@ -1,0 +1,66 @@
+
+
+
+tf2des(1)                      Scilab Function                      tf2des(1)
+
+
+
+
+
+
+NAME
+  tf2des - transfer function to descriptor
+
+CALLING SEQUENCE
+  [S]=tf2des(G)
+
+PARAMETERS
+
+  G    : linear system (syslin list) with polynomial D matrix
+
+  S    : list
+
+DESCRIPTION
+  Transfer function to descriptor form: S=list('d',A,B,C,0,E)
+    E*xdot = A*x+B*u
+    y = C*x + D*u with D=0.
+  Note that D=0 !
+
+SEE ALSO
+  pol2des, tf2ss, ss2des, des2tf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

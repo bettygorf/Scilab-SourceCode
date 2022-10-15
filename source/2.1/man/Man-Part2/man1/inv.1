@@ -1,0 +1,26 @@
+.TH inv G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+inv - matrix inverse
+.SH CALLING SEQUENCE
+.nf
+inv(X)
+.fi
+.SH PARAMETERS
+.TP
+X 
+: real or complex square matrix, polynomial matrix, rational
+matrix in transfer or state-space representation.
+.SH DESCRIPTION
+\fVinv(X)\fR is the inverse of the square matrix \fVX\fR. A warning
+message is printed if \fVX\fR is badly scaled or nearly singular.
+.LP
+For polynomial matrices or rational matrices in transfer representation,
+\fVinv(X)\fR is equivalent to \fVinvr(X)\fR.
+.LP
+For linear systems in state-space representation (\fVsyslin\fR list),
+\fVinvr(X)\fR is equivalent to \fVinvsyslin(X)\fR.
+.SH SEE ALSO
+slash, backslash, pinv, qr, lufact, lusolve, invr, coff, coffg
+
+

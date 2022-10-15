@@ -1,0 +1,236 @@
+.TH scicos 5 "Janvier 1996" "Scilab Group" "Scicos GUI"
+.so man1/sci.an
+.SH NAME
+scicos - Block diagram editor and GUI to hybrid simulator scicosim
+.SH CALLING SEQUENCE
+sys=scicos([sys])
+.SH PARAMETERS
+.TP
+sys
+: a Scicos data structure
+.SH DESCRIPTION
+scicos is a visual editor for constructing models of hybrid dynamical
+systems. Invoking scicos with no argument opens up an empty scicos
+window. Models can then be assembled, loaded, saved, compiled,
+simulated, using GUI of scicos. The input and ouput arguments are only
+useful for debugging purposes. scicos serves as an interface to the
+various block diagram compilers and the hybrid simulator scicosim.
+Here is a list of operations available in scicos:
+.TP
+Help 
+:   To get help on an object or menu buttons,
+         click first on Help button and then on 
+	 the selected object or menu item.
+	
+.TP
+Edit
+:   Click on the Edit button to open the Edit menu.
+
+.TP
+Simulate..
+:   Click on the Simulate.. button to open the
+         compilation/execution menu.
+    
+.TP
+File..
+:   Click on the File.. button to open the file management menu.
+
+.TP
+View 
+:   To shift the diagram to left, right, up or down,
+       click first on the View button, then on a point in
+       the diagram where you want to appear in the middle
+       of the graphics window. 
+  
+.TP
+Exit 
+:   Click on the Exit button to leave scicos and
+         return to Scilab session. Save your diagram
+	 before leaving Scicos or it will be lost.
+   
+.TP
+Palettes
+:   Click on the Palettes button to open a new palette.
+   
+.TP
+Move 
+:   To move a block in main Scicos window,
+         click first on the Move button, then
+	 click on the selected block, drag the
+	 mouse to the desired new block position and
+	 click again to fix the position.
+	 The lower left corner of the block is placed
+	 at the selected point.
+	  
+.TP
+Copy 
+:   To copy a block in main Scicos window
+          Click first on the Copy button, then
+	  click on the to-be-copied block (in  
+	  Scicos window or in a palette) ,  and
+	  finally click where you want the copy
+	  to be placed in the Scicos window.
+	  The lower left corner of the block is placed
+	  at the selected point.  
+	   
+.TP
+Align 
+:   To obtain nice diagrams, you can align ports of
+         different blocks, vertically and horizontally.
+	 Click first on the Align button, then on the first
+	 port and finally on the second port.
+	 The block corresponding to the second port is moved.
+	 A connected block cannot be aligned.
+    
+.TP
+Link 
+:   To connect an output port to an input port,
+         click first on the Link button, then on the output
+	 port and finally on the input port.
+	 To split a link, click first on the Link button,
+	 then on the link where the split should be placed,
+	 and finally on an input port.
+	 Only one link can go from and to a port.
+	 Link color can be changed directly by clicking
+	 on the link.
+    
+.TP
+Delete 
+:   To delete a block or a link, click first on the Delete  
+         button, then on the selected object.
+	 If you delete a block all links connected to it
+	 are deleted as well.
+    
+.TP
+Flip 
+:     To reverse the positions of the (regular) inputs
+	   and outputs of a block placed on its sides,
+	   click on the Flip button first and then on the
+	   selected block. This does not affect the order,
+	   nor the position of the input and output event
+	   ports which are numbered from left to right.  
+	   
+	   A connected block cannot be flipped.
+    
+.TP
+Undo 
+:   Click on the Undo button to undo the last edit operation. 
+  
+.TP
+Replot
+:   Click on the Replot button to replot the content of
+         the graphics window. Graphics window stores complete
+	 history of the editing session in memory.
+	 
+	 Replot is usefull for cleaning this memory.
+	  
+.TP
+Back 
+:   Click on the Back button to go back to the main menu.
+  
+.TP
+Compile
+:   Click on the Compile button to compile the block diagram.
+         This button need never be used since compilation is
+	 performed automatically, if necessary, before
+	 the beginning of every simulation (Run button).
+	 
+	 Normally, a new compilation is not needed if only
+	 system parameters and internal states are modified.
+         In some cases howeever modifications are not
+	 correctly updated and a manual compilation may be
+	 needed before a Restart or a Continue.
+	 Please report if you encounter such a case.
+    
+.TP
+Run
+:   Click on the Run button to start the simulation.
+         If the system has already been simulated, a
+	 dialog box appears where you can choose to Continue,
+         Restart or End the simulation.
+         
+	 You may interrupt the simulation by clicking on the 
+	 ""stop"" button, change any of the block parameters
+	 and continue the simulation with the new values.
+    
+.TP
+Save
+:    Click on the save button to save the block diagram
+          in a binary file already selected by a previous
+	  click on the Save As button. If you click on this
+	  button and you have never clicked on the Save As
+	  button, the diagram is saved in the current direcotry
+	  as <window_name>.cos where <window_name> is the name
+	  of the window appearing on top of the window (usually
+	  Untitled or Super Block).
+     
+.TP
+Save As
+:   Click on the Save As button to save the block diagram
+          in a binary file. A dialog box allows choosing the
+	  file which must have a .cos extension. The diagram
+	  takes the name of the file (without the extension).
+     
+.TP
+FSave
+:    Click on the FSave button to save the diagram
+          in a formatted ascii file. A dialog box allows
+	  choosing the file which must have a .cosf extension.
+	  
+	  Formatted save is slower than regular save but
+	  has the advantage that the generated file is
+	  system independent (usefull for exchanging data
+	  on different computers.    
+     
+.TP
+Newblkn
+:    Click on the Newblk button to save the Super Block
+          as a new Scicos block. A Scilab function is generated
+	  and saved in a file <window_name>.sci in a user
+	  palette directory. <window_name> is the name of the
+	  Super Block appearing on top of the window.
+	  A dialog allows choosing the palette directory.
+	  To make Scicos recognize your palettes, you should
+	  define the Scilab variable user_pal_dir as a column
+	  vector of strings containing the paths to your
+	  palette directories. This can, for example, be done
+	  in your .scilab (user initialization) file.
+	  You should also make sure the functions included in
+	  your palettes exists in Scilab environment before
+	  using Scicos (lib or getf).
+     
+.TP
+Load
+:   Click on the Load button to load an ascii or binary file
+         containing a saved block diagram.  A dialog box allows
+	 choosing the file.
+     
+     
+.TP
+Setup
+:   In the main Scicos window, clicking on the Setup button
+         invokes a dialog box that allows you to change window
+	 dimensions, integration parameters: absolute and
+	 relative error tolerances and the time tolerance
+	 (the smallest time interval for which the ode
+	 solver is used to update continuous states), and
+         the simulation mode (1 or 2).
+	 In a Super Block window, clicking on this button
+         invokes a dialog box that allows changing the window
+	 name (Super Block name) and window dimensions.
+    
+.TP
+New
+:   Clicking on the New button loads an empty diagram in the
+         main Scicos window. If the previous content of the   
+	 window is not saved, it will be lost.
+.SH SEE ALSO
+scicosim
+	     
+
+
+
+
+
+
+

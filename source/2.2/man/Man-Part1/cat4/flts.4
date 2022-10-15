@@ -1,0 +1,132 @@
+
+
+
+flts(1)                        Scilab Function                        flts(1)
+
+
+
+
+
+
+NAME
+  flts - time response (discrete time, sampled system)
+
+CALLING SEQUENCE
+  [y [,x]]=flts(u,sl [,x0])
+  [y]=flts(u,sl [,past])
+
+PARAMETERS
+
+  u         : matrix (input vector)
+
+  sl        : list (linear system syslin)
+
+  x0        : vector (initial state ; default value=0)
+
+  past      : matrix (of the past ; default value=0)
+
+  x,y       : matrices (state and output)
+
+DESCRIPTION
+
+  [1mState-space form:
+
+  [0msl is     a syslin list containing the matrices of the following linear system
+
+  sl=syslin('d',A,B,C,D) (see syslin):
+    x[t+1] = A x[t] + B u[t]
+    y[t] = C x[t] + D u[t]
+  or, more generally, if D is a polynomial matrix (p = degree(D(z))) :
+
+    D(z)=D_0 + z D_1 + z^2 D_2 +..+ z^p D_p
+    y[t] = C x[t] + D_0 u[t] + D_1 u[t+1] +..+ D_[p] u[t+p]
+
+
+
+
+    u=[u0,u1,... un]  (input)
+    y=[y0,y1,... yn-p]  (output)
+    x=x[n-p+1]  (final state, used as x0 at next call to flts)
+
+
+
+
+
+  [1mTransfer form:
+
+   [0my=flts(u,sl[,past]).     Here sl is a linear system in transfer matrix
+  representation i.e
+
+
+  sl=syslin('d',transfer_matrix) (see syslin).
+
+      past = [u     ,...,  u   ]
+             [ -nd           -1]
+             [y     ,...,  y   ]
+             [ -nd           -1]
+
+
+
+
+
+
+
+  is the matrix of past values of u and y.
+
+  nd is the maximum of degrees of lcm's of each row of the denominator matrix
+  of sl.
+  u=[u0 u1 ... un]  (input)
+  y=[y0 y1 ... yn]  (output)
+  p is the difference between maximum degree of numerator and maximum degree
+  of denominator
+
+EXAMPLE
+  sl=syslin('d',1,1,1);u=1:10;
+  y=flts(u,sl); [y1,x1]=flts(u(1:5),sl);y2=flts(u(6:10),sl,x1);
+  y-[y1,y2]
+
+  //With polynomial D:
+  z=poly(0,'z');sl=syslin('d',1,1,1,1+z+z^2);p=2;
+  y=flts(u,sl);[y1,x1]=flts(u(1:5),sl);
+  y2=flts(u(5-p+1:10),sl,x1);  // (update)
+  y-[y1,y2]
+
+  //Delay (transfer form): flts(u,1/z)
+
+SEE ALSO
+  ltitr, dsimul, rtitr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,80 @@
+Return-Path: ramin@velo.inria.fr
+Received: from concorde.inria.fr (concorde.inria.fr [192.93.2.39]) by arte.inria.fr (8.6.8/8.6.6) with ESMTP id NAA28863 for <delebecq@arte.inria.fr>; Thu, 9 Feb 1995 13:37:53 +0100
+Received: from velo.inria.fr (velo.inria.fr [128.93.12.51]) by concorde.inria.fr (8.6.9/8.6.9) with ESMTP id NAA28212 for <delebecq@arte.inria.fr>; Thu, 9 Feb 1995 13:37:53 +0100
+Received: from localhost.inria.fr (localhost.inria.fr [127.0.0.1]) by velo.inria.fr (8.6.8/8.6.6) with SMTP id NAA01807 for delebecq@arte; Thu, 9 Feb 1995 13:37:52 +0100
+From: Ramin <ramin@velo.inria.fr>
+Message-Id: <199502091237.NAA01807@velo.inria.fr>
+X-Authentication-Warning: velo.inria.fr: Host localhost.inria.fr didn't use HELO protocol
+To: delebecq@arte.inria.fr
+Subject: 
+Date: Thu, 09 Feb 95 13:37:50 +0100
+X-Mts: smtp
+
+[XLISTF[,OPT]] = lmisolver(XLIST0,EVALFUNC[,options])
+\end{verbatim}
+where
+\begin{itemize}
+
+\item {\tt XLIST0:} a list structure including matrices and/or list of matrices.
+It contains initial guess on the values of the unknown matrices. In general, the
+ith element of {\tt XLIST0} is the initial guess on the value of the
+unknown matrix $X_i$. In some cases
+however it is more convenient to define one or more elements of
+{\tt XLIST0} to be lists (of unknown matrices) themselves. This is a
+useful feature when the number of unknown matrices is not fixed a priori
+(see Example of Section~\ref{ex2}).
+
+The values of the matrices in {\tt XLIST0}, if compatible with the LME 
+functions, 
+are used as intial condition for the optimization algorithm; they are
+ignored otherwise. The size and structure of {\tt XLIST0} are used to
+set up the problem and determine the size and structure of the output {\tt 
+XLISTF}.
+
+\item
+{\tt EVALFUNC:} a Scilab function called {\em evaluation function}
+(supplied by the user)
+which evaluates the LME, LMI and objective functions, given the values of the
+unknown matrices. The syntax is:
+\begin{verbatim}
+[LME,LMI,OBJ]=EVALFUNC(XLIST)
+\end{verbatim}
+where
+\begin{itemize}
+\item {\tt XLIST:} a list, identical in size and structure to {\tt XLIST0}.
+
+\item {\tt LME:} a list of matrices containing values of the LME
+functions $G_i$'s
+for $X$ values in {\tt XLIST}. {\tt LME} can be a matrix in case
+there is only one LME function to be evaluated (instead of a list
+containing this matrix as unique element). It can also be a list
+of a mixture of matrices and lists which in turn contain values of
+LME's, and so on.
+
+\item {\tt LMI:} a list of matrices containing the values of the LMI
+functions $H_j$'s
+for $X$ values in {\tt XLIST}. {\tt LMI} can also be a matrix (in case
+there is only one LMI function to be evaluated). It can also be a list
+of a mixture of matrices and lists which in turn contain values of
+of LMI's, and so on.
+
+\item {\tt OBJ:} a scalar equal to the value of the objective function $f$
+for $X$ values in {\tt XLIST}.
+\end{itemize}
+If the $\Sigma$ problem has no equality constraints then {\tt LME}
+should be {\tt []}. Similarly for {\tt LMI} and {\tt OBJ}.
+
+\item
+{\tt options:} a $5 \times 1$ vector containing optimization
+parameters {\tt Mbound}, {\tt abstol}, {\tt nu}, {\tt maxiters},
+and {\tt reltol}, see  manual page for {\tt semidef} for details ({\tt Mbound}
+is a multiplicative coefficient for {\tt M}). This argument is optional,
+if omitted, default parameters are used.
+
+
+\item {\tt XLISTF:} a list, identical in size and structure to {\tt XLIST0}
+containing the solution of the problem (optimal values of the unknown matrices).
+
+\item {\tt OPT:} a scalar corresponding to the optimal value of the minimization
+problem $\Sigma$.
+\end{itemize}

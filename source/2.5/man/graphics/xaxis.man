@@ -1,0 +1,61 @@
+.TH xaxis  2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xaxis - draw an axis 
+.SH CALLING SEQUENCE
+.nf
+xaxis(alpha,nsteps,size,init)
+.fi
+.SH PARAMETERS
+.TP 8
+alpha
+: real, slope in degree of the axis.
+.TP
+nsteps
+: real vector of size 2, number of big and small intervals.
+.TP 
+size 
+: real vector of size 3, size of the small intervals, and small and big tics.
+.TP
+init
+: real vector of size 2, origin of the axis.
+.SH DESCRIPTION
+\fVxaxis\fR draws an axis. 
+
+The direction of the axis is given by
+\fValpha\fR in degree. 
+
+\fVinit=[x0 y0]\fR is the initial point of the axis.
+
+\fVnsteps=[n1,n2]\fR gives the 
+number of big and small intervals separated by tics.
+
+\fVsize=[s1,s2,c1]\fR where \fVs1\fR gives 
+the size of the small intervals, \fVs2\fR gives the size of the small tics 
+along the axis and 
+\fVs2*c1\fR gives the size of the big tics. All the sizes are given using the
+current x-scale and y-scale and are given as dimensions along the drawn axis.
+.LP
+.nf 
+            example : n1=3, n2=2, alpha=0
+ 				               (s2*c1) 
+            |     (s2)   |            |           |
+            |______|_____|_____|______|_____|_____|
+               s1
+.fi		       
+.SH EXAMPLE 
+.nf 
+x=[-%pi:0.1:%pi]';
+// plot without axis
+plot2d(x,sin(x),1,"010"," ",[-4 -1 4 1])
+// draw x axis
+xpoly([-4 4],[0 0],"lines")
+xaxis(0,[2 2],[2 0.1 3],[-4 0])
+xstring(-4.1,-0.25,"-4"); xstring(-0.2,-0.1,"0"); xstring(4,-0.25,"4")
+// draw y axis
+xpoly([0 0],[-1 1],"lines")
+xaxis(90,[2 2],[0.5 0.025 3],[0 1])
+xstring(-0.5,-1.05,"-1"); xstring(-0.35,0.95,"1")
+.fi 
+.SH AUTHOR
+J.Ph.C.

@@ -1,0 +1,28 @@
+.TH amell G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+amell - Jacobi's am function
+.SH CALLING SEQUENCE
+.nf
+[sn]=amell(u,k) 
+.fi
+.SH PARAMETERS
+.TP 10
+u
+: real scalar or vector
+.TP 10
+k
+: scalar
+.TP 10
+sn
+: real scalar or vector
+.SH DESCRIPTION
+Computes Jacobi's elliptic function \fVam(u,k)\fR
+where \fVk\fR is the parameter and \fVu\fR is the argument. If \fVu\fR 
+is a vector \fVsn\fR is the vector of the (element wise) computed values.
+Used in function \fV%sn\fR.
+.SH SEE ALSO 
+delip, %sn, %asn
+
+
+

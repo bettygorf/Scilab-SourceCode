@@ -1,0 +1,60 @@
+
+typeof(G)                      Scilab Function                      typeof(G)
+NAME
+  typeof -  object type
+
+CALLING SEQUENCE
+  [t]=typeof(object)
+
+PARAMETERS
+
+  object    : Scilab object
+
+  t         : string
+
+DESCRIPTION
+  t=typeof(object) returns one of the following strings:
+
+  "constant"
+       if object is a real or complex constant matrix
+
+  "polynomial"
+       if object is a polynomial matrix
+
+  "function"
+       if object is a function
+
+  "string"
+       if object is a matrix made of character strings
+
+  "boolean"
+       if object is a boolean matrix
+
+  "list"
+       if object is a list
+
+  "rational"
+       if object is a rational matrix (transfer matrix)
+
+  "state-space"
+       if object is a state-space model (see syslin)
+
+  "sparse"
+       if object is a (real) sparse matrix.
+
+  "boolean sparse"
+       if object is a boolean sparse matrix.
+
+EXAMPLE
+  typeof(1)
+  typeof(poly(0,'x'))
+  typeof(1/poly(0,'x'))
+  typeof(%t)
+  w=sprand(100,100,0.001);
+  typeof(w)
+  typeof(w==w)
+  deff('y=f(x)','y=2*x');
+  typeof(f)
+
+SEE ALSO
+  type, strings,  syslin, poly

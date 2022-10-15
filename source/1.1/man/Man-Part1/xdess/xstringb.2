@@ -1,0 +1,47 @@
+.TH xstringb 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so man1/sci.an
+.SH NAME
+xstringb - draw a matrix of strings 
+.SH CALLING SEQUENCE
+.nf
+xstringb(x,y,str,w,h,[option])
+.fi
+.SH PARAMETERS
+.TP 15
+x,y,w,h
+: real scalars (rectangle def)
+.TP
+str
+: matrix of strings
+.TP 
+option
+: string
+.SH DESCRIPTION
+plots the matrix of strings \fVstr\fR centered inside the rectangle \fVrect=[x,y,w,h]\fR
+(Down left point , width ,height)  in the current graphic scale.
+If \fVoption\fR is given with the value \fV"fill"\fR the character size is computed
+so as to fill as much as possible of the rectangle.
+.SH EXAMPLE
+enter the command \fVxstringb()\fR
+to see a demo 
+
+.nf
+mat=['Scilab','is';'not','Basile'];
+plot2d(0,0,[-1,1],'010',' ',[0,0,1,1]);
+r=[0,0,1,0.5];
+xstringb(r(1),r(2),mat,r(3),r(4),'fill');
+xrect(r(1),r(2)+r(4),r(3),r(4))
+r=[r(1),r(2)+r(4)+0.01,r(3),r(4)/2];
+xrect(r(1),r(2)+r(4),r(3),r(4))
+xstringb(r(1),r(2),mat,r(3),r(4),'fill');
+r=[r(1),r(2)+r(4)+0.01,r(3),r(4)/2];
+xrect(r(1),r(2)+r(4),r(3),r(4))
+xstringb(r(1),r(2),mat,r(3),r(4),'fill');
+.fi
+.SH SEE ALSO
+xtitle,titlepage, xstring, xstringl
+.SH AUTHOR
+J.Ph.C.
+
+
+

@@ -1,0 +1,291 @@
+This is MlTeX (2.01), C Version 3.1415 (C version 6.1) (format=latex 96.5.9)  24 JUN 1996 15:48
+**images.tex
+(images.tex
+LaTeX2e <1995/12/01> patch level 2
+
+(/usr/local/lib/texmf/tex/latex2e/base/article.cls
+Document Class: article 1995/12/20 v1.3q Standard LaTeX document class
+(/usr/local/lib/texmf/tex/latex2e/base/size10.clo
+File: size10.clo 1995/11/30 v1.3p Standard LaTeX file (size option)
+)
+\c@part=\count82
+\c@section=\count83
+\c@subsection=\count84
+\c@subsubsection=\count85
+\c@paragraph=\count86
+\c@subparagraph=\count87
+\c@figure=\count88
+\c@table=\count89
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (/usr/local/lib/texmf/tex/dvips/psfig.sty
+\@unused=\write4
+\ps@stream=\read1
+\p@intvaluex=\dimen103
+\p@intvaluey=\dimen104
+psfig/tex 1.10-dvips
+)
+\lthtmlwrite=\write5
+\sizebox=\box26
+(images.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    External font `cmex10' loaded for size^^J(Font)            
+  <7> on input line 44.
+LaTeX Font Info:    External font `cmex10' loaded for size^^J(Font)            
+  <5> on input line 44.
+latex2htmlSize :tex2html_wrap_inline568: 7.5pt::2.5pt.
+[1
+
+
+] [2
+
+]
+latex2htmlSize :tex2html_wrap_inline572: 6.83331pt::1.94444pt.
+[3
+
+]
+latex2htmlSize :tex2html_wrap_inline578: 6.83331pt::1.49998pt.
+[4
+
+]
+latex2htmlSize :tex2html_wrap_inline582: 6.83331pt::2.86108pt.
+[5
+
+]
+latex2htmlSize :tex2html_wrap_inline586: 6.83331pt::1.35971pt.
+[6
+
+]
+latex2htmlSize :tex2html_wrap_inline590: 6.83331pt::0.0pt.
+[7
+
+]
+latex2htmlSize :tex2html_wrap_inline610: 6.83331pt::1.49998pt.
+[8
+
+]
+latex2htmlSize :tex2html_wrap_inline626: 6.44444pt::0.83333pt.
+[9
+
+] [10
+
+]
+latex2htmlSize :tex2html_wrap_inline636: 5.83333pt::0.83333pt.
+[11
+
+]
+latex2htmlSize :tex2html_wrap_inline640: 5.83333pt::1.49998pt.
+[12
+
+]
+latex2htmlSize :tex2html_wrap_inline646: 7.5pt::2.5pt.
+[13
+
+]
+latex2htmlSize :tex2html_wrap_inline648: 7.5pt::2.5pt.
+[14
+
+]
+latex2htmlSize :tex2html_wrap_inline650: 6.44444pt::1.35971pt.
+[15
+
+]
+latex2htmlSize :tex2html_wrap_inline656: 5.83333pt::1.49998pt.
+[16
+
+] [17
+
+] [18
+
+]
+latex2htmlSize :tex2html_wrap_inline662: 8.14003pt::1.94444pt.
+[19
+
+] [20
+
+]
+latex2htmlSize :tex2html_wrap_inline678: 7.5pt::2.5pt.
+[21
+
+]
+latex2htmlSize :tex2html_wrap_inline682: 7.5pt::2.86108pt.
+[22
+
+]
+latex2htmlSize :tex2html_wrap_inline684: 4.30554pt::2.86108pt.
+[23
+
+]
+latex2htmlSize :tex2html_wrap_inline692: 8.14003pt::2.5pt.
+[24
+
+]
+latex2htmlSize :tex2html_wrap_inline702: 7.5pt::2.5pt.
+[25
+
+]
+latex2htmlSize :tex2html_wrap_inline706: 7.5pt::2.5pt.
+[26
+
+] [27
+
+] [28
+
+]
+latex2htmlSize :tex2html_wrap_inline708: 8.14003pt::2.5pt.
+[29
+
+]
+latex2htmlSize :tex2html_wrap_inline710: 6.83331pt::1.94444pt.
+[30
+
+]
+latex2htmlSize :tex2html_wrap_inline712: 7.5pt::2.5pt.
+[31
+
+]
+latex2htmlSize :tex2html_wrap_inline714: 7.5pt::2.5pt.
+[32
+
+]
+latex2htmlSize :tex2html_wrap_inline716: 6.83331pt::0.0pt.
+[33
+
+] [34
+
+] [35
+
+]
+latex2htmlSize :tex2html_wrap_inline756: 7.5pt::2.5pt.
+[36
+
+]
+latex2htmlSize :tex2html_wrap_inline758: 7.5pt::2.5pt.
+[37
+
+]
+latex2htmlSize :tex2html_wrap_inline760: 7.5pt::2.5pt.
+[38
+
+]
+latex2htmlSize :tex2html_wrap_inline766: 4.30554pt::1.49998pt.
+[39
+
+]
+latex2htmlSize :tex2html_wrap_inline768: 4.30554pt::1.49998pt.
+[40
+
+]
+latex2htmlSize :tex2html_wrap_inline770: 8.14003pt::0.0pt.
+[41
+
+] [42
+
+] [43
+
+] [44
+
+] [45
+
+] [46
+
+] [47
+
+] [48
+
+]
+latex2htmlSize :tex2html_wrap_inline820: 6.35971pt::1.35971pt.
+[49
+
+] [50
+
+] [51
+
+] [52
+
+] [53
+
+] [54
+
+]
+latex2htmlSize :tex2html_wrap_inline870: 8.14003pt::2.5pt.
+[55
+
+]
+latex2htmlSize :tex2html_wrap_inline874: 4.30554pt::1.94444pt.
+[56
+
+] [57
+
+] [58
+
+]
+psfig: searching fig2.eps for bounding box
+psfig: including fig2.eps 
+[59
+
+]
+psfig: searching fig3.eps for bounding box
+psfig: including fig3.eps 
+[60
+
+]
+psfig: searching fig4.eps for bounding box
+psfig: including fig4.eps 
+[61
+
+]
+psfig: searching fig8.eps for bounding box
+psfig: including fig8.eps 
+psfig: searching fig6.eps for bounding box
+psfig: including fig6.eps 
+[62
+
+] [63
+
+]
+latex2htmlSize :tex2html_wrap_inline898: 4.30554pt::1.49998pt.
+[64
+
+] [65
+
+]
+latex2htmlSize :tex2html_wrap_inline904: 6.83331pt::1.94444pt.
+[66
+
+] [67
+
+]
+latex2htmlSize :tex2html_wrap_inline908: 6.83331pt::1.94444pt.
+[68
+
+]
+latex2htmlSize :tex2html_wrap_inline914: 6.83331pt::1.49998pt.
+[69
+
+] (images.aux)
+^^JLaTeX Warning: Label(s) may have changed. Rerun to get cross-references righ
+t.^^J
+ ) 
+Here is how much of TeX's memory you used:
+ 486 strings out of 10708
+ 4514 string characters out of 71759
+ 50533 words of memory out of 262141
+ 3573 multiletter control sequences out of 9500
+ 4567 words of font info for 17 fonts, out of 100000 for 255
+ 15 hyphenation exceptions out of 607
+ 23i,13n,18p,244b,234s stack positions out of 300i,100n,60p,3000b,4000s
+
+Output written on images.dvi (69 pages, 12424 bytes).

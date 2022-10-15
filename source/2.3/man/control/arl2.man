@@ -1,0 +1,81 @@
+.TH ARL2 4 "April 1993" "Scilab Group" "Scilab Function"        
+.so ../sci.an 
+.SH NAME
+arl2 - SISO model realization by L2 transfer approximation
+.SH CALLING SEQUENCE
+.nf
+[den,num,err]=arl2(y,den0,n [,imp])
+[den,num,err]=arl2(y,den0,n [,imp],'all')
+.fi
+.SH PARAMETERS
+.TP 10
+y 
+: real vector or polynomial in \fVz^-1\fR, it contains the
+coefficients of the Fourier's series of the rational system to
+approximate (the impulse response)
+.TP
+den0
+: a polynomial which gives an initial guess of the solution, it may be
+\fVpoly(1,'z','c')\fR
+.TP
+n 
+: integer, the degree of approximating transfer function (degree of
+den)
+.TP
+imp 
+: integer in \fV(0,1,2)\fR (verbose mode)
+.TP
+den
+: polynomial or vector of polynomials, contains the denominator(s) of
+the solution(s)
+.TP
+num
+: polynomial or vector of polynomials, contains the numerator(s) of
+the solution(s)
+.TP
+err
+: real constant or vector , the l2-error achieved for each solutions
+.SH DESCRIPTION
+\fV[den,num,err]=arl2(y,den0,n [,imp]) \fR finds a pair of polynomials
+\fVnum\fR and \fVden\fR such that the transfer function \fVnum/den\fR
+is stable and it's impulse response approximates (with a minimal l2
+norm) the vector \fVy\fR assumed to be completed by an infinite number
+of zeros. 
+
+.IG	
+If y(z)  =  y(1)(1/z)+y(2)(1/z^2)+ ...+ y(ny)(1/z^ny) 
+.FI
+.LA If~:$$ y(z)= y(1)({ 1 \over z})+y(2)({ 1 \over z})^2+\dots
+.LA  + y(ny)({ 1 \over z})^ny $$
+then l2-norm of \fVnum/den - y(z)\fR is \fVerr\fR.
+.LP
+\fVn\fR is the degree of the polynomial \fVden\fR.
+.LP
+The \fVnum/den\fR  transfer function is a L2 approximant of the 
+.LP
+Various intermediate results are printed according to \fVimp\fR.
+
+.LP
+\fV[den,num,err]=arl2(y,den0,n [,imp],'all') \fR  returns in the
+vectors of polynomials \fVnum\fR and \fVden\fR  a set of local
+optimums for the problem. The solutions are sorted with increasing
+errors \fVerr\fR. In this case \fVden0\fR is already assumed to be 
+\fVpoly(1,'z','c')\fR
+.SH EXAMPLE
+.nf
+v=ones(1,20);
+xbasc();
+plot2d1('enn',0,[v';zeros(80,1)],2,'051',' ',[1,-0.5,100,1.5])
+
+[d,n,e]=arl2(v,poly(1,'z','c'),1)
+plot2d1('enn',0,ldiv(n,d,100),2,'000')
+[d,n,e]=arl2(v,d,3)
+plot2d1('enn',0,ldiv(n,d,100),3,'000')
+[d,n,e]=arl2(v,d,8)
+plot2d1('enn',0,ldiv(n,d,100),5,'000')
+
+[d,n,e]=arl2(v,poly(1,'z','c'),4,'all')
+plot2d1('enn',0,ldiv(n(1),d(1),100),10,'000')
+.fi
+.SH SEE ALSO
+ldiv, imrep2ss, time_id, armax, frep2tf

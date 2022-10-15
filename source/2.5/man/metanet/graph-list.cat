@@ -1,0 +1,201 @@
+
+graph-list(1)                    Scilab type                    graph-list(1)
+NAME
+  graph-list - description of graph list
+
+DESCRIPTION
+  A graph in Scilab is represented by a Scilab typed list.  We call it a
+  graph list.
+
+  You will find below the complete description of the list.  Each element is
+  described by one or more lines.  The first line gives the name of the ele-
+  ment and its definition. Additional informations, such as the default for
+  elements that can have one, are given in the other lines.  Indeed, only the
+  5 first elements must have a value in the list, all the others can be given
+  the empty vector [] as a value, and then the default is used when it is
+  needed by functions or by the Metanet window.  For instance, you can define
+  a graph list by
+  g=make_graph('min',1,1,[1],[1]);
+  which is the simplest graph you can create in Metanet (it is directed, has
+  one node and one loop arc on this node).
+
+  The name of the element in the list is very important because it is used to
+  access the elements of the list. For instance, if g is a graph list, to get
+  the name of the graph, you only have to do:
+  g('name')
+  and if you want to change the name of the graph to 'toto', you have to do:
+  g('name')='toto';
+
+  Moreover, you can get the number of edges and the number of arcs of the
+  graph by using edge_number(g) and arc_number(g) (these names do not corre-
+  spond to elements of the list). For compatibility, node_number(g) can also
+  be used instead of g('node_number').
+
+  A graph list can be syntactically correct but not represent a good graph.
+  You can use the function check_graph to check it.  Moreover it is a good
+  idea to give nodes different names. In fact, this does not give errors in
+  Scilab, but strange behaviour can appear when using the Metanet window.
+  This is not checked by check_graph because it is time consuming. It is only
+  checked when loading, saving or showing a graph.
+
+  The elements of a graph list are given below:
+  name: - the name of the graph
+
+        - it is a string with a maximum of 80 characters
+  directed: - flag giving the type of the graph
+
+            - it is equal to 1 (graph directed) or equal to 0 (graph undi-
+              rected)
+  node_number: - number of nodes
+  tail: - row vector of the tail node numbers
+  head: - row vector of the head node numbers
+  node_name: - row vector of node names
+
+             - the names of the nodes must be different
+
+             - default is the node numbers as node names
+  node_type: - row vector of the node types
+
+             - the type is an integer from 0 to 2, default is 0 (plain node):
+
+               - 0 = plain node
+
+               - 1 = sink node
+
+               - 2 = source node
+  node_x: - row vector of the x coordinate of the nodes
+
+          - default is computed
+  node_y: - row vector of the y coordinate of the nodes
+
+          - default is computed
+  node_color: - row vector of the node colors
+
+              - the color is an integer from 0 to 16, default is 0 (default
+                foreground):
+
+                - 0 = default foreground
+
+                - 1 = navyblue
+
+                - 2 = blue
+
+                - 3 = skyblue
+
+                - 4 = aquamarine
+
+                - 5 = forestgreen
+
+                - 6 = green
+
+                - 7 = lightcyan
+
+                - 8 = cyan
+
+                - 9 = orange
+
+                - 10 = red
+
+                - 11 = magenta
+
+                - 12 = violet
+
+                - 13 = yellow
+
+                - 14 = gold
+
+                - 15 = beige
+
+                - 16 = background
+  node_diam: - row vector of the size of the node diameters in pixels
+
+             - a node is drawn as a circle
+
+             - default is the value of element default_node_diam
+  node_border: - row vector of the size of the node borders in pixels
+
+               - a node is drawn as a circle
+
+               - default is the value of element default_node_border
+  node_font_size: - row vector of the size of the font used to draw the name
+                  of the node
+
+                  - you can choose 8, 10, 12, 14, 18 or 24
+
+                  - default is the value of element default_font_size
+  node_demand: - row vector of the node demands
+
+               - default is 0
+  edge_name: - row vector of the edge names
+
+             - it is better that the names of the edges are different, but
+               this is not an error
+
+             - default is the edge numbers as edge names
+  edge_color: - row vector of the edge colors
+
+              - the color is an integer from 0 to 16 (see node_color)
+
+              - default is 0 (default foreground)
+  edge_width: - row vector of the size of the edge widths in pixels
+
+              - default is the value of element default_edge_width
+  edge_hi_width: - row vector of the size of the highlighted edge widths in
+                 pixels
+
+                 - default is the value of element default_edge_hi_width
+  edge_font_size: - row vector of the size of the fonts used to draw the name
+                  of the edge
+
+                  - you can choose 8, 10, 12, 14, 18 or 24
+
+                  - default is the value of element default_font_size
+  edge_length: - row vector of the edge lengths
+
+               - default is 0
+  edge_cost: - row vector of the edge costs
+
+             - default is 0
+  edge_min_cap: - row vector of the edge minimum capacities
+
+                - default is 0
+  edge_max_cap: - row vector of the edge maximum capacities
+
+                - default is 0
+  edge_q_weight: - row vector of the edge quadratic weights
+
+                 - default is 0
+  edge_q_orig: - row vector of the edge quadratic origins
+
+               - default is 0
+  edge_weight: - row vector of the edge weights
+
+               - default is 0
+  default_node_diam: - default size of the node diameters of the graph
+
+                     - default is 20 pixels
+  default_node_border: - default size of the node borders of the graph
+
+                       - default is 2 pixels
+  default_edge_width: - default size of the edge widths of the graph
+
+                      - default is 1 pixel
+  default_edge_hi_width: - default size of the highlighted edge widths of the
+                         graph
+
+                         - default is 3 pixels
+  default_font_size: - default size of the font used to draw the names of
+                     nodes and edges
+
+                     - default is 12
+  node_label: - row vector of node labels
+  edge_label: - row vector of edge labels
+
+EXAMPLE
+  g=load_graph(SCI+'/demos/metanet/mesh100');
+  g('node_color')=int(rand(1:g('node_number'))*16);
+  g('edge_color')=int(rand(1:edge_number(g))*16);
+  show_graph(g)
+
+SEE ALSO
+  arc_number, check_graph, edge_number, glist, make_graph, node_number

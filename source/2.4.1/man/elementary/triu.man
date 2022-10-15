@@ -1,0 +1,8 @@
+.TH triu 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+triu - upper triangle
+.SH DESCRIPTION
+Upper triangle.
+See tril.
+

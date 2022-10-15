@@ -1,0 +1,19 @@
+.TH TOEPLITZ 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+toeplitz - toeplitz matrix
+.SH CALING SEQUENCE
+.nf
+A=toeplitz(c [,r]) 
+.fi
+.fi
+.SH PARAMETERS
+.TP 10
+a,c,r
+: constant, polynomial or character chain matrices 
+.SH DESCRIPTION
+returns the Toeplitz  matrix 
+whose first  row is \fVr\fR and first column is  \fVc\fR.
+\fVc(1)\fR  must be equal to \fVr(1)\fR.  \fVtoeplitz(c)\fR returns the
+symmetric Toeplitz matrix.
+

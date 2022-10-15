@@ -1,0 +1,22 @@
+.TH chdir 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+chdir - changes Scilab current directory
+.SH CALLING SEQUENCE
+.nf
+ierr=chdir('path-name')
+.fi
+.SH PARAMETERS
+.TP 15
+ierr
+: an integer, 1 if \fVchdir\fR failed to change directory and \fV0\fR elsewhere.
+.SH DESCRIPTION
+Change the current Scilab directory to \fV'path-name'\fR
+.SH EXAMPLE
+.nf
+chdir("/tmp");
+unix_w("ls");
+.fi
+.SH SEE ALSO
+getcwd
+

@@ -1,0 +1,47 @@
+ 
+clear;lines(0);
+ 
+lstcat(list(1,2,3),33,list('foo',%s))
+ ans  =
+ 
+ 
+       ans(1)
+ 
+    1.  
+ 
+       ans(2)
+ 
+    2.  
+ 
+       ans(3)
+ 
+    3.  
+ 
+       ans(4)
+ 
+    33.  
+ 
+       ans(5)
+ 
+ foo   
+ 
+       ans(6)
+ 
+    s   
+ 
+lstcat(1,2,3)
+ ans  =
+ 
+ 
+       ans(1)
+ 
+    1.  
+ 
+       ans(2)
+ 
+    2.  
+ 
+       ans(3)
+ 
+    3.  
+ 

@@ -1,0 +1,21 @@
+.TH arc_number 1 "September 1996" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+arc_number - number of arcs of a graph
+.SH CALLING SEQUENCE
+.nf
+ma = arc_number(g)
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph list
+.TP 3
+ma
+: integer, number of arcs
+.SH DESCRIPTION
+\fVarc_number\fR returns the number \fVma\fR of arcs of the graph.
+If the graph is directed, it is the number of edges.
+If the graph is undirected, it is twice the number of edges.
+.SH SEE ALSO
+edge_number, node_number

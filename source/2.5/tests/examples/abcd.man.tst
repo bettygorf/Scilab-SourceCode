@@ -1,0 +1,12 @@
+clear;lines(0);
+A=diag([1,2,3]);B=[1;1;1];C=[2,2,2];
+sys=syslin('c',A,B,C);
+sys("A")
+sys("C")
+[A1,B1,C1,D1]=abcd(sys);
+A1
+systf=ss2tf(sys);
+[a,b,c,d]=abcd(systf)
+spec(a)
+c*b-C*B
+c*a*b-C*A*B

@@ -1,0 +1,18 @@
+ 
+clear;lines(0);
+ 
+addmenu('foo')   //New button made in main scilab window
+               !--error  1020 
+synchronous actions are not supported with -nw option                           
+ 
+ 
+unsetmenu('foo')   //button foo cannot be activated (grey string)
+ ans  =
+ 
+ foo   
+ 
+setmenu('foo')     //button foo can be activated (black string)
+ ans  =
+ 
+ foo   
+ 

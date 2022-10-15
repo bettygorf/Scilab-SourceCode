@@ -1,0 +1,21 @@
+ 
+clear;lines(0);
+ 
+A=[1,2;0,100];
+ 
+prod(A)
+ ans  =
+ 
+    0.  
+ 
+prod(A,'c')
+ ans  =
+ 
+!   2. !
+!   0. !
+ 
+prod(A,'r')
+ ans  =
+ 
+!   0.    200. !
+ 

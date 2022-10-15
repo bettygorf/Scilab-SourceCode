@@ -1,0 +1,39 @@
+.TH xchange 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xchange - transform real to pixel coordinates
+.SH CALLING SEQUENCE
+.nf
+[x1,y1,rect]=xchange(x,y,dir)
+.fi
+.SH PARAMETERS
+.TP 7
+x,y 
+: two matrices of size (n1,n2) (coordinates of a set of points).
+.TP
+x1,y1
+: two matrices of size (n1,n2) (coordinates of the set of points).
+.TP
+rect
+: a vector of size 4.
+.SH DESCRIPTION
+After having used a graphics function, \fVxchange\fR computes pixel
+coordinates from real coordinates and conversely, 
+according to the value of the parameter \fVdir\fR:
+"f2i" (float to int) means real to pixel and "i2f" (int to float)
+means pixel to real.
+\fVx1\fR and \fVy1\fR are the new coordinates of the set of points 
+defined by the old coordinates \fVx\fR and \fVy\fR.
+
+\fVrect\fR is the coordinates in pixel
+of the rectangle in which the plot was done: [upper-left point,
+width, height].
+.SH EXAMPLE
+.nf
+t=[0:0.1:2*%pi]';
+plot2d(t,sin(t))
+[x,y,rect]=xchange(1,1,"f2i")
+[x,y,rect]=xchange(0,0,"i2f")
+.fi
+.SH AUTHOR
+J.Ph.C.

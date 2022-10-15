@@ -1,0 +1,226 @@
+#                 DATA FOR THE BICYCLE : 
+#                      L:     Lagrangian
+#                      f:     vector of holonomic constraints
+#                      gqd:     vector of non holonomic constraints
+#                      k:     vector of control actions
+#
+with(linalg):
+# Number of parameters:
+mpar:=20:
+# Number of generalized coordinates (size of q)
+n:=23:
+# Number of control variables
+ncontr:=2:
+
+# Definition of system parameters and variables: 
+param:=array(1..mpar):     #parameters
+q:=array(1..n):            #generalized coordinates
+qd:=array(1..n):           #generalized velocities
+u:=array(1..ncontr):       #control variables
+
+# Lagragian L is a function of q[k], qd[k] k=1,..,n and param[.] 
+#
+#                Parameters definition
+
+#param = [wheel radius, rear wheel weight,frame weight, fork weight,
+#         front wheel weight, rear wheel radial inertia, frame radial 
+#         inertia, fork radial inertia, front wheel radial inertia, 
+#         rear wheel normal inertia, frame normal inertia,
+#         fork normal inertia, front wheel normal inertia, 
+#         acceleration of gravity (9.81m/s/s on earth),|P4-P1|,
+#         |P2-P1|,|P3-P4|,2.|P2-P1|,2.|P3-P4|,|P4-P5|]
+
+#---------------------------------------------------------------------
+#                                Rear wheel
+#                                ----------
+#q[1..6] = position (x,y,z) of P1 and Euler angles (phi,theta,psi) 
+#qd[1..6]=velocities and angular velocities (time derivatives of q[1..6])
+#
+# Energy functions for the rear wheel
+
+# Rotational kinetic energy:
+Trot:= param[10]/2*(qd[5]^2+qd[4]^2*sin(q[5])^2)+
+                    param[6]/2*(qd[4]*cos(q[5])+qd[6])^2:
+
+# Linear kinetic energy:
+Ttr:= param[2]/2*(qd[1]^2+qd[2]^2+qd[3]^2):
+
+# Potential energy:
+U:=param[2]*param[14]*param[1]*sin(q[5]):
+
+#Rear wheel Lagrangian:
+
+   L1:=Trot+Ttr-U:
+#
+#---------------------------------------------------------------------
+#                                 Frame 
+#                                 -----                
+# q[7..10] = position (x,y,z) of P2 and xi1
+# qd[7..10]= time derivatives
+
+# Energy functions
+
+Trot:= param[11]/2*((-qd[5]*sin(q[10])+qd[4]*sin(q[5])*cos(q[10]))^2+
+        (qd[4]*cos(q[5])+qd[10])^2)+param[7]/2*(qd[5]*cos(q[10])+
+         qd[4]*sin(q[5])*sin(q[10]))^2:
+
+Ttr:= param[3]/2*(qd[7]^2+qd[8]^2+qd[9]^2):
+
+U:=param[3]*param[14]*(param[1]+param[16]*sin(q[10]))*sin(q[5]):
+
+#Lagrangian;
+
+  L2:= Trot+Ttr-U:
+
+#----------------------------------------------------------------------
+#                              Front wheel 
+#                              -----------
+#  q[15..20] = position (x,y,z) of P4 and Euler angles
+#  qd[15..20]= time derivatives
+
+#  q[21..23] = position (x,y,z) of P5
+#  qd[21..23]= time derivatives
+
+# Energy functions
+
+Trot:= param[13]/2*(qd[19]^2+qd[18]^2*sin(q[19])^2)+
+            param[9]/2*(qd[18]*cos(q[19])+qd[20])^2:
+
+Ttr:= param[5]/2*(qd[21]^2+qd[22]^2+qd[23]^2):
+
+U:=param[5]*param[14]*param[1]*sin(q[19]):
+
+#Lagrangian
+
+   L4:=Trot+Ttr-U:
+
+#----------------------------------------------------------------------
+#                                 Fork                              
+#                                 ----
+# q[11..14] = position (x,y,z) of P3 and xi2
+# qd[11..14]= time derivatives
+# 
+# Energy functions
+#
+Trot:=param[12]/2*((-qd[19]*sin(q[14])+qd[18]*sin(q[19])*cos(q[14]))^2+
+        (qd[18]*cos(q[19])+qd[14])^2)+param[8]/2*(qd[19]*cos(q[14])
+         +qd[18]*sin(q[19])*sin(q[14]))^2:
+
+Ttr:= param[4]/2*(qd[11]^2+qd[12]^2+qd[13]^2):
+#
+U:=param[4]*param[14]*(param[1]+param[17]*sin(q[14]))*sin(q[19]):
+#
+#Lagrangian
+#
+L3:= Trot+Ttr-U:
+#
+#------------------------------------------------------------------------
+#                              Constraints
+#                              -----------   
+#             (nf = # of holonomic constraints)                        
+#             (ng = # of non holonomic constraints)
+#
+   nf:=16:
+   ng:=4:
+#
+#                           wheel-earth contact
+#                           -------------------
+# Rear wheel
+#
+f1:=q[3]-param[1]*sin(q[5]):
+# 
+gqd1:=qd[1]+param[1]*(qd[4]*cos(q[5])*cos(q[4])
+                      -qd[5]*sin(q[4])*sin(q[5])+qd[6]*cos(q[4])):
+gqd2:=qd[2]+param[1]*(qd[4]*cos(q[5])*sin(q[4])
+                      +qd[5]*cos(q[4])*sin(q[5])+qd[6]*sin(q[4])):
+#-----------
+# Front wheel
+#
+f8:=q[23]-param[1]*sin(q[19]):
+  
+gqd4:=qd[21]+param[1]*(qd[18]*cos(q[19])*cos(q[18])-
+                   qd[19]*sin(q[18])*sin(q[19])+qd[20]*cos(q[18])):
+gqd3:=qd[22]+param[1]*(qd[18]*cos(q[19])*sin(q[18])+
+                  qd[19]*cos(q[18])*sin(q[19])+qd[20]*sin(q[18])):
+#------------
+# Rear wheel-frame and front wheel-fork constraints:
+#
+f2:= q[1]-q[7]+param[16]*(cos(q[4])*cos(q[10])-
+                           sin(q[4])*sin(q[10])*cos(q[5])):
+f3:= q[2]-q[8]+param[16]*(sin(q[4])*cos(q[10])+
+                           cos(q[4])*sin(q[10])*cos(q[5])):
+f4:= q[3]-q[9]+param[16]*(sin(q[10])*sin(q[5])):
+
+f7:= q[15]-q[11]+param[17]*
+            (cos(q[18])*cos(q[14])-sin(q[18])*sin(q[14])*cos(q[19])):
+f6:= q[16]-q[12]+param[17]*
+            (sin(q[18])*cos(q[14])+cos(q[18])*sin(q[14])*cos(q[19])):
+f5:= q[17]-q[13]+param[17]*(sin(q[14])*sin(q[19])):
+
+
+f14:= q[21]-q[15]-param[20]*
+           (cos(q[18])*sin(q[14])-cos(q[19])*sin(q[18])*cos(q[14])):
+
+f15:= q[22]-q[16]-param[20]*
+           (sin(q[18])*sin(q[14])+cos(q[19])*cos(q[18])*cos(q[14])):
+
+f16:= q[23]-q[17]-param[20]*(-cos(q[14])*sin(q[19])):
+#-----------
+# Frame-fork constraints:
+#
+f12:= (q[1]-q[15])^2+(q[2]-q[16])^2+(q[3]-q[17])^2-param[15]^2:
+
+f9:=param[18]*(cos(q[10])*cos(q[4])-sin(q[10])*cos(q[5])*sin(q[4]))
+   -param[19]*(cos(q[14])*cos(q[18])-sin(q[14])*cos(q[19])*sin(q[18]))
+   -q[15]+q[1]:
+
+f10:=param[18]*(cos(q[10])*sin(q[4])+sin(q[10])*cos(q[5])*cos(q[4]))
+    -param[19]*(cos(q[14])*sin(q[18])+sin(q[14])*cos(q[19])*cos(q[18]))
+    -q[16]+q[2]:
+
+f11:=param[18]*sin(q[10])*sin(q[5])-param[19]*
+                   sin(q[14])*sin(q[19])-q[17]+q[3]:
+
+f13:=sin(q[5])*sin(q[4])*param[19]*cos(q[14])*cos(q[18])
+    - sin(q[5])*sin(q[4])*param[19]*sin(q[14])*cos(q[19])*sin(q[18])
+    - sin(q[5])*cos(q[4])*param[19]*cos(q[14])*sin(q[18])
+    - sin(q[5])*cos(q[4])*param[19]*sin(q[14])*cos(q[19])*cos(q[18])
+    + cos(q[5])*param[19]*sin(q[14])*sin(q[19]):
+#----------------------------------------------------------------------
+#
+#                          Control forces and torques
+#                          --------------------------
+#
+# Torque applied to the handlebars
+# --------------------------------
+steerforce:=
+vector(n,[0,0,0,
+      -(1/(sin(q[19])*sin(q[5])*cos(q[18]-q[4])+
+        cos(q[19])*cos(q[5]))) *u[1]*sin(q[5])*cos(q[18]-q[4]),
+       (1/(sin(q[19])*sin(q[5])*cos(q[18]-q[4])+cos(q[19])*cos(q[5])))*
+        u[1]*cos(q[5])*sin(q[18]-q[4]),
+        0,0,0,0,0,0,0,0,
+      -(1/(sin(q[19])*sin(q[5])*cos(q[18]-q[4])+
+        cos(q[19])*cos(q[5]))) *u[1]*cos(q[14])*(1/sin(q[14]))*sin(q[5])*
+        sin(q[18]-q[4]),
+        0,0,0,
+       (1/(sin(q[19])*sin(q[5])*cos(q[18]-q[4])+cos(q[19])*cos(q[5])))*
+        u[1]*sin(q[5])*cos(q[18]-q[4]),0,0,0,0,0]):
+
+# Pedaling torque
+# ---------------
+pedalforce:=
+vector(n,[0,0,0,0,0,u[2],0,0,0,-u[2],0,0,0,0,0,0,0,0,0,0,0,0,0]):
+#
+# Lagragian for the bicycle
+L:= L1+L2+L3+L4:
+#
+# Holonomic constraint vector
+f:=vector(nf,[f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16]):
+#
+# Non-holonomic constraint vector
+g:=vector(ng,[gqd1,gqd2,gqd3,gqd4]):
+#
+# Applied forces and torques (controls)
+k:=steerforce + pedalforce:
+#

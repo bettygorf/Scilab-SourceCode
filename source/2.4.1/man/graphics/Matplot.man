@@ -1,0 +1,33 @@
+.TH Matplot 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+Matplot - 2D plot of a matrix using colors 
+.SH CALLING SEQUENCE
+.nf
+Matplot(A,[strf,rect,nax])
+.fi
+.SH PARAMETERS
+.TP 10
+A
+: real matrix of size (n1,n2).
+.TP
+strf,rect,nax
+: optional arguments, ( see \fVplot2d\fR) 
+.SH DESCRIPTION
+The entries of matrix \fVint(A)\fR are used as colormap entries in 
+the current colormap. The color associated to \fVa(i,j)\fR is used 
+do draw a small square of length 1 and with center at location \fV(x=j,y=(n2-i+1))\fR.
+Enter the command \fVMatplot()\fR to see a demo.
+.SH EXAMPLE 
+.nf 
+Matplot([1,2,3;4,5,6])
+// draw the colormap 
+Matplot((1:xget("lastpattern")))
+.fi
+.SH SEE ALSO
+grayplot
+.SH AUTHOR
+J.Ph.C..
+
+
+

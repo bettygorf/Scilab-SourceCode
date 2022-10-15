@@ -1,0 +1,50 @@
+
+power(1)                       Scilab Function                       power(1)
+NAME
+  power (^)  - power operation
+
+CALLING SEQUENCE
+  t=a^b
+  t=a**b
+  t=a.^b
+
+PARAMETERS
+
+  a    : a matrix, polynomial matrix or rational matrix
+
+  b    :a scalar, a vector or a matrix of constants.
+
+  t    : a matrix, polynomial matrix or rational matrix.
+
+DESCRIPTION
+  If a is a square matrix and b  a scalar a^b is matrix a to the power b .
+
+  If a.^b is matrix formed by the element of a to the power b a is a vector
+  matrix and b  a scalar a^b and a.^b are the vectors formed by the element
+  of a to the power b
+
+  If a is a scalar  and b  a vector  a^b and a.^b are the vectors formed by
+  a^b(i).
+
+  If a and b  are vectors (matrices) with compatible dimensions a.^b is the
+  a(i)^b(i) vector (matrix).
+
+  Notes:
+
+  - For square matrices A^p is calculated by successive multiplication if p
+  is a positive integer, and by diagonalization if not.
+
+  ** and ^ operators are identical
+
+EXAMPLE
+  A=[1 2;3 4];
+  A^2.5,
+  A.^2.5
+  (1:10)^2
+  (1:10).^2
+
+  s=poly(0,'s')
+  s^(1:10)
+
+SEE ALSO
+  exp

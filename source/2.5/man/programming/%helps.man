@@ -1,0 +1,60 @@
+.TH %helps 1 "April 1993" "Scilab Group" "Scilab Function"
+.SH NAME
+%helps - Variable defining the path of help directories
+.SH DESCRIPTION
+The variable \fV%helps\fR is an N x 2 matrix of strings. 
+The kth row of \fV%helps\fR, \fV%helps(k,:)\fR represents
+the kth chapter of the manual and is made of two strings:
+.LP
+\fV%helps(k,1)\fR is a pathname for a help directory.
+.LP
+\fV%helps(k,2)\fR is a title for this help directory.
+For instance, for k=2, we have the graphics chapter 
+\fV%helps(2,:)\fR.
+.LP
+The variable \fV%helps\fR is defined in the Scilab startup
+file \fVSCI+"/scilab.star"\fR.
+.LP
+To add a new help directory, the user should add a row to
+the variable \fV%helps\fR. (One row for each directory).
+
+For instance, \fV%helps=[%helps; "Path-Of-My-Help-Dir","My-Title"];\fR
+enables the Scilab help browser to look for help manual items
+in the directory with pathname "Path-Of-My-Help-Dir".
+
+"My-Title" is then the title of a new help chapter which appears
+in the bottom part of the help window, raised by clicking on the
+help button.
+.LP
+A valid help directory must contain:
+
+1- A set of \fV.cat\fR files (e.g. \fVitem1.cat, item2.cat\fR etc).
+The \fV.cat\fR files do do require special format. Usually, they 
+are built as Unix man pages. 
+
+2- A \fVwhatis\fR file, which must have a special format. Each row
+of the \fVwhatis\fR must be as follows:
+.nf
+item - what is item @item
+.fi
+.LP
+\fVitem\fR is the item of the help, i.e. the command \fVhelp item\fR
+returns the contents of the file \fVitem.cat\fR.
+.LP
+\fVwhat is item\fR is a brief description of the item.
+
+The\fVwhatis\fR file appears in the top window of the help
+window, once a chapter has been selected in the bottom window.
+
+Clicking on one item of the top window opens the manual page.
+  
+The command \fVapropos keyword\fR returns the row(s) of all
+the \fVwhatis\fR file(s) in which the keyword appears.
+
+.LP
+On Unix-Linux platforms Scilab provides a Makefile for transforming
+\fV.man\fR pages into \fV.cat\fR pages (see SCIDIR/examples/man-examples).
+
+.SH SEE ALSO
+help, apropos
+

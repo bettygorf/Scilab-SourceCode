@@ -1,0 +1,66 @@
+
+
+
+chaintest(1)                   Scilab Function                   chaintest(1)
+
+
+
+
+
+
+NAME
+  chaintest - a three-species food chain model
+
+CALLING SEQUENCE
+  chaintest([f_l,b1,odem,xdim,npts])
+
+PARAMETERS
+  odem,xdim,npts
+       : See portr3d
+
+DESCRIPTION
+  Phase portrait of  a three-species food chain model given by:
+          ff1= f1(x(1))
+          ff2= f2(x(2))
+
+          xdot1= x(1)*(1-x(1)) - ff1*x(2)
+          xdot2= ff1*x(2) -  ff2*x(3) - 0.4*x(2)
+          xdot3= ff2*x(3) - 0.01*x(3)
+  and
+          f1(u)=5*u/(1+b1*u)
+          f2(u)z2=0.1*u/(1+2*u)
+  The default value for b1 is 3.0.
+  The Scilab macros chain(t,x),f1(u),f2(u) code the dynamical system
+
+SEE ALSO
+  portr3d,ode
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

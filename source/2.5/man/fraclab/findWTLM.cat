@@ -1,0 +1,38 @@
+
+findWTLM(2)                    Scilab Function                    findWTLM(2)
+NAME
+  findWTLM -  Finds local maxima lines of a CWT
+
+  Author: Paulo Goncalves
+
+  Finds the local maxima of a continuous wavelet transform
+
+Usage
+
+  [maxmap] = findWTLM(wt,scale[,depth])
+Input parameters
+       o wt : Complex matrix  [N_scale,N] Wavelet coefficients of a continu-
+         ous wavelet transform (output of FWT or contwt)
+       o scale : real vector  [1,N_scale] Analyzed scale vector
+       o depth : real in [0,1] maximum relative depth for the peaks search.
+         Default value is 1 (all peaks found)
+Output parameters
+       o maxmap : 0/1 matrix  [N_scale,N] If maxmap(m,n) = 0 : the coeffi-
+         cient wt(m,n) is not a local maximum If maxmap(m,n) = 1 : the coef-
+         ficient wt(m,n) is a local maximum
+See also:
+  contwt, cwt
+
+Example:
+
+  N = 2048 ; H = 0.3 ; Q = linspace(-4,4,11) ;
+  [x] = fbmlevinson(N,H) ;
+  [wt,scale] = cwt(x,2^(-6),2^(-1),36,0) ;
+  [maxmap] = findWTLM(wt,scale) ;
+
+   Vizualisation in Matlab:
+
+  viewWTLM(maxmap,scale,wt) ,
+  axis([1024 - 64 1024 + 64 0 log2(max(scale))]) ,
+
+   Vizualisation in Scilab:  Not implemeted yet!...

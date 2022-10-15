@@ -1,0 +1,31 @@
+
+unique(1)                      Scilab Function                      unique(1)
+NAME
+  unique - extract unique components of a vector
+
+CALLING SEQUENCE
+  [N, [k]]=unique(M)
+PARAMETERS
+
+  M    : vector of real numbers or strings
+
+  N    : vector of real numbers or strings
+
+  k    : vector  of integers
+
+DESCRIPTION
+  unique(M) returns a vector which retains the unique entries of  M in
+  ascending order.
+
+  If required the output argument k contains the position of the first
+  encountered unique entries.
+EXAMPLE
+  M=round(2*rand(20,1));
+
+  unique(M)
+  [N,k]=unique(M)
+
+  unique(string(M))
+  [N,k]=unique(string(M))
+SEE ALSO
+  union, sort, lex_sort

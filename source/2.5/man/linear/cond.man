@@ -1,0 +1,24 @@
+.TH cond 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+cond - condition number
+.SH CALLING SEQUENCE
+.nf
+cond(X)
+.fi
+.SH PARAMETERS
+.TP
+X
+: real or complex square matrix
+.SH DESCRIPTION
+Condition number in 2-norm.  \fVcond(X)\fR is the  ratio  of  the
+largest singular value of  \fVX\fR  to the smallest.
+.SH EXAMPLE
+.nf
+A=testmatrix('hilb',6);
+cond(A)
+.fi
+.SH SEE ALSO
+rcond, svd
+
+

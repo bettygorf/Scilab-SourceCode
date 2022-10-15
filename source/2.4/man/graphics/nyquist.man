@@ -1,0 +1,80 @@
+.TH nyquist 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+nyquist - nyquist plot
+.SH CALLING SEQUENCE
+.nf
+nyquist( sl,[fmin,fmax] [,step] [,comments] )
+nyquist( sl, frq [,comments] )
+nyquist(frq,db,phi [,comments])
+nyquist(frq, repf  [,comments])
+.fi
+.SH PARAMETERS
+.TP 10
+sl       
+: \fVsyslin\fR list (SIMO linear system in continuous or discrete time )
+.TP
+fmin,fmax
+: real scalars (frequency bounds (in Hz))
+.TP
+step      
+: real (logarithmic discretization step)
+.TP
+comments 
+: string vector (captions).
+.TP
+frq      
+: vector or matrix of frequencies (in Hz) (one row for
+each output of \fVsl\fR).
+.TP
+db,phi       
+: real matrices of modulus (in Db) and phases (in degree) (one row for each output of \fVsl\fR).
+.TP
+repf     
+: matrix of complex numbers. Frequency response (one row
+for aech output of \fVsl\fR)
+.SH DESCRIPTION
+Nyquist plot i.e Imaginary part versus Real part of the frequency
+response of \fVsl\fR. 
+.LP
+For continous time systems \fVsl(2*%i*%pi*w)\fR is plotted.
+For discrete time system or discretized systems \fVsl(exp(2*%i*%pi*w*fd)\fR 
+is used ( \fVfd=1\fR for discrete time systems and \fVfd=sl('dt')\fR for discretized systems ) 
+
+\fVsl\fR can be a continuous-time or discrete-time SIMO system (see \fVsyslin\fR).
+In case of multi-output the outputs are plotted with different
+symbols.
+.LP
+The frequencies are given by the bounds \fVfmin,fmax\fR (in Hz) or by a row-vector
+(or a matrix for multi-output) \fVfrq\fR.
+.LP
+\fVstep\fR is the ( logarithmic ) discretization step. (see \fVcalfrq\fR for the
+choice of default value).
+.LP
+\fVcomments\fR is a vector of character strings (captions).
+.LP
+\fVdb,phi\fR are the matrices of modulus (in Db) and phases (in degrees). 
+(One row for each response).
+.LP
+\fVrepf\fR is a matrix of complex numbers. One row for each response.
+.LP
+Default values for \fVfmin\fR and \fVfmax\fR are
+\fV1.d-3\fR, \fV1.d+3\fR if \fVsl\fR is continuous-time
+or \fV1.d-3\fR, \fV0.5\fR if \fVsl\fR is discrete-time.
+.LP
+Automatic discretization of frequencies is made by \fVcalfrq\fR.
+.SH EXAMPLE
+.nf
+xbasc();
+s=poly(0,'s');
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+comm='(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)';
+nyquist(h,0.01,100,comm);
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+xbasc();
+nyquist([h1;h],0.01,100,['h1';'h'])
+xbasc();nyquist([h1;h])
+.fi
+.SH SEE ALSO
+bode, black, calfrq, freq, repfreq, phasemag
+

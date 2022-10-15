@@ -1,0 +1,18 @@
+.TH eval 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+eval - evaluation of a matrix of strings
+.SH CALLING SEQUENCE
+.nf
+[H]= eval(Z)
+.fi
+.SH DESCRIPTION
+returns the evaluation of the matrix of character strings \fVZ\fR.
+.SH EXAMPLE
+.nf
+a=1; b=2; Z=['a','sin(b)'] ; eval(Z)  //returns the matrix [1,0.909];
+.fi
+.SH SEE ALSO
+evstr, execstr
+
+

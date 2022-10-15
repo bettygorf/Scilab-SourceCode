@@ -1,0 +1,20 @@
+.TH xbasc 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+xbasc - clear the recorded graphics associated to a window
+.SH CALLING SEQUENCE
+.nf
+xbasc([win_num])
+.fi
+.SH PARAMETERS
+.TP 10
+win_num
+: integer scalar or vector
+.SH DESCRIPTION
+clears the graphic window \fVwin_num\fR and erase the recorded graphics.
+If \fVwin_num\fR is omitted, it's the current graphic window.
+\fVwin_num\fR can also be a vector of window Id to clear a set of windows
+.SH SEE ALSO
+xclear
+
+

@@ -1,0 +1,12 @@
+.TH whos 1 "Jan 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+whos - listing of variables in long form
+.SH CALLING SEQUENCE
+.nf
+whos()
+.fi
+.SH DESCRIPTION
+\fVwho\fR displays current variable names, types and memory used 
+.SH SEE ALSO
+who

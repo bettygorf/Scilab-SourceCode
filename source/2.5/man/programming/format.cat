@@ -1,0 +1,45 @@
+
+format(1)                      Scilab Function                      format(1)
+NAME
+  format - number printing and display format
+
+CALLING SEQUENCE
+  format([type],[long])
+  format()
+
+PARAMETERS
+
+  type      : character string
+
+  long      : integer ( max number of digits (default 10))
+
+DESCRIPTION
+  Sets the current printing format with the parameter type ; it is one of the
+  following :
+
+  "v"  : for a variable format (default)
+
+  "e"  : for the  e-format.
+
+  long defines the max number of digits (default 10).  format() returns a
+  vector for the current format: first component is the type of format (0 if
+  v ; 1 if e ); second component is the number of digits.
+
+  In "variable format" mode, vectors entries which are less than %eps times
+  the maximum absolute value of the entries are displayed as "0".
+
+EXAMPLE
+  x=rand(1,5);
+  format('v',10);x
+  format(20);x
+  format('e',10);x
+  format(20);x
+
+  x=[100 %eps];
+  format('e',10);x
+  format('v',10);x
+
+  format()
+
+SEE ALSO
+  write, disp, print

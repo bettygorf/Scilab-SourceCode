@@ -1,0 +1,45 @@
+.TH nlev 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+nlev - Leverrier's algorithm 
+.SH CALLING SEQUENCE
+.nf
+[num,den]=nlev(A,z [,rmax])  
+.fi
+.SH PARAMETERS
+.TP 6
+A
+: real square matrix
+.TP
+z
+: character string
+.TP
+rmax
+: optional parameter (see \fVbdiag\fR)
+
+.SH DESCRIPTION
+.Vb [num,den]=nlev(A,z [,rmax])
+computes:
+.IG
+.nf
+(z*eye-A)^(-1) 
+.fi
+.FI
+.LA $ (z I -A)^{-1} $
+by block diagonalization of A followed by Leverrier's algorithm
+on each block.
+.SH Remark
+This algorithm is better than the usual leverrier algorithm
+but still not perfect!
+.SH EXAMPLE
+.nf
+A=rand(3,3);x=poly(0,'x');
+[NUM,den]=nlev(A,'x')
+clean(den-poly(A,'x'))
+clean(NUM/den-inv(x*eye-A))
+.fi
+.SH SEE ALSO
+coff, coffg, glever, ss2tf
+.SH AUTHOR
+F. D., S. S.
+

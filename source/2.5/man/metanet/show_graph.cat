@@ -1,0 +1,55 @@
+
+show_graph(1)                  Scilab function                  show_graph(1)
+NAME
+  show_graph - displays a graph
+
+CALLING SEQUENCE
+  nw = show_graph(g,[smode,scale])
+  nw = show_graph(g,'new',[scale,winsize])
+
+PARAMETERS
+
+  g : graph list
+
+  smode
+       : string, mode value
+
+  winsize : row vector defining the size of Metanet window
+
+  scale : real value, scale factor
+
+  nw : integer
+
+DESCRIPTION
+  show_graph displays the graph g in the current Metanet window.  If there is
+  no current Metanet window, a Metanet window is created.  The return value
+  nw is the number of the Metanet window where the graph is displayed.
+
+  If the optional argument smode is equal to the string 'rep' or is not given
+  and if there is already a graph displayed in the current Metanet window,
+  the new graph is displayed instead.
+
+  If the optional argument smode is equal to the string 'new', a new Metanet
+  window is created. In this case, if the optional argument winsize is given
+  as a row vector [width height], it is the size in pixels of Metanet window.
+  The default is [1000 1000].
+
+  The optional argument scale is the value of the scale factor when drawing
+  the graph. The default value is 1.
+
+  The labels of the nodes and edges, if they exist, are displayed.
+
+  By default, this function works in asynchronous mode (see metanet_sync).
+
+EXAMPLE
+  ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
+  he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
+  g=make_graph('foo',1,17,ta,he);
+  g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+  g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+  show_graph(g,2);
+  show_graph(g,0.5);
+  show_graph(g,1);
+
+SEE ALSO
+  metanet_sync

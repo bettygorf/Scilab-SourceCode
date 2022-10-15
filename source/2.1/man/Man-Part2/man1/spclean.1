@@ -1,0 +1,32 @@
+.TH spclean G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+spclean - sparse matrix utility
+.SH CALLING SEQUENCE
+.nf
+Aclean=spclean(A [,tols])
+.fi
+.SH PARAMETERS
+.TP
+A
+: sparse matrix
+.TP 
+Aclean
+: sparse matrix
+.TP
+tols
+: optional 1 x 2 matrix \fVtols=[abstol,reltol]\fR 
+.SH DESCRIPTION
+\fVAclean=spclean(A,[abstol,reltol])\fR returns a sparse matrix
+\fVAclean\fR where the small entries of \fVA\fR are set to zero.
+.LP
+An entry \fVAij\fR is small if \fVabs(Aij) < abstol\fR or
+\fV abs(Aij) <reltol*norm(A,1)\fR
+.SH EXAMPLE
+.nf
+A=sparse([%eps,0.001;2,0.1])
+spclean(A,[0.002,0])
+.fi
+.SH SEE ALSO
+sparse, lusolve, luget, spclean
+

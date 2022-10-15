@@ -1,0 +1,68 @@
+.TH xsetech 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xsetech - set the sub window of a graphic window to use for graphics
+.SH CALLING SEQUENCE
+.nf
+[]=xsetech(wrect [,frect,logflag])
+.fi
+.SH PARAMETERS
+.TP 10
+wrect
+: a vector of size 4 (sub window definition)
+.TP 10
+frect
+: a vector of size 4 (just like the rect argument of \fVplot2d\fR )
+.TP 10
+logflag
+: a string of size 2 "xy", where x and y can be "n" or "l". "n" for 
+normal and "l" for logscale. x is for the x-axis and y for the y-axis.
+.SH DESCRIPTION
+.LP
+This function is mainly used to set the sub window of the graphic window 
+which will be used for graphics. The sub window is specified with the 
+parameter \fVwrect=[x,y,w,h]\fR ( Upper-Left Width Height ). 
+The values in \fVwrect\fR are specified using proportion of the width 
+or height of the current graphic window. for example 
+.LP
+\fVwrect=[0,0,1.0,1.0]\fR means that all the graphic window will be used.
+.LP
+\fVwrect=[0.5,0,0.5,1.0]\fR means that the graphic region will be the right 
+half of the graphic window.
+.LP This function also set the current graphic scales for 2D plottings
+and can be used in conjunction with graphic routines which request
+the current graphic scale (for example \fVstrf="x0y"\fR in \fVplot2d\fR ).
+\fVfrect=[xmin,ymin,xmax,ymax]\fR is used to set the graphic scale and 
+is just like the \fVrect\fR argument of \fVplot2d\fR. Its default value 
+is \fV[0,0,1,1]\fR.
+.SH EXAMPLE
+.nf 
+//In this first example xsetech is used to split the graphic window 
+//in two parts 
+
+// xsetech is used to fix the first sub window 
+// and the graphic scale 
+xsetech([0,0,1.0,0.5],[-5,-3,5,3]);
+// then we call plot2d with the "001" option to use the graphic scale 
+// set by xsetech 
+plot2d((1:10)',(1:10)',-1,"001",' ');
+// xsetech is used to fix the second sub window 
+xsetech([0,0.5,1.0,0.5]);
+// the graphic scale is set by xsetech to [0,0,1,1] by default 
+// and we change it with the use of the rect argument in plot2d 
+plot2d((1:10)',(1:10)',-1,"011",' ',[-6,-6,6,6]);
+
+//A second example with four graphics on a single graphic window 
+
+xset("font',2,0);
+xsetech([0,0,0.5,0.5]);plot3d();
+xsetech([0.5,0,0.5,0.5]);plot2d();
+xsetech([0.5,0.5,0.5,0.5]);grayplot();
+xsetech([0,0.5,0.5,0.5]);histplot();
+// back to default values for the sub window 
+xsetech([0,0,1,1]);
+xset("default');
+
+.fi 
+.SH AUTHOR
+J.Ph.C.

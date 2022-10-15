@@ -1,0 +1,5 @@
+//exec('fir.7.code')
+ xinit('fir.7.ps')
+[wft,wfm,fr]=wfir('lp',33,[.2 0],'kr',[5.6 0]);
+plot(fr,log(wfm))
+xend(),

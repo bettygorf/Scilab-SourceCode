@@ -1,0 +1,42 @@
+.TH im_inv 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+im_inv - inverse image
+.SH CALLING SEQUENCE
+.nf
+[X,dim]=im_inv(A,B [,tol]) 
+.fi
+.SH PARAMETERS
+.TP 10
+A,B
+: two real or complex matrices with equal number of columns
+.TP
+X
+: orthogonal or unitary square matrix of order equal to the 
+number of columns of \fVA\fR
+.TP
+dim
+: integer (dimension of subspace)
+.SH DESCRIPTION
+.Vb [X,dim]=im_inv(A,B)
+computes 
+.IG
+(A^-1)(B)
+.FI
+.LA $ A^{-1}(\cal B)$
+ i.e vectors whose image through \fVA\fR are in range(\fVB\fR)
+.LP
+The \fVdim\fR first columns of \fVX\fR span 
+.IG
+(A^-1) (B)
+.FI
+.LA $ A^{-1}(\cal B).$
+.LP
+\fVtol\fR is a threshold used to test if subspace inclusion;
+default value is \fVtol = 100*%eps\fR.
+.SH SEE ALSO
+rowcomp
+.SH AUTHOR
+F. D.
+
+

@@ -1,0 +1,56 @@
+
+pvm_send(1)                    Scilab function                    pvm_send(1)
+NAME
+  pvm_send - immediately sends (or multicast) data.
+
+CALLING SEQUENCE
+  [info] = pvm_send(tids,buff,msgtag)
+
+PARAMETERS
+
+  tids : row of integers, contains the task IDs of the tasks to be sent to.
+
+  buff
+      : scilab variable.
+
+  msgtag : integer, message tag supplied by the user.  msgtag should be
+       >= 0.  It allows the user's program to distinguish between different
+       kinds of messages .
+
+  info : integer, status code returned by the routine.  Values less than zero
+       indicate an error.
+DESCRIPTION
+  pvm_send sends (or multicasts) a message to the PVM process identified in
+  the tids array. Note that the message is not sent to the caller even if
+  listed in the array of tids.  msgtag is used to label the content of the
+  message.  If pvm_send is successful, info will be 0. If some error occurs
+  then info will be < 0.
+
+  The pvm_send routine is asynchronous.  Computation on the sending processor
+  resumes as soon as the message is safely on its way to the receiving pro-
+  cessor.  This is in contrast to synchronous communication, during which
+  computation on the sending processor halts until the matching receive is
+  executed by the receiving processor.
+
+  If a multicast is performed, pvm_send first determines which other pvmds
+  contain the specified tasks.  Then passes the message to these pvmds which
+  in turn distribute the message to their local tasks without further network
+  traffic.
+
+  The PVM model guarantees the following about message order.  If task 1
+  sends message A to task 2, then task 1 sends message B to task 2, message A
+  will arrive at task 2 before message B.  Moreover, if both messages arrive
+  before task 2 does a receive, then a wildcard receive will always return
+  message A.
+
+  Terminating a PVM task immediately after sending a message or messages from
+  it may result in those messages being lost.  To be sure, always call
+  pvm_exit() before stopping.
+EXAMPLE
+  A = rand(5,5)*(1+%i);
+  deff('[x]=f(y)','x = 1/y')
+  info = pvm_send([262150, 262152], A(1:2:5,:), 100)
+  pvm_send(262146,f,200)
+
+SEE ALSO
+  pvm_recv, pvm_bcast

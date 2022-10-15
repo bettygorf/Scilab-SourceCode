@@ -1,0 +1,21 @@
+
+dlgamma(3)                     Scilab Function                     dlgamma(3)
+NAME
+  dlgamma -  derivative  of gammaln function.
+
+CALLING SEQUENCE
+   y = dlgamma(x)
+
+PARAMETERS
+
+  x    : real vector
+
+  y    : real vector with same size.
+
+DESCRIPTION
+  dlgamma(x) evaluates the derivative  of gammaln function at all the ele-
+  ments of x.  x must be real.
+EXAMPLE
+  dlgamma(0.5)
+SEE ALSO
+  gamma, gammaln

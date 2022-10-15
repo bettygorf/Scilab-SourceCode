@@ -1,0 +1,24 @@
+
+xload(2)                       Scilab Function                       xload(2)
+NAME
+  xload - load a saved graphics
+
+CALLING SEQUENCE
+  xload(file-name,[win-num])
+
+PARAMETERS
+
+  file-name  : string, name of the file.
+
+  win-num    : integer, the graphics window number. If not given, the current
+             graphics window is used.
+
+DESCRIPTION
+  xload reloads the graphics contained in the file file-name in the graphics
+  window win-num.
+
+SEE ALSO
+  xsave
+
+AUTHOR
+  J.Ph.C.

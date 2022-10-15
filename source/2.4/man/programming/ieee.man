@@ -1,0 +1,36 @@
+.TH ieee 1 "April 1998" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ieee - set floating point exception mode
+.SH CALLING SEQUENCE
+.nf
+mod=ieee()
+ieee(mod)
+.fi
+.SH PARAMETERS
+.TP 4
+mod
+: integer scalar whose possible values are 0,1,or 2
+.SH DESCRIPTION
+\fVieee()\fR returns the current floating point exception mode.
+.TP 2
+0: floating point exception produce an error
+1: floating point exception produce a warning
+2: floating point exception procudes Inf or Nan
+.RE
+
+\fVieee(mod)\fR sets the current floating point exception mode.
+.LP
+The initial mode value is 0.
+
+.SH REMARKS
+Floating point exeception arizing inside some library algorithms
+are not yet handled by \fVieee\fR modes.
+.SH EXAMPLE
+.nf
+ieee(1);1/0
+ieee(2);1/0,log(0)
+.fi
+.SH SEE ALSO
+errcatch
+

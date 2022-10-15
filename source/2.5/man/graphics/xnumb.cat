@@ -1,0 +1,28 @@
+
+xnumb(2)                       Scilab Function                       xnumb(2)
+NAME
+  xnumb - draw numbers
+
+CALLING SEQUENCE
+  xnumb(x,y,nums,[box])
+
+PARAMETERS
+
+  x,y,nums  : vectors of same size.
+
+  box       : integer value.
+
+DESCRIPTION
+  xnumb draws the value of nums(i) at position x(i),y(i) in the current
+  scale.  If box is 1, a box is drawn around the numbers.
+
+EXAMPLE
+  plot2d([-100,500],[-100,600],[-1,-1],"022")
+  x=0:100:200;
+  xnumb(x,500*ones(x),[10,20,35],1)
+
+SEE ALSO
+  xstring
+
+AUTHOR
+  J.Ph.C.

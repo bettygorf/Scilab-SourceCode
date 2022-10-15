@@ -1,0 +1,14 @@
+
+signm(1)                       Scilab Function                       signm(1)
+NAME
+  signm - matrix sign function
+
+DESCRIPTION
+
+  For square and Hermitian matrices X=sign(A) is matrix sign function.
+
+EXAMPLE
+  A=rand(4,4);B=A+A';X=sign(B);spec(X)
+
+SEE ALSO
+  sign

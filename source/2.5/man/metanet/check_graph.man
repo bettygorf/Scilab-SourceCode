@@ -1,0 +1,27 @@
+.TH check_graph 1 "September 1995" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+check_graph - checks a Scilab graph list
+.SH CALLING SEQUENCE
+.nf
+check_graph(g)
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph list to check
+.SH DESCRIPTION
+\fVcheck_graph\fR checks its argument \fVg\fR to see if it is a
+graph list. The checking is not only syntactic (number of elements of the
+list, compatible sizes of the vectors), but also semantic in the sense that 
+\fVcheck_graph\fR checks that \fVnode_number\fR, \fVtail\fR and
+\fVhead\fR elements of the list can really represent a graph.
+
+Moreover, the names of the node must be different. In fact, this
+do not give errors in Scilab, but strange behaviour can appear when using the 
+Metanet window. So, this is not checked by \fVcheck_graph\fR 
+because it is time consuming. It is only checked when loading, saving
+or showing a graph.
+
+.SH SEE ALSO
+graph-list

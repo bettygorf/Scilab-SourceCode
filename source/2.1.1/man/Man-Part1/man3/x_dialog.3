@@ -1,0 +1,30 @@
+.TH x_dialog 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+x_dialog - Xwindow dialog
+.SH CALLING SEQUENCE
+.nf
+result=x_dialog(labels,valueini) 
+.fi
+.SH PARAMETERS
+.TP
+labels
+: column vector of strings, comment for dialog
+.TP
+valueini
+: n column vector of strings, initial value suggested 
+.TP
+result
+: response : n column vector of strings if returned with "Ok" button or [] if returned with "Cancel" button
+.SH DESCRIPTION
+Creates an X-window multi-lines dialog 
+.SH EXAMPLE
+.nf
+gain=evstr(x_dialog('value of gain ?','0.235'))
+
+x_dialog(['Method';'enter sampling period'],'1')
+m=evstr(x_dialog('enter a  3x3 matrix ',['[0 0 0';'0 0 0';'0 0 0]']))
+.fi
+.SH SEE ALSO
+x_mdialog, x_matrix, evstr ,execstr
+

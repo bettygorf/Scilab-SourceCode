@@ -1,0 +1,44 @@
+
+plus(1)                        Scilab Function                        plus(1)
+NAME
+  plus (+) -  addition operator
+
+CALLING SEQUENCE
+  X+Y
+  str1+str2
+
+PARAMETERS
+
+  X    : scalar or vector or matrix of numbers, polynomials or rationals. It
+       may also be a syslin list
+
+  Y    : scalar or vector or matrix of numbers, polynomials or rationals. It
+       may also be a syslin list
+
+  str1 : a character string, a vector or a matrix of character strings
+
+  str2 : a character string, a vector or a matrix of character strings
+
+DESCRIPTION
+  Addition.
+
+  For numeric operands addition as its usual meaning.  If one of the operands
+  is a matrix and the other one a scalar the scalar is added to each matrix
+  entries. if one of the operands is an empty matrix the other operand is
+  returned.
+
+  For character strings + means concatenation.
+
+  Addition may also be defined for other data types through "soft-coded"
+  operations.
+
+EXAMPLE
+  [1,2]+1
+  []+2
+  s=poly(0,"s");
+  s+2
+  1/s+2
+  "cat"+"enate"
+
+SEE ALSO
+  addf, mtlb_mode

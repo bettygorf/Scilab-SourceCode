@@ -1,0 +1,35 @@
+.TH kalm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+kalm - Kalman update
+.SH CALLING SEQUENCE
+.nf
+[x1,p1,x,p]=kalm(y,x0,p0,f,g,h,q,r)
+.fi
+.SH PARAMETERS
+.TP 10
+f,g,h
+: current system matrices
+.TP
+q, r
+: covariance matrices of dynamics and observation noise
+.TP
+x0,p0
+: state estimate and error variance at t=0 based
+on data up to t=-1
+.TP
+y
+: current observation
+Output from the function is:
+.TP
+x1,p1
+: updated estimate and error covariance at t=1
+based on data up to t=0
+.TP
+x
+: updated estimate and error covariance at t=0
+ based on data up to t=0
+.SH DESCRIPTION
+function which gives the Kalman update and error variance
+.SH AUTHOR
+C. B.

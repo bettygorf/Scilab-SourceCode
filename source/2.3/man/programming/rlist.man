@@ -1,0 +1,19 @@
+.TH rlist 1 "Jan 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+rlist - Scilab rational fraction function definition
+.SH CALLING SEQUENCE
+.nf
+rlist()
+rlist(a1,....an)  
+.fi
+.SH DESCRIPTION
+\fVrlist(a1,....an)\fR is a shortcut  to
+\fVtlist(['r','num';'den','dt'], a1,....an)\fR 
+.LP 
+Creates a \fVtlist\fR with  \fV['r','num';'den','dt']\fR as
+first entry and  \fVai\fR's as next entries if any. No type nor size
+checking is done on \fVai\fR's.
+
+.SH SEE ALSO
+tlist, syslin

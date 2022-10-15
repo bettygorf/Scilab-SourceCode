@@ -1,0 +1,26 @@
+
+sqroot(2)                      Scilab Function                      sqroot(2)
+NAME
+  sqroot - W*W' hermitian factorization
+
+CALLING SEQUENCE
+  sqroot(X)
+
+PARAMETERS
+
+  X    : symmetric non negative definite real or complex matrix
+
+DESCRIPTION
+  W=sqroot(X) returns W such that  X=W*W' (uses SVD).
+
+EXAMPLE
+  X=rand(5,2)*rand(2,5);X=X*X';
+  W=sqroot(X)
+  norm(W*W'-X,1)
+  //
+  X=rand(5,2)+%i*rand(5,2);X=X*X';
+  W=sqroot(X)
+  norm(W*W'-X,1)
+
+SEE ALSO
+  chol, svd

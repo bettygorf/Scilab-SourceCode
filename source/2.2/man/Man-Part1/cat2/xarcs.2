@@ -1,0 +1,66 @@
+
+
+
+xarcs(2)                       Scilab Function                       xarcs(2)
+
+
+
+
+
+
+NAME
+  xarcs - drawing a set of ellipsis
+
+CALLING SEQUENCE
+  []=xarcs(arcs,[style])
+
+PARAMETERS
+
+  arcs : matrix of size (6,n) (ellipsis description)
+
+  style
+       : vector of size (1,n) giving the style to use ( set
+       xset("dashes",...).
+
+DESCRIPTION
+  draws a set of ellipsis described by arcs. arcs= [ x,y,w,h,a1,a2 ;
+  x,y,w,h,a1,a2 ;.....] ' : each ellipsis is defined by the 6 parameters
+  (x,y,w,h,a1,a2) (see xarc)
+
+  fill(i) gives the dash style which must be used to draw the ellipsis number
+  i.
+
+EXAMPLE
+  plot2d(0,0,-1,"031",' ',[-1,-1,1,1])
+  set_arcs=[ -1.0 0.0 0.5 // upper left x
+              1.0 0.0 0.5 // upper left y
+              0.5 0.5 0.5 // widths
+              0.5 0.5 0.5 // height
+              0.0 0.0 0.0 // angle 1
+              360*64 360*64 360*64] // angle 2
+  xarcs(set_arcs,[0,1,2])
+
+AUTHOR
+  J.Ph.C.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

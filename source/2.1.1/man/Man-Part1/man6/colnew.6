@@ -1,0 +1,469 @@
+.LA \def\sciverb#1{\mbox{\tt #1}}
+.TH colnew G "June 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+colnew - boundary value problems for ODE
+.SH CALLING SEQUENCE
+.nf
+   [z]=colnew(points,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...
+	fsub1,dfsub1,gsub1,dgsub1,guess1)
+.fi
+.SH PARAMETERS
+.TP 10 
+z 
+The solution of the ode evaluated on the mesh given by points
+.TP
+points 
+an array which gives the points for which we want the solution 
+.TP
+ncomp
+no. of differential equations   (ncomp .le. 20)
+.TP 
+m
+a vector of size \fVncomp\fR. \fVm(j)\fR gives the  order of the j-th
+differential equation
+.IG
+.nf 
+( mstar = m(1) + ... + m(ncomp) .le. 40 )
+.fi
+.FI
+.LA $$ \sciverb{mstar} = \sum_{i=1}^{\sciverb{ncomp}} \sciverb{m}(i) \le 40$$
+.TP
+aleft
+left end of interval
+.TP
+aright
+right end of interval
+.TP
+zeta
+\fVzeta(j)\fR gives j-th side condition point (boundary point). must
+have  
+.IG
+\fVzeta(j) .le. zeta(j+1)\fR
+.FI
+.LA $ \sciverb{zeta}(j)\le \sciverb{zeta}(j+1)$.
+all side condition
+points must be mesh points in all meshes used,
+see description of \fVipar(11)\fR and \fVfixpnt\fR below.
+.TP
+ipar
+an integer array dimensioned at least 11.
+a list of the parameters in \fVipar\fR and their meaning follows
+some parameters are renamed in colnew; these new names are
+given in parentheses.
+.RS
+.TP 10
+ipar(1)
+( = nonlin )
+.RS
+.TP
+= 0 
+if the problem is linear
+.TP
+= 1 if the problem is nonlinear
+.RE
+.TP
+ipar(2) 
+= no. of collocation points per subinterval  (= k )
+where 
+.IG
+\fVmax m(i) .le.  k .le. 7 .\fR
+.FI  
+.LA $ \max \mbox{\tt m}(i) \le  k \le  7 $.
+if \fVipar(2)=0\fR then
+colnew sets  
+.IG 
+\fVk = max ( max m(i)+1, 5-max m(i) )\fR
+.FI 
+.LA $k = \max ( \max \mbox{\tt m}(i)+1, 5-\max \mbox{\tt m}(i) ) $
+.TP
+ipar(3) 
+= no. of subintervals in the initial mesh  ( = n ).
+if \fVipar(3) = 0\fR then colnew arbitrarily sets \fVn = 5\fR.
+.TP
+ipar(4) 
+= no. of solution and derivative tolerances.  ( = ntol )
+we require  
+.IG
+\fV0 .lt. ntol .le. mstar.\fR
+.FI
+.LA $0 < \sciverb{ntol} < \sciverb{mstar}.$
+.TP
+ipar(5) 
+= dimension of \fVfspace\fR ( = ndimf ) a real work array.
+its size provides a constraint on nmax.
+choose ipar(5) according to the formula
+.IG
+.nf
+                ipar(5)  .ge.  nmax*nsizef
+          where
+                nsizef = 4 + 3 * mstar + (5+kd) * kdm +
+                        (2*mstar-nrec) * 2*mstar.
+.fi
+.FI
+.LA  $$ \sciverb{ipar}(5) \ge  \sciverb{nmax} n_s \quad \mbox{where} \quad n_s = 4 +
+.LA  3 \sciverb{mstar} + (5+k_d) k_dm + (2\sciverb{mstar}-\sciverb{nrec}) 2 \sciverb{mstar} $$
+.TP
+ipar(6) 
+= dimension of ispace ( = ndimi )an integer work array.
+its size provides a constraint on nmax,
+the maximum number of subintervals. choose
+\fVipar(6)\fR according to the formula
+.IG
+.nf
+ipar(6)  .ge.  nmax*nsizei
+          where
+                nsizei = 3 + kdm
+          with
+                kdm = kd + mstar  ;  kd = k * ncomp ;
+                nrec = no. of right end boundary conditions.
+.fi
+.FI
+.LA $$ \sciverb{ipar}(6) \ge  \sciverb{nmax} n_i  \quad \mbox{where} n_i = 3 + k_dm
+.LA          \quad k_dm = k_d + \sciverb{mstar} \quad  k_d = k  \sciverb{ncomp} $$
+.TP
+ipar(7) 
+output control ( = iprint )
+.RS
+.TP
+= -1
+for full diagnostic printout
+.TP
+= 0 
+for selected printout
+.TP
+= 1 
+for no printout
+.RE
+.TP
+ipar(8)     
+( = iread )
+.RS
+.TP
+= 0 
+causes colnew to generate a uniform initial mesh.
+.TP 
+= xx 
+Other values are not implemented yet in Scilab 
+.RS
+.TP
+= 1 
+if the initial mesh is provided by the user.  it
+is defined in fspace as follows:  the mesh
+.IG
+.nf
+aleft=x(1).lt.x(2).lt. ... .lt.x(n).lt.x(n+1)=aright
+.fi
+.FI
+.LA $$ \sciverb{aleft}=x(1)<x(2)< \ldots< x(n)< x(n+1)=\sciverb{aright} $$
+will occupy  \fVfspace(1), ..., fspace(n+1)\fR. the
+user needs to supply only the interior mesh
+points  \fVfspace(j) = x(j), j = 2, ..., n.\fR
+.TP
+= 2 if the initial mesh is supplied by the user
+as with \fVipar(8)=1\fR, and in addition no adaptive
+mesh selection is to be done.
+.RE
+.RE
+.TP
+ipar(9)
+( = iguess )
+.RS
+.TP
+= 0 
+if no initial guess for the solution is provided.
+.TP
+= 1 
+if an initial guess is provided by the user in subroutine 
+\fVguess\fR.
+.TP
+= 2 
+if an initial mesh and approximate solution
+coefficients are provided by the user in fspace.
+(the former and new mesh are the same).
+.TP
+= 3 
+if a former mesh and approximate solution
+coefficients are provided by the user in fspace,
+and the new mesh is to be taken twice as coarse;
+i.e.,every second point from the former mesh.
+.TP
+= 4 
+if in addition to a former initial mesh and
+approximate solution coefficients, a new mesh
+is provided in fspace as well.
+(see description of output for further details
+on iguess = 2, 3, and 4.)
+.RE
+.TP
+ipar(10)
+.RS
+.TP
+= 0 
+if the problem is regular
+.TP
+= 1 
+if the first relax factor is =rstart, and the
+nonlinear iteration does not rely on past covergence
+(use for an extra sensitive nonlinear problem only).
+.TP 
+= 2 
+if we are to return immediately upon  (a) two
+successive nonconvergences, or  (b) after obtaining
+error estimate for the first time.
+.RE
+.TP
+ipar(11)
+= no. of fixed points in the mesh other than \fValeft\fR
+and \fVaright\fR. ( = nfxpnt , the dimension of \fVfixpnt\fR)
+the code requires that all side condition points
+other than \fValeft\fR and \fVaright\fR (see description of
+zeta ) be included as fixed points in \fVfixpnt\fR.
+.RE
+.TP
+ltol
+an array of dimension \fVipar(4)\fR. \fVltol(j) = l\fR  specifies
+that the j-th tolerance in  tol  controls the error
+in the l-th component of \fVz(u)\fR.   also require that
+.IG
+.nf
+1.le.ltol(1).lt.ltol(2).lt. ... .lt.ltol(ntol).le.mstar
+.fi
+.FI 
+.LA $$1\le \sciverb{ltol}(1)<\sciverb{ltol}(2)< ... <\sciverb{ltol}(ntol)\le mstar $$
+.TP
+tol
+an array of dimension \fVipar(4)\fR. \fVtol(j)\fR is the
+error tolerance on the \fVltol(j)\fR -th component
+of \fVz(u)\fR. thus, the code attempts to satisfy
+for j=1,...,ntol  on each subinterval
+.IG
+.nf
+        abs(z(v)-z(u))       \le tol(j)*abs(z(u))       +tol(j)
+                      ltol(j)                     ltol(j)
+.fi
+.FI
+.LA  $$ {|z(v)-z(u)|}_{ltol(j)} \le
+.LA \sciverb{tol}(j)*{|z(u)|}_{\sciverb{ltol}(j)} + \sciverb{tol}(j) $$
+if \fVv(x)\fR is the approximate solution vector.
+.TP
+fixpnt
+an array of dimension \fVipar(11)\fR. it contains
+the points, other than \fValeft\fR and \fVaright\fR, which
+are to be included in every mesh.
+.TP 
+externals 
+The function \fVfsub,dfsub,gsub,dgsub,guess\fR are Scilab externals
+i.e. functions (see syntax below) or the name of a fortran subroutine (character
+string) with specified calling sequence or a list.
+An external as a  character string refers to the name of a Fortran
+subroutine. The Fortran coded function interface to colnew are
+specified in the file \fVfcol.f\fR.
+.RS
+.TP
+fsub
+name of subroutine for evaluating 
+.IG
+.nf
+                                  t
+ f(x,z(u(x))) =    (f ,...,f     )  
+                     1      ncomp
+.fi
+.FI
+.LA $$  f(x,z(u(x))) =  (f_1 ,\ldots,f_{\sciverb{ncomp}} )^t $$
+at a point x in \fV(aleft,aright)\fR.
+it should have the heading  \fV[f]=fsub(x,z)\fR 
+where \fVf\fR is the vector containing the value of \fVfi(x,z(u))\fR
+in the i-th component and 
+.IG
+.nf
+                                     t
+          z(u(x))=(z(1),...,z(mstar))
+.fi 
+.FI
+.LA  $$  z(u(x))=(z_1,\ldots,z_{\sciverb{mstar}})^t $$
+is defined as above under  purpose .
+.TP
+dfsub
+name of subroutine for evaluating the jacobian of
+\fVf(x,z(u))\fR at a point x.  it should have the heading
+\fV[df]=dfsub (x , z )\fR
+where \fVz(u(x))\fR is defined as for \fVfsub\fR and the (\fVncomp\fR) by
+(\fVmstar\fR) array df should be filled by the partial derivatives of 
+f, viz, for a particular call one calculates
+.IG
+.nf
+      df(i,j) = dfi / dzj, i=1,...,ncomp
+                           j=1,...,mstar.
+.fi
+.FI
+.LA $$df(i,j) = df_i / dz_j,\quad  i=1,\ldots,\sciverb{ncomp}\quad
+.LA j=1,\ldots,\sciverb{mstar}.$$
+.TP
+gsub
+name of subroutine for evaluating the i-th component of
+.IG
+.nf
+          g(x,z(u(x))) = g (zeta(i),z(u(zeta(i)))) 
+                          i
+.fi
+.FI
+.LA $$           g(x,z(u(x))) = g_i (zeta(i),z(u(zeta(i))))  $$ 
+at a point \fVx = zeta(i)\fR  where 
+.IG 
+\fV1.le.i.le.mstar.\fR
+.FI 
+.LA $1 \le i \le \sciverb{mstar}.$
+it should have the heading\fV[g]=gsub (i , z)\fR
+where \fVz(u)\fR is as for fsub, and i and g=gi  are as above.
+note that in contrast to f in  fsub , here
+only one value per call is returned in g.
+.TP
+dgsub
+name of subroutine for evaluating the i-th row of
+the jacobian of \fVg(x,u(x))\fR.  it should have the heading
+\fV[dg]=dgsub (i , z )\fR
+where \fVz(u)\fR is as for fsub, i as for gsub and the mstar-vector 
+\fVdg\fR should be filled with the partial derivatives
+of g, viz, for a particular call one calculates
+.IG
+.nf
+      dg(i,j) = dgi / dzj,  j=1,...,mstar.
+.fi
+.FI
+.LA $$dg(i,j) = dg_i / dz_j,\quad  j=1,\ldots,\sciverb{mstar}.$$
+.TP
+guess
+name of subroutine to evaluate the initial
+approximation for  \fVz(u(x))\fR and for \fVdmval(u(x))\fR= vector
+of the mj-th derivatives of \fVu(x)\fR. it should have the
+heading \fV[z,dmval]= guess (x )\fR
+note that this subroutine is used only if 
+\fVipar(9) = 1\fR, and then all  \fVmstar\fR  components of z
+and  ncomp  components of  dmval  should be specified
+for any x,  
+.IG 
+\fValeft .le. x .le. aright .\fR
+.FI
+.LA $ \sciverb{aleft} \le x \le  \sciverb{aright} .$
+.RE
+.SH DESCRIPTION
+this package solves a multi-point boundary value
+problem for a mixed order system of ode-s given by
+.IG
+.nf
+       (m(i))
+      u       =  f  ( x; z(u(x)) )      i = 1, ... ,ncomp
+       i          i
+                                 aleft .lt. x .lt. aright,
+      g  ( zeta(j); z(u(zeta(j))) ) = 0   j = 1, ... ,mstar
+       j
+                                 mstar = m(1)+m(2)+...+m(ncomp),
+.fi
+.FI
+.IG
+.nf
+where
+                                     t
+            u = (u , u , ... ,u     )   is the exact solution vector
+                  1   2        ncomp
+             (mi)
+            u     is the mi=m(i) th  derivative of u
+             i                                      i
+                               (1)        (m1-1)       (mncomp-1)
+            z(u(x)) = ( u (x),u  (x),...,u    (x),...,u      (x) )
+                         1     1          1            ncomp
+             f (x,z(u))   is a (generally) nonlinear function of
+              i
+                          z(u)=z(u(x)).
+             g (zeta(j);z(u))  is a (generally) nonlinear function
+              j
+                            used to represent a boundary condition.
+.fi
+.FI
+.LA $$ u_i^{(m(i))} = f ( x; z(u(x)) )\quad  i = 1,\ldots,\sciverb{ncomp} \quad 
+.LA     \sciverb{aleft} < x < \sciverb{aright} $$
+
+.LA $$ g_j  ( zeta(j); z(u(zeta(j))) ) = 0 \quad  j = 1,\ldots ,\sciverb{mstar}
+.LA      \quad    \sciverb{mstar} = \sum_{i=1}^{\sciverb{ncomp}} m(i) $$
+
+.LA where $u = (u_1 , u_2 , \ldots ,u_{\sciverb{ncomp}})^t$ is the exact solution vector
+.LA $u_i^{(m(i))}$ is the mi=m(i) th  derivative of $u_i$.
+
+.LA $$ z(u(x)) = ( u_1(x),u_1^{(1)}(x),\ldots,u_1^{(m_1-1)}(x),
+.LA       \ldots,u_{\sciverb{ncomp}}^{(m_{\sciverb{ncomp}}-1)}(x) ) $$
+
+.LA $f_i (x,z(u))$   is a (generally) nonlinear function of $z(u)=z(u(x))$.
+.LA $g_j (zeta(j);z(u))$  is a (generally) nonlinear function
+.LA                            used to represent a boundary condition.
+the boundary points satisfy
+.IG
+.nf
+            aleft .le. zeta(1) .le. .. .le. zeta(mstar) .le. aright
+.fi
+.FI
+.LA   $$     \sciverb{aleft} \le \sciverb{zeta}(1) \le \ldots
+.LA   \le \sciverb{zeta}(\sciverb{mstar}) \le \sciverb{aright}$$
+the orders mi of the differential equations satisfy 
+.IG
+\fV1.le.m(i).le.4\fR.
+.FI
+.LA $1 \le m(i)\le 4$.
+.SH EXAMPLE 
+See the directory \fVdemos/colnew\fR for a demo file 
+.nf
+function [z,z1]=col1()
+fixpnt=0
+m=[4]
+ncomp=1
+aleft=1
+aright=2
+zeta=[1,1,2,2]
+ipar=0*ones(1,11)
+ipar(3)=1;ipar(4)=2;ipar(5)=2000;ipar(6)=200;ipar(7)=1
+ltol=[1,3]
+tol=[1.e-11,1.e-11]
+res=aleft:0.1:aright
+z=colnew(res,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...
+	fsub,dfsub,gsub,dgsub,guess)
+z1=[]
+for x=res,z1=[z1,trusol(x)]; end;
+.fi
+.nf 
+function [df]=dfsub(x,z)
+df=[0,0,-6/x**2,-6/x]
+.fi
+.nf 
+function [f]=fsub(x,z)
+f=(1 -6*x**2*z(4)-6*x*z(3))/x**3
+.fi
+.nf 
+function [g]=gsub(i,z)
+g=[z(1),z(3),z(1),z(3)]
+g=g(i)
+.fi
+.nf 
+function [dg]=dgsub(i,z)
+dg=[1,0,0,0;0,0,1,0;1,0,0,0;0,0,1,0]
+dg=dg(i,:)
+.fi
+.nf 
+function [z,mpar]=guess(x)
+// unused here
+z=0
+mpar=0
+.fi
+.nf 
+function [u]=trusol(x)
+  u=0*ones(4,1)
+      U(1) = .25* (10.*LOG(2.)-3.) * (1.-X) +0.5* (1./X+ (3.+X)*LOG(X) - X)
+      U(2) = -.25* (10.*LOG(2.) - 3.) + .5 * (-1./X/X + LOG(X) + (3.+X)/X - 1.)
+      U(3) = .5 * (2./X**3 + 1./X -3./X/X)
+      U(4) = .5 * (-6./X**4 - 1./X/X + 6./X**3)
+.fi
+.SH AUTHOR
+U.ASCHER G.BADER 
+.SH SEE ALSO
+fort, link, external.
+
+

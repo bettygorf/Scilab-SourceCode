@@ -1,0 +1,4 @@
+exec('fft.1.code');
+xinit('fft.2.ps')
+plot2d3("gnn",x',real(yf)');
+xend(),

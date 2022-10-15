@@ -1,0 +1,24 @@
+.TH denom 8 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+denom - denominator
+.SH CALLING SEQUENCE
+.nf
+den=denom(r)
+.fi
+.SH PARAMETERS
+.TP
+r
+: rational or polynomial or constant matrix.
+.TP
+den
+: polynomial matrix
+.SH DESCRIPTION
+.Vb den=denom(r) 
+returns the denominator of a rational matrix.
+.LP
+Since rationals are represented as \fVr=list('r',num,den,[])\fR,
+\fVdenom(r\fR) is the same as \fVr(3)\fR.
+.SH SEE ALSO
+numer
+

@@ -1,0 +1,38 @@
+.TH eye 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+eye - identity matrix
+.SH CALLING SEQUENCE
+.nf
+[X]=eye(m,n)
+[X]=eye(A)
+.fi
+.SH PARAMETERS
+.TP 10
+A,X
+: matrices or \fVsyslin\fR lists
+.TP 10
+m,n
+: integers
+.SH DESCRIPTION
+according to its arguments defines an \fVm\fRx\fVn\fR matrix with 1 along the 
+main diagonal or an identity matrix of the same dimension as \fVA\fR .
+.LP
+Caution: \fVeye(10)\fR is interpreted as \fVeye(A)\fR with \fVA=10\fR i.e. \fV1\fR.
+(It is NOT a ten by ten identity matrix!).
+.LP
+If \fVA\fR is a linear system represented by a \fVsyslin\fR list, \fVeye(A)\fR
+returns an \fVeye\fR matrix of appropriate dimension: 
+(number of outputs x number of inputs).
+.SH EXAMPLES:
+.nf
+eye(2,3)
+A=rand(2,3);eye(A)
+s=poly(0,'s');A=[s,1;s,s+1];eye(A)
+A=[1/s,1;s,2];eye(A);
+A=ssrand(2,2,3);eye(A)
+.fi
+.SH SEE ALSO
+ones, zeros
+
+

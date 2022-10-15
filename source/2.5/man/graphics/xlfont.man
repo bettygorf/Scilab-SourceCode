@@ -1,0 +1,50 @@
+.TH xlfont 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xlfont - load a font in the graphics context or query loaded font
+.SH CALLING SEQUENCE
+.nf
+xlfont(font-name,font-id)
+fonts=xlfont()
+.fi
+.SH PARAMETERS
+.TP 11
+font-name
+: string, name of the font family.
+.TP 10
+font-id
+: integer between 0 and 6.
+.TP
+fonts
+: a column vector of currently loaded font names.
+.SH DESCRIPTION
+Without any argument, \fVxlfont()\fR returns the list of
+currently loaded fonts.
+.LP
+With arguments, \fVxlfont\fR is used to load a new font at different sizes 
+in the graphics context. The font must be available with size 8,
+10, 12, 14, 18 and 24.
+.LP
+Default fonts are "Courier Roman" (0), "Symbol" (1), "Times Roman" (2), "Times
+Italic" (3), "Times Bold" (4) and "Times Bold Italic" (5).
+
+font-name can be of 2 types:
+.TP 2
+-
+if it contains the character "%", it is supposed to be an 
+X11 font name with %s in the size field of the name, for example
+\fV"-b&h-lucidabright-demibold-r-normal--%s-*-75-75-p-*-iso8859-1"\fR
+.TP
+-
+if it does not contain the character "%", it is supposed 
+to be an alias name and the fonts aliased by \fVfont-name08,...,font-name24\fR
+are loaded.
+.TP
+font-id
+: give the id \fVfont-id\fR to the loaded font \fVfont-name\fR.
+.RE
+.LP
+.SH SEE ALSO
+xset
+.SH AUTHOR
+J.Ph.C.

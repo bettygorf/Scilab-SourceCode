@@ -1,0 +1,30 @@
+.TH colregul 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+colregul - removing poles and zeros at infinity
+.SH CALLING SEQUENCE
+.nf
+[Stmp,Ws]=colregul(Sl,alfa,beta) 
+.fi
+.SH PARAMETERS
+.TP 15
+Sl,Stmp
+: \fVsyslin\fR lists
+.TP 10
+alfa,beta
+: reals (new pole and zero positions)
+.SH DESCRIPTION
+computes a prefilter \fVWs\fR such that \fVStmp=Sl*Ws\fR is proper and 
+with full rank \fVD\fR matrix.
+.LP
+Poles at infinity of \fVSl\fR are moved to \fValfa\fR;
+.LP
+Zeros at infinity of \fVSl\fR are moved to \fVbeta\fR;
+.LP
+\fVSl\fR is a assumed to be a left invertible linear system (\fVsyslin\fR list)
+in state-space representation with possibly a polynomial \fVD\fR matrix.
+.SH SEE ALSO
+invsyslin, inv, rowregul, rowshuff
+.SH AUTHOR
+F. D. , R. N. 
+

@@ -1,0 +1,24 @@
+
+full(1)                        Scilab Function                        full(1)
+NAME
+  full -  sparse to full matrix conversion
+
+CALING SEQUENCE
+  X=full(sp)
+
+PARAMETERS
+
+  sp   : real or complex sparse (or full) matrix
+
+  X    : full matrix
+
+DESCRIPTION
+  X=full(sp) converts the sparse matrix sp into its full representation. (If
+  sp is already full then X equals sp).
+
+EXAMPLE
+  sp=sparse([1,2;5,4;3,1],[1,2,3]);
+  A=full(sp)
+
+SEE ALSO
+  sparse, sprand, speye

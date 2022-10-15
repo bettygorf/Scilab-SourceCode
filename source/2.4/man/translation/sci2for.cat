@@ -1,0 +1,63 @@
+
+sci2for(1)                     Scilab Function                     sci2for(1)
+NAME
+  sci2for - scilab function to Fortran routine conversion
+
+CALLING SEQUENCE
+  txt=sci2for(fun,nam,vtps)
+
+PARAMETERS
+
+  fun       : Scilab function
+
+  nam       : character string, the name of generated subroutine
+
+  vtps      : list
+
+  txt       : string, text of the subroutine Fortran code
+
+DESCRIPTION
+
+  The elements of the list vtps give the type and dimensions of variables of
+  the calling sequence :
+  vtps(i)=list(typ,row_dim,col_dim)
+  where :
+
+       typ
+         : is a character string giving the type of the variable :
+
+         "0"
+           : constant,integer vector or matrix
+
+         "1"
+           : constant,double precision vector or matrix
+
+         "10"
+           : character string
+
+       row_dim
+         : character string (row dimension)
+
+       col_dim
+         : character string (column dimension)
+
+  txt  : Fortran code
+
+  Generated code may use routines of scilab libraries and some others whose
+  source code may be found in <SCIDIR>/util/sci2for.f
+
+REMARKS
+  This function is just a try. Only simple function may be translated. Many
+  function calls have not  yet Fortran equivalent, to add the translation of
+  a new function call you may define a scilab function.  whose name is
+  f_<name of function>. see <SCIDIR>/macros/sci2for/f_*.sci files for exam-
+  ples.
+
+  The following keywords :
+   work,iwork,ierr
+   iw*  iiw*
+   ilbN   (N integer)
+  may not appear in the function code.
+
+SEE ALSO
+  function

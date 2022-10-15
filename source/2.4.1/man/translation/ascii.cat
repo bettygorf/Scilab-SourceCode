@@ -1,0 +1,21 @@
+
+ascii(3)                       Scilab Function                       ascii(3)
+NAME
+  ascii - string ascii conversions
+
+CALLING SEQUENCE
+  a=ascii(txt)
+  txt=ascii(a)
+
+PARAMETERS
+
+  txt       : character string.
+
+  a         : vector of integer ascii codes
+
+DESCRIPTION
+  This function convert Scilab string to a vector of ascii code or vector of
+  ascii code to Scilab strings
+
+SEE ALSO
+  code2str, str2code

@@ -1,0 +1,25 @@
+
+acos(1)                        Scilab Function                        acos(1)
+NAME
+  acos - element wise cosine inverse
+
+CALLING SEQUENCE
+  t=acos(x)
+
+PARAMETERS
+
+  x         : real or complex vector
+
+  t         : real or complex vector
+
+DESCRIPTION
+  The components of vector t are cosine inverse of the corresponding entries
+  of vector x.  Definition domain is [-1, 1].
+
+  acos takes values in :
+
+      ] 0,pi[ x ]-inf +inf[
+      [0] x [0,+inf] and [pi] x ]-inf,0]   (real x imag)
+EXAMPLE
+  x=[1,%i,-1,-%i]
+  cos(acos(x))

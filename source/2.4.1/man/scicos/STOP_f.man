@@ -1,0 +1,23 @@
+.TH STOP_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+STOP_f - Scicos Stop block
+.SH DIALOGUE PARAMETERS
+.TP 15
+State on halt
+: scalar. A value to be placed in the state of the block. For
+debugging purposes this allows to distinguish between different
+halts.
+.SH DESCRIPTION
+This block has a unique input event port. Upon the arrival of an
+event,
+the simulation is stopped and the main Scicos window is activated.
+Simulation can be restarted or continued (Run button).
+
+
+
+
+
+
+
+

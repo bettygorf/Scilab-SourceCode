@@ -1,0 +1,51 @@
+.TH link 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+link - dynamic link
+.SH CALLING SEQUENCE
+.nf
+link(files, sub-name)
+.fi
+.SH DESCRIPTION
+links (dynamically) a compiled C or Fortran routine to Scilab.
+With no arguments \fVlink()\fR returns the vectors of linked routines.
+Available for SUN (Sun OS), RS6000, (DEC Mips) and HP workstations with the 
+"static" option for the compilation of Scilab (this is the case of the 
+compiled distributed versions).
+For RS6000 only one program can be dynamically linked (this program can be 
+modified and re-linked). This restriction can be avoided by having the linked
+program call other programs.
+For DEC Mips currently it does not always work.
+Available for DEC Alpha, SUN Solaris 5.* and SGI Irix 5.2 (all are SystemV 
+machines) : in this case Scilab may be compiled with the "static" or "shared" 
+option ; with the "static" option (this is the case of the compiled 
+distributed versions of Scilab) you must include the needed libraries in the 
+"link" command.
+The call of the added program (C or fortran) is done with the Scilab command 
+"fort".
+.SH EXAMPLE
+.nf
+link('foo.o','foo').
+link('foo.o -lm -lc','foo').
+link('foo.o -lfor -lm -lc','foo').
+link('foo.o -lftn -lm -lc','foo').
+link('foo.o -L/opt/SUNWspro/SC3.0/lib/lib77 -lm -lc','foo').
+.fi
+\fVfoo.o\fR is the file of the object code and \fVfoo\fR is the name of the 
+fortran or C routine.
+The previous examples are respectively the non-systemV case, the general case
+for the C routines and examples for DEC Alpha, SGI and SUN Solaris.
+With Scilab compiled with the "shared" option the first example can be use :
+in this case you will have a warning for unresolved references but the linked 
+program will work.
+.SH REMARK 
+You may have some trouble with the link in the demos using this command due to
+the differences of the systems (the demos needing the link command do
+not work with the compiled version of Scilab for the SystemV machines
+because the link needs the libraries. You can modify the demo by
+adding the libraries in the link command for your machine and the demo
+will work). This fact does not affect the behaviour of the "complete"
+command in any case.
+.SH SEE ALSO
+fort,c_link
+

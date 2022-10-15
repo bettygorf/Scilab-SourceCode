@@ -1,0 +1,14 @@
+
+xselect(2)                     Scilab Function                     xselect(2)
+NAME
+  xselect - raise the current graphic window
+
+CALLING SEQUENCE
+  xselect()
+
+DESCRIPTION
+  raises the current graphic window and creates it if necessary.  If the
+  current graphic window is iconified nothing is done.
+
+AUTHOR
+  J.Ph.C.

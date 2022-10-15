@@ -1,0 +1,56 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+
+OBJSF=dperm.o iperm.o dspdsp.o wspdsp.o  dspasp.o dspssp.o \
+	wspasp.o wspssp.o isort1.o dspmsp.o wspmsp.o \
+	dspms.o dsmsp.o wspms.o wsmsp.o dspt.o wspt.o \
+	dspxsp.o wspxsp.o dspxs.o wspxs.o dspe2.o wspe2.o \
+	dspcle.o dspisp.o  dspis.o wspisp.o wspis.o\
+	dsposp.o lspdsp.o dspos.o dsosp.o wsposp.o wspos.o wsosp.o \
+	sz2ptr.o findl.o dcompa.o wcompa.o lcompa.o\
+	dspcsp.o wspcsp.o \
+	lspt.o lspcsp.o lspe2.o lspisp.o lspis.o lsosp.o lspos.o \
+	lsposp.o lspasp.o lspxsp.o\
+	dful2sp.o wful2sp.o lful2sp.o dspful.o wspful.o lspful.o \
+	dij2sp.o wij2sp.o lij2sp.o dspmax.o dspmin.o \
+	dspmat.o wspmat.o lspmat.o 
+OBJSC= lu.o spBuild.o spFortran.o spSolve.o spAllocate.o spFactor.o \
+	spOutput.o spUtils.o
+
+OBJS = $(OBJSC) $(OBJSF)
+FSRCS =$(OBJSF:.o=.f)
+SRCS =$(OBJSC:.o=.c)
+
+
+LibraryTarget($(PATHO)/sparse.a,$(OBJS))
+FortranDependTarget()
+DependTarget()
+
+
+OBJS1= spBuild.o spFortran.o spSolve.o spAllocate.o spFactor.o \
+	spOutput.o spUtils.o 
+
+
+# test du bug de sparse avec le package de debug de malloc
+# on change I pour utiliser le malloc.g associe
+
+test-debug:
+	make CC="gcc"  "CDEBUGFLAGS=-g -traditional -I/usr/include/dbmalloc/" Sptest-d
+	@echo "Don t forget to set dbmalloc Env Variables to check bugs "
+	@echo "ex setenv MALLOC_CKCHAIN 1"
+
+Sptest-d: Sptest-c.o  $(OBJS1)
+	$(CC) -o Sptest-d Sptest-c.o $(OBJS1) /lib/libdbmalloc.a
+
+clean ::
+	\rm -f Sptest-d 
+
+test: Sptest
+
+Sptest: Sptest-c.o  $(OBJS1)
+	$(CC) -o Sptest Sptest-c.o $(OBJS1)
+
+clean ::
+	\rm -f Sptest-d 
+

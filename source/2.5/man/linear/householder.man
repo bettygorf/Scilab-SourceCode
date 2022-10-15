@@ -1,0 +1,27 @@
+.TH householder G "April 1993" "Scilab Group" "Scilab Function"       
+.so ../sci.an
+.SH NAME
+householder - Householder orthogonal reflexion matrix
+.SH CALLING SEQUENCE
+.nf
+u=householder(v [,w])
+.fi
+.SH PARAMETERS
+.TP
+v
+: real or complex column vector
+.TP
+w
+: real or complex column vector with same size as \fVv\fR. Default value is \fVeye(v)\fR
+.TP
+u
+: real or complex column vector
+.SH DESCRIPTION
+given 2 column vectors \fVv\fR, \fV w\fR of same size, \fVhouseholder(v,w)\fR returns a unitary 
+column vector \fVu\fR, such that \fV (eye()-2*u*u')*v\fR is proportional to \fVw\fR.
+\fV(eye()-2*u*u')\fR is the orthogonal Householder reflexion matrix .
+
+\fVw\fR default value is \fV eye(v)\fR. In this case vector \fV (eye()-2*u*u')*v\fR is the 
+vector  \fV eye(v)*norm(v)\fR.
+.SH SEE ALSO
+qr, givens

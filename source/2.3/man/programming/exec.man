@@ -1,0 +1,31 @@
+.TH exec 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+exec - script file execution
+.SH CALLING SEQUENCE
+.nf
+exec('file-name' [,mode])
+.fi
+.SH DESCRIPTION
+executes the content of the file \fV'file-name'\fR with an optional 
+execution mode \fVmode\fR .
+.LP
+The different cases for \fVmode\fR are :
+.IP 0 
+: the default value
+.IP -1 
+: nothing is printed
+.IP 1 
+: echo of each command line
+.IP 2 
+: prompt \fV-->\fR is printed
+.IP 3 
+: echoes + prompts
+.IP 4 
+: stops before each prompt
+.IP 7 
+: stops + prompts + echoes : useful mode for demos.
+.SH SEE ALSO
+getf, comp, mode
+
+

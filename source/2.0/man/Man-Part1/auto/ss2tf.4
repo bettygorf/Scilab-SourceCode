@@ -1,0 +1,31 @@
+.TH ss2tf 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+ss2tf - conversion from state-space to transfer function
+.SH CALLING SEQUENCE
+.nf
+[h]=ss2tf(sl) 
+[Ds,NUM,chi]=ss2tf(sl)
+.fi
+.SH PARAMETERS
+.TP 10
+sl
+: linear system (\fVsyslin\fR list)
+.TP
+h 
+: transfer matrix 
+.SH DESCRIPTION
+Called with three outputs \fV[Ds,NUM,chi]=ss2tf(sl)\fR returns 
+the numerator polynomial matrix \fVNUM\fR, the characteristic
+polynomial \fVchi\fR and the polynomial part \fVDs\fR separately i.e.:
+.nf
+h=NUM/chi + Ds
+.fi
+\fBMethod\fR
+.PP
+One uses the characteristic polynomial and 
+\fVdet(A+Eij)=det(A)+C(i,j)\fR where \fVC\fR is the adjugate 
+matrix of \fVA\fR.
+.SH SEE ALSO
+tf2ss, syslin, leverrier, glever 
+

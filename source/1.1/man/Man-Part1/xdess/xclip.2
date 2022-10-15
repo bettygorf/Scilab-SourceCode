@@ -1,0 +1,40 @@
+.TH xclip 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so man1/sci.an
+.SH NAME
+xclip - set a clip zone 
+.SH CALLING SEQUENCE
+.nf
+xclip([x,y,w,h])
+xclip(rect)
+.fi
+.SH PARAMETERS
+.TP 10
+x,y,w,h
+: four float values
+.TP
+rect
+: a vector of size (1,4)
+.LP
+.SH DESCRIPTION
+Sets a clip region given by the coordinates, in the current
+graphic scaling, of a rectangle \fV(x,y,w,h)\fR 
+(Upper-Left point,Width abd Height). If only one argument is used it stands
+for a rectangle specification \fVrect=[x,y,w,h]\fR;
+.LP
+To unclip a region use the command \fVxclip()\fR
+.SH EXAMPLE
+.nf
+plot2d([-100,500],[-100,600],[-1,-1],"022");
+xset("default");
+xrect(150,460,100,150);
+xclip(150,460,100,150);
+x=0:0.2:2*%pi;
+x1=[sin(x);10*sin(x)];
+y1=[cos(x);10*cos(x)];
+y1=y1+20*ones(y1);
+// drawing inside the clip zone
+xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1));
+xclip()
+.fi
+.SH AUTHOR
+J.Ph.C.

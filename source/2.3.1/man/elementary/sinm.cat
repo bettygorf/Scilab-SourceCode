@@ -1,0 +1,21 @@
+
+sinm(G)                        Scilab Function                        sinm(G)
+NAME
+  sinm -  matrix sine function
+
+CALLING SEQUENCE
+  t=sinm(x)
+
+PARAMETERS
+
+  x         : real or complex square  matrix
+
+DESCRIPTION
+  sinm(x) is matrix sine of x matrix.
+
+EXAMPLE
+  A=[1,2;2,4];
+  sinm(A)+0.5*%i*(expm(%i*A)-expm(-%i*A))
+
+SEE ALSO
+  sin, asinm

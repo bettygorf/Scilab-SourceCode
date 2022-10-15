@@ -1,0 +1,545 @@
+.TH GRAPH 1 "April 1993" "Scilab Group" "Metanet Doc"
+.so man1/sci.an
+.SH NAME 
+graph - graph description 
+.SH USING THIS DOC
+The main objects and properties appearing in the definitions of the 
+functions and macros of Metanet are defined in the following paragraphs
+(written with bolded fonts)
+.SH GRAPHS
+A graph G=(N,A) is a pair of N, a (nonempty) set of nodes, and A a set of arcs.
+An arc is a pair of nodes from N ; the two nodes are distincts , the case of
+self-arc (arc connecting a node with itself) is solved by adding a node.
+The numbers of nodes and arcs are respectively n and m.
+
+Undirected graph : an arc is an unorderd pair. An arc (i,j)=(j,i) is said
+incident to the nodes i and j ; i and j are adjacent nodes or neighbours. 
+The degree of a node i is the number of incident arcs to i.
+A walk is a finite sequence of nodes (n1,...,nk) where (ni,ni+1) is an arc;
+the walk is called a cycle if n1=nk and k>2. A graph is said connected if
+for each pair of nodes (i,j) there exists a walk from i to j.
+G'=(N',A') is a subgraph of G if N' and A' are subsets of N and A.
+A tree is a connected graph that contains no cycle ; a spanning tree of a
+graph G is a tree subgraph of G including all the nodes of G.
+
+
+A basic result on cycles and trees is the following :
+for a connected graph G the number of cycles is m-n+1 so G is a tree if and 
+only if m=n-1 ; G always contains a spanning tree.
+
+
+Directed graph (or digraph) : an arc is a directed arc i.e. the pairs of nodes 
+of A are ordered pairs. An arc (i,j) is said incident to the nodes i and j, 
+outgoing from i and incoming to j ; i and j are said adjacent nodes ( or
+ neighbours). Corresponding to the walk we have now a chain (n1,...,nk) where
+(ni,ni+1) is an arc (forward arc) or (ni+1,ni) (backward arc); n1 is the origin
+and nk the destination.
+A cycle is a path with n1=nk; a path or a cycle is said simple if there is no
+repeated node (except the start and end nodes). A chain (or a cycle) 
+is positive (resp. negative) if all its arcs are forward (resp. backward) arcs.
+A digraph without positive cycles is said acyclic.
+A path is a positive chain.
+A digraph is connected if there exists a chain from a node i to a node j 
+for all the pairs (i,j). It is strongly connected if the chains are positive
+(they are paths). A node i is the predecessor of node j if (i,j) is an arc.
+ The in-degree of a node i is the number of predecessors of that node. The 
+out-degree of node i is the number of nodes for which i is a predecessor. 
+.SH REPRESENTATION
+.TP
+DIRECTED GRAPH :
+.RS 0
+n is the number of nodes
+.RS 0
+m is the number of arcs
+.RS 0
+ma=m is the number of edges
+.RS 0
+mm=m is the number of arcs for the corresponding undirected graph
+.RS0
+There exists 2 representations for a directed graph with 3 arrays :
+.RS 0
+-the directed form :
+.RS 0
+lp1 (size n+1) array of pointers 
+.RS 0
+ls1 (size m) array of node numbers
+.RS 0
+la1 (size m) array of arcs numbers
+.RS 0
+for the node number i : from the index lp1(i) to the index lp1(i+1)-1 the array
+ls1 give the adjacent nodes and la1 give the corresponding arcs. 
+.RS 0
+-the undirected form :
+.RS 0
+lp2 (size n+1) array of pointers 
+.RS 0
+ls2 (size mm) array of node numbers
+.RS 0
+la2 (size mm) array of edges numbers
+
+.TP10
+UNDIRECTED GRAPH :
+.RS 0
+n is the number of nodes
+.RS 0
+m is the number of arcs
+.RS 0
+ma=m/2 is the number of edges
+.RS 0
+mm=m is the number of arcs for the corresponding undirected graph
+.RS 0
+There exists 2 representations for an undirected graph with 3 arrays :
+.RS 0
+-the directed form :
+.RS 0
+lp1 (size n+1) array of pointers 
+.RS 0
+ls1 (size m) array of node numbers
+.RS 0
+la1 (size m) array of arcs numbers
+.RS 0
+for the node number i : from the index lp1(i) to the index lp1(i+1)-1 the array
+ls1 give the adjacent nodes and la1 give the corresponding arcs. 
+.RS 0
+-the undirected form :
+.RS 0
+lp2 (size n+1) array of pointers (=lp1)
+.RS 0
+ls2 (size mm) array of node numbers (=ls1)
+.RS 0
+la2 (size mm) array of edges numbers
+
+.SH FLOWS
+In a directed graph a flow F is a set of real numbers f(k) where k is an arc 
+number or f(i,j) where i and j are the node numbers of the arc k ; f(k) is 
+the flow in the arc k. For the arc (i,j) f(i,j) is a flow departing from node
+i and arriving to node j. The divergence vector D is the vector of the n
+(node number) d(i) where d(i) is the sum of the departing flows d(i,j) minus
+the sum of the arriving flows ; if d(i) is >0 i (resp. <0 ) i is a source
+(resp. a sink). If d(i)=0 for all the nodes , D is called a circulation (it
+satisfies the first Kirchoff law).
+
+
+.SH LIST OF TERMS
+A graph is G=(N,A) with n nodes and m arcs; for an undirected graph
+E denotes the set of edges.
+.TP 0
+adjacency matrix
+.RS 0
+        for a directed 1-graph ( there exists at most one arc between 2 nodes)
+the adjacency matrix M=M(i,j) or node-node incidence matrix is defined by
+M(i,j)= 1 if (i,j) is an arc and =0 if not ( size of M =n)
+
+.RS 0
+adjoint                         adjoint	
+.RS 0			       
+alternating
+        for an undirected simple graph and C a matching edge subset of E
+a chain (or a cycle ) is said alternating if its edges are alternatively in
+C and in E-C.
+
+.RS 0			       
+ancestor
+        a node i is the ancestor of a node j if there exists  a path from i to
+j
+
+.RS 0				       
+anti-node                       anti-noeud
+.RS 0
+anti-symmetric                  antisymetrique
+.RS 0		       
+arborescence                    arborescence
+.RS 0				       
+articulation point              articulation
+.RS 0				       
+associated                      associee
+.RS 0				       
+	basis                           base
+.RS 0				       
+associated number               ecartement
+.RS 0				       
+automorphism                    automorphisme
+.RS 0				      
+balanced                        equilibre	
+.RS 0			       
+basis                           base	
+.RS 0				       
+bicoloring                      bicoloration	
+.RS 0			       
+bi-connected                    inarticule	
+.RS 0			       
+bipartite                       biparti		
+.RS 0			       
+block                           bloc	
+.RS 0				       
+boundary                        contour	
+.RS 0				       
+boundary                        frontiere
+.RS 0   				       
+branch                          branche	
+.RS 0				       
+cactus                          cactus	
+.RS 0				       
+capacity                        capacite	
+.RS 0		       
+cartesian                       cartesian
+.RS 0
+        product                         produit
+.RS 0
+        sum                             somme
+.RS 0
+cell                            cellule
+.RS 0
+centre                          centre
+.RS 0
+chain                           chaine
+.RS 0
+chord                           corde
+.RS 0
+chord                           diagonale
+.RS 0
+chromatic                       chromatique
+.RS 0
+        index                           indice
+.RS 0
+        number                          nombre
+.RS 0
+        polynomial                      polynome
+.RS 0
+q-chromatic                     q-chromatique
+.RS 0
+circuit                         circuit
+.RS 0
+circuits                        stigme
+.RS 0
+clique                          clique
+.RS 0
+closure                         fermeture
+.RS 0
+        transitive                      transitive
+.RS 0
+coboundary                      cocycle
+.RS 0
+cocircuit                       cocircuit
+.RS 0
+cocycle                         cocycle
+.RS 0
+cocyclomatic                    cocyclomatique
+.RS 0
+        number                          nombre
+.RS 0
+coloring                        coloration
+.RS 0
+comparability                   comparabilite
+.RS 0
+        graph                           graphe
+.RS 0
+comparability                   transitivitable
+.RS 0
+complementary graph             complementaire
+.RS 0
+complete-bipartite              biparti-complet
+.RS 0
+component                       composante
+.RS 0
+composition                     direct
+.RS 0
+        product                         produit
+.RS 0
+conformal                       conforme
+.RS 0
+conjugate                       conjugue
+.RS 0
+connected 
+        a graph is connected if for all the pairs of nodes (i,j) there exists 
+a chain from i to j.
+        a graph is strongly connected if for all the pairs of nodes (i,j)
+ there exists a path from i to j.
+
+.RS 0
+connected component
+        a subgraph (N',A') of a graph (N,A) is a connected component if it is
+connected and there exists no arc (i',i) or (i,i') with i in N and i' in N'.
+
+.RS 0
+k-connected                     k-connexe
+.RS 0
+contraction                     contraction
+.RS 0
+cotree                          coarbre
+.RS 0
+cover                           recouvrement
+.RS 0
+d-cover                         d-recouvrement
+.RS 0
+critical                        critique
+.RS 0
+cubic                           cubique
+.RS 0
+cut                             coupe
+.RS 0
+cut-edge                        isthme
+.RS 0
+cut-vertex                      articulation
+.RS 0
+cyclomatic                      cyclomatique
+.RS 0
+        number                          nombre
+.RS 0
+deficiency                      deficience
+.RS 0
+density                         densite
+.RS 0
+descendant                      descendant
+.RS 0
+diameter                        diametre
+.RS 0
+digital                         digitale
+.RS 0
+        sum                             somme
+.RS 0
+directed distance               ecart
+.RS 0
+dominating                      absorbant
+.RS 0
+dual                            dual
+.RS 0
+edge                            arete
+.RS 0
+edge cut-set                    coupe
+.RS 0
+edge-connectivity               connexite
+.RS 0
+k-edge-connected                k-arete-connexe
+.RS 0
+elementary chain                chaine elementaire
+.RS 0
+elementary circuit              circuit elementaire
+.RS 0
+elementary cocycle              cocycle elementaire
+.RS 0
+elementary cycle                cycle elementaire
+.RS 0
+elementary path                 chemin elementaire
+.RS 0
+Eulerian                        eulerien
+.RS 0
+face                            face
+.RS 0
+factor                          facteur
+.RS 0
+2-factor                        semi-facteur
+.RS 0
+flow                            flot
+.RS 0
+fonctional                      fonctionnel
+.RS 0
+fonctional                      univoque
+.RS 0
+forest                          foret
+.RS 0
+graph of multiplicity p         p-graphe
+.RS 0
+girth                           calibre
+.RS 0
+group                           groupe
+.RS 0
+heavy                           epais
+.RS 0
+hypergraph                      hypergraphe
+.RS 0
+incidence matrix                matrice d'incidence
+.RS 0
+independent                     independant
+.RS 0
+independent set                 ensemble independant
+.RS 0
+induced subgraph                sous-graphe
+.RS 0
+injective                       injectif
+.RS 0
+in-valence                      demi-degre interieur
+.RS 0
+isolated                        isole
+.RS 0
+isomorphic                      isomorphe
+.RS 0
+isthmus                         isthme
+.RS 0
+junction point                  carrefour
+.RS 0
+kernel                          noyau
+.RS 0
+length                          longueur
+.RS 0
+light                           fin
+.RS 0
+loop                            boucle
+.RS 0
+matching                        couplage
+.RS 0
+c-matching                      c-couplage
+.RS 0
+matroid                         matroide
+.RS 0
+maximal                         maximal
+.RS 0
+maximum                         maximum
+.RS 0
+minimally-connected             connexe-minimal
+.RS 0
+minimum                         minimum
+.RS 0
+mixed                           mixte
+.RS 0
+multiple                        multiple
+.RS 0
+multiplicity                    multiplicite
+.RS 0
+network                         reseau de transfert
+.RS 0
+order                           ordre
+.RS 0
+ordinary graph                  graphe simple	
+.RS 0
+out-valence                     demi-degre exterieur
+.RS 0
+partial graph                   graphe partiel
+.RS 0
+partial hypergraph              hypergraphe-partiel
+.RS 0
+partial subgraph                sous-graphe partiel
+.RS 0
+path                            chemin
+.RS 0
+        shortest                        plus court
+.RS 0
+p-graph                         p-graphe
+.RS 0
+pendent                         pendant
+.RS 0
+        vertex                          sommet
+.RS 0
+perfect                         parfait
+.RS 0
+piece                           piece
+.RS 0
+planar                          planaire
+.RS 0
+potential                       potentiel
+.RS 0
+product                         produit normal
+.RS 0
+pseudo-cycle                    pseudo-cycle
+.RS 0
+pseudo-symmetric                pseudo-symetrique
+.RS 0
+quadrilateral                   quadrilatere
+.RS 0
+quasi-strongly                  quasi-fortement
+.RS 0
+        connected                       connexe
+.RS 0
+radius                          rayon
+.RS 0
+rank                            rang
+.RS 0
+regular                         regulier
+.RS 0
+representing graph              graphe representatif
+.RS 0
+root                            racine
+.RS 0
+rooted tree                     arborescence
+.RS 0
+rosace                          rosace
+.RS 0
+saturated                       sature
+.RS 0
+scheduling                      ordonnancement
+.RS 0
+k-section                       k-section
+.RS 0
+shrinkage                       contraction
+.RS 0
+sieve                           grille
+.RS 0
+simple chain                    chaine simple
+.RS 0
+simple circuit                  circuit simple
+.RS 0
+simple graph                    graphe simple
+.RS 0
+simple hypergraph               hypergraphe simple
+.RS 0
+simple path                     chemin simple
+.RS 0
+sink                            sortie
+.RS 0
+source                          entree
+.RS 0
+spanning subgraph               graphe partiel
+.RS 0
+stability number                stabilite
+.RS 0
+stigm                           stigme
+.RS 0
+strong component                composante fortement connexe
+.RS 0
+subhypergraph                   sous-hypergraphe
+.RS 0
+successor                       successeur
+.RS 0
+sum                             somme
+.RS 0
+        cartesian                       cartesienne
+.RS 0
+        digital                         digitale
+.RS 0
+symmetric graph                 graphe symetrique
+.RS 0
+tension                         tension
+.RS 0
+topological graph               graphe topologique
+.RS 0
+track                           branche
+.RS 0
+transfer                        transfert
+.RS 0
+transitive                      transitif
+.RS 0
+transitive closure              fermeture transitive
+.RS 0
+transportation network          reseau de transport
+.RS 0
+transversal                     transversal
+.RS 0
+transversal-number              transversalite
+.RS 0
+triangle                        triangle
+.RS 0
+triangulated                    triangule
+.RS 0
+trivalent                       cubique
+.RS 0
+umultigraph                     multigraphe
+.RS 0
+unattainable                    inaccessible
+.RS 0
+uniform                         uniforme
+.RS 0
+unimodular                      unimodulaire
+.RS 0
+unlabelled graph                graphe non-marque
+.RS 0
+unsaturated                     insature
+.RS 0
+valency                         degre
+.RS 0
+vertex                          sommet
+.RS 0
+vertex-connectivity             connectivite
+.RS 0
+        number                          nombre de
+.SH SEE ALSO
+dictionary_fe, guide

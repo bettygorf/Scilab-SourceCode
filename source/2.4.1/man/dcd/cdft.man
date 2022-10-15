@@ -1,0 +1,39 @@
+.TH cdft 1 "Dec 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+cdft - cumulative distribution function Student's T distribution 
+.SH CALLING SEQUENCE
+.nf
+[P,Q]=cdft("PQ",T,Df)
+[T]=cdft("T",Df,P,Q)
+[Df]=cdft("Df",P,Q,T)
+.fi 
+.SH PARAMETERS
+.TP 10
+P,Q,T,Df
+: six real vectors of the same size.
+.TP
+P,Q (Q=1-P)
+: The integral from -infinity to t of the t-density. Input range: (0,1].
+.TP
+T
+: Upper limit of integration of the t-density.
+Input range: ( -infinity, +infinity).
+Search range: [ -1E150, 1E150 ]
+.TP
+DF:
+Degrees of freedom of the t-distribution.
+Input range: (0 , +infinity).
+Search range: [1e-300, 1E10]
+.SH DESCRIPTION
+Calculates any one parameter of the T distribution given
+values for the others.
+.LP
+Formula  26.5.27  of   Abramowitz   and  Stegun,   Handbook   of
+Mathematical Functions  (1966) is used to reduce the computation
+of the cumulative distribution function to that of an incomplete
+beta.
+.LP
+Computation of other parameters involve a seach for a value that
+produces  the desired  value  of P.   The search relies  on  the
+monotinicity of P with the other parameter.

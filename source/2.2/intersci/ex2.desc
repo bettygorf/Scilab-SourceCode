@@ -1,0 +1,18 @@
+som	a	b	istrs
+a	row	m
+b	row	n
+istrs	stringmat	m	1
+c	column	n
+ostrs	stringmat	m	1
+
+fsom	a	n	b	m	c	istrs	ostrs
+a	real
+n	integer
+b	real
+m	integer
+c	real
+istrs	stringc
+ostrs	cstringf
+
+out	sequence	c	ostrs
+***********************

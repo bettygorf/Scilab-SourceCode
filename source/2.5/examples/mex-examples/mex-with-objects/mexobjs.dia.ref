@@ -1,0 +1,126 @@
+ 
+exec startup.sce;
+ 
+scilab_functions=[...
+"mexfunction1";
+"mexfunction2";
+"mexfunction3";
+"mexfunction4";
+"mexfunction5";
+"mexfunction6";
+"mexfunction7";
+"mexfunction8";
+"mexfunction9";
+"mexfunction10";
+"mexfunction11";
+"mexfunction12";
+"mexfunction13";
+                 ];
+ 
+ 
+ 
+gateway_routines=[...
+"mexfunction1.o";
+"mexfunction2.o";
+"mexfunction3.o";
+"mexfunction4.o";
+"mexfunction5.o";
+"mexfunction6.o";
+"mexfunction7.o";
+"mexfunction8.o";
+"mexfunction9.o";
+"mexfunction10.o";
+"mexfunction11.o";
+"mexfunction12.o";
+"mexfunction13.o";
+];
+ 
+ 
+util_routines =[...
+             ];
+ 
+object_files=G_make(["generic_gateway.o";gateway_routines;util_routines],"generic.dll");
+ 
+addinter(object_files,"generic_gateway",scilab_functions);
+ 
+ 
+[p,q,r]=mexfunction1(1:4,'qwerty');
+ 
+if r~='qwerty' then bugmes();quit;end
+ 
+[a,x]=mexfunction2(20,'x');
+ 
+if a~=20 then bugmes();quit;end
+ 
+A=rand(2,2);B=rand(2,3);
+ 
+C=mexfunction3(A,B);
+ 
+if norm(A*B-C) > %eps then bugmes();quit;end
+ 
+p=mexfunction4(1:3,'x');
+ 
+if p ~= poly(1:3,'x') then bugmes();quit;end
+ 
+w1=mexfunction5(1:5);
+ 
+if and(w1~=(1:5)) then bugmes();quit;end
+ 
+w2=mexfunction6(1:5);
+ 
+if and(w2~=(1:5)) then bugmes();quit;end
+ 
+w=rand(2,3);w(10,15)=0;w=sparse(w);
+ 
+mexfunction7(mtlb_sparse(w));
+ 
+w=mexfunction8();
+ 
+if w(1)~='123456789 ' then bugmes();quit;end
+ 
+mexfunction9() // prints something calling disp
+ 
+ A=[1,2;3,4]   
+ 
+ 
+clear myvar;
+ 
+A=mexfunction10() // search myvar
+ A  =
+ 
+ variable myvar not found   
+ 
+if A<>"variable myvar not found" then bugmes();quit;end
+ 
+myvar=1:45;
+ 
+A=mexfunction10() // search myvar again
+ A  =
+ 
+ variable myvar found size=[1,45]   
+ 
+if A<>"variable myvar found size=[1,45]" then bugmes();quit;end
+ 
+ 
+ 
+mexfunction11() // creates A11 with a mexEvalString
+ 
+if A11<>[1,2,3,4] then bugmes();quit;end
+ 
+ 
+mexfunction12() // creates C with a WriteMatrix (<==> mxPutArray)
+ 
+if C<>matrix(0:7,4,2) then bugmes();quit;end
+ 
+ 
+mexfunction13() // creates X with a mexEvalString
+ ans  =
+ 
+ variable X found size=[1,3]   
+ 
+// then try to get it with mexGetArray
+ 
+if X<>[1,2,3] then bugmes();quit;end
+ 
+ 
+ 

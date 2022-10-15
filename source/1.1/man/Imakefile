@@ -1,0 +1,12 @@
+#include "../Imake.incl"
+
+#define IHaveSubdirs
+#define PassCDebugFlags 'CDEBUGFLAGS=$(CDEBUGFLAGS)'
+
+SUBDIRS = Man-Part1 Man-Part2 LaTeX-doc
+
+MakeSubdirs($(SUBDIRS))
+NamedMakeSubdirs(doc,LaTeX-doc)
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS))
+

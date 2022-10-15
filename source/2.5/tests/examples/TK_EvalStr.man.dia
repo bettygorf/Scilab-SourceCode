@@ -1,0 +1,36 @@
+ 
+clear;lines(0);
+ 
+TK_EvalStr('toplevel0.foo');
+                            !--error     4 
+undefined variable : TK_EvalStr              
+ 
+ 
+// creates a toplevel TK window.
+ 
+TK_EvalStr('label0.foo.l -text ""TK married Scilab !!!""');
+                                                           !--error     4 
+undefined variable : TK_EvalStr              
+ 
+ 
+// create a static label
+ 
+TK_EvalStr('pack0.foo.l');
+                          !--error     4 
+undefined variable : TK_EvalStr              
+ 
+ 
+// pack the label widget. It appears on the screen.
+ 
+text='button0.foo.b -text close -command {destroy0.foo}';
+ 
+TK_EvalStr(text);
+                 !--error     4 
+undefined variable : TK_EvalStr              
+ 
+ 
+TK_EvalStr('pack0.foo.b');
+                          !--error     4 
+undefined variable : TK_EvalStr              
+ 
+ 

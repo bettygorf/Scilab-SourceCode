@@ -1,0 +1,40 @@
+.TH poly 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+poly - polynomial definition
+.SH CALLING SEQUENCE
+.nf
+[p]=poly(a,"x", ["flag"])
+.fi
+.SH PARAMETERS
+.TP 10
+a 
+: matrix or real number
+.TP 10
+x 
+: symbolic variable
+.TP 10
+"flag"
+: string ("roots", "coeff")
+.SH DESCRIPTION
+If \fVa\fR is a matrix, \fVp\fR is the characteristic polynomial i.e.
+ \fVdeterminant(x*eye-a)\fR, \fVx\fR being the symbolic variable.
+.LP
+If \fVv\fR  is a vector, \fVpoly(v,"x",["roots"])\fR  is the polynomial
+with \fVroots\fR the entries of \fVv\fR and \fV"x"\fR as formal variable.
+(In this case,  \fVroots\fR and   \fVpoly\fR are inverse functions).
+.LP
+\fVpoly(v,"x","coeff")\fR creates the polynomial with symbol \fV"x"\fR
+and with coefficients the entries of \fVv\fR. (Here \fVpoly\fR and \fVcoeff\fR
+are inverse functions).
+.LP
+\fVs=poly(0,"s")\fR is the seed for defining polynomials with symbol
+\fV"s"\fR.
+.SH EXAMPLE
+.nf
+s=poly(0,"s");p=1+s+2*s^2;
+A=rand(2,2);poly(A,"x")
+.fi
+.SH SEE ALSO
+coeff, matrices, rational
+

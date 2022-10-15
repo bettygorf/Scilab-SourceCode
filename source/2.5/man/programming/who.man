@@ -1,0 +1,25 @@
+.TH who 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+who - listing of variables
+.SH CALLING SEQUENCE
+.nf
+who
+who()
+names=who('local')
+[names,mem]=who('local')
+names=who('global')
+[names,mem]=who('global')
+
+
+.fi
+.SH DESCRIPTION
+\fVwho\fR displays current variable names.
+.LP
+\fVwho('local')\fR or \fVwho('get')\fR  Returns current variable names
+and memory used in double precision worlds.
+.LP
+\fVwho('global')\fR returns global  variable names
+and memory used in double precision worlds.
+.SH SEE ALSO
+whos

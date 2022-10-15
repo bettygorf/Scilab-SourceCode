@@ -1,0 +1,35 @@
+
+copfac(1)                      Scilab Function                      copfac(1)
+NAME
+  copfac - right coprime factorization
+
+CALLING SEQUENCE
+  [N,M,XT,YT]=copfac(G [,polf,polc,tol])
+
+PARAMETERS
+
+  G           : syslin list  (continuous-time linear system )
+
+  polf, polc  : respectively the poles of XT and YT and the poles of n and M
+              (default values =-1).
+
+  tol         : real threshold for detecting stable poles (default value
+              100*%eps)
+
+  N,M,XT,YT   : linear systems represented by syslin lists
+
+DESCRIPTION
+  [N,M,XT,YT]=copfac(G,[polf,polc,[tol]]) returns a right coprime factoriza-
+  tion of G.
+
+  G = N*M^-1 where N and M are stable, proper and right coprime.  (i.e. [N M]
+  left-invertible with stability)
+
+  XT and YT satisfy:
+
+  [XT -YT].[M N]' = eye (Bezout identity)
+
+  G is assumed stabilizable and detectable.
+
+SEE ALSO
+  syslin, lcf

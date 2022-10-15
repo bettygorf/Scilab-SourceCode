@@ -1,0 +1,66 @@
+
+
+
+fineta(1)                      Scilab Function                      fineta(1)
+
+
+
+
+
+
+NAME
+  fineta - reduced pencil
+
+CALLING SEQUENCE
+  [Er,Ar,Q,Z]=fineta(F)
+  [Er,Ar,Q,Z]=fineta(E,A)
+
+PARAMETERS
+  F    : real matrix pencil F=s*E-A
+  E,A  : two real matrices of same dimensions
+  Q,Z       : two orthogonal matrices (not necessarily square)
+  Er,Ar     : two real matrices of same dimensions (reduced pencil)
+
+DESCRIPTION
+  Returns the finite + eta part of the pencil F=sE-A.
+  Er=Q*E*Z, Ar=Q*A*Z has only finite and eta Kronecker invariants and Er is
+  full column rank.
+  Q : left (row)-subspace associated with finite and eta part of the pencil
+  For a regular pencil Q spans the left finite eigenspace.
+
+AUTHOR
+  F. D & R. N.
+
+SEE ALSO
+  kroneck, pencan, epsfin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

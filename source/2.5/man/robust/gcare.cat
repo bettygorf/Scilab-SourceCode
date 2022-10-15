@@ -1,0 +1,27 @@
+
+gcare(1)                       Scilab Function                       gcare(1)
+NAME
+  gcare - control Riccati equation
+
+CALLING SEQUENCE
+  [X,F]=gcare(Sl)
+
+PARAMETERS
+
+  Sl      : linear system (syslin list)
+
+  X       : symmetric matrix
+
+  F       : real matrix
+
+DESCRIPTION
+  Generalized Control Algebraic Riccati Equation (GCARE).  X = solution , F =
+  gain.
+
+  The GCARE for Sl=[A,B,C,D] is:
+  (A-B*Si*D'*C)'*X+X*(A-B*Si*D'*C)-X*B*Si*B'*X+C'*Ri*C=0
+  where S=(eye()+D'*D), Si=inv(S), R=(eye()+D*D'), Ri=inv(R) and
+  F=-Si*(D'*C+B'*X) is such that A+B*F is stable.
+
+SEE ALSO
+  gfare

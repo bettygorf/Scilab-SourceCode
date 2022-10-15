@@ -1,0 +1,23 @@
+
+pause(1)                       Scilab Function                       pause(1)
+NAME
+  pause - pause mode, invoke keyboard
+
+DESCRIPTION
+  Switch to the pause mode; inserted in the code of a function, pause inter-
+  rupts the execution of the function: one receives a prompt symbol which
+  indicates the level of the pause (e.g. -1->). The user is then in a new
+  session in which all the lower-level variables (and in particular all the
+  variable of the function) are available.  To return to lower session enter
+  "return"
+
+  In this mode, [...]=return(...) returns the variables of the argument (...)
+  to lower session with names in the output  [...]. Otherwise, the lower-
+  level variables are protected and cannot be modified.
+
+  The pause is extremely useful for debugging purposes.
+
+  This mode is killed by the command "abort".
+
+SEE ALSO
+  return, abort, quit, whereami, where

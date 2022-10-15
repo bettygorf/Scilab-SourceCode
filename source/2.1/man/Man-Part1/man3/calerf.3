@@ -1,0 +1,41 @@
+.TH calerf 3 "December 1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+calerf -  computes error functions.
+.SH SYNTAX
+ y = calerf(x,flag)
+.SH PARAMETERS
+.TP
+x
+: real vector
+.TP
+flag
+: integer indicator 
+.TP
+y
+: real vector (of same size)
+.SH DESCRIPTION
+ \fVcalerf(x,0)\fR computes the error function:
+.nf
+                      /x
+     y = 2/sqrt(pi) *|  exp(-t^2) dt
+                     /0
+.fi
+ \fVcalerf(x,1)\fR computes the complementary error function:
+.nf
+                      /inf
+     y = 2/sqrt(pi) *|  exp(-t^2) dt
+                     /x
+
+     y= 1 - erf(x)
+.fi
+ \fVcalerf(x,2)\fR computes the  scaled complementary error function:
+.nf
+ 	y = exp(x^2) * erfc(x) ~ (1/sqrt(pi)) * 1/x for large x.
+.fi
+.SH SEE ALSO
+erf erfc calerf
+
+
+
+

@@ -1,0 +1,43 @@
+.TH artest 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+lotest - demo of the Lorenz attractor
+.SH CALLING SEQUENCE 
+.nf
+[]=lotest([f_l,odem,xdim,npts,pinit])
+[y]=lorenz(t,x)
+[]=ilo(sig,ro,beta)
+[]=ilof(sig,ro,beta)
+.fi
+.SH PARAMETERS
+.TP
+f_l 
+: can be \fV"loren"\fR or \fVlorenz\fR. it is the name of the external for 
+the Lorenz system.
+\fV"loren"\fR will use a Fortran coded version of the lorenz system
+and arnold will and \fVloren\fR will use a Scilab coded version.\fVlorentz\fR
+is the Scilab macro which code the lorenz system.
+ This macro is loaded when calling \fVlotest\fR.
+.TP
+ilof, ilo 
+:are used to fix the parameters of the Fortran and Scilab code version of the 
+Lorenz system.
+.TP
+odem,xdim,npts 
+: are optional arguments. Their meaning and syntax can be found in the portr3d  
+help
+.LP
+.SH DESCRIPTION
+A call to the function \fVlotest()\fR will interactively 
+display a phase portrait of  a the following dynamical system
+.nf
+	y(1)=sig*(x(2)-x(1));
+	y(2)=ro*x(1) -x(2)-x(1)*x(3);
+	y(3)=-beta*x(3)+x(1)*x(2);
+.fi
+.SH SEE ALSO
+portr3d,ode,chaintest,lotest
+
+
+
+

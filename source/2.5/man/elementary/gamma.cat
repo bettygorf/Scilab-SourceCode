@@ -1,0 +1,29 @@
+
+gamma(3)                       Scilab Function                       gamma(3)
+NAME
+  gamma -  The gamma function.
+
+CALLING SEQUENCE
+   y = gamma(x)
+
+PARAMETERS
+
+  x    : real vector
+
+  y    : real vector with same size.
+
+DESCRIPTION
+  gamma(x) evaluates the gamma function at all the elements of x.  x must be
+  real.
+
+       /inf
+  y=  |  t^(x-1) exp(-t) dt
+      /0
+
+  gamma(n+1) = n!
+EXAMPLE
+  gamma(0.5)
+  gamma(6)-prod(1:5)
+
+SEE ALSO
+  gammaln, dlgamma

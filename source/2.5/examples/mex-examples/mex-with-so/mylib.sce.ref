@@ -1,0 +1,8 @@
+scilab_functions=[... 
+"pipo1";
+"pipo2";
+"pipo3";
+                 ]; 
+      
+files=G_make("Unix-objects","mylib.dll"); 
+addinter(files,"mylib_gateway",scilab_functions); 

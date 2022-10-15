@@ -1,0 +1,23 @@
+.TH sinm G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sinm -  matrix sine function
+.SH CALLING SEQUENCE
+.nf
+t=sinm(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex square  matrix
+.SH DESCRIPTION
+\fVsinm(x)\fR is matrix sine of x matrix.
+.SH EXAMPLE
+.nf
+A=[1,2;2,4];
+sinm(A)+0.5*%i*(expm(%i*A)-expm(-%i*A))
+.fi
+.SH SEE ALSO
+sin, asinm
+
+

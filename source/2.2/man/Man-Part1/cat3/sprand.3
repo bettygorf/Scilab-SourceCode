@@ -1,0 +1,66 @@
+
+
+
+sprand(1)                      Scilab Function                      sprand(1)
+
+
+
+
+
+
+NAME
+  sprand -  sparse random matrix
+
+CALING SEQUENCE
+  sp=sprand(nrows,ncols,fill [,typ])
+
+PARAMETERS
+
+  nrows     : integer (number of rows)
+
+  ncols     : integer (number os columns)
+
+  fill      : filling coefficient (density)
+
+  typ       : character string ('uniform' (default) or 'normal')
+
+  sp        : sparse matrix
+
+DESCRIPTION
+  sp=sprand(nrows,ncols,fill) returns a sparse matrix sp with nrows rows,
+  ncols columns and approximately fill*nrows*ncols non-zero entries.
+
+  If typ='uniform' uniformly distributed values are generated.  If
+  typ='normal' normally distributed values are generated.
+
+SEE ALSO
+  sparse, full, rand, speye
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

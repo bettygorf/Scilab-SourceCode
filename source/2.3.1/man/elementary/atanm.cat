@@ -1,0 +1,23 @@
+
+atanm(G)                       Scilab Function                       atanm(G)
+NAME
+  atanm - square matrix tangent inverse
+
+CALLING SEQUENCE
+  [t]=atanm(x)
+
+PARAMETERS
+
+  x         : real or complex square matrix
+
+  t         : real or complex square matrix
+
+DESCRIPTION
+  atanm(x) is the matrix arctangent of the matrix x.  Result may be not reli-
+  able if x is not symmetric.
+
+EXAMPLE
+  tanm(atanm([1,2;3,4]))
+
+SEE ALSO
+  atan

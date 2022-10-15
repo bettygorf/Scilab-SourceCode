@@ -1,0 +1,20 @@
+.TH ludel G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+ludel - utility function used with lufact
+.SH CALLING SEQUENCE
+.nf
+ludel(W)
+.fi
+.SH PARAMETERS
+.TP
+W 
+: list (output of lufact)
+.SH DESCRIPTION
+This macro is used in conjunction with \fVlufact\fR. It clears 
+the internal memory space used to store the result of \fVlufact\fR.
+.LP
+The sequence of commands \fVW=lufact(A);x=lusolve(W,b);ludel(W);\fR
+solves the sparse linear system  \fVA*x = b\fR and clears \fVW\fR.
+.SH SEE ALSO
+sparse, lufact, ludel, slash, backslash.

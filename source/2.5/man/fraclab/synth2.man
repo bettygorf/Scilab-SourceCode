@@ -1,0 +1,66 @@
+.TH "synth2" 2 " February 20th 1998" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+synth2 - Stationary Increments 2D Process
+.sp
+Author: B. Pesquet-Popescu (ENS-Cachan)
+.sp
+Incremental Fourier synthesis method for processes with stationary increments of order (0,1) and (1,0)
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+[B] = synth2(M,H,core)
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fB M \fP : Positive integer 
+Vertical/Horizontal dimension of the generated field
+
+.TP
+o 
+\fB H \fP : Real in \f(CR[\fP0,1\f(CR]\fP
+parameter of the structure function (e.g. : Hurst parameter)
+
+.TP
+o 
+\fB core \fP : string
+Name of the structure function of type \f(CRcore(x,y,H)\fP with \f(CRx\fP,\f(CRy\fP :
+vertical/horizontal coordinates
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fB B \fP : real matrix  \f(CR[\fPN,N\f(CR]\fP 
+Synthesized random field
+.RE
+
+.SH References
+\fBL.M. Kaplan, C.C. J Kuo\fP : IEEE Tran. on IP, May 1996 (extended version).
+.SH See also:
+fbmlevinson, fbmcwt, fbmfwt, mbmlevinson
+.SH Example:
+.sp
+.ft CR
+.nf
+[B] = synth2(128,0.8,'strfbm') ;
+viewmat(B) 
+.fi 
+.ec
+.ft P
+.sp

@@ -1,0 +1,14 @@
+.TH POSTONEG_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+POSTONEG_f - Scicos positive to negative detector
+.SH DESCRIPTION
+An output event is generated when the unique input crosses zero
+with a negative slope.
+.SH SEE ALSO
+NEGTOPOS_f, ZCROSS_f, GENERAL_f
+
+
+
+
+

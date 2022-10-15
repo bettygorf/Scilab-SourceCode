@@ -1,0 +1,108 @@
+.TH "cwttrack_all" 2 " June 21th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+cwttrack_all -  Continuous L2 wavelet based Holder function estimation
+.sp
+Author: Paulo Goncalves
+.sp
+ Estimates the Holder function of a signal from its continuous
+        wavelet transform (L2 contwt). \fB cwttrack_all \fP merely runs
+cwttrack as many times as there are time samples to be analyzed
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+[HofT,whichT] = cwttrack_all(wt,scale,FindMax,ChooseReg,radius,DeepScale,dT)
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : Real or complex matrix \f(CR[\fPN_scale,N\f(CR]\fP 
+Wavelet coefficients of a continuous wavelet transform (output of \fIcontwt\fP)
+
+.TP
+o 
+\fBscale\fP : real vector  \f(CR[\fP1,N_scale\f(CR]\fP
+Analyzed scale vector
+
+.TP
+o 
+\fBwhichT\fP :  Integer
+whichT, when non zero specifies the time position on the signal where to estimate the local Holder exponent. 
+When \fIwhichT\fP is zero, the global scaling exponent (or LRD exponent) is estimated.
+
+.TP
+o 
+\fBFindMax\fP : 0/1 flag. 
+\fIFindMax\fP = 0 : estimates the Holder exponents (local or global) from all coefficients of the wavelet transform 
+\fIFindMax\fP = 1 : estimates the Holder exponents (local or global)
+from the local Maxima coefficients of the wavelet transform 
+Default value is FindMax = 1
+
+.TP
+o 
+\fBChooseReg\fP : 0/1 flag or integer vector \f(CR[\fP1,N_reg\f(CR]\fP, 
+(\fIN_reg\fP <= \fIN_scale\fP)
+\fIChooseReg\fP = 0 : full scale range regression 
+\fIChooseReg\fP = 1 : scale range is choosed by the user, clicking with the mouse on a regression graph. 
+\fIChooseReg\fP = \f(CR[\fPn1 ... nN_reg\f(CR]\fP : imposes the scale indices for the linear
+regression of the wavelet coefficients \fIversus\fP scale in a \fIlog-log\fP plot 
+Default value is \fI ChooseReg \fP = 0
+
+.TP
+o 
+\fBradius\fP : Positive integer. 
+The local maxima line search is restricted to some neighbourhood of the analyzed point. Basically, this region is defined by the cone of influence of the wavelet. \fI radius \fP allows to modulate the width of the cone. 
+Default value is \fI cone \fP = 8 .
+
+.TP
+o 
+\fBDeepScale\fP : strictly positive integer. 
+DeepScale tells the maxima line procedure how depth in scale to scan from step to step. 
+Default value is \fI DeepScale \fP = 1 
+
+.TP
+o 
+\fBdT 0\fP1 Integer.  
+Sampling period for the Holder function estimate
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBHofT\fP : Real scalar.
+Local or global Holder exponent estimated
+
+.TP
+o 
+\fBwhichT\fP  Integer vector
+Time sampling vector
+.RE
+
+.SH See also:
+cwttrack
+.SH Example:
+.sp
+.ft CR
+.nf
+N = 2048 ; 
+[x] = GeneWei(N,linspace(0,1,N),1.2,1,1) ;
+[wt,scale] = contwtmir(x,2^(-6),2^(-1),64,8*i) ;
+[HofT,whichT] = cwttrack_all(wt,scale,1,0,8,1,(N/64)) ;
+.fi 
+.ec
+.ft P
+.sp

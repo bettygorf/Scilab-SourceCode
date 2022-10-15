@@ -1,0 +1,17 @@
+
+GENSQR_f(5)                     Scicos Block                      GENSQR_f(5)
+NAME
+  GENSQR_f - Scicos square wave generator
+
+DESCRIPTION
+  This block is a square wave generator: output takes values -M and M. Every
+  time an event is received on the input event port, the output switches from
+  -M to M, or M to -M.
+
+DIALOGUE PARAMETERS
+
+  Amplitude
+       : a scalar M.
+
+SEE ALSO
+  GENSIN_f, SAWTOOTH_f, RAND_f

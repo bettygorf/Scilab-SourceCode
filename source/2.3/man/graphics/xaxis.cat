@@ -1,0 +1,31 @@
+
+xaxis(2)                       Scilab Function                       xaxis(2)
+NAME
+  xaxis - draws an axis
+
+CALLING SEQUENCE
+  []=xaxis(alpha,nsteps,size,init)
+
+PARAMETERS
+
+  alpha     : real (slope in degree of the axis)
+
+  nsteps    : real vector of size 2 (number of big and small intervals)
+
+  size      : a real vector of size 3 (size of the intervals, the small and
+            big tics)
+
+DESCRIPTION
+  Draw an axis in the alpha (in degree ) direction; nsteps ([n1,n2]) gives
+  the number of big and small intervals separated by tics. size=[s1,s2,c1] :
+  s1 gives the size of the intervals , s2 gives the size of the small tics
+  along the axis and s2*c1 is the size of the big tics.
+
+              ex : n1=3,n2=2,alpha =0
+                                                (s2*c1)
+              |     (s2)   |            |           |
+              |______|_____|_____|______|_____|_____|
+                 s1
+
+AUTHOR
+  J.Ph.C..

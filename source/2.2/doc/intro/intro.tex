@@ -1,0 +1,35 @@
+\documentstyle[11pt,makeidx,verbatok]{report}
+             \textheight=660pt 
+             \textwidth=15cm
+             \topmargin=-27pt 
+             \oddsidemargin=0.7cm
+             \evensidemargin=0.7cm
+             \marginparwidth=60pt
+
+\def\Scilab{$\Psi$lab}
+\def\Figdir{figures/}
+\def\Diary{diary/}
+
+\newcount\quadcount
+\def\Nquad#1{\quadcount=0
+ \loop\ifnum\quadcount <#1 \advance \quadcount by1 \quad \repeat}
+
+\makeindex
+
+\begin{document}
+\include{chap0}
+\pagenumbering{arabic}
+\include{chap1}
+\include{datatypes}
+\include{programming}
+\include{basicprimitives}
+\include{graphics}
+\include{maple2scilab}
+\include{demosession}
+
+\listoffigures
+%\listoftables
+
+\printindex
+
+\end{document}

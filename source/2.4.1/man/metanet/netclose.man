@@ -1,0 +1,18 @@
+.TH netclose 1 "September 19958 "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+netclose - closes a Metanet window
+.SH CALLING SEQUENCE
+.nf
+netclose(window)
+.fi
+.SH PARAMETERS
+.TP 7
+window
+: integer, window number
+.SH DESCRIPTION
+Each Metanet window has a window number returned by the \fVmetanet\fR
+and \fVshow_graph\fR functions. This function is used to close the
+Metanet window with number \fVwindow\fR.
+.SH SEE ALSO
+metanet, netwindow, netwindows, show_graph

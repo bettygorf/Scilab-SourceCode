@@ -1,0 +1,64 @@
+
+\section{Fichiers Epsf  ins\'er\'es en \LaTeX} 
+
+\paragraph{}Cette premi\`ere partie traite de l'insertion de dessins r\'ealis\'es avec CricketDraw sur Macintosh. Il suffit de sauvegarder une version de 
+votre dessin CricketDraw en format Epsf. 
+On supposera que cette version Epsf a pour nom {\bf DesEpsf.epsf} et qu'elle a \'et\'e transf\'er\'ee sous ce nom sur un Sun. 
+Vous utilisez alors la commande unix~:
+\begin{verbatim}
+TeXEpsf 1.0 1.0 DesEpsf.epsf
+\end{verbatim}
+Vous obtenez alors un fichier {\bf DesEpsf.tex} que vous placerez dans votre 
+document \LaTeX\, comme suit~:
+
+\begin{verbatim}
+\input DesEpsf.tex
+\dessin{Legende du dessin}{deslabel}
+\end{verbatim}
+Le dessin obtenu est le dessin~(\ref{deslabel}). Le deuxi\`eme argument 
+ de la macro dessin est une r\'ef\'erence \LaTeX pour votre dessin (un label). Les arguments 1.0 et 1.0 sont respectivement les facteurs d'homoth\'etie r\'ealis\'es sur le dessin pour l'axe des x et l'axe des y.
+
+\paragraph{Remarques}
+\begin{itemize}
+\item La commande \verb+TeXEpsf 1.0 1.0 DesEpsf.epsf+ modifie votre fichier \verb+DesEpsf.epsf+ ( en fait uniquement au premier appel \`a \verb+TeXEpsf+). Vous ne pouvez plus alors imprimer directement votre fichier Postscript avec  la commande unix \verb+lpr TDesEpsf.epsf+. Pour rendre \`a votre fichier
+ \verb+DesEpsf.epsf+ sa forme originale il suffit de d\'etruire les lignes pr\'ec\'edant la ligne 
+\begin{verbatim} 
+%!PS-Adobe-2.0 
+\end{verbatim}
+et de rajouter \`a la fin du fichier la commande \verb+showpage+.
+\item En \'editant le fichier {\bf DesEpsf.tex}, on peut supprimer le cadre  en retirant la commande {\bf fbox}. On peut \'egalement changer la taille du dessin en modifiant les valeurs de {\bf hscale} et {\bf vscale} qui sont des facteurs d'\'echelle sur le dessin. On n'oubliera pas de modifier 
+ \'egalement les dimensions donn\'ees en argument de la macro {\bf picture}.
+\end{itemize}
+\input DesEpsf.tex
+\dessin{Legende du dessin}{deslabel}
+
+\section{Fichiers Postscript cr\'ees par Lotus}
+
+\paragraph{}Soit {\bf DesLotus.ps} un fichier Postscript cr\'e\'e par Lotus, vous utilisez alors la commande unix~:
+\begin{verbatim}
+LotusEpsf 1.0 1.0 DesLotus.ps
+\end{verbatim}
+Vous obtenez alors un fichier {\bf DesLotus.tex} que vous placerez dans votre 
+document \LaTeX comme suit~:
+
+\begin{verbatim}
+\input DesLotus.tex
+\dessin{Dessin Lotus}{deslabel1}
+\end{verbatim}
+Le dessin obtenu est le dessin~(\ref{deslabel1}). Le deuxi\`eme argument 
+ de la macro dessin est une r\'ef\'erence \LaTeX pour votre dessin (un label). Les arguments 1.0 et 1.0 sont respectivement les facteurs d'homoth\'etie r\'ealis\'es sur le dessin pour l'axe des x et l'axe des y.
+
+\input DesLotus.tex
+\dessin{Dessin Lotus}{deslabel1}
+
+Les remarques du paragraphe pr\'ec\'edent s'appliquent aussi ici. 
+La commande \verb+LotusEpsf+ modifie votre fichier Postscript
+ ( en fait uniquement au premier appel \`a \verb+LotusEpsf+).
+ Pour rendre \`a votre fichier sa forme originale il suffit de d\'etruire les lignes pr\'ec\'edant la ligne 
+\begin{verbatim} 
+%!
+%%Creator: Lotus
+\end{verbatim}
+et de decommenter l'appel \`a la macro sp \`a la fin de votre fichier (
+ remplacer \verb+%sp+ par \verb+sp+.
+ 

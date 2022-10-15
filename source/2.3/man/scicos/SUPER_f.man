@@ -1,0 +1,39 @@
+.TH SUPER_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+SUPER_f - Scicos Super block
+.SH DESCRIPTION
+This block opens up a new Scicos window for editing a new block
+diagram. This diagram describes the internal functions of the
+super block. 
+.LP
+Super block  inputs and outputs (regular or event) are designated by
+special (input or output)  blocks.
+.LP
+Regular input blocks must be numbered from 1 to the number of regular
+input ports. Regular input ports of the super block are numbered from
+the top of the block shape to the bottom.
+.LP
+
+Regular output portss must be numbered from 1 to the number of regular
+output ports. Regular output ports of the super block are numbered
+from the top of the block shape to the bottom.
+.LP
+
+Event input blocks must be numbered from 1 to the number of event
+input ports. Event input ports of the super block are numbered from
+the left of the block shape to the right.
+.LP
+Event output ports must be numbered from 1 to the number of event
+output ports. Event output ports of the super block are numbered from
+the left of the block shape to the right.
+.SH SEE ALSO
+CLKIN_f, OUT_f, CLKOUT_f, IN_f
+
+
+
+
+
+
+
+

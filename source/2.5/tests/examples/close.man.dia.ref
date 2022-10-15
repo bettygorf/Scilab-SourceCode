@@ -1,0 +1,45 @@
+ 
+clear;lines(0);
+ 
+h=figure();
+Sorry, TK has not been enabled this the session.
+
+ 
+// creates  figure number 1.
+ 
+uicontrol( h, 'style','text',0...
+ 'string','scilab is great',0...
+ 'position',[50 70 100 100],0...
+ 'fontsize',15);
+             !--error     4 
+undefined variable : h                       
+ 
+ 
+// put a clever text in figure 1
+ 
+figure();
+Sorry, TK has not been enabled this the session.
+
+ 
+// create figure 2
+ 
+uicontrol( 'style','text',0...
+ 'string','Really great', 'position',[50 70 100 100], 'fontsize',15);
+Sorry, TK has not been enabled this the session.
+
+ 
+// put a text in figure 2
+ 
+close();
+Sorry, TK has not been enabled this the session.
+
+ 
+// close the current graphic window (ie fig. 2)
+ 
+close(h);
+        !--error     4 
+undefined variable : h                       
+ 
+ 
+// close figure 1
+ 

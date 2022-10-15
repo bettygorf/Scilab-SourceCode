@@ -1,0 +1,66 @@
+
+
+
+xrects(2)                      Scilab Function                      xrects(2)
+
+
+
+
+
+
+NAME
+  xrects - draw a set of rectangles
+
+CALLING SEQUENCE
+  []=xrects(rects,[fill])
+
+PARAMETERS
+
+  rects          : matrix of size (4,n)
+
+  fill           : vector of size n.
+
+DESCRIPTION
+  draws or fills a set of rectangle. each column of rects describes a rectan-
+  gle ( Upper Left point, width, height)
+
+  rects= [ x,y,w,h ; x,y,w,h ;.....] ' fill(n) gives the pattern to use for
+  filling the rectangle n.
+
+  if fill(n) >= wid +1, the rectangles are drawn using the current line style
+  but not filled. This is also the default value if fill is not given.  wid
+  stands for the id of the white pattern which can be obtained by the command
+  xget("white").
+
+AUTHOR
+  J.Ph.C..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

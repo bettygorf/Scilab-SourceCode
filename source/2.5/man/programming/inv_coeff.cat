@@ -1,0 +1,32 @@
+
+inv_coeff(1)                   Scilab Function                   inv_coeff(1)
+NAME
+  inv_coeff - build a polynomial matrix from its coefficients
+
+CALLING SEQUENCE
+  [P]=inv_coeff(C,[,d,[name])
+
+PARAMETERS
+
+  C         : big matrix of the coefficients
+
+  d         : Polynomial matrix degree. optional parameter with default value
+            d=-1+size(C,'c')/size(C,'r')
+
+  name      : string giving the polynomial variable name (default value 'x').
+
+DESCRIPTION
+  P=inv_coeff(Mp,k). When k is compatible with Mp size it returns a polyno-
+  mial matrix of degree k. C=[C0,C1,...,Ck] and P= C0 + C1*x +... +Ck*x^k.
+
+EXAMPLE
+  A=int(10*rand(2,6))
+  // Building a degree 1 polynomial matrix
+  P=inv_coeff(A,1)
+  norm(coeff(P)-A)
+  // Using default value for degree
+  P1=inv_coeff(A)
+  norm(coeff(P1)-A)
+
+SEE ALSO
+  poly, degree, coeff

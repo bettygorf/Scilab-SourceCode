@@ -1,0 +1,20 @@
+\begin{picture}(0,0)%
+\epsfig{file=test4.pstex}%
+\end{picture}%
+\setlength{\unitlength}{0.00039400in}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined%
+\gdef\SetFigFont#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(7308,9661)(262,-8993)
+\put(496,-7711){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}real parameters}}}
+\put(496,-8881){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}integer parameters}}}
+\put(4726,-6271){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}event}}}
+\put(4726,-6541){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}outputs}}}
+\put(3556,-5236){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}outputs events times register}}}
+\put(451,-4336){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}input u}}}
+\put(3286,-286){\makebox(0,0)[lb]{\smash{\SetFigFont{7}{8.4}{\rmdefault}{\bfdefault}{\updefault}event input}}}
+\end{picture}

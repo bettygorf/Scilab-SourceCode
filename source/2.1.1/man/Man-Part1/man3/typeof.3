@@ -1,0 +1,47 @@
+.TH typeof G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+typeof -  object type
+.SH CALLING SEQUENCE
+.nf
+[t]=typeof(object)
+.fi
+.SH PARAMETERS
+.TP 10
+object 
+: Scilab object
+.TP 10
+t
+: string
+.SH DESCRIPTION
+\fVt=typeof(object)\fR returns one of the following strings:
+.TP 
+"usual"       
+if object is a real or complex matrix
+.TP 
+"polynomial"  
+if object is a polynomial matrix
+.TP 
+"macro"       
+if object is a function
+.TP 
+"character"   
+if object is a matrix made of character strings
+.TP 
+"boolean"     
+if object is a boolean matrix
+.TP 
+"list"        
+if object is a list
+.TP 
+"rational"    
+if object is a rational matrix (transfer matrix)
+.TP 
+"state-space" 
+if object is a state-space model (see \fVsyslin\fR)
+.TP 
+"sparse"      
+if object is a (real) sparse matrix.
+.SH SEE ALSO
+type, strings, rationals, syslin, poly
+

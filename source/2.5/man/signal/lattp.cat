@@ -1,0 +1,13 @@
+
+lattp(1)                       Scilab Function                       lattp(1)
+NAME
+  lattp - lattp
+
+CALLING SEQUENCE
+  [la,lb]=lattp(n,p,cov)
+
+DESCRIPTION
+  see lattn
+
+AUTHOR
+  G.Levey

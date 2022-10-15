@@ -1,0 +1,9 @@
+xinit('optiir3.ps')
+h=transfonc(x);
+r=abs(freq(h(2),h(3),exp(%i*omega)));
+cx='normalized frequency';
+cy='magnitude';
+plot(omega/%pi/2,r,cx,cy);
+dess(54)=1;
+plot(omega/%pi/2,ad);
+dess(54)=0;

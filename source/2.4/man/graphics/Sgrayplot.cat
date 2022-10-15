@@ -1,0 +1,27 @@
+
+GRAYPLOT(2)                    Scilab Function                    GRAYPLOT(2)
+NAME
+  Sgrayplot - 2D plot of a surface using gray levels
+
+CALLING SEQUENCE
+  Sgrayplot(x,y,z,[strf,rect,nax])
+
+DESCRIPTION
+  Like grayplot but the function fec is used to smooth the result. z gives
+  the value of the function on the grid  x.*.y .  The function is plotted
+  assuming that it is linear on a set triangles of triangles built from the
+  grid. Type  Sgrayplot() to see a demo
+      ______
+      | /| /|
+      |/_|/_|
+      | /| /|
+      |/_|/_|
+
+EXAMPLE
+  Sgrayplot()
+
+SEE ALSO
+  Sfgrayplot, fgrayplot, grayplot, fec
+
+AUTHOR
+  J.Ph.C..

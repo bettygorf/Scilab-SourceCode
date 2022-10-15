@@ -1,0 +1,15 @@
+ 
+clear;lines(0);
+ 
+deff('y=f(t)','y=exp(-t^2)');
+ 
+calerf(1,0)
+ ans  =
+ 
+    0.8427008  
+ 
+2/sqrt(%pi)*intg(0,1,f)
+ ans  =
+ 
+    0.8427008  
+ 

@@ -1,0 +1,161 @@
+.TH link 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+link - dynamic link
+.SH CALLING SEQUENCE
+.nf
+link(files, sub-name)
+link(files, sub-name, flag)
+lst=link('show')
+// Link extensions for machines using ``dlopen'' 
+// (sun-solaris/linux-elf/alpha/hppa)
+x=link(files [, sub-names,flag]);
+link(x , sub-names [, flag]);
+ulink(x)
+.fi
+.SH PARAMETERS
+.TP
+files
+: a character string or a vector of character strings. \fVld\fR
+files used to define the new entry point (compiled routines, user
+libraries, system libraries,..) 
+.TP
+sub-name
+: a character string. Name of the entry point in \fVfiles\fR to be
+linked.
+.TP
+sub-names
+: a character string or a vector of character strings . Name of the
+entry points in \fVfiles\fR to be linked.
+.TP
+x
+: an integer which gives the id of a shared library linked into Scilab
+with a previous call to \fVlink\fR. 
+.TP
+flag
+: character string \fV'f'\fR or \fV'c'\fR for Fortran (default) or C code.
+.TP
+names
+: a vector of character string. Names of dynamically linked entry points.
+.SH DESCRIPTION
+\fVlink\fR is a dynamic link facility: this command allows to add new compiled
+Fortran or C routines to Scilab executable code.
+Linked routines can be called interactively by the function \fVfort\fR.
+Linked routines can also be used as "external" for e.g. 
+non linear problem solvers (\fVode\fR, \fVoptim\fR, \fVintg\fR, 
+\fVdassl\fR...). Here are some examples:
+.LP
+The command \fVlink('foo.o','foo','f')\fR links the Fortran 
+object file \fVfoo.o\fR with the entry point \fVfoo\fR.
+.LP
+The command \fVlink('foo.o','foo','c')\fR links the C
+object file \fVfoo.o\fR with the entry point \fVfoo\fR.
+.LP
+The command \fVlink('SCIDIR/libs/calelm.a','dcopy')\fR links the 
+Fortran routine \fVdcopy\fR in the library \fVcalelm.a\fR.
+.LP
+Note that with \fVdld\fR (Linux machine) you can use an empty
+string if you want to link a program which is already in one of the
+Scilab libraries (e.g. \fVlink(' ','dcopy')\fR).
+.LP
+A routine can be linked several times: each link undo the previous one.
+.LP
+Used with no arguments, \fVlink()\fR returns the current linked routines.
+.LP
+If Scilab is compiled with static link (this is the default for
+SystemV machines) you may have to include the system libraries in the 
+"link" command.
+.LP
+For example, if \fVfoo.o\fR defines the object code of a routine named 
+\fVfoo\fR, you will use \fVlink\fR in one the following way: 
+.nf
+link('foo.o','foo').
+link('foo.o -lm -lc','foo','c').
+link('foo.o -lfor -lm -lc','foo').
+link('foo.o -lftn -lm -lc','foo').
+link('foo.o -L/opt/SUNWspro/SC3.0/lib/lib77 -lm -lc','foo')
+.fi
+If Scilab compiled with the "shared" option, the first example can be used
+even if a warning for unresolved references is issued.
+.LP
+(Experienced) users may also \fVlink\fR a new Scilab interface routine 
+to add a set of new functions. 
+See \fVIntersci\fR documentation for interface generation and
+\fVaddinter\fR function.
+.SH REMARKS
+.TP
+IBM:
+For IBM-RS6000 only one program can be dynamically linked. 
+
+.TP
+Demo:
+When running a demo, you may have some trouble with the link due to
+slight differences between systems. In this case, you modify the demo by
+adding the needed libraries in the link command.
+
+.TP
+dlopen:
+For machines using dlopen functionality extended command can be used.
+a call to \fVlink\fR returns an integer which gives the id of the shared 
+library which is loaded into Scilab. This number can then be used as
+the first argument of the link function in order to link additional 
+function from the linked shared library. The shared library is 
+removed with the \fVulink\fR command.
+
+for example to link functions \fVf\fR and \fVg\fR form binary file 
+\fVtest.o\fR the two following command can be used :
+.nf 
+link('test.o',['f','g'])
+.fi
+or
+.nf 
+x=link('test.o','f');
+link(x,'g');
+.fi 
+But 
+.nf 
+link('test.o','f');
+link('test.o','g');
+.fi
+will also work but \fVf\fR and \fVg\fR will be loaded from two
+different shared libraries and won't be able to share data. 
+
+.TP
+show:
+The command \fVlst=link('show')\fR will report information about 
+linked shared libraries and linked functions.
+The return value of the function \fVlst\fR is \fV1\fR or \fV0\fR. 
+If the return value is \fV1\fR then the extended calling sequence 
+described as \fVLink extensions for machines using ``dlopen'' \fR are 
+accepted. 
+
+.TP
+unlink :
+(dlopen version)
+If the function \fVf\fR is changed and one wants to link 
+the new version, it is necessary to use unlink to get rid of 
+previous loaded versions of the function \fVf\fR
+
+.nf 
+x=link('test.o','f');
+// if I need to reload a new definition of f a call to unlink
+// is necessary.
+ulink(x);
+link('test.o','f');
+.fi 
+
+.TP
+scilab symbols:
+In order to load a symbol from the Scilab code on can use 
+.nf 
+link("Scilab",['Scilab-entry-point'])
+.fi 
+This does not work on all architectures. On some machines, on can 
+link a Scilab internal function after a first call to link ( with 
+a default binary file )
+.nf
+link("test.o",['Scilab-entry-point'])
+.fi 
+.SH SEE ALSO
+fort, c_link, addinter
+

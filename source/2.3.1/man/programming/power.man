@@ -1,0 +1,60 @@
+.TH power 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+power (^)  - power operation 
+.SH CALLING SEQUENCE
+.nf
+t=a^b
+t=a**b
+t=a.^b
+.fi
+.SH PARAMETERS
+.TP
+a
+: a matrix, polynomial matrix or rational matrix
+.TP
+b
+:a scalar, a vector or a matrix of constants.
+.TP
+t
+: a matrix, polynomial matrix or rational matrix.
+.
+.SH DESCRIPTION
+If \fVa\fR is a square matrix and \fVb\fR  a scalar 
+\fVa^b\fR is matrix \fVa\fR to the power \fVb\fR .
+.LP
+If \fVa.^b\fR is matrix formed by the element of \fVa\fR to the power
+\fVb\fR 
+\fVa\fR is a vector matrix and \fVb\fR  a scalar \fVa^b\fR and
+\fVa.^b\fR are the vectors formed by the element of \fVa\fR to the power \fVb\fR 
+.LP
+If \fVa\fR is a scalar  and \fVb\fR  a vector  \fVa^b\fR and
+\fVa.^b\fR are the vectors formed by  \fVa^b(i)\fR.
+.LP 
+If \fVa\fR and \fVb\fR  are vectors (matrices) with compatible dimensions
+\fVa.^b\fR is the  \fVa(i)^b(i)\fR vector (matrix).
+.LP 
+Notes:
+.LP
+- For square matrices \fVA^p\fR is calculated by successive
+multiplication if \fVp\fR is a positive integer, and by
+diagonalization if not.
+.LP
+** and ^ operators are identical
+.SH EXAMPLE
+.nf
+A=[1 2;3 4];
+A^2.5,
+A.^2.5
+(1:10)^2
+(1:10).^2
+
+s=poly(0,'s')
+s^(1:10)
+
+.fi
+.SH SEE ALSO
+exp
+
+
+

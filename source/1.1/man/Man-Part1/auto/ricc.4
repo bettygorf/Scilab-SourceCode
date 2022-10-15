@@ -1,0 +1,57 @@
+.TH RICC G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+ricc - Riccati equation 
+.SH CALLING SEQUENCE
+.nf
+[X]=ricc(A,B,C,'cont')
+[X]=ricc(F,G,H,'disc')
+.fi
+.SH PARAMETERS
+.TP 10
+A,B,C 
+: real matrices of appropriate dimensions
+.TP 
+F,G,H 
+: real matrices of appropriate dimensions
+.TP
+X
+: real matrix
+.TP 15
+'cont','disc'
+: imposed string (flag for continuous or discrete)
+.SH DESCRIPTION
+Riccati solver.
+.LP
+\fB Continuous time\fR
+.nf
+  X=ricc(A,B,C,'cont')
+.fi
+gives a solution to the continuous time ARE
+.nf
+  A'*X+X*A-X*B*X+C=0 .
+.fi 
+\fVB\fR and \fVC\fR are assumed to be nonnegative definite.
+\fV(A,G)\fR is assumed to be stabilizable with \fVG*G'\fR a full rank
+factorization of \fVB\fR.
+.LP
+\fV(A,H)\fR is assumed to be detectable with \fVH*H'\fR a full rank
+factorization of \fVC\fR.
+
+.LP
+\fB Discrete time\fR
+.nf
+  X=ricc(F,G,H,'disc')
+.fi
+gives a solution  to the discrete time ARE 
+.nf
+  X=F'*X*F-F'*X*G1*((G2+G1'*X*G1)^-1)*G1'*X*F+H
+.fi
+\fVF\fR is assumed invertible and   \fVG = G1*inv(G2)*G1'\fR.
+.LP
+One  assumes  \fV(F,G1)\fR stabilizable and \fV(C,F)\fR detectable
+with \fVC'*C\fR full rank factorization of \fVH\fR.
+.SH SEE ALSO
+riccati, ric_desc, schur, gschur
+
+

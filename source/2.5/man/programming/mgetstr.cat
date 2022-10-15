@@ -1,0 +1,25 @@
+
+mgetstr(1)                     Scilab Function                     mgetstr(1)
+NAME
+  mgetstr - read a character string
+
+CALLING SEQUENCE
+  str=mgetstr([n,fd])
+
+PARAMETERS
+
+  n         :a positive scalar: The number of character to read.
+
+  fd        : scalar. The fd parameter returned by the function mopen. -1
+            stands for last opened file. Default value is -1.
+
+  str       : a character string
+
+DESCRIPTION
+  mgetstr function allows to read a character string  in a binary file.  If
+  EOF is reached before read completion only the properly read values will be
+  returned.
+
+SEE ALSO
+  mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr,
+  mopen, mprintf, mput, mputstr, mscanf, mseek, mtell

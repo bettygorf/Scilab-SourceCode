@@ -1,0 +1,37 @@
+.TH sskf 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sskf - steady-state Kalman filter
+.SH CALLING SEQUENCE
+.nf
+[xe,pe]=sskf(y,f,h,q,r,x0)
+.fi
+.SH PARAMETERS
+.TP 10
+y
+: data in form \fV[y0,y1,...,yn]\fR, \fVyk\fR a column vector
+.TP
+f
+: system matrix dim(NxN)
+.TP
+h
+: observations matrix dim(MxN)
+.TP
+q
+: dynamics noise matrix dim(NxN)
+.TP
+r
+: observations noise matrix dim(MxM)
+.TP
+x0
+: initial state estimate
+.TP
+xe
+: estimated state
+.TP
+pe
+: steady-state error covariance
+.SH DESCRIPTION
+steady-state Kalman filter
+.SH AUTHOR
+C. B.

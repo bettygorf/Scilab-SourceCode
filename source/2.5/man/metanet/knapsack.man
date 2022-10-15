@@ -1,0 +1,66 @@
+.TH knapsack 1 "September 1996" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+knapsack - solves a 0-1 multiple knapsack problem
+.SH CALLING SEQUENCE
+.nf
+[earn,ind] = knapsack(profit,weight,capa,[bck])
+.fi
+.SH PARAMETERS
+.TP 7
+profit
+: integer row vector 
+.TP 7
+weight
+: integer row vector 
+.TP 5
+capa
+: integer row vector
+.TP 4
+bck
+: integer
+.TP 5
+earn
+: integer 
+.TP 4
+ind
+: integer row vector 
+.SH DESCRIPTION
+\fVknapsack\fR solve a 0-1 multiple knapsack problem with  n (n >= 2)
+items and  m  knapsacks (m >= 1).
+\fVprofit\fR is the vector of the (integer) profits of the n items and
+\fVweight\fR is the vector of the corresponding (integer) weights.
+\fVcapa\fR is the vector of the (integer) capacities of the m 
+knapsacks. 
+\fVbck\fR is an optional integer: the maximum number of backtrackings to be 
+performed, if heuristic solution is required. If the exact solution is 
+required \fVbck\fR can be omitted or can have a negative value.
+\fVearn\fR is the value of the criterium for the "optimal" solution and 
+\fVind\fR is a vector giving the optimal location:  \fVind(i)\fR gives the 
+number of the knapsack where item i is inserted and this value is 0 if the
+item i is not in the optimal solution.
+
+We recall that the problem to be solved is the following:
+\fVp(i)\fR and \fVw\fR denote respectively the profit and the weight of the 
+item \fVi\fR 1=1,...,n; 
+\fVc(j)\fR denotes the capacity of the knapsack \fVj\fR j=1,...,m;  
+\fVq(j,i)\fR denotes the quantity of item \fVi\fR in knapsack \fVj\fR (in fact 
+0 or 1).
+
+We want to maximize the global profit \fVE\fR:
+ \fVE=p(1)*[x(1,1)+...+x(m,1)]+...+p(n)*[x(1,n)+...+x(m,n)]\fR
+
+under the constraints:
+ \fV[w(1)*x(j,1)+...+w(n)*x(j,m)] <= c(j) ; j=1,...,m\fR
+ \fV[x(1,i)+...+x(m,i)] <= 1 ; i=1,...,n\fR
+ \fVx(j,i)= 0 or 1 \fR
+ \fVp(),w(),c()\fR are positive integers.
+.SH EXAMPLE
+.nf
+weight=ones(1,15).*.[1:4];
+profit=ones(1,60);
+capa=[15 45 30 60];
+[earn,ind]=knapsack(profit,weight,capa)
+.fi
+.SH SEE ALSO
+qassign

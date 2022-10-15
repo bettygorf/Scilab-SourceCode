@@ -1,0 +1,25 @@
+.TH INTRP2BLK_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+INTRP2BLK_f - Scicos 2D linear interpolation block
+.SH DIALOGUE PARAMETERS
+.TP 20
+X coord.
+: an n-vector (strictly increasing)
+.TP
+Y coord.
+: an m-vector (strictly increasing)
+.TP
+Z values
+: an mxn matrix
+.SH DESCRIPTION
+The output of this block is a function of the inputs obtained
+by bilinear interpolation. This block has two scalar inputs
+and a single scalar output. The X(i) and Y(i) give respectively 
+the X coordinate and the Y coordinate of the i-th data
+point to be interpolated and Z(Y(i),X(i)) its value.
+
+
+
+
+

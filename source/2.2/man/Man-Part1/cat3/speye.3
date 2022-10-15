@@ -1,0 +1,66 @@
+
+
+
+speye(1)                       Scilab Function                       speye(1)
+
+
+
+
+
+
+NAME
+  speye -  sparse identity matrix
+
+CALING SEQUENCE
+  Isp=speye(nrows,ncols)
+  Isp=speye(A)
+
+PARAMETERS
+
+  nrows   : integer (number of rows)
+
+  ncols   : integer (number os columns)
+
+  A       : sparse matrix
+
+  sp      : sparse identity matrix
+
+DESCRIPTION
+  Isp=speye(nrows,ncols) returns a sparse identity matrix Isp with nrows
+  rows, ncols columns. (Non square identity matrix have a maximal number of
+  ones along the main diagonal).
+
+  Isp=speye(A) returns a sparse identity matrix with same dimensions as A. If
+  [m,n]=size(A), speye(m,n) and speye(A) are equivalent. In particular
+  speye(3) is not equivalent to speye(3,3).
+
+SEE ALSO
+  sparse, full, eye, spzeros
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,66 @@
+
+
+
+Maximum(G)                     Scilab Function                     Maximum(G)
+
+
+
+
+
+
+NAME
+  maxi - maximum
+
+CALLING SEQUENCE
+  [m [,k]]=maxi(A)
+  [m [,k]]=maxi(A1,A2,...,An)
+  [m [,k]]=maxi(list(A1,A2,...,An))
+
+PARAMETERS
+
+  A         : real vector or matrix.
+
+  A1,...,An : a set of real vectors or matrices, all of the same size.
+
+DESCRIPTION
+  For A, a real  vector or matrix, maxi(A) is the largest element A.
+  [m,k]=maxi(A) gives in addition the index of the maximum.
+
+  m=maxi(A1,A2,...,An) returns a vector m of size size(m)=size(A1) such that
+  m(i)= max( Aj(i)), j=1,...,n. [m,k]=maxi(A1,A2,...,An) gives in addition
+  the vector k. for a fixed i, k(i) is the number of the first Aj(i) achiev-
+  ing the maximum.
+
+  [m,k]=maxi(list(A1,...,An)) is an equivalent syntax of
+  [m,k]=maxi(A1,A2,...,An)
+
+EXAMPLE
+  [m,n]=maxi([1,3,1])
+  [m,n]=maxi([3,1,1],[1,3,1],[1,1,3])
+  [m,n]=maxi(list([3,1,1],[1,3,1],[1,1,3]))
+  [m,n]=maxi(list(1,3,1))
+
+SEE ALSO
+  sort, find, mini
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

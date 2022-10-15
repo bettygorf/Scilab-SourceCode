@@ -1,0 +1,21 @@
+.TH fspecg 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+fspecg - stable factorization
+.SH CALLING SEQUENCE
+.nf
+[gm]=fspecg(g).
+.fi
+.SH PARAMETERS
+.TP 12
+g,gm
+: \fVsyslin\fR lists (linear systems in state-space representation) 
+.SH DESCRIPTION 
+returns \fVgm\fR with \fVgm\fR and \fVgm^-1\fR stable such that:
+.nf
+gtild(g)*g = gtild(gm)*gm
+.fi
+\fVg\fR and \fVgm\fR are continuous-time linear systems in state-space form.
+.LP
+Imaginary-axis poles are forbidden.
+

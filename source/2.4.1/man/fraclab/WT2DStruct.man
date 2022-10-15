@@ -1,0 +1,59 @@
+.TH "WT2DStruct" 2 " 01 June 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+WT2DStruct - Retrieve the Structure of a 2D DWT
+.sp
+Author: Bertrand Guiheneuf
+.sp
+This routine retrieve the structure informations contained in a 2D Wavelet Transform.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPScIndex, ScLength\f(CR]\fP=WT2DStruct(wt)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : real unidimensional matrix \f(CR[\fPm,n\f(CR]\fP  
+Contains the wavelet transform (obtained with FWT2D). 
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBindex\fP : real matrix \f(CR[\fPNbIter,4\f(CR]\fP 
+Contains the indexes (in wt) of the projection of the signal on the multiresolution subspaces 
+
+.TP
+o 
+\fBlength\fP : real matrix \f(CR[\fPNbIter,2\f(CR]\fP 
+Contains the dimensions of each projection
+.RE
+
+.SH Description
+.SH Introduction 
+This routine is used to retreive the structure information of a wavelet transform. It must be used in all routine that might work on a wavelet transform whose structure is not passed as an imput parameter. (That should be the case of all routines taking a Wavelet Transform as input parameter to minimize the input).see FWT2D.
+.SH Parameters  
+\fIInput\fP must be a real matrix. It's generally obtained with FWT2D. It contains the wavelet transform.
+\fIindex\fP contains the indexes of the first coefficient of each output. At each scale \fIScale\fP, the output indexes are:
+index(Scale,1) : HL 
+index(Scale,2) : LH 
+index(Scale,3) : HH 
+index(Scale,4) : LL on the last scale and 0 otherwise 
+\fIlength\fP contains the dimensions (height, width) of each output at a given Iteration.
+.SH Example
+a=rand(256,256);
+q=MakeQMF('daubechies',4);
+wt = FWT2D(a,8,q);
+(a few days pass...) 
+wti, wtl=WT2DStruct(wt);
+wtl
+.SH See Also
+FWT2D, IWT2D, WT2Dext, WT2DVisu 

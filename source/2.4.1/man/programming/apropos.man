@@ -1,0 +1,21 @@
+.TH apropos 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+apropos - searches keywords in Scilab help 
+.SH CALLING SEQUENCE
+.nf
+apropos word
+apropos 'string'
+.fi
+.SH DESCRIPTION
+Looks for keywords in  \fVman/*/whatis\fR files.
+.SH EXAMPLE
+.nf
+apropos '+'
+apropos ode 
+apropos 'list of'
+.fi
+.SH SEE ALSO
+help
+
+

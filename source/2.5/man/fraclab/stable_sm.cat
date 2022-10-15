@@ -1,0 +1,28 @@
+
+stable_sm(2)                   Scilab Function                   stable_sm(2)
+NAME
+  stable_sm - Spectral measure of a bivariate Stable random vector
+
+  Author: Lotfi Belkacem
+
+  This routine estimates a normalized spectral measure of a bivariate stable
+  random vector.
+
+Usage
+  [theta,sm]=stable_sm(data1,data2)
+
+Input parameters
+       o data1 : real vector [size,1] corresponding to the the first data
+         sample.
+       o data2 : real vector [size,1] corresponding to the second data sam-
+         ple.
+Output parameters
+       o theta : real vector corresponding to the the input argument of the
+         estimated spectral measure.  Components of the vector theta are
+         varying between 0 and 2*PI.
+       o sm : real vector corresponding to the estimation of the normalized
+         spectral measure of the bivariate vector (data1,data2).
+Example
+  for two given signals  S1 and S2, [theta,sm]=stable_sm(S1,S2); estimates
+  the normalized spectral measure of the data vector (S1,S2).  To visualize
+  it use plot(theta,sm).

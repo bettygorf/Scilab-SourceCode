@@ -1,0 +1,66 @@
+
+
+
+part(1)                        Scilab Function                        part(1)
+
+
+
+
+
+
+NAME
+  part - extraction of strings
+
+CALLING SEQUENCE
+  [c]=part(mp,v)
+
+PARAMETERS
+
+  mp,c      : string matrices
+
+  v         : integer vector.
+
+DESCRIPTION
+  Let s[k] stands for the k character of string s ( or the empty character if
+  k >length(s)).
+
+  part returns c, a matrix of character strings, such that c(i,j) is the
+  string "s[v(1)]...s[v(n)]" ( s=mp(i,j) ).
+
+EXAMPLE
+  c=part(['a','abc','abcd'],[1,1,2])
+
+SEE ALSO
+  string,length
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

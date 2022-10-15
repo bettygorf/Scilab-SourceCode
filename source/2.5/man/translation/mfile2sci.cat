@@ -1,0 +1,124 @@
+
+mfile2sci(1)                   Scilab Function                   mfile2sci(1)
+NAME
+  mfile2sci - Matlab M_file to scilab translation function
+
+CALLING SEQUENCE
+  mfile2sci(M_file_path [,result_path [,Imode [,Recmode]]])
+
+PARAMETERS
+
+  M_file_path    : a character string which gives the path of Matlab M_file
+                 to translate
+
+  result_path    : a character string which gives the directory where the
+                 result has to be written. Default value is current direc-
+                 tory.
+
+  Imode          : Boolean flag, If true mfile2sci ask user for variable type
+                 and sizes when he cannot infer them. Default value : %f
+  Recmode   : Boolean flag, used by translatepaths function. Must be %f to
+            translate a single mfile.
+DESCRIPTION
+  mfile2sci, is Matlab M-file to Scilab function traduction tools. It tries
+  whenever possible to replace call to Matlab functions by the equivalent
+  scilab primitives and functions.
+  To translate a Matlab M-file just enter the scilab instruction:
+  mfile2sci(file)
+
+  where file is a character string giving the path name of the M-file
+  mfile2sci will generate three files in the same directory
+
+  <function_name>.sci      : the scilab equivalent of the m_file
+
+  <function_name>.cat      : the scilab help file associated to the function
+
+  sci_<function_name>.sci  : the scilab function required to translate
+                             the calls to this  Matlab M_file in other Matlab
+  M_files.
+                             this function may be improved "by hand".
+
+  Some functions like eye, ones, size, sum,... behave differently according
+  to the dimension of their arguments. When mfile2sci cannot infer dimensions
+  it replaces these function call by a call to an emulation function named
+  mtlb_<function_name>. For efficiency these functions may be replaced by the
+  proper scilab equivalent instructions.
+
+  Some other functions like plot, has no straightforward translation in
+  scilab. They are also replaced by an emulation function named mtlb_<func-
+  tion_name>.
+
+  When translation may be incorrect or may be improved mfile2sci adds a com-
+  ment which began by "//!"
+
+REMARKS
+  This function is a still under developpement and is delivered as beta test.
+
+  Some Matlab4 basic functions are not yet translated. It is quite simple to
+  add it. See <SCIDIR>/macros/m2sci/README for more details.
+KNOWN BUGS
+
+  1-  : eval function instructions passed as strings are not translated.
+
+  2-  : most of plot function are not yet translated
+
+  3-  : if, for, endded by the end of file produce an error, add the closing
+      end's
+
+  4-  : Loop variable of for clause is available afterwards if loops termi-
+      nates
+         normally in matlab; it is cleared  in Scilab generated code.
+
+  5-  : inequality comparison which implies complex numbers produce a run
+      time error such as "undefined variable : %s_2_s". User can define these
+      operation with Matlab meaning with the following function definition:
+
+      deff('r=%s_1_s(a,b)','r=real(a)<real(b)')
+
+      deff('r=%s_2_s(a,b)','r=real(a)>real(b)')
+
+      deff('r=%s_3_s(a,b)','r=real(a)<=real(b)')
+
+      deff('r=%s_4_s(a,b)','r=real(a)>=real(b)')
+
+  6-  : When i is a vector, Matlab allows insertions like a(i)=v for any v.
+      In scilab v must have the same shape as a(i). This produces run time
+      errors "submatrix incorrectly defined". Rewrite them as a(i)=v.' .
+
+EXAMPLE
+  //create a simple m_file
+  write(TMPDIR+'rot90.m',['function B = rot90(A,k)'
+   '[m,n] = size(A);'
+   'if nargin == 1'
+   '    k = 1;'
+   'else'
+   '    k = rem(k,4);'
+   '    if k < 0'
+   '        k = k + 4;'
+   '    end'
+   'end'
+   'if k == 1'
+   '    A = A.'';'
+   '    B = A(n:-1:1,:);'
+   'elseif k == 2'
+   '    B = A(m:-1:1,n:-1:1);'
+   'elseif k == 3'
+   '    B = A(m:-1:1,:);'
+   '    B = B.'';'
+   'else'
+   '    B = A;'
+   'end']);
+  // translate it dor scilab
+  mfile2sci(TMPDIR+'rot90.m',TMPDIR)
+  // show the new code
+  write(%io(2),read(TMPDIR+'rot90.sci',-1,1,'(a)'))
+  // get it into scilab
+  getf(TMPDIR+'rot90.sci')
+  //execute it
+  m=rand(4,2);rot90(m,1)
+
+SEE ALSO
+  translatepaths
+
+AUTHOR
+  Serge Steer, INRIA

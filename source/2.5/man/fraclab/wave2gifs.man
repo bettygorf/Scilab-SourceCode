@@ -1,0 +1,157 @@
+.TH "wave2gifs" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+wave2gifs - Computation of IFS coef. with Discrete Wavelet coefficients
+.sp
+Author: Khalid Daoudi
+.sp
+Computes the \fIGIFS cefficients\fP of a
+1\f(CR-\fPD real signal as the ratio between (synchrounous) wavelets coefficients
+at successive scales. You have to compute the wavelet
+coefficients of the given signal (using FWT) before using \fIwave2gifs\fP.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPCi, Ci_idx, Ci_lg, pc0, pc_ab\f(CR]\fP=wave2gifs(wt, wt_idx, wt_lg, \f(CR[\fPM0, a, b\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : Real matrix \f(CR[\fP1,n\f(CR]\fP
+Contains the wavelet coefficients (obtained using FWT).
+
+.TP
+o 
+\fBwt_idx\fP : Real matrix \f(CR[\fP1,n\f(CR]\fP
+Contains the indexes (in wt) of the 
+projection of the signal on the multiresolution subspaces (obtained also using FWT).
+ 
+
+.TP
+o 
+\fBwt_lg\fP : Real matrix \f(CR[\fP1,n\f(CR]\fP
+Contains the dimension of each projection (obtained also using FWT).
+
+.TP
+o 
+\fBM0\fP :  Real positive scalar 
+If specified, each GIFS coefficient whose absolute value belong to \f(CR]\fP1,M0\f(CR[\fP will
+be replaced by 0.99 (keeping its signe).
+
+.TP
+o 
+\fBa,b\fP : Real positive scalars 
+The routine gives the percentage of the Ci's whose absolute value belong
+to \f(CR]\fPa,b\f(CR[\fP (if not specified, \f(CR]\fPa,b\f(CR[\fP=\f(CR]\fP0,2\f(CR[\fP).
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBCi\fP : Real matrix 
+Contains the GIFS coefficients plus other informations.
+
+.TP
+o 
+\fBCi_idx\fP : Real matrix 
+Contains the the indexes of the first Ci at each scale (the finest scale is 1).
+
+.TP
+o 
+\fBCi_lg\fP : Real matrix
+Contains the length of Ci's at each scale.
+
+.TP
+o 
+\fBpc0\fP : Real scalar
+Gives the percentage of vanishing Ci's
+
+.TP
+o 
+\fBpc_ab\fP : Real scalar
+Gives the percentage of Ci's which belong to \f(CR]\fPa,b\f(CR[\fP 
+.RE
+
+.SH Description
+.SH Parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP is a real matrix which is a 
+structure containg the wavelet coefficients and other informations. It is
+obtained using \fBFWT\fP. 
+
+.TP
+o 
+\fBwt_idx\fP is a real vector which
+contains the indexes (in wt) of the first wavelet coefficient a each scale.
+For instance, wt(wt_idx(1) : wt_idx(2)-1) is a vector containing the wavelet
+coefficients a the finest scale.
+ 
+
+.TP
+o 
+\fBwt_lg\fP is a real vector which
+contains the length of wavelet coefficients a each scale.
+For instance, wt_lg(1) is the number of the wavelet
+coefficients a the finest scale.
+
+.TP
+o 
+\fBM0\fP is a real positive scalar such that each GIFS coefficient (ci) 
+whose absolute 
+value belong to \f(CR]\fP1,M0\f(CR[\fP will
+be replaced by 0.99*signe(ci).
+
+.TP
+o 
+\fBa\fP and \fBb\fP are two real positive scalars.
+The routine gives the percentage of the Ci's whose absolute values belong
+to \f(CR]\fPa,b\f(CR[\fP (if not specified, \f(CR]\fPa,b\f(CR[\fP=\f(CR]\fP0,2\f(CR[\fP).
+
+.TP
+o 
+\fBCi\fP is a real matrix
+which contains the GIFS coefficients, the size of the signal in Ci(lenght(Ci))
+and the number of scales used in the wavelet decomposition in Ci(lenght(Ci)-1).
+
+.TP
+o 
+\fBCi_idx\fP is a real matrix 
+which ontains the the indexes of the first Ci at each scale.
+For instance, Ci(Ci_idx(j) : Ci_idx(j)+ Ci_lg(j) - 1) is a vector containing
+the GIFS coefficients at scale j (the finest scale is j=1).
+
+.TP
+o 
+\fBCi_lg\fP is a real vector which
+contains the length of GIFS coefficients a each scale.
+For instance, Ci_lg(1) is the number of the wavelet
+coefficients a the finest scale.
+
+.TP
+o 
+\fBpc0\fP is a real scalar
+which gives the percentage of vanishing GIFS coefficients.
+
+.TP
+o 
+\fBpc_ab\fP is a real scalar which
+gives the percentage of GIFS coefficients which belong to \f(CR]\fPa,b\f(CR[\fP.
+.RE
+
+.SH Algorithm details
+.SH See also:
+ 
+FWT and MakeQMF.
+.SH Example:

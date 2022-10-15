@@ -1,0 +1,150 @@
+.TH readmps 1 "MAY 1998" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+readmps - reads a file in MPS format 
+.SH CALLING SEQUENCE
+.nf
+[m,n,nza,irobj,namec,nameb,namran,nambnd,name,stavar,rwstat,hdrwcd,lnkrw,hdclcd,lnkcl,rwnmbs,clpnts,acoeff,rhs,ranges,ubounds,lbounds] =readmps ('file-name',maxm,maxn,maxnza,big,dlobnd,dupbnd);	
+.fi
+.SH PARAMETERS
+.TP 10
+file-name
+: character string (Name of file 'file-name.mps') 
+.TP 10
+maxn
+: integer number (Maximum number of constraints).
+maxn
+: integer number (Maximum number of variables).
+.TP 10
+maxnza
+: integer number (Maximum number of nonzeros entries in the LP constraint matrix).
+.TP 10
+big
+: large real number
+.TP 10
+dlobnd
+: real nymber (Default lower bound).	
+.TP 10
+dupbnd
+: real number (Default upper bound).
+.TP 10
+m
+: integer number (Actual number of constraints+1).
+.TP
+n
+: integer number (Actual number of variables).
+.TP 10
+nza
+: integer number (Actual number of nonzeros entries in the LP constraint matrix).
+.TP 10
+irobj
+: integer (Index of the objective row).
+.TP 10
+namec
+: character string (Name of the objective).
+.TP 10
+nameb
+: character string (Name of the right hand side).
+.TP 10
+namran
+: character string (Name of the ranges section).
+.TP 10
+nambnd
+: character string (Name of the bounds section).
+.TP 10
+name
+: character string (Name of the  LP problem).
+stavar
+: integer vector ( variable status see hopdm.sci).
+.TP 10
+rwstat
+: integer vector ( see hopdm.sci - rdmps1.f)
+.TP 10
+hdrwcd
+: real vector (Header to the linked list of rows with the same codes).
+.TP 10
+lnkrw
+: integer vector (Linked list of rows with the same codes).
+.TP 10
+hdclcd
+: integer vector (Header to the linked list of columns with the same codes).
+.TP 10
+lnkcl
+: integer vector (Linked list of columns with the same codes).
+.TP 10C     
+rwnmbs
+: integer vector (Row numbers of nonzeros in columns of matrix A.)
+.TP 10
+clpnts
+: integer vector (Pointers to the beginning of columns of matrix A).
+.TP 10
+acoeff
+: real vector (Array of nonzero elements for each column).
+.TP 10
+rhs
+:real vector ( Right hand side of the linear program).
+.TP 10
+ranges
+: real vector of constraint ranges.
+.TP 10
+ubounds   
+: full column vector of upper bounds 
+.TP 10
+lbounds   
+: full column vector of lower bounds 
+.SH DESCRIPTION
+\fV[m,n,nza,irobj,namec.nameb,namran,nambnd,name,stavar,rwstat,hdrwcd,lnkrw,hdclcd,rwnmbs,clpnts,acoeff,rhs,ranges,ubounds,lbounds] = readmps ('file-name',maxm,maxn,maxnza,big,dlobnd,dupbnd)\fR.
+Utility function: reads file 'file-name.mps' in mps format. It is an
+interface with the program \fVrdmps1.f\fR of hopdm (J. Gondzio).
+For a description of the variables, see the file rdmps1.f.
+.SH EXAMPLE
+.nf
+//File : test.mps (uncomment)
+//NAME          TESTPROB
+//ROWS
+// N  COST
+// L  LIM1
+// G  LIM2
+// E  MYEQN
+//COLUMNS
+//    XONE      COST                 1   LIM1                 1
+//    XONE      LIM2                 1
+//    YTWO      COST                 4   LIM1                 1
+//    YTWO      MYEQN               -1
+//    ZTHREE    COST                 9   LIM2                 1
+//    ZTHREE    MYEQN                1
+//RHS
+//    RHS1      LIM1                 5   LIM2                10
+//    RHS1      MYEQN                7
+//BOUNDS
+// UP BND1      XONE                 4
+// LO BND1      YTWO                -1
+// UP BND1      YTWO                 1
+//ENDATA
+
+//// objective:
+//   min     XONE + 4 YTWO + 9 ZTHREE
+//// constraints:
+//  LIM1:    XONE +   YTWO            < = 5
+//  LIM2:    XONE +            ZTHREE > = 10
+// MYEQN:         -   YTWO  +  ZTHREE   = 7
+//// Bounds
+//  0 < = XONE < = 4
+// -1 < = YTWO < = 1
+//// End
+maxm = 5;
+maxn = 4;
+maxnza = 9;
+big = 10^30;
+dlobnd = 0;
+dupbnd = 10^30;	
+//	
+//[m,n,nza,irobj,namec,nameb,namran,nambnd,name,stavar,rwstat,hdrwcd,...
+//lnkrw,hdclcd,lnkcl,rwnmbs,clpnts,acoeff,rhs,ranges,ubounds,lbounds] = ...
+//readmps ('test',maxm,maxn,maxnza,big,dlobnd,dupbnd);
+.fi
+
+
+
+
+

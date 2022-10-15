@@ -1,0 +1,23 @@
+.TH sqrt 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+sqrt - square root
+.SH CALLING SEQUENCE
+.nf
+[y]=sqrt(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: complex vector or symmetric matrix
+.SH DESCRIPTION
+is the square root of \fVx\fR. 
+Result is complex if \fVx\fR is negative or non-negative definite.
+.SH EXAMPLE
+.nf
+x=[2,1;1,0];
+w=sqrt(x); norm(w*w-q)
+.fi
+.SH SEE ALSO
+sqroot
+

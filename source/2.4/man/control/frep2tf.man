@@ -1,0 +1,75 @@
+.TH frep2tf 4 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+frep2tf - transfer function realization from frequency response
+.SH CALLING SEQUENCE
+.nf
+[h [,err]]=frep2tf(frq,repf,dg [,dom,tols,weight]) 
+.fi
+.SH PARAMETERS
+.TP 10
+frq   
+: vector of frequencies in Hz.
+.TP
+repf  
+: vector of frequency response
+.TP
+dg    
+: degree of linear system
+.TP
+dom 
+: time domain (\fV'c'\fR or \fV'd'\fR or \fVdt\fR)
+.TP
+tols
+: a vector of size 3 giving the relative and absolute tolerance 
+and the maximum number of iterations (default values are \fVrtol=1.e-2; atol=1.e-4, N=10\fR).
+.TP
+weight
+: vector of weights on frequencies 
+.TP
+h     
+: SISO transfer function 
+.TP
+err   
+: error (for example if \fVdom='c'\fR \fVsum(abs(h(2i*pi*frq) - rep)^2)/size(frq,*)\fR)
+.SH DESCRIPTION
+Frequency response to  transfer function conversion. The order of \fVh\fR
+is a priori given in \fVdg\fR which must be provided.
+The following linear system is solved in the least square sense.
+.nf 
+	weight(k)*(n( phi_k) - d(phi_k)*rep_k)=0, k=1,..,n
+.fi 
+where \fVphi_k= 2*%i*%pi*frq\fR when \fVdom='c'\fR and \fVphi_k=exp(2*%i*%pi*dom*frq\fR if not. If the \fVweight\fR vector is not given a default 
+penalization is used (when \fVdom='c'\fR).
+
+A stable and minimum phase system can be obtained by using function \fVfactors\fR.
+.SH EXAMPLE
+.nf
+s=poly(0,'s');
+h=syslin('c',(s-1)/(s^3+5*s+20))
+frq=0:0.05:3;repf=repfreq(h,frq);
+clean(frep2tf(frq,repf,3))
+
+Sys=ssrand(1,1,10); 
+frq=logspace(-3,2,200);
+[frq,rep]=repfreq(Sys,frq);  //Frequency response of Sys
+[Sys2,err]=frep2tf(frq,rep,10);Sys2=clean(Sys2)//Sys2 obtained from freq. resp of Sys
+[frq,rep2]=repfreq(Sys2,frq); //Frequency response of Sys2
+xbasc();bode(frq,[rep;rep2])   //Responses of Sys and Sys2
+[sort(trzeros(Sys)),sort(roots(Sys2('num')))]  //zeros
+[sort(spec(Sys('A'))),sort(roots(Sys2('den')))] //poles
+
+dom=1/1000; // Sampling time 
+z=poly(0,'z');
+h=syslin(dom,(z^2+0.5)/(z^3+0.1*z^2-0.5*z+0.08))
+frq=(0:0.01:0.5)/dom;repf=repfreq(h,frq);
+[Sys2,err]=frep2tf(frq,repf,3,dom);
+[frq,rep2]=repfreq(Sys2,frq); //Frequency response of Sys2
+xbasc();plot2d1("onn",frq',abs([repf;rep2])');
+
+.fi
+.SH SEE ALSO
+imrep2ss, arl2, time_id, armax, frfit
+
+
+

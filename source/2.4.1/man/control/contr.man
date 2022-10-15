@@ -1,0 +1,61 @@
+.TH CONTR G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+contr - controllability, controllable subspace
+.SH CALLING SEQUENCE
+.nf
+[n [,U]]=contr(A,B [,tol]) 
+[A1,B1,U,ind]=contr(A,B [,tol])
+.fi
+.SH PARAMETERS
+.TP 6
+A, B
+: real matrices 
+.TP
+tol  
+: may be the constant rtol or the 2 vector \fV[rtol atol]\fR
+.TP 10
+rtol
+:tolerance used when evaluating ranks (QR factorizations).
+.TP
+atol
+:absolute tolerance (the \fVB\fR matrix is assumed to be 0 if \fVnorm(B)<atol\fR)
+.TP
+n
+:  dimension of controllable subspace.
+.TP
+U
+: orthogonal change of basis which puts \fV(A,B)\fR in canonical form.
+.TP
+A1 
+: block Hessenberg matrix
+.TP
+B1 
+: is \fVU'*B\fR.
+.TP
+ind 
+: vector associated with controllability indices (dimensions of subspaces \fVB,
+B+A*B,...=ind(1),ind(1)+ind(2),...\fR)
+.SH DESCRIPTION
+\fV[n,[U]]=contr(A,B,[tol])\fR gives the controllable form of an \fV(A,B)\fR 
+pair.(\fVdx/dt = A x + B u\fR or \fVx(n+1) = A x(n) +b u(n)\fR).
+The \fVn\fR first columns of \fVU\fR make a basis for the controllable
+subspace.
+.LP       
+If \fVV=U(:,1:n)\fR, then \fVV'*A*V\fR and  \fVV'*B\fR give the controllable part
+of the \fV(A,B)\fR pair.
+.LP
+\fV[A1,B1,U,ind]=contr(A,B)\fR returns the Hessenberg controllable
+form of \fV(A,B)\fR. 
+.SH EXAMPLE
+.nf
+W=ssrand(2,3,5,list('co',3));  //cont. subspace has dim 3.
+A=W("A");B=W("B");
+[n,U]=contr(A,B);n
+A1=U'*A*U;
+spec(A1(n+1:$,n+1:$))  //uncontrollable modes
+spec(A+B*rand(3,5))    
+.fi
+.SH SEE ALSO
+canon, cont_mat, unobs, stabil
+

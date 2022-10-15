@@ -1,0 +1,33 @@
+
+besseli(3)                     Scilab Function                     besseli(3)
+NAME
+  besseli -  Modified I sub ALPHA Bessel functions of the first kind.
+
+CALLING SEQUENCE
+   y = besseli(alpha,x)
+   y = besseli(alpha,x,ice)
+
+PARAMETERS
+
+  x    : real vector with non negative entries
+
+  alpha
+       : real vector with non negative entries regularly spaced with incre-
+       ment equal to one alpha=alpha0+(n1:n2)
+
+  ice  : integer flag, with default value 1
+
+DESCRIPTION
+
+  besseli(alpha,x) computes I sub ALPHA modified Bessel functions of the
+  first kind, for real, non-negative order alpha and argument x.  alpha  and
+  x may be vectors.  The output is m-by-n with m = size(x,'*'), n =
+  size(alpha,'*') whose (i,j) entry is besseli(alpha(j),x(i)).
+
+  If ice is equal to 2 exponentialy scaled Bessel functions is computed
+EXAMPLE
+  besseli(0.5:3,1:4)
+  besseli(0.5:3,1:4,2)
+
+SEE ALSO
+  besselj, besselk

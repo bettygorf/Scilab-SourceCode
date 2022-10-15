@@ -1,0 +1,19 @@
+.TH ExeclScilab 1 "March 1997" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+ExeclScilab - executes another linked local Scilab
+.SH CALLING SEQUENCE
+.nf
+ExeclScilab(appli)
+.fi
+.SH PARAMETERS
+.TP 6
+appli
+: string, name of new Scilab
+.SH DESCRIPTION
+\fVExecScilab\fR executes a new Scilab application on the same host and
+creates links between them.
+
+Use \fVExecAppli\fR to execute a new Scilab application on a remote host.
+.SH SEE ALSO
+CreateLink, ExecAppli, ExecScilab

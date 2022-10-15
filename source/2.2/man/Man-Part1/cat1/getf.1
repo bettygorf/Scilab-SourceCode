@@ -1,0 +1,66 @@
+
+
+
+getf(1)                        Scilab Function                        getf(1)
+
+
+
+
+
+
+NAME
+  getf - loading of function
+
+CALLING SEQUENCE
+  getf(file-name [,'c'])
+
+PARAMETERS
+
+  filename  : Scilab string.
+
+  "c"       : scilab string "c".
+
+DESCRIPTION
+  loads one or several functions which are defined in the file 'file-name'.
+  The string 'c' means that the functions are to be compiled when loaded.
+  (see comp).  The first line of the file must be as follows:
+  function [s1,s2,..,slhs]=macr(e1,e2,...,erhs)
+  ei are input variables and si are output variables.
+
+EXAMPLE
+          getf('SCI/macros/xdess/plot.sci','c')
+
+SEE ALSO
+  comp, exec, edit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

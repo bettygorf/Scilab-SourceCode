@@ -1,0 +1,8 @@
+ 
+clear;lines(0);
+ 
+~[%t %t %f]
+ ans  =
+ 
+! F F T !
+ 

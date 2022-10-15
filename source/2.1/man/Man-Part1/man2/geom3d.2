@@ -1,0 +1,39 @@
+.TH geom3d 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+geom3d -  projection from 3D on 2D
+.SH CALLING SEQUENCE
+.nf
+[x,y]=geom3d(x1,y1,z1)
+.fi
+.SH PARAMETERS 
+.TP 15
+x1,y1,z1
+: real matrices of the same size (points in R3)
+.TP
+x,y 
+: real matrices of the same size as \fVx1,y1\fR or \fVz1\fR
+.SH DESCRIPTION
+After having used a 3d plotting function as \fVplot3d\fR, \fVplot3d1\fR
+and \fVparam3d\fR, this function gives the correspondence 
+between a point in R3 space \fV(x1(i),y1(i),z1(i))\fR
+and the corresponding point in the projected graphic plan \fV(x(i),y(j))\fR.
+all the graphical primitives working on (x,y) can then be used 
+for superposition on a \fVplot3d\fR
+.SH EXAMPLE
+.nf
+deff("[z]=surf(x,y)","z=sin(x)*cos(y)");
+t=%pi*(-10:10)/10;
+fplot3d(t,t,surf,35,45,"X@Y@Z");
+    //Gives a plot3d
+    //now  (t,t,sin(t).*cos(t) ) is a curve on the surface
+    //which can be drawn using param3d or the following code
+[x,y]=geom3d(t,t,sin(t).*cos(t));
+xpoly(x,y,"lines")
+    //adding a comment 
+[x,y]=geom3d([0,0],[0,0],[5,0]);
+xsegs(x,y);
+xstring(x(1),y(1)," The point (0,0,0)");
+.fi
+.SH AUTHOR
+J.Ph.C.

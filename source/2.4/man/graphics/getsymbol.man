@@ -1,0 +1,20 @@
+.TH getsymbol 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+getsymbol - dialog to select a symbol an its size
+.SH CALLING SEQUENCE
+.nf
+c=getsymbol(title)
+.fi
+.SH PARAMETERS
+.TP 10
+title
+: string, dialog title
+.TP
+c
+: Vector with 2 entries \fV[n,sz]\fR.
+.SH DESCRIPTION
+\fVgetsymbol\fR opens a dialog choice box where user may select a
+symbol type \fVn\fR and size  \fVsz\fR .
+.SH SEE ALSO
+xset, xsetm

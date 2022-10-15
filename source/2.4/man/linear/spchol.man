@@ -1,0 +1,40 @@
+.TH spchol G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+spchol - sparse cholesky factorization
+.SH CALLING SEQUENCE
+.nf
+[R,P] = spchol(X)
+.fi
+.SH PARAMETERS
+.TP
+X
+: symmetric positive definite real  sparse matrix
+.TP 
+P
+:  permutation matrix
+.TP
+R
+:  cholesky factor
+.SH DESCRIPTION
+\fV[R,P] = spchol(X)\fR produces a 
+lower triangular matrix \fVR\fR such that \fVP*R*R'*P' = X\fR.
+.SH EXAMPLE
+.nf
+X=[
+3.,  0.,  0.,  2.,  0.,  0.,  2.,  0.,  2.,  0.,  0. ;
+0.,  5.,  4.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0. ;
+0.,  4.,  5.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0. ;
+2.,  0.,  0.,  3.,  0.,  0.,  2.,  0.,  2.,  0.,  0. ;
+0.,  0.,  0.,  0. , 5.,  0.,  0.,  0.,  0.,  0.,  4. ;
+0.,  0.,  0.,  0.,  0.,  4.,  0.,  3.,  0.,  3.,  0. ;
+2.,  0.,  0.,  2.,  0.,  0.,  3.,  0.,  2.,  0.,  0. ;
+0.,  0.,  0.,  0.,  0.,  3.,  0.,  4.,  0.,  3.,  0. ;
+2.,  0.,  0.,  2.,  0.,  0.,  2.,  0.,  3.,  0.,  0. ;
+0.,  0.,  0.,  0.,  0.,  3.,  0.,  3.,  0.,  4.,  0. ;
+0.,  0.,  0.,  0.,  4.,  0.,  0.,  0.,  0.,  0.,  5.];
+X=sparse(X);[R,P] = spchol(X);
+max(P*R*R'*P'-X)
+.fi
+.SH SEE ALSO
+sparse, lusolve, luget, chol

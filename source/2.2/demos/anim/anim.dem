@@ -1,0 +1,21 @@
+mode(0);
+xbasc();
+
+path='SCI/demos/anim/';
+
+demolist=['Plot3d1';
+	'param 3d';
+	'param 3d lorentz curve';
+	'contour';
+	'plot3d';
+	'N pendulum';
+	'plot3d1 with xtape'];
+go_on=%t;
+while go_on then
+  num=x_choose(demolist(:,1),'Choose a demo');
+  if num=0 then go_on=%f;
+  else
+     xbasc();
+     exec(path+'anim'+string(num)+'.dem');
+  end,
+end

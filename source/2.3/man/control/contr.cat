@@ -1,0 +1,50 @@
+
+CONTR(G)                       Scilab Function                       CONTR(G)
+NAME
+  contr - controllability, controllable subspace
+
+CALLING SEQUENCE
+  [n [,U]]=contr(A,B [,tol])
+  [A1,B1,U,ind]=contr(A,B [,tol])
+
+PARAMETERS
+
+  A, B  : real matrices
+
+  tol   : may be the constant rtol or the 2 vector [rtol atol]
+
+  rtol      :tolerance used when evaluating ranks (QR factorizations).
+
+  atol      :absolute tolerance (the B matrix is assumed to be 0 if
+            norm(B)<atol)
+
+  n         :  dimension of controllable subspace.
+
+  U         : orthogonal change of basis which puts (A,B) in canonical form.
+
+  A1        : block Hessenberg matrix
+
+  B1        : is U'*B.
+
+  ind       : vector associated with controllability indices (dimensions of
+            subspaces B, B+A*B,...=ind(1),ind(1)+ind(2),...)
+
+DESCRIPTION
+  [n,[U]]=contr(A,B,[tol]) gives the controllable form of an (A,B)
+  pair.(dx/dt = A x + B u or x(n+1) = A x(n) +b u(n)).  The n first columns
+  of U make a basis for the controllable subspace.
+
+  If V=U(:,1:n), then V'*A*V and  V'*B give the controllable part of the
+  (A,B) pair.
+
+  [A1,B1,U,ind]=contr(A,B) returns the Hessenberg controllable form of (A,B).
+
+EXAMPLE
+  W=ssrand(2,3,5,list('co',3));  //cont. subspace has dim 3.
+  A=W("A");B=W("B");
+  [n,U]=contr(A,B);n
+  A1=U'*A*U;
+  spec(A1(n+1:$,n+1:$))  //uncontrollable modes
+  spec(A+B*rand(3,5))
+SEE ALSO
+  canon, cont_mat, unobs, stabil

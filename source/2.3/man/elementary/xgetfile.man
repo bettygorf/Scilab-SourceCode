@@ -1,0 +1,34 @@
+.TH xgetfile 3 "Jan 1996" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xgetfile - dialog to get a file path
+.SH CALLING SEQUENCE
+.nf
+path=xgetfile([file_mask], [dir]) 
+.fi
+.SH PARAMETERS
+.TP 12
+file_mask
+: a character string which gives the file mask to use for file
+selection. \fVfile_mask\fR is written with Unix convention. the
+default value is '*'.
+.TP 12
+dir
+: a character string which gives the initial directory used for file
+search. by default xgetfile uses the previously selected directory.
+.TP
+path
+: is the user selected file path if user answers "Ok" or the " "
+string if user answers "Cancel"
+
+.SH DESCRIPTION
+Creates a dialog window for file selection
+.SH EXAMPLE
+.nf
+xgetfile()
+xgetfile('*.sci','SCI/macros/xdess')
+.fi
+.SH SEE ALSO
+x_dialog, file, read, write, exec, getf 
+
+

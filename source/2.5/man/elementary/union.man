@@ -1,0 +1,49 @@
+.TH union 1 "April 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+union - extract union components of a vector
+.SH CALLING SEQUENCE
+.nf
+[v, [ka,kb]]=union(a,b)
+
+.fi
+.SH PARAMETERS
+.TP
+a
+: vector of real numbers or strings
+.TP
+b
+: vector of real numbers or strings
+.TP
+v
+: row vector  of real numbers or strings
+.TP
+ka
+: row vector  of integers
+.TP
+kb
+: row vector  of integers
+
+.SH DESCRIPTION
+\fVunion(a,b)\fR returns a sorted row vector which retains the unique entries
+of \fV[a(:);b(:)]\fR.
+.LP
+\fV[v,ka,kb]=union(a,b)\fR also returns index vectors \fVka\fR and
+\fVkb\fR such that \fVv\fR is a sorted combination of the entries
+\fVa(ka)\fR and \fVb(kb)\fR.
+
+
+.SH EXAMPLE
+.nf
+A=round(5*rand(10,1));
+B=round(5*rand(7,1));
+
+union(A,B)
+[N,ka,kb]=union(A,B)
+
+union('a'+string(A),'b'+string(B))
+
+.fi
+.SH SEE ALSO
+unique, sort
+

@@ -1,0 +1,17 @@
+
+DLR_f(5)                        Scicos Block                         DLR_f(5)
+NAME
+  DLR_f - Scicos discrete-time linear system (transfer function)
+DIALOGUE PARAMETERS
+
+  Numerator           : a polynomial in z.
+
+  Denominator         : a polynomial in z.
+
+DESCRIPTION
+  This block realizes a SISO linear system represented by its rational
+  transfer function (in the symbolic variable z).  The rational function must
+  be proper.
+
+SEE ALSO
+  DLSS_f, DLRADAPT_f

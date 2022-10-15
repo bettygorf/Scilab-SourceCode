@@ -1,0 +1,32 @@
+
+hermit(8)                      Scilab Function                      hermit(8)
+NAME
+  hermit - Hermite form
+
+CALLING SEQUENCE
+  [Ar,U]=hermit(A)
+
+PARAMETERS
+
+  A    : polynomial matrix
+
+  Ar   : triangular polynomial matrix
+
+  U    : unimodolar polynomial matrix
+
+DESCRIPTION
+  Hermite form: U is an unimodular matrix such that A*U is in Hermite tri-
+  angular form:
+
+  The output variable is Ar=A*U.
+
+  Warning: Experimental version
+
+EXAMPLE
+  s=poly(0,'s');
+  p=[s, s*(s+1)^2, 2*s^2+s^3];
+  [Ar,U]=hermit(p'*p);
+  clean(p'*p*U), determ(U)
+
+SEE ALSO
+  hrmt, htrianr

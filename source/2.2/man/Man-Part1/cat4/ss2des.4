@@ -1,0 +1,66 @@
+
+
+
+ss2des(1)                      Scilab Function                      ss2des(1)
+
+
+
+
+
+
+NAME
+  ss2des - (polynomial) state-space to descriptor form
+
+CALLING SEQUENCE
+  [S]=ss2des(Sl)
+
+PARAMETERS
+
+  Sl        : syslin list: proper or improper linear system.
+
+  S         : list
+
+DESCRIPTION
+  Given the linear system in state-space representation Sl (syslin list),
+  with a D matrix which is either polynomial or constant, but not zero ss2des
+  returns a descriptor system as list('d',A,B,C,0,E) such that:
+  Sl=C*(s*E-A)^(-1)*B
+  Note that the (constant) "D matrix" of the descriptor system is zero but Sl
+  cannot be strictly proper.
+
+SEE ALSO
+  pol2des, tf2des, des2ss
+
+AUTHOR
+  F. D.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+ 
+clear;lines(0);
+ 
+hex2dec(['ABC','0','A'])
+ ans  =
+ 
+!   2748.    0.    10. !
+ 

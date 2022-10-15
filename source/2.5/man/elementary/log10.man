@@ -1,0 +1,22 @@
+.TH log10 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+log10 - logarithm
+.SH CALLING SEQUENCE
+.nf
+y=log10(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: vector or matrix
+.SH DESCRIPTION
+decimal logarithm.If \fVx\fR is a vector \fVlog10(x)=[log10(x1),...,log10(xn)]\fR.
+.SH EXAMPLE
+.nf
+10.^log10([1,%i,-1,-%i])
+.fi
+.SH SEE ALSO
+log, hat, ieee
+
+

@@ -1,0 +1,34 @@
+.TH isoview 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so man1/sci.an
+.SH NAME 
+isoview - set scales for isometric plot
+.SH CALLING SEQUENCE
+.nf
+isoview(xmin,xmax,ymin,ymax)
+.fi
+.SH PARAMETERS
+.TP 15
+xmin,xmax,ymin,ymax
+: four real values
+.SH DESCRIPTION
+\fVisoview(xmin,xmax,ymin,ymax)\fR is used to set the graphic scales in order 
+to have isometric scales on the X and Y axes. The requested values 
+\fVxmin, xmax, ymin, ymax\fR must be contained in the computed frame of 
+the graphic window. This function sets the current graphic scales 
+and can be used in conjunction with graphic routines which request
+the current graphic scale ( \fVstrf="x0y"\fR in \fVplot2d\fR ). This function 
+does not modify the size of the graphic window.
+.SH EXAMPLE
+.nf
+t=(0:0.1:2*%pi)'
+isoview(-1,1,-1,1)
+xbasc();plot2d(sin(t),cos(t),-1,'001')
+.fi
+.SH SEE ALSO
+square
+.SH AUTHOR
+Steer S.
+
+
+
+

@@ -1,0 +1,107 @@
+.TH "prescrib" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+prescrib - Generation of signals with prescribed Holder function
+.sp
+Author: Khalid Daoudi
+.sp
+Using the GIFS method, this routine generates a continous function
+with prescribed Holder function, while interpolating a set of point.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPx,y\f(CR]\fP=prescrib(Interp_pts, Holder_funct, nbr_iter)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBInterp_pts\fP : Real matrix \f(CR[\fPn,2\f(CR]\fP
+Contains the interpolation points in the format : abscissa-ordinate.
+
+.TP
+o 
+\fBHolder_funct\fP : Character string
+Specifies the Holder function you want to prescribe. It must have the form
+of compositions of matlab functions of variable \fBt\fP
+('2*sqrt(1-t)' for instance). The use of the variable \fBt\fP is crucial. 
+For shake of simplicity, this
+variable \fBt\fP is supposed to vary in \f(CR[\fP0,1\f(CR]\fP.
+
+.TP
+o 
+ \fBnbr_iter\fP : integer
+Number of iteration wanted in the generation process of the GIFS attractor.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : Real vector
+Contains the abscissa of the attractor graph.
+
+.TP
+o 
+\fBy\fP : Real vector
+Contains the ordinates of the attractor graph.
+.RE
+
+.SH Description
+.SH Parameters
+
+
+.RS
+
+.TP
+o 
+\fBInterp_pts\fP is a real matrix \f(CR[\fPn,2\f(CR]\fP
+containing the cordinates of the interpolation points.
+
+.TP
+o 
+\fBHolder_funct\fP is a character string
+specifying the Holder function you want to prescribe. This means that GIFS attrcator
+will have, at a point t, a Holder exponent equal to the value of this function 
+at pint t.
+
+.TP
+o 
+ \fBnbr_iter\fP is the number of iteration wanted 
+in the generation process of the GIFS attractor.
+
+.TP
+o 
+\fBx\fP and \fBy\fP contain the cordinates of the GIFS attractor.
+.RE
+
+.SH Algorithm details
+Generalized Iterated Functions Systems (GIFS) are a generalization
+of the usual IFS. This generalization consists in allowing
+the contarations to change at each step (scale) of the attractor 
+generation process. We also allow their number and their support to change.
+Here, we use the GIFS to construct continuous function with
+prescribed local regularity. More precisely, if \fBH(t)\fP is the 
+prescribed Holder function, then for each j=1,...,nbr_iter-1, and for
+each k=0,...,pow(m,j)-1, the GIFS coefficient c_k\(haj is definied as :
+c_k\(haj = pow(m,H(k*pow(m,-j))), where m+1 is the number of interpolation points.
+The resulting attractor is the graph of a continuous function \fBF\fP
+such that the Holder exponent of \fBF\fP, at each point \fBt\fP, is \fBH(t)\fP.
+Moreover, if {(t_i, y_i), i=1,...,m+1} is the set of interpolation points,
+then \fBF(t_i)=y_i\fP for each i=1,...,m+1.
+.SH See also:
+gifs and alphagifs
+.SH Example:
+I = \f(CR[\fP0 0 
+.5 1 
+1 0\f(CR]\fP; 
+\f(CR[\fPx,y\f(CR]\fP = prescrib(I,'abs(sin(3*pi*t))',10); 
+plot(x,y) 
+\fI \f(CR[\fPx,y\f(CR]\fP is the graph of a continuous function \fBF\fP which 
+interpolates {(0,0); (0.5 1); (1,0)} and such that the Holder exponent
+of \fBF\fP, at each point t, is abs(sin(3*pi*t))\fP.

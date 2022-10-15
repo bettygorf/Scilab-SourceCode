@@ -1,0 +1,30 @@
+.TH unix 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+unix - shell (sh) command execution
+.SH CALLING SEQUENCE
+.nf
+stat=unix(command-name)
+.fi
+.SH PARAMETERS
+.TP 15
+command-name
+: A character string containing Unix sh instruction
+.TP
+stat
+: An integer flag
+.SH DESCRIPTION
+Sends a string \fVcommand-name\fR to Unix for execution by the sh
+shell. Standard output and standard errors of the shell command are
+written in the calling shell.
+\fVstat\fR gives -1 if unix can't be called (Not enough system memory
+available) or the sh return code.
+.SH EXAMPLE
+.nf
+unix("ls $SCI/demos");
+unix("emacs $SCI/demos/wheel2/Makefile");
+deff('wd=pwd()','unix(''pwd>/tmp/path'');wd=read(''/tmp/path'',1,1,''(a)'')')
+wd=pwd()
+.fi
+.SH SEE ALSO
+edit, manedit, unix_g, unix_s, unix_w, unix_x, host

@@ -1,0 +1,47 @@
+.TH xgetmouse  "September  1994" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xgetmouse - get the current position of the mouse
+.SH CALLING SEQUENCE
+.nf
+rep=xgetmouse([flag])
+.fi
+.SH PARAMETERS
+.TP 6
+rep
+: vector of size 3, [x,y,ibutton].
+.TP
+flag
+: integer. If present, the click event queue is not cleared when entering 
+xgetmouse.
+.SH DESCRIPTION
+If the mouse is located in the current graphics window, \fVxgetmouse\fR returns
+in \fVrep\fR the current mouse position (x,y) and the value \fVibutton\fR.
+ 
+The \fVibutton\fR value indicates the action of the button at this point:
+.TP 3
+- if \fVibutton\fR is -1 then no button was clicked.
+.TP
+- if \fVibutton\fR is 0, 1 or 2, then the left, middle or right button was clicked.
+
+If the mouse is not located in the current graphics window, \fVxgetmouse\fR
+waits.
+.SH EXAMPLE
+.nf
+xselect(); xbasc(); xsetech([0 0 1 1],[0 0 100 100])
+xset("alufunction",6)
+xtitle(" drawing a rectangle ")
+[b,x0,y0]=xclick(); rep=[x0,y0,-1]; x=x0; y=y0;
+xrect(x0,y0,x-x0,y-y0)
+while rep(3)==-1 then
+    rep=xgetmouse(0)
+    xrect(x0,y0,x-x0,y0-y)
+    x=rep(1); y=rep(2);
+    xrect(x0,y0,x-x0,y0-y)
+end
+xset("alufunction",3)
+.fi
+.SH SEE ALSO
+locate, xclick
+.SH AUTHOR
+S. Steer

@@ -1,0 +1,23 @@
+.TH specfact 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+specfact - spectral factor
+.SH CALLING SEQUENCE
+.nf
+[W0,L]=specfact(A,B,C,D)
+.fi
+.SH DESCRIPTION
+Given a spectral density matrix \fVphi(s)\fR:
+.nf
+                 -1                   -1
+     R + C*(s*I-A) * B  +  B'*(-s*I-A') * C'  with R=D+D' > 0
+.fi
+\fVspecfact\fR computes  \fVW0\fR and \fVL\fR such 
+that  \fVW(s)=W0+L*(s*I-A)^-1 * B\fR  is a
+spectral factor of of \fVPHI(s)\fR, i.e.
+.LP
+\fVPHI(s)=W'(-s)*W(s)\fR
+.SH SEE ALSO
+sfact, fspec, fspecg
+.SH AUTHOR
+F. D. 

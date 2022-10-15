@@ -1,0 +1,85 @@
+
+scicos_model(Janvier 1997)                         scicos_model(Janvier 1997)
+NAME
+  scicos_model - Scicos block functionality  data structure
+
+DEFINITION
+  model=list(sim,in,out,evtin,evtout,state,dstate,..
+        rpar,ipar,blocktype,firing,dep_ut,label,import,ID)
+
+PARAMETERS
+
+  sim            : list(fun,typ) or fun. In the latest case typ is supposed
+                 to be 0.
+
+                 fun       : character string, the name of the block simula-
+                           tion function (a linked C or Fortran procedure  or
+                           a Scilab function).
+
+                 typ       : integer, calling sequence type of simulation
+                           function (see documentation for more precision).
+
+  in             : column vector of integers, input port sizes indexed from
+                 top to bottom of the block. If no input port exist in==[].
+
+  out            : column vector of integers, output port sizes indexed from
+                 top to bottom of the block. If no output port exist in==[].
+
+  evtin          : column vector of ones, the size of evtin gives the number
+                 of event input ports. If no event input port exists evtin
+                 must be equal to [].
+
+  evtout         : column vector of ones, the size of evtout gives the number
+                 of event output ports. If no event output port exists evtout
+                 must be equal to [].
+
+  state          : column vector, the initial continuous state of the block.
+                 Must be [] if no continuous state.
+
+  dstate         : column vector, the initial discrete state of the block.
+                 Must be [] if no discrete state.
+
+  rpar           : column vector, the vector of floating point block parame-
+                 ters. Must be [] if no floating point parameters.
+
+  ipar           : column vector, the vector of integer  block parameters.
+                 Must be [] if no integer parameters.
+
+  blocktype      : a character with possible values:
+
+                 :
+
+                 :
+                 :
+
+                 :
+
+  firing         : a vector whose size is equal to the size of evtout> It
+                 contains output initial event dates (Events generated before
+                 any input event arises). Negative values stands for no ini-
+                 tial event on the corresponding port.
+
+  dep_ut         : 1x 2 vector of boolean [dep_u, dep_t], dep_u must be true
+                 if output depends continuously of the input, dep_t must be
+                 true if output depends continuously of the time.
+
+  label          : a character string, used as a label
+
+  import         : Unused.
+
+  ID             : a character string, used as an identifier.
+  model          : Scilab list, Scicos block model data structure.
+
+DESCRIPTION
+  Scicos block model data structure contains all information relative to the
+  simulation functionality of the block. Fields may be fixed by block defini-
+  tion or set.
+
+  If block is a super block, the fields state,dstate,ipar,blocktype,firing,
+  dep_ut, are unused.
+
+  The rpar field contains a data structure similar to the scicos_main data
+  structure.
+
+SEE ALSO
+  scicos,  scicos_model, scicos_main

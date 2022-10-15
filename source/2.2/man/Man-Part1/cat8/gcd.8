@@ -1,0 +1,66 @@
+
+
+
+gcd(8)                         Scilab Function                         gcd(8)
+
+
+
+
+
+
+NAME
+  gcd - gcd calculation
+
+CALLING SEQUENCE
+  [pgcd,U]=gcd(p)
+
+PARAMETERS
+
+  p    : polynomial row vector p=[p1,..,pn]
+
+DESCRIPTION
+  [pgcd,u]=gcd(p) computes the gcd  of components of p and a unimodular
+  matrix (with polynomial inverse) U, with minimal degree such that
+
+  p*U=[0 ... 0 pgcd]
+
+EXAMPLE
+  s=poly(0,'s');
+  p=[s,s*(s+1)^2,2*s^2+s^3];
+  [pgcd,u]=gcd(p);
+  p*u
+
+SEE ALSO
+  bezout, bez
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

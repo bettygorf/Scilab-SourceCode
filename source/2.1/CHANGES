@@ -1,0 +1,8 @@
+So many changes have been done between 2.0 and 2.1 that
+we do not list them...
+bugs mentioned by users have been fixed. Please let us
+know the bugs that you find at scilab@inria.fr.
+
+NOTE THAT YOU MAY HAVE TO RECOMPILE THE MACROS YOU HAVE WRITTEN
+IN SCILAB 2.0.
+

@@ -1,0 +1,66 @@
+
+
+
+dsimul(1)                      Scilab Function                      dsimul(1)
+
+
+
+
+
+
+NAME
+  dsimul - discrete time response
+
+CALLING SEQUENCE
+  [y]=dsimul(sl,u)
+
+PARAMETERS
+
+  sl   : syslin list for a state-space discrete time linear
+        system, sl=syslin('d',A,B,C,D,x0)
+
+  u    : matrix of inputs
+
+  y    : matrix of outputs
+
+DESCRIPTION
+  Time response for the strictly proper discrete-time system sl defined by:
+     x(k+1)=A*x(k)+B*u(k)
+     y(k+1)=C*x(k+1)
+     x(0)=x0
+  with inputs u=[u(1),....,u(n)] (u(i) = vector of inputs at time i.
+
+  Note that the d matrix of sl is zero.
+
+SEE ALSO
+  rtitr, ltitr, dscr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

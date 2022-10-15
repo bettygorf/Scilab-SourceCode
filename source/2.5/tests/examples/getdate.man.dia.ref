@@ -1,0 +1,10 @@
+ 
+clear;lines(0);
+ 
+w=getdate()
+ w  =
+ 
+!   1999.    10.    42.    294.    4.    21.    14.    39.    9. !
+ 
+mprintf("Year:%d,Month:%d,Day%d",w(1),w(2),w(7));
+ 

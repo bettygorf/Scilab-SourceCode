@@ -1,0 +1,25 @@
+.TH mincf0 1 "October 1994" "Scilab Group" "Scilab macro"
+.so man1/sci.an
+.SH NAME 
+mincf0 - minimum linear cost flow  
+.SH CALLING SEQUENCE
+.nf
+[c,f] = mincf0([g])
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP 2
+c
+: integer, cost value of the flow on the return arc (sink,source)
+.TP 2
+f
+: array of the flows on the arcs
+.SH DESCRIPTION
+\fVmincf0\fR returns the minimum linear cost flow from the source to the sink 
+for the directed graph \fVg\fR with only one source and one sink.
+\fVc\fR is the cost value of the flow and \fVf\fR is the array of the flows 
+on the arcs.
+.SH SEE ALSO
+mincfr, minicf, minqflow

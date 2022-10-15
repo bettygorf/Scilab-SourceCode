@@ -1,0 +1,126 @@
+# Generated automatically from Makefile.in by configure.
+SHELL = /bin/sh
+
+binary:
+	@if test -f .binary; then \
+		echo "Humm... this is a binary version"; \
+		config/findpath; \
+		cd scripts; make; \
+		echo "Installation done"; \
+	else \
+		echo "Humm... this is a source version,"; \
+		echo "  you'd better read the README file first."; \
+		echo " "; \
+		echo "If you really want to make Scilab, do \"make all\"."; \
+	fi
+
+SCIDIR=.
+include Makefile.incl
+
+all:: bin/scilex
+
+world:: scilex-lib-world bin/scilex
+
+LIBRSCI = libs/system.a libs/interf.a libs/system2.a libs/optim.a \
+	libs/integ.a libs/control.a libs/scicos.a libs/signal.a \
+	libs/poly.a libs/calelm.a libs/lapack.a libs/X11G.a \
+	libs/sparse.a libs/metanet.a libs/sun.a \
+	libs/intersci.a libs/xwindow.a libs/xsci.a libs/comm.a
+
+LIBR = $(XAW_LOCAL_LIB) $(LIBRSCI) $(DLDLIB)
+
+DEFAULTS = routines/default/interf.o routines/default/bidon.o \
+	routines/default/fydot.o routines/default/fjac.o \
+	routines/default/fydotd.o \
+	routines/default/ffeval.o  \
+	routines/default/foptim.o  \
+	routines/default/fsolvf.o routines/default/fsolvj.o \
+	routines/default/fintg.o \
+	routines/default/fschur.o \
+	routines/default/dgetx.o routines/default/dgety.o \
+	routines/default/fres.o routines/default/fadda.o \
+	routines/default/fj2.o \
+	routines/default/fsurf.o routines/default/fsurfd.o \
+	routines/default/fresd.o routines/default/fjacd.o \
+	routines/default/fcol.o routines/default/fbutn.o\
+	routines/default/mainsci.o routines/default/scimem.o\
+	routines/default/matusr.o routines/default/matus2.o \
+	routines/default/funtab.o routines/default/msgstxt.o
+
+include Makefile.alpha
+
+distclean::
+	$(RM) bin/scilex
+
+SUBDIRS = scripts macros imp intersci xless xmetanet tests demos geci
+
+SUBDIRS-DOC = man doc
+
+scilex-lib:
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	cd routines; echo "making all in routines..."; \
+		$(MAKE) $(MFLAGS) all;
+
+scilex-lib-world:
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	cd routines; echo "making world in routines..."; \
+		$(MAKE) $(MFLAGS) world;
+
+all::
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in $(SUBDIRS) ;\
+	do \
+		(cd $$i ; echo "making" all "in $$i..."; \
+			$(MAKE) $(MFLAGS) all); \
+	done
+
+world::
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in $(SUBDIRS) $(SUBDIRS-DOC);\
+	do \
+		(cd $$i ; echo "making" world "in $$i..."; \
+			$(MAKE) $(MFLAGS) world); \
+	done
+
+
+distclean::
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in routines $(SUBDIRS) $(SUBDIRS-DOC);\
+	do \
+		(cd $$i ; echo "making" distclean "in $$i..."; \
+			$(MAKE) $(MFLAGS)  distclean); \
+	done
+
+clean::
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in routines $(SUBDIRS) $(SUBDIRS-DOC);\
+	do \
+		(cd $$i ; echo "making" clean "in $$i..."; \
+			$(MAKE) $(MFLAGS)  clean); \
+	done
+
+tests:
+	@echo "Type \"make tests\" in $(SCIDIR)/tests directory "
+	@echo "  to test the  distribution"
+
+distclean::
+	$(RM) config.cache config.log config.status .binary foo.f foo.o so_locations
+
+SCIBASE = scilab-2.2
+BINDISTFILES = \
+	$(SCIBASE)/CHANGES $(SCIBASE)/README \
+	$(SCIBASE)/notice.ps $(SCIBASE)/notice.tex \
+	$(SCIBASE)/scilab.quit $(SCIBASE)/scilab.star \
+	$(SCIBASE)/configure $(SCIBASE)/config $(SCIBASE)/Makefile* \
+	$(SCIBASE)/Version.incl $(SCIBASE)/patchlevel.h \
+	$(SCIBASE)/X11_defaults \
+	$(SCIBASE)/bin $(SCIBASE)/demos \
+	$(SCIBASE)/imp/NperiPos.ps $(SCIBASE)/macros \
+	$(SCIBASE)/man/Man-Part1 $(SCIBASE)/man/Man-Part2 \
+	$(SCIBASE)/maple $(SCIBASE)/scripts $(SCIBASE)/util \
+	$(SCIBASE)/.binary
+
+tarbindist:
+	touch .binary
+	cd .. ; tar cvf $(SCIDIR)/$(SCIBASE)-bin.tar $(BINDISTFILES)
+	$(RM) .binary

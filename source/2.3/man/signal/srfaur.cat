@@ -1,0 +1,29 @@
+
+srfaur(1)                      Scilab Function                      srfaur(1)
+NAME
+  srfaur - square-root algorithm
+
+CALLING SEQUENCE
+  [p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)
+
+PARAMETERS
+
+  h, f, g   : convenient matrices of the state-space model.
+
+  r0        : E(yk*yk').
+
+  n         : number of iterations.
+
+  p         : estimate of the solution after n iterations.
+
+  s, t, l   : intermediate matrices for
+             successive iterations;
+
+  rt, tt    : gain matrices of the filter model after n iterations.
+
+  p, s, t, l
+            : may be given as input if more than one recursion is desired
+            (evaluation of intermediate values of p).
+
+DESCRIPTION
+  square-root algorithm for the algebraic Riccati equation.

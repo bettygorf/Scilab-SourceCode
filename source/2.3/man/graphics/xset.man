@@ -1,0 +1,157 @@
+.TH xset 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xset - set values of the graphic context
+.SH CALLING SEQUENCE
+.nf
+xset(choice-name,x1,x2,x3,x4,x5)
+xset()
+.fi
+.SH PARAMETERS
+.TP 10
+choice-name
+: string
+.TP 15
+x1,...,x5
+: depending on \fVchoice-name\fR
+.TP
+xset("alufunction",number)
+: used to set the logical function for drawing, it works only under X11.
+The logical function used is set by \fVx1\fR. The default value is 3.
+.RS
+.TP
+ 0
+: function  " 0 ",
+.TP
+ 1
+: function " src AND dst "
+.TP
+ 2
+: function " src AND NOT dst "
+.TP
+ 3
+: function " src ",
+.TP
+ 4
+: function " NOT src AND dst "
+.TP
+ 5
+: function " dst ",
+.TP
+ 6
+: function " src XOR dst ",
+.TP
+ 7
+: function " src OR dst ",
+.TP
+ 8
+: function " NOT src AND NOT dst ",
+.TP
+ 9
+: function " NOT src XOR dst ",
+.TP
+10
+: function " NOT dst ",
+.TP
+11
+: function " src OR NOT dst ",
+.TP
+12
+: function " NOT src ",
+.TP
+13
+: function " NOT src OR dst ",
+.TP
+14
+: function " NOT src OR NOT dst ",
+.TP
+15
+: function " 1 ";
+.RE
+xset("background",color)
+: to fix the background color of the current graphic window.
+.TP
+xset("clipping",x,y,w,h) 
+: set the clipping
+zone to the rectangle (x,y,w,h) (Upper-Left point Width Height).
+This function uses the current scale
+.TP
+xset("colormap",cmap)
+: set the colormap as a m x 3 matrix. m is the number of colors.
+Color number i is given as a 3-uple cmap[i,1], cmap[i,2], cmap[i,3]
+corresponding respectively to Red, Green and Blue intensity between
+0 and 1.
+.TP
+xset("default")
+: reset the graphic context to default values
+.TP
+xset("dashes",i)
+: set the dash style to style i (0 for solid line)
+.TP
+xset("font",fontid,fontsize)
+: to fix the current font and its current size.
+.TP
+xset("foreground",color)
+: to fix the foreground color of the current graphic window.
+.TP
+xset("hidden3d",colorid)
+: set the color number for ``hidden'' faces in plot3d.
+.TP
+xset("line mode",type);
+This function is used to fix the line drawing mode. Absolute mode is fixed withtype=1 an relative mode with type=0. (Warning : the mode type=0 is bugged )
+.TP
+xset("mark",markid,marksize)
+: is used to set the current mark and current mark size.
+.TP
+xset("pattern",value)
+: to set the current pattern for filling functions, value is an integer 
+projected in the interval [0,whiteid]. 0 is used for black filling and 
+whiteid for white. The value of whiteid can be obtained with xget("white").
+.TP
+xset("thickness",value)
+: fixes the thickness of lines in pixel  ( 0 and 1 have the same meaning : 1 pixel thick)
+.TP
+xset("wdim",width,height)
+: fixes the width and height of the current graphic window. This option is not
+used by the postscript driver.
+.TP
+xset("wpos",x,y);
+: fixes the position of the upper left point of the graphic window.
+.TP
+xset("window",window-number)
+Set the current window to the window \fVwindow-number\fR and creates the window if 
+it doesn't exists.
+.TP
+xset("use color",flag)
+if flag=1 then xset("pattern",.) or xset("dashes",.) will be used so
+as to change the default Color for drawing or for filling patterns. 
+If flag=0 then we switch back to the gray and dashes mode.
+.TP
+xset("pixmap",flag)
+.RS
+.TP
+if
+flag=0 the graphics are directly displayed on the screen
+.TP
+if 
+flag=1 the graphics are done on a Pixmap and are send to the
+graphic window with the command  \fVxset("wshow")\fR. The Pixmap is
+cleared with the  command \fVxset("wwpc")\fR or with the usual command
+xbasc().
+.RE
+.TP 
+xset("wshow")
+: see the function \fVdriver\fR.
+.TP
+xset("wwpc")
+: see the function \fVdriver\fR.
+.SH DESCRIPTION
+\fVxset\fR is used to set values of the graphic context. When called 
+no arguments, a choice menu is created showing the current values and 
+changes can be performed through toggle buttons 
+.SH SEE ALSO
+xget, colormap
+.SH REFERENCE
+X11 documentation
+.SH AUTHOR
+J.Ph.C.

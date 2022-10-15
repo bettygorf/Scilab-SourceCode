@@ -1,0 +1,66 @@
+
+
+
+xarc(2)                        Scilab Function                        xarc(2)
+
+
+
+
+
+
+NAME
+  xarc - draws a part of an ellipsis
+
+CALLING SEQUENCE
+  xarc(x,y,w,h,a1,a2)
+
+PARAMETERS
+
+  x,y,w,h        : real (rectangle def)
+
+  a1,a2          : real (angle def)
+
+DESCRIPTION
+  Draws a portion of an ellipsis contained in the rectangle (x,y,w,h) (
+  Upper-Left point, Width, Height), and in the sector delimited by the angle
+  alpha1 and the angle alpha1+alpha2. alpha1 and alpha2 are given respec-
+  tively by a1/64 degrees and a2/64 degrees.  This function uses the current
+  graphic state and graphic scale.  which can be set by calling a high level
+  drawing function such as plot2d.
+
+EXAMPLE
+  // isoview scaling
+  plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
+  xarc(-1,1,2,2,0,90*64)
+  xarc(-1.5,1.5,3,3,0,360*64)
+
+SEE ALSO
+  xarcs,xfarc.
+
+AUTHOR
+  J.Ph.C..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

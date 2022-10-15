@@ -1,0 +1,21 @@
+.TH trisolve 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+trisolve - symbolic linear system solver
+.SH CALLING SEQUENCE
+.nf
+[x [,sexp]] = trisolve(A,b [,sexp])
+.fi
+.SH PARAMETERS
+.TP 10
+A,b
+: matrices of strings
+.SH DESCRIPTION
+symbolically solves \fVA*x =b\fR , \fVA\fR being assumed to be
+upper triangular.  
+.LP
+\fVsexp\fR is a vector of common subexpressions in \fVA, b, x\fR.
+.SH SEE ALSO
+trianfml
+.SH AUTHOR
+F.D, S.S

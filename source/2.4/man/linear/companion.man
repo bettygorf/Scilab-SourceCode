@@ -1,0 +1,37 @@
+.TH companion 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+companion - companion matrix
+.SH CALLING SEQUENCE
+.nf
+A=companion(p)
+.fi
+.SH PARAMETERS
+.TP 10
+p
+: polynomial or vector of polynomials
+.TP
+A
+: square matrix
+.SH DESCRIPTION
+Returns a matrix \fVA\fR with characteristic polynomial equal
+to \fVp\fR if \fVp\fR is monic. If \fVp\fR is not monic
+the characteristic polynomial of \fVA\fR is equal to
+\fVp/c\fV where \fVc\fR is the coefficient of largest degree
+in \fVp\fR.
+.LP
+If \fVp\fR is a vector of monic polynomials, \fVA\fR is block diagonal,
+and the characteristic polynomial of the ith block is \fVp(i)\fR.
+.SH EXAMPLE
+.nf
+s=poly(0,'s');
+p=poly([1,2,3,4,1],'s','c')
+det(s*eye-companion(p))
+roots(p)
+spec(companion(p))
+.fi
+.SH SEE ALSO
+spec, poly, randpencil
+.SH AUTHOR
+F.D.
+

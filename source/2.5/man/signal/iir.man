@@ -1,0 +1,61 @@
+.TH iir 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+iir - iir digital filter
+.SH CALLING SEQUENCE
+.nf
+[hz]=iir(n,ftype,fdesign,frq,delta)
+.fi
+.SH PARAMETERS
+.TP 10
+n
+: filter order (pos. integer)
+.TP
+ftype
+: string  specifying the filter type
+ \fV'lp','hp','bp','sb'\fR
+.TP
+fdesign
+: string specifying the analog filter design
+ \fV='butt','cheb1','cheb2','ellip'\fR
+.TP
+frq
+: 2-vector of discrete cut-off frequencies
+(i.e., \fV0<frq<.5\fR). For \fVlp\fR and \fVhp\fR filters only
+\fVfrq(1)\fR is used. For \fVbp\fR and \fVsb\fR filters \fVfrq(1)\fR
+is the lower cut-off frequency and \fVfrq(2)\fR is
+the upper cut-off frequency
+.TP
+delta
+: 2-vector of error values for \fVcheb1, cheb2\fR, and
+\fVellip\fR filters where only \fVdelta(1)\fR is used for
+\fVcheb1\fR case, only \fVdelta(2)\fR is used for \fVcheb2\fR case,
+and \fVdelta(1)\fR and \fVdelta(2)\fR are both used for
+\fVellip\fR case. \fV0<delta(1),delta(2)<1\fR
+.RS
+.TP
+-
+for \fVcheb1\fR filters \fV1-delta(1)<ripple<1\fR in passband
+.TP
+-
+for \fVcheb2\fR filters \fV0<ripple<delta(2)\fR in stopband
+.TP
+-
+for \fVellip\fR filters \fV1-delta(1)<ripple<1\fR in passband
+and \fV0<ripple<delta(2)\fR in stopband
+.RE
+.SH DESCRIPTION
+function which designs an iir digital filter using analog filter designs.
+.SH EXAMPLE
+.nf
+hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot2d(fr',hzm')
+xtitle('Discrete IIR filter band pass  0.15<fr<0.25 ',' ',' ');
+q=poly(0,'q');     //to express the result in terms of the ...
+hzd=horner(hz,1/q) //delay operator q=z^-1
+.fi
+.SH SEE ALSO
+eqfir, eqiir
+.SH AUTHOR
+C. B.

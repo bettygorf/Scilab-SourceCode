@@ -1,0 +1,66 @@
+
+
+
+im_inv(1)                      Scilab Function                      im_inv(1)
+
+
+
+
+
+
+NAME
+  im_inv - inverse image
+
+CALLING SEQUENCE
+  [X,dim]=im_inv(A,B [,tol])
+
+PARAMETERS
+  A,B       : two real or complex matrices with equal number of columns
+  X         : orthogonal or unitary square matrix of order equal to the
+            number of columns of A
+  dim       : integer (dimension of subspace)
+
+DESCRIPTION
+  [X,dim]=im_inv(A,B) computes
+
+  (A^-1)(B)
+
+
+   i.e vectors whose image through A are in range(B)
+  The dim first columns of X span
+
+  (A^-1) (B)
+
+
+  tol is a threshold used to test if subspace inclusion; default value is tol
+  = 100*%eps.
+
+SEE ALSO
+  rowcomp
+
+AUTHOR
+  F. D.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

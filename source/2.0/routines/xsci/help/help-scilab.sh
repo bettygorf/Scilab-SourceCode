@@ -1,0 +1,39 @@
+#!/bin/sh
+SCI=/u/cergrene/1/scilab-2.0/scilab-2.0/
+export SCI 
+
+do_whatis()
+{
+ /usr/lib/getNAME $1 | \
+sed  	-e 's/\\-/-/' \
+	-e 's/\\\*-/-/' \
+	-e 's/ VAX-11//' \
+	-e 's/\\f[PRIB0123]//g'  \
+	-e 's/\\s[-+0-9]*//g' \
+	-e 's/\"//g' \
+	-e '/ - /!d' \
+	-e 's/.TH [^ ]* \([^ 	]*\).*	\(.*\) -/\2 	 -/' \
+	-e 's/	/ /g'
+}
+
+rm -f help-text*.h
+rm -f help-list*.h
+
+for jj in 1 2 3 4 5 6 7 8
+do 
+	for f in $SCI/man/Man-Part1/man$jj/*.$jj
+	do
+		echo  "\"  `do_whatis $f` \","   >> help-text$jj.h 
+		echo  "\" `basename $f .$jj` \","   >> help-list$jj.h 
+	done 
+done
+
+for jj in 1 2 3 4
+do 
+	jjj=`echo "$jj 8 + p "|dc `
+	for f in $SCI/man/Man-Part2/man$jj/*.$jj
+	do
+		echo  "\"  `do_whatis $f` \","   >> help-text$jjj.h 
+		echo  "\" `basename $f .$jj` \","   >> help-list$jjj.h 
+	done 
+done

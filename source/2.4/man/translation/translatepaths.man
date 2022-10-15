@@ -1,0 +1,26 @@
+.TH translatepaths 1 "April 1998" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+translatepaths - translate a set of Matlab M_file directories to scilab 
+.SH CALLING SEQUENCE
+.nf
+translatepaths(dirs_path [,res_path])
+.fi
+.SH PARAMETERS
+.TP 15
+dir_path
+: a character string vector which gives the paths of Matlab M_file
+directories  to translate
+.TP 15
+res_path
+: a character string  which gives the path of the
+directory  where the scilab functions are written to.
+
+.SH DESCRIPTION
+translatepaths, translate all Matlab M-file contained in a set of directories to
+Scilab functions. Each function is translated by mfile2sci.
+
+.SH SEE ALSO
+mfile2sci
+.SH AUTHOR
+Serge Steer, INRIA

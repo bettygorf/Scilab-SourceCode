@@ -1,0 +1,12 @@
+clear;lines(0);
+addmenu('foo')
+foo='disp(''hello'')'
+
+addmenu('Hello',['Franck';'Peter'])
+Hello=['disp(''hello Franck'')';'disp(''hello Peter'')']
+
+addmenu(0,'Hello',['Franck';'Peter'])
+Hello_0=['disp(''hello Franck'')';'disp(''hello Peter'')']
+
+addmenu('Bye',list(0,'French_Bye'))
+French_Bye='disp(''Au revoir'')'

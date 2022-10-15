@@ -1,0 +1,15 @@
+This directory contains evaluation programs for testing Scilab's
+installation on your machine.
+
+1- to run a global test on various functions type "make tests"
+   in this directory. Results of the tests are compared to 
+   corresponding references. Failure of a test does not necessarily
+   imply bad installation. Failure may be due to small differences
+   in machine constants. This can happen in particular in "matopt.tst".
+
+2- to run test on a specific item, invoke Scilab in this directory
+   and  type "exec('<item>.tst')" at Scilab prompt.
+
+3- The file "demos.tst" tests all the demos (this test is in part  
+   interactive; you need to type "resume", carriage return, "y", ...).
+   On IBM RS6000, demos using dynamic link may not work.

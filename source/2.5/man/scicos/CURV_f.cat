@@ -1,0 +1,14 @@
+
+CURV_f(5)                        Scicos Block                       CURV_f(5)
+NAME
+  CURV_f - Scicos block, tabulated function of time
+
+DIALOGUE PARAMETERS
+  Tabulated function is entered using a graphics curve editor (see edit_curv
+  in Scilab documentation)
+DESCRIPTION
+  This block defines a tabulated function of time. Between mesh points block
+  performs a linear interpolation. Outside tabulation block outputs last tab-
+  ulated value.
+
+  User may define the tabulation of the function using a curve editor.

@@ -1,0 +1,25 @@
+.TH floor 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+floor - rounding down
+.SH CALLING SEQUENCE
+.nf
+[y]=floor(x)
+.fi
+.SH PARAMETERS
+.TP
+x 
+: a real matrix
+.TP 
+y
+: integer matrix
+.SH DESCRIPTION
+\fVfloor(x)\fR returns an integer matrix made of nearest rounded down integers.
+.SH EXAMPLE
+.nf
+floor([1.9 -2.5])-[1,-3]
+floor(-%inf)
+x=rand()*10^20;floor(x)-x
+.fi
+.SH SEE ALSO
+round, fix, ceil

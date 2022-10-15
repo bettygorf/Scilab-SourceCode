@@ -1,0 +1,47 @@
+
+quaskro(1)                     Scilab Function                     quaskro(1)
+NAME
+  randpencil - random pencil
+
+CALLING SEQUENCE
+  F=randpencil(eps,infi,fin,eta)
+
+PARAMETERS
+
+  eps  : vector of integers
+
+  infi : vector of integers
+
+  fin  : real vector, or monic polynomial, or vector of monic polynomial
+
+  eta  : vector of integers
+
+  F    : real matrix pencil F=s*E-A  (s=poly(0,'s'))
+
+DESCRIPTION
+  Utility function.  F=randpencil(eps,infi,fin,eta) returns a random pencil F
+  with given Kronecker structure. The structure is given by:
+  eps=[eps1,...,epsk]: structure of epsilon blocks (size eps1x(eps1+1),....)
+  fin=[l1,...,ln]  set of finite eigenvalues (assumed real)  (possibly [])
+  infi=[k1,...,kp] size of J-blocks at infinity ki>=1  (infi=[] if no J
+  blocks).  eta=[eta1,...,etap]: structure ofeta blocks (size
+  eta1+1)xeta1,...)
+
+  epsi's should be >=0, etai's should be >=0, infi's should be >=1.
+
+  If fin is a (monic) polynomial, the finite block admits the roots of fin as
+  eigenvalues.
+
+  If fin is a vector of polynomial, they are the finite elementary divisors
+  of F i.e. the roots of p(i) are finite eigenvalues of F.
+
+EXAMPLE
+  F=randpencil([0,1],[2],[-1,0,1],[3]);
+  [Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F);
+  Qd, Zd
+  s=poly(0,'s');
+  F=randpencil([],[1,2],s^3-2,[]); //regular pencil
+  det(F)
+
+SEE ALSO
+  kroneck, pencan, penlaur

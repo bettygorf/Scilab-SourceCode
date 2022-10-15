@@ -1,0 +1,9 @@
+.TH ans 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ans - answer
+.SH DESCRIPTION
+\fVans\fR means "answer".
+Variable \fVans\fR is created automatically when expressions 
+are not assigned. \fVans\fR contains the last unassigned evaluated expression.
+

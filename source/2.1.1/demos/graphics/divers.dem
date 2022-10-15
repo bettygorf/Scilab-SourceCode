@@ -1,0 +1,22 @@
+mode(-1)
+oldln=lines()
+lines(0)
+
+deff('[]=xdemo(info,str)',['x_message([info;str]);xbasc();';
+                           'execstr(str)']);
+xset("default");
+
+exec('SCI/demos/graphics/divers-1.dem');
+
+nn=prod(size(str_l))
+while %t then
+  num=x_choose(string(1:nn)','Choose a demo');
+  if num=0 then 
+     lines(oldln(1))
+     return
+  else
+     xdemo(" ",str_l(num));
+  end,
+end
+
+

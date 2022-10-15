@@ -1,0 +1,27 @@
+
+WaitMsg(1)                     Scilab function                     WaitMsg(1)
+NAME
+  WaitMsg - waits for a message
+
+CALLING SEQUENCE
+  [type,msg] = WaitMsg(appli)
+
+PARAMETERS
+
+  appli : string, name of an application
+
+  type : string
+
+  msg : string
+
+DESCRIPTION
+  WaitMsg waits for a message sent by another application.  As long as any
+  message has not been sent, WaitMsg waits.  This is a way to send and get
+  messages in a synchronous way.  The type of the message is string and the
+  message itself is msg.
+
+  By default the name of the first application (the one executed by GeCi) is
+  "XGeCI".
+
+SEE ALSO
+  GetMsg, SendMsg

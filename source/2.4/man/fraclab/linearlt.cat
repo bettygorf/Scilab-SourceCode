@@ -1,0 +1,47 @@
+
+linearlt(2)                    Scilab Function                    linearlt(2)
+NAME
+   linearlt -  linear time legendre transform
+
+  Author: Christophe Canus
+
+  This C_LAB routine the Legendre transform of a function using the linear
+  time Legendre transform algorithm.
+
+Usage
+  [s,u_star_s]=linearlt(x,u_x)
+
+Input parameters
+       o x : real vector [1,N] or [N,1] Contains the abscissa.
+       o y : real vector [1,N] or [N,1] Contains the function to be
+         transformed.
+Output parameters
+       o s : real vector [1,M] Contains the abscissa of the regularized func-
+         tion.
+       o u_star_s : real vector [1,M] Contains the Legendre conjugate func-
+         tion.
+Description
+
+Parameters
+  The abscissa x and the function u_x  to be transformed must be of the same
+  size [1,N] or [N,1].  The abscissa s and the Legendre conjugate function
+  u_star_s are of the same size [1,M] with M<=N.
+
+Algorithm details
+  The linear time Legendre transform algorithm is based on  the use of a con-
+  cave regularization before slopes' computation.
+Examples
+
+Matlab
+
+  x=linspace(-5.,5.,1024);
+  u_x=-1+log(6+x);
+  plot(x,u_x);
+  % looks like a Reyni exponents function, isn't it ?
+  [s,u_star_s]=linearlt(x,u_x);
+  plot(s,u_star_s);
+Scilab
+
+  //
+References
+  None..SH See Also bbch (C_LAB routine).

@@ -1,0 +1,16 @@
+
+errclear(1)                    Scilab Function                    errclear(1)
+NAME
+  errclear - error clearing
+
+CALLING SEQUENCE
+  errclear([n])
+
+DESCRIPTION
+  clears the action (error-handler) connected to error of type  n.
+
+  If n is positive, it is the number of the cleared error ; otherwise all
+  errors are cleared (default case)
+
+SEE ALSO
+  errcatch

@@ -1,0 +1,26 @@
+
+cont_frm(1)                    Scilab Function                    cont_frm(1)
+NAME
+  cont_frm - transfer to controllable state-space
+
+CALLING SEQUENCE
+  [sl]=cont_frm(NUM,den)
+
+PARAMETERS
+
+  NUM  : polynomial matrix
+
+  den  : polynomial
+
+  sl   : syslin list, sl=[A,B,C,D].
+
+DESCRIPTION
+  controllable state-space form of the transfer NUM/den.
+
+EXAMPLE
+  s=poly(0,'s');NUM=[1+s,s];den=s^2-5*s+1;
+  sl=cont_frm(NUM,den);
+  slss=ss2tf(sl);       //Compare with NUM/den
+
+SEE ALSO
+  tf2ss, canon, contr

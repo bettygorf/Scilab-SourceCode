@@ -1,0 +1,30 @@
+ 
+clear;lines(0);
+ 
+deff('varargout=exampl()','varargout=list(1,2,3,4)')
+ 
+ 
+x=exampl()
+ x  =
+ 
+    1.  
+ 
+[x,y]=exampl()
+ y  =
+ 
+    2.  
+ x  =
+ 
+    1.  
+ 
+[x,y,z]=exampl()
+ z  =
+ 
+    3.  
+ y  =
+ 
+    2.  
+ x  =
+ 
+    1.  
+ 

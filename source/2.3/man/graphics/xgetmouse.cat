@@ -1,0 +1,43 @@
+
+xgetmouse(September  1994)                         xgetmouse(September  1994)
+NAME
+  xgetmouse - get current position of the mouse
+
+CALLING SEQUENCE
+  rep=xgetmouse([flag])
+
+PARAMETERS
+
+  rep       : a three vector: [x,y,ibutton]
+
+  flag      : an integer. If present, the click event queue is not cleared
+            when entering xclick
+
+DESCRIPTION
+  If the mouse is located in the current graphic window xgetmouse returns in
+  rep the current mouse position (x,y) and the value ibutton. The ibutton
+  value indicate the button action at this point
+   if ibutton==-1 then no button clicked
+   if ibutton==0,1 or 2 then the left, middle or right button clicked
+
+  If the mouse is not located in the current graphic window xgetmouse waits
+
+EXAMPLE
+  xselect();xbasc(); xsetech([0 0 1 1],[0 0 100 100])
+  xset('alufunction',6)
+  xtitle(' drawing a rectangle ');
+  [b,x0,y0]=xclick();rep=[x0,y0,-1];x=x0;y=y0
+  xrect(x0,y0,x-x0,y-y0);
+  while rep(3)==-1 then
+      rep=xgetmouse(0);
+      xrect(x0,y0,x-x0,y0-y);
+      x=rep(1);y=rep(2);
+      xrect(x0,y0,x-x0,y0-y);
+  end
+  xset('alufunction',3)
+
+SEE ALSO
+  locate, xclick
+
+AUTHOR
+  S. Steer

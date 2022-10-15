@@ -1,0 +1,24 @@
+.TH arhnk 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+arhnk - Hankel norm approximant
+.SH CALLING SEQUENCE
+.nf
+[slm]=arhnk(sl,ord,[tol])   
+.fi
+.SH PARAMETERS
+.TP
+sl
+: linear system (\fVsyslin\fR list)
+.TP
+ord 
+: integer, order of the approximant
+.TP
+tol 
+: threshold for rank determination in \fVequil1\fR
+.SH DESCRIPTION
+computes \fVslm\fR, the optimal Hankel norm approximant of the 
+continuous-time linear system \fVsl=[A,B,C,D]\fR.
+.SH SEE ALSO 
+equil, equil1
+

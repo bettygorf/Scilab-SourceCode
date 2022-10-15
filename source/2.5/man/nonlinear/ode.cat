@@ -1,0 +1,187 @@
+
+ode(G)                         Scilab Function                         ode(G)
+NAME
+  ode - ordinary differential equation solver
+
+CALLING SEQUENCE
+  y=ode(y0,t0,t,f)
+  [y,w,iw]=ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
+  [y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f  [,jac],ng,g [,w,iw])
+  y=ode("discrete",y0,k0,kvect,f)
+
+PARAMETERS
+
+  y0        : real vector or matrix (initial conditions).
+
+  t0        : real scalar (initial time).
+
+  t         : real vector (times at which the solution is computed).
+
+  f         : external (function or character string or list).
+
+  type      : one of the following character string: "adams" "stiff" "rk"
+            "rkf" "fix" "discrete" "roots"
+
+  rtol,atol : real constants or real vectors of the same size as y.
+
+  jac       : external (function or character string or list).
+
+  w,iw      : real vectors.
+
+  ng        : integer.
+
+  g         : external (function or character string or list).
+
+  k0        : integer (initial time).  kvect : integer vector.
+
+DESCRIPTION
+  ode is the standard function for solving explicit ODE systems defined by:
+
+   dy/dt=f(t,y) , y(t0)=y0.
+
+  It is an interface to various solvers, in particular to ODEPACK.  The type
+  of problem solved and the method used depend on the value of the first
+  optional argument type which can be one of the following strings:
+
+  <not given>: lsoda solver of package ODEPACK is called by default. It auto-
+               matically selects between nonstiff predictor-corrector Adams
+               method and stiff Backward Differentiation Formula (BDF)
+               method. It uses nonstiff method initially and dynamically mon-
+               itors data in order to decide which method to use.
+
+  "adams": This is for nonstiff problems. lsode solver of package ODEPACK is
+           called and it uses the Adams method.
+
+  "stiff": This is for stiff problems. lsode solver of package ODEPACK is
+           called and it uses the BDF method.
+
+  "rk": Adaptive Runge-Kutta of order 4 (RK4) method.
+
+  "rkf": The Shampine and Watts program based on Fehlberg's Runge-Kutta pair
+         of order 4 and 5 (RKF45) method is used. This is for non-stiff and
+         mildly stiff problems when derivative evaluations are inexpensive.
+         This method should generally not be used when the user is demanding
+         high accuracy.
+
+  "fix": Same solver as "rkf", but the user interface is very simple, i.e.
+         only rtol and atol parameters can be passed to the solver. This is
+         the simplest method to try.
+
+  "root":  ODE solver with rootfinding capabilities.  The lsodar solver of
+           package ODEPACK is used. It is a variant of the lsoda solver where
+           it finds the roots of a given vector function. See help on
+           ode_root for more details.
+
+  "discrete": Discrete time simulation. See help on ode_discrete for more
+              details.
+  In this help we only describe the use of ode for standard explicit ODE sys-
+  tems.
+
+  The simplest call of ode is: y=ode(y0,t0,t,f) where y0 is the vector of
+  initial conditions, t0 is the initial time, t is the vector of times at
+  which the solution y is computed and y is the solution vector
+  y=[y(t(1)),y(t(2)),...].
+
+  The input f to ode is an external i.e. a function with specified syntax, or
+  the name of a Fortran subroutine or a C function (character string) with
+  specified calling sequence or a list.
+
+  If f is a function, its syntax must be as follows:
+  ydot = f(t,y)
+  where t is a real scalar (time) and y a real vector (state).  This function
+  is the RHS of the differential equation dy/dt=f(t,y).
+
+  If f is a character string, it refers to the name of a Fortran subroutine
+  or a C function, i.e. if ode(y0,t0,t,"fex") is the command, then the sub-
+  routine fex is called.  This routine must have the following calling
+  sequence: f(n,t,y,ydot). It can be dynamically linked to Scilab by the link
+  function. Examples of such programs can be seen in the files SCIDIR/rou-
+  tines/default/README and SCIDIR/routines/default/Ex-ode.f.
+
+  The f argument can also be a list: if ode(y0,t0,t,lst) is the command, then
+  lst must be a list with the following structure:
+  lst=list(f,u1,u2,...un)
+  where f is a function with syntax:
+  ydot = f(t,y,u1,u2,...,un)
+  this allows to use parameters as the arguments of f.
+
+  The function f can return a p x q matrix instead of a vector.  With this
+  matrix notation, we solve the n=p+q ODE's system dY/dt=F(t,Y) where Y is a
+  p x q matrix.  Then initial conditions, Y0, must also be a p x q matrix and
+  the result of ode is the p x q(T+1) matrix [Y(t_0),Y(t_1),...,Y(t_T)].
+
+  Optional parameters can be given for the error of the solution: rtol and
+  atol are threshold for relative and absolute estimated errors.  The esti-
+  mated error on y(i) is:
+  rtol(i)*abs(y(i))+atol(i)
+  and integration is carried out as far as this error is small for all compo-
+  nents of the state.  If rtol and/or atol is a constant rtol(i) and/or
+  atol(i) are set to this constant value. Default values for rtol and atol
+  are respectively rtol=1.d-5 and atol=1.d-7 for most solvers and rtol=1.d-3
+  and atol=1.d-4 for "rfk" and "fix".
+
+  For stiff problems, it is better to give the Jacobian of the RHS function
+  as the optional argument jac.  It is an external i.e. a function with
+  specified syntax, or the name of a Fortran subroutine or a C function
+  (character string) with specified calling sequence or a list.
+
+  If jac is a function the syntax should be as follows:
+  J=jac(t,y)
+  where t is a real scalar (time) and y a real vector (state).  The result
+  matrix J must evaluate to df/dx i.e.  J(k,i) = dfk /dxi with fk = kth com-
+  ponent of f.
+
+  If jac is a character string it refers to the name of a Fortran subroutine
+  or a C function, with the following calling sequence:
+  jac(n,t,y,ml,mu,J,nrpd). In most cases you have not to refer ml, mu and
+  nrpd (see source code in SCIDIR/routines/default/Ex-ode.f for an example).
+
+  If jac is a list the same conventions as for f apply.
+
+  Optional arguments w and iw  are vectors for storing information returned
+  by the integration routine. When these vectors are provided in RHS of ode
+  the integration re-starts with the same  parameters as in its previous
+  stop.
+
+  More options can be given to ODEPACK solvers by using %ODEOPTIONS variable.
+  See odeoptions help.
+
+EXAMPLE
+  // Simple one dimension ODE
+  // dy/dt=y^2-y sin(t)+cos(t), y(0)=0
+  deff("[ydot]=f(t,y)","ydot=y^2-y*sin(t)+cos(t)")
+  y0=0;t0=0;t=0:0.1:%pi;
+  y=ode(y0,t0,t,f)
+  plot(t,y)
+  // Simulation of dx/dt = A x(t) + B u(t) with u(t)=sin(omega*t),
+  // x0=[1;0]
+  // solution x(t) desired at t=0.1, 0.2, 0.5 ,1.
+  // A and u function are passed to RHS function in a list.
+  // B and omega are passed as global variables
+  deff("[xdot]=linear(t,x,A,u)","xdot=A*x+B*u(t)")
+  deff("[ut]=u(t)","ut=sin(omega*t)")
+  A=[1 1;0 2];B=[1;1];omega=5;
+  ode([1;0],0,[0.1,0.2,0.5,1],list(linear,A,u))
+  //
+  // Matrix notation
+  // Integration of the Riccati differential equation
+  // Xdot=A'*X + X*A - X'*B*X + C , X(0)=Identity
+  // Solution at t=[1,2]
+  deff("[Xdot]=ric(t,X)","Xdot=A''*X+X*A-X''*B*X+C")
+  A=[1,1;0,2]; B=[1,0;0,1]; C=[1,0;0,1];
+  t0=0;t=0:0.1:%pi;
+  X=ode(eye(A),0,t,ric)
+  //
+  // Computation of exp(A)
+  A=[1,1;0,2];
+  deff("[xdot]=f(t,x)","xdot=A*x");
+  ode(eye(A),0,1,f)
+  ode("adams",eye(A),0,1,f)
+  // with stiff matrix, Jacobian given
+  A=[10,0;0,-1];
+  deff("[xdot]=f(t,x)","xdot=A*x");
+  deff("[J]=Jacobian(t,y)","J=A")
+  ode("stiff",[0;1],0,1,f,Jacobian)
+
+SEE ALSO
+  ode_discrete, ode_root, dassl, impl, odedc, odeoptions, csim, ltitr, rtitr

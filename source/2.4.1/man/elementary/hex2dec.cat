@@ -1,0 +1,21 @@
+
+hex2dec(G)                     Scilab Function                     hex2dec(G)
+NAME
+  hex2dec -   converts hexadecimal representation of integers to numbers
+
+CALLING SEQUENCE
+  d=hex2dec(h)
+
+PARAMETERS
+
+  d    : matrix of  integers
+
+  h    : matrix of character strings corresponding to hexadecimal representa-
+       tion
+
+DESCRIPTION
+  hex2dec(x) returns the  matrix of numbers corresponding to the  hexadecimal
+  representation.
+
+EXAMPLE
+  hex2dec(['ABC','0','A'])

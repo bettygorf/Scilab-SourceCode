@@ -1,0 +1,35 @@
+
+pvm_mytid(1)                   Scilab function                   pvm_mytid(1)
+NAME
+  pvm_mytid - returns the tid of the calling process.
+
+CALLING SEQUENCE
+  [tid] = pvm_mytid()
+
+PARAMETERS
+
+  tid  : integer, the task identifier of the calling PVM process.  Values
+       less than zero indicate an error.
+DESCRIPTION
+  pvm_mytid enrolls this process into PVM on its first call. It also gener-
+  ates a unique tid if this process was not created by pvm_spawn.  pvm_mytid
+  returns the tid of the calling process and can be called multiple times in
+  an application.
+
+  Any PVM system call (not just pvm_mytid) will enroll a task in PVM if the
+  task is not enrolled before the call.
+
+  The tid is a 32 bit positive integer created by the local pvmd.  The 32
+  bits are divided into fields that encode various information about this
+  process such as its location in the virtual machine (i.e. local pvmd
+  address), the CPU number in the case where the process is on a multiproces-
+  sor, and a process ID field. This information is used by PVM and is not
+  expected to be used by applications.  Applications should not attempt to
+  predict or interpret the tid with the exception of calling tidtohost()
+
+  If PVM has not been started before an application calls pvm_mytid the
+  returned tid will be < 0.
+EXAMPLE
+  tid = pvm_mytid()
+SEE ALSO
+  pvm_tidtohost, pvm_parent

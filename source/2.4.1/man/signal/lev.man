@@ -1,0 +1,46 @@
+.TH lev 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+lev - Yule-Walker equations (Levinson's algorithm)
+.SH CALLING SEQUENCE
+.nf
+[ar,sigma2,rc]=lev(r)
+.fi
+.SH PARAMETERS
+.TP 12
+r
+: correlation coefficients
+.TP
+ar
+: auto-Regressive model parameters
+.TP
+sigma2
+: scale constant
+.TP
+rc
+: reflection coefficients
+.SH DESCRIPTION
+resolve the Yule-Walker equations
+.IG
+.nf
+      |R(0)   R(1)   ... R(N-1)|| ar(1) | |sigma2|
+      |R(1)   R(0)   ... R(N-2)|| ar(2) | |  0   |
+      |  :      :    ...    :  ||   :   |=|  0   |
+      |  :      :    ...    :  ||   :   | |  0   |
+      |R(N-1) R(N-2) ...  R(0) ||ar(N-1)| |  0   |
+where
+       R(i)=r(i-1)
+
+.fi
+.FI
+.LA $$ \left( \matrix{ R_0 & R_1 & \ldots & R_{N-1} \cr
+.LA		R_1 & R_0 & \ldots & R_{N-2} \cr
+.LA		\vdots & \vdots & \ldots & \vdots \cr
+.LA		R_{N-1} & R_{N-2} & \ldots & R_{0} \cr
+.LA	   } \right) \vector{ ar_1 \cr ar_2 \cr \vdots \cr
+.LA	ar_{N-1}}
+.LA	= \vector{ \sigma_2 \cr 0 \cr \vdots \cr 0}	$$
+.LA where $R_i=r(i-1)$.
+using Levinson's algorithm.
+.SH AUTHOR
+C. B.

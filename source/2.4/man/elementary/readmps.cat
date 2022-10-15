@@ -1,0 +1,123 @@
+
+readmps(1)                     Scilab Function                     readmps(1)
+NAME
+  readmps - reads a file in MPS format
+
+CALLING SEQUENCE
+  [m,n,nza,irobj,namec,nameb,namran,nambnd,name,stavar,rwstat,hdrwcd,lnkrw,hdclcd,lnkcl,rwnmbs,clpnts,acoeff,rhs,ranges,ubounds,lbounds] =readmps ('file-name',maxm,maxn,maxnza,big,dlobnd,dupbnd);
+
+PARAMETERS
+
+  file-name : character string (Name of file 'file-name.mps')
+
+  maxn      : integer number (Maximum number of constraints).  maxn : integer
+            number (Maximum number of variables).
+
+  maxnza    : integer number (Maximum number of nonzeros entries in the LP
+            constraint matrix).
+
+  big       : large real number
+
+  dlobnd    : real nymber (Default lower bound).
+
+  dupbnd    : real number (Default upper bound).
+
+  m         : integer number (Actual number of constraints+1).
+
+  n         : integer number (Actual number of variables).
+
+  nza       : integer number (Actual number of nonzeros entries in the LP
+            constraint matrix).
+
+  irobj     : integer (Index of the objective row).
+
+  namec     : character string (Name of the objective).
+
+  nameb     : character string (Name of the right hand side).
+
+  namran    : character string (Name of the ranges section).
+
+  nambnd    : character string (Name of the bounds section).
+
+  name      : character string (Name of the  LP problem).  stavar : integer
+            vector ( variable status see hopdm.sci).
+
+  rwstat    : integer vector ( see hopdm.sci - rdmps1.f)
+
+  hdrwcd    : real vector (Header to the linked list of rows with the same
+            codes).
+
+  lnkrw     : integer vector (Linked list of rows with the same codes).
+
+  hdclcd    : integer vector (Header to the linked list of columns with the
+            same codes).
+
+  lnkcl     : integer vector (Linked list of columns with the same codes).
+
+  rwnmbs
+  : integer vector (Row numbers of nonzeros in columns of matrix A.)
+
+  clpnts    : integer vector (Pointers to the beginning of columns of matrix
+            A).
+
+  acoeff    : real vector (Array of nonzero elements for each column).
+
+  rhs       :real vector ( Right hand side of the linear program).
+
+  ranges    : real vector of constraint ranges.
+
+  ubounds   : full column vector of upper bounds
+
+  lbounds   : full column vector of lower bounds
+
+DESCRIPTION
+  [m,n,nza,irobj,namec.nameb,namran,nambnd,name,stavar,rwstat,hdrwcd,lnkrw,hdclcd,rwnmbs,clpnts,acoeff,rhs,ranges,ubounds,lbounds]
+  = readmps ('file-name',maxm,maxn,maxnza,big,dlobnd,dupbnd).  Utility func-
+  tion: reads file 'file-name.mps' in mps format. It is an interface with the
+  program rdmps1.f of hopdm (J. Gondzio).  For a description of the vari-
+  ables, see the file rdmps1.f.
+
+EXAMPLE
+  //File : test.mps (uncomment)
+  //NAME          TESTPROB
+  //ROWS
+  // N  COST
+  // L  LIM1
+  // G  LIM2
+  // E  MYEQN
+  //COLUMNS
+  //    XONE      COST                 1   LIM1                 1
+  //    XONE      LIM2                 1
+  //    YTWO      COST                 4   LIM1                 1
+  //    YTWO      MYEQN               -1
+  //    ZTHREE    COST                 9   LIM2                 1
+  //    ZTHREE    MYEQN                1
+  //RHS
+  //    RHS1      LIM1                 5   LIM2                10
+  //    RHS1      MYEQN                7
+  //BOUNDS
+  // UP BND1      XONE                 4
+  // LO BND1      YTWO                -1
+  // UP BND1      YTWO                 1
+  //ENDATA
+
+  //// objective:
+  //   min     XONE + 4 YTWO + 9 ZTHREE
+  //// constraints:
+  //  LIM1:    XONE +   YTWO            < = 5
+  //  LIM2:    XONE +            ZTHREE > = 10
+  // MYEQN:         -   YTWO  +  ZTHREE   = 7
+  //// Bounds
+  //  0 < = XONE < = 4
+  // -1 < = YTWO < = 1
+  //// End
+  maxm = 5;
+  maxn = 4;
+  maxnza = 9;
+  big = 10^30;
+  dlobnd = 0;
+  dupbnd = 10^30;
+  //
+  //[m,n,nza,irobj,namec,nameb,namran,nambnd,name,stavar,rwstat,hdrwcd,...
+  //lnkrw,hdclcd,lnkcl,rwnmbs,clpnts,acoeff,rhs,ranges,ubounds,lbounds] = ...
+  //readmps ('test',maxm,maxn,maxnza,big,dlobnd,dupbnd);

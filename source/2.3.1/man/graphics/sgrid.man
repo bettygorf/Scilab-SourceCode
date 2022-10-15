@@ -1,0 +1,38 @@
+.TH sgrid 1 "Jun 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME 
+sgrid - s-plane grid lines.
+.SH CALLING SEQUENCE
+.nf
+sgrid()
+sgrid('new')
+sgrid(zeta,wn [,color])
+.fi
+.SH DESCRIPTION
+Used in conjonction with evans, 
+plots lines of constant damping ratio (\fVzeta\fR)
+and natural frequency (\fVwn\fR).
+.RS
+.TP 
+sgrid()
+: add a grid over an existing continuous s-plane root
+with default values for \fVzeta\fR and \fVwn\fR.
+.TP
+sgrid('new')
+: clears the graphic screen and then plots a default 
+s-plane grid 
+.TP
+sgrid(zeta,wn [,color])
+: same as \fVsgrid()\fR but uses the provided damping ratio and 
+natural frequency.
+.SH EXAMPLE
+.nf
+H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+evans(H,100)
+sgrid()
+sgrid(0.6,2,7)
+.fi 
+.SH SEE ALSO
+evans
+
+

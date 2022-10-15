@@ -1,0 +1,26 @@
+.TH disp 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+disp - displays variables 
+.SH CALLING SEQUENCE
+.nf
+disp(x1,[x2,...xn]) 
+.fi
+.SH DESCRIPTION
+displays \fVxi\fR with the current format. \fVxi\fR's are arbitrary
+objects (matrices of constants, strings, functions, lists, ...)
+.LP
+Display of objects defined by \fVtlist\fR may be overloaded by the
+definition of a function. This function must have no output argument a
+single input argument ant it's name is formed as follow
+\fV%<tlist_type>_p\fR where \fV%<tlist_type>\fR stands for the first
+entry of the tlist type component.
+.SH SEE ALSO
+write, read, print, string, tlist
+.SH EXAMPLES
+.nf
+disp([1 2],3)
+deff('[]=%t_p(l)','disp(l(3),l(2))')
+disp(tlist('t',1,2))
+.fi
+

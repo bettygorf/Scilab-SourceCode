@@ -1,0 +1,41 @@
+
+errcatch(1)                    Scilab Function                    errcatch(1)
+NAME
+  errcatch - error trapping
+
+CALLING SEQUENCE
+  errcatch(n [,'action'] [,'option'])
+
+PARAMETERS
+
+  n                   : integer
+
+  action, option      : strings
+
+DESCRIPTION
+  errcatch gives an "action" (error-handler)  to be performed when an error
+  of type n occurs.  n has the followin meaning:
+
+  if n>0, n is the error number to trap
+
+  if n<0  all errors are to be trapped
+
+  action is one of the following character strings:
+
+         "pause"     : a pause is executed when trapping the error. This
+                     option is useful for debugging purposes.
+
+         "continue"  : next instruction in the function or exec files is exe-
+                     cuted, current instruction is ignored. This option is
+                     useful for error recovery.
+
+         "kill"      : default mode, all intermediate functions are killed,
+                     scilab goes back to the level 0 prompt.
+
+         "stop"      : interrupts the current Scilab session (useful when
+                     Scilab is called from an external program).
+
+  option is the character string 'nomessage' for killing error message.
+
+SEE ALSO
+  errclear, iserror

@@ -1,0 +1,45 @@
+.TH mat_2_graph 1 "September 1995" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+mat_2_graph - graph from node-arc or node-node incidence matrix
+.SH CALLING SEQUENCE
+.nf
+g = mat_2_graph(a,directed,[mat])
+.fi
+.SH PARAMETERS
+.TP 2
+a
+: sparse node-arc or node-node incidence matrix
+.TP 9
+directed
+: integer, 0 (undirected graph) or 1 (directed graph)
+.TP 4
+mat
+: optional string, 'node-arc' or 'node-node' matrix
+.TP 2
+g
+: graph list
+.SH DESCRIPTION
+\fVmat_2_graph\fR computes the graph \fVg\fR corresponding to the node-arc 
+or the node-node incidence matrix \fVa\fR.
+Note that a checking is made to insure that \fVa\fR is a sparse node-arc 
+or node-node incidence matrix of a directed (\fVdirected = 1\fR) or undirected 
+(\fVdirected = 0\fR) graph.
+If the optional argument \fVmat\fR is omitted or is the string 
+\fV'node-arc'\fR, a must be a node-arc matrix. If \fVmat\fR is the string
+\fV'node-node'\fR, a must be a node-node matrix.
+.SH EXAMPLE
+.nf
+g=load_graph(SCI+'/demos/metanet/colored');
+show_graph(g);
+a=graph_2_mat(g);
+g1=mat_2_graph(a,1);
+g1('node_x')=g('node_x'); g1('node_y')=g('node_y');
+show_graph(g1,'new');
+a=graph_2_mat(g,'node-node');
+g1=mat_2_graph(a,1,'node-node');
+g1('node_x')=g('node_x'); g1('node_y')=g('node_y');
+show_graph(g1,'new');
+.fi
+.SH SEE ALSO
+adj_lists, chain_struct, graph_2_mat

@@ -1,0 +1,25 @@
+
+getcolor(2)                    Scilab Function                    getcolor(2)
+NAME
+  getcolor - dialog to select  color(s) in the current colormap
+
+CALLING SEQUENCE
+  c=getcolor(title [,cini])
+  c=getcolor()
+
+PARAMETERS
+
+  title     : string, dialog title
+
+  cini           : vector of initial color indexes. Default value is
+                 xget('pattern')
+
+  c              : Vector of selected color indexes, or [] if user has
+                 clicked on "Cancel" button
+
+DESCRIPTION
+  getcolor opens a dialog choice box with as many palettes as cini vector
+  size. Palettes depends on the current colormap.
+
+SEE ALSO
+  xset, xsetm

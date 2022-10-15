@@ -1,0 +1,104 @@
+.TH "flt" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+flt -  Fast Legendre transform
+.sp
+Author: Paulo Goncalves
+.sp
+Computes the Legendre transform of \fIy\fP  y\f(CR\(ha*\fP(s) = sup\f(CR_{\fPx in X\f(CR}\fP\f(CR[\fPs.x - y(x)\f(CR]\fP
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+[u,s] = flt(x,y[,ccv])
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : real valued vector \f(CR[\fP1,N\f(CR]\fP 
+samples support of the function y
+
+.TP
+o 
+\fBy\fP :  real valued vector \f(CR[\fP1,N\f(CR]\fP 
+samples of function y = y(x)
+
+.TP
+o 
+\fBccv\fP : optional argument to choose between convex (\fIccv\fP
+= 0) and concave (\fIccv\fP = 1) envelope.  Default value is \fIccv\fP =
+1 (concave)
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBu\fP : real valued vector \f(CR[\fP1,M\f(CR]\fP  Legendre
+transform of input \fIy\fP. Note that, since \fIu\fP stems from the
+envelope of \fIy\fP, in general \fIM\fP <= \fIN\fP.
+
+.TP
+o 
+\fBs\fP : real valued vector \f(CR[\fP1,M\f(CR]\fP  
+Variable of the Legendre transform of \fIy\fP.
+.RE
+
+.SH See also:
+.SH Example:
+\fI Function synthesis \fP
+.sp
+.ft CR
+.nf
+m0 = .55 ; m1 = 1 - m0 ;
+m2 = .95 ; m3 = 1 - m2 ;
+q = linspace(-20,20,201) ;
+tau1 = - log2(exp(q.*log(m0)) + exp(q.*log(m1))) ;
+tau2 = - log2(exp(q.*log(m2)) + exp(q.*log(m3))) ;
+tau3 = min(tau1 , tau2) ;
+.fi 
+.ec
+.ft P
+.sp
+\fI Legendre Transforms \fP
+.sp
+.ft CR
+.nf
+[u1,s1] = flt(q,tau1) ;
+[u2,s2] = flt(q,tau2) ;
+[u3,s3] = flt(q,tau3) ;
+.fi 
+.ec
+.ft P
+.sp
+\fI Vizualisation - Matlab \fP
+.sp
+.ft CR
+.nf
+plot(s1,u1,'g',s2,u2,'b',s3,u3,'r') ; grid ;
+legend('u(tau1(q))','u(tau2(q))','u(tau3(q))') ;
+.fi 
+.ec
+.ft P
+.sp
+\fI Vizualisation - Scilab \fP
+.sp
+.ft CR
+.nf
+plot2d(s3,u3,17) ; plot2d(s1,u1,18,'001') ; plot2d(s2,u2,19,'001') ;
+.fi 
+.ec
+.ft P
+.sp

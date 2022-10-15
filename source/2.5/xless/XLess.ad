@@ -1,0 +1,36 @@
+!You can provide here your own print command 
+!default value is contained in xless.h 
+!
+!XLess*printCmd:		enscript -2r 
+
+XLess*standardFont:	fixed
+XLess*textFont:		*-fixed-medium-r-*-*-13-*-*-*-*-*-iso8859-*
+XLess*labelFont:	*-fixed-medium-r-*-*-13-*-*-*-*-*-iso8859-*
+XLess*buttonFont:	*-fixed-medium-r-*-*-13-*-*-*-*-*-iso8859-*
+XLess*standardCur:	left_ptr
+XLess*dialogCur:	center_ptr
+
+XLess*mf.text.translations: #override\n\
+	<Key>space:	next-page()\n\
+	<Key>F:		next-page()\n\
+	Ctrl<Key>B:	previous-page()\n\
+	<Key>B:		previous-page()\n\
+	<Key>K:		scroll-one-line-down()\n\
+	<Key>Y:		scroll-one-line-down()\n\
+	<Key>Return:	scroll-one-line-up()\n\
+	<Key>J:		scroll-one-line-up()\n\
+	<Key>E:		scroll-one-line-up()\n\
+	<Key>q:		quit()\n
+XLess*mf.text.baseTranslations: #override\n\
+	<Key>space:	next-page()\n\
+	<Key>F:		next-page()\n\
+	Ctrl<Key>B:	previous-page()\n\
+	<Key>K:		scroll-one-line-down()\n\
+	<Key>Y:		scroll-one-line-down()\n\
+	<Key>Return:	scroll-one-line-up()\n\
+	<Key>J:		scroll-one-line-up()\n\
+	<Key>E:		scroll-one-line-up()\n\
+	<Key>q:		quit()\n
+
+XLess.frame.height: 600
+XLess.frame.width: 800

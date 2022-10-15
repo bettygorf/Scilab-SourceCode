@@ -1,0 +1,62 @@
+.TH stabil 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+stabil - stabilization
+.SH CALLING SEQUENCE
+.nf
+F=stabil(A,B,alfa)
+K=stabil(Sys,alfa,beta)
+.fi
+.SH PARAMETERS
+.TP 10
+A
+: square real matrix (\fVnx x nx\fR)
+.TP
+B
+:  real matrix (\fVnx x nu\fR)
+.TP
+alfa, beta
+:  real or complex vector (in conjugate pairs) or real number.
+.TP
+F 
+: real matrix (\fVnx x nu\fR)
+.TP
+Sys
+: linear system (\fVsyslin\fR list) (\fVm\fR inputs, \fVp\fR outputs).
+.TP
+K
+: linear system (\fVp\fR inputs, \fVm\fR outputs)
+.SH DESCRIPTION
+\fVF=stabil(A,B,alfa)\fR returns a gain matrix \fVF\fR such that
+\fVA+B*F\fR is stable if pair \fV(A,B)\fR is stabilizable. 
+Assignable poles are set to \fValfa(1),alfa(2),...\fR.
+If \fV(A,B)\fR is not stabilizable a warning is given
+and assignable poles are set to \fValfa(1),alfa(2),...\fR.
+If \fValfa\fR is a number all eigenvalues are set to this
+\fValfa\fR (default value is \fValfa=-1\fR).
+.LP
+\fVK=stabil(Sys,alfa,beta)\fR returns \fVK\fR, a compensator for \fVSys\fR
+such that \fV(A,B)\fR-controllable eigenvalues are set to 
+\fValfa\fR and \fV(C,A)\fR-observable eigenvalues are set to \fVbeta\fR.
+.LP
+All assignable closed loop poles (which are given by the 
+eigenvalues of \fVAclosed=h_cl(Sys,K)\fR are set to \fValfa(i)\fR's
+and \fVbeta(j)\fR's.
+.SH EXAMPLE
+.nf
+// Gain:
+Sys=ssrand(0,2,5,list('st',2,3,3));
+A=Sys('A');B=Sys('B');F=stabil(A,B);
+spec(A) //2 controllable modes 2 unstable uncontrollable modes
+//and one stable uncontrollable mode
+spec(A+B*F) //the two controllable modes are set to -1.
+// Compensator:
+Sys=ssrand(3,2,5,list('st',2,3,3)); //3 outputs, 2 inputs, 5 states
+//2 controllables modes, 3 controllable or stabilizable modes.
+K=stabil(Sys,-2,-3);  //Compensator for Sys.
+spec(Sys('A'))
+spec(h_cl(Sys,K))   //K Stabilizes what can be stabilized.
+.fi
+.SH SEE ALSO
+st_ility, contr, ppol
+

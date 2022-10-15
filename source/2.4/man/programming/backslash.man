@@ -1,0 +1,36 @@
+.TH backslash 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+backslash (\\) - left matrix division.
+.SH CALLING SEQUENCE
+.nf
+x=A\\b
+.fi
+.SH DESCRIPTION
+Backslash denotes left matrix division. 
+\fVx=A\\b\fR is a solution to \fVA*x=b\fR.
+.LP
+If \fVA\fR is nonsingular \fVx=A\\b\fR (uniquely defined) 
+is equivalent to \fVx=inv(A)*b\fR.
+.LP 
+If \fVA\fR is singular, \fVx\fR is a least square solution.
+i.e. \fVnorm(A*x-b)\fR is minimal. If \fVA\fR is full
+column rank, the least square solution, \fVx=A\\b\fR, is uniquely 
+defined (there is a unique \fVx\fR which minimizes \fVnorm(A*x-b)\fR).
+If \fVA\fR is not full column rank, then the least square
+solution is not unique, and \fVx=A\\b\fR, in general, is not the solution
+with minimum norm (the minimum norm solution is \fVx=pinv(A)*b\fR). 
+.LP
+\fVA.\\B\fR  is the matrix with \fV(i,j)\fR entry \fVA(i,j)\\B(i,j)\fR.
+If \fVA\fR (or \fVB\fR) is a scalar \fVA.\\B\fR is equivalent to 
+\fVA*ones(B).\\B\fR (or \fVA.\\(B*ones(A))\fR
+.SH EXAMPLE
+.nf
+A=rand(3,2);b=[1;1;1]; x=A\\b; y=pinv(A)*b;  x-y
+A=rand(2,3);b=[1;1]; x=A\\b; y=pinv(A)*b; x-y, A*x-b, A*y-b
+A=rand(3,1)*rand(1,2); b=[1;1;1]; x=A\\b; y=pinv(A)*b; A*x-b, A*y-b
+A=rand(2,1)*rand(1,3); b=[1;1]; x=A\\b; y=pinv(A)*b; A*x-b, A*y-b 
+.fi
+.SH SEE ALSO
+slash, inv, pinv, percent, ieee
+

@@ -1,0 +1,18 @@
+
+BIGSOM_f(5)                     Scicos Block                      BIGSOM_f(5)
+NAME
+  BIGSOM_f - Scicos addition block
+
+DIALOGUE PARAMETERS
+
+  Input signs
+       : a vector sgn of weights (generaly +1 or -1). The number of input
+       signs fix the number of input ports.
+
+DESCRIPTION
+  This block realize weighted sum of the input vectors. The output is vector
+  kth component is the sum of the kth components of each input ports weighted
+  by sgn(k).
+
+SEE ALSO
+  GAIN_f, SOM_f

@@ -1,0 +1,27 @@
+.TH isinf G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+isinf -  check for infinite entries
+.SH CALLING SEQUENCE
+.nf
+r=isinf(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex vector or  matrix
+r
+: boolean vector or matrix 
+.SH DESCRIPTION
+\fVisinf(x)\fR returns a boolean vector or matrix which contains true
+entries corresponding with infinite \fVx\fR entries and false entries
+corresponding with finite \fVx\fR entries.
+.SH EXAMPLE
+.nf
+isinf([1 0.01 -%inf %inf])
+.fi
+.SH SEE ALSO
+isnan
+
+
+

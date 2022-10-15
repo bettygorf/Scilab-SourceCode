@@ -1,0 +1,86 @@
+#              MAIN MAPLE PROGRAM FOR SIMULATION
+#
+#                        Initialization
+#
+read(`proc.maple`):         
+#             User input file
+read(`bike.dat`):
+# The file bike.dat should provide:
+#            -n: dimension of vector q (generalized coordinates)
+#            -nf: number of holonomic constraints
+#            -ng: number of non-holonomic constraints
+#            -ncontr: number of controls (size of u)
+#            -L: Lagrangian (function of q,qd,u,param)
+#            -f: vector of holonomic constraints (function of q,param)
+#            -g: vector of non-holonomic constraints (function of q,qd,param)
+#            -k: control vector (function of q,u,param)
+#
+#
+# Preliminary calculations
+# ------------------------
+
+# Internal variables x=[q;qd]:
+x:=convert(stack(convert(q,matrix),convert(qd,matrix)),vector):
+qdd:=array(1..n):      
+
+# Defining Jacobians of constraints and their time derivatives:
+fq:=jacobian(f,q):
+gqd:=jacobian(g,qd):
+fqd:=map(time_diff,fq,n):
+gqdd:=map(time_diff,gqd,n):
+
+
+# Defining the vector constr = [f;dot(f);g] 
+# and gjx = its jacobian w.r.t  x = [q,qd] (functions of q,qd,param)
+constr:=vstack(f,evalm(fq &* qd),g):
+constr:=map(simplify,constr):
+gjx:=map(simplify,jacobian(constr,x)):
+
+
+#             Derivation of equations of motion
+#             ---------------------------------
+# Equations of dynamics: M qdd = phi + k - fq.lambda1 -gqd.lambda2
+#                               (lambda1 and lambda2 = Lagrange multipliers)
+
+V:=euler_equations(L,n):
+#V is the Euler operator (n vector function of q,qd,qdd)
+
+M:=jacobian(V,qdd):
+phi:=map(simplify,evalm((M &* qdd) - V)):
+
+#       [M  fq' gqd']
+#  II = [fq  0   0  ]      (n+nf+ng)x(n+nf+ng) matrix
+#       [gqd 0   0  ]
+#
+
+II:=mcomp(M,fq,gqd):
+II:=map(simplify,II):
+
+#       [              phi + k               ]
+#   h = [- ( dot(fq)+2 alfa fq ) qd - beta f ]    (n+nf+ng) vector
+#       [    - ( dot(gqd) + gama gqd ) qd    ]
+#
+
+h:=vstack(                     evalm( phi + k )  ,
+          evalm( -1 * ( (fqd + 2*alfa * fq) &* qd )  - (beta * f)  ),
+                  evalm( -1 * (gqdd + gama * gqd) &* qd  )
+          ):
+h:=map(simplify,h):
+
+# Transforming the Maple matrices into scilab macros via Fortran:
+#---------------------------------------------------------------
+# constraints and jacobian of constraints
+
+maple2scilab(`constr`,constr,[q,qd,param]):
+maple2scilab(`gjx`,gjx,[q,qd,param]):
+
+#    II sparse matrix and h vector
+
+sparse2scilab(`ii`,II,[q,qd,u,param,alfa,beta,gama]):
+maple2scilab(`h`,h,[q,qd,u,param,alfa,beta,gama]):
+
+#    Making iihs = scilab macro solving II.x = h
+
+sp_scilab(iihs,`II`,`h`,[q,qd,u,param,alfa,beta,gama],rowdim(II)):
+
+

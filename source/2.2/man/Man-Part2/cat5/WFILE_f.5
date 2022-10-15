@@ -1,0 +1,66 @@
+
+
+
+WFILE_f(5)                      Scicos Block                      WFILE_f(5)
+
+
+
+
+
+
+NAME
+  WFILE - Scicos "write to file" block
+
+DIALOG PARAMETERS
+  Block label         : A string defining the block label. This label is
+                      written under the block.
+  number of inputs    : a scalar. This fixes the number of inputs
+  Output file name    : a character string defining the path of the file
+  Output Format       : a character string defining the Fortran format to use
+                      or nothing for an unformatted (binary) write
+  Buffer size         : To improve efficiency it is possible to buffer the
+                      input data. write on the file is only done after each
+                      Buffer size call to the block.
+
+DESCRIPTION
+  This block allows user to save datas in a file, in formatted or binary
+  mode.  Each call to the block corresponds to a record in the file. Each
+  record has the following form: [t,V1,...,Vn] where t is the value of time
+  when block is called  and Vi is the ith input value
+
+SEE ALSO
+  RFILE_f
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

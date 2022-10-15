@@ -1,0 +1,33 @@
+.TH zeros 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+zeros - matrix made of zeros
+.SH CALLING SEQUENCE
+.nf
+[y]=zeros(m,n)
+[y]=zeros(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x,y
+: matrices
+.TP 10
+m,n
+: integers
+.SH DESCRIPTION
+Matrix made of zeros (same as \fV0*ones\fR).
+.TP 11
+zeros(m,n) 
+: for an \fV(m,n)\fR matrix.
+.TP
+zeros(A)
+: for a matrix of same size of \fVA\fR.
+.TP
+zeros(3)
+: is \fVzeros(a)\fR with \fVa=3\fR i.e it is NOT a 3x3 matrix!
+.LP
+If \fVx\fR is a \fVsyslin\fR list (linear system in state-space or transfer
+form), \fVzeros(x)\fR is also valid and returns a zero matrix.
+.SH SEE ALSO
+eye, ones
+

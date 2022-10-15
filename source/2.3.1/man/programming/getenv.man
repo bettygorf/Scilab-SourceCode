@@ -1,0 +1,27 @@
+.TH getenv G "April 1994" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+getenv - get the value of an environment variable
+.SH CALLING SEQUENCE
+.nf
+env=getenv(str [, rep] )
+.fi
+.SH PARAMETERS
+.TP
+str
+: character string specifying environment variable name
+rep
+: an optional character string. When this optional value 
+is used, the function \fVgetenv\fR returns the value \fVrep\fR
+when the environment variable \fVstr\fR is not found. 
+.TP
+env
+: character string which contain the environment variable value
+.SH DESCRIPTION
+Return the value of an environment variable if it exists. 
+.SH EXAMPLE
+.nf
+	getenv('SCI')
+	getenv('FOO','foo') 
+.fi
+

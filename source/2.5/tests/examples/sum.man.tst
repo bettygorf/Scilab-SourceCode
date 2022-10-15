@@ -1,0 +1,9 @@
+clear;lines(0);
+A=[1,2;3,4];
+trace(A)-sum(diag(A))
+sum(A,'c')-A*ones(2,1)
+sum(A+%i)
+A=sparse(A);sum(A,'c')-A*ones(2,1)
+s=poly(0,'s');
+M=[s,%i+s;s^2,1];
+sum(M),sum(M,2)

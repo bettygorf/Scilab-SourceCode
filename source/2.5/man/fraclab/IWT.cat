@@ -1,0 +1,45 @@
+
+IWT(2)                         Scilab Function                         IWT(2)
+NAME
+  IWT - 1D Inverse Discrete Wavelet Transform
+
+  Author: Bertrand Guiheneuf
+
+  This routine computes inverse discrete wavelet transforms of a  real sig-
+  nal. Two inverse transforms are possible : Orthogonal and Biorthogonal
+
+Usage
+  [result]=IWT2D(wt,[f])
+
+Input parameters
+       o wt : real unidimensional matrix [m,n] Contains the wavelet transform
+         (obtained with FWT).
+       o f : real unidimensional matrix [m,n] Synthesis filter.
+Output parameters
+       o result : real unidimensional matrix Result of the reconstruction.
+Description
+
+Introduction
+  The wavelet transform is an invertible linear transform. This routines is
+  the inverse transform. For details on the algorithm procedure, see FWT.
+
+Parameters
+  Input must be a real matrix. It's generally obtained with FWT but can be
+  created "by hand". In that case, it's strongly recommended to decompose a
+  null signal with FWT.  f is the linear FIR filter to use for the recon-
+  struction. It is only necessary if the analysis filter had been obtained
+  with MakeCQF() and the reconstruction filter had not been passed to FWT. If
+  not specified the filter given in the synthesis is used. (See FWT).  result
+  is the reconstructed signal. It has the same dimension as the original one.
+
+Algorithm details
+  Convolutions are computed through discrete linear convolutions in time
+  domain. No FFT is used.  The signal is mirrored at its boundaries. .SH
+  Example a=rand(1,256); q=MakeQMF('daubechies',4); wt,wti,wtl = FWT(a,8,q);
+  wt=abs(wt); result=IWT(wt);.SH References Meyer Y. : Wavelets, Algorithms &
+  Applications, SIAM.  Meyer Y. : Ondelettes et Operateurs (I) : Hermann,
+  Paris Daubechies I. : Ten Lectures on Wavelets, CBMS-NSF Regional confer-
+  ence series in applied mathematics.
+
+See Also
+  FWT, MakeQMF, MakeCQF, WTMultires, WTStruct

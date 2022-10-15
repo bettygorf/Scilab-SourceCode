@@ -1,0 +1,27 @@
+
+hypermatrices(1)               Scilab data type              hypermatrices(1)
+NAME
+  hypermatrices - Scilab object, N dimensional matrices in Scilab
+
+DESCRIPTION
+  Hypermatrix type allows to manipulate multidimensional arrays
+
+  They can be defined by extension of 2D matrices as follows a=[1 2;3
+  4];a(:,:,2)=rand(2,2)
+
+  or directly using hypermat function
+
+  Entries  can be real or complex numbers, polynomials, rationals, strings,
+  booleans.
+
+  Hypermatrices are mlists: mlist(['hm','dims','entries'],sz,v) where sz is
+  the row vector of dimensions and v the column vector of entries (first
+  dimension are stored first)
+EXAMPLES
+  a(1,1,1,1:2)=[1 2]
+  a=[1 2;3 4];a(:,:,2)=rand(2,2)
+  a(1,1,:)
+  [a a]
+
+SEE ALSO
+  hypermat

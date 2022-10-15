@@ -1,0 +1,48 @@
+.TH balanc 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+balanc - matrix or pencil balancing
+.SH CALLING SEQUENCE
+.nf
+[Ab,X]=balanc(A)
+[Eb,Ab,X,Y]=balanc(E,A)
+.fi
+.SH PARAMETERS
+.TP 10
+A:
+a real square matrix
+.TP
+X:
+a real square invertible matrix
+.TP
+E:
+a real square matrix (same dimension as \fVA\fR)
+.TP
+Y:
+a real square invertible matrix.
+.SH DESCRIPTION
+Balance a square matrix to improve its condition number.
+.LP
+.Vb [Ab,X] = balanc(A) 
+finds a similarity transformation \fVX\fR such that
+.Vb Ab = inv(X)*A*X 
+has approximately equal row and column norms.
+.LP
+For matrix pencils,balancing is done for improving the
+generalized eigenvalue problem.
+.LP
+.Vb [Eb,Ab,X,Y] = balanc(E,A)
+returns left and right transformations \fVX\fR and \fVY\fR
+such that
+.Vb Eb=X*E*Y      Ab=X*A*Y
+.SH Remark
+Balancing is made in the functions \fVbdiag\fR and \fVspec\fR.
+.SH EXAMPLE
+.nf
+A=[1/2^10,1/2^10;2^10,2^10];
+[Ab,X]=balanc(A);
+norm(A(1,:))/norm(A(2,:))
+norm(Ab(1,:))/norm(Ab(2,:))
+.fi
+.SH SEE ALSO 
+bdiag

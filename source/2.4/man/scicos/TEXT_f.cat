@@ -1,0 +1,17 @@
+
+TEXT_f(5)                       Scicos Block                        TEXT_f(5)
+NAME
+  TEXT_f - Scicos  text drawing block
+
+DIALOGUE PARAMETERS
+
+  txt                 : a character string, Text to be displayed
+
+  font                : a positive integer less than 6, number of selected
+                      font (see xset)
+
+  siz                 : a positive integer, selected font size (see xset)
+
+DESCRIPTION
+  This special block is only use to add text at any point of the diagram win-
+  dow. It has no effect on the simulation.

@@ -1,0 +1,42 @@
+.TH xgetmouse  "September  1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xgetmouse - get current position of the mouse
+.SH CALLING SEQUENCE
+.nf
+rep=xgetmouse()
+.fi
+.SH PARAMETERS
+.TP 10
+rep
+: a three vector: [x,y,ibutton] 
+.SH DESCRIPTION
+If the mouse is located in the current graphic window xgetmouse returns
+in rep the current mouse position (x,y) and the value ibutton. 
+The ibutton value indicate the button action at this point
+ if ibutton==-1 then no button clicked
+ if ibutton==0,1 or 2 then the left, middle or right button cliked
+
+If the mouse is not located in the current graphic window xgetmouse waits
+.SH Example
+.nf
+xselect();xbasc();xsetech([0 0 1 1],[0 0 100 100])
+xset('alufunction',6)
+[b,x0,y0]=xclick();rep=[x0,y0,-1];x=x0;y=y0
+plot2d([x0;x0;x;x;x0],[y0;y;y;y0;y0],-1,'000')
+while rep(3)==-1 then
+    rep=xgetmouse()
+    plot2d([x0;x0;x;x;x0],[y0;y;y;y0;y0],-1,'000');
+    x=rep(1);y=rep(2);
+    plot2d([x0;x0;x;x;x0],[y0;y;y;y0;y0],-1,'000');
+end
+xset('alufunction',3)
+.fi
+.SH SEE ALSO
+locate,xclick.
+.SH AUTHOR
+S. Steer
+
+
+
+

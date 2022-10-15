@@ -1,0 +1,9 @@
+#!/bin/csh
+set ENTETE=/arletty/s/basile/X11/Imp/
+cat $ENTETE/NperiPos.pos >! N$1 	
+sed -e "s/showpage/%showpage/" -e "s/copypage/%copypage/" $1 >> N$1
+
+
+
+
+	

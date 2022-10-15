@@ -1,0 +1,133 @@
+.TH "sgifs" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sgifs - Semi Generalized IFS generation
+.sp
+Author: Khalid Daoudi
+.sp
+This routine generates stochastical Semi-Generalized Iterated Functions Systems
+(SGIFS) attractors.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPx, y, Ci\f(CR]\fP=sgifs(Interp_pts, coefs, nbr_iter,law_type,var)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBInterp_pts\fP : Real matrix \f(CR[\fPn,2\f(CR]\fP
+Contains the interpolation points in the format : abscissa-ordinate.
+
+.TP
+o 
+\fBcoefs\fP : Real vector
+Contains the fundamental contractions ratios.
+
+.TP
+o 
+ \fBnbr_iter\fP : Integer
+Number of iterations wanted in the generation process of the SGIFS attractor.
+
+.TP
+o 
+ \fBlaw_type\fP : Character string
+Specifies the type of law desired. You have the choice between 'uniform' and 
+'normal'.
+
+.TP
+o 
+ \fBvar\fP : Real scalar
+Rules the variance decrease across scales. At each scale \fBj\fP, the variance
+would be \fB1\fP/\fBpow(j,var)\fP. 
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : Real vector
+Contains the abscissa of the attractor graph.
+
+.TP
+o 
+\fBy\fP : Real vector
+Contains the ordinates of the attractor graph.
+
+.TP
+o 
+\fBCi\fP : Real vector
+Contains all the coefficients of the so generated GIFS.
+.RE
+
+.SH Description
+.SH Parameters
+
+
+.RS
+
+.TP
+o 
+\fBInterp_pts\fP is a real matrix \f(CR[\fPn,2\f(CR]\fP
+containing the interpolation points.
+
+.TP
+o 
+\fBcoefs\fP is a real vector
+containing the fundamental contractions ratios, i.e. coefs(1) (resp. coef(2)) 
+would be the mean of the even (resp. odd) ceofficients.
+
+.TP
+o 
+ \fBnbr_iter\fP is the
+number of iterations wanted in the generation process of the SGIFS attractor.
+
+.TP
+o 
+ \fBlaw_type\fP is a character string which
+specifies the type of law desired for the GIFS coefficients. 
+
+.TP
+o 
+ \fBvar\fP is a real scalar
+ruling the variance decrease across scales. At each step \fBj\fP of the
+attractor generation, the variance
+of the chosen law would be \fB1\fP/\fBpow(j,var)\fP. 
+
+.TP
+o 
+\fB\f(CR[\fPx,y\f(CR]\fP\fP contains the resulting attractor.
+
+.TP
+o 
+\fBCi\fP is a real vector
+containing all the coefficients of the so generated GIFS.
+.RE
+
+.SH Algorithm details
+Semi-Generalized Iterated Functions Systems (SGIFS) are a generalization
+of the usual IFS. This generalization consists in allowing
+the contarations to change at each step (scale) of the attractor 
+generation process. 
+Here, we use GIFS to construct stocastical SGIFS. More precisely, at each
+scale j, the GIFS coefficients c_k\(haj, for \fIk\fP even (resp. odd), 
+are a random variable of law 
+\fIlaw_type\fP, of mean \fIcoefs(1)\fP (resp. \fIcoefs(2)\fP) and of variance 
+\fI1\fP/\fIpow(j,var)\fP 
+Moreover, if {(t_i, y_i), i=1,...,n+1} is the set of interpolation points,
+then any realisation of the attractor is the graph of a continuous
+function \fBF\fP such that : \fBF(t_i)=y_i\fP for each i=1,...,n+1.
+.SH See also:
+fif, alphagifs and prescrib
+.SH Example:
+I = \f(CR[\fP0 0 
+.5 1 
+1 0\f(CR]\fP; 
+coefs = \f(CR[\fP.3 -.9\f(CR]\fP;
+\f(CR[\fPx,y,Ci\f(CR]\fP = sgifs(I,coefs,10,'uniform',1); 
+plot(x,y) 

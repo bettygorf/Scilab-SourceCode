@@ -1,0 +1,18 @@
+#include "mex.h"
+      
+extern Gatefunc mex_pipo1;
+extern Gatefunc mex_pipo2;
+extern Gatefunc C2F(mexpipo3);
+      
+static GenericTable Tab[]={ 
+{mex_gateway, mex_pipo1,"err msg"},
+{mex_gateway, mex_pipo2,"err msg"},
+{fortran_mex_gateway, C2F(mexpipo3),"err msg"},
+                          };      
+      
+int C2F(libmylib_gateway)()     
+{  Rhs = Max(0, Rhs); 
+(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F); 
+  return 0; 
+}
+      

@@ -1,0 +1,38 @@
+.TH des2ss 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+des2ss - descriptor to state-space
+.SH CALLING SEQUENCE
+.nf
+[Sl]=des2ss(A,B,C,D,E [,tol])
+[Sl]=des2ss(Des)
+.fi
+.SH PARAMETERS
+.TP 16
+A,B,C,D,E
+: real matrices of appropriate dimensions
+.TP
+Des
+: list
+.TP
+Sl
+: \fVsyslin\fR list
+.TP
+tol
+: real parameter (threshold) (default value \fV100*%eps\fR).
+.SH DESCRIPTION
+Descriptor to state-space transform.
+.LP
+\fVSl=des2ss(A,B,C,D,E)\fR returns 
+a linear system \fVSl\fR equivalent to the descriptor system 
+\fV(E,A,B,C,D)\fR, (index of \fV(E,A)\fR must be at most 1).
+.LP
+\fVSl=des2ss(Des)\fR with \fVDes=list('des',A,B,C,0,E)\fR returns
+a linear system \fVSl\fR in state-space form with possibly 
+a polynomial \fVD\fR matrix.
+.LP
+Note that now \fVD\fR is set to \fV0\fR here.
+No index restriction here.
+.SH SEE ALSO
+des2tf
+

@@ -1,0 +1,24 @@
+#! /bin/sh
+
+WHATIS=$1/whatis
+MANPATHFLAG="-M $1"
+
+#
+# Only launch if we can create $WHATIS
+#
+if touch $WHATIS > /dev/null 2>&1
+then
+    trap "rm -f ${WHATIS}.NEW > /dev/null 1>&2; exit 0" 2
+    if man $MANPATHFLAG -W '*' | sort -f -u > ${WHATIS}.NEW
+    then
+        mv ${WHATIS}.NEW ${WHATIS}
+	chmod a+r $WHATIS # protect against restrictive umask
+    else
+	echo $0 failed
+	rm -f ${WHATIS}.NEW > /dev/null 1>&2
+    fi
+else
+    echo $0: cannot create $WHATIS 1>&2
+    exit 1
+fi
+USAGE="Usage: makewhatis [-M manpath] [filename]"

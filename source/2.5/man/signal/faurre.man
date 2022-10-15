@@ -1,0 +1,30 @@
+.TH faurre 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+faurre - filter
+.SH CALLING SEQUENCE
+.nf
+[Pn,Rt,T]=faurre(n,H,F,G,r0)
+.fi
+.SH PARAMETERS
+.TP 12
+n
+: number of iterations.
+.TP
+H, F, G
+: estimated triple from the covariance sequence of \fVy\fR.
+.TP
+r0
+: E(yk*yk')
+.TP
+Pn
+: solution of the Riccati equation after n iterations.
+.TP
+Rt, T
+: gain matrix of the filter.
+.SH DESCRIPTION
+function which computes iteratively the minimal solution of the algebraic
+Riccati equation and gives the matrices \fVRt\fR and \fVTt\fR of the 
+filter model.
+.SH AUTHOR
+G. Le V.

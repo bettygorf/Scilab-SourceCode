@@ -1,0 +1,12 @@
+
+ABSBLK_f(5)                     Scicos Block                      ABSBLK_f(5)
+NAME
+  ABSBLK_f - Scicos abs block
+
+DIALOGUE PARAMETERS
+  None.
+
+DESCRIPTION
+  This block realizes element-wise vector absolute value operation. This
+  block has a single input and a single output port.  Port dimension is
+  determined by the context.

@@ -1,0 +1,39 @@
+.TH mtlb_sparse 1 "January 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mtlb_sparse -  convert sparse matrix 
+.SH CALLING SEQUENCE
+.nf
+Y=mtlb_sparse(X)
+.fi
+.SH PARAMETERS
+.TP
+X
+: sparse matrix
+.TP
+Y
+: sparse matrix in Matlab format
+.SH DESCRIPTION
+\fVY=mtlb_sparse(X)\fR is used to convert \fVX\fR, a Scilab sparse matrix, to 
+Matlab format. \fVY\fR is the a variable with type 7,
+i.e. \fVtype(Y)\fR is equal to 7.
+This function should be used in mexfiles (a Matlab mexfile containing sparse
+matrices can be used only if the Scilab sparse matrices are converted
+to that format). The functions \fVfull\fR and \fVspget\fR  work
+with this format. 
+.LP
+ Other operations and functions using this format
+can be overloaded with Scilab functions using the prefix "%msp". 
+For instance the function 
+\fV%msp_p(x)\fR (see SCIDIR/macros/percent directory) is used to
+display such "type 7" objects.
+.SH EXAMPLE
+.nf
+X=sparse(rand(2,2)); Y=mtlb_sparse(X);
+Y, full(Y), [ij,v,mn]=spget(Y)
+.fi
+.SH SEE ALSO
+full, spget
+
+
+                        

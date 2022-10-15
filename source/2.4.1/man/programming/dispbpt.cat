@@ -1,0 +1,13 @@
+
+dispbpt(1)                     Scilab Function                     dispbpt(1)
+NAME
+  dispbpt - display breakpoints
+
+CALLING SEQUENCE
+  dispbpt()
+
+DESCRIPTION
+  dispbpt() displays all active breakpoints actually inserted in functions.
+
+SEE ALSO
+  setbpt, delbpt, pause, resume

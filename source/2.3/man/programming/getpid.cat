@@ -1,0 +1,13 @@
+
+getpid(G)                      Scilab Function                      getpid(G)
+NAME
+  getpid - get Scilab process identificator
+
+CALLING SEQUENCE
+  id=getpid()
+
+DESCRIPTION
+  Return an the scilab process identificator integer
+
+Example
+  host('ls >/tmp/scilab.'+string(getpid()))

@@ -1,0 +1,26 @@
+
+matrix(1)                      Scilab Function                      matrix(1)
+NAME
+  matrix - reshape a vector or a matrix to a different size matrix
+
+CALLING SEQUENCE
+  y=matrix(v,n,m)
+  y=matrix(v,[sizes])
+
+PARAMETERS
+
+  v         : a vector, a matrix or an hypermatrix
+  n,m       : integers
+
+  sizes     : vector of integers y : a vector  matrix or hypermatrix
+
+DESCRIPTION
+  For a vector or a matrix with n x m entries y=matrix(v,n,m) or similarily
+  y=matrix(v,[n,m]).  transforms the v vector (or matrix) into an nxm matrix
+  by stacking columnwise the entries of v.
+  For an hypermatrix such as prod(size(v))==prod(sizes),y=matrix(v,sizes) (or
+  equivalently y=matrix(v,n1,n2,...nm)) transforms v  into an  matrix or
+  hypermatrix by stacking columnwise the entries of v. y=matrix(v,sizes)
+  results in a regular matrix if sizes is a scalar or a 2-vector.
+SEE ALSO
+  matrices, hypermatrices, ones, zeros, rand, poly, empty

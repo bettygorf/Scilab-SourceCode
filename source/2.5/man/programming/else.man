@@ -1,0 +1,8 @@
+.TH else 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+else - keyword in if-then-else
+.SH DESCRIPTION
+Used with \fVif\fR.
+.SH SEE ALSO
+if

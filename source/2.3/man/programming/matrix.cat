@@ -1,0 +1,31 @@
+
+matrix(1)                      Scilab Function                      matrix(1)
+NAME
+  matrix - vector to matrix conversion
+
+CALLING SEQUENCE
+  [y]=matrix(v,n,m)
+
+PARAMETERS
+
+  v         : vector
+
+  n,m       : integers
+
+  y         : n x m matrix
+
+DESCRIPTION
+  transforms the v vector into an nxm matrix by stacking columnwise the
+  entries of x.
+
+  Old stuff:
+
+  matrix('magi',n) : returns a magic square of size n .
+
+  matrix('frk',n)  : returns the Franck matrix :
+
+  matrix('hilb',n) : is the inverse of the nxn Hilbert matrix
+                    (Hij= 1/(i+j-1)).
+
+SEE ALSO
+  matrices, ones, zeros, rand, poly, empty

@@ -1,0 +1,35 @@
+
+varn(1)                        Scilab Function                        varn(1)
+NAME
+  varn - symbolic variable of a polynomial
+
+CALLING SEQUENCE
+  [symb]=varn(p)
+  [pm]=varn(x,var)
+
+PARAMETERS
+
+  p         : polynomial (or matrix polynomial)
+
+  symb      : character string
+
+  x         : polynomial or polynomial matrix
+
+  var       : symbolic variable (character string)
+
+  pm        : matrix or polynomial matrix
+
+DESCRIPTION
+  symb=varn(p) returns in symb the symbolic variable of the polynomial p
+  (i.e. varn(poly(0,'x')) is 'x').
+
+  varn(x,'s') returns a polynomial matrix with same coefficients as x but
+  with 's' as symbolic variable (change of variable name).
+
+EXAMPLE
+  s=poly(0,'s');p=[s^2+1,s];
+  varn(p) is the string 's' and varn(p,'x') is the polynomial matrix
+  [x^2+1,x]
+
+SEE ALSO
+  horner, poly

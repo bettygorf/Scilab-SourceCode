@@ -1,0 +1,92 @@
+.TH file 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+file - file management
+.SH CALLING SEQUENCE
+.nf
+[unit]=file('open', file-name, [status], [access], [format], [recl])
+.fi
+.SH PARAMETERS
+.TP 10
+open
+: string 
+.TP 10
+file-name
+: string
+.TP 10
+status
+: string
+.TP 10
+access
+: string
+.TP 10
+format
+: string
+.TP 10
+recl
+: integer
+.SH DESCRIPTION
+selects a logical unit \fVunit\fR and manages the file \fVfile-name\fR.
+\fV'open'\fR can be replaced by the parameter \fV'action'\fR for managing the file (see below).
+.LP
+The status of the file is given by the parameter \fVstatus\fR :
+.RS
+.TP 13
+"new" 
+: new file (default)
+.TP
+"old" 
+: file already exists.
+.TP
+"unknown" 
+: unknown status
+.TP
+"scratch" 
+: file is to be deleted at end of session
+.RE
+.LP
+The type of access to the file is given by \fVaccess\fR
+.RS
+.TP 13
+"sequential" 
+: sequential access (default)
+.TP
+"direct" 
+: direct access.
+.LP
+.RE
+The other informations are the \fVformat\fR
+.RS
+.TP 13
+"formatted" 
+: for a  formatted file (default)
+.TP
+"unformatted" 
+: binary record.
+.RE
+.LP
+and \fVrecl\fR is the size of records when \fVaccess="direct"\fR
+.LP
+A particular call is \fVfile([action],unit) \fR :
+it modifies the state or the position inside a file with the following choices :
+.LP
+\fVaction\fR is one of the following strings:
+.RS
+.TP 13
+"close" 
+: closes the file
+.TP
+"rewind" 
+: puts the pointer at beginning of file
+.TP
+"backspace" 
+: puts the pointer at beginning of last record.
+.TP
+"last" 
+: puts the pointer after last record.
+.RE
+.LP
+and the logical unit is \fVunit\fR.
+.SH SEE ALSO
+save, load, write, read
+

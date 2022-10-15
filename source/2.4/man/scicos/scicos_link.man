@@ -1,0 +1,45 @@
+.TH scicos_link  "Janvier 1997" "Scilab Group" "Scicos data structure"
+.so ../sci.an
+.SH NAME
+scicos_link - Scicos link data structure
+.SH DEFINITION
+.nf
+lnk=list('Link',xx,yy,'drawlink',id,[0,0],ct,from,to)
+.fi
+.SH PARAMETERS
+.TP 10
+"Link"
+: keyword used to define list as a Scicos link representation
+.TP
+xx
+: vector of x coordinates of the link path.
+.TP
+yy
+: vector of y coordinates of the link path.
+.TP
+id
+: Character string, the link id
+.TP
+ct
+: 2 x 1 vector, \fV[color,typ]\fR where \fVcolor\fR defines the color
+used for the link drawing and \fVtyp\fR defines its type (0 for
+regular link ,1 for event link).
+.TP
+from
+: 2 x 1 vector, \fV[block,port]\fR where \fVblock\fR is the index of
+the block at the origin of the link and \fVport\fR is the index of the
+port.
+.TP
+to
+: 2 x 1 vector, \fV[block,port]\fR where \fVblock\fR is the index of
+the block at the end of the link and \fVport\fR is the index of the
+port.
+.SH DESCRIPTION
+Scicos editor creates and uses for each link a data structure
+containing all information relative to the graphic interface and
+interconnection information. Each of them are stored in the Scicos
+editor main data structure. Index of these in Scicos
+editor main data structure is given by the creation order.
+.SH SEE ALSO
+scicos, scicos_main, scicos_graphics, scicos_model
+

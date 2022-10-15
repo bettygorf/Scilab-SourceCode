@@ -1,0 +1,45 @@
+.TH xrects 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xrects - draw or fill a set of rectangles
+.SH CALLING SEQUENCE
+.nf
+[]=xrects(rects,[fill])
+.fi
+.SH PARAMETERS 
+.TP 15
+rects 
+: matrix of size (4,n)
+.TP
+fill
+: vector of size n.
+.SH DESCRIPTION
+draws or fills a set of rectangle. each column of \fVrects\fR describes 
+a rectangle ( Upper Left point, width, height) 
+.LP
+\fVrects= [ x,y,w,h ; x,y,w,h ;.....] '\fR
+\fVfill(n)\fR gives the pattern to use for filling or drawing the rectangle n.
+.LP
+if \fVfill(n) <0 \fR, the rectangle \fVn\fR is drawn using the line style (or
+color)\fV-fill(n)\fR
+.LP
+if \fVfill(n)> 0 \fR, the rectangle \fVn\fR is filled using the pattern (or
+color)\fVfill(n)\fR.
+.LP
+if \fVfill(n)= 0\fR,  the rectangle \fVn\fR is drawn using the current
+line style (or color).
+.SH EXAMPLE
+.nf
+plot2d([-100,500],[-50,50],[-1,-1],"022");
+cols=[-34,-33,-32,-20:5:20,32,33,34];
+step=20;
+x=400*(0:14)/14
+step = (x(2)-x(1))/2
+rects=[x;10*ones(x);step*ones(x);30*ones(x)];
+xrects(rects,cols);
+xnumb(x,15*ones(x),cols);
+.fi 
+.SH AUTHOR
+J.Ph.C..
+
+

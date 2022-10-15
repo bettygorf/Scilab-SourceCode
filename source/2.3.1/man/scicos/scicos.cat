@@ -1,0 +1,31 @@
+
+scicos(5)                      Scilab function                      scicos(5)
+NAME
+  scicos - Block diagram editor and GUI for the hybrid simulator scicosim
+
+CALLING SEQUENCE
+  sys=scicos()
+  sys=scicos(sys,[menus])
+  sys=scicos(file,[menus])
+
+PARAMETERS
+
+  sys  : a Scicos data structure
+
+  file : a character string. The path of a file containing the  image of a
+       Scicos data structure. These files may have .cos or
+
+  menus
+       : a vector of character strings. It allows to select some of the
+       Scicos menus. If menus==[]  Scicos draws the diagram and the contents
+       of each super blocks in separate windows without menu bar. This option
+       is useful to print diagrams.
+DESCRIPTION
+  Scicos is a visual editor for constructing models of hybrid dynamical sys-
+  tems. Invoking Scicos with no argument opens up an empty Scicos window.
+  Models can then be assembled, loaded, saved, compiled, simulated, using GUI
+  of Scicos. The input and ouput arguments are only useful for debugging pur-
+  poses. Scicos serves as an interface to the various block diagram compilers
+  and the hybrid simulator scicosim.
+SEE ALSO
+  scicosim, scicos_main, scicos_menu

@@ -1,0 +1,17 @@
+.TH EXPBLK_f 5 "Janvier 1997" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+EXPBLK_f - Scicos a^u block
+.SH DIALOGUE PARAMETERS
+.TP
+a :
+real positive scalar
+.SH DESCRIPTION
+This block realizes \fVy(i)=a^u(i)\fR. The input and output port sizes
+are determined by the compiler.
+
+
+
+
+
+

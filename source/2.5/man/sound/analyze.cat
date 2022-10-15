@@ -1,0 +1,25 @@
+
+analyze(1)                     Scilab Function                     analyze(1)
+NAME
+  analyze - frequency plot of a sound  signal
+
+CALLING SEQUENCE
+   analyze (w [,fmin,fmax,rate,points])
+
+PARAMETERS
+  fmin,fmax,rate,points : scalars. default values
+  fmin=100,fmax=1500,rate=22050,points=8192;
+
+DESCRIPTION
+  Make a frequency plot of the signal w with sampling rate rate.  The data
+  must be at least points long.  The maximal frequency plotted will be fmax,
+  the minimal fmin.
+
+EXAMPLE
+  // At first we create 0.5 seconds of sound parameters.
+  t=soundsec(0.5);
+  // Then we generate the sound.
+  s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
+  [nr,nc]=size(t);
+  s(nc/2:nc)=sin(330*t(nc/2:nc));
+  analyze(s);

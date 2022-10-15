@@ -1,0 +1,20 @@
+
+getd(1)                        Scilab Function                        getd(1)
+NAME
+  getd - getting function defined in a directory .sci files
+
+CALLING SEQUENCE
+  getd(path)
+
+PARAMETERS
+
+  path      : Scilab string. The directory pathname
+
+DESCRIPTION
+  loads all function defined in the directory .sci  files
+
+EXAMPLE
+          getd('SCI/macros/auto')
+
+SEE ALSO
+  getf, lib

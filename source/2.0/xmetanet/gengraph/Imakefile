@@ -1,0 +1,37 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+PROGRAM1 = $(SCIDIR)/bin/make-graph-file
+OBJS1 = make-graph-file.o
+SRCS1 = make-graph-file.c
+AllTarget($(PROGRAM1))
+NormalProgramTarget($(PROGRAM1),$(OBJS1),,,)
+
+PROGRAM2 = $(SCIDIR)/bin/mesh
+OBJS2 = carete.o getran.o mesh.o mshpts.o seed.o
+SRCS2 = carete.f getran.f mesh.f mshpts.f seed.f
+AllTarget($(PROGRAM2))
+FortranProgramTarget($(PROGRAM2),$(OBJS2),,,,)
+
+PROGRAM3= $(SCIDIR)/bin/netgen2graph
+OBJS3 = netgen2graph.o
+SRCS3 = netgen2graph.c
+AllTarget($(PROGRAM3))
+NormalProgramTarget($(PROGRAM3),$(OBJS3),,,)
+
+PROGRAM4 = $(SCIDIR)/bin/mesh2graph
+OBJS4 = mesh2graph.o
+SRCS4 = mesh2graph.c
+AllTarget($(PROGRAM4))
+NormalProgramTarget($(PROGRAM4),$(OBJS4),,,-lm)
+
+PROGRAM5 = $(SCIDIR)/bin/netgen
+OBJS5 = netgen.o
+SRCS5 = netgen.c
+AllTarget($(PROGRAM5))
+FortranProgramTarget($(PROGRAM5),$(OBJS5),,,,-lm)
+
+SRCS = $(SRCS1) $(SRCS3) $(SRCS4)
+FSRCS = $(SRCS2) $(SRC5)
+FortranDependTarget()
+DependTarget()

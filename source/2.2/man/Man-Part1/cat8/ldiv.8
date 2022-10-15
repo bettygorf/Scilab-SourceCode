@@ -1,0 +1,66 @@
+
+
+
+ldiv(1)                        Scilab Function                        ldiv(1)
+
+
+
+
+
+
+NAME
+  ldiv - polynomial matrix long division
+
+CALLING SEQUENCE
+  [x]=ldiv(n,d,k)
+
+PARAMETERS
+
+  n,d  : two real polynomial matrices
+
+  k    : integer
+
+DESCRIPTION
+  x=ldiv(n,d,k) gives the k first coefficients  of the long division of n by
+  d i.e.  the Taylor expansion of the rational matrix [nij(z)/dij(z)] near
+  infinity.
+
+  Coefficients of expansion of nij/dij are stored in x((i-1)*n+k,j)  k=1:n
+
+SEE ALSO
+  arl2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

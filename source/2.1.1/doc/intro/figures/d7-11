@@ -1,0 +1,13 @@
+\long\def\Checksifdef#1#2#3{
+\expandafter\ifx\csname #1\endcsname\relax#2\else#3\fi}
+\Checksifdef{Figdir}{\gdef\Figdir{}}{}
+\def\dessin#1#2{
+\begin{figure}
+\begin{center}
+\setlength{\unitlength}{1cm}
+\fbox{\begin{picture}(16.00,18.00)
+\special{psfile=\Figdir d7-11.ps}
+\end{picture}}
+\end{center}
+\caption{\label{#2}#1}
+\end{figure}}

@@ -1,0 +1,55 @@
+.TH analpf 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+analpf - create analog low-pass filter 
+.SH CALLING SEQUENCE
+.nf
+[hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)
+.fi
+.SH PARAMETERS
+.TP 10
+n
+: positive integer : filter order 
+.TP
+fdesign
+: string : filter design method : \fV'butt'\fR or \fV'cheb1'\fR or \fV'cheb2'\fR or \fV'ellip'\fR
+.TP
+rp
+: 2-vector of error values for cheb1, cheb2 and
+ellip filters where only \fVrp(1)\fR is used for
+cheb1 case, only \fVrp(2)\fR is used for cheb2 case, and
+\fVrp(1)\fR and \fVrp(2)\fR are both used for ellip case.
+ \fV0<rp(1),rp(2)<1\fR
+.RS
+.TP
+-
+for cheb1 filters \fV1-rp(1)<ripple<1\fR in passband
+.TP
+-
+for cheb2 filters \fV0<ripple<rp(2)\fR in stopband
+.TP
+-
+for ellip filters \fV1-rp(1)<ripple<1\fR in passband
+\fV0<ripple<rp(2)\fR in stopband
+.RE
+.TP
+omega
+: cut-off frequency of low-pass filter in Hertz
+.TP
+hs
+: rational polynomial transfer function
+.TP
+pols
+: poles of transfer function
+.TP
+zers
+: zeros of transfer function
+.TP
+gain
+: gain of transfer function
+.SH DESCRIPTION
+Creates analog low-pass filter with cut-off frequency at omega.
+.LP
+\fVhs=gain*poly(zers,'s')/poly(pols,'s')\fR
+.SH AUTHOR
+C. B.

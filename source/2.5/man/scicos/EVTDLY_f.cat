@@ -1,0 +1,18 @@
+
+EVTDLY_f(5)                      Scicos Block                     EVTDLY_f(5)
+NAME
+  EVTDLY_f - Scicos event delay block
+
+DESCRIPTION
+  One event is generated Delay after an event enters the unique input event
+  port. Block may also generate an initial output event.
+
+DIALOGUE PARAMETERS
+
+  Delay          : scalar. Time delay between input and output event.
+
+  Auto-exec      :  scalar. If Auto-exec>=0  block initially generates an
+                 output event at date Auto-exec.
+
+SEE ALSO
+  CLOCK_f

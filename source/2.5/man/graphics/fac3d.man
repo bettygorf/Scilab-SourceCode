@@ -1,0 +1,14 @@
+.TH fac3d 2 "September 1994" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+fac3d - 3D plot of a surface (obsolete)
+.SH CALLING SEQUENCE
+.nf
+fac3d(x,y,z,[theta,alpha,leg,flag,ebox])
+fac3d1(x,y,z,[theta,alpha,leg,flag,ebox])
+.fi
+.SH DESCRIPTION
+These functions are obsolete and have been replaced by
+\fVplot3d\fR and \fVplot3d1\fR.
+.SH SEE ALSO
+plot3d, plot3d1

@@ -1,0 +1,36 @@
+.TH frmag 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+frmag - magnitude of FIR and IIR filters
+.SH CALLING SEQUENCE
+.nf
+[xm,fr]=frmag(num[,den],npts)
+.fi
+.SH PARAMETERS
+.TP
+npts
+: integer (number of points in frequency response)
+.TP
+xm
+: mvector of magnitude of frequency response at the points \fVfr\fR
+.TP
+fr
+: points in the frequency domain where
+magnitude is evaluated
+.TP
+num
+: if \fVden\fR is omitted vector coefficients/polynomial/rational
+polynomial of filter
+.TP
+num
+: if \fVden\fR is given vector coefficients/polynomial of filter numerator
+.TP
+den
+: vector coefficients/polynomial of filter denominator
+.SH DESCRIPTION
+calculates the magnitude of the frequency responses of
+FIR and IIR filters. The filter description can be
+one or two vectors of coefficients, one or two polynomials,
+or a rational polynomial.
+.SH AUTHOR
+C. B.

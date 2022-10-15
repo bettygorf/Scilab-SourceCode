@@ -1,0 +1,27 @@
+.TH obsvss 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+obsvss - observable part
+.SH CALLING SEQUENCE
+.nf
+[Ao,Bo,Co]=obsvss(A,B,C [,tol])
+[slo]=obsvss(sl [,tol])
+.fi
+.SH PARAMETERS
+.TP 15
+A,B,C,Ao,Bo,Co
+: real matrices
+.TP 15
+sl,slo
+: \fVsyslin\fR lists
+.TP 15
+tol
+: real (threshold) (default value \fV100*%eps\fR)
+.SH DESCRIPTION
+\fVslo=(Ao,Bo,Co)\fR is the observable part of linear system \fVsl=(A,B,C)\fR (\fVsyslin\fR list)
+.LP
+\fVtol\fR  threshold to test controllability (see \fVcontr\fR); 
+default value = \fV100*%eps\fR
+.SH SEE ALSO
+contr, contrss, obsv_mat, obs_gram
+

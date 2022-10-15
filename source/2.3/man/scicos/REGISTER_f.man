@@ -1,0 +1,20 @@
+.TH REGISTER_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+REGISTER_f - Scicos shift register block
+.SH DESCRIPTION
+This block realizes a shift register. At every input event, the
+register is shifted one step.
+.SH DIALOGUE PARAMETERS
+.TP
+Initial condition
+: a column vector. It contains the initial state of the register.
+.SH SEE ALSO
+DELAY_f, DELAYV_f, EVTDLY_f
+
+
+
+
+
+
+

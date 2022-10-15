@@ -1,0 +1,22 @@
+.TH showns 1 "April 1993" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME 
+showns - highlight a set of nodes
+.SH CALLING SEQUENCE
+.nf
+showns(ns,[sup])
+.fi
+.SH PARAMETERS
+.TP 3
+ns
+: row vector of node numbers
+.TP 4
+sup
+: integer, optional variable with default value 0
+.SH DESCRIPTION
+\fVshowns\fR highlights the set of nodes \fVns\fR of the displayed graph in
+the \fVMetanet\fR window. 
+If the optional variable (with default value 0) \fVsup\fR is different from 0,
+the highlighting is superposed on the previous one.
+.SH SEE ALSO
+showp

@@ -1,0 +1,16 @@
+extern int arcH;
+extern int arcW;
+extern int arrowLength;
+extern int arrowWidth;
+extern int bezierRx;
+extern int bezierDy;
+extern int drawHeight;
+extern int drawWidth;
+extern char *Version;
+extern int maxGraphs;
+extern int metaHeight;
+extern double metaScale;
+extern int metaWidth;
+extern int nodeDiam;
+extern int nodeW;
+extern int viewHeight;

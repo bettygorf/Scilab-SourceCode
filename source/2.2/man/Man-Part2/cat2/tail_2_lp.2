@@ -1,0 +1,66 @@
+
+
+
+tail_2_lp(1)                   Scilab function                   tail_2_lp(1)
+
+
+
+
+
+
+NAME
+  tail_2_lp - compute adjacency lists
+
+CALLING SEQUENCE
+  [lp,la,ls] = tail_2_lp(directed,n,tail,head)
+
+PARAMETERS
+  directed : integer, 0 or 1 according to the fact that the graph is
+           undirected or directed
+  n : integer, the number of nodes of the graph
+  tail : the row vector of the numbers of the tail nodes of the graph (its
+       size is the number of edges of the graph)
+  head : the row vector of the numbers of the head nodes of the graph (its
+       size is the number of edges of the graph)
+  lp : row vector, pointer array of the adjacency lists description of the
+     graph (its size is the number of nodes of the graph + 1)
+  la : row vector, arc array of the adjacency lists description of the graph
+     (its size is the number of edges of the graph)
+  ls : row vector, node array of the adjacency lists description of the graph
+     (its size is the number of edges of the graph)
+
+DESCRIPTION
+  tail_2_lp compute the row vectors of the adjacency lists description of the
+  graph from the (node number, tail, head) description of the graph.
+
+EXAMPLE
+  ta=[ 2 3  3  5  3  4  4  5  8];
+  he=[ 1 2  4  2  6  6  7  7  4];
+  gt=make_graph('foo',1,8,ta,he);
+  gt('node_x')=[129. 200. 283. 281. 128. 366. 122. 333.];
+  gt('node_y')=[ 61. 125. 129. 189. 173. 135. 236. 249.];
+  show_graph(gt,'rep');
+  [lp,la,ls]=tail_2_lp(1,prod(size(gt('node_x'))),ta,he)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

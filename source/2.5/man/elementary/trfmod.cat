@@ -1,0 +1,19 @@
+
+trfmod(1)                      Scilab Function                      trfmod(1)
+NAME
+  trfmod - poles and zeros display
+
+CALLING SEQUENCE
+  [hm]=trfmod(h [,job])
+
+DESCRIPTION
+  To visualize the pole-zero structure of a SISO transfer function h .
+
+  job='p'   : visualization of polynomials (default)
+
+  job='f'   : visualization of natural frequencies and damping
+
+  Interactive simplification of h. trfmod opens a dialog window.
+
+SEE ALSO
+  poly, simp

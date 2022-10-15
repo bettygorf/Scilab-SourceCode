@@ -1,0 +1,30 @@
+
+hess(G)                        Scilab Function                        hess(G)
+NAME
+  hess - Hessenberg form
+
+CALLING SEQUENCE
+  H = hess(A)
+  [U,H] = hess(A)
+
+PARAMETERS
+
+  A    : real or complex square matrix
+
+  H    : real or complex square matrix
+
+  U    : orthogonal or unitary square matrix
+
+DESCRIPTION
+  [U,H] = hess(A) produces a unitary matrix U and a Hessenberg matrix H so
+  that A = U*H*U' and U'*U = Identity.  By itself, hess(A) returns H.
+
+  The Hessenberg form of a matrix is zero below the first subdiagonal. If the
+  matrix is symmetric or Hermitian, the form is tridiagonal.
+
+EXAMPLE
+  A=rand(3,3);[U,H]=hess(A);
+  and( abs(U*H*U'-A)<1.d-10 )
+
+SEE ALSO
+  qr, contr, schur

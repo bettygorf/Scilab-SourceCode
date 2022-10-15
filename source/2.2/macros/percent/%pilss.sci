@@ -1,0 +1,26 @@
+function s2=%pilss(i,j,s1,s2)
+//%pilss(i,j,s1,s2) calcule l'insertion d'un transfert polynomial
+// dans un systeme dynamique decrit par une representation d'etat 
+//Cette macro correspond a l'operation  s2(i,j)=s1
+//!
+// origine s. steer inria 1992
+//
+if type(i)==10 then  // sl('D')
+  [lhs,rhs]=argn(0)
+  if rhs<>3 then  error(21),end
+  if i<>'D' then
+    error('inserted element '+i+' has inconsistent type')
+  end
+  s2=s1;kf=5
+  if size(s2(kf))<>size(j) then 
+    warning('inserted element '+i+' has inconsistent dimension')
+  end
+  s2(kf)=j
+  return
+end
+
+s1=tlist('lss',[],[],[],s1,[],[])
+s2(i,j)=s1
+//end
+
+

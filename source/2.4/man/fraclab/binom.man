@@ -1,0 +1,231 @@
+.TH "binom" 2 "July 5th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+binom - binomial measure synthesis
+.sp
+Author: Christophe Canus
+.sp
+This C_LAB routine synthesizes a large range of pre-multifractal
+measures related to the binomial measure paradigm (deterministic,
+shuffled, pertubated, and mixing of two binomials: lumping and sum)
+and computes linked theoretical functions (partition sum function,
+Reyni exponents function, generalized dimensions, multifractal
+spectrum).
+.sp
+.sp
+.SH Usage
+\f(CR[\fPvarargout,\f(CR[\fPoptvarargout\f(CR]\fP\f(CR]\fP=binom(p0,str,varargin,\f(CR[\fPoptvarargin\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBp0\fP : strictly positive real scalar 
+Contains the weight of the binomial.
+
+.TP
+o 
+\fBstr\fP : string 
+Contains the type of ouput.
+
+.TP
+o 
+\fBvarargin\fP : variable input argument 
+Contains the variable input argument.
+
+.TP
+o 
+\fBoptvarargin\fP : optional variable input arguments 
+Contains optional variable input arguments.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBvarargout\fP : variable output argument 
+Contains the variable output argument.
+
+.TP
+o 
+\fBoptvarargout\fP : optional variable output argument 
+Contains an optional variable output argument. 
+.RE
+
+.SH Description
+.SH Parameters 
+ 
+The binomial measure is completly characterized by its weight \fIp0\fP. This
+first parameter must be \f(CR>\fP0. and \f(CR<\fP1. (the case of \fIp0\fP=.5
+corresponds to the Lebesgue measure).
+The second parameter \fIstr\fP is a variable string used to determine
+the desired type of output. There are six suffix strings ('\fImeas\fP'
+for measure, '\fIcdf\fP' for cumulative distribution function, 
+, '\fIpdf\fP' for probability density function, '\fIpart\fP' for partition
+sum function, '\fIReyni\fP' for Reyni exponent function , '\fIspec\fP'
+for multifractal spectrum) for the deterministic binomial measure and
+a lot of possibly composed prefix strings for related measures
+('\fIshuf\fP' for shuffled, '\fIpert\fP' for pertubated, '\fIlump\fP' for
+lumping , '\fIsum\fP' for sum, '\fIsumpert\fP' for sum of pertubated,
+and so on) which can be added to the first ones to form composed
+strings. For example, '\fIlumppertmeas\fP' is for the synthesis of the
+lumping of 2 pertubated binomial pre-multifractal measures 
+and '\fIsumspec\fP' is for the computation of the multifractal spectrum of
+the sum of two binomials. Note that all combinaisons of strings are
+not implemented yet.
+When a string containing suffix string '\fImeas\fP' is given as second
+input, a pre-multifractal measure \fImu_n\fP (first output argument) is
+synthesized on the dyadic intervals \fII_n\fP (second optional output
+argument) of the unit interval. In that case, the third input argument
+is a strictly positive real (integer) scalar \fIn\fP which contains the
+resolution of the pre-multifractal measure. The size of the output
+real vectors \fImu_n\fP (and \fII_n\fP if used) is equal to 2\(ha\fIn\fP (so
+be aware the stack size ;-)). This option is implemented for the
+deterministic ('\fImeas\fP'), shuffled ('\fIshufmeas\fP') and pertubated
+('\fIpertmeas\fP') binomial, and also for the mixing (lumping or sum)
+of two deterministic ('\fIlumpmeas\fP' and '\fIsummeas\fP') or
+pertubated ('\fIlumppertmeas\fP' and '\fIsumpertmeas\fP')
+binomial measures. 
+When a string containing prefix '\fIshuf\fP' is given as second input,
+the synthesis is made for a shuffled binomial measure. At each level
+of the multiplicative cascade and for all nodes of the corresponding
+binary tree, the weight is chosen uniformly among \fIp0\fP and
+1-\fIp0\fP. This option is implemented only for the binomial measure
+('\fIshufmeas\fP').
+When a string containing prefix '\fIpert\fP' is given as second input, the
+synthesis is made for a pertubated binomial measure. In that case, the
+fourth input argument is a strictly positive real scalar \fIepsilon\fP which
+contains the pertubation around weights. The weight is an independant
+random variable identically distributed between \fIp0\fP-\fIepsilon\fP
+and \fIp0\fP+\fIepsilon\fP which must be \f(CR>\fP0., \f(CR<\fP1. This option
+is implemented only for the binomial measure ('\fIpertmeas\fP') and the
+mixing (lumping and sum) of two binomial measures ('\fIlumppertmeas\fP'
+and '\fIsumpertmeas\fP').
+When replacing suffix string '\fImeas\fP' with suffix
+string '\fIcdf\fP', respectively suffix string '\fIpdf\fP', the cumulative
+distribution function \fIF_n\fP, respectively the probability density
+function \fIp_n\fP, related to this pre-multifractal measure is
+computed (first output argument).
+When string '\fIpart\fP' is given as second input, the partition sum
+function \fIznq\fP of multifractal measure is computed as sole output
+argument. In that case, the third input argument is a strictly positive
+real (integer) vector \fIvn\fP which contains the resolutions, and the
+fourth input argument is a real vector \fIq\fP which contains the
+measure exponents. The size of the output real matrix \fIznq\fP is
+equal to size(\fIq\fP)*size(\fIvn\fP). This option is implemented only
+for the binomial measure.
+When string '\fIReyni\fP' is given as second input, the Reyni exponents
+function \fItq\fP (and the generalized dimensions \fIDq\fP if used) of
+the multifractal measure is computed as first output argument (and
+second optional output argument if used). In that case, the third
+input argument is a real vector \fIq\fP which contains the measure's
+exponents. The size of the output real vector \fItq\fP is equal to
+size(\fIq\fP)). This option is implemented only for the binomial
+measure.
+When a string containing suffix string '\fIspec\fP' is given as second
+input, the multifractal spectrum \fIf_alpha\fP (second output argument)
+is synthesized on the Hoelder exponents \fIalpha\fP (first output
+argument). In that case, the third input argument is a strictly
+positive real (integer) scalar \fIN\fP which contains the number of
+Hoelder exponents. The size of both output real vectors \fIalpha\fP and
+\fIf_alpha\fP is equal to \fIN\fP. This option is implemented only for
+the binomial measure ('\fIspec\fP') and the mixing (lumping and sum) of
+two binomial measures ('\fIlumpspec\fP' and \fIsumspec\fP').
+.SH Algorithm details
+ 
+For the deterministic binomial, the pre-multifractal measure synthesis
+algorithm is implemented is a iterative way (supposed to run faster
+than a recursive one). For the shuffled or the pertubated binomial,
+the synthesis algorithm is implemented is a recursive way (to be able
+to pick up a i.i.d. r.v. at each level of the multiplicative cascade
+and for all nodes of the corresponding binary tree w.r.t. the given
+law). Note that the shuffled binomial measure is not conservative.
+.SH Examples
+.SH Matlab
+.sp
+.ft CR
+.nf
+p0=.2;
+n=10;
+% synthesizes a pre-multifractal binomial measure
+[mu_n,I_n]=binom(p0,'meas',n);
+plot(I_n,mu_n);
+% synthesizes the cdf of a pre-multifractal shuffled binomial measure
+F_n=binom(p0,'shufcdf',n);
+plot(I_n,F_n);
+e=.19;
+% synthesizes the pdf of a pre-multifractal pertubated binomial measure
+p_n=binom(p0,'pertpdf',n,e);
+plot(I_n,p_n);
+vn=[1:1:8];
+q=[-5:.1:+5];
+% computes the partition sum function of a binomial measure
+znq=binom(p0,'part',vn,q);
+plot(-vn*log(2),log(znq));
+% computes the Reyni exponents function of a binomial measure
+tq=binom(p0,'Reyni',q);
+plot(q,tq);
+N=200;
+q0=.4;
+% computes the multifractal spectrum of the lumping of two binomial measures
+[alpha,f_alpha]=binom(p0,'lumpspec',N,q0);
+plot(alpha,f_alpha);
+.fi 
+.ec
+.ft P
+.sp
+.SH Scilab
+.sp
+.ft CR
+.nf
+p0=.2;
+n=10;
+// synthesizes a pre-multifractal binomial measure
+[mu_n,I_n]=binom(p0,'meas',n);
+plot(I_n,mu_n);
+// synthesizes the cdf of a pre-multifractal shuffled binomial measure
+F_n=binom(p0,'shufcdf',n);
+plot(I_n,F_n);
+e=.19;
+// synthesizes the pdf of a pre-multifractal pertubated binomial measure
+p_n=binom(p0,'pertpdf',n,e);
+plot(I_n,p_n);
+xbasc();
+vn=[1:1:8];
+q=[-5:.1:+5];
+// computes the partition sum function of a binomial measure
+znq=binom(p0,'part',vn,q);
+mn=zeros(max(size(q)),max(size(vn)));
+for i=1:max(size(q))
+   mn(i,:)=-vn*log(2);
+end
+plot2d(mn',log(znq'));
+// computes the Reyni exponents function of a binomial measure
+tq=binom(p0,'Reyni',q);
+plot(q,tq);
+N=200;
+q0=.4;
+// computes the multifractal spectrum of the lumping of two binomial measures
+[alpha,f_alpha]=binom(p0,'lumpspec',N,q0);
+plot(alpha,f_alpha);
+.fi 
+.ec
+.ft P
+.sp
+.SH References
+\fB"Multifractal Measures"\fP, Carl J. G. Evertsz and Benoit
+B. MandelBrot. \fIIn Chaos and Fractals, New Frontiers of Science,
+Appendix B. Edited by Peitgen, Juergens and Saupe, Springer Verlag,
+1992 pages 921-953\fP.
+\fB"A class of Multinomial Multifractal Measures with negative
+(latent) values for the "Dimension" f(alpha)"\fP, Benoit
+B. MandelBrot. \fIIn Fractals' Physical Origins and Properties,
+Proceeding of the Erice Meeting, 1988. Edited by L. Pietronero, Plenum
+Press, New York, 1989 pages 3-29\fP.  .SH See also
+\fBsbinom, multim1d, multim2d, smultim1d, smultim2d\fP (C_LAB routines).
+\fBMFAS_measures, MFAS_dimensions, MFAS_spectra\fP (Matlab and/or Scilab demo scripts).

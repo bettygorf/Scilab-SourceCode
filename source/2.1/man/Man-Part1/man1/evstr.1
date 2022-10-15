@@ -1,0 +1,44 @@
+.TH evstr 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+evstr - evaluation of expressions
+.SH CALLING SEQUENCE
+.nf
+[H]=evstr(Z)
+.fi
+.SH PARAMETERS
+.TP
+Z
+: matrix of character strings or list
+.TP
+H
+: matrix
+.SH DESCRIPTION
+returns the evaluation of the matrix of character strings \fVZ\fR.
+.SH EXAMPLES
+.nf
+a=1; b=2; Z=['a','b'] ; evstr(Z) 
+.fi
+returns the matrix 
+.Vb [1,2]
+.LP
+This function can also be used for a \fVlist\fR.
+.nf
+ a=1; b=2; Z =list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+evstr(Z) 
+.fi
+returns 
+.Vb [2,-1]
+.LP
+Here, \fVZ\fR is a list with two elements;
+the second element of \fVZ\fR is a vector \fVV\fR of character strings;
+\fVevstr\fR evaluates the first element of \fVZ\fR ; the components
+of \fVV\fR are represented by 
+.Vb %(1), %(2),... 
+in the first element of \fVZ\fR. Here \fVevstr\fR returns 
+.Vb [a+1, (a+1) - (b+1)]
+.LP
+.Vb evstr('a=1') 
+is not valid (use \fVexecstr\fR ).
+.SH SEE ALSO
+execstr

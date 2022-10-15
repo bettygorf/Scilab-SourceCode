@@ -1,0 +1,36 @@
+.TH mat_2_graph 1 "September 1995" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME
+mat_2_graph - graph from node-arc incidence matrix
+.SH CALLING SEQUENCE
+.nf
+[g] = mat_2_graph(a,directed)
+.fi
+.SH PARAMETERS
+.TP 2
+a
+: sparse node-arc incidence matrix
+.TP 9
+directed
+: integer, 0 or 1 according to the fact that the graph is undirected 
+or directed
+.TP 2
+g
+: graph-list
+.SH DESCRIPTION
+\fVmat_2_graph\fR computes the graph \fVg\fR correspponding to the node-arc 
+incidence matrix \fVa\fR.
+Note that a checking is made to insure that \fVa\fR is a sparse node-arc 
+incidence matrix of a directed (\fVdirected=1\fR) or undirected 
+(\fVdirected=0\fR) graph.
+.SH EXAMPLE
+.nf
+g=load_graph(SCI+'/demos/metanet/colored');
+show_graph(g,'rep');
+a=graph_2_mat(g)
+g1=mat_2_graph(a,1)
+g1('node_x')=g('node_x'); g1('node_y')=g('node_y');
+show_graph(g1,'new');
+.fi
+.SH SEE ALSO
+graph_2_mat

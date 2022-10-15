@@ -1,0 +1,497 @@
+ 
+// test of matsys functions
+ 
+clear
+ 
+ 
+// debug
+ 
+if debug()<>0 then bugmes();quit;end
+ 
+debug(4)
+ debug    4
+ TOP    pt:   4 rstk(pt): 309 icall: 0 niv: 0 err:******
+ factor pt:   4 rstk(pt): 309 sym:  99
+ term   pt:   3 rstk(pt): 201
+ expr   pt:   2 rstk(pt): 101
+ stackp  ans                     
+ finish pt:   0 rstk(pt):   0 pstk(pt):   0 lpt(1):   1 niv: 0 macr: 0 paus: 0
+ 
+ getlin rio:    5 job:     0
+if debug()<>4 then bugmes();quit;end
+ parse  pt:   0 rstk(pt):   0 top:   0 niv: 0 err:     0
+ if        
+ comand   : if                      
+ clause pt:   0 rstk(pt):   0 -fin-10:   3
+ debug     
+ expr   pt:   1 rstk(pt): 803
+ term   pt:   2 rstk(pt): 101
+ factor pt:   3 rstk(pt): 201 sym:   1
+(
+)
+<
+ stackg  debug                         -2 
+ matsys    1
+ TOP    pt:   4 rstk(pt): 309 icall: 0 niv: 0 err:******
+ factor pt:   4 rstk(pt): 309 sym:  59
+ term   pt:   3 rstk(pt): 201
+ expr   pt:   2 rstk(pt): 101
+ lexpr  pt:   1 rstk(pt): 803
+ lterm   pt:   2 rstk(pt): 106
+ lfact  pt:   3 rstk(pt): 108
+ lprim  pt:   4 rstk(pt): 110
+>
+  0.400D+01
+ term   pt:   6 rstk(pt): 101
+ factor pt:   7 rstk(pt): 201 sym:   0
+ then      
+ term   pt:   7 rstk(pt): 201
+ expr   pt:   6 rstk(pt): 101
+ allops op: 119 pt:   5 rstk(pt): 114
+ matops op:  119
+ expr   pt:   5 rstk(pt): 114
+ clause pt:   1 rstk(pt): 803 -fin-10:-129
+ bugmes    
+(
+)
+;
+ quit      
+;
+ end       
+ parse  pt:   0 rstk(pt):   0 top:   0 niv: 0 err:******
+ eol
+ finish pt:   0 rstk(pt):   0 pstk(pt):   0 lpt(1):   1 niv: 0 macr: 0 paus: 0
+ 
+ getlin rio:    5 job:     0
+debug(0)
+ parse  pt:   0 rstk(pt):   0 top:   0 niv: 0 err:     0
+ debug     
+ comand   : debug                   
+ expr   pt:   1 rstk(pt): 703
+ term   pt:   2 rstk(pt): 101
+ factor pt:   3 rstk(pt): 201 sym:   1
+(
+  0.000D+00
+ expr   pt:   5 rstk(pt): 307
+ term   pt:   6 rstk(pt): 101
+ factor pt:   7 rstk(pt): 201 sym:   0
+)
+ term   pt:   7 rstk(pt): 201
+ expr   pt:   6 rstk(pt): 101
+ factor pt:   5 rstk(pt): 307 sym:  42
+ eol
+ stackg  debug                         -2 
+ matsys    1
+ debug    0
+ 
+ 
+//who
+ 
+a=33;bbb=-1;
+ 
+vars=who('get');
+ 
+if or(vars(1:2)<>['bbb';'a']) then bugmes();quit;end
+ 
+ 
+//lines
+ 
+ln=lines();lines(30);ln1=lines();
+ 
+if ln1(2)<>30 then bugmes();quit;end
+ 
+lines(45,70);ln1=lines();
+ 
+if or(ln1<>[70,45]) then bugmes();quit;end
+ 
+ 
+ 
+//argn
+ 
+deff('[x,y]=foo(a,b)','[lhs,rhs]=argn(0);x=[lhs,rhs];y=-1')
+ 
+if or(foo(1)<>[1 1]) then bugmes();quit;end
+ 
+if or(foo(1,2)<>[1 2]) then bugmes();quit;end
+ 
+if or(foo()<>[1 0]) then bugmes();quit;end
+ 
+[x,y]=foo(1);if or(x<>[2 1]) then bugmes();quit;end
+ 
+[x,y]=foo(1,1);if or(x<>[2 2]) then bugmes();quit;end
+ 
+[x,y]=foo();if or(x<>[2 0]) then bugmes();quit;end
+ 
+deff('[x,y]=foo(a,b)','lhs=argn(0);x=lhs;y=-1')
+Warning :redefining function: foo                     
+ 
+ 
+if foo(1)<>1 then bugmes();quit;end
+ 
+if foo(1,2)<>1 then bugmes();quit;end
+ 
+[x,y]=foo(1);if x<>2 then bugmes();quit;end
+ 
+//
+ 
+deff('[x,y]=foo(a,b)','[lhs,rhs]=argn();x=[lhs,rhs];y=-1')
+Warning :redefining function: foo                     
+ 
+ 
+if or(foo(1)<>[1 1]) then bugmes();quit;end
+ 
+if or(foo(1,2)<>[1 2]) then bugmes();quit;end
+ 
+if or(foo()<>[1 0]) then bugmes();quit;end
+ 
+[x,y]=foo(1);if or(x<>[2 1]) then bugmes();quit;end
+ 
+[x,y]=foo(1,1);if or(x<>[2 2]) then bugmes();quit;end
+ 
+[x,y]=foo();if or(x<>[2 0]) then bugmes();quit;end
+ 
+deff('[x,y]=foo(a,b)','lhs=argn();x=lhs;y=-1')
+Warning :redefining function: foo                     
+ 
+ 
+if foo(1)<>1 then bugmes();quit;end
+ 
+if foo(1,2)<>1 then bugmes();quit;end
+ 
+[x,y]=foo(1);if x<>2 then bugmes();quit;end
+ 
+ 
+//type
+ 
+if type(1)<>1 then bugmes();quit;end
+ 
+a=%s;if type(a)<>2  then bugmes();quit;end
+ 
+ 
+//mode (cannot be tested here)
+ 
+//mode(7);if mode()<>7 then bugmes();quit;end;mode(2);
+ 
+ 
+//errcatch,errclear,iserror
+ 
+clear
+ 
+//errcatch(4,'continue')
+ 
+//unknown
+ 
+//if iserror()<>1 then bugmes();quit;end
+ 
+//errclear()
+ 
+//if iserror()<>0 then bugmes();quit;end
+ 
+//unknown
+ 
+//if iserror(4)<>1 then bugmes();quit;end
+ 
+//errclear(4)
+ 
+//if iserror(4)<>0 then bugmes();quit;end
+ 
+errcatch(4,'continue','nomessage')
+ 
+unknown
+ 
+if iserror()<>1 then bugmes();quit;end
+ 
+errclear()
+ 
+if iserror()<>0 then bugmes();quit;end
+ 
+unknown
+ 
+if iserror(4)<>1 then bugmes();quit;end
+ 
+errclear(4)
+ 
+if iserror(4)<>0 then bugmes();quit;end
+ 
+errcatch()
+ 
+ 
+//error
+ 
+errcatch(4,'continue','nomessage')
+ 
+error(4)
+ 
+if iserror()<>1 then bugmes();quit;end
+ 
+errclear();errcatch()
+ 
+errcatch(-1,'continue','nomessage')
+ 
+error('test erreur');
+ 
+errclear();
+ 
+error('test erreur',999);
+ 
+errclear();
+ 
+errcatch()
+ 
+ 
+ 
+//resume
+ 
+deff('foo()','[a,b]=resume(''x'',''y'')')
+ 
+foo();
+ 
+if a<>'x'|b<>'y' then bugmes();quit;end
+ 
+ 
+//format
+ 
+fmt=format();
+ 
+format('v')
+ 
+sqrt(3)
+ ans  =
+ 
+    1.7320508  
+ 
+format(10)
+ 
+sqrt(3)
+ ans  =
+ 
+    1.7320508  
+ 
+format(12,'v')
+ 
+sqrt(3)
+ ans  =
+ 
+    1.732050808  
+ 
+format('v',15)
+ 
+sqrt(3)
+ ans  =
+ 
+    1.732050807569  
+ 
+format('e')
+ 
+sqrt(3)
+ ans  =
+ 
+    1.73205081D+00  
+ 
+format(10)
+ 
+sqrt(3)
+ ans  =
+ 
+    1.732D+00  
+ 
+f=format();
+ 
+if or(f<>[0 10]) then bugmes();quit;end
+ 
+format(10,'v');
+ 
+ 
+//exists
+ 
+a=1
+ a  =
+ 
+    1.  
+ 
+if exists('a')<>1 then bugmes();quit;end
+ 
+clear a
+ 
+if exists('a')<>0 then bugmes();quit;end
+ 
+ 
+//predef
+ 
+if %f then
+N=predef();
+a=1;
+predef('all');
+errcatch(13,'continue','nomessage')
+clear a
+if iserror()<>1 then bugmes();quit;end
+errclear();errcatch()
+predef('clear');
+errcatch(13,'continue','nomessage')
+clear a
+if iserror()<>0 then bugmes();quit;end
+errclear();errcatch()
+predef(N);
+if predef()<>N then bugmes();quit;end
+end
+ 
+ 
+// newfun, clearfun, funptr
+ 
+fptr=funptr('sin');
+ 
+if fptr<>623 then bugmes();quit;end
+ 
+newfun('mysin',fptr);
+ 
+if mysin(1)<>sin(1) then bugmes();quit;end
+ 
+clearfun('mysin')
+ 
+errcatch(4,'continue','nomessage')
+ 
+mysin(1)
+ 
+if iserror()<>1 then bugmes();quit;end
+ 
+errclear();errcatch();
+ 
+ 
+//whereis
+ 
+if whereis('sci2exp')<>'utillib' then bugmes();quit;end
+ 
+if whereis('aaa')<>[]  then bugmes();quit;end
+ 
+ 
+//where
+ 
+deff('[a,b]=foo()','[a,b]=where()')
+Warning :redefining function: foo                     
+ 
+ 
+[a,b]=foo();
+ 
+if a<>2|b<>'foo' then bugmes();quit;end
+ 
+ 
+//funcprot
+ 
+funcprot(0)
+ 
+deff('foo()','a=1')
+ 
+funcprot(1)
+ 
+deff('foo()','a=2')
+Warning :redefining function: foo                     
+ 
+ 
+errcatch(111,'continue','nomessage')
+ 
+funcprot(2)
+ 
+deff('foo()','a=3')
+ 
+ warning: stack problem..., cleared
+ 
+if iserror()<>1 then bugmes();quit;end
+ 
+errclear();errcatch()
+ 
+if funcprot()<>2 then bugmes();quit;end
+ 
+funcprot(1)
+ 
+ 
+// timer
+ 
+timer();svd(rand(100,100));if timer()<=0 then bugmes();quit;end
+ 
+ 
+ 
+// comp
+ 
+deff('[a]=foo()','a=1','n')
+Warning :redefining function: foo                     
+ 
+ 
+comp(foo)
+ 
+if foo()<>1 then bugmes();quit;end
+ 
+ 
+// stacksize (cannot be tested here)
+ 
+//stacksize(3d6)
+ 
+//sz=stacksize();
+ 
+//if sz(1)<>3d6 then bugmes();quit;end
+ 
+ 
+ 
+//mtlb_mode
+ 
+mtlb_mode(%t)
+ 
+if ~mtlb_mode() then bugmes();quit;end
+ 
+if []+1<>[] then bugmes();quit;end
+ 
+mtlb_mode(%f)
+ 
+if mtlb_mode() then bugmes();quit;end
+ 
+ 
+ 
+//sciargs
+ 
+args=sciargs();
+ 
+if type(args)<>10 then bugmes();quit;end
+ 
+ 
+//ieee
+ 
+ieee(2)
+ 
+if 1/0<>%inf then bugmes();quit;end
+ 
+ieee(1)
+ 
+if 1/0<>%inf then bugmes();quit;end
+Warning :division by zero...
+ 
+ 
+ieee(0)
+ 
+errcatch(27,'continue','nomessage')
+ 
+1/0
+ 
+if iserror()<>1 then bugmes();quit;end
+ 
+errclear();errcatch()
+ 
+ 
+ 
+//typename
+ 
+[typs,nams]=typename();
+ 
+if or(typs<>[1;2;4;5;6;7;8;10;11;13;14;15;16;17;128;129]) then bugmes();quit;end
+ 
+ 
+if or(nams<>['s';'p';'b';'sp';'spb';'msp';'i';'c';'m';'mc';
+  'f';'l';'tl';'ml';'ptr';'ip'])  then bugmes();quit;end
+ 
+typename('mytype',1024)
+ 
+[typs,nams]=typename();
+ 
+if typs($)<>1024|nams($)<>'mytype'  then bugmes();quit;end
+ 
+ 
+//global, isglobal, intglobal  --> global.tst
+ 

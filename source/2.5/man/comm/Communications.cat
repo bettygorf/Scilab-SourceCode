@@ -1,0 +1,23 @@
+
+Communications(1)             Scilab description            Communications(1)
+NAME
+  Communications - communications with other applications using GeCi
+
+DESCRIPTION
+  This the beta version of the Communications Toolbox.
+
+  GeCi manages communications between Scilab and other applications (included
+  Scilab itself) by using GeCi.
+
+  GeCI is an interactive communication manager created in order to manage
+  remote executions of softwares and allow exchanges of messages between
+  those softwares. It offers the possibility to exploit numerous machines on
+  a network, as a virtual computer, by creating a distributed group of inde-
+  pendent softwares.
+
+  In order to communicate, the other applications must have been prepared
+  for, by including a communication library in them. The way to do this is
+  described in the Communication Toolbox documentation.
+
+SEE ALSO
+  CreateLink, DestroyLink, ExecAppli, GetMsg, SendMsg, WaitMsg

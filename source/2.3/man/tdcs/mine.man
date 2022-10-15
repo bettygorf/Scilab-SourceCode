@@ -1,0 +1,59 @@
+.TH mine 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mine - a mining problem 
+.SH CALLING SEQUENCE
+.nf
+[cout,feed]=mine(n1,n2,uvect)
+.fi
+.SH PARAMETERS
+.TP
+n1    
+: Number of discrete point for the state.
+.TP
+n2    
+: Number of time step
+.TP
+uvect 
+: a row vector which gives the possible control value ( integer values ).
+for example \fVu=[-1,0,1]\fR means that at each step we come down one step
+or stay at the same level or rise one step ).
+.TP
+cout(n1,n2) 
+: The Bellman values.
+.TP
+feed(n1,n2) 
+: The feedback Law.
+.SH DESCRIPTION
+Dynamic programming applied to an optimal extraction of ore in an opencast mine. 
+The extraction is done as follows : the steam shovel move forward for (k=1,2,...,n2) 
+at each step it takes the ore, then move up or down (or stay at the same level)
+according to the control value to reach another level at next step. 
+The extraction process must maximise the following cost :
+.nf
+   -- n2-1
+   \
+   /        f(x(k),k) + V_F(x,n2)
+   -- k=1
+.fi
+with \fVx(k+1)=x(k) + u\fR. \fVx(k)\fR is the trajectory depth at step \fVk\fR (\fVx=1\fR is the ground level).
+ 
+The instantaneous  cost \fRf(i,k)\fV stands for the benefit of digging at depth \fVi\fR at position \fVk\fR.
+It must be given as a Scilab macro \fVff_o\fR
+.nf
+[y]=ff_o(x,k)
+.fi 
+and for efficiency \fVff_o\fR must accept and return  column vectors for \fVx\fR and \fVy\fR.
+
+\fVV_F(i,n2)\fR is a final cost which is set so as to impose the steam shovel to be at ground level 
+at position \fVn2\fR
+.SH FF_o
+.SH SHOWCOST
+.SH CALLING SEQUENCE
+.nf
+[]=showcost(n1,n2,teta,alpha)
+.fi
+.SH DESCRIPTION
+Shows a 3D representation of the instantaneous cost.
+
+

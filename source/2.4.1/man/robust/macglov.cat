@@ -1,0 +1,27 @@
+
+Macglov(1)                     Scilab Function                     Macglov(1)
+NAME
+  macglov - Mac Farlane Glover problem
+
+CALLING SEQUENCE
+  [P,r]=macglov(Sl)
+
+PARAMETERS
+
+  Sl   : linear system (syslin list)
+
+  P    : linear system (syslin list), ``augmented'' plant
+
+  r    : 1x2 vector, dimension of P22
+
+DESCRIPTION
+  [P,r]=macglov(Sl) returns the standard plant P for the Glover-McFarlane
+  problem.
+
+  For this problem ro_optimal = 1-hankel_norm([N,M]) with [N,M]=lcf(sl) (Nor-
+  malized coprime factorization) i.e.
+
+  gama_optimal = 1/sqrt(ro_optimal)
+
+AUTHOR
+  F. D.

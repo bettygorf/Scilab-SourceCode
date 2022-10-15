@@ -1,0 +1,11 @@
+
+POSTONEG_f(5)                    Scicos Block                   POSTONEG_f(5)
+NAME
+  POSTONEG_f - Scicos positive to negative detector
+
+DESCRIPTION
+  An output event is generated when the unique input crosses zero with a neg-
+  ative slope.
+
+SEE ALSO
+  NEGTOPOS_f, ZCROSS_f, GENERAL_f

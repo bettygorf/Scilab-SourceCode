@@ -1,0 +1,24 @@
+.TH evans 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+evans - Evans root locus
+.SH CALLING SEQUENCE
+.nf
+evans(syst [,kmax])
+.fi
+.SH PARAMETERS
+.TP
+syst
+: list (linear system \fVsyslin \fR)
+.TP
+kmax
+: real (maximum gain desired for the plot )
+.LP
+.SH DESCRIPTION
+gives the Evans root locus for a linear system in state-space or 
+transfer form (\fVsyslin\fR list)
+.SH EXAMPLE
+.nf
+h=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+evans(h,100)
+.fi

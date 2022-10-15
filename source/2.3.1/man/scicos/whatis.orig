@@ -1,0 +1,91 @@
+ABSBLK_f - Scicos abs block
+AFFICH_f - Scicos numerical display
+ANDLOG_f - Scicos logical AND block
+ANIMXY_f - Scicos 2D animated visualization block
+BIGSOM_f - Scicos addition block
+CLINDUMMY_f - Scicos dummy continuous system with state
+CLKIN_f - Scicos Super Block event input port
+CLKOUT_f - Scicos Super Block event output port
+CLKSOM_f - Scicos event addition block
+CLKSPLIT_f - Scicos event split block
+CLOCK_f - Scicos periodic event generator
+CLR_f - Scicos continuous-time linear system (SISO transfer function)
+CLSS_f - Scicos continuous-time linear state-space system
+CONST_f - Scicos constant value(s) generator
+COSBLK_f - Scicos cosine block
+CURV_f - Scicos block, tabulated function of time
+DELAYV_f - Scicos time varying delay block
+DELAY_f - Scicos  delay block
+DEMUX_f - Scicos demultiplexer block
+DLRADAPT_f - Scicos discrete-time linear adaptive system
+DLR_f - Scicos discrete-time linear system (transfer function)
+DLSS_f - Scicos discrete-time linear state-space system
+EVENTSCOPE_f - Scicos event visualization block
+EVTDLY_f - Scicos event delay block
+EVTGEN_f - Scicos event firing block
+EXPBLK_f - Scicos a^u block
+GAIN_f - Scicos gain block
+GENERAL_f - Scicos general zero crossing detector
+GENERIC_f - Scicos generic interfacing function
+GENSIN_f - Scicos sinusoid generator
+GENSQR_f - Scicos square wave generator
+HALT_f - Scicos Stop block
+IFTHEL_f - Scicos if then else block
+INTEGRAL_f - Scicos simple integrator
+INVBLK_f - Scicos inversion block
+IN_f - Scicos Super Block regular input port
+LOGBLK_f - Scicos logarithm  block
+LOOKUP_f - Scicos Lookup table with graphical editor
+MAX_f - Scicos max block
+MCLOCK_f - Scicos 2 frequency event clock
+MFCLCK_f - Scicos basic block for frequency division of event clock
+MIN_f - Scicos min block
+MUX_f - Scicos multiplexer block
+NEGTOPOS_f - Scicos negative to positive detector
+OUT_f - Scicos Super Block regular output port
+POSTONEG_f - Scicos positive to negative detector
+POWBLK_f - Scicos u^a block
+PROD_f - Scicos element wise product block
+QUANT_f - Scicos Quantization block
+RAND_f - Scicos random wave generator
+REGISTER_f - Scicos shift register block
+RFILE_f - Scicos read from file block
+SAMPLEHOLD_f - Scicos Sample and hold block
+SAT_f - Scicos Saturation block
+SAWTOOTH_f - Scicos sawtooth wave generator
+SCOPE_f - Scicos visualization block
+SCOPXY_f - Scicos visualization block
+SELECT_f - Scicos select block
+SINBLK_f - Scicos sine block
+SOM_f - Scicos addition block
+SPLIT_f - Scicos regular split block
+STOP_f - Scicos Stop block
+SUPER_f - Scicos Super block
+TANBLK_f - Scicos tan block
+TCLSS_f - Scicos jump continuous-time linear state-space system
+TEXT_f - Scicos  text drawing block
+TIME_f - Scicos time generator
+TRASH_f - Scicos Trash block
+WFILE_f - Scicos write to file block
+ZCROSS_f - Scicos zero crossing detector
+check_io - Checks and sets Scicos block port numbers.
+curblock - get current block index in a Scicos simulation function
+getblocklabel - get label of a Scicos block at running time
+getcurblock - get Scicos current block number while running
+getscicosvars - get Scicos data structure while running
+scicos - Block diagram editor and GUI for the hybrid simulator scicosim
+scicos_block - Scicos block data structure
+scicos_cpr - Scicos compiled diagram data structure
+scicos_graphics - Scicos block graphics data structure
+scicos_link - Scicos link data structure
+scicos_main - Scicos editor main  data structure
+scicos_menu - Scicos menus description
+scicos_model - Scicos block functionality  data structure
+scicosim - Scicos simulation function
+scifunc_block - Scicos block defined interactively
+setscicosvars - set Scicos data structure while running
+standard_define - Scicos block initial definition  function
+standard_draw - Scicos block drawing function
+standard_input - get Scicos block input port positions
+standard_origin - Scicos block origin function
+standard_output - get Scicos block output port positions

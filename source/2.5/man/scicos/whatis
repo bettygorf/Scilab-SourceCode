@@ -1,0 +1,102 @@
+ABSBLK_f - scicos abs block   @ABSBLK_f
+AFFICH_f - scicos numerical display   @AFFICH_f
+ANDLOG_f - scicos logical and block   @ANDLOG_f
+ANIMXY_f - scicos 2d animated visualization block   @ANIMXY_f
+BIGSOM_f - scicos addition block   @BIGSOM_f
+CLINDUMMY_f - scicos dummy continuous system with state   @CLINDUMMY_f
+CLKINV_f - scicos super block event input port   @CLKINV_f
+CLKIN_f - scicos super block event input port   @CLKIN_f
+CLKOUTV_f - scicos super block event output port   @CLKOUTV_f
+CLKOUT_f - scicos super block event output port   @CLKOUT_f
+CLKSOMV_f - scicos event addition block   @CLKSOMV_f
+CLKSOM_f - scicos event addition block   @CLKSOM_f
+CLKSPLIT_f - scicos event split block   @CLKSPLIT_f
+CLOCK_f - scicos periodic event generator   @CLOCK_f
+CLR_f - scicos continuous-time linear system (siso transfer function)   @CLR_f
+CLSS_f - scicos continuous-time linear state-space system   @CLSS_f
+CONST_f - scicos constant value(s) generator   @CONST_f
+COSBLK_f - scicos cosine block   @COSBLK_f
+CURV_f - scicos block, tabulated function of time   @CURV_f
+DELAYV_f - scicos time varying delay block   @DELAYV_f
+DELAY_f - scicos delay block   @DELAY_f
+DEMUX_f - scicos demultiplexer block   @DEMUX_f
+DLRADAPT_f - scicos discrete-time linear adaptive system   @DLRADAPT_f
+DLR_f - scicos discrete-time linear system (transfer function)   @DLR_f
+DLSS_f - scicos discrete-time linear state-space system   @DLSS_f
+EVENTSCOPE_f - scicos event visualization block   @EVENTSCOPE_f
+EVTDLY_f - scicos event delay block   @EVTDLY_f
+EVTGEN_f - scicos event firing block   @EVTGEN_f
+EXPBLK_f - scicos a^u block   @EXPBLK_f
+GAINBLK_f - scicos gain block   @GAINBLK_f
+GAIN_f - scicos gain block   @GAIN_f
+GENERAL_f - scicos general zero crossing detector   @GENERAL_f
+GENERIC_f - scicos generic interfacing function   @GENERIC_f
+GENSIN_f - scicos sinusoid generator   @GENSIN_f
+GENSQR_f - scicos square wave generator   @GENSQR_f
+HALT_f - scicos stop block   @HALT_f
+IFTHEL_f - scicos if then else block   @IFTHEL_f
+INTEGRAL_f - scicos simple integrator   @INTEGRAL_f
+INTRP2BLK_f - scicos 2d linear interpolation block   @INTRP2BLK_f
+INTRPLBLK_f - scicos linear interpolation block   @INTRPLBLK_f
+INVBLK_f - scicos inversion block   @INVBLK_f
+IN_f - scicos super block regular input port   @IN_f
+LOGBLK_f - scicos logarithm block   @LOGBLK_f
+LOOKUP_f - scicos lookup table with graphical editor   @LOOKUP_f
+MAX_f - scicos max block   @MAX_f
+MCLOCK_f - scicos 2 frequency event clock   @MCLOCK_f
+MFCLCK_f - scicos basic block for frequency division of event clock   @MFCLCK_f
+MIN_f - scicos min block   @MIN_f
+MUX_f - scicos multiplexer block   @MUX_f
+NEGTOPOS_f - scicos negative to positive detector   @NEGTOPOS_f
+OUT_f - scicos super block regular output port   @OUT_f
+POSTONEG_f - scicos positive to negative detector   @POSTONEG_f
+POWBLK_f - scicos u^a block   @POWBLK_f
+PROD_f - scicos element wise product block   @PROD_f
+QUANT_f - scicos quantization block   @QUANT_f
+RAND_f - scicos random wave generator   @RAND_f
+READC_f - scicos read from c binary file block   @READC_f
+REGISTER_f - scicos shift register block   @REGISTER_f
+RELAY_f - scicos relay block   @RELAY_f
+RFILE_f - scicos read from file block   @RFILE_f
+SAMPLEHOLD_f - scicos sample and hold block   @SAMPLEHOLD_f
+SAT_f - scicos saturation block   @SAT_f
+SAWTOOTH_f - scicos sawtooth wave generator   @SAWTOOTH_f
+SCOPE_f - scicos visualization block   @SCOPE_f
+SCOPXY_f - scicos visualization block   @SCOPXY_f
+SELECT_f - scicos selector block   @SELECT_f
+SINBLK_f - scicos sine block   @SINBLK_f
+SOM_f - scicos addition block   @SOM_f
+SPLIT_f - scicos regular split block   @SPLIT_f
+STOP_f - scicos stop block   @STOP_f
+SUPER_f - scicos super block   @SUPER_f
+TANBLK_f - scicos tan block   @TANBLK_f
+TCLSS_f - scicos jump continuous-time linear state-space system   @TCLSS_f
+TEXT_f - scicos text drawing block   @TEXT_f
+TIME_f - scicos time generator   @TIME_f
+TRASH_f - scicos trash block   @TRASH_f
+WFILE_f - scicos write to file block   @WFILE_f
+WRITEC_f - scicos write to c binary file block   @WRITEC_f
+ZCROSS_f - scicos zero crossing detector   @ZCROSS_f
+check_io - checks and sets scicos block port numbers.   @check_io
+curblock - get current block index in a scicos simulation function   @curblock
+getblocklabel - get label of a scicos block at running time   @getblocklabel
+getcurblock - get scicos current block number while running   @getcurblock
+getscicosvars - get scicos data structure while running   @getscicosvars
+icon_edit - simple interactive graphic block icon editor   @icon_edit
+scicos - block diagram editor and gui for the hybrid simulator scicosim   @scicos
+scicos_block - scicos block data structure   @scicos_block
+scicos_block - scicos block data structure   @scicosblock
+scicos_cpr - scicos compiled diagram data structure   @scicos_cpr
+scicos_graphics - scicos block graphics data structure   @scicos_graphics
+scicos_link - scicos link data structure   @scicos_link
+scicos_main - scicos editor main data structure   @scicos_main
+scicos_menus - scicos menus description   @scicos_menus
+scicos_model - scicos block functionality data structure   @scicos_model
+scicosim - scicos simulation function   @scicosim
+scifunc_block - scicos block defined interactively   @scifunc_block
+setscicosvars - set scicos data structure while running   @setscicosvars
+standard_define - scicos block initial definition function   @standard_define
+standard_draw - scicos block drawing function   @standard_draw
+standard_input - get scicos block input port positions   @standard_input
+standard_origin - scicos block origin function   @standard_origin
+standard_output - get scicos block output port positions   @standard_output

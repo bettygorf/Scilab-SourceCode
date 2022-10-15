@@ -1,0 +1,44 @@
+.TH graduate 2 "November 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+graduate - pretty axis graduations
+.SH CALLING SEQUENCE
+.nf
+[xi,xa,np]=graduate( xmi, xma,n1,n2)	
+[xi,xa,np]=graduate( xmi, xma)
+.fi
+.SH PARAMETERS 
+.TP 10
+xmi,xma
+: real scalars
+.TP 
+n1, n2
+: integers with default values 3,10
+.TP
+xi, xa
+:real scalars
+.TP
+np
+: integer
+.SH DESCRIPTION
+graduate looks for the minimum interval \fV[xi,xa]\fR and a number of tics 
+\fVnp\fR such that:
+.LP
+\fVxi <= xmi <= xma <= xa\fR
+.LP
+\fVxa - xi / np  =  k(10^n)\fR,\fVk\fR in \fV[1 3 5]\fR  for an integer \fVn\fR
+.LP
+\fVn1 < np < n2\fR
+.SH EXAMPLE
+.nf
+  y=(0:0.33:145.78)';
+  xbasc();plot2d1('enn',0,y)
+  [ymn,ymx,np]=graduate(mini(y),maxi(y))
+  rect=[1,ymn,prod(size(y)),ymx];
+  xbasc();plot2d1('enn',0,y,1,'011',' ',rect,[10,3,10,np])
+.fi
+.SH SEE ALSO
+xsetech ,plot2d
+.SH AUTHOR
+S. Steer 1992
+

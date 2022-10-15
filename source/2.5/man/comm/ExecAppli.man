@@ -1,0 +1,34 @@
+.TH ExecAppli 1 "March 1997" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+ExecAppli - executes an application
+.SH CALLING SEQUENCE
+.nf
+ExecAppli(command,h,appli)
+.fi
+.SH PARAMETERS
+.TP 8
+command
+: string, command of the application
+.TP 2
+h
+: string, host name
+.TP 6
+appli
+: string, name of the application
+.SH DESCRIPTION
+\fVExecAppli\fR executes the application described by \fVcommand\fR
+on the host \fVh\fR and gives it the name \fVappli\fR.
+Arguments of the application can be also given in the string \fVcommand\fR.
+
+After executing \fVExecAppli\fR, it is necessary to create links with
+\fVCreateLink\fR to be able to send messages between applications.
+.SH EXAMPLE
+.nf
+h=unix_g("hostname")
+ExecAppli(SCI+"/bin/scilex",h,"Scilab2")
+CreateLink("SELF","Scilab2")
+ExecAppli(SCI+"/bin/scilex -ns",h,"Scilab3")
+.fi
+.SH SEE ALSO
+CreateLink, ExecScilab, ExeclScilab

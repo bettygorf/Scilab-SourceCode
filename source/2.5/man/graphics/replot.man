@@ -1,0 +1,26 @@
+.TH replot 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+replot - redraw the current graphics window with new boundaries
+.SH CALLING SEQUENCE
+.nf
+replot(rect)
+.fi
+.SH PARAMETERS
+.TP 6
+rect 
+: row vector of size 4.
+.SH DESCRIPTION
+\fVreplot\fR is used to redraw the content of the current graphics
+window with new boundaries defined by
+\fVrect=[xmin,ymin,xmax,ymax]\fR. It works only with the driver \fV"Rec"\fR.
+.SH EXAMPLE
+.nf
+x=[0:0.1:2*%pi]';
+plot2d(x,sin(x))
+replot([-1,-1,10,2])
+.fi
+.SH SEE ALSO
+xbasr
+.SH AUTHOR
+J.Ph.C.

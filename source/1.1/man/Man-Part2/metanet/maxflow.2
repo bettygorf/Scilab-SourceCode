@@ -1,0 +1,28 @@
+.TH maxflow 1 "April 1993" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME 
+maxflow - maximum flow between two nodes  
+.SH CALLING SEQUENCE
+.nf
+[vflo,phi] = maxflow(is,it,[g])
+.fi
+.SH PARAMETERS
+.TP 6
+is,it 
+: integers, source and sink node numbers
+.TP
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP
+vflo
+: integer, value of the flow on the return arc (it,is)
+.TP
+phi
+: array of the flows on the arcs
+.SH DESCRIPTION
+\fVmaxflow\fR returns the maximum flow from source node \fVis\fR to 
+sink node \fVit\fR for the directed
+graph \fVg\fR. \fVvflo\fR is the value of the flow and 
+\fVphi\fR is the array of the flows on the arcs.
+.SH SEE ALSO
+gmaxflow

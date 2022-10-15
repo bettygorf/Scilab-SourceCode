@@ -1,0 +1,54 @@
+.TH lqe 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+lqe - linear quadratic estimator (Kalman Filter)
+.SH CALLING SEQUENCE
+.nf
+[K,X]=lqe(P21) 
+.fi
+.SH PARAMETERS
+.TP 10
+P21
+: \fVsyslin\fR list
+.TP 10
+K, X
+: real matrices
+.SH DESCRIPTION
+\fVlqe\fR returns the Kalman gain for the filtering
+problem in continuous or discrete time.
+.LP
+\fVP21\fR is a \fVsyslin\fR list representing the system \fVP21=[A,B1,C2,D21]\fR
+.LP
+The input to \fVP21\fR is a white noise with variance:
+.nf
+     [B1 ]               [Q  S]
+BigV=[   ] [ B1' D21'] = [    ]
+     [D21]               [S' R]
+.fi
+\fVX\fR is the solution of the stabilizing Riccati 
+equation and \fVA+K*C2\fR is stable.
+
+.LP
+In continuous time:
+.nf
+(A-S*inv(R)*C2)*X+X*(A-S*inv(R)*C2)'-X*C2'*inv(R)*C2*X+Q-S*inv(R)*S'=0
+.fi
+.nf
+K=-(X*C2'+S)*inv(R)
+.fi
+.LP
+In discrete time:
+.nf
+X=A*X*A'-(A*X*C2'+B1*D21')*pinv(C2*X*C2'+D21*D21')*(C2*X*A'+D21*B1')+B1*B1'
+.fi
+\fVK=-(A*X*C2'+B1*D21')*pinv(C2*X*C2'+D21*D21')\fR
+.LP
+\fVxhat(t+1)= E(x(t+1)| y(0),...,y(t))\fR (one-step predicted \fVx\fR)
+satisfies the recursion:
+.nf
+xhat(t+1)=(A+K*C2)*xhat(t) - K*y(t).
+.fi
+.SH SEE ALSO
+lqr
+.SH AUTHOR
+F. D. 

@@ -1,0 +1,66 @@
+
+
+
+spaninter(1)                   Scilab Function                   spaninter(1)
+
+
+
+
+
+
+NAME
+  spaninter - subspace intersection
+
+CALLING SEQUENCE
+  [X,dim]=spaninter(A,B [,tol])
+
+PARAMETERS
+  A, B      : two real or complex matrices with equal number of rows
+  X         : orthogonal or unitary square matrix
+  dim       : integer, dimension of subspace range(A) inter range(B)
+
+DESCRIPTION
+  [X,dim]=spaninter(A,B) computes the intersection of range(A) and range(B).
+  The first dim columns of X span this intersection i.e.  X(:,1:dim) is an
+  orthogonal basis for
+
+  range(A) inter range(B)
+
+
+  In the X basis A and B are respectively represented by:
+  X'*A and X'*B.
+  tol is a threshold (sqrt(%eps) is the default value).
+
+SEE ALSO
+  spanplus, spantwo
+
+AUTHOR
+  F. D.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

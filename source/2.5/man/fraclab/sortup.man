@@ -1,0 +1,68 @@
+.TH "sortup" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sortup - Sorts the elements of an array in increasing order
+.sp
+Author: Paulo Goncalves
+.sp
+Sorts the elements of an array in increasing order
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+[yup,kup] = sortup(x[,how]) 
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : Real valued array \f(CR[\fPrx,cx\f(CR]\fP
+
+.TP
+o 
+\fBhow\fP : option argument 
+'*' : x is treated as x(:). \fIsortup\fP returns a \f(CR[\fPrx,cx\f(CR]\fP array 
+'c' : x is treated columnwise. \fIsortup\fP returns a \f(CR[\fPrx,cx\f(CR]\fP array which columns are sorted in increasing order 
+'r' : x is treated in row.  \fIsortup\fP returns a \f(CR[\fPrx,cx\f(CR]\fP array which rows are sorted in increasing order 
+Default value is '*'
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fByup\fP : Real matrix \f(CR[\fPrx,cx\f(CR]\fP  
+Sorted elements of \fIx\fP 
+
+.TP
+o 
+\fBkup\fP : Integer matrix \f(CR[\fPrx,cx\f(CR]\fP  
+Indices of the sorted elements of \fIx\fP
+.RE
+
+.SH See also:
+sort
+.SH Example:
+.sp
+.ft CR
+.nf
+[y,x] = sort(rand(4,4)) ; 
+x
+xSortAll = sortup(x,'*')
+xSortCol = sortup(x,'c') 
+xSOrtRow = sortup(x,'r')
+.fi 
+.ec
+.ft P
+.sp

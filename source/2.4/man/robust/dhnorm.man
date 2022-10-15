@@ -1,0 +1,27 @@
+.TH h_norm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+dhnorm - discrete H-infinity norm
+.SH CALLING SEQUENCE
+.nf
+hinfnorm=dhnorm(sl,[tol],[normax])
+.fi
+.SH PARAMETERS
+.TP 10
+sl        
+: the state space system (\fVsyslin\fR list) (discrete-time)
+.TP 
+tol
+: tolerance in bisection step, default value \fV0.01\fR
+.TP
+normax
+: upper bound for the norm , default value is \fV1000\fR
+.TP 
+hinfnorm  
+: the discrete infinity norm of \fVSl\fR
+.SH DESCRIPTION
+produces the discrete-time infinity norm  of a state-space system 
+(the maximum over all frequencies on the unit circle of the maximum singular value).
+.SH SEE ALSO
+h_norm, linfn
+

@@ -1,0 +1,225 @@
+.TH extraction 1 "September 1996" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+extraction - matrix and list entry extraction
+.SH CALLING SEQUENCE
+.nf
+x(i,j)
+x(i)
+[...]=l(i)
+[...]=l(k1)...(kn)(i) or [...]=l(list(k1,...,kn,i))
+l(k1)...(kn)(i,j)   or l(list(k1,...,kn,list(i,j))
+.fi
+.SH PARAMETERS
+.TP 15
+x
+: matrix  of any  possible types
+.TP 15
+l
+: list variable
+.TP 15
+i,j
+: indices
+.TP
+k1,...kn
+: indices
+.SH DESCRIPTION
+.TP 5
+MATRIX CASE
+ 
+\fVi\fR and \fVj\fR, can be:
+.RS
+.TP 3
+-
+real scalars or vectors or matrices with positive elements. 
+.RS
+.TP 3
+* 
+\fVr=x(i,j)\fR designs the matrix \fVr\fR such as
+\fVr(l,k)=x(int(i(l)),int(j(k)))\fR for  \fVl\fR from 1 to \fVsize(i,'*')\fR and
+\fVk\fR from 1 to \fVsize(j,'*')\fR. 
+
+\fVi\fR (\fVj\fR) Maximum value must be
+less or equal to \fVsize(x,1)\fR (\fVsize(x,2)\fR).
+.TP 3
+*
+\fVr=x(i)\fR with \fVx\fR a 1x1 matrix designs the matrix \fVr\fR such as
+\fVr(l,k)=x(int(i(l)),int(i(k)))\fR for  \fVl\fR from 1 to \fVsize(i,1)\fR and
+\fVk\fR from 1 to \fVsize(i,2)\fR. 
+
+Note that in this case index
+\fVi\fR is valid only if  all its entries are equal to one.
+.TP 3
+*
+\fVr=x(i)\fR with \fVx\fR a row vector designs the row vector
+\fVr\fR such as \fVr(l)=x(int(i(l)))\fR for \fVl\fR from 1 to
+\fVsize(i,'*')\fR
+
+\fVi\fR  Maximum value must be
+less or equal to \fVsize(x,'*')\fR.
+.TP 3
+* 
+\fVr=x(i)\fR with \fVx\fR a matrix with one or more columns designs
+the column vector \fVr\fR such as \fVr(l)\fR (\fVl\fR from 1 to
+\fVsize(i,'*')\fR) designs the \fVint(i(l))\fR entry of the column
+vector formed by the concatenation of the \fVx\fR's columns.
+
+\fVi\fR  Maximum value must be
+less or equal to \fVsize(x,'*')\fR.
+.RE
+
+.TP
+-
+the \fV : \fR symbol which stands for "all elements". 
+.RS
+.TP 3
+ * 
+\fVr=x(i,:)\fR designs the matrix \fVr\fR such as
+\fVr(l,k)=x(int(i(l)),k))\fR for  \fVl\fR from 1 to \fVsize(i,'*')\fR and
+\fVk\fR from 1 to \fVsize(x,2)\fR
+.TP
+ *
+\fVr=x(:,j)\fR designs the matrix \fVr\fR such as
+\fVr(l,k)=x(l,int(j(k)))\fR for  \fVl\fR from 1 to \fVsize(r,1)\fR and
+\fVk\fR from 1 to  \fVsize(j,'*')\fR.
+.TP
+ * 
+\fVr=x(:)\fR designs the column vector \fVr\fR formed by the
+column concatenations of\fV x\fR columns. It is equivalent to
+\fVmatrix(x,size(x,'*'),1)\fR.
+.RE
+
+.TP
+-
+vector of boolean. If an index (\fVi\fR  or \fVj\fR )is a vector of
+booleans it is interpreted as \fVfind(i)\fR or respectively  \fVfind(j)\fR 
+.TP
+-
+a polynomial.  If an index (\fVi\fR  or \fVj\fR )is a vector of
+polynomials or implicit polynomial vector it is interpreted as
+\fVhorner(i,m)\fR or respectively  \fVhorner(j,n)\fR where \fVm\fR
+and \fVn\fR are associated \fVx\fR dimensions.
+
+Even if this feature works for all polynomials, it is recommended to
+use polynomials in \fV$\fR for readability.  
+.RE
+.TP 
+LIST OR TLIST CASE
+
+If they are present the \fVki\fR give the path to a sub-list entry of
+\fVl\fR data structure. They allow a recursive extraction without
+intermediate copies.
+
+The  \fV[...]=l(k1)...(kn)(i)\fR and  \fV[...]=l(list(k1,...,kn,i))\fR instructions are interpreted as:
+
+\fVlk1   = l(k1)\fR
+
+\fV ..   = ..    \fR
+
+\fVlkn   = lkn-1(kn)\fR
+
+\fV[...] = lkn(i)\fR
+
+And the  \fVl(k1)...(kn)(i,j)\fR and \fVl(list(k1,...,kn,list(i,j))\fR
+instructions are  interpreted as:
+
+\fVlk1   = l(k1)\fR
+
+\fV ..   = ..    \fR
+
+\fVlkn   = lkn-1(kn)\fR
+
+\fV        lkn(i,j)\fR
+\fVi\fR and \fVj\fR, can be:
+
+When path points on more than one list component the instruction must
+have as many left hand side arguments as selected components. But if the
+extraction syntax is used within a function input calling sequence
+each returned list component is added to the function calling sequence.
+.RS
+.TP 3
+-
+real scalar or vector or matrix with positive elements. 
+
+ \fV[r1,...rn]=l(i)\fR extracts the \fVi(k)\fR elements from the list
+l and store them in \fVrk\fR variable  for  \fVk\fR from 1 to
+\fVsize(i,'*')\fR 
+.TP
+-
+the \fV : \fR symbol which stands for "all elements". 
+.TP
+-
+a vector of booleans. If \fVi\fR is a vector of
+booleans it is interpreted as \fVfind(i)\fR.
+.TP
+-
+a polynomial.  If \fVi\fR  is a vector of
+polynomials or implicit polynomial vector it is interpreted as
+\fVhorner(i,m)\fR where \fVm=size(l)\fR.
+
+Even if this feature works for all polynomials, it is recommended to
+use polynomials in \fV$\fR for readability.  
+.RE
+.TP
+\fVk1,..kn\fR may be :
+
+.RS
+.TP 3
+-
+real positive scalar. 
+
+.TP
+-
+a polynomial,interpreted as
+\fVhorner(ki,m)\fR where \fVm\fR is the corresponding sub-list size.
+
+.TP
+- a character string associated with a sub-list entry name.
+.RE
+.SH REMARKS
+For soft coded matrix types such as rational functions and state space
+linear systems, \fVx(i)\fR syntax may not be used for vector element
+extraction due to confusion with list element extraction. \fVx(1,j)\fR
+or \fVx(i,1)\fR syntax must be used.
+.SH EXAMPLE
+.nf
+// MATRIX CASE
+a=[1 2 3;4 5 6]
+a(1,2)
+a([1 1],2)
+a(:,1)
+a(:,3:-1:1)
+a(1)
+a(6)
+a(:)
+a([%t %f %f %t])
+a([%t %f],[2 3])
+a(1:2,$-1)
+a($:-1:1,2)
+a($)
+//
+x='test'
+x([1 1;1 1;1 1])
+//
+b=[1/%s,(%s+1)/(%s-1)]
+b(1,1)
+b(1,$)
+b(2) // the numerator
+// LIST OR TLIST CASE
+l=list(1,'qwerw',%s)
+l(1)
+[a,b]=l([3 2])
+l($)
+x=tlist(l(2:3)) //form a tlist with the last 2 components of l
+//
+dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+dts(2)('a')
+dts(2)('b')(1,2)
+[a,b]=dts(2)(['a','b'])
+
+.fi
+.SH SEE ALSO
+find, horner, parents
+
+
+

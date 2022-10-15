@@ -1,0 +1,11 @@
+arma - scilab arma library   @arma
+arma2p - extract polynomial matrices from ar representation   @arma2p
+armac - scilab description of an armax process   @armac
+armax - armax identification   @armax
+armax1 - armax identification   @armax1
+arsimul - armax simulation   @arsimul
+narsimul - armax simulation ( using rtitr)   @narsimul
+noisegen - noise generation   @noisegen
+odedi - test of ode   @odedi
+prbs_a - pseudo random binary sequences generation   @prbs_a
+reglin - linear regression   @reglin

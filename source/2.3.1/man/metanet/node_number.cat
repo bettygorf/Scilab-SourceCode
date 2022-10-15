@@ -1,0 +1,19 @@
+
+node_number(1)                 Scilab function                 node_number(1)
+NAME
+  node_number - number of nodes of a graph
+
+CALLING SEQUENCE
+  n = node_number(g)
+
+PARAMETERS
+
+  g : graph list
+
+  n : integer, number of nodes
+
+DESCRIPTION
+  node_number returns the number n of nodes of the graph.
+
+SEE ALSO
+  arc_number, edge_number

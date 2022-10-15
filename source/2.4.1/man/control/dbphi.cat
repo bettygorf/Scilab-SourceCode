@@ -1,0 +1,23 @@
+
+dbphi(1)                       Scilab Function                       dbphi(1)
+NAME
+  dbphi - frequency response to phase and magnitude representation
+
+CALLING SEQUENCE
+  [db,phi] =dbphi(repf)
+
+PARAMETERS
+
+  db,phi
+       : vector of gains (db) and phases (degrees)
+
+  repf : vector of complex frequency response
+
+DESCRIPTION
+
+  db(k) is the magnitude of repf(k) expressed in dB i.e.
+  db(k)=20*log(abs(repf(k)))/log(10) and phi(k) is the phase of repf(k)
+  expressed in degrees.
+
+SEE ALSO
+  repfreq, bode

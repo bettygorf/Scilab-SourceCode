@@ -1,0 +1,179 @@
+
+multim1d(2)                    Scilab Function                    multim1d(2)
+NAME
+  multim1d - multinomial 1d measure synthesis
+
+  Author: Christophe Canus
+
+  This  C_LAB routine   synthesizes  a large range of   pre-multifractal
+  measures  related  to  the    multinomial  1d  measure (deterministic,
+  shuffled, pertubated) and    computes  linked  theoretical   functions
+  (partition   sum   function, Reyni   exponents  function,  generalized
+  dimensions, multifractal spectrum).
+
+Usage
+  [varargout,[optvarargout]]=multim1d(b,p,str,varargin,[optvarargin])
+
+Input parameters
+       o b : strictly positive real (integer) scalar Contains the base of the
+         multinomial.
+       o p : strictly positive real vector [1,b] Contains the weights of the
+         multinomial.
+       o str : string Contains the type of ouput.
+       o varargin : variable input argument Contains the variable input argu-
+         ment.
+       o optvarargin : optional variable input arguments Contains optional
+         variable input arguments.
+Output parameters
+       o varargout : variable output argument Contains the variable output
+         argument.
+       o optvarargout : optional variable output argument Contains an
+         optional variable output argument.
+
+Description
+
+Parameters
+
+  The multinomial 1d measure is completly characterized by its base b and its
+  weights p(i) (i=1 to b). The first parameter b must be >1. The second
+  parameter must be a vector of size equal to b. The weights p(i) must be
+  >0., <1. and their sum must be =1. (the case of p(i)=1/b corresponds to the
+  Lebesgue measure) (i=1 to b).  The third parameter str is a variable string
+  used to determine the desired type of output. There are six suffix strings
+  ('meas' for measure, 'cdf' for cumulative distribution function , 'pdf' for
+  probability density function, 'part' for partition sum function, 'Reyni'
+  for Reyni exponent function , 'spec' for multifractal spectrum) for the
+  deterministic multinomial measure and two prefix strings for related meas-
+  ures ('shuf' for shuffled , 'pert' for pertubated) which can be added to
+  the first ones to form composed strings. For example, 'shufmeas' is for the
+  synthesis of a shuffled multinomial 1d pre-multifractal measure. Note that
+  all combinaisons of strings are not implemented yet.  When a string con-
+  taining suffix string 'meas' is given as third input, a pre-multifractal
+  measure mu_n (first output argument) is synthesized on the b-adic intervals
+  I_n (second optional output argument) of the unit interval. In that case,
+  the fourth input argument is a strictly positive real (integer) scalar n
+  which contains the resolution of the pre-multifractal measure. The size of
+  the output real vectors mu_n (and I_n if used) is equal to bn (so be aware
+  the stack size ;-)). This option is implemented for the deterministic
+  ('meas'), shuffled ('shufmeas') and pertubated ('pertmeas') multinomial 1d
+  measure.  When a string containing prefix 'shuf' is given as third input,
+  the synthesis is made for a shuffled multinomial measure. At each level of
+  the multiplicative cascade and for all nodes of the corresponding binary
+  tree, the vector of weights p is shuffled. This option is implemented only
+  for the multinomial 1d measure ('shufmeas').  When a string containing pre-
+  fix 'pert' is given as third input, the synthesis is made for a pertubated
+  multinomial measure. In that case, the fifth input argument is a strictly
+  positive real scalar epsilon which contains the pertubation around weights.
+  The weights are independant random variables identically distributed
+  between p(i)-epsilon and p(i)+epsilon which must be >0., <1. (i=1 to b).
+  This option is implemented only for the multinomial 1d measure ('pert-
+  meas').  When replacing suffix string 'meas' with suffix string 'cdf',
+  respectively suffix string 'pdf', the cumulative distribution function F_n,
+  respectively the probability density function p_n, related to this pre-
+  multifractal measure is computed (first output argument).  When string
+  'part' is given as third input, the partition sum function znq of mul-
+  tifractal measure is computed as sole output argument. In that case, the
+  fourth input argument is a strictly positive real (integer) vector vn which
+  contains the resolutions, and the fifth input argument is a real vector q
+  which contains the measure exponents. The size of the output real matrix
+  znq is equal to size(q)*size(vn). This option is implemented only for the
+  multinomial 1d measure.  When string 'Reyni' is given as third input, the
+  Reyni exponents function tq (and the generalized dimensions Dq if used) of
+  the multifractal measure is computed as first output argument (and second
+  optional output argument if used). In that case, the fourth input argument
+  is a real vector q which contains the measure's exponents. The size of the
+  output real vector tq is equal to size(q)). This option is implemented only
+  for the multinomial 1d measure.  When string 'spec' is given as third
+  input, the multifractal spectrum f_alpha (second output argument) is syn-
+  thesized on the Hoelder exponents alpha (first output argument). In that
+  case, the fourth input argument is a strictly positive real (integer)
+  scalar N which contains the number of Hoelder exponents. The size of both
+  output real vectors alpha and f_alpha is equal to N. This option is imple-
+  mented only for the multinomial 1d measure.
+
+Algorithm details
+
+  For the deterministic multinomial, the pre-multifractal measure synthesis
+  algorithm is implemented is a iterative way (supposed to run faster than a
+  recursive one). For the shuffled or the pertubated multinomial, the
+  synthesis algorithm is implemented is a recursive way (to be able to pick
+  up a i.i.d. r.v. at each level of the multiplicative cascade and for all
+  nodes of the corresponding binary tree w.r.t. the given law). In the case
+  of the pertubated multinomial, the weights of each node are normalised by
+  their sum for the measure to remain conservative. Note that the shuffled
+  multinomial 1d measure is not conservative.
+
+Examples
+
+Matlab
+
+  b=3;
+  p=[.1 .3 .6];
+  n=8;
+  % synthesizes a pre-multifractal multinomial 1d measure
+  [mu_n,I_n]=multim1d(b,p,'meas',n);
+  plot(I_n,mu_n);
+  % synthesizes the cdf of a pre-multifractal shuffled multinomial 1d measure
+  F_n=multim1d(b,p,'shufcdf',n);
+  plot(I_n,F_n);
+  e=.09;
+  % synthesizes the pdf of a pre-multifractal pertubated multinomial 1d measure
+  p_n=multim1d(b,p,'pertpdf',n,e);
+  plot(I_n,p_n);
+  vn=[1:1:8];
+  q=[-5:.1:+5];
+  % computes the partition sum function of a multinomial 1d measure
+  znq=multim1d(b,p,'part',vn,q);
+  plot(-vn*log(2),log(znq));
+  % computes the Reyni exponents function of a multinomial 1d measure
+  tq=multim1d(b,p,'Reyni',q);
+  plot(q,tq);
+  N=200;
+  % computes the multifractal spectrum of a multinomial 1d measure
+  [alpha,f_alpha]=multim1d(b,p,'spec',N);
+  plot(alpha,f_alpha);
+Scilab
+
+  b=3;
+  p=[.1 .3 .6];
+  n=8;
+  // synthesizes a pre-multifractal multinomial 1d measure
+  [mu_n,I_n]=multim1d(b,p,'meas',n);
+  plot(I_n,mu_n);
+  // synthesizes the cdf of a pre-multifractal shuffled multinomial 1d measure
+  F_n=multim1d(b,p,'shufcdf',n);
+  plot(I_n,F_n);
+  e=.09;
+  // synthesizes the pdf of a pre-multifractal pertubated multinomial 1d measure
+  p_n=multim1d(b,p,'pertpdf',n,e);
+  plot(I_n,p_n);
+  xbasc();
+  vn=[1:1:8];
+  q=[-5:.1:+5];
+  // computes the partition sum function of a multinomial 1d measure
+  znq=multim1d(b,p,'part',vn,q);
+  mn=zeros(max(size(q)),max(size(vn)));
+  for i=1:max(size(q))
+     mn(i,:)=-vn*log(2);
+  end
+  plot2d(mn',log(znq'));
+  // computes the Reyni exponents function of a multinomial 1d measure
+  tq=multim1d(b,p,'Reyni',q);
+  plot(q,tq);
+  N=200;
+  // computes the multifractal spectrum of a multinomial 1d measure
+  [alpha,f_alpha]=multim1d(b,p,'spec',N);
+  plot(alpha,f_alpha);
+References
+  "Multifractal Measures", Carl J. G. Evertsz and Benoit B. MandelBrot. In
+  Chaos and Fractals, New Frontiers of Science, Appendix B. Edited by Peit-
+  gen, Juergens and Saupe, Springer Verlag, 1992 pages 921-953.  "A class of
+  Multinomial Multifractal Measures with negative (latent) values for the
+  "Dimension" f(alpha)", Benoit B. MandelBrot. In Fractals' Physical Origins
+  and Properties, Proceeding of the Erice Meeting, 1988. Edited by L.
+  Pietronero, Plenum Press, New York, 1989 pages 3-29.
+
+See also
+  binom, sbinom, multim2d, smultim1d, smultim2d (C_LAB routines).
+  MFAS_measures, MFAS_dimensions, MFAS_spectra (Matlab and/or Scilab demo
+  scripts).

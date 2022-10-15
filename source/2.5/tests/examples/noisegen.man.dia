@@ -1,0 +1,11 @@
+ 
+clear;lines(0);
+ 
+noisegen(0.5,30,1.0);
+ 
+x=-5:0.01:35;
+ 
+y=feval(x,Noise);
+ 
+plot(x,y);
+ 

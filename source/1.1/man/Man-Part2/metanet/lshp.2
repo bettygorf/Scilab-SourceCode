@@ -1,0 +1,26 @@
+.TH lshp 1 "April 1993" "Scilab Group" "Scilab macro"
+.so man1/sci.an
+.SH NAME 
+lshp - length shortest path  
+.SH CALLING SEQUENCE
+.nf
+[p,lp] = lshp(i,j,[g])
+.fi
+.SH PARAMETERS
+.TP 4
+i,j 
+: integers, node numbers
+.TP
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP
+p
+: row vector of arc numbers
+.TP
+lp
+: shortest length
+.SH DESCRIPTION
+\fVlshp\fR returns the shortest path \fVp\fR in length from
+node\fVi\fR to node \fVj\fR. \fVlp\fR is the length of this path.
+.SH SEE ALSO
+anshp, lshp, ns2p

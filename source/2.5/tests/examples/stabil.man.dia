@@ -1,0 +1,62 @@
+ 
+clear;lines(0);
+ 
+// Gain:
+ 
+Sys=ssrand(0,2,5,list('st',2,3,3));
+ 
+A=Sys('A');B=Sys('B');F=stabil(A,B);
+WARNING:system not stabilizable (or detectable)=>stabilizing the stabilizable part
+ 
+spec(A) //2 controllable modes 2 unstable uncontrollable modes
+ ans  =
+ 
+!   1.3248926        !
+! - 1.3642101        !
+!   0.5 + 0.7124326i !
+!   0.5 - 0.7124326i !
+! - 0.5              !
+ 
+//and one stable uncontrollable mode
+ 
+spec(A+B*F) //the two controllable modes are set to -1.
+ ans  =
+ 
+!   0.5 + 0.7124326i !
+!   0.5 - 0.7124326i !
+! - 1.               !
+! - 1.0000000        !
+! - 0.5              !
+ 
+// Compensator:
+ 
+Sys=ssrand(3,2,5,list('st',2,3,3)); //3 outputs, 2 inputs, 5 states
+ 
+//2 controllables modes, 3 controllable or stabilizable modes.
+ 
+K=stabil(Sys,-2,-3);  //Compensator for Sys.
+WARNING:system not stabilizable (or detectable)=>stabilizing the stabilizable part
+ 
+spec(Sys('A'))
+ ans  =
+ 
+!   1.7890679 !
+! - 2.3859441 !
+!   0.5       !
+! - 0.5683667 !
+! - 0.5       !
+ 
+spec(h_cl(Sys,K))   //K Stabilizes what can be stabilized.
+ ans  =
+ 
+!   1.7890679              !
+!   0.5                    !
+! - 0.5                    !
+! - 2. + 5.521D-07i        !
+! - 2. - 5.521D-07i        !
+! - 3.0039339 + 0.0028641i !
+! - 3.0039339 - 0.0028641i !
+! - 2.9984913 + 0.0046166i !
+! - 2.9984913 - 0.0046166i !
+! - 2.9951495              !
+ 

@@ -1,0 +1,39 @@
+.TH det 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+det  - determinant
+.SH CALLING SEQUENCE
+.nf
+det(X)
+[e,m]=det(X)
+.fi
+.SH PARAMETERS
+.TP
+X 
+: real or complex square matrix, polynomial or rational matrix.
+.TP
+m
+: real or complex number, the determinant base 10 mantissae
+.TP
+e
+: integer, the determinant base 10 exponent
+
+.SH DESCRIPTION
+\fVdet(X)\fR ( \fVm*10^e\fR is the determinant of the square matrix \fVX\fR.
+.LP
+For polynomial matrix \fVdet(X)\fR is equivalent to \fVdeterm(X)\fR.
+.LP
+For rational matrices \fVdet(X)\fR is equivalent to \fVdetr(X)\fR.
+.SH EXAMPLE
+.nf
+x=poly(0,'x');
+det([x,1+x;2-x,x^2])
+w=ssrand(2,2,4);roots(det(systmat(w))),trzeros(w)   //zeros of linear system
+A=rand(3,3);
+det(A), prod(spec(A))
+.fi
+.SH SEE ALSO
+detr, determ
+
+
+

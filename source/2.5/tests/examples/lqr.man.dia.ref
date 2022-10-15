@@ -1,0 +1,55 @@
+ 
+clear;lines(0);
+ 
+A=rand(2,2);B=rand(2,1);   //two states, one input
+ 
+Q=diag([2,5]);R=2;     //Usual notations x'Qx + u'Ru
+ 
+Big=sysdiag(Q,R);    //Now we calculate C1 and D12
+ 
+[w,wp]=fullrf(Big);C1=w(:,1:2);D12=w(:,3);   //[C1,D12]'*[C1,D12]=Big
+ 
+P=syslin('c',A,B,C1,D12);    //The plant (continuous-time)
+ 
+[K,X]=lqr(P)
+ X  =
+ 
+!   6.6494715  - 2.664676 !
+! - 2.664676     9.223669 !
+ K  =
+ 
+! - 1.3749861  - 2.0115264 !
+ 
+spec(A+B*K)    //check stability
+ ans  =
+ 
+! - 0.4214564 !
+! - 1.2158081 !
+ 
+norm(A'*X+X*A-X*B*inv(R)*B'*X+Q,1)  //Riccati check
+ ans  =
+ 
+    3.  
+ 
+P=syslin('d',A,B,C1,D12);    // Discrete time plant
+ 
+[K,X]=lqr(P)
+ X  =
+ 
+!   5.8668945    0.3772382 !
+!   0.3772382    2.1887525 !
+ K  =
+ 
+! - 0.3643072  - 0.0931522 !
+ 
+spec(A+B*K)   //check stability
+ ans  =
+ 
+!   0.1203564 + 0.0980947i !
+!   0.1203564 - 0.0980947i !
+ 
+norm(A'*X*A-(A'*X*B)*pinv(B'*X*B+R)*(B'*X*A)+Q-X,1) //Riccati check
+ ans  =
+ 
+    3.  
+ 

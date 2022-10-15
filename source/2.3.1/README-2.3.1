@@ -1,0 +1,102 @@
+			Scilab 2.3.1
+			============
+	Scilab-2.3.1 is not a major release just a patch for
+correcting some bugs along with very few modifications and
+additions. 
+
+LINUX
+=====
+	geci: Bug correction for linux when no hostname in "/etc/host".
+	
+	xsci: Bug correction for printing and export menus.
+
+SUNOS 4.1.3
+===========
+	Link: bug correction for "link" on sunos 4.1.3. 
+
+SCICOS
+======
+	This patch allows to properly handle the case where the graphic
+	image of a scicos palette (*.pal file) is missing.
+
+	It corrects a bug when user loads and wants to simulate the image of a
+	scicos super block and 
+        corrects an error which occurs when user
+	refuses ("Cancel") that scicos modifies users' ".scilab" file in
+	"palette edition" mode.
+
+	Bug Correction for use of incrementally linked simulation routines.
+
+	To allow any data type for discrete state with scilab simulation
+	function, and modipar bug correction.
+
+	Bug correction in "eval" for diagrams including GENERIC blocks.
+
+	To have true circles for SUM, PROD and SPLIT icons.
+
+	Bug in scope's event handling corrected.
+
+	"Read from file" block "autoexec" corrected case when output event is
+	fed into input event.
+
+	Bug in compiler corrected for blocks with more than one inputs
+	and outputs.
+
+	New blocks added.
+
+	But problem remains with "Eval". Must do a manual compile after
+	each "Eval" if not abnormal behavior. Cause is not found yet.
+
+SPARSE MATRICES 
+=============== 
+	Some modifications to:
+
+	properly handle sparse boolean matrix with no "true" element as "if"
+	or "while" logical expression,
+
+	correct a bug in "find" applied to boolean matrices and called with
+	two lhs arguments such as   [i,j]=find(rand(3,3)>0.2),
+
+	properly handle comparisons (== <>) between sparse  1x1   matrices
+	and empty matrices;
+	sparse(1)==[] now answers %f instead of (0,0) False sparse matrix.
+
+	Bug correction in clean function for sparse matrices.
+
+ERROR RECOVERY & SCICOS
+=======================
+	Better error recovery during deff getf and comp in complex situations
+	encountered in particular with scicos "scifunc" block.
+
+MISC
+====
+	sci2exp bug in translation of non degenerate standard matrix
+	such as sci2exp(rand(3,3)).
+
+	Bug corrected in time_id for non strictly proper systems.
+
+	Bug corrected in readb.
+
+	".^" handling  corrected in macr2lst.
+
+	".'" handling for non conjugate transpose added.
+	
+	sum(a,n), prod(a,n) meaning changed
+
+GRAPHICS
+========
+	Bug in [....]=xclick(1) corrected.
+
+	plot3d1 : the sign of the  mode attribute is now used.
+
+	Modification to have full A4 plot output in landscape mode. 
+
+	Modification in the Fig driver to properly center marks at a 
+	desired position.
+	
+	B&white display using Scicos corrected.
+
+HELP
+====
+	Using  the help menu + the interactive help or apropos 
+	command could crash Scilab; this bug has been fixed.

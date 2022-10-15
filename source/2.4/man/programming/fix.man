@@ -1,0 +1,21 @@
+.TH fix 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+fix - rounding towards zero
+.SH CALLING SEQUENCE
+.nf
+[y]=fix(x)
+.fi
+.SH PARAMETERS
+.TP
+x 
+: a real matrix
+.TP 
+y
+: integer matrix
+.SH DESCRIPTION
+\fVfix(x)\fR returns an integer matrix made of nearest rounded integers 
+toward zero,i.e, \fVy=sign(x).*floor(abs(x))\fR. Same as \fVint\fR.
+.SH SEE ALSO
+round, floor, ceil
+

@@ -1,0 +1,29 @@
+.TH lqg 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+lqg - LQG compensator
+.SH CALLING SEQUENCE
+.nf
+[K]=lqg(P,r)
+.fi
+.SH PARAMETERS
+.TP 10
+P
+: \fVsyslin\fR list (augmented plant) in state-space form
+.TP
+r
+: 1x2 row vector = (number of measurements, number of inputs)  (dimension of
+ the 2,2 part of \fVP\fR)
+.TP
+K
+: \fVsyslin\fR list (controller)
+.SH DESCRIPTION
+\fVlqg\fR  computes the linear optimal LQG (H2) controller for the 
+plant \fVP=[A,B,C,D]\fR in continuous or discrete time.
+.LP
+The macro \fVlqg2stan\fR returns \fVP\fR and \fVr\fR given the
+nominal plant, weighting terms and variances of noises.
+.SH SEE ALSO
+lqg2stan, lqr, lqe, h_inf, obscont
+.SH AUTHOR
+F.D.

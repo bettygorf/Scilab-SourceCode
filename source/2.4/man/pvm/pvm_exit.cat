@@ -1,0 +1,25 @@
+
+pvm_exit(1)                    Scilab function                    pvm_exit(1)
+NAME
+  pvm_exit - tells the local pvmd that this process is leaving PVM.
+
+CALLING SEQUENCE
+  [info] = pvm_exit()
+
+PARAMETERS
+
+  info : integer
+
+DESCRIPTION
+  pvm_exit tells the local pvmd that this process is leaving PVM.  This rou-
+  tine does not kill the process, which can continue to perform tasks just
+  like any other serial process.
+
+  pvm_exit should be called by all PVM processes before they stop or exit for
+  good. It must be called by processes that were not started with pvm_spawn.
+
+EXAMPLE
+  pvm_exit()
+
+SEE ALSO
+  pvm

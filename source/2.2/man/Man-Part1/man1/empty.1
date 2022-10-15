@@ -1,0 +1,34 @@
+.TH matrices 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+[] - empty matrix
+.SH DESCRIPTION
+\fV [] \fR denotes the empty matrix. It is uniquely defined
+and has 0 row and 0 column, i.e. \fV size([]) =[0,0] \fR.
+The following convenient conventions are made:
+.LP
+\fV [] * A = A * [] = [] \fR
+.LP
+\fV [] + A = A + [] = A \fR
+.LP
+[ [], A] = [A, []] = A
+\fV inv([]) =[] \fR
+.LP
+\fV det([])=cond([])=rcond([])=1, rank([])=0 \fR
+.LP
+Matrix functions return \fV[]\fR or an error message
+when there is no obvious answer. Empty linear systems 
+(\fV syslin \fR lists) may have several rows or columns.
+.SH EXAMPLE
+.nf
+s=poly(0,'s'); A = [s, s+1]; 
+A+[], A*[]
+A=rand(2,2); AA=A([],1), size(AA)
+svd([])
+w=ssrand(2,2,2); wr=[]*w; size(wr), w1=ss2tf(wr), size(w1)
+.fi
+.SH SEE ALSO
+matrices, poly, string, boolean, rational, syslin.
+
+
+

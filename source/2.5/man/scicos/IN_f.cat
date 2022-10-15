@@ -1,0 +1,18 @@
+
+IN_f(5)                          Scicos Block                         IN_f(5)
+NAME
+  IN_f - Scicos Super Block regular input port
+
+DESCRIPTION
+  This block must only be used inside Scicos Super Blocks to represent a reg-
+  ular input port. The input size is determined by the context.
+
+  In a Super Block, regular input ports must be numbered from 1 to the number
+  of regular input ports.
+
+DIALOGUE PARAMETERS
+
+  Port number    : an integer giving the port number.
+
+SEE ALSO
+  CLKIN_f, OUT_f, CLKOUT_f

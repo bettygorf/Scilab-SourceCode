@@ -1,0 +1,59 @@
+.TH bode 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+bode - Bode plot
+.SH CALLING SEQUENCE
+.nf
+bode(sl,[fmin,fmax] [,step] [,comments] )
+bode(sl,frq [,comments] )
+bode(frq,db,phi [,comments])
+bode(frq, repf  [,comments])
+.fi
+.SH PARAMETERS
+.TP 15
+sl
+: \fVsyslin\fR list (SISO or SIMO linear system) in continuous or 
+discrete time.
+.TP
+fmin,fmax
+: real (frequency bounds (in Hz)) 
+.TP
+step      
+: real (logarithmic step.)
+.TP
+comments 
+: vector of character strings (captions).
+.TP
+frq      
+: row vector or matrix (frequencies (in Hz) )
+(one row for each SISO subsystem).
+.TP
+db       
+: row vector or matrix ( magnitudes (in Db)).
+(one row for each SISO subsystem).
+.TP
+phi      
+: row vector or matrix ( phases (in degree))
+(one row for each SISO subsystem).
+.TP
+repf     
+: row vector or matrix of complex numbers.
+.SH DESCRIPION
+Bode plot, i.e magnitude and phase of the frequency response of \fVsl\fR.
+.LP
+Default values for \fVfmin\fR and \fVfmax\fR are
+\fV1.d-3\fR, \fV1.d+3\fR if \fVsl\fR is continuous-time
+or \fV1.d-3\fr, \fV0.5\fR if \fVsl\fR is discrete-time.
+.LP
+Automatic discretization of frequencies is made by \fVcalfrq\fR.
+.SH EXAMPLE
+.nf
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+title='(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)';
+bode(h,0.01,100,title);
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+bode([h1;h],0.01,100,['h1';'h'])
+.fi
+.SH SEE ALSO
+black, nyquist, freq, repfreq, g_margin, p_margin, calfrq, phasemag

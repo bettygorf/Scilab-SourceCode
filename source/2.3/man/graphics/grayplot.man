@@ -1,0 +1,36 @@
+.TH GRAYPLOT 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+grayplot - 2D plot of a surface using gray levels
+.SH CALLING SEQUENCE
+.nf
+grayplot(x,y,z,[strf,rect,nax])
+.fi
+.SH PARAMETERS
+.TP 10
+x,y
+: real vectors of size respectively (1,n1) and (1,n2).
+.TP
+z
+: real matrix of size (n1,n2) (values of \fVf\fR)
+.TP
+strf,rect,nax
+: optional arguments, ( see \fVplot2d\fR) 
+.SH DESCRIPTION
+The surface is given by values \fVz(i,j)=f(x(i),y(j))\fR on a grid defined by \fVx,y\fR.
+Each rectangle on the grid is filled with a gray level depending 
+on the average value of \fVf\fR on the corners of the rectangle.
+
+Enter the command \fVgrayplot()\fR to see a demo.
+.SH EXAMPLE 
+.nf 
+x=-10:10;y=-10:10;m=rand(21,21);
+grayplot(x,y,m,"111",[-20,-20,20,20]);
+.fi
+.SH SEE ALSO
+Sgrayplot, Sfgrayplot, fgrayplot
+.SH AUTHOR
+J.Ph.C..
+
+
+

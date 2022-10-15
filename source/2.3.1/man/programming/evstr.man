@@ -1,0 +1,52 @@
+.TH evstr 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+evstr - evaluation of expressions
+.SH CALLING SEQUENCE
+.nf
+H=evstr(Z)
+[H,ierr]=evstr(Z)
+.fi
+.SH PARAMETERS
+.TP 6
+Z
+: matrix of character strings \fVM\fR or \fVlist(M,Subexp)\fR
+.RS
+.TP 10
+M
+: matrix of character strings
+.TP
+Subexp
+: vector of character strings
+.RE
+.TP
+H
+: matrix
+.TP
+ierr
+: integer, error indicator
+.SH DESCRIPTION
+returns the evaluation of the matrix of character strings. Each
+element of the \fVM\fR matrix must be a character string defining a
+scilab expression. 
+.LP
+If evaluation of M expression leads to an error \fVH=evstr(M)\fR
+produces an error which is handled as usual. \fV[H,ierr]=evstr(M)\fR
+produces an error message and return the error number in \fVierr\fR. 
+.LP
+If \fVZ\fR is a list, \fVSubexp\fR is a  character strings vector
+which defines sub_expressions evaluated before evaluation of \fVM\fR.
+These sub_expressions must be referred as  \fV%(k)\fR in \fVM\fR
+(\fVk\fR is the sub-expression index in \fVSubexp\fR).
+.LP
+evstr('a=1') is not valid (use \fVexecstr\fR ).
+
+.SH EXAMPLES
+.nf
+a=1; b=2; Z=['a','b'] ; evstr(Z) 
+
+a=1; b=2; Z =list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+evstr(Z)
+.fi
+.SH SEE ALSO
+execstr

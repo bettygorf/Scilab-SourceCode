@@ -1,0 +1,101 @@
+.TH schur G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+schur - [ordered] Schur decomposition
+.SH CALLING SEQUENCE
+.nf
+[U,T] = schur(A) 
+[U,dim]=schur(A,flag)
+[U,dim]=schur(A,macro)
+.fi
+.SH PARAMETERS
+.TP 10
+A
+: real or complex matrix. For ordered forms \fVA\fR is
+assumed real.
+.TP
+flag
+: character string (\fV'c'\fR or \fV'd'\fR)
+.TP
+macro
+: an ``external'' function (this parameter can also be a list or character string)
+.TP
+U
+: orthogonal or unitary square matrix
+.TP
+T
+: matrix
+.TP
+dim
+: integer
+.SH DESCRIPTION
+\fBSchur forms, ordered Schur forms\fR
+.SH Usual schur form
+.Vb [U,T] = schur(A)
+produces a Schur matrix \fVT\fR
+and a unitary matrix \fVU\fR so that \fVA = U*T*U'\fR and \fVU'*U = eye(U)\fR.
+By itself, schur(\fVA\fR) returns \fVT\fR.
+If \fVA\fR is complex, the Complex Schur Form is returned in matrix \fVT\fR.
+The Complex Schur Form is upper triangular with the eigenvalues
+of \fVA\fR on the diagonal.
+If \fVA\fR is real, the Real Schur Form is returned.  The Real Schur
+Form has the real eigenvalues on the diagonal and the complex
+eigenvalues in 2-by-2 blocks on the diagonal.
+.SH Ordered stable form
+.Vb [T,dim]=schur(A,'c')
+returns an unitary matrix \fVT\fR which transforms \fVA\fR into schur form.
+In addition, the dim first columns of T make a basis of the 
+eigenspace of \fVA\fR associated with eigenvalues with negative 
+real parts (stable "continuous time" eigenspace).
+.LP
+.Vb [T,dim]=schur(A,'d')
+returns an unitary matrix \fVT\fR which transforms \fVA\fR into schur form.
+In addition, the \fVdim\fR first columns of \fVT\fR span a basis of the 
+eigenspace of \fVA\fR associated with eigenvalues with magnitude
+lower than 1 (stable "discrete time" eigenspace).
+.SH General eigenspace
+.Vb [T,dim]=schur(A,a_macro)
+returns an unitary matrix T which transforms \fVA\fR into schur form. 
+In addition, the \fVdim\fR first columns of \fVT\fR span a basis of the 
+eigenspace of \fVA\fR associated with the eigenvalues which are 
+selected by the function \fVa_macro\fR.
+.LP
+This function must be of the following type (here \fVa_macro\fR is "\fVrule\fR"):
+.nf
+function [flag]=rule(x)
+
+flag=...
+.fi
+\fVx\fR is a vector with three components which characterizes
+either a real eigenvalue or a pair of complex conjugate
+eigenvalues.
+.LP
+If \fVx(1)=1\fR, a real eigenvalue is considered and this
+eigenvalue is \fVx(2)/x(3)\fR.
+.LP
+If \fVx(1)=2\fR, a pair of complex conjugate eigenvalues is
+considered. The sum of these two eigenvalues (twice
+the real part) is \fVx(2)\fR and the product (squared magnitude)
+is \fVx(3)\fR.
+.LP
+On return, flag should be 1 if the real eigenvalue is 
+selected or the pair of eigenvalues is selected and
+0 otherwise.
+.SH Example of function
+.nf
+        function [flag]=disc(x)
+        ls =x(1);flag=0;
+        select  ls
+           case 1 then if abs(x(2)) < ro*abs(x(3)) then flag=1;end
+           case 2 then if x(3) < ro*ro then flag=1;end
+        end
+.fi
+The function \fVdisc\fR selects the eigenvalues with magnitude lower
+than a given scalar \fVro\fR. And for \fVro=1\fR the calling sequence
+\fV[T,dim]=schur(A,'d')\fR and \fV[T,dim]=schur(A,disc)\fR are
+equivalent.
+.LP
+Another useful example is \fV%choose\fR 
+(see function code in \fVSCIDIR/macros/percent\fR)
+.SH SEE ALSO
+gschur, ricc, pbig, psmall

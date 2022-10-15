@@ -1,0 +1,2 @@
+exec('d1.10.code');
+sl1=[Sl;2*Sl+eye]

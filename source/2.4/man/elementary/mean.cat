@@ -1,0 +1,34 @@
+
+mean(1)                        Scilab Function                        mean(1)
+NAME
+  mean - mean (row mean, column mean) of vector/matrix entries
+
+CALLING SEQUENCE
+  y=mean(x)
+  y=mean(x,'r')
+  y=mean(x,'c')
+
+PARAMETERS
+
+  x         : real vector or matrix
+
+  y         : scalar or vector
+
+DESCRIPTION
+  For a vector or a matrix x, y=mean(x)  returns in the scalar y the mean of
+  all the entries of x.
+
+  y=mean(x,'r') (or, equivalently, y=mean(x,2)) is the rowwise mean. It
+  returns in each entry of the column vector y the mean of each row of x.
+
+  y=mean(x,'c') (or, equivalently, y=mean(x,1)) is the columnwise mean. It
+  returns in each entry of the row vector y the mean of each column  of x.
+
+EXAMPLE
+  A=[1,2,10;7,7.1,7.01];
+  mean(A)
+  mean(A,'r')
+  mean(A,'c')
+
+SEE ALSO
+  sum, median,st_deviation

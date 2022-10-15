@@ -1,0 +1,23 @@
+.TH abs G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+abs -  absolute value, magnitude
+.SH CALLING SEQUENCE
+.nf
+t=abs(x)
+.fi
+.SH PARAMETERS
+.TP
+x 
+: real or complex vector or matrix
+.TP
+t
+: real vector or matrix
+.SH DESCRIPTION
+\fVabs(x)\fR is the absolute value of the elements of \fVx\fR. When
+\fVx\fR is complex, \fVabs(x)\fR is the complex modulus (magnitude) of the elements of \fVx\fR. 
+.SH EXAMPLE
+.nf
+abs([1,%i,-1,-%i,1+%i])
+.fi
+

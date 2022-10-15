@@ -1,0 +1,23 @@
+.TH clear 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+clear - kills variables
+.SH CALLING SEQUENCE
+.nf
+clear a
+.fi
+.SH DESCRIPTION
+This command kills variables which are not protected.
+It removes the named variables from the environment.
+By itself \fVclear\fR kills all the variables except the variables
+protected by \fVpredef\fR. Thus the two commands \fVpredef(0)\fR and \fVclear\fR
+remove all the variables. 
+.LP
+Normally, protected variables are standard librairies and variables with
+the percent prefix.
+.LP
+Note the particular syntax \fVclear a\fR and not \fVclear(a)\fR. Note also
+that \fVa=[]\fR does not kill \fVa\fR but sets \fVa\fR to an empty matrix.
+.SH SEE ALSO
+predef, who
+

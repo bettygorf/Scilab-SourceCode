@@ -1,0 +1,33 @@
+.TH clearglobal 1 "April 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+clearglobal - kills global variables
+.SH CALLING SEQUENCE
+.nf
+clearglobal()
+clearglobal nam1 .. namn
+clearglobal('nam1', ..,'namn')
+.fi
+.SH PARAMETERS
+.TP 10
+nam1,..., namn
+: valid variable names
+.SH DESCRIPTION
+\fVclearglobal() \fR kills all the global variables.
+.LP
+\fVclearglobal nam1 .. namn\fR  kills  the global variables given by
+their names
+.LP
+Note that \fVclearglobal() \fR only clears the global variables, the
+local variables pointing on these global variables are not destroyed.
+.SH SEE ALSO
+global, who
+.SH EXAMPLE
+.nf
+global a b c
+a=1;b=2;c=3;
+who('global')
+clearglobal b
+who('global')
+.fi
+

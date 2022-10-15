@@ -1,0 +1,183 @@
+\documentstyle[11pt,vtim]{farticle}
+             \textheight=660pt 
+             \textwidth=15cm
+             \topmargin=-27pt 
+             \oddsidemargin=0.7cm
+             \evensidemargin=0.7cm
+             \marginparwidth=60pt
+             \title{TheTitle} 
+             \author{J.Ph. Chancelier\thanks{Cergrene. Ecole Nationale des Ponts et Chauss\'ees, La Courtine  93167 Noisy le Grand C\'{e}dex }}
+	
+\begin{document}\maketitle
+\def\ident{\mbox{Id}}
+\def\R{{\Bbb R}}
+\def\I{{\Bbb I}}
+\input arma.tex 
+\def\cmarg{\hspace{1cm}}
+\section{Comment repr\'esenter un syst\`eme ARMAX dans Basile}
+
+On veut simuler et identifier des syst\`emes de la forme~:
+\begin{equation}
+	A(z^{-1}) y_{n}= B(z^{-1})u_{n} +  D(z^{-1}) \Lambda e_{n}
+	\label{equara}
+\end{equation}
+o\`u $y\in \R^n$, $u\in \R^m$ et $e\in \R^n$, $\Lambda$ est une matrice $(n,n)$. $A$,$B$ et $C$ sont des polyn\^omes \`a coefficients matriciels et $z^{-1}$
+ d\'esigne l'op\'erateur retard unitaire. 
+\begin{equation}
+	\left\{
+	\begin{array}{l}
+	{\displaystyle A(z)= \sum_{i=0}^r a_{i} z^i, \quad a_{i} \in \R^{n\times n}}\\[3mm]
+	{\displaystyle B(z)= \sum_{i=0}^s b_{i} z^i, \quad a_{i} \in \R^{n\times m}}\\[3mm]
+	{\displaystyle D(z)= \sum_{i=0}^p a_{i} z^i, \quad a_{i} \in \R^{n\times n}}\\[3mm]
+	\end{array} \right.
+\end{equation}
+
+\subsection{Cr\'eation d'un variable de type liste}
+La macro Basile {\em arma} permet de construire une liste qui code la structure d'un processus ARMAX. Cette macro s'utilise de la fa\c{c}on suivante~:
+\begin{equation}
+\begin{array}{l}
+	<ar>=arma(a,b,d,n,m,\Lambda)\\
+	a=<Id,a_{1},\ldots,a_{r}> \quad a \in \R^{n\times n r}\\[3mm]
+	b=<b_{0},\ldots,a_{s}> \quad a \in  \R^{n\times m r }\\[3mm]
+	d=<Id,a_{1},\ldots,a_{p}> \quad a \in \R^{n\times n r}
+\end{array}
+\end{equation}
+L'inter\^et dans Basile est de pouvoir ainsi r\'esumer dans une variable, {\em ar} par exemple, les coefficients d'un processus puis de pouvoir utiliser 
+cette variable comme argument d'autres macros.
+\subsection{visualisation \`a l'\'ecran}
+La macro {\em armap} permet de visualiser \`a l'\'ecran les \'equations de d\'efinition d'un processus arma~:
+
+\verbatiminput{armap.audit}
+\section{Simulation de processus ARMAX}
+
+Les macros {\em narsimul} et {\em arsimul} simulent un processus ARMAX
+\begin{equation}
+	<y>=narsimul(a,b,d,u,\Lambda,[up,yp,ep])
+\end{equation}
+ $a$, $b$, $d$, $\Lambda$ ont le m\^eme sens que dans les macros pr\'ec\'edentes. $u$ est un tableau Basile d\'ecrivant une chronique d'entr\'ee, c'est donc pour basile une matrice $(m,N)$, dont la i\`eme colonne donne la valeur de $u_{i}$. La macros {\em narsimul}
+ calcule les sorties du syst\`eme $(y_{i})_{i=1,N}$, \`a partir de la chronique d'entr\'ee $(u_{i})_{i=1,N}$ et d'une chronique $(e_{i})_{i=1,N}$ de variables al\'eatoire 
+ gaussiennes centr\'ees $n$-dimensionnelles, l'utilisateur ne fournit que la chronique $(u_{i})_{{i=1,n}}$. Les valeurs pass\'ees~:
+\begin{equation}
+\left\{ \begin{array}{l}
+      up=< u_0,u_{-1},...,u_{-{s}}> \quad size(up)=(n,s+1)\\ 
+      yp=< y_0,y_{-1},...,y_{-r}> \quad size(yp)=(n,r+1)\\ 
+      ep=< e_0,e_{-1},...,e_{-p}> \quad size(ep)=(n,p+1) 
+	\end{array}\right.
+\end{equation}
+ sont optionnelles, leurs valeurs par d\'efaut est z\'ero.
+
+La macro {\em narsimul} utilise le simulateur Basile {\em rtitr}. 
+La macro {\em arsimul} construit une repr\'esentation d'\'etat 
+ du syst\`eme ARMAX, puis utilise ode avec l'option 'discret' pour simuler
+le processus ARMAX. La repr\'esentation d'\'etat est la suivante~:
+Soit $n=\max(s,r,p)$, on construit $Y_{n}\in \R^n$~:
+\def\avect#1{ \begin{array}{c} #1_{1}\\	\vdots \\ #1_{n} \\ \end{array} }
+
+\begin{equation}
+	\left\{
+	\begin{array}{l}
+	\tilde{a}=  (a_{1},\ldots,a_{s},0,\ldots)^* \in \R^n \\[3mm]
+	\tilde{b}=  (b_{1},\ldots,b_{r},0,\ldots)^* \in \R^n \\[3mm]
+	\tilde{d}=  (d_{1},\ldots,d_{p},0,\ldots)^* \in \R^n \\[3mm]
+	Y_{n+1}=
+	\left( \begin{array}{cc} \avect{-\tilde{a}} &
+		\begin{array}{c} {\Bbb I}_{n-1,n-1} \\[5mm]  0 \end{array}
+	       \end{array} \right) Y_{n} 
+	+ \left( \avect{\tilde{b}} \right) u_{n} 
+	+ \left( \avect{\tilde{d}} \right) e_{n} \\[3mm]
+	y_{n} = \left( 1,0,\ldots,0 \right) Y_{n} + b_{0} u_{n} + d_{0} e_{n}
+	\end{array}\right.
+\end{equation}
+Pour $x\in \R^n$ soit $\Phi(x)$ la matrice d\'efinie de la fa\c{c}on suivante~:
+\begin{equation}
+	\Phi(x)= 
+	\left( \begin{array}{cccc}
+		x_{1} & \cdots & \cdots & x_{n} \\
+		x_{2} & \cdots & x_{n} & 0 \\
+		\vdots & \ldots & 0 & 0 \\
+		x_{n} & 0 & 0 & 0 
+	       \end{array} \right) 
+\end{equation}
+On doit alors choisir~:
+\def\avectp#1#2{\left( \begin{array}{c} #1_{0}\\ #1_{-1} \\ 
+		\vdots \\ #1_{-#2} \\ 0 \\ \vdots \end{array}\right) }
+\begin{equation}
+	Y_{1} = \Phi(-\tilde{a})\avectp{y}{r} + \Phi(\tilde{b})\avectp{u}{s} 
+	+ \Phi(\tilde{d}-\tilde{a}) \avectp{e}{p}
+\end{equation}
+$y_{n}$ v\'erifie alors l'\'equation ARMAX~(\ref{equara}).
+
+\subsection{Un exemple de simulation dans Basile}
+\verbatiminput{armas.audit1}
+
+\input armas.tex 
+\dessin{Trajectoires simul\'ees par narsimul}{deslab}
+\section{Identification ARMAX}
+
+La macro {\bf narmax} Identifie les coefficients d'un processus ARX  n-dimensionnel. 
+\begin{equation}
+	A(z^{-1}) y_{n}= B(z^{-1})u_{n} +  \Lambda e_{n}
+\end{equation}
+et s'utilise de la fa\c{c}on suivante~:
+\begin{equation}
+	\begin{array}{l}
+	<la,lb,sig,resid>=narmax(r,s,y,u,[b0f,prf]);	
+	\end{array}
+\end{equation}
+\begin{itemize}
+\item r : nombre de param\`etres d'autor\'egression \`a estimer~:
+\begin{equation}
+	A(z)= \I_{n,n}+ a_{1}z+\ldots +a_{r}z^r
+\end{equation}
+$r \ge 0$ peut valoir z\'ero ($A(z)=\I_{n,n}$).
+\item s : nombre de param\`etres d'autor\'egression sur la commande~:
+\begin{equation}
+	B(z)= b_{0}+ b_{1}z+\ldots +b_{s}z^s
+\end{equation}
+$s \ge -1$, si $s$ vaut $-1$ alors $B(z)=0$ et il n'y a rien \`a identifier pour $B$. 
+\item $y$ et $u$ sont respectivement les trajectoires ou chroniques pour la sortie et la commande, $(y_{i})_{i=1,N}$ et $(u_{i})_{i=1,N}$, donn\'ees sous forme de matrice Basile ( $size(y)=<n,N>$  et $size(u)=<m,N>$.
+\item B0f : est un param\`etre optionnel. Par defaut il vaut 
+         0, et signifie qu'il faut identifier le terme $b_{0}$. Si on lui 
+         donne la valeur 1, alors b0 est suppos\'e valoir zero et 
+	n'est pas identifi\'e.
+\item    prf : param\`etre optionnel controlant le display
+         si prf=1, un display est donne (c'est la valeur par defaut)
+\item les valeurs de sortie~:
+\begin{itemize}
+	\item  la et lb sont des listes basile contenant 
+	les estimateurs des coefficients $a_{i}$ et $b_{i}$ ainsi que 
+	des intervalles de confiances (dans le cas des processus unidimenssionnels)~:
+\begin{equation}
+	\begin{array}
+	la=list(\hat{a},\hat{a}+\sigma(a),\hat{a}-\sigma(a))
+	\hat{a}=< \I_{n,n} , \hat{a}_{1},\ldots \hat{a}_{n}>
+	lb=list(\hat{b},\hat{b}+\sigma(b),\hat{b}-\sigma(b))
+	\hat{b}=< \I_{n,n} , \hat{b}_{1},\ldots \hat{b}_{n}>
+	\end{array}
+\end{equation}
+	\item sig est un estimateur de $\Lambda$
+	\item resid  est la chronique de bruit $(\Lambda e_{i})_{i=1,N}$
+\end{itemize}
+\end{itemize}
+La m\'ethode de calcul est la suivante en introduisant~:
+\begin{equation}
+	\begin{array}{l}
+	z_{t}= (y_{t-1},\ldots,y_{t-r},u_{t},\ldots,u_{t-s})^\star \\[3mm]
+	\alpha = (-a_{1},\ldots,-a_{r},b_{0},...,b_{s})
+	\end{array}
+\end{equation}
+l'\'equation de d\'efinition du processus ARX devient~:
+\begin{equation}
+	y_{t}= \alpha z_{t} + \lambda e_{t}
+\end{equation}
+et l'estimateur choisit $\hat{\alpha}$ pour $\alpha$ est obtenu en minimisant 
+ un crit\`ere de moindre carr\'es~:
+\begin{equation}
+	\hat{\alpha} = \mbox{argmin}_{\alpha \in {\cal M}}
+	\sum_{t=1}^N {\Vert y_{t} -\alpha z_{t}  \Vert}^2
+\end{equation}
+L'espace ${\cal M}$ est un espace de matrice dans le cas multidimensionnel. 
+
+\verbatiminput{armaid.audit1}
+
+\end{document}

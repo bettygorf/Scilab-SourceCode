@@ -1,0 +1,36 @@
+
+\section{Une nouvelle option dans  transfig}
+
+Les dessins Xfig peuvent \^etre ins\'er\'es dans un document
+ \LaTeX\, gr\^ace a l'utilitaire {\bf transfig}. 
+Une nouvelle option dans transfig est {\bf -L latexps}. Les commandes qui suivent~: 
+
+\begin{verbatim}
+transfig -L latexps -m 0.5 pointselle.fig
+make 
+\end{verbatim} 
+vont cr\'eer  deux fichiers {\bf pointselle.tex } et {\bf pointselle.ps}. 
+ Les objets de type  cha\^{\i}nes de caract\`eres du fichier XFig sont traduites 
+ en \LaTeX\, et  le reste du dessin est traduit en Postscript. Ceci permet 
+ ainsi par exemple d'obtenir des formules math\'ematiques dans un dessin.
+
+La commande \verb+XFlatexpr+ r\'ealise l'op\'eration pr\'ec\'edente en une seule fois et change le fichier \LaTeX pour qu'il ait la m\^eme forme que dans 
+ les cas pr\'ec\'edents. On utilisera donc la commande~:
+\begin{verbatim}
+XFlatexpr 0.5 pointselle.fig
+\end{verbatim}
+o\`u le deuxi\`eme argument est un facteur de magnification. Le dessin est alors mis dans \LaTeX par la comande~:
+\begin{verbatim}
+\input{pointselle.tex}
+\dessin{Portrait de phase d'un point selle}{pointselle}
+\end{verbatim} 
+pour obtenir le dessin dans votre document \LaTeX. On obtient par exemple 
+ la figure~(\ref{pointselle}).
+ On peut bien sur \'editer le fichier poinsellle.tex pour rajouter en \LaTeX  
+ diverses informations sur le dessin. 
+
+\input{pointselle.tex}
+\dessin{Portrait de phase d'un point selle}{pointselle}
+
+
+

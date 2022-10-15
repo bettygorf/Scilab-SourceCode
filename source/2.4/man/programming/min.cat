@@ -1,0 +1,15 @@
+
+min(1)                         Scilab Function                         min(1)
+NAME
+  min - minimum
+
+CALLING SEQUENCE
+  [m [,k]]=min(A)
+  [m [,k]]=min(A1,A2,...,An)
+  [m [,k]]=min(list(A1,A2,...,An))
+
+DESCRIPTION
+  See max. Note that min and mini are equivalent.
+
+SEE ALSO
+  mini, max

@@ -1,0 +1,49 @@
+
+xstring(2)                     Scilab Function                     xstring(2)
+NAME
+  xstring - display a matrix of strings
+
+CALLING SEQUENCE
+  []=xstring(x,y,str,[angle,flag])
+
+PARAMETERS
+
+  x,y            : real scalars (point coordinates)
+
+  str            : matrix of strings
+
+  angle          : real (angle in degree) (clockwise) (default value =0)
+
+  flag           : integer
+
+DESCRIPTION
+  draws a matrix of strings ( each line of the matrix stands for a line of
+  text and the line elements are separated by a white space) at location x,y
+  ( lower-left point ) in the current graphic scale. angle if given gives the
+  slope in degree to use for drawing the string. if  frame=1 a box is drawn
+  around the string (only if angle=0 )
+
+EXAMPLE
+  plot2d([0,1],[0,1])
+  xstring(0.5,0.5,["Scilab","is" ; "Not","Basilc"])
+  //Other example
+  alphabet=['a ','b ','c ','d ','e ','f ','g ',...
+            'h ','i ','j ','k ','l ','m ','n ',...
+            'o ','p ','q ','r ','s ','t ','u ',...
+            'v ', 'w ','x ','y ','z '];
+
+  xset('default');              //default graphic parameters
+  xset("window",1);             //set window number to 1
+  xclear();
+  plot2d([0,1],[0,2])
+  xstring(0.1,1.8,alphabet)     //alphabet
+  xstring(0.1,1.6,alphabet,20)  //angle
+  xset("font",1,1)              //symbol fonts
+  xstring(0.1,0.1,alphabet)
+  xset('font',1,3)              //change size font
+  xstring(0.1,0.3,alphabet)
+  xset('font',1,24);xstring(0.1,0.6,'a');  //big alpha
+  xset('default')
+
+AUTHOR
+  J.Ph.C..

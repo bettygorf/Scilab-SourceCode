@@ -1,0 +1,30 @@
+.TH DLR_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so man1/sci.an
+.SH NAME
+DLR - Scicos discrete-time linear system (transfer function)
+.SH DESCRIPTION
+This block realizes a SISO linear system represented by its rational
+transfer function (in the symbolic variable z).
+The rational function must be proper. If it is not proper, the
+direct feedthrough make the output depend continuously on the input,
+so if the input  
+is not the output of a discrete block, it may not be piece-wise constant.
+.SH DIALOG PARAMETERS
+.TP 20
+Block label
+: A string defining the block label. This label is written under
+the block. 
+.TP
+Numerator
+: a polynomial in z.
+.TP
+Denomiator
+: a polynomial in z.
+.SH SEE ALSO
+DLSS_f REGISTER_f
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+
+isempty(2)                     Scilab Function                     isempty(2)
+NAME
+  isempty - Checks if a matrix is empty
+
+  Author: Paulo Goncalves
+
+  isempty True for empty matrix.  isempty(x) returns %T if x is an empty
+  array and %F otherwise. An empty array has no elements, that is
+  prod(size(X))==0.
+
+Usage
+
+  isempty(x)
+Input parameters
+       o x : Real or complex valued matrix [rx,cx]
+See also:
+  all

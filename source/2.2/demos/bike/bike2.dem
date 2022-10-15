@@ -1,0 +1,13 @@
+mode(0);
+path='SCI/demos/bike/';
+xbasc();
+
+getf(path+'macros/'+'velo1.sci','c');
+getf(path+'macros/'+'velod.sci','c');
+getf(path+'macros/'+'velodp.sci','c');
+getf(path+'macros/'+'show.sci','c');
+
+x=read(path+'data/'+'xdemo.dat',46,401,"(e10.4)");
+show(x(:,1:340),1.6,1.47,velo1)
+
+

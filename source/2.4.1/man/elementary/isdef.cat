@@ -1,0 +1,29 @@
+
+isdef(3)                       Scilab Function                       isdef(3)
+NAME
+  isdef - check variable  existence
+
+CALLING SEQUENCE
+  isdef(name [,where])
+
+PARAMETERS
+
+  name : a character string
+
+  where
+       : an optional character string with default value 'all'
+
+DESCRIPTION
+  isdef(name) returns %T if the variable 'var-name' exists and %F otherwise.
+
+  isdef(name,'local') returns %T if the variable 'var-name' exists in the
+    local environment of the current function and %F otherwise.
+
+EXAMPLE
+  A=1;
+  isdef('A')
+  clear A
+  isdef('A')
+
+SEE ALSO
+  exists, whereis, type, typeof, clear

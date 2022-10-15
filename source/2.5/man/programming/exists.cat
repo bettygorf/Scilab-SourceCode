@@ -1,0 +1,31 @@
+
+exists(1)                      Scilab Function                      exists(1)
+NAME
+  exists - checks variable  existence
+
+CALLING SEQUENCE
+  exists(name [,where])
+
+PARAMETERS
+
+  name      : a character string
+
+  where     : an optional character string with default value 'all'
+
+DESCRIPTION
+  exists(name) returns 1 if the variable named name exists and 0 otherwise.
+
+  Caveats: a function which uses exists may return a result which depends on
+  the environment!
+
+  exists(name,'local') returns 1 if the variable named name exists in the
+  local environment of the current function and 0 otherwise.
+EXAMPLE
+  deff('foo(x)',..
+  ['disp([exists(''a12''),exists(''a12'',''local'')])'
+   'disp([exists(''x''),exists(''x'',''local'')])'])
+  foo(1)
+  a12=[];foo(1)
+
+SEE ALSO
+  isdef, whereis, type, typeof, macrovar

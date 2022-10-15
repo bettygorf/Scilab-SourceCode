@@ -1,0 +1,13 @@
+//filtering of signals : 'flts.1.code'
+xinit('flts.1.ps')
+//make signal and filter
+   [h,hm,fr]=wfir('lp',33,[.2 0],'hm',[0 0]);
+   t=1:200;
+   x1=sin(2*%pi*t/20);
+   x2=sin(2*%pi*t/3);
+   x=x1+x2;
+   plot(x)
+   xend(),
+   z=poly(0,'z');
+   hz=syslin('d',poly(h,'z','c')./z**33);
+

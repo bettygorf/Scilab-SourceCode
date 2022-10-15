@@ -1,0 +1,44 @@
+.TH intsplin 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+intsplin - integration of experimental data by spline interpolation
+.SH CALLING SEQUENCE
+.nf
+v = intsplin([x,] s)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: vector of increasing x coordinate data. Default value is \fV1:size(y,'*')\fR
+.TP
+s
+: vector of y coordinate data
+.TP
+v
+: value of the integral
+.SH DESCRIPTION
+computes :
+.IG
+.nf
+                      /x1
+                     [
+                 v = I  f(x)dx
+                     ]
+                    /x0
+.fi
+.FI
+.LA $$ v = \int_{x_0}^{x_1} f(x)dx $$
+Where f is a function described by a set of experimental value:
+.IG
+\fVs(i)=f(x(i))\fR  and \fVx0=x(1)\fR, \fVx1=x(n)\fR
+.FI
+.LA $$s(i)=f(x(i))$$ and $$x_0=x(1),x_1=x(n)$$
+Between mesh points function is interpolated using spline's.
+.SH EXAMPLE
+.nf
+t=0:0.1:%pi
+intsplin(t,sin(t))
+.fi
+.SH SEE ALSO
+intg, integrate, inttrap, splin
+

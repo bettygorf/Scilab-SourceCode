@@ -1,0 +1,22 @@
+.TH edge_number 1 "September 1996" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+edge_number - number of edges of a graph
+.SH CALLING SEQUENCE
+.nf
+ma = edge_number(g)
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph list
+.TP 2
+m
+: integer, number of edges
+.SH DESCRIPTION
+\fVedge_number\fR returns the number \fVm\fR of edges of the graph.
+If the graph is directed, it is the number of arcs.
+If the graph is undirected, it is half the number of edges.
+It is always equal to the dimension of \fVg('tail')\fR and \fVg('head')\fR.
+.SH SEE ALSO
+arc_number, node_number

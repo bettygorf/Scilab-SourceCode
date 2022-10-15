@@ -1,0 +1,23 @@
+.TH ns2p 1 "October 1994" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME
+ns2p - path from a node sequence
+.SH CALLING SEQUENCE
+.nf
+[p] = ns2p(ns,[g])
+.fi
+.SH PARAMETERS
+.TP 3
+ns
+: row vector of node numbers
+.TP 2
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP 2
+p
+: row vector of arc numbers, path
+.SH DESCRIPTION
+\fVns2p\fR returns the path \fVp\fR corresponding to the node sequence 
+\fVns\fR if it exists.
+.SH SEE ALSO
+anpath, anshp, lshp, p2ns

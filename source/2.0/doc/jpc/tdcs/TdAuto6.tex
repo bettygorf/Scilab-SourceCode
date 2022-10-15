@@ -1,0 +1,268 @@
+
+\def\Mhlp{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=hlp()\\ 
+\cmarg \verb@// Travaux diriges : bibliotheque sur l'equation de lorentz@\\ 
+\cmarg \verb@//     @\\ 
+\cmarg \verb@//  lorentz(t,x)   : champ de vecteur de l'equation de lorentz@\\ 
+\cmarg \verb@//  lotestf()      : fonction de visualisation des orbites de @\\ 
+\cmarg \verb@//                 l'equation de lorentz (version utilisant @\\ 
+\cmarg \verb@//                 le champ ecrit en Fortran @\\ 
+\cmarg \verb@//  lotestf1() 	   : comme lotestf mais methode de Runge-Kutta@\\ 
+\cmarg \verb@//  lotest()       : fonction de visualisation des orbites de @\\ 
+\cmarg \verb@//                 l'equation de lorentz (version utilisant @\\ 
+\cmarg \verb@//                 le champ ecrit en Basile @\\ 
+\cmarg \verb@//  ilo()          : Initialise ou change les param\ `etres de l'equation @\\ 
+\cmarg \verb@//                 de lorentz @\\ 
+\cmarg \verb@//  ilof()         : meme chose que ilo mais pour la version Fortran @\\ 
+\cmarg \verb@//  @\\ 
+\cmarg \verb@//  artestf()	   : test d'une equation ``d'Arnold''@\\ 
+\cmarg \verb@//  iarf()	   : initialisation @\\ 
+\cmarg \verb@//  @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg 0;\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Milo{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=ilo(sig,ro,beta)\\ 
+\cmarg //$<$$>$=ilo($[$sig,ro,beta$]$)\\ 
+\cmarg \verb@// Initialisation des parametres sig ro et beta @\\ 
+\cmarg \verb@// si aucun des arguments n'est fourni on utilise des valeurs @\\ 
+\cmarg \verb@// par defaut @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs=0,sig=10,ro=28,beta=8/3;{\bf end}\\ 
+\cmarg $<$sig,ro,beta$>$={\bf resume}(sig,ro,beta)\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Milof{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=ilof(sig,ro,beta)\\ 
+\cmarg //$<$$>$=ilof($[$sig,ro,beta$]$)\\ 
+\cmarg \verb@// Initialisation des parametres sig ro et beta @\\ 
+\cmarg \verb@// si aucun des arguments n'est fourni on utilise des valeurs @\\ 
+\cmarg \verb@// par defaut @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs=0,sig=10,ro=28,beta=8/3;{\bf end};\\ 
+\cmarg {\bf fort}('loset',sig,1,'r',ro,2,'r',beta,3,'r','{\bf sort}');\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mlorentz{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$y$>$=lorentz(t,x)\\ 
+\cmarg //$<$y$>$=lorentz(t,x)\\ 
+\cmarg \verb@// equation de lorentz @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg y(1)=sig$\star$(x(2)$-$x(1));\\ 
+\cmarg y(2)=ro$\star$x(1) $-$x(2)$-$x(1)$\star$x(3);\\ 
+\cmarg y(3)=$-$beta$\star$x(3)+x(1)$\star$x(2);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mlotest{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$ylast$>$=lotest(ynext)\\ 
+\cmarg //$<$ylast$>$=lotest($[$ynext$]$)\\ 
+\cmarg \verb@// Integration et visualisation de l'equation de lorentz @\\ 
+\cmarg \verb@// le premier appel doit etre fait sans argument @\\ 
+\cmarg \verb@// il integre l'equation differentielle de 0 a 50 avec un pas @\\ 
+\cmarg \verb@// de 0.01 \ `a partir du  point initial 1.e-8*<1;1;1>@\\ 
+\cmarg \verb@// ylast=lotest()@\\ 
+\cmarg \verb@// Les appels suivants en utilisant ylast=lotest(ylast)@\\ 
+\cmarg \verb@// permettent de continuer l'int\ 'egration sur une duree de 10@\\ 
+\cmarg \verb@// unite de temps @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg {\bf if} rhs=0,y0=1.e$-$8$\star$$<$1;1;1$>$,\\ 
+\cmarg \hspace{0.5cm}y={\bf ode}(y0,0,0:0.01:50,lorentz);\\ 
+\cmarg \hspace{0.5cm}param3d(y(1,:),y(2,:),y(3,:),60,45,"x@y@z",1);\\ 
+\cmarg \hspace{0.5cm}//param3d($<$0,10,10,10$>$,$<$0,0,10,10$>$,$<$0,0,0,10$>$,60,45,"x@y@z",1);\\ 
+\cmarg \hspace{0.5cm}$<$p1,q1$>$={\bf size}(y);\\ 
+\cmarg \hspace{0.5cm}ylast=y(:,q1);\\ 
+\cmarg {\bf else}, y0=ynext;\\ 
+\cmarg \hspace{0.5cm}y={\bf ode}(y0,0,0:0.01:10,lorentz);\\ 
+\cmarg \hspace{0.5cm}xclear();param3d(y(1,:),y(2,:),y(3,:),60,45,"x@y@z",0);\\ 
+\cmarg {\bf end}\\ 
+\cmarg \hspace{0.5cm}$<$p1,q1$>$={\bf size}(y);\\ 
+\cmarg \hspace{0.5cm}ylast=y(:,q1);\\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+
+\def\Mlotestf{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$ylast$>$=lotestf(ynext)\\ 
+\cmarg //$<$ylast$>$=lotestf($[$ynext$]$)\\ 
+\cmarg \verb@// Integration et visualisation de l'equation de lorentz @\\ 
+\cmarg \verb@// le premier appel doit etre fait sans argument @\\ 
+\cmarg \verb@// il integre l'equation differentielle de 0 a 50 avec un pas @\\ 
+\cmarg \verb@// de 0.01 \ `a partir du  point initial 1.e-8*<1;1;1>@\\ 
+\cmarg \verb@// ylast=lotest()@\\ 
+\cmarg \verb@// Les appels suivants en utilisant ylast=lotest(ylast)@\\ 
+\cmarg \verb@// permettent de continuer l'int\ 'egration sur une duree de 10@\\ 
+\cmarg \verb@// unite de temps @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg {\bf if} rhs=0,y0=1.e$-$8$\star$$<$1;1;1$>$,\\ 
+\cmarg \hspace{0.5cm}y={\bf ode}(y0,0,0:0.01:50,'loren');\\ 
+\cmarg \hspace{0.5cm}param3d(y(1,:),y(2,:),y(3,:),60,45,"x@y@z",1);\\ 
+\cmarg \hspace{0.5cm}//param3d($<$0,10,10,10$>$,$<$0,0,10,10$>$,$<$0,0,0,10$>$,60,45,"x@y@z",1);\\ 
+\cmarg \hspace{0.5cm}$<$p1,q1$>$={\bf size}(y);\\ 
+\cmarg \hspace{0.5cm}ylast=y(:,q1);\\ 
+\cmarg {\bf else}, y0=ynext;\\ 
+\cmarg \hspace{0.5cm}y={\bf ode}(y0,0,0:0.01:10,'loren');\\ 
+\cmarg \hspace{0.5cm}xclear();param3d(y(1,:),y(2,:),y(3,:),60,45,"x@y@z",0);\\ 
+\cmarg {\bf end}\\ 
+\cmarg \hspace{0.5cm}$<$p1,q1$>$={\bf size}(y);\\ 
+\cmarg \hspace{0.5cm}ylast=y(:,q1);\\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+
+\def\Mlotestfu{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$ylast$>$=lotestf1(ynext)\\ 
+\cmarg //$<$ylast$>$=lotestf1($[$ynext$]$)\\ 
+\cmarg \verb@// meme chose que lotestf mais avec methode de runge kutta@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg {\bf if} rhs=0,y0=1.e$-$8$\star$$<$1;1;1$>$,\\ 
+\cmarg \hspace{0.5cm}y={\bf ode}('o',y0,0,0:0.01:50,'loren');\\ 
+\cmarg \hspace{0.5cm}param3d(y(1,:),y(2,:),y(3,:),60,45,"x@y@z",1);\\ 
+\cmarg \hspace{0.5cm}//param3d($<$0,10,10,10$>$,$<$0,0,10,10$>$,$<$0,0,0,10$>$,60,45,"x@y@z",1);\\ 
+\cmarg \hspace{0.5cm}$<$p1,q1$>$={\bf size}(y);\\ 
+\cmarg \hspace{0.5cm}ylast=y(:,q1);\\ 
+\cmarg {\bf else}, y0=ynext;\\ 
+\cmarg \hspace{0.5cm}y={\bf ode}(y0,0,0:0.01:10,'loren');\\ 
+\cmarg \hspace{0.5cm}xclear();param3d(y(1,:),y(2,:),y(3,:),60,45,"x@y@z",0);\\ 
+\cmarg {\bf end}\\ 
+\cmarg \hspace{0.5cm}$<$p1,q1$>$={\bf size}(y);\\ 
+\cmarg \hspace{0.5cm}ylast=y(:,q1);\\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+
+
+\def\Marnold{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xdot$>$=arnold(t,x)\\ 
+\cmarg //$<$xdot$>$=arnold(t,x)\\ 
+\cmarg \verb@//!@\\ 
+\cmarg xdot(1)= {\bf cos}(x(2)) + {\bf sin}(x(3))\\ 
+\cmarg xdot(2)= {\bf cos}(x(3)) + {\bf sin}(x(1))\\ 
+\cmarg xdot(3)= {\bf cos}(x(1)) + {\bf sin}(x(2))\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Miarf{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=iarf(aa)\\ 
+\cmarg //$<$$>$=iarf($[$aa$]$)\\ 
+\cmarg \verb@// Initialisation des parametres aa(6) pour l'equation d'arnold@\\ 
+\cmarg \verb@//      ydot(1)=aa(1)*cos(y(2)) +aa(2)*sin(y(3))@\\ 
+\cmarg \verb@//      ydot(2)=aa(3)*cos(y(3)) +aa(4)*sin(y(1))@\\ 
+\cmarg \verb@//      ydot(3)=aa(5)*cos(y(1)) +aa(6)*sin(y(2))@\\ 
+\cmarg \verb@// si aucun des arguments n'est fourni on utilise des valeurs @\\ 
+\cmarg \verb@// par defaut @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0)\\ 
+\cmarg {\bf if} rhs=0, aa={\bf ones}(1,6);{\bf end}\\ 
+\cmarg {\bf fort}('arset',aa,1,'r','{\bf sort}');\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Martest{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$ylast$>$=artest(ynext)\\ 
+\cmarg //$<$ylast$>$=artest($[$ynext$]$)\\ 
+\cmarg \verb@// Integration et visualisation de l'equation de lorentz @\\ 
+\cmarg \verb@// le premier appel doit etre fait sans argument @\\ 
+\cmarg \verb@// il integre l'equation differentielle de 0 a 100 avec un pas @\\ 
+\cmarg \verb@// de 10 \ `a partir du  point initial <1;2;3>;@\\ 
+\cmarg \verb@// ylast=lotest()@\\ 
+\cmarg \verb@// Les appels suivants en utilisant ylast=lotest(ylast)@\\ 
+\cmarg \verb@// permettent de continuer l'int\ 'egration sur une duree de 10@\\ 
+\cmarg \verb@// unite de temps @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg {\bf if} rhs=0,y0=$<$1;2;3$>$,\\ 
+\cmarg \hspace{0.5cm}y={\bf ode}(y0,0,0:10:100,1.e$-$3,1.e$-$3,arnold);\\ 
+\cmarg \hspace{0.5cm}param3d(y(1,:),y(2,:),y(3,:),60,45,"x@y@z",$<$1,3,1$>$,...\\ 
+\cmarg \hspace{0.5cm}100$\star$$<$$-$1,1,$-$1,1,$-$1,1$>$);\\ 
+\cmarg \hspace{0.5cm}$<$p1,q1$>$={\bf size}(y);\\ 
+\cmarg \hspace{0.5cm}ylast=y(:,q1);\\ 
+\cmarg {\bf else}, y0=ynext;\\ 
+\cmarg \hspace{0.5cm}y={\bf ode}(y0,0,0:10:100,1.e$-$3,1.e$-$3,arnold);\\ 
+\cmarg \hspace{0.5cm}param3d(y(1,:),y(2,:),y(3,:),60,45,"x@y@z",$<$1,3,1$>$,...\\ 
+\cmarg \hspace{0.5cm}100$\star$$<$$-$1,1,$-$1,1,$-$1,1$>$);\\ 
+\cmarg {\bf end}\\ 
+\cmarg \hspace{0.5cm}$<$p1,q1$>$={\bf size}(y);\\ 
+\cmarg \hspace{0.5cm}ylast=y(:,q1);\\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+
+\def\Martestf{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$ylast$>$=artestf(ynext)\\ 
+\cmarg //$<$ylast$>$=artestf($[$ynext$]$)\\ 
+\cmarg \verb@// Integration et visualisation de l'equation de lorentz @\\ 
+\cmarg \verb@// le premier appel doit etre fait sans argument @\\ 
+\cmarg \verb@// il integre l'equation differentielle de 0 a 100 avec un pas @\\ 
+\cmarg \verb@// de 10 \ `a partir du  point initial <1;2;3>;@\\ 
+\cmarg \verb@// ylast=lotest()@\\ 
+\cmarg \verb@// Les appels suivants en utilisant ylast=lotest(ylast)@\\ 
+\cmarg \verb@// permettent de continuer l'int\ 'egration sur une duree de 10@\\ 
+\cmarg \verb@// unite de temps @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg {\bf if} rhs=0,y0=$<$1;2;3$>$,\\ 
+\cmarg \hspace{0.5cm}y={\bf ode}(y0,0,0:10:100,1.e$-$3,1.e$-$3,'arnol');\\ 
+\cmarg \hspace{0.5cm}param3d(y(1,:),y(2,:),y(3,:),60,45,"x@y@z",$<$1,3,1$>$,...\\ 
+\cmarg \hspace{0.5cm}100$\star$$<$$-$1,1,$-$1,1,$-$1,1$>$);\\ 
+\cmarg \hspace{0.5cm}$<$p1,q1$>$={\bf size}(y);\\ 
+\cmarg \hspace{0.5cm}ylast=y(:,q1);\\ 
+\cmarg {\bf else}, y0=ynext;\\ 
+\cmarg \hspace{0.5cm}y={\bf ode}(y0,0,0:10:100,1.e$-$3,1.e$-$3,'arnol');\\ 
+\cmarg \hspace{0.5cm}param3d(y(1,:),y(2,:),y(3,:),60,45,"x@y@z",$<$1,3,1$>$,...\\ 
+\cmarg \hspace{0.5cm}100$\star$$<$$-$1,1,$-$1,1,$-$1,1$>$);\\ 
+\cmarg {\bf end}\\ 
+\cmarg \hspace{0.5cm}$<$p1,q1$>$={\bf size}(y);\\ 
+\cmarg \hspace{0.5cm}ylast=y(:,q1);\\ 
+\cmarg //end }
+\end{flushleft}}
+

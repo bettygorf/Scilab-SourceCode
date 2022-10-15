@@ -1,0 +1,20 @@
+
+pvm_set_timer(1)               Scilab function               pvm_set_timer(1)
+NAME
+  pvm_set_timer - Sets the  system's notion  of  the current time.
+
+CALLING SEQUENCE
+  [info] = pvm_set_timer()
+
+PARAMETERS
+
+  info : scalar
+
+DESCRIPTION
+  pvm_set_timer initialized the timer.  info will be 0.  If some error occurs
+  then info will be -1.
+EXAMPLE
+  pvm_set_timer()
+
+SEE ALSO
+  pvm_get_timer

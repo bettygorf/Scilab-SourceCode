@@ -1,0 +1,14 @@
+
+winsid(2)                      Scilab Function                      winsid(2)
+NAME
+  winsid - return the list of graphic windows id
+
+CALLING SEQUENCE
+  [x]=winsid()
+
+PARAMETERS
+
+  x              : a row vector
+
+DESCRIPTION
+  This function is used to get the list of graphic windows id.

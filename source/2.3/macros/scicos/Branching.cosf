@@ -1,0 +1,43 @@
+scicos_ver = 'scicos2.3'
+scs_m=list()
+scs_m(1)=list([400,330,0,0],['Branching','/usr/local/lib/scilab/macros/scicos/'],[],[],[])
+scs_m(2)=list('Block',list([20,20],[4,40],%t,'2',[0;0],0,[],[],' '),..
+         list('junk',[-1;-1],-1,[],[],[],[],[],[],'c',[],[%t,%f],' ',list()),' ',..
+         'NRMSOM_f')
+scs_m(3)=list('Block',..
+         list([20,129.52381],[40,40],%t,['2';'1'],[0;0],0,[0;0],[],..
+         'xstringb(orig(1),orig(2),''Selector'',sz(1),sz(2),''fill'');'),..
+         list(list('selector',2),[-1;-1],-1,[1;1],[],[],0,[],[],'c',[],[%t,%f],..
+         ' ',list()),' ','SELECT_f')
+scs_m(4)=list('Block',..
+         list([20,239.04762],[16.666667,16.666667],%t,[],[],[],[0;0;0],0,[]),..
+         list('sum',[],[],[1;1;1],1,[],[],[],[],'d',-1,[%f,%f],' ',list()),' ',..
+         'CLKSOM_f')
+scs_m(5)=list('Block',..
+         list([78.095238,20],[60,60],%t,[],0,[],0,[0;0],..
+         ['txt=[''If in>=0'';'' '';'' then    else''];';
+         'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']),..
+         list(list('ifthel',1),1,[],1,[1;1],[],[],[],[],'l',[-1,-1],[%f,%f],' ',..
+         list()),' ','IFTHEL_f')
+scs_m(6)=list('Block',..
+         list([78.095238,180.95238],[40,40],%t,'2',[0;0],0,[],[],..
+         'xstringb(orig(1),orig(2),''Mux'',sz(1),sz(2),''fill'')'),..
+         list(list('mux',1),[-1;-2],0,[],[],[],[],[],2,'c',[],[%t,%f],' ',list()),..
+         ' ','MUX_f')
+scs_m(7)=list('Deleted')
+scs_m(8)=list('Block',..
+         list([204.58015,161.00346],[40,40],%t,['2';'1'],0,[0;0],[0;0],[],..
+         'xstringb(orig(1),orig(2),''Selector'',sz(1),sz(2),''fill'');'),..
+         list(list('selector',2),-1,[-1;-1],[1;1],[],[],0,[],[],'c',[],[%t,%f],..
+         ' ',list()),' ','ISELECT_f')
+scs_m(9)=list('Block',..
+         list([227.55102,71.937716],[60,40],%t,'2',0,[],0,[0;0],..
+         ['txt=[''event select''];';
+         'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']),..
+         list(list('eselect',1),1,[],1,[1;1],[],[],[],2,'l',[-1,-1],[%f,%f],' ',..
+         list()),' ','ESELECT_f')
+scs_m(10)=list('Block',..
+          list([239.18575,250.0692],[40,40],%t,'2',0,[0;0],[],[],..
+          'xstringb(orig(1),orig(2),''Demux'',sz(1),sz(2),''fill'')'),..
+          list(list('demux',1),0,[-1;-2],[],[],[],[],[],2,'c',[],[%t,%f],' ',..
+          list()),' ','DEMUX_f')

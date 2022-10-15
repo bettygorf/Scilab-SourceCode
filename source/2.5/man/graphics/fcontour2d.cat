@@ -1,0 +1,30 @@
+
+fcontour2d(2)                  Scilab Function                  fcontour2d(2)
+NAME
+  fcontour2d - level curves of a surface defined by a function on a 2D plot
+
+CALLING SEQUENCE
+  fcontour2d(xr,yr,f,nz,[style,strf,leg,rect,nax])
+
+PARAMETERS
+
+  xr,yr  : two real row vectors of size n1 and n2.
+
+  f      : is an external which defines the surface z=f(x,y). It is first
+         computed on the grid specified by xr,yr. Then, control is passed to
+         the routine contour2d.
+
+  nz,[style,strf,leg,rect,nax]
+         : see contour2d.
+
+DESCRIPTION
+  Draws level curves of a surface z=f(x,y). The level curves are drawn on a
+  2D plot. The surface is given by the external function f. See contour2d.
+
+  Enter the command fcontour2d() to see a demo.
+
+SEE ALSO
+  contour, contour2d, fcontour
+
+AUTHOR
+  J.Ph.C.

@@ -1,0 +1,39 @@
+.TH rcond 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+rcond -  inverse condition number
+.SH CALLING SEQUENCE
+.nf
+rcond(X) 
+.fi
+.SH PARAMETERS
+.TP
+X
+: real or complex square matrix
+.SH DESCRIPTION
+.Vb rcond(X)
+is an estimate for the reciprocal of the
+condition of \fVX\fR in the 1-norm.
+.LP
+If \fVX\fR is well conditioned, \fVrcond(X)\fR is close to 1.
+If not, \fVrcond(X)\fR is close to 0.
+.LP
+.Vb [r,z]=rcond(X)  
+sets \fVr\fR to \fVrcond(X)\fR and returns \fVz\fR such that
+.LP
+.Vb norm(X*z,1) = r*norm(X,1)*norm(z,1) 
+Thus, if \fVrcond\fR is small \fVz\fR is a vector in the kernel.
+.SH EXAMPLE
+.nf
+A=diag([1:10]);
+rcond(A)
+A(1,1)=0.000001;
+rcond(A)
+.fi
+.SH SEE ALSO
+svd, cond, inv
+
+
+
+
+

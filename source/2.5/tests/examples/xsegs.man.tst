@@ -1,0 +1,6 @@
+clear;lines(0);
+x=2*%pi*(0:9)/8;
+xv=[sin(x);9*sin(x)];
+yv=[cos(x);9*cos(x)];
+plot2d([-10,10],[-10,10],[-1,-1],"022")
+xsegs(xv,yv,1:10)

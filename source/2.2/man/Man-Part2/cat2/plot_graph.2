@@ -1,0 +1,66 @@
+
+
+
+plot_graph(1)                  Scilab Function                  plot_graph(1)
+
+
+
+
+
+
+NAME
+  plot_graph - plot a graph
+
+CALLING SEQUENCE
+  plot_graph(g,[orx,ory,w,h])
+
+PARAMETERS
+  g : graph-list
+  orx,ory,w,h : real values defining the plotting rectangle
+
+DESCRIPTION
+  Simple plot of a graph with only simple nodes and arcs (without arrows,
+  loops and multiple arcs). The size of the plot is automatically computed
+  with the coordinates of the nodes. The optional parameters [orx,ory,w,h]
+  (upper-left point, width, height) define a rectangle for a better defini-
+  tion of the window or for zooming on a part of the graph
+
+EXAMPLE
+  // simple graph for comparing plot_graph, plot_graph1 and plot_graph2
+  ta=[2 2 1 1 2 4 3 3 4];
+  he=[2 2 3 2 3 2 1 2 1];
+  g=make_graph('foo',1,4,ta,he);
+  g('node_type')=[1 1 1 2];
+  g('node_x')=[73 737 381 391]; g('node_y')=[283 337 458 142];
+  g('node_color')=[3 3 3 11];
+  g('node_diam')=[30 30 30 60];
+  g('edge_color')=[10 0 2 6 11 11 0 0 11];
+  xbasc();
+  plot_graph(g);
+  x_message('plot_graph');
+  xbasc();
+  plot_graph1(g);
+  x_message('plot_graph1');
+  xbasc();
+  plot_graph2(g);
+  x_message('plot_graph2');
+  xbasc();
+  plot_graph2(g,200,-470,350,450);
+
+SEE ALSO
+  plot_graph1, plot_graph2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+.TH GetMsg 1 "March 1997" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+GetMsg - gets a pending message
+.SH CALLING SEQUENCE
+.nf
+[type,msg,appli] = GetMsg()
+.fi
+.SH PARAMETERS
+.TP 5
+type
+: string
+.TP 4
+msg
+: string
+.TP 6
+appli
+: string, name of an application
+.SH DESCRIPTION
+\fVGetMsg\fR gets, in an asynchronous way, a message sent by another 
+application.
+The type of the message is \fVstring\fR and the message itself is
+\fVmsg\fR.
+The name of the application which has sent the message is \fVappli\fR,
+.SH SEE ALSO
+SendMsg, WaitMsg

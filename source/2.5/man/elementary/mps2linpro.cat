@@ -1,0 +1,41 @@
+
+mps2linpro(1)                  Scilab Function                  mps2linpro(1)
+NAME
+  mps2linpro - convert lp problem given in MPS format to linpro format
+
+CALLING SEQUENCE
+  lp = mps2linpro(mps)
+  [p,C,b,ci,cs,mi] = mps2linpro(mps)
+
+PARAMETERS
+
+  mps       : either a character string, path of the MPS file, or an mps data
+            structure returned by readmps
+
+  lp        : a linpro data tlist with following fields:
+
+            p         : real (column) vector (dimension  n)
+
+            C         : real matrix (dimension  (mi + md) x n) (If no con-
+                      straints are given, you can set C = [])
+
+            b         : RHS vector (dimension 1 x (mi + md))
+
+            ci        : (column) vector of lower-bounds (dimension  n).  If
+                      there are no lower bound constraints, put ci = [].  If
+                      some components of x are bounded from below, set the
+                      other (unconstrained) values of ci to a very large neg-
+                      ative  number (e.g. ci(j) = -(% eps)^(-1).
+
+            cs        : (column) vector of upper-bounds. (Same remarks as
+                      above).
+
+            mi        : number of equality constraints (i.e. C(1:mi,:)*x =
+                      b(1:mi))
+
+DESCRIPTION
+  mps2linpro forms Linear programing data compatible with linpro out of MPS
+  data format.
+
+SEE ALSO
+  linpro, readmps

@@ -1,0 +1,245 @@
+\chapter{Graphics}
+
+This section introduces graphics in \Scilab. There are basically three
+different graphics devices in \Scilab~:
+\begin{itemize}
+ \item[X11] Graphics device for the X11 window system 
+ \item[Pos] Graphics device for Postscript Printers 
+ \item[Xfig]Graphics device for the Xfig system
+\end{itemize}
+A driver can be selected with the command
+\verb+driver('Driver-Name')+. The default driver is named "Rec" a
+driver for the X11 window system which also records all the graphics
+commands. 
+
+In fact, one can ignore the existence of drivers and use the
+functions \verb+xbasimp+, \verb+xs2fig+ in order to send a graphic 
+to a printer or in a file for the \verb+Xfig+ system. For example, the
+two commands~:
+\begin{verbatim}
+  plot(1:10) 
+  xbasimp(0,'foo.ps')
+\end{verbatim}
+
+will plot \verb+y=x+ in an X11 window ( window 0) 
+and then will replay the graphic
+commands to produce, in the file {\tt 'foo.ps'}, a Postscript version of the
+graphics code ( Since we can have many graphics windows, the first
+number $0$ refers to it's name).
+
+If you enlarge a graphic window, the command \verb+xbasr(window-name)+
+is executed by \Scilab. This command clears the graphic window
+\verb+window-name+ and replays the graphic commands associated to it. One can
+call this function manually, in order to verify the associated
+recorded graphics commands. 
+
+\verb+xbasc(window-name)+ will clear
+the recorded \Scilab graphics command associated to
+the window \verb+window-name+ and will clear that X11-window.
+
+One can use many graphics windows which can be created with buttons 
+or with the commands \verb+xset+ or \verb+xselect+. The environment 
+variable DISPLAY can be used to specify an X11 Display or one can use
+the \verb+xinit+ function in order to open a graphic window on a
+specific display. 
+
+All the graphics are send to the "current graphic window", 
+which can be set or raised with the help of specific X-$\Psi$lab
+buttons or with the use of the functions \verb+xset+ or \verb+xselect+.
+
+\section{Plotting}
+
+\def\Figdir{figures/}
+\subsection{A first example}
+\def\exemple{d7.1}
+
+\verbatok{figures/\exemple.code}
+\end{verbatim}
+\input{\Figdir \exemple.tex}
+\dessin{\exemple}{\exemple}
+
+This first example plots the function $f(t)\equiv \cos(t)$. The sampled values
+are specified by two column vectors $t$ and $cos(t)$. 
+Some parameters of the graphics are controlled by a graphic context 
+( for example the line thickness) and other are controlled thru
+graphics arguments. In this first example (Figure~(\ref{d7.1})),
+we use all the default arguments.
+
+\subsection{Superposing curves}
+Suppose now that we want to specify the graphics boundaries, and that
+we want to superpose two curves by calling \verb+plot2d+ twice (Figure~(\ref{d7.2}))~:
+\def\exemple{d7.2}
+\verbatok{figures/\exemple.code}
+\end{verbatim}
+\input{\Figdir \exemple.tex}
+\dessin{\exemple}{\exemple}
+
+This can be done with additional arguments. In the first call to
+\verb+plot2d+, the key argument is the string \verb+"111"+~:
+\begin{itemize}
+ \item the first 1 means : add a caption for that curve 
+ \item the second 1 means : uses the argument \verb+[0,-1,1,1]+ to set
+the graphic boundaries
+ \item the third 1 means : add x and y tics on the graphics.
+\end{itemize}
+
+After that call, the fixed boundaries are the defaults ones 
+and on the second call the 0 character in \verb+"100"+ stands for :
+use the default boundaries. Since a call to a graphic function doesn't
+clear the graphic window we get superposed curves. 
+
+One can also modify the graphic boundaries by calling the function
+\verb+xsetech+ and can get the default values by calling the function
+\verb+xgetech+. The basic graphics primitives also use the default 
+boundaries. In the following example graphic boundaries are fixed with
+a first call to \verb+plot2d+ and then a set of graphic primitives are
+showed (Figure~(\ref{d7.9})).
+
+\def\exemple{d7.9}
+\verbatok{figures/\exemple.code}
+\end{verbatim}
+\input{\Figdir \exemple.tex}
+\dessin{\exemple}{\exemple}
+
+\subsection{Mixing 2D and 3D graphics}
+
+When one uses 3D plotting function default graphic boundaries are
+fixed, but in $R^3$. If one wants to use graphic primitives 
+to add informations on 3D graphics the \verb+geom3d+ function can be
+used to convert 3D coordinates to 2D-graphics coordinates. The
+figure~(\ref{d7.10}) illustrates that feature.
+
+\def\exemple{d7.10}
+\verbatok{figures/\exemple.code}
+\end{verbatim}
+\input{\Figdir \exemple.tex}
+\dessin{\exemple}{\exemple}
+
+\subsection{Multiple plotting in one call}
+\def\exemple{d7.3}
+
+In fact \verb+plot2d+ can be directly used to plot multiple curves 
+in one call. This is achieved by using matrix arguments and the 
+the next example (Figure~(\ref{\exemple})) shows this possibility~:
+
+\verbatok{figures/\exemple.code}
+\end{verbatim}
+\input{\Figdir \exemple.tex}
+\dessin{\exemple}{\exemple}
+
+\subsection{Sub-windows}
+\def\exemple{d7.8}
+
+It's also possible to make multiple plotting in the same 
+graphic window (Figure~\ref{\exemple}).
+
+\verbatok{figures/\exemple.code}
+\end{verbatim}
+\input{\Figdir \exemple.tex}
+\dessin{Use of xsetech}{\exemple}
+
+\subsection{A Set of figures}
+\def\exemple{d7.11}
+
+In This next example we give a brief summary of different plotting
+functions for 2D or 3D graphics. The figure~(\ref{\exemple}) is 
+obtained and inserted in this document with the help of the command 
+\verb+Blatexprs+. 
+\verbatok{figures/\exemple.gcode}
+\end{verbatim}
+\input{\Figdir \exemple.tex}
+\dessin{\exemple}{\exemple}
+
+\section{Printing and inserting \Scilab graphics in \LaTeX}
+\subsection{Postscript File}
+The Postscript files generated by \Scilab  can't be directly sent to a
+Postscript printer, they need a preamble. Therefore, printing is done
+thru the use of Unix scripts or programs which are provided with
+\Scilab. The program \verb+Blpr+ is used to print a set of \Scilab Graphics 
+on a single sheet of paper and is used as follows~:
+
+\begin{verbatim}
+ Blpr string-title file1.ps file2.ps ... | lpr 
+\end{verbatim}
+
+If you have the \verb+ghostview+ Postscript interpreter on your Unix
+workstation you can do as well~:
+
+\begin{verbatim}
+ Blpr string-title file1.ps file2.ps ... | ghostview -
+\end{verbatim}
+
+in order to see the Postscript file before printing. The best result 
+( best sized figures ) is obtained when printing two pictures on a
+single page. 
+
+\subsection{Postscript File in \LaTeX}
+
+The \verb|Blatexpr| Unix shell and the programs \verb+Batexpr2+ and 
+\verb+Blatexprs+ are provided in order to help inserting 
+\Scilab graphics in \LaTeX.
+
+Suppose that the file "sin.ps" was created with the help of
+\verb+xbasimp+. Then typing the following statement under a Unix shell~:
+\begin{verbatim}
+ Blatexpr 1.0 1.0 sin.ps
+\end{verbatim}
+will create two files \verb+sin.ps.n+ and \verb+sin.tex+. The original
+Postscript file is left unchanged. 
+In order to get your picture you then insert the following \LaTeX code
+in your \LaTeX document~:
+\begin{verbatim}
+\input fig.tex
+\dessin{The caption of you picture}{The-label}
+\end{verbatim}
+
+The program \verb+Blatexprs+ does the same thing be is used to insert
+a set of Postscript Figures in one \LaTeX picture.
+
+\begin{verbatim}
+  Blatexprs Bas2 file1.ps file2.ps .... filen
+\end{verbatim}
+In this case the figures are in the files \verb+file<i>+ and
+\verb+Bas2+ is a file name in which the result will be generated.
+This command will create two files \verb+Bas2.ps+ et \verb+Bas2.tex+.
+and the picture is obtained with the \LaTeX statement.
+\begin{verbatim}
+\input Bas2.tex
+\dessin{The caption of your picture}{The-label}
+\end{verbatim}
+The Postscipt files are inserted in \LaTeX with the help of the
+\verb+\special+ command and with a syntax that works with the
+\verb+dvips+ program.
+
+The program \verb+Blatexpr2+ is used when you want two pictures side
+by side.
+\begin{verbatim}
+  Blatexpr2 Fileres file1.ps file2.ps 
+\end{verbatim}
+\def\exemple{d7.12}
+\input{\Figdir \exemple.tex}
+\dessin{Blatexp2 Example}{\exemple}
+
+It's sometime convenient to have a main \LaTeX document in a directory
+and to store all the figures in a subdirectory. The proper way to
+insert a  picture file in the main document, when the picture 
+is stored in the subdirectory \verb+figures+, is the following~:
+
+\begin{verbatim}
+\def\Figdir{figures/} % My figures are in the figures/ subdirectory.
+\input{\Figdir fig.tex}
+\dessin{The caption of you picture}{The-label}
+\end{verbatim}
+
+The declaration \verb+\def\Figdir{figures/}+ is used twice, first to
+find the file fig.tex ( when you use \verb+latex+ ), and
+ second to produce a correct pathname for the
+\verb+special+ \LaTeX command  found in \verb+fig.tex+. ( used at
+dvips level).
+
+
+
+
+
+
+

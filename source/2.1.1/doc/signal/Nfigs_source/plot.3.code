@@ -1,0 +1,6 @@
+//demonstrate Basile macro frmag 'plot.3.code'
+   xinit('plot.3.ps')
+   hn=eqfir(33,[0 .2;.25 .35;.4 .5],[0 1 0],[1 1 1]);
+   [hm,fr]=frmag(hn,256);
+   plot(fr,hm),
+   xend(),

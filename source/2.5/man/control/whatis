@@ -1,0 +1,75 @@
+abcd - state-space matrices   @abcd
+abinv - ab invariant subspace   @abinv
+arhnk - hankel norm approximant   @arhnk
+arl2 - siso model realization by l2 transfer approximation   @arl2
+balreal - balanced realization   @balreal
+bilin - general bilinear transform   @bilin
+cainv - dual of abinv   @cainv
+calfrq - frequency response discretization   @calfrq
+canon - canonical controllable form   @canon
+cls2dls - bilinear transform   @cls2dls
+colregul - removing poles and zeros at infinity   @colregul
+cont_frm - transfer to controllable state-space   @cont_frm
+cont_mat - controllability matrix   @cont_mat
+contr - controllability, controllable subspace   @contr
+contrss - controllable part   @contrss
+csim - simulation (time response) of linear system   @csim
+ctr_gram - controllability gramian   @ctr_gram
+dbphi - frequency response to phase and magnitude representation   @dbphi
+ddp - disturbance decoupling   @ddp
+des2tf - descriptor to transfer function conversion   @des2tf
+dscr - discretization of linear system   @dscr
+dsimul - state space discrete time simulation   @dsimul
+dt_ility - detectability test   @dt_ility
+equil - balancing of pair of symmetric matrices   @equil
+equil1 - balancing (nonnegative) pair of matrices   @equil1
+feedback - feedback operation   @feedback
+flts - time response (discrete time, sampled system)   @flts
+frep2tf - transfer function realization from frequency response   @frep2tf
+freq - frequency response   @freq
+freson - peak frequencies   @freson
+g_margin - gain margin   @g_margin
+gfrancis - francis equations for tracking   @gfrancis
+imrep2ss - state-space realization of an impulse response   @imrep2ss
+invsyslin - system inversion   @invsyslin
+kpure - continuous siso system limit feedback gain   @kpure
+krac2 - continuous siso system limit feedback gain   @krac2
+lin - linearization   @lin
+lqe - linear quadratic estimator (kalman filter)   @lqe
+lqg - lqg compensator   @lqg
+lqg2stan - lqg to standard problem   @lqg2stan
+lqr - lq compensator (full state)   @lqr
+ltitr - discrete time response (state space)   @ltitr
+markp2ss - markov parameters to state-space   @markp2ss
+minreal - minimal balanced realization   @minreal
+minss - minimal realization   @minss
+obs_gram - observability gramian   @obs_gram
+obscont - observer based controller   @obscont
+observer - observer design   @observer
+obsv_mat - observability matrix   @obsv_mat
+obsvss - observable part   @obsvss
+p_margin - phase margin   @p_margin
+pfss - partial fraction decomposition   @pfss
+phasemag - phase and magnitude computation   @phasemag
+ppol - pole placement   @ppol
+projsl - linear system projection   @projsl
+repfreq - frequency response   @repfreq
+ricc - riccati equation   @ricc
+rowregul - removing poles and zeros at infinity   @rowregul
+rtitr - discrete time response (transfer matrix)   @rtitr
+sm2des - system matrix to descriptor   @sm2des
+sm2ss - system matrix to state-space   @sm2ss
+specfact - spectral factor   @specfact
+ss2des - (polynomial) state-space to descriptor form   @ss2des
+ss2ss - state-space to state-space conversion, feedback, injection   @ss2ss
+ss2tf - conversion from state-space to transfer function   @ss2tf
+st_ility - stabilizability test   @st_ility
+stabil - stabilization   @stabil
+svplot - singular-value sigma-plot   @svplot
+syssize - size of state-space system   @syssize
+tf2ss - transfer to state-space   @tf2ss
+time_id - siso least square identification   @time_id
+trzeros - transmission zeros and normal rank   @trzeros
+ui_observer - unknown input observer   @ui_observer
+unobs - unobservable subspace   @unobs
+zeropen - zero pencil   @zeropen

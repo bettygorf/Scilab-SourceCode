@@ -1,0 +1,43 @@
+
+printf(1)                      Scilab Function                      printf(1)
+NAME
+  sprintf - Emulator of C language sprintf function
+
+CALLING SEQUENCE
+  str=sprintf(format,value_1,..,value_n)
+
+PARAMETERS
+
+  format    : a Scilab string. Specifies a character string combining literal
+            characters with conversion specifications.
+
+  value_i   : Specifies the data to be converted according to the format
+            parameter.
+
+  str       : column vector of character strings
+
+  file      : a Scilab string specifying a file name or a logical unit number
+            (see file)
+
+DESCRIPTION
+  The sprintf function converts, formats, and stores its value parameters,
+  under control of the format parameter.
+
+  The format parameter is a character string that contains two types of
+  objects:
+
+  Literal characters
+            : which are copied to the output stream.
+
+  Conversion specifications
+            : each of which causes zero or more items to be fetched from the
+            value parameter list. see printf_conversion for details
+
+  If there are not enough items for format in the value parameter list,
+  sprintf generate an error.  If any values remain after the entire format
+  has been processed, they are ignored.
+EXAMPLES
+  fahr=120
+  sprintf('%3d Fahrenheit = %6.1f Celsius',fahr,(5/9)*(fahr-32))
+SEE ALSO
+  string, print, write, format, disp, file, printf, fprintf

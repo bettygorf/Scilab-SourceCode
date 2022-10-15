@@ -1,0 +1,30 @@
+
+fcontour(2)                    Scilab Function                    fcontour(2)
+NAME
+  fcontour - level curves on a 3D surface defined by a function
+
+CALLING SEQUENCE
+  fcontour(xr,yr,f,nz,[theta,alpha,leg,flag,ebox,zlev])
+
+PARAMETERS
+
+  xr,yr  : two real row vectors of size n1 and n2.
+
+  f      : is an external which defines the surface z=f(x,y). It is first
+         computed on the grid specified by xr,yr. Then, control is passed to
+         the routine contour.
+
+  nz,[theta,alpha,leg,flag,ebox,zlev]
+         : see contour.
+
+DESCRIPTION
+  Draws level curves of a surface z=f(x,y). The level curves are drawn on a
+  3D surface. The surface is given by the external function f. See contour.
+
+  Enter the command fcontour() to see a demo.
+
+SEE ALSO
+  contour, contour2d, fcontour2d
+
+AUTHOR
+  J.Ph.C.

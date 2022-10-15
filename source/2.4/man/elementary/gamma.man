@@ -1,0 +1,36 @@
+.TH gamma 3 "September 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+gamma -  The gamma function.
+.SH CALLING SEQUENCE
+.nf
+ y = gamma(x)
+.fi
+.SH PARAMETERS
+.TP
+x
+: real vector 
+.TP
+y
+: real vector with same size.
+.SH DESCRIPTION
+\fVgamma(x)\fR evaluates the gamma function at all the elements of \fVx\fR.
+\fVx\fR must be real.
+.IG
+.nf
+     /inf
+y=  |  t^(x-1) exp(-t) dt
+    /0
+.fi
+.FI
+.LA $$ y =  \int_0^\infty  t^(x-1) exp(-t) dt $$
+
+\fVgamma(n+1) = n!\fR
+
+.SH EXAMPLE
+.nf
+gamma(0.5)
+gamma(6)-prod(1:5)
+.fi
+.SH SEE ALSO
+gammaln, dlgamma

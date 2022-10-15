@@ -1,0 +1,34 @@
+.TH save 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+save - saving variables
+.SH CALLING SEQUENCE
+.nf 
+save(file-name [,x1,x2,...,xn])
+.fi
+.SH PARAMETERS
+.TP 10
+file-name 
+: character string
+.TP 10
+xi
+: arbitrary Scilab variable(s) 
+.SH DESCRIPTION
+The \fVsave\fR command can be used to save Scilab current variables 
+in binary form in a file.
+.LP
+\fVsave('filename')\fV saves all current variables in the file named \fVfilename\fR.
+.LP
+\fVsave('file-name',x,y)\fR saves only named variables \fVx\fR and \fVy\fR.
+.LP
+Saved  variables can be reloaded by the \fVload\fR command.
+.SH EXAMPLES
+.nf
+a=eye(2,2);b=ones(a);
+save('val.dat',a,b);
+clear a
+clear b
+load('val.dat','a','b');
+.fi
+.SH SEE ALSO
+load

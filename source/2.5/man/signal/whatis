@@ -1,0 +1,67 @@
+%asn - elliptic integral   @%asn
+%k - jacobi's complete elliptic integral   @%k
+%sn - jacobi 's elliptic function   @%sn
+Signal - signal manual description   @Signal
+analpf - create analog low-pass filter   @analpf
+buttmag - response of butterworth filter   @buttmag
+casc - cascade realization of filter from coefficients   @casc
+cepstrum - cepstrum calculation   @cepstrum
+cheb1mag - response of chebyshev type 1 filter   @cheb1mag
+cheb2mag - response of type 2 chebyshev filter   @cheb2mag
+chepol - chebychev polynomial   @chepol
+convol - convolution   @convol
+corr - correlation, covariance   @corr
+cspect - spectral estimation (periodogram method)   @cspect
+czt - chirp z-transform algorithm   @czt
+dft - discrete fourier transform   @dft
+ell1mag - magnitude of elliptic filter   @ell1mag
+eqfir - minimax approximation of fir filter   @eqfir
+eqiir - design of iir filters   @eqiir
+faurre - filter   @faurre
+ffilt - coefficients of fir low-pass   @ffilt
+fft - fast fourier transform.   @fft
+filter - modelling filter   @filter
+find_freq - parameter compatibility for elliptic filter design   @find_freq
+findm - for elliptic filter design   @findm
+frfit - frequency response fit   @frfit
+frmag - magnitude of fir and iir filters   @frmag
+fsfirlin - design of fir, linear phase filters, frequency sampling technique   @fsfirlin
+group - group delay for digital filter   @group
+hank - covariance to hankel matrix   @hank
+hilb - hilbert transform   @hilb
+iir - iir digital filter   @iir
+iirgroup - group delay lp iir filter optimization   @iirgroup
+iirlp - lp iir filter optimization   @iirlp
+intdec - changes sampling rate of a signal   @intdec
+jmat - row or column block permutation   @jmat
+kalm - kalman update   @kalm
+lattn - recursive solution of normal equations   @lattn
+lattp - lattp   @lattp
+lev - yule-walker equations (levinson's algorithm)   @lev
+levin - toeplitz system solver by levinson algorithm (multidimensional)   @levin
+lgfft - utility for fft   @lgfft
+lindquist - lindquist's algorithm   @lindquist
+mese - maximum entropy spectral estimation   @mese
+mfft - multi-dimensional fft   @mfft
+mrfit - frequency response fit   @mrfit
+phc - markovian representation   @phc
+pspect - cross-spectral estimate between 2 series   @pspect
+remez - remez's algorithm   @remez
+remezb - minimax approximation of magnitude response   @remezb
+rpem - rpem estimation   @rpem
+sinc - samples of sinc function   @sinc
+sincd - digital sinc function or direchlet kernel   @sincd
+srfaur - square-root algorithm   @srfaur
+srkf - square root kalman filter   @srkf
+sskf - steady-state kalman filter   @sskf
+system - observation update   @system
+trans - low-pass to other filter transform   @trans
+wfir - linear-phase fir filters   @wfir
+wiener - wiener estimate   @wiener
+wigner - 'time-frequency' wigner spectrum   @wigner
+window - symmetric window   @window
+yulewalk - least-square filter design   @yulewalk
+zpbutt - butterworth analog filter   @zpbutt
+zpch1 - chebyshev analog filter   @zpch1
+zpch2 - chebyshev analog filter   @zpch2
+zpell - lowpass elliptic filter   @zpell

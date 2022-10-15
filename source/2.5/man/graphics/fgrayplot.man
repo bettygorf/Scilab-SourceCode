@@ -1,0 +1,35 @@
+.TH fgrayplot 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+fgrayplot - 2D plot of a surface defined by a function using colors
+.SH CALLING SEQUENCE
+.nf
+fgrayplot(x,y,f,[strf,rect,nax])
+.fi
+.SH PARAMETERS
+.TP 5
+x,y
+: real row vectors.
+.TP 
+f
+: external of type \fVy=f(x,y)\fR.
+.TP
+strf,rect,nax
+: see \fVplot2d\fR.
+.SH DESCRIPTION
+\fVfgrayplot\fR makes a 2D plot of the surface given by \fVz=f(x,y)\fR on a 
+grid defined by \fVx\fR and \fVy\fR.
+Each rectangle on the grid is filled with a gray or color level depending 
+on the average value of \fVz\fR on the corners of the rectangle.
+
+Enter the command \fVfgrayplot()\fR to see a demo.
+.SH EXAMPLE 
+.nf 
+t=-1:0.1:1;
+deff("[z]=surf(x,y)","z=x**2+y**2")
+fgrayplot(t,t,surf,"111",[-2,-2,2,2])
+.fi 
+.SH SEE ALSO
+grayplot, plot2d, Sgrayplot, Sfgrayplot
+.SH AUTHOR
+J.Ph.C.

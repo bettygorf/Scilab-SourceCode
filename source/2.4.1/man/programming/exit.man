@@ -1,0 +1,9 @@
+.TH exit 1 "April 1993" "Scilab Group" "Scilab Command"
+.so ../sci.an
+.SH NAME
+exit -  Ends the current Scilab session
+.SH DESCRIPTION
+Ends the current Scilab session. 
+.SH SEE ALSO
+quit, abort, break, return, resume
+

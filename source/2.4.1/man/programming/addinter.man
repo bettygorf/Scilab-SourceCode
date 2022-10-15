@@ -1,0 +1,38 @@
+.TH addinter 1 "May 1995" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+addinter - new functions interface incremental linking at run time
+.SH CALLING SEQUENCE
+.nf
+addinter(files,spname,fcts)
+.fi
+.SH PARAMETERS
+.TP 10
+files
+: a character string or a vector of character string contain object files
+used to define the new Scilab interface routine (interface code, user
+routines or libraries, system libraries).
+.TP 10
+spname
+: a character string. Name of interface routine entry point
+.TP 10
+fcts
+: vector of character strings. The name of new Scilab function
+implemented in the new interface (in \fV fin \fR the order ).
+.SH DESCRIPTION
+\fVaddinter\fR performs incremental linking of a compiled C or Fortran
+new Scilab interface routine (see \fVintersci\fR documentation)
+and define corresponding scilab functions.
+
+.LP 
+For machines using dlopen functionality one can unlink an interface 
+with \fVulink\fR ( use the command \fVlink('show')\fR to get the number 
+of the shared library ). And to reload a new version of an interface a call to \fVulink\fR is 
+necessary to get rid of the old version.
+
+.LP
+See \fVlink\fR for more precision on use.
+
+.SH SEE ALSO
+link, intersci, newfun, clearfun
+

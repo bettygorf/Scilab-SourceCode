@@ -1,0 +1,21 @@
+.TH predef 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+predef - variable protection
+.SH CALLING SEQUENCE
+.nf
+predef([n])
+.fi
+.SH DESCRIPTION
+Used for "defining predefined" variables.
+Predefined variables cannot be killed and are not saved by the 
+\fV'save'\fR command.
+.TP 10
+predef()
+: sets all the current variables to predefined ones.
+.TP
+predef(n)
+: sets the \fVmax(n,7)\fR last defined variables as predefined.
+.SH SEE ALSO
+clear
+

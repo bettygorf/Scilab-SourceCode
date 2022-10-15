@@ -1,0 +1,69 @@
+.TH plotframe 2 "October 1994" "Scilab" ""
+.so ../sci.an
+.SH NAME
+plotframe - graphic frame with scaling and grids
+.SH CALLING SEQUENCE
+.nf
+plotframe(rect,tics [,arg_opt1,arg_opt2,arg_opt3])
+.fi
+.SH PARAMETERS
+.TP 10
+rect
+:
+vector \fV[xmin,ymin,xmax,ymax]\fR made of x and y bounds.
+.TP
+tics
+:
+vector \fV[nx,mx,ny,my]\fR where \fVmx, nx\fR (resp. \fVmy, ny\fR) are
+the number of x-axis (resp. y-axis) intervals and subintervals.
+.TP
+arg_optX 
+: optional arguments up to three and choosen among.
+.RS
+.TP
+flags
+:
+vector \fV[wantgrids,findbounds]\fR where \fVwantgrids\fR is a boolean
+variable (\fV%t\fR or \fV%f\fR) which indicates gridding.
+\fVfindbounds\fR is a boolean variable. If \fVfindbounds\fR is \fV%t\fR,
+the bounds given in \fVrect\fR are allowed to be slightly modified 
+( in fact always increased )
+in order to have simpler graduations (then \fVtics(2),tics(4)\fR are ignored).
+.TP
+captions
+: vector of 3 character strings \fV[title, x-leg, y-leg]\fR.
+.TP
+subwin
+: a vector of size 4 (sub window definition)
+The sub window is specified with the 
+parameter \fVsubwwin=[x,y,w,h]\fR ( Upper-Left Width Height ). 
+The values in \fVsubwin\fR are specified using proportion of the width 
+or height of the current graphic window ( See \fVxsetech\fR ).
+.RE
+.SH DESCRIPTION
+This function is used with plotting functions \fVplot2d\fR,
+\fVplot2d1\fR,... to set a graphic frame. This function is
+used before \fVplot2d...\fR which should be invoked with
+the "000" superposition mode.
+.SH EXAMPLE
+.nf
+x=[-0.3:0.8:27.3]';
+y=rand(x);
+rect=[min(x),min(y),max(x),max(y)];
+tics=[4,10,2,5];    //4 x-intervals and 2 y-intervals
+plotframe(rect,tics,[%f,%f],['My plot','x','y'],[0,0,0.5,0.5]);
+plot2d(x,y,2,'000')
+plotframe(rect,tics,[%t,%f],['My plot with grids','x','y'],[0.5,0,0.5,0.5]);
+plot2d(x,y,3,'000')
+plotframe(rect,tics,[%t,%t],...
+['My plot with grids and automatic bounds','x','y'],[0,0.5,0.5,0.5]);
+plot2d(x,y,4,'000')
+plotframe(rect,tics,[%f,%t],...
+	['My plot without grids but with automatic bounds','x','y'],...
+	[0.5,0.5,0.5,0.5]);
+plot2d(x,y,5,'000');
+xset('default');
+.fi
+.SH SEE ALSO
+plot2d, graduate, xtitle, plot2d1, plot2d2
+

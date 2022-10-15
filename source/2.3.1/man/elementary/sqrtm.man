@@ -1,0 +1,25 @@
+.TH sqrtm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sqrtm - matrix square root
+.SH CALLING SEQUENCE
+.nf
+y=sqrtm(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex  square matrix
+.SH DESCRIPTION
+\fVy=sqrt(x)\fR is the matrix square root of the \fVx\fR x matrix (\fVx=y^2\fR)
+Result may not be accurate if \fVx\fR is not symmetric.
+.SH EXAMPLE
+.nf
+x=[0 1;2 4]
+w=sqrtm(x); 
+norm(w*w-x)
+x(1,2)=%i;
+w=sqrtm(x);norm(w*w-x,1)
+.fi
+.SH SEE ALSO
+expm, sqroot

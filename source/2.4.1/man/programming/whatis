@@ -1,0 +1,177 @@
+abort - interrupt evaluation.  
+addinter - new functions interface incremental linking at run time  
+and (&) - logical and  
+ans - answer  
+apropos - searches keywords in scilab help  
+argn - number of arguments in a function call  
+backslash (\\) - left matrix division.  
+binary - binary file management  
+bool2s - convert boolean matrix to a zero one matrix.  
+boolean - scilab objects, boolean variables and operators & | ~  
+brackets ([,]) - left and right brackets  
+break - keyword to interrupt loops  
+call - fortran or c user routines call  
+case - keyword used in select  
+ceil - rounding up  
+chdir - changes scilab current directory  
+clear - kills variables  
+clearfun - remove primitive.  
+code2str - returns character string associated with scilab integer codes.  
+coeff - coefficients of matrix polynomial  
+colon (:) - colon operator  
+comma (,) - column, instruction, argument separator  
+comments - comments  
+comp - scilab function compilation  
+deff - on-line definition of function  
+degree - degree of polynomial matrix  
+delbpt - delete breakpoint  
+diary - diary of session  
+disp - displays variables  
+dispbpt - display breakpoints  
+dot (.) - symbol  
+else - keyword in if-then-else  
+elseif - keyword in if-then-else  
+empty ([]) - empty matrix  
+end - end keyword  
+equal (=) - affectation, comparison equal sign  
+errcatch - error trapping  
+errclear - error clearing  
+error - error messages  
+evstr - evaluation of expressions  
+exec - script file execution  
+exists - checks variable existence  
+exit - ends the current scilab session  
+external - scilab object, external function or routine  
+extraction - matrix and list entry extraction  
+eye - identity matrix  
+feval - multiple evaluation  
+file - file management  
+find - find indices of boolean vector or matrix true elements  
+fix - rounding towards zero  
+floor - rounding down  
+for - language keyword for loops  
+format - printing format  
+fort - fortran or c user routines call  
+fprintf - emulator of c language fprintf function  
+fscanf - converts formatted input read on a file  
+funcprot - switch scilab functions protection mode  
+function - scilab procedure and scilab object  
+funptr - coding of primitives ( wizard stuff )  
+getcwd - get scilab current directory  
+getd - getting function defined in a directory .sci files  
+getenv - get the value of an environment variable  
+getf - loading function  
+getpid - get scilab process identificator  
+hat (^) - exponentiation  
+help - on-line help command  
+host - shell (sh) command execution  
+hypermat - initialize an n dimensional matrices  
+hypermatrices - scilab object, n dimensional matrices in scilab  
+ieee - set floating point exception mode  
+if then else - conditional execution  
+imag - imaginary part  
+insertion - matrix and list insertion or modification  
+int - integer part  
+intersci - scilab tool to interface c of fortran functions with scilab  
+iserror - error test  
+keyboard - keyboard commands  
+left ([) - left bracket  
+length - length of object  
+less (<) - lower than comparison  
+lib - library definition  
+lines - rows and columns used for display  
+link - dynamic link  
+list - scilab object and list function definition  
+load - load saved variable  
+lsslist - scilab linear state space function definition  
+lstcat - list concatenation  
+macro - scilab procedure and scilab object  
+matrices - scilab object, matrices in scilab  
+matrix - reshape a vector or a matrix to a different size matrix  
+max - maximum  
+maxi - maximum  
+min - minimum  
+mini - minimum  
+minus (-) - substraction operator, sign changes  
+mode - select a mode in exec file  
+mtlb_mode - switch matlab like operations  
+names - scilab names syntax  
+newfun - add a name in the table of functions  
+not (~) - logical not  
+null - delete an element in a list  
+ones - matrix made of ones  
+or | - logical or  
+overloading - display, functions and operators overloading capabilities  
+parents ( ) - left and right parenthesis  
+part - extraction of strings  
+pause - pause mode, invoke keyboard  
+percent (%) - special character  
+plus (+) - addition operator  
+poly - polynomial definition  
+power - power operation (^,.^)  
+predef - variable protection  
+print - prints variables in a file  
+printf - emulator of c language printf function  
+printf_conversion - printf, sprintf, fprintf conversion specifications  
+pwd - print scilab current directory  
+quit - decrease the pause level or exit  
+quote (') - transpose operator, string delimiter  
+rand - random number generator  
+rat - floating point rational approximation  
+rational - scilab objects, rational in scilab  
+read - matrices read  
+read4b - fortran file binary read  
+readb - fortran file binary read  
+real - real part  
+resume - return or resume execution and copy some local variables  
+return - return or resume execution and copy some local variables  
+rlist - scilab rational fraction function definition  
+round - rounding  
+save - saving variables  
+scanf - converts formatted input on standard input  
+scanf_conversion - scanf, sscanf, fscanf conversion specifications  
+sciargs - scilab command line arguments  
+scilab - major unix script to execute scilab and miscellaneous tools  
+scilink - unix script to relink scilab  
+select - select keyword  
+semicolumn (;) - ending expression and row separator  
+setbpt - setting breakpoints  
+sign - sign function  
+signm - matrix sign function  
+size - size of objects  
+slash (/) - right division and feed back  
+sprintf - emulator of c language sprintf function  
+sscanf - converts formatted input given by a string  
+stacksize - set scilab stack size  
+star (*) - multiplication operator  
+startup - startup file  
+str2code - return scilab integer codes associated with a character string  
+string - conversion to string  
+strings - scilab object, character strings  
+symbols - scilab operator names  
+testmatrix - generate some particular matrices  
+then - keyword in if-then-else  
+tilda (~) - logical not  
+tlist - scilab object and typed list definition.  
+type - variable type  
+ulink - unlink a dynamically linked shared object  
+unix - shell (sh) command execution  
+unix_g - shell (sh) command execution, output redirected to a variable  
+unix_s - shell (sh) command execution, no output  
+unix_w - shell (sh) command execution, output redirected to scilab window  
+unix_x - shell (sh) command execution, output redirected to a window  
+user - interfacing a fortran routine  
+varargin - variable numbers of arguments in an input argument list  
+varargout - variable numbers of arguments in an output argument list  
+varn - symbolic variable of a polynomial  
+warning - warning messages  
+what - list the scilab primitives  
+where - get current instruction calling tree  
+whereami - display current instruction calling tree  
+whereis - name of library containing a function  
+while - while keyword  
+who - listing of variables  
+whos - listing of variables in long form  
+writb - fortran file binary write  
+write - write in a formatted file  
+write4b - fortran file binary write  

@@ -1,0 +1,38 @@
+.TH stabil 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+stabil - stabilization
+.SH CALLING SEQUENCE
+.nf
+F=stabil(A,B,alfa)
+.fi
+.SH PARAMETERS
+.TP 10
+A
+: square real matrix (\fVnx x nx\fR)
+.TP
+B
+:  real matrix (\fVnx x nu\fR)
+.TP
+alfa
+:  real or complex vector (conjugate pairs)
+.TP
+F 
+: real matrix (\fVnx x nu\fR)
+.SH DESCRIPTION
+\fVF=stabil(A,B,alfa)\fR returns a gain matrix \fVF\fR such that
+\fVA+B*F\fR is stable if pair \fV(A,B)\fR is stabilizable. 
+Assignable poles are set to \fValfa(1),alfa(2),...\fR.
+If \fV(A,B)\fR is not stabilizable a warning is given
+and assignable poles are set to \fValfa(1),alfa(2),...\fR.
+.SH EXAMPLE
+.nf
+//Sys=ssrand(0,2,5,list('st',2,3,3));
+//[A,B,C,D]=abcd(Sys);F=stabil(A,B);
+//spec(A) //2 controllable modes 2 unstable uncontrollable modes
+//and one stable uncontrollable mode
+//spec(A+B*F) //the two controllable modes are set to -1.
+.fi
+.SH SEE ALSO
+st_ility, contr, ppol
+

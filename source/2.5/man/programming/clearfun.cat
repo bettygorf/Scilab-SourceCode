@@ -1,0 +1,15 @@
+
+clearfun(1)                    Scilab Function                    clearfun(1)
+NAME
+  clearfun - remove primitive.
+
+CALLING SEQUENCE
+  clearfun('name')
+
+DESCRIPTION
+  clearfun('name') removes the primitive 'name' from the set of primitives
+  (built-in functions) .  This function allows to rename a primitive : a
+  Scilab primitive can be replaced by a user-defined function. For experts...
+
+SEE ALSO
+  newfun, funptr

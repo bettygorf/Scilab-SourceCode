@@ -1,0 +1,53 @@
+/* user's defined routines */
+
+DEFAULTS=routines/default/interf.o routines/default/bidon.o \ 	/* FORT */
+	routines/default/fydot.o routines/default/fjac.o \
+	routines/default/fex.o routines/default/jex.o \
+	routines/default/fydotd.o \ 				/* ODE     */
+	routines/default/ffeval.o  \ 				/* FEVAL   */
+	routines/default/foptim.o routines/default/genros.o \
+	routines/default/topt2.o \ 				/* OPTIM   */
+	routines/default/fsolvf.o routines/default/fsolvj.o \ 	/* FSOLVE  */
+	routines/default/fintg.o \ 				/* INTG    */
+	routines/default/fschur.o \ 				/* SCHUR   */
+	routines/default/dgetx.o routines/default/dgety.o \ 	/* CORR    */
+	routines/default/fres.o routines/default/fadda.o \
+	routines/default/fj2.o routines/default/aplusp.o \
+	routines/default/dgbydy.o routines/default/resid.o \
+	routines/default/fsurf.o \ 				/* IMPL    */
+	routines/default/fresd.o routines/default/fjacd.o \ 	/* DASSL   */
+	routines/default/fcol.o \ 				/* COLNEW  */
+	routines/default/icsemc.o \ 				/* ICSE    */
+	routines/default/scilab.o \ 				/* MAIN    */
+	routines/default/matlab.o \ 				/* MATLAB  */
+	routines/default/matusr.o routines/default/userf2.o \
+	routines/default/funtab.o routines/default/msgstxt.o	/* MATU    */
+
+OBJS=interf.o bidon.o \ 					/* FORT */
+	fydot.o fjac.o \
+	fex.o jex.o \
+	fydotd.o \ 						/* ODE     */
+	ffeval.o  \ 						/* FEVAL   */
+	foptim.o genros.o \
+	topt2.o \ 						/* OPTIM   */
+	fsolvf.o fsolvj.o \ 					/* FSOLVE  */
+	fintg.o \ 						/* INTG    */
+	fschur.o \ 						/* SCHUR   */
+	dgetx.o dgety.o \ 					/* CORR    */
+	fres.o fadda.o \
+	fj2.o aplusp.o \
+	dgbydy.o resid.o \
+	fsurf.o \ 						/* IMPL    */
+	fresd.o fjacd.o \ 					/* DASSL   */
+	fcol.o \ 						/* COLNEW  */
+	icsemc.o \ 						/* ICSE    */
+	scilab.o \ 						/* MAIN    */
+	matlab.o \ 						/* MATLAB  */
+	matusr.o userf2.o \
+	funtab.o  msgstxt.o					/* MATU    */
+
+FSRCS=$(OBJS:.o=.f)
+
+
+
+

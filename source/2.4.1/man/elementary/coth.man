@@ -1,0 +1,22 @@
+.TH coth 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+coth - hyperbolic cotangent
+.SH CALLING SEQUENCE
+.nf
+[t]=coth(x)
+.fi
+.SH DESCRIPTION
+the elements of vector \fVt\fR are the hyperbolic cotangent 
+of elements of the vector \fVx\fR.
+.SH EXAMPLE
+.nf
+x=[1,2*%i]
+t=exp(x);
+(t-ones(x)./t).\\(t+ones(x)./t)
+coth(x)
+.fi
+.SH SEE ALSO
+cotg
+
+

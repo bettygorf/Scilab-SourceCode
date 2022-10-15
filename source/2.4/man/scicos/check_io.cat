@@ -1,0 +1,40 @@
+
+check_io(Janvier 1997)                                 check_io(Janvier 1997)
+NAME
+  check_io - Checks and sets Scicos block port numbers.
+
+CALLING SEQUENCE
+  [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout)
+
+PARAMETERS
+
+  model     : Scicos model data structure (see scicos_model)
+
+  graphics  : Scicos graphics data structure (see scicos_graphics)
+
+  in        : vector of regular input port sizes. Set in=[] in no regular
+            input port
+
+  out       : vector of regular output port sizes. Set out=[] in no regular
+            output port
+
+  clkin     : vector of event input port sizes. Set clkin=[] in no event
+            input port
+
+  clkout    : vector of event output port sizes. Set clkout=[] in no event
+            output port
+
+  ok        : boolean, %t if specified input/output have been correctly set.
+            %f if specified input/output cannot be taken into account.
+DESCRIPTION
+  This function is to be called when number of regular or event input or out-
+  put ports is modified. It check if it is possible (connected ports cannot
+  suppressed) and updates  model and  graphics block substructures.  in, out,
+  clkin, clkout are the vectors of port sizes for respectively the regular
+  inputs, regular outputs, event inputs and event outputs.
+
+  Negative values in  in or  out vector means that corresponding ports dimen-
+  sion are to be determined by the context. Two equal negative values means
+  that corresponding ports have same size.
+SEE ALSO
+  scicos_block, scicos_model, scicos_graphics

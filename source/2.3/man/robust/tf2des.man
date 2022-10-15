@@ -1,0 +1,38 @@
+.TH tf2des 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+tf2des - transfer function to descriptor
+.SH CALLING SEQUENCE
+.nf
+S=tf2des(G)
+S=tf2des(G,flag)
+.fi
+.SH PARAMETERS
+.TP
+G
+: linear system (\fVsyslin\fR list) with possibly polynomial \fVD\fR matrix
+.TP
+flag
+: character string \fV"withD"\fR
+.TP
+S
+: list
+.SH DESCRIPTION
+Transfer function to descriptor form: \fVS=list('d',A,B,C,D,E)\fR
+.nf
+  E*xdot = A*x+B*u
+  y = C*x + D*u
+.fi
+Note that \fVD=0\fR if the optional parameter flag=\fV"withD"\fR is not
+given. Otherwise a maximal rank \fVD\fR matrix is returned in the fifth
+entry of the list \fVS\fR
+.SH EXAMPLE
+.nf
+s=poly(0,'s');
+G=[1/(s-1),s;1,2/s^3];
+S1=tf2des(G);des2tf(S1)
+S2=tf2des(G,"withD");des2tf(S2)
+.fi
+.SH SEE ALSO
+pol2des, tf2ss, ss2des, des2tf
+

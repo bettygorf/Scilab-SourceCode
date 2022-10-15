@@ -1,0 +1,34 @@
+.TH p_margin 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+p_margin - phase margin
+.SH CALLING SEQUENCE
+.nf
+[phm,fr]=p_margin(h)
+phm=p_margin(h)
+.fi
+.SH PARAMETERS
+.TP 10
+h   
+: SISO linear system (\fVsyslin\fR list).
+.TP
+phm 
+: phase margin (in degree)
+.TP
+fr  
+: corresponding frequency (hz)
+.SH DESCRIPTION
+The phase margin is the values of the phase at points where the
+nyquist plot of \fVh\fR crosses the unit circle.
+.SH EXAMPLE
+.nf
+h=syslin('c',-1+%s,3+2*%s+%s^2)
+[p,fr]=p_margin(h)  
+[p,fr]=p_margin(h+0.7)  
+nyquist(h+0.7)
+t=(0:0.1:2*%pi)';plot2d(sin(t),cos(t),-3,'000')
+.fi
+.SH SEE ALSO 
+chart, black, g_margin, nyquist
+.SH AUTHOR
+S. S.

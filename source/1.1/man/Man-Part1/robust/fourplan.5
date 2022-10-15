@@ -1,0 +1,30 @@
+.TH fourplan 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+fourplan - augmented plant to four plants
+.SH CALLING SEQUENCE
+.nf
+[P11,P12,P21,P22]=fourplan(P,r)
+.fi
+.SH PARAMETERS
+.TP 10
+P
+: \fVsyslin\fR list (linear system)
+.TP
+r
+: 1x2 row vector, dimension of \fVP22\fR
+.TP
+P11,P12,P21,P22
+: \fVsyslin\fR lists.
+.SH DESCRIPTION
+Utility function.
+.LP
+\fVP\fR being partitioned as follows:
+.nf 
+P=[ P11 P12;
+    P21 P22]  
+.fi
+with \fVsize(P22)=r\fR this macro returns the four linear systems \fVP11,P12,P21,P22\fR.
+.SH SEE ALSO
+lqg, lqg2stan, lqr, lqe, lft
+

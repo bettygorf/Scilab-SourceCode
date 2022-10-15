@@ -1,0 +1,21 @@
+.TH EVTGEN_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+EVTGEN_f - Scicos event firing block
+.SH DESCRIPTION
+One event is generated on the unique output event port if \fVEvent
+time\fR is larger than equal to zero, if not, no event is generated.
+.SH DIALOGUE PARAMETERS
+
+.TP 15
+Event time
+: scalar. date of the initial event
+.SH SEE ALSO
+CLOCK_f, EVTDLY_f
+
+
+
+
+
+
+

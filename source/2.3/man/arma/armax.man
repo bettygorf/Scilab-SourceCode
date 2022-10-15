@@ -1,0 +1,67 @@
+.TH armax 3 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+armax - armax identification 
+.SH CALLING SEQUENCE
+.nf
+[la,lb,sig,resid]=armax(r,s,y,u,[b0f,prf])
+.fi 
+.SH PARAMETERS
+.TP 15
+y 
+: output process  y(ny,n); ( ny: dimension of y , n : sample size) 
+.TP
+u 
+: input process   u(nu,n); ( nu: dimension of u , n : sample size) 
+.TP
+r and s 
+: auto-regression orders r >=0 et s >=-1
+.TP
+b0f 
+: optional parameter. Its default value is 0 and it means that the coefficient b0 must be identified. if bof=1 the b0 is supposed to be zero and is not identified 
+.TP
+prf 
+: optional parameter for display control. If prf =1, the default value, 
+a display of the identified Arma is given.
+.TP
+la 
+: is the list(a,a+eta,a-eta) ( la = a in dimension 1)
+; where eta is the estimated standard deviation. 
+, a=[Id,a1,a2,...,ar] where each ai is a matrix of size (ny,ny)
+.TP
+lb
+: is the list(b,b+etb,b-etb) (lb =b in dimension 1)
+; where etb is the estimated standard deviation.
+b=[b0,.....,b_s] where each bi is a matrix of size (nu,nu)
+.TP
+sig
+: is the estimated standard deviation of the noise and resid=[ sig*e(t0),....] ( 
+.SH DESCRIPTION
+armax is used to identify the coefficients of a n-dimensional 
+ARX process
+.nf 
+   A(z^-1)y= B(z^-1)u + sig*e(t)
+.fi
+where e(t) is a n-dimensional white noise with variance I.
+sig  an nxn matrix and A(z) and B(z):
+.nf
+A(z) = 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
+B(z) = b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
+.fi
+for the method see Eykhoff in trends and progress in system identification, page 96.
+with  
+ z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s)] 
+and
+ coef= [-a1,..,-ar,b0,...,b_s] 
+we can write 
+y(t)= coef* z(t) + sig*e(t) and the algorithm minimises 
+sum_{t=1}^N ( [y(t)- coef'z(t)]^2)
+where t0=maxi(maxi(r,s)+1,1))).
+.SH EXAMPLE
+.nf 
+[a,b,sig,resid]=armax(); // will gives an example in dimension 1
+.fi
+.SH AUTHOR 
+J-Ph. Chancelier.
+.SH SEE ALSO
+imrep2ss, time_id, arl2, armax, frep2tf

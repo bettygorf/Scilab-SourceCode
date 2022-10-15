@@ -1,0 +1,30 @@
+.TH SELECT_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so man1/sci.an
+.SH NAME
+SELECT - Scicos select block
+.SH DIALOG PARAMETERS
+.TP 20
+Block label
+: A string defining the block label. This label is written under
+the block. 
+.TP
+number of inputs
+: a scalar. Number of regular and event inputs.
+.TP
+initial connected input
+: a integer. It must be between 1 and the number of inputs.
+.SH DESCRIPTION
+The blocks routes one of the regular inputs to the unique regular
+output. the choice of which input is to be routed is done, initially
+by the "initial connected input" parameter. Then, everytime an input
+event arrives on the i-th input event port, the i-th regular input
+port is routed to the regular output.
+
+
+
+
+
+
+
+
+

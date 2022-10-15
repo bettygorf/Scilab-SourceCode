@@ -1,0 +1,23 @@
+
+unix_s(1)                      Scilab Function                      unix_s(1)
+NAME
+  unix_s - shell (sh) command execution, no output
+
+CALLING SEQUENCE
+  unix_s(cmd)
+
+PARAMETERS
+
+  cmd       : a character string
+
+DESCRIPTION
+  Sends a string cmd to Unix for execution by the sh shell. The standard out-
+  put is redirected  to /dev/null.  Unix execution errors are trapped; *NOTE*
+  that only the last shell command error is reported when a list of command
+  separated by ";" is sent: this is not recommended.
+
+EXAMPLE
+  unix_s("rm foo");
+
+SEE ALSO
+  edit, manedit, unix_g, unix_w, unix_x, unix

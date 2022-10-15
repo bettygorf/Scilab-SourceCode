@@ -1,0 +1,30 @@
+
+errbar(2)                      Scilab Function                      errbar(2)
+NAME
+  errbar - add vertical error bars on a 2D plot
+
+CALLING SEQUENCE
+  errbar(x,y,em,ep)
+
+PARAMETERS
+
+  x,y,em,ep  : four matrices of the same size.
+
+DESCRIPTION
+  errbar adds vertical error bars on a 2D plot.  x and y have the same mean-
+  ing as in plot2d.  em(i,j) and ep(i,j) stands for the error interval on the
+  value y(i,j): [y(i,j)-em(i,j),y(i,j)+ep(i,j)].
+
+  Enter the command errbar() to see a demo.
+
+EXAMPLE
+  t=[0:0.1:2*%pi]';
+  y=[sin(t) cos(t)]; x=[t t];
+  plot2d(x,y)
+  errbar(x,y,0.05*ones(x),0.03*ones(x))
+
+SEE ALSO
+  plot2d
+
+AUTHOR
+  J.Ph.C.

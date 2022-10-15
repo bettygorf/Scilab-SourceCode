@@ -1,0 +1,25 @@
+
+freson(1)                      Scilab Function                      freson(1)
+NAME
+  freson - peak frequencies
+
+CALLING SEQUENCE
+  fr=freson(h)
+
+PARAMETERS
+
+  h    : syslin list
+
+  fr   : vector of peak frequencies in Hz
+
+DESCRIPTION
+  returns the vector of peak frequencies in Hz for the SISO plant h
+
+EXAMPLE
+  h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2))
+  fr=freson(h)
+  bode(h)
+  g=20*log(abs(repfreq(h,fr)))/log(10)
+
+SEE ALSO
+  frep2tf, zgrid, h_norm

@@ -1,0 +1,34 @@
+.TH  getblocklabel "Janvier 1997" "Scilab Group" "Scicos function"
+.so ../sci.an
+.SH NAME
+getblocklabel - get label of a Scicos block at running time
+.SH CALLING SEQUENCE
+.nf
+label=getblocklabel()
+label=getblocklabel(k)
+.fi
+.SH PARAMETERS
+.TP 5
+k
+: integer, index of the block. if \fVk\fR is omitted \fVk\fRis
+supposed to be equal to   \fVcurblock()\fR. 
+.TP
+label
+: a character string, The label of \fVk\fRth block (see  \fVLabel\fR button
+in \fVBlock\fR menu.
+.SH DESCRIPTION
+For display or debug purpose it may be usefull to give label to
+particular blocks of a diagram. This may be done using Scicos editor 
+(\fVLabel\fR button in \fVBlock\fR menu). During simulation, value of
+these labels may be obtained in any Scilab block with \fVgetblocklabel\fR
+Scilab primitive function. 
+.LP
+For C or fortran computational functions, user may use
+ \fVC2F(getlabel)\fR to get a block label. See
+\fVroutines/scicos/import.c\fR file for more details
+.LP
+
+Block indexes are those relative to the compile structure\fVcpr\fR. 
+
+.SH SEE ALSO
+curblock, getscicosvars, setscicosvars

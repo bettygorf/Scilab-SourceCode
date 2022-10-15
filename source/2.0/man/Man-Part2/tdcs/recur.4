@@ -1,0 +1,22 @@
+.TH recur 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+recur - a bilinear recurrent equation 
+.SH DESCRIPTION
+.nf
+[y]=recur(x0,var,k,n)
+.fi
+a bilinear recurrent equation 
+x(i+1)=-x(i)*(k + sqrt(var)*br(i))
+with initial value  x0 and driven by a white noise 
+of variance var.
+
+Trajectories are drawn and the empirical Lyapunov exponant 
+is returned 
+( x(i) is not to much different from  exp(y*i) )
+.SH LOGR
+.nf
+[integr]=logr(k,var)
+.fi
+A theorical computation of the Lyapunov exponant 
+

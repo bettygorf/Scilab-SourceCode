@@ -1,0 +1,29 @@
+.TH acosh 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+acosh - hyperbolic cosine inverse
+.SH CALLING SEQUENCE
+.nf
+[t]=acosh(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex vector
+.TP 10
+t
+: real or complex vector
+.SH DESCRIPTION
+the components of vector \fVt\fR are the ArgCosh of the 
+corresponding entries of vector \fVx\fR.
+Definition domain is ]1,+infinity[.
+It takes his values in
+.IG
+.nf
+     ]0,+inf[ x ]-pi,pi] and  [0] x [0,pi]
+.fi
+.FI
+\" This is for LaTeX 
+.LA $$ ]0,+\infty[ \times  ]-\pi,\pi] \quad \mbox{and}
+.LA  \quad [0] \times [0,\pi] $$
+

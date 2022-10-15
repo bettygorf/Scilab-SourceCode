@@ -1,0 +1,13 @@
+
+ulink(1)                       Scilab Function                       ulink(1)
+NAME
+  ulink - unlink a dynamically linked shared object
+
+CALLING SEQUENCE
+  ulink(x)
+
+DESCRIPTION
+  see link
+
+SEE ALSO
+  link

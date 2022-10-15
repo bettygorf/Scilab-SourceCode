@@ -1,0 +1,36 @@
+.TH spec G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+spec - eigenvalues
+.SH CALLING SEQUENCE
+.nf
+evals=spec(A)
+.fi
+.SH PARAMETERS
+.TP
+A 
+: real or complex square matrix
+.TP
+evals
+: real or complex vector
+.SH DESCRIPTION
+.Vb evals=spec(A)
+returns in  vector \fVevals\fR the eigenvalues of \fVA\fR.
+.LP
+Eigenvectors are obtained by \fVbdiag\fR.
+.SH EXAMPLE
+.nf
+A=diag([1,2,3]);X=rand(3,3);A=inv(X)*A*X;
+spec(A)
+//
+x=poly(0,'x');
+pol=det(x*eye()-A)
+roots(pol)
+//
+[Ab,X,bs]=bdiag(A);
+Ab
+clean(inv(X)*A*X)
+.fi
+.SH SEE ALSO
+poly, det, gspec, schur, bdiag, colcomp
+

@@ -1,0 +1,41 @@
+
+param3di(2)                    Scilab Function                    param3di(2)
+NAME
+  param3di - parametric curves in 3-D with interactive view selection
+
+CALLING SEQUENCE
+  param3di(x,y,z,[theta,alpha,leg,flag,ebox]
+
+PARAMETERS
+
+  x,y,z          : three matrices of the same size (considered as vectors
+                 with the Fortran storage convention)  (points of the
+                 parametric curve)
+
+  theta, alpha   : gives the coordinates in spherical angle of the observa-
+                 tion point
+
+  leg            : string describing the caption for each axis, the different
+                 fields in the string are separated by the symbol @, for
+                 example : "X@Y@Z"
+
+  flag =[type,box] :
+                 where  type and  box have the same meaning as in plot3d
+
+  ebox           : a vector of size (1,6) which gives the boundaries of the
+                 plot [xmin,xmax,ymin,ymax,zmin,zmax] when the value of type
+                 is 1
+
+DESCRIPTION
+  Draw the 3D curve  f(x,y)  and allow the user to change the view with the
+  mouse :
+  Pick a point within the graphic window (Left mouse button) and drag the
+  mouse (theta increases for left to right move and alpha increases for down
+  to up move). When view is ok click with the left button to have the surface
+  drawn. click right button  to exit.
+  For Pos and Fig drivers plot3di works just like plot3d
+
+  Enter the command param3di() to see a demo.
+
+AUTHOR
+  S Steer INRIA

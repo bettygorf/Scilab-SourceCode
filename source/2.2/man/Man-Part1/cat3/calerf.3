@@ -1,0 +1,66 @@
+
+
+
+calerf(3)                      Scilab Function                      calerf(3)
+
+
+
+
+
+
+NAME
+  calerf -  computes error functions.
+
+SYNTAX
+   y = calerf(x,flag)
+
+PARAMETERS
+
+  x    : real vector
+
+  flag : integer indicator
+
+  y    : real vector (of same size)
+
+DESCRIPTION
+   calerf(x,0) computes the error function:
+
+                        /x
+       y = 2/sqrt(pi) *|  exp(-t^2) dt
+                       /0
+
+
+   calerf(x,1) computes the complementary error function:
+
+                        /inf
+       y = 2/sqrt(pi) *|  exp(-t^2) dt
+                       /x
+       y= 1 - erf(x)
+
+
+
+   calerf(x,2) computes the  scaled complementary error function:
+
+          y = exp(x^2) * erfc(x) ~ (1/sqrt{pi}) * 1/x for large x.
+
+
+
+SEE ALSO
+  erf, erfc, calerf.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

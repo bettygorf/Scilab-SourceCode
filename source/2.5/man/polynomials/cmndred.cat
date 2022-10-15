@@ -1,0 +1,22 @@
+
+cmndred(1)                     Scilab Function                     cmndred(1)
+NAME
+  cmndred - common denominator form
+
+CALLING SEQUENCE
+  [n,d]=cmndred(num,den)
+
+PARAMETERS
+
+  num, den  : two polynomial matrices of same dimensions
+
+DESCRIPTION
+  [n,d]=cmndred(num,den) computes a polynomial matrix n and a common denomi-
+  nator polynomial d such that:
+
+  n/d=num./den
+
+  The rational matrix defined by num./den is n/d
+
+SEE ALSO
+  simp, clean

@@ -1,0 +1,66 @@
+
+
+
+driver(2)                      Scilab Function                      driver(2)
+
+
+
+
+
+
+NAME
+  driver - select a driver for plotting
+
+CALLING SEQUENCE
+  driver(driver_name)
+  curent_driver=driver()
+
+PARAMETERS
+
+  driver_name    : string (driver to be selected).
+
+DESCRIPTION
+  This function is used to select a graphic driver, or with no arguments to
+  get the current driver name.  Most of the time, a user can ignore this
+  function and change its driver by calling high level functions such as
+  xbasc or xbasimp.  The selected driver can be one of the following :
+
+  "X11"     : an X Window driver.
+
+  "Pos"     : a Postscript driver.
+
+  "Rec"     : an X Window driver (X11) which also records all the graphic
+            commands. this is the default driver.
+
+  "Fig"     : an XFig driver ( not fully released )
+
+SEE ALSO
+  xtape,xbasc,xbasimp
+
+AUTHOR
+  J.Ph.C.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

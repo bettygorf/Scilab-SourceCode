@@ -1,0 +1,27 @@
+
+zeropen(1)                     Scilab Function                     zeropen(1)
+NAME
+  zeropen - zero pencil
+
+CALLING SEQUENCE
+  [Z,U]=zeropen(Sl)
+
+PARAMETERS
+
+  Sl   : a linear system (syslin list in state-space form [A,B,C,D])
+
+  Z    : matrix pencil Z=s*E-A
+
+  U    : square orthogonal matrix
+
+DESCRIPTION
+  Z = sE - F  is the zero pencil of the linear system Sl with matrices
+  [A,B,C,D]. Utility function.
+
+  With U row compression of [B;D] i.e, U*[B;D]=[0;*]; one has:
+  U*[-sI+A |B;   [ Z |0;
+        C  |D] = [ * |*]
+  The zeros of Z are the zeros of Sl.
+
+SEE ALSO
+  systmat, kroneck

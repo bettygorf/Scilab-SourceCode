@@ -1,0 +1,22 @@
+mode(-1)
+oldln=lines()
+lines(0)
+
+deff('[]=xdemo(info,str)',['x_message([info;str]);xbasc();';
+                           'execstr(str)']);
+xset("default");
+
+exec('SCI/demos/graphics/divers-1.dem');
+
+
+nn=prod(size(str_l))
+driver("Rec");
+for i=1:nn,
+    xset("window",0)
+    execstr(str_l(i));
+    xbasimp([0],'dtest'+string(i),1);
+    xs2fig([0],'dtest'+string(i)+'.fig');
+    xbasc([0]);
+end
+
+

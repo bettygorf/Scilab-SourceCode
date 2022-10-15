@@ -1,0 +1,66 @@
+
+
+
+fchamp(2)                      Scilab Function                      fchamp(2)
+
+
+
+
+
+
+NAME
+  fchamp - draw a 2d vector field
+
+CALLING SEQUENCE
+  fchamp(f,t,xr,yr,[arfact,brect,strf])
+
+PARAMETERS
+
+  f         : a function which describes the vector field.
+
+            - It can be a function name f, where f is supposed to be a func-
+              tion of type [y]=f(t,x,[u]) ( f returns a column vector of
+              dimension 2, y, which gives the value of the vector field f at
+              point x and time t.
+
+            - It can also be an object of type list, list(f1,u1) where f1 is
+              a function (f [y]=f1(t,x,u) ) and u1 gives the value of the
+              parameter u.
+
+  t         : The selected time.
+
+  xr,yr     : two vectors of size (1,n1) (1,n2) which specifies the grid on
+            which the vector field is to be computed.
+
+  arfact,brect,strf
+            : optional arguments, see champ.
+
+DESCRIPTION
+  the fchamp is used to draw a two dimensional vector field described by a a
+  Scilab external.
+
+  Enter the command champ() to see a demo.
+
+EXAMPLE
+   deff('[xdot] = derpol(t,x)',['xd1 = x(2)';
+             "xd2 = -x(1) + (1 - x(1)**2)*x(2)";
+             "xdot = [ xd1 ; xd2 ]"]);
+   xf= -1:0.1:1;
+   yf= -1:0.1:1;
+   fchamp(derpol,0,xf,yf);
+   xbasc();
+   fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011");
+
+AUTHOR
+  J.Ph.C.
+
+
+
+
+
+
+
+
+
+
+

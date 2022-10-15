@@ -1,0 +1,75 @@
+
+rpem(1)                        Scilab Function                        rpem(1)
+NAME
+  rpem - RPEM estimation
+
+CALLING SEQUENCE
+  [w1,[v]]=rpem(w0,u0,y0,[lambda,[k,[c]]])
+
+PARAMETERS
+
+  a,b,c          : a=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]
+
+  w0             : list(theta,p,phi,psi,l) where:
+
+                 theta
+                   : [a,b,c] is a real vector of order 3*n
+
+                 p : (3*n x 3*n) real matrix.
+
+                 phi,psi,l
+                   : real vector of dimension 3*n
+  During the first call on can take:
+  theta=phi=psi=l=0*ones(1,3*n). p=eye(3*n,3*n)
+
+  u0             : real vector of inputs (arbitrary size) (if no input take
+                 u0=[ ]).
+
+  y0             : vector of outputs (same dimension as u0 if u0 is not
+                 empty).  (y0(1) is not used by rpem).
+
+  If the time domain is (t0,t0+k-1) the u0 vector contains the inputs
+
+  u(t0),u(t0+1),..,u(t0+k-1) and y0 the outputs
+
+  y(t0),y(t0+1),..,y(t0+k-1)
+
+DESCRIPTION
+  Recursive estimation of parameters in an ARMAX model.  Uses Ljung-
+  Soderstrom recursive prediction error method.  Model considered is the fol-
+  lowing:
+  y(t)+a(1)*y(t-1)+...+a(n)*y(t-n)=
+  b(1)*u(t-1)+...+b(n)*u(t-n)+e(t)+c(1)*e(t-1)+...+c(n)*e(t-n)
+
+  The effect of this command is to update the estimation of unknown parameter
+  theta=[a,b,c] with
+
+  a=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)].
+
+Optional parameters
+
+  lambda    : optional parameter (forgetting constant) choosed close to 1 as
+            convergence occur:
+
+  lambda=[lambda0,alfa,beta] evolves according to :
+  lambda(t)=alfa*lambda(t-1)+beta
+  with lambda(0)=lambda0
+  k : contraction factor to be chosen close to 1 as convergence occurs.
+
+  k=[k0,mu,nu] evolves according to:
+  k(t)=mu*k(t-1)+nu
+  with k(0)=k0.
+
+  c : large parameter.(c=1000 is the default value).
+
+Output parameters:
+
+  w1: update for w0.
+
+  v: sum of squared prediction errors on u0, y0.(optional).
+
+  In particular w1(1) is the new estimate of theta.  If a new sample u1, y1
+  is available the update is obtained by:
+
+  [w2,[v]]=rpem(w1,u1,y1,[lambda,[k,[c]]]).  Arbitrary large series can thus
+  be treated.

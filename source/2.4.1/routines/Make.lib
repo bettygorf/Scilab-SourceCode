@@ -1,0 +1,35 @@
+# CFLAGS IS CHANGED LOCALLY FOR EACH SUBDIR 
+# CFLAGS = $(CC_OPTIONS) 
+# or 
+# CFLAGS = $(CC_OPTIONS) $(XFLAGS)
+
+FFLAGS = $(FC_OPTIONS)
+
+OBJS = $(OBJSC) $(OBJSF)
+
+all:: $(LIBRARY)
+
+world: all
+
+$(LIBRARY): $(OBJS)
+	@echo Creation of $(LIBRARY)
+	@$(RM) $@
+	@$(AR) $@ $(OBJS)
+	@$(RANLIB) $@
+
+clean::
+	$(RM) *.o
+
+cleanC :
+	$(RM) $(OBJSC)
+
+cleanF :
+	$(RM) $(OBJSF)
+
+F2CFILES=$(OBJSF:.o=.c)
+
+f2cclean	:
+	$(RM) $(F2CFILES)
+
+distclean::
+	$(RM) *.o $(LIBRARY)

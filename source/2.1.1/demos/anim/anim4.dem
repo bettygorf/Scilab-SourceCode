@@ -1,0 +1,20 @@
+
+k_dr=driver();
+driver("Wdp");
+if flag1=1;xset("use color",1);end
+xset("wwpc");
+t=-%pi:0.3:%pi;
+contour(t,t,sin(t)'*cos(t),10,35,45,"X@Y@Z",[0,2,4])
+xset("wshow");
+sp=1
+for i=35:sp:80,xset("wwpc");
+	contour(t,t,sin(t)'*cos(t),10,i,45,"X@Y@Z",[0,0,4])
+	xset("wshow");
+end
+for i=45:sp:80,xset("wwpc");
+	contour(t,t,sin(t)'*cos(t),10,80,i,"X@Y@Z",[0,0,4])
+	xset("wshow");
+end
+
+driver(k_dr);
+

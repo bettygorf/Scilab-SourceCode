@@ -1,0 +1,55 @@
+/////////////////////////////
+// Demo : montee uniforme ///
+/////////////////////////////
+
+// Gains des Commandes De Vol
+kcdv_ = [5;5;5];
+
+// Gains du systeme lent linearise
+klin_ = [.125, .875, 1.75,   0,0,0,   0,0,0,   0;
+         0,0,0,   .125, .875, 1.75,   0,0,0,   0;
+         0,0,0,   0,0,0,   .125, .875, 1.75,   0;
+         0,0,0,   0,0,0,  0,0,0,               1];
+
+//////////////////////////////////////////////////////////////
+
+// Duree de la simulation
+tf = 120;
+
+// Condition initiales (l'etat est de dimension 12+1)
+xz0 = [0; 0; 0;        
+       200; 0.1;  0;
+       0; 0; 0;
+       0; 0; 0;      
+       0.6];  
+
+// Trajectoire de reference x,y,z,beta (utilisee seulement pour la visualisation) :
+deff( "xyzb = traj(t)", "xyzb = [200*t; 0; -50*t; 0];" );
+comp(traj);
+
+// On fabrique l'entree a partir de la trajectoire de reference :
+// u = klin_*xi_ref(t) + uref(t)
+deff( "u = ref(t)", "u = klin_* ...
+     [200*t; 200; 0; ...
+      0; 0; 0; ...
+      -50*t; -50; 0; ...
+      0 ] + ...
+     [0; 0; 0; 0];" );
+comp(ref)
+
+// Simulation 
+[xzf,xz,tvec]=simul("F4lin",tf,xz0,"ref(t)");
+
+// Affichage
+voirbf(tvec,xz)
+
+
+
+
+
+
+
+
+
+
+  

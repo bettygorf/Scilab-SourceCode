@@ -1,0 +1,25 @@
+.TH tf2des 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+tf2des - transfer function to descriptor
+.SH CALLING SEQUENCE
+.nf
+[S]=tf2des(G) 
+.fi
+.SH PARAMETERS
+.TP
+G
+: linear system (\fVsyslin\fR list) with polynomial \fVD\fR matrix
+.TP
+S
+: list
+.SH DESCRIPTION
+Transfer function to descriptor form: \fVS=list('d',A,B,C,0,E)\fR
+.nf
+  E*xdot = A*x+B*u
+  y = C*x + D*u with D=0.
+.fi
+Note that \fVD=0\fR !
+.SH SEE ALSO
+pol2des, tf2ss, ss2des, des2tf
+

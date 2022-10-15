@@ -1,0 +1,91 @@
+ 
+clear;lines(0);
+ 
+// create a script file
+ 
+write(TMPDIR+'/myscript','a=1;b=2')
+ 
+// execute it
+ 
+ 
+ a=1;b=2
+ b  =
+ 
+    2.  
+ 
+ 
+who
+your variables are...
+ 
+ b         a         %helps    scicos_pal          MSDOS     home      
+ PWD       TMPDIR    percentlib          fraclablib          soundlib  
+ xdesslib  utillib   tdcslib   siglib    s2flib    roblib    optlib    
+ metalib   elemlib   commlib   polylib   auto1     armalib   alglib    
+ intlib    mtlblib   SCI       %F        %T        %z        %s        
+ %nan      %inf      old       newstacksize        $         %t        
+ %f        %eps      %io       %i        %e        
+ using       4964 elements  out of    1000000.
+          and         44 variables out of       1071
+ 
+ 
+ 
+//create a function
+ 
+deff('y=foo(x)','a=x+1;y=a^2')
+ 
+clear a b
+ 
+//execute the function
+ 
+foo(1)
+ ans  =
+ 
+    4.  
+ 
+// a is a variable created in the environment of the function foo
+ 
+//    it is destroyed when foo returns
+ 
+who
+your variables are...
+ 
+ ans       foo       %helps    scicos_pal          MSDOS     home      
+ PWD       TMPDIR    percentlib          fraclablib          soundlib  
+ xdesslib  utillib   tdcslib   siglib    s2flib    roblib    optlib    
+ metalib   elemlib   commlib   polylib   auto1     armalib   alglib    
+ intlib    mtlblib   SCI       %F        %T        %z        %s        
+ %nan      %inf      old       newstacksize        $         %t        
+ %f        %eps      %io       %i        %e        
+ using       4996 elements  out of    1000000.
+          and         44 variables out of       1071
+ 
+ 
+ 
+x=1 //create x to make it known by the script foo
+ x  =
+ 
+    1.  
+ 
+ 
+ y  =
+ 
+    4.  
+ 
+ 
+// a and y are created in the current environment
+ 
+who
+your variables are...
+ 
+ y         a         x         foo       %helps    scicos_pal          
+ MSDOS     home      PWD       TMPDIR    percentlib          
+ fraclablib          soundlib  xdesslib  utillib   tdcslib   siglib    
+ s2flib    roblib    optlib    metalib   elemlib   commlib   polylib   
+ auto1     armalib   alglib    intlib    mtlblib   SCI       %F        
+ %T        %z        %s        %nan      %inf      old       
+ newstacksize        $         %t        %f        %eps      %io       
+ %i        %e        
+ using       5002 elements  out of    1000000.
+          and         46 variables out of       1071
+ 
+ 

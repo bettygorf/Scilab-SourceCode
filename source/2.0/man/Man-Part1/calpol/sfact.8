@@ -1,0 +1,26 @@
+.TH SFACT G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+sfact - discrete spectral factorization
+.SH CALLING SEQUENCE
+.nf
+[F]=sfact(P)
+.fi
+.SH PARAMETERS
+.TP
+P
+: real polynomial matrix
+.SH DESCRIPTION
+Finds a spectral factor of \fVP\fR. \fVP\fR is a polynomial matrix
+assumed such that each root of \fVP\fR has a mirror image w.r.t the
+unit circle.
+.LP
+.Vb sfact(P) 
+returns a Hurwitz (stable) polynomial matrix such that
+.LP
+\fVP = F(z)* F(1/z) *z^n\fR
+.LP
+For scalar polynomials a specific algorithm is implemented.
+Algorithms are from Kucera's book.
+.SH SEE ALSO
+fspec, fspecg.

@@ -1,0 +1,23 @@
+
+asinhm(1)                      Scilab Function                      asinhm(1)
+NAME
+  asinhm - matrix hyperbolic inverse sine
+
+CALLING SEQUENCE
+  t=asinhm(x)
+
+PARAMETERS
+
+  x,t       : real or complex square matrix
+
+DESCRIPTION
+  asinhm is the matrix hyperbolic  inverse sine  of the matrix x.  Uses the
+  formula t=logm(x+sqrtm(x*x+eye())).  Results may be not reliable for non-
+  symmetric matrix.
+
+EXAMPLE
+  A=[1,2;2,3]
+  sinhm(asinhm(A))
+
+SEE ALSO
+  asinh, logm, sqrtm

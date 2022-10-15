@@ -1,0 +1,30 @@
+
+getfield(1)                    Scilab Function                    getfield(1)
+NAME
+  getfield -  list field extraction
+
+CALLING SEQUENCE
+  [x,...]=getfield(i,l)
+
+PARAMETERS
+
+  x              : matrix  of any  possible types
+
+  l              : list, tlist or mlist variable
+
+  i              : field index, see extraction for more details.
+
+DESCRIPTION
+  This function is an equivalent of [x,...]=l(i) syntax for field extraction
+  with the only difference that it also applies to mlist objects.
+
+EXAMPLE
+  l=list(1,'qwerw',%s)
+  [a,b]=getfield([3 2],l)
+
+  a=hypermat([2,2,2],rand(1:2^3));// hypermatrices are coded using mlists
+  a(1) // the a(1,1,1) entry
+  getfield(1,a) // the mlist first field
+
+SEE ALSO
+  extraction

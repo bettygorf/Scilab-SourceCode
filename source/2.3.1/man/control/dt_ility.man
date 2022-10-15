@@ -1,0 +1,59 @@
+.TH dt_ility 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+dt_ility - detectability test
+.SH CALLING SEQUENCE
+.nf
+[k, [n [,U [,Sld ] ] ]]=dt_ility(Sl [,tol])
+.fi
+.SH PARAMETERS
+.TP 10
+Sl
+: linear system (\fVsyslin\fR list)
+.TP 10
+n
+: dimension of unobservable subspace
+.TP
+k
+: dimension of unstable, unobservable subspace (\fV k<=n \fR).
+.TP
+U
+: orthogonal matrix
+.TP
+Sld
+: linear system (\fVsyslin\fR list)
+.TP
+tol
+: threshold for controllability test.
+.SH DESCRIPTION
+Detectability test for \fVsl\fR, a linear system in state-space
+representation. 
+\fVU\fR is a basis whose \fVk\fR first columns span the
+unstable, unobservable subspace of \fVSl\fR (intersection
+of unobservable subspace of \fV(A,C)\fR and unstable subspace
+of \fVA\fR). Detectability means \fVk=0\fR.
+.LP
+\fVSld = (U'*A*U,U'*B,C*U,D)\fR displays the "detectable part"
+of \fVSl=(A,B,C,D)\fR, i.e.
+.nf
+         [*,*,*]
+U'*A*U = [0,*,*]
+         [0,0,*]
+ 
+C*U = [0,0,*]
+.fi
+with \fV(A33,C3)\fR observable (dimension \fVnx-n\fR), \fVA22\fR stable 
+(dimension \fVn-k\fR) and \fVA11\fR unstable (dimension \fVk\fR).
+.SH EXAMPLE
+.nf
+A=[2,1,1;0,-2,1;0,0,3];
+C=[0,0,1];
+X=rand(3,3);A=inv(X)*A*X;C=C*X;
+W=syslin('c',A,[],C);
+[k,n,U,W1]=dt_ility(W);
+W1("A")
+W1("C")
+.fi
+.SH SEE ALSO
+contr, st_ility, unobs, stabil
+

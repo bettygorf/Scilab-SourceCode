@@ -1,0 +1,53 @@
+/////////////////////////////////////
+// Demo : vol en virage stabilise ///
+/////////////////////////////////////
+
+// Duree de la simulation
+tf =600;
+
+// Conditions initiales
+x0=[0; 0; -7000;  
+    150; 0.9; 0;  
+    0; 0; 0.5;   
+    0; 0; 0];
+
+// Commande 
+u0=[0.001; -0.04; -0.001; 0.615];
+
+// Simulation (le dernier argument de simul est une chaine de caracteres
+// contenant la commande)
+[xf,x,tvec]=simul("F4",tf,x0,"u0");
+
+// Affichage
+voirbo(tvec,x)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

@@ -1,0 +1,35 @@
+.TH hist3d 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+hist3d - 3D representation of an histogram
+.SH CALLING SEQUENCE
+.nf
+hist3d(f [,theta,alpha,leg,flag,ebox])
+.fi
+.SH PARAMETERS
+.TP 10
+f    
+: matrix or list :
+.RS
+.TP
+-
+matrix \fVf(i,j)= F(x(i),y(j))\fR,  \fVx\fR and \fVy\fR  taken as 
+\fV0:m\fR and \fV0:n\fR, ( (m,n) is the size of f).
+.TP
+- 
+list of size 3; \fVlist(f,x,y)\fR where f is a matrix of size (m,n)
+and x and y two vectors of size (1,n+1) and (1,m+1)
+.RE
+.TP 
+rest 
+: see \fVplot3d\fR
+.SH DESCRIPTION
+3 dimensional representation of an 2d histogram :
+the values associated to the intervals \fV([x(i) x(i+1)[ X [y(i) y(i+1)[)\fR
+
+Enter the command \fVhist3d()\fR to see a demo.
+.SH SEE ALSO
+plot3d
+.SH AUTHOR
+Steer S. & JPhilippe C.
+

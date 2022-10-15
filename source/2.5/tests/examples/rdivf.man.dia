@@ -1,0 +1,18 @@
+ 
+clear;lines(0);
+ 
+ldivf('c','d')
+ ans  =
+ 
+ c\d   
+ 
+ldivf('1','2')
+ ans  =
+ 
+ 2   
+ 
+ldivf('a','0')
+ ans  =
+ 
+ 0   
+ 

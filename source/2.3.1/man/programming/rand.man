@@ -1,0 +1,57 @@
+.TH rand 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+rand - random number generator
+.SH CALLING SEQUENCE
+.nf
+rand(m,n [,rtype])
+rand(x [, rtype])
+rand('key'[,n])
+.fi
+.SH DESCRIPTION
+random matrix generator.
+.TP 20
+rand(m,n) 
+is a random matrix of dimension mxn.
+.TP
+rand(a) 
+is a random matrix of same size as a. \fVrand(a)\fR is complex if 
+\fVa\fR is a complex matrix
+.TP
+rand('uniform') 
+The default random generator is set to a uniform random number generator.
+.TP
+rand('normal') 
+The default random generator is set to a Gaussian random number generator.
+.TP
+rand('seed') 
+returns the current value of the seed.
+.TP
+rand('seed',n)  
+puts the seed to \fVn\fR. (\fVn=0\fR at first call).
+.TP
+str=rand('info')
+return the type of the default random generator ('uniform' or 'normal')
+.LP
+\fVrand\fR : with no arguments gives a scalar whose value changes 
+each time it is referenced.
+By default, random numbers are uniformly distributed in
+the interval (0,1). \fVrand('normal')\fR switches to a
+normal distribution with mean 0 and variance 1.
+\fVrand('uniform')\fR switches back to the uniform distribution.
+
+The type of the random generator can also be locally changed by the use 
+of the extra parameter \fVrtype\fR ( which can be \fV'uniform'\fR or \fV'normal'\fR
+.SH EXAMPLE
+.nf
+x=rand(10,10,'uniform')
+rand('normal')
+rand('info')
+y=rand(x,'normal');
+.fi
+.SH SEE ALSO
+ssrand
+
+
+
+

@@ -1,0 +1,22 @@
+
+abcd(1)                        Scilab Function                        abcd(1)
+NAME
+  syssize - size of state-space system
+
+CALLING SEQUENCE
+  [r,nx]=syssize(Sl)
+
+PARAMETERS
+
+  Sl      : linear system (syslin list) in state-space
+
+  r       : 1 x 2 real vector
+
+  nx      : integer
+
+DESCRIPTION
+  returns in r the vector [number of outputs, number of inputs] of the linear
+  system Sl. nx is the number of states of Sl.
+
+SEE ALSO
+  size

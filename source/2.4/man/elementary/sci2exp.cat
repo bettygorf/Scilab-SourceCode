@@ -1,0 +1,38 @@
+
+abs(G)                         Scilab Function                         abs(G)
+NAME
+  sci2exp - converts  variable to  expression
+
+CALLING SEQUENCE
+  t=sci2exp(a [,nam] [,lmax])
+
+PARAMETERS
+
+  a    : a scilab variable, may be
+
+       -         constant,
+
+       -         polynomial
+
+       -          string matrix
+
+       -          list
+
+       -         boolean matrix
+
+  nam  : character string
+
+  t    : vector of string, contains the expression or instruction definition
+
+  lmax : integer, contains the maximum line length. default value is 90,
+       lmax=0 indicate  no line length control a single string is returned
+DESCRIPTION
+  sci2exp converts  variable to an instruction if nam is given or to an
+  expression .
+
+EXAMPLE
+    a=[1 2;3 4]
+    sci2exp(a,'aa')
+    sci2exp(a,'aa',0)
+    sci2exp(ssrand(2,2,2))
+    sci2exp(poly([1 0 3 4],'s'),'fi')

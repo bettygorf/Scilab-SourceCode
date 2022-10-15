@@ -1,0 +1,33 @@
+.TH UNOBS G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+unobs - unobservable subspace
+.SH CALLING SEQUENCE
+.nf
+[n,[U]]=unobs(A,C,[tol]) 
+.fi
+.SH PARAMETERS
+.TP 6
+A, C
+: real matrices 
+.TP
+tol  
+: tolerance used when evaluating ranks (QR factorizations).
+.TP
+n
+: dimension of unobservable subspace.
+.TP
+U
+: orthogonal change of basis which puts \fV(A,B)\fR in canonical form.
+.SH DESCRIPTION
+\fV[n,[U]]=unobs(A,B,[tol])\fR gives the unobservable form of an \fV(A,C)\fR 
+pair.
+The \fVn\fR first columns of \fVU\fR make a basis for the controllable
+subspace.
+.LP
+The \fV(2,1)\fR block (made of last \fVnx-n\fR rows and \fVn\fR first 
+columns) of \fVU'*A*U\fR is zero and and the \fVn\fR first columns 
+of \fVC*U\fR are zero.
+.SH SEE ALSO
+contr, contrss, canon, cont_mat, spantwo, dt_ility
+

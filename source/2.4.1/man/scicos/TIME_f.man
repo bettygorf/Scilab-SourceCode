@@ -1,0 +1,14 @@
+.TH TIME_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+TIME_f - Scicos time generator
+.SH DIALOGUE PARAMETERS
+None.
+.SH DESCRIPTION
+This block is a time generator. The unique regular output is the
+current time.
+
+
+
+
+

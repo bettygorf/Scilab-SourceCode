@@ -1,0 +1,66 @@
+
+
+
+lu(G)                          Scilab Function                          lu(G)
+
+
+
+
+
+
+NAME
+  lu - LU factors of Gaussian elimination
+
+CALLING SEQUENCE
+  [L,U]= lu(A)
+
+PARAMETERS
+  A    : real or complex square matrix (n x n)
+  L,U     : two real or complex matrices  (n x n)
+
+DESCRIPTION
+  [L,U]= lu(A) produces two matrices L and U such that A = L*U with U upper
+  triangular and E*L  lower triangular for a permutation matrix E. If A has
+  rank k, rows k+1 to n of U are zero.
+
+Remark
+  E is not returned by LU: as such this primitive is not interesting (old
+  stuff)
+
+SEE ALSO
+  lufact, lusolve, qr, svd.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

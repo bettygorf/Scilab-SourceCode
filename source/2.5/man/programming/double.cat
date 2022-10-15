@@ -1,0 +1,29 @@
+
+double(1)                      Scilab Function                      double(1)
+NAME
+  double  - conversion from integer to double precision  representation
+CALLING SEQUENCE
+  y=double(X)
+  y=int16(X)
+  y=int32(X)
+  y=uint8(X)
+  y=uint16(X)
+  y=uint32(X)
+
+PARAMETERS
+
+  X    : matrix of floats or integers
+
+  y    : matrix of floats
+
+DESCRIPTION
+  converts  data stored using  one, two or four bytes integers into double
+  precision floating point representation. If X entries are already double
+  precision floats, nothing is done.
+
+EXAMPLES
+  x=int8([0 12 140])
+  double(x)
+
+SEE ALSO
+  int8, inttype, type

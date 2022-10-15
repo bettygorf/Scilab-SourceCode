@@ -1,0 +1,38 @@
+.TH matrix 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+matrix - reshape a vector or a matrix to a different size matrix
+.SH CALLING SEQUENCE
+.nf
+[y]=matrix(v,n,m)
+.fi
+.SH PARAMETERS
+.TP 10
+v
+: vector or a matrix with \fVn\fR x \fVm\fR entries.
+.TP 10
+n,m
+: integers
+.TP 10
+y
+: \fVn\fR x \fVm\fR matrix
+.SH DESCRIPTION
+transforms the \fVv\fR vector (or matrix) into an \fVnxm\fR matrix by
+stacking columnwise the entries of \fVx\fR.
+.LP
+Old stuff:
+.TP 17
+matrix('magi',n)
+: returns a magic square of size \fVn\fR .
+.TP
+matrix('frk',n)
+: returns the Franck matrix :
+.TP
+matrix('hilb',n)
+: is the inverse of the nxn Hilbert matrix 
+\fV (Hij= 1/(i+j-1))\fR.
+.SH SEE ALSO
+matrices, ones, zeros, rand, poly, empty
+
+
+

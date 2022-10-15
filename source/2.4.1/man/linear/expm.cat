@@ -1,0 +1,27 @@
+
+expm(G)                        Scilab Function                        expm(G)
+NAME
+  expm - square matrix exponential
+
+CALLING SEQUENCE
+  expm(X)
+
+PARAMETERS
+
+  X    : square matrix with real or complex entries.
+
+DESCRIPTION
+
+   X is a square matrix expm(X) is the matrix
+  expm(X) = I + X + X^2 /2 + ...
+
+  The computation is performed by first block-diagonalizing X and then apply-
+  ing a Pade approximation on each block.
+
+EXAMPLE
+  X=[1 2;3 4]
+  expm(X)
+  logm(expm(X))
+
+SEE ALSO
+  logm, bdiag, coff, log, exp

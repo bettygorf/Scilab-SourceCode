@@ -1,0 +1,41 @@
+.TH sparse G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+"Scilab object: sparse matrix" - sparse matrix definition
+.SH CALLING SEQUENCE
+.nf
+[a]=sparse(values,rows_cols,[nrows,ncols])
+.fi
+.SH PARAMETERS
+.TP 10
+values 
+:  real k vector
+.TP
+rows_cols 
+: 2xk matrix 
+.TP
+nrows,ncols 
+:  2 integers (row/column dimensions)
+.TP 
+a
+: list (sparse matrix object)
+.SH DESCRIPTION
+a sparse matrix \fVa\fR is defined by 
+\fVvalues\fR  the vector of its non-zero elements,
+the row/column indices of the entries of \fVa\fR being given by
+the 2xk matrix \fVrows_col\fR.
+.LP
+\fVnrows\fR and \fVncols\fR are the numbers of rows/columns (optional arguments)
+of A.
+.LP
+\fVsparse\fR returns a list \fVa=list('sp',values,rows_cols,nrows,ncols)\fR
+.SH EXAMPLE
+.nf
+a=sparse([1,2,3],[1,2;5,10],100,20);
+typeof(a);
+.fi
+defines a 100x20 matrix with
+3 non-zero entries \fVa(1,2)=1, a(5,10)=2, a(100,20)=3\fR.
+.SH SEE ALSO
+lufact, lusolve.
+

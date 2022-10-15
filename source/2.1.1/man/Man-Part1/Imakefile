@@ -1,0 +1,65 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+MW=$(SCIDIR)/man/scripts/makewhatis-dec 
+
+#if defined(SunArchitecture) 
+MW=$(SCIDIR)/man/scripts/makewhatis-sun
+#endif 
+
+#if defined(SunArchitecture) && defined(SYSV)
+MW=$(SCIDIR)/man/scripts/makewhatis-solaris
+#endif 
+
+#if defined(MipsArchitecture)
+MW=$(SCIDIR)/man/scripts/makewhatis-dec 
+#endif
+
+#if defined(HPArchitecture)
+MW=$(SCIDIR)/man/scripts/makewhatis-hp
+#endif
+
+#if defined(AIXArchitecture)
+MW=$(SCIDIR)/man/scripts/makewhatis-aix
+#endif
+
+#if defined(AlphaArchitecture)
+MW=$(SCIDIR)/man/scripts/makewhatis-alpha
+#endif
+
+#if defined(SGIArchitecture)
+MW=$(SCIDIR)/man/scripts/makewhatis-sgi
+#endif
+
+#if defined(LinuxArchitecture)
+MW=echo
+#endif
+
+WHATIS=whatis
+
+#if defined(SunArchitecture) && defined(SystemV)
+WHATIS=windex
+#endif
+
+AllTarget($(WHATIS))
+WhatisRule(NullParameter)
+WhatisDependTarget()
+
+distclean::clean 
+
+clean::
+	$(RM) man*?/?*.[0-9].~ man*?/"#"* check.log
+
+/* Check if the man files are properly placed */
+
+check	:
+	@echo "Warning : files in wrong directory" > check.log
+	@for i in 0 1 2 3 4 5 6 7 8 9 ; do \
+		for j in 0 1 2 3 4 5 6 7 8 9 ; do \
+		 if [ $$i != $$j ]; then \
+			(ls man$$j/?*.$$i >> check.log 2>/dev/null);fi;\
+		done;\
+	done
+	@cat check.log
+
+

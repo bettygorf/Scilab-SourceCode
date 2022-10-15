@@ -1,0 +1,34 @@
+
+metanet(1)                     Scilab function                     metanet(1)
+NAME
+  metanet - opens a Metanet window
+
+CALLING SEQUENCE
+  window = metanet([path,winsize])
+
+PARAMETERS
+
+  path : string, directory where graph files are searched
+
+  winsize : row vector defining the size of Metanet window
+
+  window : integer, window number
+
+DESCRIPTION
+  This function is used to open a Metanet window from Scilab.
+
+  path is an optional argument; it is the directory where graph files are
+  searched. If this path is the pathname of a graph, this graph is displayed
+  in the Metanet window and the directory of this pathname becomes the
+  default directory.  By default, path is the working directory.
+
+  winsize is an optional argument; it is a row vector [width height] giving
+  the size in pixels of Metanet window. The default is [1000 1000].
+
+  Usually, show_graph is used and metanet is seldom used.
+
+  Each time metanet is executed, a new window is created and its number is
+  incremented by 1.
+
+SEE ALSO
+  netclose, netwindow, netwindows, show_graph

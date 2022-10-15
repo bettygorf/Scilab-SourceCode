@@ -1,0 +1,29 @@
+.TH plot2d2 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+plot2d2 - multiple plot of functions (step function)
+.SH CALLING SEQUENCE
+.nf
+plot2d2(str,x,y,[style,strf,leg,rect,nax])
+.fi
+.SH PARAMETERS
+[ ]
+: see \fVplot2d1\fR and \fVplot2d\fR for a description of parameters.
+.SH DESCRIPTION
+Same as \fVplot2d1\fR but the functions given by the set of points \fV(x,y)\fR 
+which are to be drawn are supposed to be piecewise constant. 
+
+Enter the command \fVplot2d2()\fR to see a demo.
+.SH EXAMPLE
+.nf 
+plot2d2("gnn",(1:4)',(1:4)',1,'111','step function',[0,0,5,5])
+.fi
+will plot a step function of value \fVi\fR on the segment \fV(i,i+1)\fR. 
+the last segment is not drawn.
+.SH SEE ALSO
+plot2d, plot2d1, plot2d3
+.SH AUTHOR
+J.Ph.C..
+
+
+

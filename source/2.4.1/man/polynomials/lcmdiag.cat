@@ -1,0 +1,34 @@
+
+lcm(8)                         Scilab Function                         lcm(8)
+NAME
+  lcmdiag - least common multiple diagonal factorization
+
+CALLING SEQUENCE
+  [N,D]=lcmdiag(H)
+  [N,D]=lcmdiag(H,flag)
+
+PARAMETERS
+
+  H    : rational matrix
+
+  N    : polynomial matrix
+
+  D    : diagonal polynomial matrix
+
+  flag : character string: 'row' or 'col' (default)
+
+DESCRIPTION
+  [N,D]=lcmdiag(H,'row') computes a factorization D*H=N, i.e.  H=D^(-1)*N
+  where D is a diagonal matrix with D(k,k)=lcm of kth row of H('den').
+
+  [N,D]=lcmdiag(H) or [N,D]=lcmdiag(H,'col) returns H=N*D^(-1) with diagonal
+  D and D(k,k)=lcm of kth col of H('den')
+
+EXAMPLE
+  s=poly(0,'s');
+  H=[1/s,(s+2)/s/(s+1)^2;1/(s^2*(s+2)),2/(s+2)];
+  [N,D]=lcmdiag(H);
+  N/D-H
+
+SEE ALSO
+  lcm, gcd, bezout

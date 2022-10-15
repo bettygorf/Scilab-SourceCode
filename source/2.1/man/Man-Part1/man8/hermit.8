@@ -1,0 +1,32 @@
+.TH hermit 8 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+hermit - Hermite form
+.SH CALLING SEQUENCE
+.nf
+[Ar,U]=hermit(A)
+.fi
+.SH PARAMETERS
+.TP
+A
+: polynomial matrix
+.TP
+Ar
+: triangular polynomial matrix
+.TP
+U
+: unimodolar polynomial matrix
+.SH DESCRIPTION
+Hermite form: \fVU\fR is an unimodular matrix such that \fVA*U\fR is
+in Hermite triangular form:
+.LP
+The output variable is \fVAr=A*U\fR.
+.LP
+Warning: Experimental version
+.SH EXAMPLE 
+.nf
+s=poly(0,'s');
+p=[s, s*(s+1)^2, 2*s^2+s^3];
+[Ar,U]=hermit(p'*p);
+p'*p*U, determ(U)
+.fi

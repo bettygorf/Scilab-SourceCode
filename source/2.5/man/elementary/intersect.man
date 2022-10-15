@@ -1,0 +1,48 @@
+.TH intersect 1 "April 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+intersect - returns the vector of common values of two vectors
+.SH CALLING SEQUENCE
+.nf
+[v, [ka,kb]]=intersect(a,b)
+
+.fi
+.SH PARAMETERS
+.TP
+a
+: vector of real numbers or strings
+.TP
+b
+: vector of real numbers or strings
+.TP
+v
+: row vector  of real numbers or strings
+.TP
+ka
+: row vector  of integers
+.TP
+kb
+: row vector  of integers
+
+.SH DESCRIPTION
+\fVintersect(a,b)\fR returns a sorted row vector of common values of
+two vectors of \fVa\fR and \fVb\fR.
+.LP
+\fV[v,ka,kb]=intersect(a,b)\fR also returns index vectors \fVka\fR and
+\fVkb\fR such that \fVv=a(ka)\fR and \fVv=b(kb)\fR.
+
+
+.SH EXAMPLE
+.nf
+A=round(5*rand(10,1));
+B=round(5*rand(7,1));
+
+intersect(A,B)
+[N,ka,kb]=intersect(A,B)
+
+intersect('a'+string(A),'a'+string(B))
+
+.fi
+.SH SEE ALSO
+unique, sort, union
+

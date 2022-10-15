@@ -1,0 +1,8 @@
+//[r]=%lnm(l1,l2)
+//%lnm(l1,l2) correspond a l'operation logique l1==l2 avec l1 une liste
+//et l2 une macro
+//!
+r=%t
+//end
+
+

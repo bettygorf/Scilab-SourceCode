@@ -1,0 +1,48 @@
+.TH lufact G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+luget - sparse lu factorization
+.SH CALLING SEQUENCE
+.nf
+[P,L,U,Q]=luget(ptr)
+.fi
+.SH PARAMETERS
+.TP
+ptr
+: pointer, output of \fVlufact\fR
+.TP 
+P
+: sparse permutation matrix
+.TP
+L
+: sparse matrix, lower triangular if \fVptr\fR is obtained from a 
+non singular matrix
+.TP
+U
+: square non singular upper triangular sparse matrix with ones along
+the main diagonal
+.TP
+Q
+: sparse permutation matrix
+.SH DESCRIPTION
+\fV[P,L,U,Q]=luget(ptr)\fR with \fVptr\fR obtained by
+the command \fV[ptr,rk]=lufact(A)\fR with \fVA\fR a sparse matrix
+returns four sparse matrices such that \fVP*L*U*Q=A\fR.
+.LP
+The A matrix needs not be full rank but must be square 
+(since A is assumed sparse one may add zeros if necessary to squaring
+down A).
+.LP
+If \fVA\fR is singular, the \fVL\fR matrix is column compressed (with
+\fVrk\fR independent nonzero columns):  the nonsingular sparse 
+matrix \fVQ'*inv(U)\fR column compresses \fVA\fR.
+.SH EXAMPLE
+.nf
+a=rand(5,2)*rand(2,5);A=sparse(a);
+[ptr,rk]=lufact(A);[P,L,U,Q]=luget(ptr);
+full(L), P*L*U*Q-A
+clean(P*L*U*Q-A)
+ludel(ptr)
+.fi
+.SH SEE ALSO
+sparse, lusolve, luget, spclean

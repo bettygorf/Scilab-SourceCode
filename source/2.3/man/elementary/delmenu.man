@@ -1,0 +1,30 @@
+.TH delmenu 3 "December 1995" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+delmenu - interactive button or menu deletion
+.SH CALLING SEQUENCE
+.nf
+delmenu(button) 
+delmenu(gwin,button)
+.fi
+.SH PARAMETERS
+.TP
+button
+: a character string. The button name
+.TP
+gwin
+: integer. The number of graphic window where the button is required
+to be installed
+.SH DESCRIPTION
+The function allows the user to delete  buttons or menus create by
+\fVaddmenu\fR in the main or graphics windows command panels.
+
+If possible, it is better to delete first the latest created button
+for a given window to avoid gaps in  command panels.
+.SH EXAMPLE
+.nf
+addmenu('foo')
+delmenu('foo')
+.fi
+.SH SEE ALSO
+setmenu, unsetmenu, addmenu

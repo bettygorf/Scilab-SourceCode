@@ -1,0 +1,27 @@
+ 
+clear;lines(0);
+ 
+s=poly(0,'s');
+ 
+mod=simp_mode()
+ mod  =
+ 
+  T  
+ 
+simp_mode(%f);hns=s/s
+ hns  =
+ 
+    s   
+    -   
+    s   
+ 
+simp_mode(%t);hns=s/s
+ hns  =
+ 
+    1   
+    -   
+    1   
+ 
+simp_mode(mod);
+ 
+ 

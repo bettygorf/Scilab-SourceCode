@@ -1,0 +1,21 @@
+.TH DELAY_f 5 "Janvier 1997" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+DELAY_f - Scicos  delay block
+.SH DIALOGUE PARAMETERS
+.TP 25
+Discretization time step
+: positive scalar, delay discretization time step
+.TP
+Register initial state
+: register initial state vector. Dimension must be greater than  or
+equal to
+2
+.SH DESCRIPTION
+This block implements as a discretized delay. It is in fact a Scicos
+super block formed by a shift register and a clock.
+
+value of the delay is given by  the discretization time step multiplied by the
+number of states of the register minus one 
+.SH SEE ALSO
+DELAYV_f, EVTDLY_f, REGISTER_f

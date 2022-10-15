@@ -1,0 +1,36 @@
+.TH SIMP_MODE G "July 1996" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+simp_mode - toggle rational simplification 
+.SH CALLING SEQUENCE
+.nf
+mod=simp_mode()
+simp_mode(mod)
+.fi
+.SH PARAMETERS
+.TP
+mod
+: a boolean
+.SH DESCRIPTION
+rational simplification is called after nearly each operations on 
+rationals. It is possible to toggle simplification on or off using
+\fVsimp_mode\fR function.
+
+\fVsimp_mod(%t)\fR set rational simplification mode on
+
+\fVsimp_mod(%f)\fR set rational simplification mode off
+
+\fVmod=simp_mod()\fR returns in mod the current rational
+simplification mode
+.SH EXAMPLES
+.nf
+s=poly(0,'s');
+mod=simp_mode()
+simp_mode(%f);hns=s/s
+simp_mode(%t);hns=s/s
+simp_mode(mod);
+
+.fi
+.SH SEE ALSO
+simp
+

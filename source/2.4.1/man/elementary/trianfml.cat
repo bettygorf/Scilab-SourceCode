@@ -1,0 +1,25 @@
+
+trianfml(1)                    Scilab Function                    trianfml(1)
+NAME
+  trianfml - symbolic triangularization
+
+CALLING SEQUENCE
+  [f [,sexp]]=trianfml(f [,sexp])
+
+DESCRIPTION
+  Triangularization of the symbolic matrix f ; triangularization is performed
+  by elementary row operations; sexp is a set of common expressions stored by
+  the algorithm.
+
+EXAMPLE
+  A=['1','2';'a','b']
+  W=trianfml([A,string(eye(2,2))])
+  U=W(:,3:4)
+  a=5;b=6;
+  A=evstr(A)
+  U=evstr(U)
+  U*A
+  evstr(W(:,1:2))
+
+SEE ALSO
+  addf, mulf, solve, trisolve

@@ -1,0 +1,42 @@
+ 
+clear;lines(0);
+ 
+typeof(1)
+ ans  =
+ 
+ constant   
+ 
+typeof(poly(0,'x'))
+ ans  =
+ 
+ polynomial   
+ 
+typeof(1/poly(0,'x'))
+ ans  =
+ 
+ rational   
+ 
+typeof(%t)
+ ans  =
+ 
+ boolean   
+ 
+w=sprand(100,100,0.001);
+ 
+typeof(w)
+ ans  =
+ 
+ sparse   
+ 
+typeof(w==w)
+ ans  =
+ 
+ boolean sparse   
+ 
+deff('y=f(x)','y=2*x');
+ 
+typeof(f)
+ ans  =
+ 
+ function   
+ 

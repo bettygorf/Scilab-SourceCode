@@ -1,0 +1,66 @@
+
+
+
+xchange(2)                     Scilab Function                     xchange(2)
+
+
+
+
+
+
+NAME
+  xchange - coordinates transform
+
+CALLING SEQUENCE
+  [x1,y1,rect]=xchange(x,y,dir)
+
+PARAMETERS
+
+  x,y       : two matrices of size (n1,n2) (coordinates of a set of points)
+
+  x1,y1     : two matrices of size (n1,n2) (coordinates of the set of points
+            )
+
+  rect      : a vector of size 4 (values in pixel of the coordinates of the
+            rectangle in which the scale was fixed)
+
+DESCRIPTION
+  After having used a graphic function, this function allows one to change
+  real coordinates into pixel coordinates and vice-versa, according to the
+  value of the parameter dir.  dir = 'f2i' or 'i2f' ( float to int or int to
+  float)
+   x1,y1 are the coordinates of the set of points described by x,y after the
+  coordinate change.
+
+AUTHOR
+  J.Ph.C..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

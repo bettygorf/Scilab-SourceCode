@@ -1,0 +1,11 @@
+
+abort(1)                       Scilab Function                       abort(1)
+NAME
+  abort - interrupt evaluation.
+
+DESCRIPTION
+  abort interrupts current evaluation and gives the prompt. Within a pause
+  level  abort return to level 0 prompt.
+
+SEE ALSO
+  quit, pause, break, abort, quit

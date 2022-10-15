@@ -1,0 +1,30 @@
+.TH sinc 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+sinc -  samples of sinc function
+.SH CALLING SEQUENCE
+.nf
+[x]=sinc(n,fl)
+.fi
+.SH PARAMETERS
+.TP 6
+n
+: number of samples
+.TP
+fl
+: cut-off frequency of the associated low-pass filter in Hertz.
+.TP
+x
+: samples of the sinc function
+.SH DESCRIPTION
+Calculate n samples of the function \fVsin(2*pi*fl*t)/(pi*t)\fR
+for \fVt=-(n-1)/2:(n-1)/2\fR (i.e. centred around the origin).
+.SH EXAMPLE
+.nf
+plot(sinc(100,0.1))
+.fi
+.SH SEE ALSO
+sincd
+.SH AUTHOR
+C. B.
+

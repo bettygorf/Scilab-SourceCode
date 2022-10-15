@@ -1,0 +1,5 @@
+exec('d1.4.code');
+exec('d1.5.code');
+pause
+pt=return(z*p)
+pt

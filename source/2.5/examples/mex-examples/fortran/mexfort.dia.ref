@@ -1,0 +1,32 @@
+ 
+exec startup.sce
+ 
+scilab_functions=[...
+"fmexfunction1";
+"fmexfunction2";
+                 ];
+ 
+ 
+ 
+gateway_routines=[...
+"fmexfunction1.o";
+"fmexfunction2.o";
+];
+ 
+ 
+util_routines =[...
+             ];
+ 
+object_files=G_make(["generic_gateway.o";gateway_routines;util_routines],"generic.dll");
+ 
+addinter(object_files,"generic_gateway",scilab_functions);
+ 
+ 
+[p,q]=fmexfunction1(1,2);
+ 
+if q~=2 then pause;end
+ 
+[p,q,r,s,t]=fmexfunction2([1;2],[3,4]);
+ 
+if norm(s-[9 12])~=0 then pause;end
+ 

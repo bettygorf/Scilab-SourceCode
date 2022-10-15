@@ -1,0 +1,41 @@
+
+param3d(2)                     Scilab Function                     param3d(2)
+NAME
+  param3d - 3D plot of a curve
+
+CALLING SEQUENCE
+  param3d(x,y,z,[theta,alpha,leg,flag,ebox])
+
+PARAMETERS
+
+  x,y,z          : three vectors of the same size (points of the parametric
+                 curve).
+
+  theta,alpha    : real values giving in degree the  spherical coordinates of
+                 the observation point.
+
+  leg            : string defining the captions for each axis with @ as  a
+                 field  separator, for  example "X@Y@Z".
+
+  flag=[type,box]
+                 : type and box have the same meaning as in plot3d.
+
+  ebox           : used when type in flag is 1. It specifies the boundaries
+                 of the plot as the vector [xmin,xmax,ymin,ymax,zmin,zmax].
+
+DESCRIPTION
+  param3d is used to plot a 3D curve defined by its coordinates x, y and z.
+
+  Use param3d1 to do multiple plots.
+
+  Enter the command param3d() to see a demo.
+
+EXAMPLE
+  t=0:0.1:5*%pi;
+  param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
+
+SEE ALSO
+  param3d1, plot3d
+
+AUTHOR
+  J.Ph.C.

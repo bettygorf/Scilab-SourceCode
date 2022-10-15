@@ -1,0 +1,12 @@
+	\def\dessin#1#2{
+	\begin{figure}[hbtp]
+	\begin{center}
+	%If you prefer mm use the followin two lines
+	%\setlength{\unitlength}{1mm}
+	%\fbox{\begin{picture}(100,71)
+	\fbox{\begin{picture}(284.5,203.0)
+	\special{psfile='DesLotus.ps' hscale=50.0 vscale=50.0}
+	\end{picture}}
+	\end{center}
+	\caption{\label{#2}#1}
+	\end{figure}}

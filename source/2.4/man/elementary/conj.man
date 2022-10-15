@@ -1,0 +1,23 @@
+.TH conj 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+conj -  conjugate
+.SH CALLING SEQUENCE
+.nf
+[y]=conj(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x,y 
+:  real or complex matrix.
+.SH DESCRIPTION
+\fVconj(x)\fR is the complex conjugate of \fVx\fR. 
+.SH EXAMPLE
+.nf
+x=[1+%i,-%i;%i,2*%i];
+conj(x)
+x'-conj(x)  //x'  is conjugate transpose
+.fi
+
+
+

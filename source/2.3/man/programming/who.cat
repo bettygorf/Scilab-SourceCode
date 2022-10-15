@@ -1,0 +1,18 @@
+
+who(1)                         Scilab Function                         who(1)
+NAME
+  who - listing of variables
+
+CALLING SEQUENCE
+  who
+  names=who()
+  [names,mem]=who()
+
+DESCRIPTION
+  who displays current variable names.
+
+  who() Returns current variable names and memory used in double precision
+  worlds.
+
+SEE ALSO
+  whos

@@ -1,0 +1,66 @@
+
+
+
+kroneck(1)                     Scilab Function                     kroneck(1)
+
+
+
+
+
+
+NAME
+  kroneck - Kronecker form of matrix pencil
+
+CALLING SEQUENCE
+  [Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F)
+  [Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(E,A)
+
+PARAMETERS
+  F    : real matrix pencil F=s*E-A
+  E,A  : two real matrices of same dimensions
+  Q,Z       : two square orthogonal matrices
+  Qd,Zd     : two vectors of integers
+  numbeps,numeta : two vectors of integers
+
+DESCRIPTION
+  Kronecker form of matrix pencil: kroneck computes two orthogonal matrices
+  Q, Z which put the pencil F=s*E -A into upper-triangular form:
+
+             | sE(eps)-A(eps) |        X       |      X     |      X        |
+             |----------------|----------------|------------|---------------|
+             |        O       | sE(inf)-A(inf) |      X     |      X        |
+  Q(sE-A)Z = |---------------------------------|----------------------------|
+             |                |                |            |               |
+             |        0       |       0        | sE(f)-A(f) |      X        |
+             |--------------------------------------------------------------|
+             |                |                |            |               |
+             |        0       |       0        |      0     | sE(eta)-A(eta)|
+
+  The dimensions of the four blocks are given by:
+  eps=Qd(1) x Zd(1), inf=Qd(2) x Zd(2), f = Qd(3) x Zd(3), eta=Qd(4)xZd(4)
+  The inf block contains the infinite modes of the pencil.
+  The f block contains the finite modes of the pencil
+  The structure of epsilon and eta blocks are given by:
+  numbeps(1) = # of eps blocks of size 0 x 1
+  numbeps(2) = # of eps blocks of size 1 x 2
+  numbeps(3) = # of eps blocks of size 2 x 3     etc...
+  numbeta(1) = # of eta blocks of size 1 x 0
+  numbeta(2) = # of eta blocks of size 2 x 1
+  numbeta(3) = # of eta blocks of size 3 x 2     etc...
+  The code is taken from T. Beelen (Slicot-WGS group).
+
+SEE ALSO
+  gschur, gspec, systmat, pencan, epsfin
+
+
+
+
+
+
+
+
+
+
+
+
+

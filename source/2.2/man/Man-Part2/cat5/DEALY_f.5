@@ -1,0 +1,66 @@
+
+
+
+DELAY_f(5)                      Scicos Block                      DELAY_f(5)
+
+
+
+
+
+
+NAME
+  TANBLK - Scicos delay block
+
+DIALOG PARAMETERS
+  Block label         : A string defining the block label. This label is
+                      written under the block.
+  Register initial condition
+                      : a vector. The initial condition of the regsiter used
+                      to store past values of the input.
+  Period              : a scalar. The period of the clock which coresponds to
+                      the discretization step.
+
+DESCRIPTION
+  This block realizes an approximate delay operation. The output at t is a
+  discretized (piecewise constant with discretization step equal to Period)
+  version of the input at t-dt where dt equals Period times the size of the
+  Register.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+mode(0);
+xbasc();
+
+xset("use color",0);
+flag1=x_choose(['Yes';'No'],'Have you a color display');
+if flag1=1;xset("use color",1);end
+
+path='SCI/demos/anim/';
+
+demolist=['Exemple 1';
+	'Exemple 2';
+	'Exemple 3';
+	'Exemple 4';
+	'Exemple 5'
+	'Exemple 6'];
+go_on=%t;
+while go_on then
+  num=x_choose(demolist(:,1),'Choose a demo');
+  if num=0 then go_on=%f;
+  else
+     exec(path+'anim'+string(num)+'.dem');
+  end,
+end
+
+

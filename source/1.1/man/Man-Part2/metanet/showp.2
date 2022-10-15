@@ -1,0 +1,22 @@
+.TH showp 1 "April 1993" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME 
+showp - highlight a set of arcs 
+.SH CALLING SEQUENCE
+.nf
+showp(p,[sup])
+.fi
+.SH PARAMETERS
+.TP 2
+p
+: row vector of arc numbers
+.TP 4
+sup
+: integer, optional variable with default value 0
+.SH DESCRIPTION
+\fVshowp\fR highlights the set of arcs \fVns\fR of the displayed graph in
+the \fVMetanet\fR window. 
+If the optional variable (with default value 0) \fVsup\fR is different from 0,
+the highlighting is superposed on the previous one.
+.SH SEE ALSO
+showns

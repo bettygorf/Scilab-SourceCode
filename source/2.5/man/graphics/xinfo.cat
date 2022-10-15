@@ -1,0 +1,15 @@
+
+xinfo(2)                       Scilab Function                       xinfo(2)
+NAME
+  xinfo - draw an info string in the message subwindow
+
+CALLING SEQUENCE
+  xinfo(info)
+
+PARAMETERS
+
+  info  : string
+
+DESCRIPTION
+  xinfo draws the string info in the message subwindow of the current graph-
+  ics window.

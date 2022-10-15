@@ -1,0 +1,19 @@
+
+SendMsg(1)                     Scilab function                     SendMsg(1)
+NAME
+  SendMsg - sends a message
+
+CALLING SEQUENCE
+  SendMsg(type,msg)
+
+PARAMETERS
+
+  type : string
+
+  msg : string
+
+DESCRIPTION
+  SendMsg sends a message to ALL applications linked to this application.
+
+SEE ALSO
+  CreateLink, SendMsg, WaitMsg

@@ -1,0 +1,66 @@
+
+
+
+x_dialog(1)                    Scilab Function                    x_dialog(1)
+
+
+
+
+
+
+NAME
+  x_dialog - Xwindow dialog
+
+CALLING SEQUENCE
+  result=x_dialog(labels,valueini)
+
+PARAMETERS
+
+  labels
+       : column vector of strings, comment for dialog
+
+  valueini
+       : n column vector of strings, initial value suggested
+
+  result
+       : response : n column vector of strings if returned with "Ok" button
+       or [] if returned with "Cancel" button
+
+DESCRIPTION
+  Creates an X-window multi-lines dialog
+
+EXAMPLE
+  gain=evstr(x_dialog('value of gain ?','0.235'))
+
+  x_dialog(['Method';'enter sampling period'],'1')
+  m=evstr(x_dialog('enter a  3x3 matrix ',['[0 0 0';'0 0 0';'0 0 0]']))
+
+SEE ALSO
+  x_mdialog, x_matrix, evstr ,execstr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

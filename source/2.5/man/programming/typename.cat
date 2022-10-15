@@ -1,0 +1,37 @@
+
+typename(1)                    Scilab Function                    typename(1)
+NAME
+  typename - associates a name to variable type
+
+CALLING SEQUENCE
+  [types [ [,names]]=typename()
+  typename(name,type)
+
+PARAMETERS
+
+  types     : integer column vector: the types codes of each defined data
+            types.
+
+  names     : column vector of strings: the names associated to type codes.
+
+  type      : integer: the type code of new data type.
+
+  name      : string: the name associated to the type code
+
+DESCRIPTION
+  The function and operator overloading make use of a formal name associated
+  to data types to form the name of the overloading function (see overload-
+  ing). The typename can be used to handle this formal names for hard coded
+  data types (the tlist or mlist coded data types formal names are defined in
+  an other way, see overloading).
+
+  Called without right hand side argument, typename returns informations on
+  defined data types.
+
+  Called with right hand side argument, typename associates a name to a data
+  type code.
+
+  typename('',type) suppress the data type given by its code type out of the
+  table of known data types.
+SEE ALSO
+  type, typeof, overloading, tlist, mlist

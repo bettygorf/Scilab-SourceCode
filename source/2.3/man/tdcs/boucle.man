@@ -1,0 +1,34 @@
+.TH boucle 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+boucle - phase portrait of a dynamical system with observer
+.SH CALLING SEQUENCE
+.nf
+[]=boucle(fch,[abruit,xdim,npts,farrow])
+.fi
+.SH PARAMETERS
+.TP
+fch
+: Scilab macro. \fVfch\fR is supposed to be an observed-controlled system with 
+noisy output of state dimension 4 ( [x;xchap] is of dimension 4).
+\fVfch\fR can be created with the macro \fVobscont1\fR or can be set to one of the two following string
+which gives pre computed examples
+.RS
+.TP 10
+"bcomp"
+: for a non-linear competition model.
+.TP
+"lcomp"
+: for a linear example.
+.RE
+.TP
+abruit
+: give the noise variance.
+.TP
+xdim,npts,farrow
+: See portrait 
+.SH DESCRIPTION
+Phase portrait of dynamical systems.
+.SH SEE ALSO
+portrait, ode, obscont1
+

@@ -1,0 +1,30 @@
+.TH canon 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+canon - canonical controllable form
+.SH CALLING SEQUENCE
+.nf
+[Ac,Bc,U,ind]=canon(A,B)  
+.fi
+.SH PARAMETERS
+.TP 10
+Ac,Bc
+: canonical form
+.TP 
+U
+: current basis (square nonsingular matrix)
+.TP
+ind
+: vector of integers, controllability indices
+.SH DESCRIPTION
+gives the canonical controllable form of the pair \fV(A,B)\fR.
+.LP
+\fVAc=inv(U)*A*U, Bc=inv(U)*B\fR
+.SH SEE ALSO
+obsv_mat, cont_mat, ctr_gram, contrss, ppol, contr
+.SH AUTHOR
+F.D.
+
+
+
+

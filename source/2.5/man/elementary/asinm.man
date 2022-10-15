@@ -1,0 +1,29 @@
+.TH asinm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+asinm - matrix wise sine inverse
+.SH CALLING SEQUENCE
+.nf
+t=asinm(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex square matrix
+.TP 10
+t
+: real or complex square matrix
+.SH DESCRIPTION
+ \fVt\fR are sine inverse of the \fVx\fR matrix. Diagonalization
+method is used. For non symmetric matrices result may be inaccurate.
+.SH EXAMPLE
+.nf
+A=[1,2;3,4]
+sinm(asinm(A))
+asinm(A)+%i*logm(%i*A+sqrtm(eye()-A*A))
+.fi
+.SH SEE ALSO 
+asin, sinm
+
+
+

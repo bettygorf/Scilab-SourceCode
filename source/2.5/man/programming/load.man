@@ -1,0 +1,53 @@
+.TH load 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+load - load saved variable
+.SH CALLING SEQUENCE
+.nf
+load(filename [,x1,...,xn])
+load(fd [,x1,...,xn])
+.fi
+.SH PARAMETERS
+.TP 10
+filename 
+: character string containing the path of the file
+.TP 10
+fd
+: a file descriptor given by a call to mopen
+.TP 10
+xi
+: arbitrary Scilab variable name(s) given as strings.
+.SH DESCRIPTION
+The \fVload\fR command can be used to reload in the Scilab session
+variables previously saved in a file with the \fVsave\fR command.
+
+
+.LP
+\fVload(filename)\fR loads the variables saved in file given by its
+path \fVfilename\fR. 
+.LP
+\fVload(fd)\fR loads the variables saved in file given by its
+descriptor \fVfd\fR. 
+
+.LP
+\fVload(filename,'x','y')\fR or \fVload(fd,'x','y')\fR loads only
+variables \fVx,y\fR. 
+
+.SH COMPATIBLITY
+Even if the binary file format has changed with 2.5 version,
+\fVload(filename,...)\fR is able to read old format files. Previous
+file format can be accessed for a while using function oldsave ans
+oldload.
+
+
+.SH EXAMPLES
+.nf
+a=eye(2,2);b=ones(a);
+save('vals.dat',a,b);
+clear a
+clear b
+load('vals.dat','a','b');
+.fi
+.SH SEE ALSO
+save, getf, mopen 
+

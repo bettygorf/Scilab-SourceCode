@@ -1,0 +1,14 @@
+.TH xselect 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xselect - raise the current graphics window
+.SH CALLING SEQUENCE
+.nf
+xselect()
+.fi
+.SH DESCRIPTION
+\fVxselect\fR raises the current graphics window. It creates the window
+if none exists.
+If the current graphics window is iconified nothing is done.
+.SH AUTHOR
+J.Ph.C.

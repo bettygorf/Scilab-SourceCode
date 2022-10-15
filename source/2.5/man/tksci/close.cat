@@ -1,0 +1,43 @@
+
+close(2)                       Scilab Function                       close(2)
+NAME
+  close - close a figure
+
+  Author: Bertrand Guiheneuf
+
+  This routine allows to close a tksci figure (window).
+
+Usage
+  close([h[)
+
+Input parameter
+
+  o    h : integer Handle of the window to close
+
+Output parameters
+  None
+
+Description
+  This routine close a tksci figure (toplevel window). If a handle is given,
+  the figure corresponding to this handle is closed.  Otherwise, the current
+  (active) figure is closed.
+
+EXAMPLE
+  h=figure();
+  // creates  figure number 1.
+  uicontrol( h, 'style','text', ...
+   'string','scilab is great', ...
+   'position',[50 70 100 100], ...
+   'fontsize',15);
+  // put a clever text in figure 1
+  figure();
+  // create figure 2
+  uicontrol( 'style','text', ...
+   'string','Really great', 'position',[50 70 100 100], 'fontsize',15);
+  // put a text in figure 2
+  close();
+  // close the current graphic window (ie fig. 2)
+  close(h);
+  // close figure 1
+See also
+  figure, gcf

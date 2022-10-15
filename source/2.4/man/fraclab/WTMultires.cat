@@ -1,0 +1,40 @@
+
+WTMultires(2)                  Scilab Function                  WTMultires(2)
+NAME
+  WTMultires - Construct a 1D Multiresolution Representation
+
+  Author: Bertrand Guiheneuf
+
+  This routine constructs a matrix that shows the projections of the signal
+  on each multiresolution subspace
+
+Usage
+  [V]=WTMultires(wt)
+
+Input parameter
+       o wt : real unidimensional matrix Contains the wavelet transform
+         (obtained with FWT).
+Output parameter
+       o V : real matrix [Nbiter,n] Contains the projections on the Mul-
+         tiresolution. Each line is a projection on a subspace different
+         "low-pass" space Vj
+Description
+
+Introduction
+  This routine is used to display all the scales of a wavelet transform. The
+  projections are different from the wavelet coefficients as they represent
+  "filtered" signals. Here each projection
+
+Parameters
+  wt must be a real matrix containing the wavelet coefficients but also misc
+  informations such as the original signal dimension and the reconstruction
+  filter. It's generally obtained with FW. V Is the matrix containing the
+  projection of the signal (decomposed in wt) on each Multiresolution sub-
+  space. The Nbiter first ones are the projections on the details subspaces.
+  The last one is the projection on the last trend subspace.
+Example
+  x=0.1:0.005:1; s=(x.0.7) .* sin( x.(-2)) ; q1 q2=MakeCQF(1); wt =
+  FWT(s,3,q1,q2); V=WTMultires(wt); plot(V');
+
+See Also
+  FWT, IWT, WTStruct,

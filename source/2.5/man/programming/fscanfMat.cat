@@ -1,0 +1,39 @@
+
+fscanfMat(1)                   Scilab Function                   fscanfMat(1)
+NAME
+  fscanfMat - Reads a Matrix from a text file.
+
+CALLING SEQUENCE
+  M=fscanfMat(filename);
+
+PARAMETERS
+
+  filename : a character string giving the name of the  file  to  be
+            scanned.
+
+  M         : Output variable. A matrix of real numbers.
+
+DESCRIPTION
+  The fscanfMat function is used to read a scalar matrix from a text file.
+  The first non-numeric lines of the file are ignored and all the remaining
+  lines must have the same number of columns (column separator are assumed to
+  be white spaces or tab characters). The number of columns of the matrix
+  will  follow the number of columns found in the file and the number of
+  lines is fetched by detecting eof in the input file. This function can be
+  used to read back numerical data saved with the fprintfMat.
+
+EXAMPLE
+  fd=mopen(TMPDIR+'/Mat','w');
+  mfprintf(fd,'Some text.....0);
+  mfprintf(fd,'Some text again0);
+  a=rand(6,6);
+  for i=1:6 ,
+          for j=1:6, mfprintf(fd,'%5.2f ',a(i,j));end;
+          mfprintf(fd,'0);
+  end
+  mclose(fd);
+  a1=fscanfMat(TMPDIR+'/Mat')
+
+SEE ALSO
+  mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr,
+  mopen, mprintf, mput, mputstr, mscanf, mseek, mtell

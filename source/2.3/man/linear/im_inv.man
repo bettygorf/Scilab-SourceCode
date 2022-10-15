@@ -1,0 +1,61 @@
+.TH im_inv 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+im_inv - inverse image
+.SH CALLING SEQUENCE
+.nf
+[X,dim]=im_inv(A,B [,tol])
+[X,dim,Y]=im_inv(A,B, [,tol]) 
+.fi
+.SH PARAMETERS
+.TP 10
+A,B
+: two real or complex matrices with equal number of columns
+.TP
+X
+: orthogonal or unitary square matrix of order equal to the 
+number of columns of \fVA\fR
+.TP
+dim
+: integer (dimension of subspace)
+.TP
+Y
+: orthogonal matrix of order equal to the number of rows 
+of \fVA\fR and \fVB\fR.
+.SH DESCRIPTION
+.Vb [X,dim]=im_inv(A,B)
+computes 
+.IG
+(A^-1)(B)
+.FI
+.LA $ A^{-1}(\cal B)$
+ i.e vectors whose image through \fVA\fR are in range(\fVB\fR)
+.LP
+The \fVdim\fR first columns of \fVX\fR span 
+.IG
+(A^-1) (B)
+.FI
+.LA $ A^{-1}(\cal B).$
+.LP
+\fVtol\fR is a threshold used to test if subspace inclusion;
+default value is \fVtol = 100*%eps\fR.
+If \fVY\fR is returned, then \fV[Y*A*X,Y*B]\fR is partitioned as follows:
+.nf
+[A11,A12;0,A22],[B1;0]
+.fi
+where \fVB1\fR has full row rank (equals \fVrank(B)\fR) and \fVA22\fR has
+full column rank and has \fVdim\fR columns.
+.SH EXAMPLE
+.nf
+A=[rand(2,5);[zeros(3,4),rand(3,1)]];B=[[1,1;1,1];zeros(3,2)];
+W=rand(5,5);A=W*A;B=W*B;
+[X,dim]=im_inv(A,B)
+svd([A*X(:,1:dim),B])   //vectors A*X(:,1:dim) belong to range(B)
+[X,dim,Y]=im_inv(A,B);[Y*A*X,Y*B]
+.fi
+.SH SEE ALSO
+rowcomp, spaninter, spanplus, linsolve
+.SH AUTHOR
+F. D.
+
+

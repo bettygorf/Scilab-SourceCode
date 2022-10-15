@@ -1,0 +1,66 @@
+
+
+
+wfir(1)                        Scilab Function                        wfir(1)
+
+
+
+
+
+
+NAME
+  wfir - linear-phase FIR filters
+
+CALLING SEQUENCE
+  [wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)
+
+PARAMETERS
+
+  ftype
+       : string : 'lp','hp','bp','sb' (filter type)
+
+  forder
+       : Filter order (pos integer)(odd for ftype='hp' or 'sb')
+
+  cfreq
+       : 2-vector of cutoff frequencies (0<cfreq(1),cfreq(2)<.5)
+        only cfreq(1) is used when ftype='lp' or 'hp'
+
+  wtype
+       : Window type ('re','tr','hm','hn','kr','ch')
+
+  fpar : 2-vector of window parameters.  Kaiser window fpar(1)>0 fpar(2)=0.
+       Chebyshev window fpar(1)>0, fpar(2)<0 or fpar(1)<0, 0<fpar(2)<.5
+
+  wft  : time domain filter coefficients
+
+  wfm  : frequency domain filter response on the grid fr
+
+  fr   : Frequency grid
+
+DESCRIPTION
+  Function which makes linear-phase, FIR low-pass, band-pass, high-pass, and
+  stop-band filters using the windowing technique.  Works interactively if
+  called with no arguments.
+
+AUTHOR
+  C. Bunks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

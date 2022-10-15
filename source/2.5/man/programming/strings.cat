@@ -1,0 +1,18 @@
+
+strings(1)                      Scilab Object                      strings(1)
+NAME
+  strings - Scilab Object, character strings
+
+DESCRIPTION
+
+  Strings are defined as 'string' (between quotes) or "string" (between dou-
+  blequotes); matrices of strings are defined as usual constant matrices.
+
+  Concatenation of two strings is made by a + : string1+string2.
+
+EXAMPLE
+  ['this','is'; 'a 2x2','matrix']
+  "matrix"=="mat"+"rix"
+
+SEE ALSO
+  part, length, strcat

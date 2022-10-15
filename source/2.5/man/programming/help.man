@@ -1,0 +1,37 @@
+.TH help 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+help - on-line help command
+.SH CALLING SEQUENCE
+.nf
+	help word
+.fi
+.SH DESCRIPTION
+To each documented word corresponds a \fVword.cat\fR ascii file. these files
+are organised within directories (chapters). Each chapter must contain
+\fV*.cat\fR files and a \fVwhatis\fR file with one line for each documented word
+in the chapter. Each line must have the following format :
+
+.nf
+word - quick description
+.fi
+
+List of chapter directories is given in a file (whose path is given
+in the \fV$MANCHAPTERS\fR environment variable) with the following
+format for each chapter:
+
+.nf
+chapter_path    chapter_title
+.fi
+.LP
+\fVMANCHAPTERS\fR default value is SCI/man/Chapters. If you want
+to add new help chapters you have to do a copy of the
+SCIDIR/man/Chapters file where you want, to add descriptions lines for
+each new chapter and to define the new value of MANCHAPTERS
+environment variable.
+.LP
+See also Scilab's manual 
+.SH SEE ALSO
+apropos
+
+

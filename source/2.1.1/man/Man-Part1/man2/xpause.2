@@ -1,0 +1,17 @@
+.TH xpause 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xpause - suspends Scilab 
+.SH CALLING SEQUENCE
+.nf
+xpause(msecs)
+.fi
+.SH DESCRIPTION
+Synchronizes the X11-display and 
+suspends the current process for the number of microseconds
+specified by the argument. The actual suspension time may
+be an arbitrary amount longer because of other activity in
+the system, or because of the time spent in processing the
+call.
+.SH AUTHOR
+J.Ph.C.

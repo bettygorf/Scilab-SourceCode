@@ -1,0 +1,66 @@
+
+
+
+mat_2_graph(1)                 Scilab function                 mat_2_graph(1)
+
+
+
+
+
+
+NAME
+  mat_2_graph - graph from node-arc incidence matrix
+
+CALLING SEQUENCE
+  [g] = mat_2_graph(a,directed)
+
+PARAMETERS
+  a : sparse node-arc incidence matrix
+  directed : integer, 0 or 1 according to the fact that the graph is
+           undirected or directed
+  g : graph-list
+
+DESCRIPTION
+  mat_2_graph computes the graph g correspponding to the node-arc incidence
+  matrix a.  Note that a checking is made to insure that a is a sparse node-
+  arc incidence matrix of a directed (directed=1) or undirected (directed=0)
+  graph.
+
+EXAMPLE
+  g=load_graph(SCI+'/demos/metanet/colored');
+  show_graph(g,'rep');
+  a=graph_2_mat(g)
+  g1=mat_2_graph(a,1)
+  g1('node_x')=g('node_x'); g1('node_y')=g('node_y');
+  show_graph(g1,'new');
+
+SEE ALSO
+  graph_2_mat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

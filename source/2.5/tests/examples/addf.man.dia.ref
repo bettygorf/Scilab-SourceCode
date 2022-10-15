@@ -1,0 +1,23 @@
+ 
+clear;lines(0);
+ 
+addf('0','1')
+ ans  =
+ 
+ 1   
+ 
+addf('1','a')
+ ans  =
+ 
+ a+1   
+ 
+addf('1','2')
+ ans  =
+ 
+ 3   
+ 
+'a'+'b'
+ ans  =
+ 
+ ab   
+ 

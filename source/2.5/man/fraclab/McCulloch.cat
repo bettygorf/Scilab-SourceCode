@@ -1,0 +1,34 @@
+
+McCulloch(2)                   Scilab Function                   McCulloch(2)
+NAME
+  McCulloch - Stable law parameters estimation (McCulloch method)
+
+  Author: Lotfi Belkacem
+
+  This routine estimates parameters of a  stable law using the Mc-Culloch
+  (1985) method.
+
+Usage
+  [param,sd_param]=McCulloch(data)
+
+Input parameters
+       o data : real vector [size,1] corresponding to the data sample.
+Output parameters
+       o param : real vector [4,1] corresponding to the four estimated param-
+         eters  of the fited stable law.  the order is respectively alpha
+         (characteristic exponent), beta (skewness parameter), mu (location
+         parameter), gamma (scale parameter)
+       o sd_param : real vector [4,1] corresponding to estimated standard
+         deviation of the four previous parameters.
+Example
+  [proc1.5,inc1.5]=sim_stable(1.5,0,0,1,10000); generates a standard 1.5-sta-
+  ble motion.  [param,sd_param]=McCulloch(inc1.5); estimates parameters of
+  the previous simutated 1.5-stable random variable inc1.5 To visualize the
+  estimates parameters or their sd-deviations use respectively  param or
+  sd_param.  alpha=param(1), beta=param(2), mu=param(3), gamma=param(4).
+  sd_alpha=sd_param(1), sd_alphabeta=sd_param(2), sd_alphamu=sd_param(3),
+  sd_gamma=sd_param(4).
+
+Remarque
+  Skewness parameter and its sd-deviation estimations are not very accurate.
+  Specially when the characteristic exponent is arround 2.

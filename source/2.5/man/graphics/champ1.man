@@ -1,0 +1,47 @@
+.TH champ1 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+champ1 - 2D vector field plot with colored arrows
+.SH CALLING SEQUENCE
+.nf
+champ1(x,y,fx,fy,[arfact,rect,strf])
+.fi
+.SH PARAMETERS
+.TP 8
+x,y
+: two vectors which define the grid.
+.TP
+fx
+: a matrix which describes the x component of the vector field. \fVfx(i,j)\fR
+is the x component of the vector field at point \fV(x(i),y(j))\fR.
+.TP 
+fy
+: a matrix which describes the y component of the vector field. \fVfy(i,j)\fR
+is the y component of the vector field at point \fV(x(i),y(j))\fR.
+.TP
+arfact
+: an optional argument of type real which gives a scale factor for the display of the arrow heads on the plot (default value is 1.0).
+.TP
+rect
+: a vector \fVrect=[xmin,ymin,xmax,ymax]\fR which gives the boundaries of the 
+graphics frame to use.
+.TP
+strf 
+: a string of length 3 "xyz" which has the same meaning as the \fVstrf\fR
+parameter of \fVplot2d\fR. The first character x has no effect with \fVchamp1\fR.
+.SH DESCRIPTION 
+\fVchamp1\fR draws a 2D vector field with colored arrows. The color of the 
+arrows depends on the intensity of the field.
+
+If you want arrows proportional to the intensity of the field, use \fVchamp\fR.
+
+Enter the command \fVchamp1()\fR to see a demo.
+.SH EXAMPLE
+.nf 
+xset("use color",1)
+champ1(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
+.fi
+.SH SEE ALSO
+champ, fchamp, plot2d
+.SH AUTHOR
+J.Ph.C.

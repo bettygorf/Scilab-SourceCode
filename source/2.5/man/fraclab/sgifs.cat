@@ -1,0 +1,63 @@
+
+sgifs(2)                       Scilab Function                       sgifs(2)
+NAME
+  sgifs - Semi Generalized IFS generation
+
+  Author: Khalid Daoudi
+
+  This routine generates stochastical Semi-Generalized Iterated Functions
+  Systems (SGIFS) attractors.
+
+Usage
+  [x, y, Ci]=sgifs(Interp_pts, coefs, nbr_iter,law_type,var)
+
+Input parameters
+       o Interp_pts : Real matrix [n,2] Contains the interpolation points in
+         the format : abscissa-ordinate.
+       o coefs : Real vector Contains the fundamental contractions ratios.
+       o  nbr_iter : Integer Number of iterations wanted in the generation
+         process of the SGIFS attractor.
+       o  law_type : Character string Specifies the type of law desired. You
+         have the choice between 'uniform' and
+       o  var : Real scalar Rules the variance decrease across scales. At
+         each scale j, the variance would be 1/pow(j,var).
+Output parameters
+       o x : Real vector Contains the abscissa of the attractor graph.
+       o y : Real vector Contains the ordinates of the attractor graph.
+       o Ci : Real vector Contains all the coefficients of the so generated
+         GIFS.
+Description
+
+Parameters
+       o Interp_pts is a real matrix [n,2] containing the interpolation
+         points.
+       o coefs is a real vector containing the fundamental contractions
+         ratios, i.e. coefs(1) (resp. coef(2)) would be the mean of the even
+         (resp. odd) ceofficients.
+       o  nbr_iter is the number of iterations wanted in the generation pro-
+         cess of the SGIFS attractor.
+       o  law_type is a character string which specifies the type of law
+         desired for the GIFS coefficients.
+       o  var is a real scalar ruling the variance decrease across scales. At
+         each step j of the attractor generation, the variance of the chosen
+         law would be 1/pow(j,var).
+       o [x,y] contains the resulting attractor.
+       o Ci is a real vector containing all the coefficients of the so gener-
+         ated GIFS.
+Algorithm details
+  Semi-Generalized Iterated Functions Systems (SGIFS) are a generalization of
+  the usual IFS. This generalization consists in allowing the contarations to
+  change at each step (scale) of the attractor generation process.  Here, we
+  use GIFS to construct stocastical SGIFS. More precisely, at each scale j,
+  the GIFS coefficients c_k^j, for k even (resp. odd), are a random variable
+  of law law_type, of mean coefs(1) (resp. coefs(2)) and of variance
+  1/pow(j,var) Moreover, if {(t_i, y_i), i=1,...,n+1} is the set of interpo-
+  lation points, then any realisation of the attractor is the graph of a con-
+  tinuous function F such that : F(t_i)=y_i for each i=1,...,n+1.
+
+See also:
+  fif, alphagifs and prescrib
+
+Example:
+  I = [0 0 1 0]; coefs = [.3 -.9]; [x,y,Ci] = sgifs(I,coefs,10,'uniform',1);
+  plot(x,y)

@@ -1,0 +1,20 @@
+
+mclearerr(1)                   Scilab Function                   mclearerr(1)
+NAME
+  mclearerr - reset binary file access errors
+
+CALLING SEQUENCE
+  mclearerr([fd])
+
+PARAMETERS
+
+  fd        : scalar. The fd parameter returned by the function mopen. -1
+            stands for last opened file. Default value is -1.
+
+DESCRIPTION
+  The function clearerr is used to resets the error indicator and EOF  indi-
+  cator to zero.
+
+SEE ALSO
+  mclose, mopen, mput, mget, mgetstr, mputstr, meof, mseek, mtell, file,
+  read, write, save, load

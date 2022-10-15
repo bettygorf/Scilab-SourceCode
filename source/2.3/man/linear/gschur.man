@@ -1,0 +1,97 @@
+.TH gschur G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+gschur - generalized Schur form (matrix pencils).
+.SH CALLING SEQUENCE
+.nf
+[As,Es]=gschur(A,E)
+[As,Es,Q,Z]=gschur(A,E)
+[As,Es,Z,dim] = gschur(A,E,flag) 
+[As,Es,Z,dim]= gschur(A,E,extern)
+.fi
+.SH PARAMETERS
+.TP 10
+A, E
+: two real square matrices
+.TP
+flag
+: character string (\fV'c'\fR or \fV'd'\fR)
+.TP
+extern
+: Scilab ``external'' function (usual case). Could be also a list or a character
+string
+.TP
+As,Es
+: two real square matrices
+.TP
+Q, Z
+: two non-singular real matrices
+.TP
+dim
+: integer (dimension of subspace)
+.SH DESCRIPTION
+.LP
+Schur form of matrix pencils (QZ algorithm):
+.nf
+[As,Es] = gschur(A,E)
+.fi
+produces a quasi triangular \fVAs\fR matrix
+and a triangular \fVEs\fR matrix which are the generalized
+Schur form of the pair \fVA, E\fR.
+.LP
+.nf
+[As,Es,Q,Z] = gschur(A,E)
+.fi
+returns in addition two unitary matrices
+\fVQ\fR and \fVZ\fR such that \fVAs=Q*A*Z\fR and \fVEs=Q*E*Z\fR. 
+.LP
+Ordered stable form:
+.nf
+[As,Es,Z,dim] = gschur(A,E,'c')
+.fi
+returns the real generalized
+Schur form of the pencil \fVs*E-A\fR. In addition, the dim first columns 
+of \fVZ\fR span a basis of the right eigenspace  associated with 
+eigenvalues with negative real parts (stable "continuous
+time" generalized eigenspace).
+.nf
+[As,Es,Z,dim] = gschur(A,E,'d')
+.fi
+returns the real generalized
+Schur form of the pencil \fVs*E-A\fR. In addition, the dim first columns 
+of \fVZ\fR make a basis of the right eigenspace  associated with 
+eigenvalues with magnitude lower than 1 (stable "discrete
+time" generalized eigenspace).
+.LP
+General subspace:
+.nf
+[As,Es,Z,dim] = gschur(A,E,extern)
+.fi
+returns the real generalized Schur form of the pencil \fVs*E-A\fR. 
+In addition, the dim first columns 
+of \fVZ\fR make a basis of the right eigenspace  associated with 
+eigenvalues of the pencil which are selected according to a
+rule which is given by the scilab function extern.
+(See \fVschur\fR for definition of this function).
+.SH EXAMPLE
+.nf
+s=%s;
+F=[-1,s,0,0;0,-1,0,0;0,0,2+s,0;0,0,0,-2+s];
+roots(det(F))
+[E,A]=pen2ea(F);
+[As,Es,Z,dim] = gschur(A,E,'c')
+// Other example
+a=rand(4,4);b=rand(4,4);[as,bs,qs,zs]=gschur(a,b);
+norm(qs*a*zs-as)
+norm(qs*b*zs-bs )
+clear a;
+a(8,8)=2;a(1,8)=1;a(2,[2,3,4,5])=[0.3,0.2,4,6];a(3,[2,3])=[-0.2,.3];
+a(3,7)=.5;
+a(4,4)=.5;a(4,6)=2;a(5,5)=1;a(6,6)=4;a(6,7)=2.5;a(7,6)=-10;a(7,7)=4;
+b=eye(8,8);b(5,5)=0;
+[al,be]=gspec(a,b);
+[bs,as,q,n]=gschur(b,a,'disc');n-4
+.fi
+.SH SEE ALSO
+external, gspec, pencan, penlaur, coffg, kroneck
+

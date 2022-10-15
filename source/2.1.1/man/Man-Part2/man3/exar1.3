@@ -1,0 +1,36 @@
+.TH exar1 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+exar1 - armax identification example 
+.SH CALLING SEQUENCE
+.nf
+[z,zd,u,ar]=exar1()
+.fi 
+.SH PARAMETERS 
+.TP
+z
+: output without noise.
+.TP
+zd
+: output with noise 
+.TP
+u 
+: entry ( PRBS)
+.TP
+ar 
+: the armax description ( see armac)
+.SH DESCRIPTION
+An  Example of ARMAX identification ( K.J. Astrom)
+The armax process is described by :
+    a=[1,-2.851,2.717,-0.865]
+    b=[0,1,1,1]
+    d=[1,0.7,0.2]
+and the entry is a pseudo random binary signal.
+a sample of the processed is generated and used 
+to identify the parameters using armax. Since
+in this example the noise is a colored noise 
+armax will give biased estimators 
+.SH SEE ALSO
+armac
+
+

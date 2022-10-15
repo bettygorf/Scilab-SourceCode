@@ -1,0 +1,39 @@
+.TH xpoly 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xpoly - draw a polyline or a polygon
+.SH CALLING SEQUENCE
+.nf
+xpoly(xv,yv,dtype,[close])
+.fi
+.SH PARAMETERS 
+.TP 7
+xv,yv 
+: matrices of the same size (points of the polyline).
+.TP
+dtype
+: string (drawing style).
+.TP
+close
+: integer. If close=1, the polyline is closed; default value is 0.
+.SH DESCRIPTION
+\fVxpoly\fR draws a single polyline described by the vectors of coordinates 
+\fVxv\fR 
+and \fRyv\fR. If \fVxv\fR and \fVyv\fR are matrices 
+they are considered as vectors by concatenating their columns.
+\fVdtype\fR can be \fV"lines"\fR for using the current line style or 
+\fV"marks"\fR for using 
+the current mark to draw the polyline.
+.SH EXAMPLE
+.nf 
+x=sin(2*%pi*(0:5)/5);
+y=cos(2*%pi*(0:5)/5);
+plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
+xset("dashes",5)
+xpoly(x,y,"lines",1)
+xset("default")
+.fi
+.SH SEE ALSO 
+xfpoly, xfpolys, xpolys
+.SH AUTHOR
+J.Ph.C.

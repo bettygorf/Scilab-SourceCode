@@ -1,0 +1,28 @@
+
+milkdrop(2)                    Scilab Function                    milkdrop(2)
+NAME
+  milk_drop - milk drop 3D function
+
+CALLING SEQUENCE
+  z=milk_drop(x,y)
+
+PARAMETERS
+
+  x,y  : two row vectors of size n1 and n2.
+
+  z    : matrix of size (n1,n2).
+
+DESCRIPTION
+  milk_drop is a function representing the surface of a milk drop falling
+  down into milk. It can be used to test functions eval3d adn plot3d.
+
+EXAMPLE
+  x=-2:0.1:2; y=x;
+  z=eval3d(milk_drop,x,y);
+  plot3d(x,y,z)
+
+SEE ALSO
+  eval3d, plot3d
+
+AUTHOR
+  Steer S.

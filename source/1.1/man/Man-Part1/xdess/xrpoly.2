@@ -1,0 +1,29 @@
+.TH xrpoly 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so man1/sci.an
+.SH NAME
+xrpoly -  draw a regular polygon
+.SH CALLING SEQUENCE
+.nf
+[]=xrpoly(orig,n,r,[theta])
+.fi
+.SH PARAMETERS 
+.TP 10
+orig 
+: vector of size 2
+.TP
+n    
+: integer (number of sides)
+.TP
+r    
+: real scalar
+.TP
+theta 
+: real (angle in radian) ( 0 is the default value ) 
+.SH DESCRIPTION
+draws a regular polygon of \fVn\fR sides contained in the circle of diameter 
+\fVr\fR and with the origin of the circle set at point \fVorig\fR. 
+\fVtheta\fR  specifies a rotation angle in radian. This function uses
+the current graphic scales. 
+
+
+

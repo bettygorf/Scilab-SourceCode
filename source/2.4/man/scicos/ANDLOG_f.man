@@ -1,0 +1,19 @@
+.TH ANDLOG_f 5 "Janvier 1997" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+ANDLOG_f - Scicos logical AND block
+.SH DIALOGUE PARAMETERS
+None.
+.SH DESCRIPTION
+This block, with two event inputs and a regular output,
+outputs +1 or -1 on its regular ouput depending on input events. 
+.TP 4
++1
+:
+When events are synchronously present on both event input ports
+.TP
+-1
+:
+When only one event is present.
+.SH SEE ALSO
+IFTHEL_f

@@ -1,0 +1,39 @@
+.TH external 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+"Scilab object : external" - external macro or routine
+.SH DESCRIPTION
+External macro or routine for use with specific commands.
+.LP
+An "external" is a macro or routine which is used as an argument
+of some high-level primitives (such as \fVode\fR, \fVoptim\fR...).
+.LP
+The calling sequence of the external (macro or routine) is imposed by
+the high-level primitive which sets the arguments of the external.
+.LP
+For example the external macro \fVcostfunc\fR is an argument of the \fVoptim\fR 
+primitive. Its calling sequence must be: \fV[f,g,ind]=costfunc(x,ind)\fR and 
+\fVoptim\fR (the high-level optimization primitive) is invoked as follows:
+.nf
+optim(costfunc,...)
+.fi
+Here \fVcostfunc\fR (the cost function to be minimized by the primitive \fVoptim\fR)
+evaluates \fVf=f(x)\fR and \fVg=\fR gradient of \fVf\fR at \fVx\fR (\fVind\fR is an 
+integer which is not useful here).
+.LP
+If other values are needed by the external macro these variables
+can be defined in the environment. Also, they can be put in a list.
+For example,the external macro
+.nf
+[f,g,ind]=costfunc(x,ind,a,b,c) 
+.fi
+is valid for \fVoptim\fR if the external is \fVlist(costfunc,a,b,c)\fR and
+the call to \fVoptim\fR is then:
+.nf
+optim(list(costfunc,a1,b1,c1),....
+.fi
+An external can also be a Fortran routine : the calling sequence of the routine 
+is also imposed. Examples are given in the \fVdefault\fR directory.
+.SH SEE ALSO
+ode, optim, impl, dassl, intg, schur, gschur
+

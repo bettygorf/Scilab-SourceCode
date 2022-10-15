@@ -1,0 +1,31 @@
+
+xfpoly(2)                      Scilab Function                      xfpoly(2)
+NAME
+  xfpoly - fill a polygon
+
+CALLING SEQUENCE
+  xfpoly(xv,yv,[close])
+
+PARAMETERS
+
+  xv,yv  : two vectors of same size (the points of the polygon).
+
+  close  : integer. If close=1, the polyline is closed; default value is 0.
+
+DESCRIPTION
+  xfpoly fills a polygon with the current pattern.  If close is equal to 1 a
+  point is added to the polyline xv,yv to define a polygon.
+
+EXAMPLE
+  x=sin(2*%pi*(0:5)/5);
+  y=cos(2*%pi*(0:5)/5);
+  plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
+  xset("pattern",5)
+  xfpoly(x,y)
+  xset("default")
+
+SEE ALSO
+  xfpolys, xpoly, xpolys
+
+AUTHOR
+  J.Ph.C.

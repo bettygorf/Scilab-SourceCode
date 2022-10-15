@@ -1,0 +1,26 @@
+ 
+clear;lines(0);
+ 
+hz=iir(3,'bp','ellip',[.150.25],[.080.03]);
+ 
+[hzm,fr]=frmag(hz,256);
+ 
+plot2d(fr',hzm')
+ 
+xtitle('Discrete IIR filter band pass  0.15<fr<0.25 ',' ',' ');
+ 
+q=poly(0,'q');     //to express the result in terms of the0...
+ 
+hzd=horner(hz,1/q) //delay operator q=z^-1
+ hzd  =
+ 
+                                       2            3            4      
+    0.0476402 - 0.0423997q + 0.0013489q - 2.116D-17q - 0.0013489q       
+                   5            6                                       
+       + 0.0423997q - 0.0476402q                                        
+    ------------------------------------------------------------------  
+                              2            3            4            5  
+    1 - 1.646036q + 2.9974049q - 2.6216751q + 2.4255266q - 1.0411237q   
+                   6                                                    
+       + 0.5045339q                                                     
+ 

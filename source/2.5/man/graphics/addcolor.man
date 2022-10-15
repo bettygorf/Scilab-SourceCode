@@ -1,0 +1,29 @@
+.TH addcolor 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+addcolor - add new colors to the current colormap
+.SH CALLING SEQUENCE
+.nf
+new=addcolor(c)
+.fi
+.SH PARAMETERS
+.TP 5
+new
+:
+ids of the colors defined in c in the new color table.
+.TP
+c
+: matrix with 3 columns, RGB color definition.
+.SH DESCRIPTION
+\fVaddcolor\fR adds new colors given in the \fVc\fR argument to the
+current colormap. \fVc\fR must be a matrix with 3 columns 
+\fV[R G B]\fR \fVR\fR is red component, \fVG\fR is green component,
+\fVB\fR is blue component). Each entry in \fVc\fR must be a non
+negative number less or equal to 1.
+.LP
+The ids of the new colors are returned into \fVnew\fR.
+.LP
+If a color defined in \fVc\fR is already present in the current colormap
+it is not added.
+.SH SEE ALSO
+colormap

@@ -1,0 +1,34 @@
+.TH unsetmenu 3 "December 1995" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+unsetmenu - interactive button or menu or submenu de-activation
+.SH CALLING SEQUENCE
+.nf
+unsetmenu(button,[nsub]) 
+unsetmenu(gwin,button,[nsub])
+.fi
+.SH PARAMETERS
+.TP
+button
+: a character string. The button name
+.TP
+gwin
+: integer. The number of graphic window where the button is installed
+.TP
+nsub
+: integer. The number of submenu to de-activate (if any). If button
+has no sub-menu, \fVnsub\fR is ignored
+
+
+.SH DESCRIPTION
+The function allows the user to desactivate  buttons or menus created by
+\fVaddmenu\fR in the main or graphics windows command panels.
+.SH EXAMPLE
+.nf
+//addmenu('foo')
+//unsetmenu('foo')
+//unsetmenu('File',2)
+.fi
+.SH SEE ALSO
+delmenu, setmenu, addmenu
+

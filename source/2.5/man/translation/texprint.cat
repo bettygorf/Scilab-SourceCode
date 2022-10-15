@@ -1,0 +1,24 @@
+
+texprint(3)                    Scilab Function                    texprint(3)
+NAME
+  texprint - TeX output of Scilab object
+
+CALLING SEQUENCE
+  [text]= texprint(a)
+
+PARAMETERS
+
+  a         : Scilab object
+
+  text      : list
+
+DESCRIPTION
+  returns the Tex source code of the Scilab variable a.  a is a matrix (con-
+  stant, polynomial, rational) or a linear system (syslin list).
+
+EXAMPLE
+  s=poly(0,'s');
+  texprint([1/s,s^2])
+
+SEE ALSO
+  pol2tex, pol2str

@@ -1,0 +1,17 @@
+#include "../../Imake.incl"
+
+OBJS=  	fmttyp.o getfun.o\
+	btof.o ftob.o\
+	bschur.o bjac.o bintg.o bj2.o bydot.o boptim.o bgety.o bgetx.o\
+	badd.o bresid.o bfeval.o bresd.o bjacd.o\
+	cvwm.o cvdm.o atome.o iseye.o\
+	alloc.o back.o\
+	matz.o matc.o matzs.o\
+	expsum.o termf.o bsurf.o transl.o warn.o \
+	dldsp.o istrue.o isnum.o namstr.o basnms.o cmplxt.o \
+	intstr.o extlarg.o bcol.o bsolv.o bjsolv.o 
+
+FSRCS =$(OBJS:.o=.f)
+
+LibraryTarget($(PATHO)/system2.a ,$(OBJS))
+FortranDependTarget()

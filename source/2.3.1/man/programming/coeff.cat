@@ -1,0 +1,26 @@
+
+coeff(1)                       Scilab Function                       coeff(1)
+NAME
+  coeff - coefficients of matrix polynomial
+
+CALLING SEQUENCE
+  [C]=coeff(Mp [,v])
+
+PARAMETERS
+
+  Mp        : polynomial matrix
+
+  v         : integer (row or column) vector of selected degrees
+
+  C         : big matrix of the coefficients
+
+DESCRIPTION
+  C=coeff(Mp) returns in a big matrix C the coefficients of the polynomial
+  matrix Mp . C is partitioned as C=[C0,C1,...,Ck] where the Ci are arranged
+  in increasing order k = maxi(degree(Mp))
+
+  C=coeff(Mp,v) returns the matrix of coefficients with degree in v . (v is a
+  row or column vector).
+
+SEE ALSO
+  poly, degree

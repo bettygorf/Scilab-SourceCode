@@ -1,0 +1,12 @@
+	\def\dessin#1#2{
+	\begin{figure}[hbtp]
+	\begin{center}
+	%If you prefer cm use the followin two lines
+	%\setlength{\unitlength}{1mm}
+	%\fbox{\begin{picture}(52,52)
+	\fbox{\begin{picture}(150.0,148.4)
+	\special{psfile='DesBasile.ps.n' hscale=50.0 vscale=70.0}
+	\end{picture}}
+	\end{center}
+	\caption{\label{#2}#1}
+	\end{figure}}

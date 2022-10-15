@@ -1,0 +1,16 @@
+.TH IN_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+IN_f - Scicos Super Block regular input port
+.SH DESCRIPTION
+This block must only be used inside Scicos Super Blocks to represent
+a regular input port. The input size is determined by the context.
+.LP
+In a Super Block, regular input ports must be numbered from 1 to the
+number of regular input ports.
+.SH DIALOGUE PARAMETERS
+.TP 15
+Port number
+: an integer giving the port number.
+.SH SEE ALSO
+CLKIN_f, OUT_f, CLKOUT_f

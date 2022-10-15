@@ -1,0 +1,52 @@
+.TH save 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+save - saving variables in binary files
+.SH CALLING SEQUENCE
+.nf 
+save(filename [,x1,x2,...,xn])
+save(fd [,x1,x2,...,xn])
+.fi
+.SH PARAMETERS
+.TP 10
+filename 
+: character string containing the path of the file
+.TP 10
+fd
+: a file descriptor given by a call to mopen
+.TP 10
+xi
+: arbitrary Scilab variable(s) 
+.SH DESCRIPTION
+The \fVsave\fR command can be used to save Scilab current variables 
+ in a binary file. The file can be given either by its paths or
+by its descriptor previously given by \fVmopen\fR.
+.LP
+\fVsave(filename)\fV saves all current variables in the file defined
+by  \fVfilename\fR.
+.LP
+\fVsave(fd)\fV saves all current variables in the file defined
+by  the descriptor \fVfd\fR.
+.LP
+\fVsave(filename,x,y)\fR or \fVsave(fd,x,y)\fR saves only named
+variables \fVx\fR and \fVy\fR.
+.LP
+Saved  variables can be reloaded by the \fVload\fR command.
+.SH EXAMPLES
+.nf
+a=eye(2,2);b=ones(a);
+save('val.dat',a,b);
+clear a
+clear b
+load('val.dat','a','b');
+
+// sequential save into a file
+fd=mopen('TMPDIR/foo','wb')
+for k=1:4, x=k^2;save(fd,x,k),end
+mclose(fd)
+fd=mopen('TMPDIR/foo','rb')
+for i=1:4, load(fd,'x','k');x,k,end
+mclose(fd)
+.fi
+.SH SEE ALSO
+load, mopen

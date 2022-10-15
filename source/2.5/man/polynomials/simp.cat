@@ -1,0 +1,47 @@
+
+SIMP(G)                        Scilab Function                        SIMP(G)
+NAME
+  simp - rational simplification
+
+CALLING SEQUENCE
+  [N1,D1]=simp(N,D)
+  H1=simp(H)
+
+PARAMETERS
+
+  N,D  : real polynomials or real matrix polynomials
+
+  H    : rational matrix (i.e matrix with entries n/d ,n and d real polynomi-
+       als)
+
+DESCRIPTION
+  [n1,d1]=simp(n,d) calculates two polynomials n1 and d1 such that n1/d1 =
+  n/d.
+
+  If N and D are polynomial matrices the calculation is performed element-
+  wise.
+
+  H1=simp(H) is also valid (each entry of H is simplified in H1).
+
+  Caution:
+
+  -no threshold is given i.e. simp cannot forces a simplification.
+
+  -For linear dynamic systems which include integrator(s) simplification
+  changes the static gain. (H(0) for continuous systems or H(1) for discrete
+  systems)
+
+  -for complex data, simp returns its input(s).
+
+  -rational simplification is called after nearly each operations on ratio-
+  nals. It is possible to toggle simplification on or off using simp_mode
+  function.
+
+EXAMPLES
+  s=poly(0,'s');
+  [n,d]=simp((s+1)*(s+2),(s+1)*(s-2))
+
+  simp_mode(%F);hns=s/s
+  simp_mode(%T);hns=s/s
+SEE ALSO
+  roots, trfmod, poly, clean, simp_mode

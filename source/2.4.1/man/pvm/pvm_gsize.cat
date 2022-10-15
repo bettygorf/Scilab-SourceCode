@@ -1,0 +1,26 @@
+
+pvm_gsize(1)                   Scilab function                   pvm_gsize(1)
+NAME
+  pvm_gsize -  returns the number of members presently in the named group.
+
+CALLING SEQUENCE
+  [nb] = pvm_gsize(group)
+
+PARAMETERS
+
+  group
+       : string, string group name of an existing group.
+
+  nb  : integer, returning the number of members presently in the group.
+
+DESCRIPTION
+  pvm_gsize returns the size of the group named group.  If there is an error
+  nb will be negative.
+
+  Since groups can change dynamically in PVM 3.0, this routine can only
+  guarantee to return the instantaneous size of a given group.
+EXAMPLE
+  nb_worker = pvm_gsize( "worker" )
+
+SEE ALSO
+  pvm_joingroup

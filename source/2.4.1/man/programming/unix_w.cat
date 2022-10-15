@@ -1,0 +1,26 @@
+
+unix_w(1)                      Scilab Function                      unix_w(1)
+NAME
+  unix_w - shell (sh) command execution, output redirected to scilab window
+
+CALLING SEQUENCE
+  rep=unix_w(cmd)
+
+PARAMETERS
+
+  cmd       : a character string
+
+  rep       : a column vector of character strings
+
+DESCRIPTION
+  Sends a string cmd to Unix for execution by the sh shell. The standard out-
+  put is redirected to scilab window.  Unix execution errors are trapped;
+  *NOTE* that only the last shell command error is reported when a list of
+  command separated by ";" is sent: this is not recommended.
+
+EXAMPLE
+  if MSDOS then unix_w("dir "+WSCI+"emos");
+  else unix_w("ls $SCI/demos"); end
+
+SEE ALSO
+  edit, manedit, unix_g, unix_s, unix_x, unix

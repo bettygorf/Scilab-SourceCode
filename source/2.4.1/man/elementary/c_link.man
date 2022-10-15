@@ -1,0 +1,25 @@
+.TH c_link 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+c_link - check dynamic link
+.SH CALLING SEQUENCE
+.nf
+c_link('routine-name')
+[test,ilib]=c_link('routine-name')
+test=c_link('routine-name',num)
+.fi
+.SH DESCRIPTION
+\fVc_links\fR is a boolean function which checks if the routine 
+\fV'routine-name'\fR is currently linked. This function returns 
+a boolean value true or false. When used with two return values,
+the function \fVc_link\fR returns a boolean value in \fVtest\fR 
+and the number of the shared library which contains \fV'routine-name'\fR 
+in \fVilib\fR (when \fVtest\fR is true).
+.SH EXAMPLE
+.nf
+if c_link('foo') then link('foo.o','foo');end
+// to unlink all the shared libarries which contain foo
+a=%t; while a ;[a,b]=c_link('foo'); ulink(b);end
+.fi
+.SH SEE ALSO
+link, fort

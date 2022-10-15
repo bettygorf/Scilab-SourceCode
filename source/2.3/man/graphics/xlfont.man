@@ -1,0 +1,46 @@
+.TH xlfont 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xlfont - load a font in the graphic context
+.SH CALLING SEQUENCE
+.nf
+xlfont(font-name,font-id)
+.fi
+.SH PARAMETERS
+.TP 10
+font-name
+: string (name of the font family)
+.TP 10
+font-id
+: integer 
+.SH DESCRIPTION
+This function is used to load an X11 font at different sizes 
+inside the graphic context.
+.TP
+font-name
+: can be of 2 types
+.RS
+.TP
+-
+if it contains the character '%', it is supposed to be an 
+X11 font name with %s in the size field of the name, for example
+ \fVfont-name="-b&h-lucidabright-demibold-r-normal--%s-*-75-75-p-*-iso8859-1"\fR
+.TP
+-
+if it doesn't contain the character '%' ,it is supposed 
+to be an alias name and the fonts aliased by \fVfont-name08,...,font-name24\fR are 
+loaded.
+.TP
+font-id
+: the font \fVfont-name\fR at sizes 08 10 12 14 18 24
+is loaded in the graphic context with the Scilab Id \fVfont-id\fR.
+.RE
+.LP
+.SH SEE ALSO
+xset
+.SH REFERENCE
+X11 Font manual.
+.SH AUTHOR
+J.Ph.C..
+
+

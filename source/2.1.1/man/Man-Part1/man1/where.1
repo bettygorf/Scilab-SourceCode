@@ -1,0 +1,27 @@
+.TH where 1 "May 1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+where - get current instruction calling tree
+.SH CALLING SEQUENCE
+.nf
+[lin,mac]=where()
+.fi
+.SH PARAMETERS
+.TP 10
+lin
+: column vector of integer
+.TP
+mac
+: column vector of strings
+.SH DESCRIPTION
+returns \fVlin\fR and \fVmac\fR such as current instruction has been
+called by the lin(1) line of macro mac(1),
+mac(1) has been called by the lin(2) line of macro mac(2)
+and so on
+
+mac(i) is in general the name of a macro but it may also be
+"exec" or "execstr" if instruction lies in ans exec file or an execstr
+instruction 
+.SH SEE ALSO
+whereami pause
+.SH EXAMPLE

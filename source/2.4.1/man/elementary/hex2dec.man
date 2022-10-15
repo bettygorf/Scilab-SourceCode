@@ -1,0 +1,22 @@
+.TH hex2dec G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+hex2dec -   converts hexadecimal representation of integers to numbers
+.SH CALLING SEQUENCE
+.nf
+d=hex2dec(h)
+.fi
+.SH PARAMETERS
+.TP
+d 
+: matrix of  integers
+.TP
+h
+: matrix of character strings corresponding to hexadecimal representation
+.SH DESCRIPTION
+\fVhex2dec(x)\fR returns the  matrix of numbers corresponding to the  hexadecimal representation.
+.SH EXAMPLE
+.nf
+hex2dec(['ABC','0','A'])
+.fi
+

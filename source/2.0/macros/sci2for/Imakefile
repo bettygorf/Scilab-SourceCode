@@ -1,0 +1,22 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+NAME=s2flib
+NAM=sci2for
+
+MACROS=	adderr.sci basparam.sci cla2for.sci cod2for.sci \
+	exp2for.sci f_argn.sci f_cos.sci f_ent.sci f_error.sci f_eye.sci \
+	f_maxi.sci f_mini.sci f_norm.sci f_sin.sci f_size.sci forparam.sci \
+	freewrk.sci getwrk.sci indent.sci indentfor.sci ins2for.sci \
+	isnum.sci lin2for.sci makeargs.sci mltopsfor.sci \
+	modlst.sci  op2for.sci outname.sci setparam.sci f_abs.sci newlab.sci\
+	f_exp.sci f_gener.sci typconv.sci warning.sci \
+	get2f.sci num2f.sci func2f.sci str2f.sci getlocal.sci gencall.sci \
+	genif.sci f_cond.sci f_rank.sci f_svd.sci dclfun.sci callfun.sci
+
+
+OBJ=$(MACROS:.sci=.bin)
+MACROSN=$(MACROS:.sci=)
+
+SciLibTarget($(OBJ))
+NormalScilabObjectRule()
+DependTarget()

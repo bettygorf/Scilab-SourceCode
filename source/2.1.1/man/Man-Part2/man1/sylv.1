@@ -1,0 +1,29 @@
+.TH sylv G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+sylv - Sylvester equation.
+.SH CALLING SEQUENCE
+.nf
+sylv(A,B,C,flag)
+.fi
+.SH PARAMETERS
+.TP 12
+A,B,C
+: three real matrices of appropriate dimensions.
+.TP
+flag
+character string (\fV'c'\fR or \fV'd'\fR)
+.SH DESCRIPTION
+.Vb X = sylv(A,B,C,'c')
+computes \fVX\fR, solution of the "continuous time" Sylvester equation
+.nf
+A*X+X*B=C 
+.fi
+.Vb X=sylv(A,B,C,'d') 
+computes \fVX\fR, solution of the "discrete time" Sylvester equation
+.nf
+A*X*B-X=C
+.fi
+.SH SEE ALSO
+lyap.
+

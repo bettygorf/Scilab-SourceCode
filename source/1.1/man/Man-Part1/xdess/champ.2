@@ -1,0 +1,43 @@
+.TH champ 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so man1/sci.an
+.SH NAME
+champ - draw a 2d vector field 
+.SH CALLING SEQUENCE
+.nf
+champ(fx,fy [,arfact,rect,flag])
+.fi
+.SH PARAMETERS
+.TP 10
+fx
+: a matrix which describes the x component of the vector field. 
+.TP 
+fy
+: a matrix which describes the y component of the vector field. 
+.TP
+arfact
+: an optional argument of type real which gives a scale factor for the display of the arrow heads on the plot (default value is 1.0)
+.TP
+rect
+: a vector  rect=[xmin,ymin,xmax,ymax] which gives the boundaries
+.TP
+flag 
+: a string of length one.
+.RS
+.IP -
+if strflag[0] == '0' No axis drawn around the field
+.IP -
+if strflag[0] == '1' then an axis is drawn the value of vrect is used
+to get the values to put on the axis
+.IP -
+if strflag[0] == '2' Then an axis is drawn and the values of previous
+call to a drawing routine are used to get the values of the 
+boundaries to use.
+.RE
+.SH EXAMPLE
+enter the command \fVchamp()\fR to see a demo 
+.SH AUTHOR
+J.Ph.C.
+
+
+
+

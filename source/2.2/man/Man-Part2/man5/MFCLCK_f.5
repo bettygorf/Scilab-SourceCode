@@ -1,0 +1,31 @@
+.TH MFCLCK_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so man1/sci.an
+.SH NAME
+MFCLCK - Scicos basic block for frequency division of event clock
+.SH DESCRIPTION
+This block is used in the Super Block MCLOCK. The input event is
+directed once evry n times to output 1 and the rest of the time
+to output 2. There is a delay of "Basic period" in the transmission
+of the event. If this period >0 then the second output is initially
+fired. It is not if this period=0. In the latter case, the input
+is driven by an event clock and in the former case, feedback can
+be used.
+.SH DIALOG PARAMETERS
+.TP 15
+Block label
+: This has no effect on this Super Block
+.TP
+Basic period
+: scalar.
+.TP
+n 
+: an intger >1. 
+.SH SEE ALSO
+MCLOCK_f CLOCK_f
+
+
+
+
+
+
+

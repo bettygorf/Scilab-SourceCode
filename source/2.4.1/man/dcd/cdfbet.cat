@@ -1,0 +1,45 @@
+
+cdfbet(1)                      Scilab Function                      cdfbet(1)
+NAME
+  cdfbet - cumulative distribution function Beta distribution
+
+CALLING SEQUENCE
+  [P,Q]=cdfbet("PQ",X,Y,A,B)
+  [X,Y]=cdfbet("XY",A,B,P,Q)
+  [A]=cdfbet("A",B,P,Q,X,Y)
+  [B]=cdfbet("B",P,Q,X,Y,A)
+
+PARAMETERS
+
+  P,Q,X,Y,A,B
+            : five real vectors of the same size.
+
+  P,Q (Q=1-P)
+            : The integral from 0 to X of the beta distribution (Input range:
+            [0, 1].)
+
+  Q         : 1-P
+
+  X,Y (Y=1-X)
+            : Upper limit of integration of beta density (Input range: [0,1],
+            Search range: [0,1]) A,B : The two parameters of the beta density
+            (input range: (0, +infinity), Search range: [1D-300,1D300] )
+
+DESCRIPTION
+  Calculates any one parameter of the beta distribution given values for the
+  others (The beta density is proportional to t^(A-1) * (1-t)^(B-1).
+
+  Cumulative distribution function  (P)  is calculated directly by code asso-
+  ciated with the following reference.
+
+  DiDinato, A. R. and Morris,  A.   H.  Algorithm 708: Significant Digit Com-
+  putation of the Incomplete  Beta  Function Ratios.  ACM Trans. Math.
+  Softw. 18 (1993), 360-373.
+
+  Computation of other parameters involve a seach for a value that produces
+  the desired  value  of P.   The search relies  on  the monotinicity of P
+  with the other parameter.
+
+  From DCDFLIB: Library of Fortran Routines for Cumulative Distribution Func-
+  tions, Inverses, and Other Parameters (February, 1994) Barry W. Brown,
+  James Lovato and Kathy Russell. The University of Texas.

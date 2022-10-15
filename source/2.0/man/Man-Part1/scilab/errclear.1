@@ -1,0 +1,15 @@
+.TH errclear 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+errclear - error clearing
+.SH CALLING SEQUENCE
+.nf
+errclear([n])
+.fi 
+.SH DESCRIPTION
+clears the action (error-handler) connected to error of type  \fVn\fR.
+.LP
+If \fVn\fR is positive, it is the number of the cleared error ; otherwise
+all errors are cleared (default case)
+.SH SEE ALSO
+errcatch

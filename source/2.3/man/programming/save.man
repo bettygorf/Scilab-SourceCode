@@ -1,0 +1,24 @@
+.TH save 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+save - saving variables
+.SH CALLING SEQUENCE
+.nf 
+save(file-name, [,x1,..])
+.fi
+.SH PARAMETERS
+.TP 10
+file-name 
+: character string
+.TP 10
+xi
+: arbitrary Scilab variable(s)
+.SH DESCRIPTION
+save('filename') saves all current variables on the file \fVfilename\fR.
+.LP
+\fVsave(file-name,x,y)\fR saves only \fVx,y\fR.
+.LP
+Saved  variables are loaded by the \fVload\fR command 
+.SH SEE ALSO
+load
+

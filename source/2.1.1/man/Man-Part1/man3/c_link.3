@@ -1,0 +1,19 @@
+.TH c_link 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+c_link - check dynamic link
+.SH CALLING SEQUENCE
+.nf
+c_link('routine-name')
+.fi
+.SH DESCRIPTION
+\fVc_links\fR is a boolean function which checks if the routine \fV'routine-name'\fR
+is currently linked. This function returns a boolean value true or false.
+.SH EXAMPLE
+.nf
+if ~c_link('foo') then link('foo.o','foo');end
+.fi
+.SH SEE ALSO
+link, fort
+
+

@@ -1,0 +1,28 @@
+.TH asinhm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+asinhm - matrix hyperbolic inverse sine
+.SH CALLING SEQUENCE
+.nf
+t=asinhm(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x,t
+: real or complex square matrix
+.SH DESCRIPTION
+asinhm is the matrix hyperbolic  inverse sine  of the matrix x.
+Uses the formula \fVt=logm(x+sqrtm(x*x+eye()))\fR.
+Results may be not reliable for non-symmetric matrix.
+.SH EXAMPLE
+.nf
+A=[1,2;2,3]
+sinhm(asinhm(A))
+.fi
+.SH SEE ALSO
+asinh, logm, sqrtm
+
+
+
+
+

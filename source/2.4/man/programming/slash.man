@@ -1,0 +1,29 @@
+.TH slash 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+slash (/) - right division and feed back
+.SH DESCRIPTION
+Right division.  \fVx=A / b\fR is the solution of \fVx*b=A\fR .
+.LP
+\fVb/a = (a' \\ b')'\fR .
+.LP
+\fVa ./  b\fR is the matrix with entries \fVa(i,j)/ b(i,j)\fR.
+If \fVb\fR is scalar (1x1 matrix) this operation is the same
+as \fV a./b*ones(a)\fR. (Same convention if \fVa\fR is a scalar).
+.LP
+Remark that \fV123./b\fR is interpreted as \fV(123)./b\fR. In this
+cases dot is part of the operator, not of the number.
+.LP
+Backslash stands for left division.
+.LP
+System feed back.  \fVS=G/.K\fR evaluates \fVS=G*(eye+K*G)^(-1)\fR
+this operator avoid simplification problem.
+.LP
+Remark that \fVG/.5\fR is interpreted as \fVG/(.5)\fR. In such 
+cases dot is part of the number, not of the operator.
+
+.LP
+Comment \fV//\fR comments a line i.e lines which begin by \fV//\fR are
+ignored by the interpreter.
+.SH SEE ALSO
+inv, percent, backslash, ieee

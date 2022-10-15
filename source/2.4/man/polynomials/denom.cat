@@ -1,0 +1,23 @@
+
+denom(8)                       Scilab Function                       denom(8)
+NAME
+  denom - denominator
+
+CALLING SEQUENCE
+  den=denom(r)
+
+PARAMETERS
+
+  r    : rational or polynomial or constant matrix.
+
+  den  : polynomial matrix
+
+DESCRIPTION
+  den=denom(r) returns the denominator of a rational matrix.
+
+  Since rationals are internally represented as
+  r=list(['r','num','den','dt'],num,den,[]), denom(r) is the same as r(3) or
+  r('den') .
+
+SEE ALSO
+  numer

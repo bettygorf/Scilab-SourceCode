@@ -1,0 +1,13 @@
+ 
+clear;lines(0);
+ 
+x=[1,%i,-1,%i]
+ x  =
+ 
+!   1.    i    - 1.    i   !
+ 
+phasex=atan(imag(x),real(x))
+ phasex  =
+ 
+!   0.    1.5707963    3.1415927    1.5707963 !
+ 

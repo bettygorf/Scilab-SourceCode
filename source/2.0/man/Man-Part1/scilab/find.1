@@ -1,0 +1,34 @@
+.TH find 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+find - selection of indices
+.SH CALLING SEQUENCE
+.nf
+[ii]=find(x)
+[ir,ic]=find(x)
+.fi
+.SH PARAMETERS
+.TP
+x 
+: a boolean vector or a boolean matrix
+.TP
+ii, ir, ic
+: integer vectors of indices
+.SH DESCRIPTION
+If \fVx\fR is a boolean matrix,
+.LP
+\fVii=find(x)\fR returns the vector
+of indices \fVi\fR for which \fVx(i)\fR is "true", and 
+.LP
+\fV[ir,ic]=find(x)\fR returns two vectors of indices \fVir\fR (for rows) and \fVic\fR (for columns)
+such that \fVx(il(n),ic(n))\fR is "true"
+.SH EXAMPLE
+.nf
+A=rand(1,20);
+w=find(A<0.5);
+A(w)
+.fi
+returns the vector made of entries of \fVA\fR which are \fV < 0.5\fR
+.SH SEE ALSO
+boolean
+

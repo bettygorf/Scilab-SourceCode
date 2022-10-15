@@ -1,0 +1,6 @@
+clear;lines(0);
+contour2d(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
+// changing the format of the printing of the levels
+xset("fpf","%.2f")
+xbasc()
+contour2d(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])

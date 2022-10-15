@@ -1,0 +1,132 @@
+
+
+
+plot3d(2)                      Scilab Function                      plot3d(2)
+
+
+
+
+
+
+NAME
+  plot3d - surface plotting
+
+CALLING SEQUENCE
+  plot3d(x,y,z,theta,alpha,leg,flag,ebox)
+  plot3d(x,y,z,theta,alpha,leg,[flag,ebox)]
+
+PARAMETERS
+
+  x,y            : matrices of sizes (1,n1) and (1,n2) (point coordinates)
+
+  z              : matrix of size (n1,n2) ( z(i,j) : value of f at the point
+                 (x(i),y(j))
+
+  theta, alpha   : real values giving in degree the spherical coordinates of
+                 the observation point
+
+  leg            : string (captions for each axis. this is string with @ as a
+                 field separator, for example : "X@Y@Z")
+
+  flag           : is a real vector of size three flag=[mode,type,box]
+
+                 mode
+                   : string (treatment of hidden parts)
+
+                   mode >=2
+                     the hidden parts of the surface are removed and the sur-
+                     face is painted in gray (from low gray to black accord-
+                     ing to the value of mode)
+
+                   mode = 1
+                     the hidden parts of the surface are drawn
+
+                   mode <= 0
+                     only the shadow of the surface is painted with a gray
+                     level depending on mode
+
+                 type
+                   : scaling
+
+                   if type = 0    the plot is made using the current 3D scal-
+                                  ing ( set by a previous call to param3d,
+                                  plot3d, contour, plot3d1)
+
+                   if type = 1    the boundaries are specified by the value
+                                  of the parameter
+
+                   ebox=[xmin,xmax,ymin,ymax,zmin,zmax]
+
+                   else the boundaries are computed with the given datas.
+
+                 box
+                   : frame display around the plot.
+
+                   box=0
+                     nothing is drawn around the plot
+
+                   box=1
+                     unimplemented ( like box=0 )
+
+                   box=2
+                     only the axes behind the surface are drawn
+
+                   box=3
+                     a box surrounding the surface is drawn and captions are
+                     added
+
+                   box=4
+                     a box surrounding the surface is drawn, captions are
+                     added and axes too.
+
+DESCRIPTION
+  Draw the surface f(x,y) defined by a matrix of coordinates.
+
+  Enter the command  plot3d() to see a demo.
+
+EXAMPLE
+  plot3d(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
+
+AUTHOR
+  J.Ph.C.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,37 @@
+.TH xarrows 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xarrows - draw a set of arrows
+.SH CALLING SEQUENCE
+.nf
+[]=xarrows(nx,ny,[arsize])
+.fi
+.SH PARAMETERS
+.TP
+nx
+: real matrix of size (n1,n2)
+.TP
+ny
+: real matrix of size (n1,n2)
+.TP
+arsize
+: real scalar (size of the arrow head in points).
+.LP
+.SH DESCRIPTION
+This function draws a set of arrows which are given by the vector or
+matrices \fVnx\fR and \fVny\fR.
+The ith arrow is defined by \fV(nx(i),ny(i))-->(nx(i+1),ny(i+1))\fR.
+\fVnx, ny\fR can also be matrices :
+.nf
+nx=[ xi_1,x1_2,...; xf_1,xf_2,...]
+ny=[ yi_1,y1_2,...; yf_1,yf_2,...]
+.fi
+in which case the arrows are  \fV(xi_k,yi_k)->(xf_k,yf_k)\fR
+.LP
+This function uses the current graphic scale 
+which can be set by calling a high level drawing function such as \fVplot2d\fR.
+.SH SEE ALSO
+plot2d, xchange.
+.SH AUTHOR
+J.Ph.C..
+

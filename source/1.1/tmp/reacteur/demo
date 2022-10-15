@@ -1,0 +1,37 @@
+// Script de demo
+
+// Exemples boucle ouverte
+sys = "RC"
+
+// Conditions initiales et duree de la simulation
+x0 = [0.4; 12]
+tf = 20
+// La commande doit etre une fonction de t
+u = "3*ones(t)-0.7*t"
+xf = simul(sys,tf,x0,u)
+// ou une string contenant un nombre
+u = "0"
+xf = simul(sys,tf,x0,u)
+
+// Lineaire tangent autour d'un equilibre
+xd = RC(0,xf,0)
+[A,B] = linmod(sys,xf,0)
+
+// Portrait de phase
+phaser(sys,0)
+
+// Diagramme de bifurcation
+bifur(sys)
+
+//Diagramme thermique
+diather()
+
+// Retour proportionnel 
+// Pour choisir le gain, editer le fichier make_bf
+exec('make_bf")
+%a=-10;  
+[xd,kp] = RCp(0,x0,2)
+xf = simul("RCp",tf,x0,"4")
+
+// etc (tout marche comme pour la boucle ouverte)
+

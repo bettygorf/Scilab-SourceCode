@@ -1,0 +1,14 @@
+
+tilda(1)                       Scilab Function                       tilda(1)
+NAME
+  tilda (~) - logical not
+
+CALLING SEQUENCE
+  ~m
+
+PARAMETERS
+
+  m         : boolean matrix
+
+DESCRIPTION
+  ~m is the negation of m.

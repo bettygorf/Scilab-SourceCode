@@ -1,0 +1,98 @@
+.TH xget 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xget - get current values of the graphics context
+.SH CALLING SEQUENCE
+.nf
+[x1]=xget(str,[flag])
+xget()
+.fi
+.SH PARAMETERS
+.TP 10
+str
+: string.
+.TP
+flag
+: optional. Set to 1 gives a verbose mode.
+.SH DESCRIPTION
+This function is used to get values from the graphics context
+on the topic specified by the string \fVstr\fR. When called with
+no argument, a choice menu is created showing the current values and 
+changes can be performed through toggle buttons.
+.TP
+number=xget("alufunction")
+: Get the logical function number used for drawing.
+See \fVxset\fR.
+.TP
+str=xset("auto clear")
+: Get the auto clear status (\fV"on"\fR or \fV"off"\fR).
+.TP
+color=xget("background")
+: Get the background color of the current graphics window.
+.TP
+rect=xget("clipping") 
+:  Get the clipping
+zone as a rectangle rect=[x,y,w,h] (Upper-Left point Width Height).
+.TP
+cmap=xget("colormap")
+: Get the colormap used for the current graphics window as a m x 3 RGB matrix.
+.TP
+dash=xget("dashes")
+: Get the dash style dash=[dash_number] where dash_number is the id
+of the dash.
+.TP
+font=xget("font")
+: Get font=[fontid,fontsize], the current font and its current size.
+.TP
+color=xget("foreground")
+: Get the foreground color of the current graphics window.
+.TP
+str=xget("fpf")
+: Get the floating point format for number display in
+contour functions. Note that \fVstr\fR is \fV""\fR when default format is used.
+.TP
+color=xget("hidden3d")
+: Get the color number for hidden faces in plot3d.
+.TP
+pat=xget("lastpattern")
+: Get the id of the last available pattern or color, with the current 
+colormap of 
+the current window. In fact \fVpat+1\fR and \fVpat+2\fR are also available and
+stand respectively for black and white pattern. 
+.TP
+type=xget("line mode")
+: Get the line drawing mode. 
+type=1 is absolute mode and type=0 is relative mode.
+(Warning: the mode type=0 is has bugs)
+.TP
+mark=xget("mark")
+: Get the current mark and current mark size mark=[markid,marksize].
+.TP
+pat=xget("pattern")
+: Get the current pattern or the current color. \fVpat\fR is an integer 
+in the range \fV[1,last]\fR. When one uses black and white, 
+0 is used for black filling and 
+\fVlast\fR for white. The value of \fVlast\fR can be obtained with 
+\fVxget("lastpattern")\fR. 
+.TP
+value=xget("thickness")
+: Get the thickness of lines in pixel (0 and 1 have the same meaning: 1 pixel thick).
+.TP
+flag=xget("use color")
+: Get the flag 0 (use black and white) or 1 (use colors). See \fVxset\fR.
+.TP
+[x,y]=xget("viewport")
+: Get the current postion of the visible part of graphics in the panner.
+.TP
+dim=xget("wdim")
+: Get the width and the height of the current graphics window dim=[width,height].
+.TP
+win=xget("window")
+: Get the current window number \fVwin\fR.
+.TP
+pos=xget("wpos",x,y);
+: Get the position of the upper left point of the graphics window pos=[x,y].
+.SH SEE ALSO
+xset, colormap
+.SH AUTHOR
+J.Ph.C.

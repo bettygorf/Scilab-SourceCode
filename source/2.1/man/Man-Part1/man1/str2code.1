@@ -1,0 +1,21 @@
+.TH str2code 1 "May 1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+str2code - return scilab integer codes associated with a character string
+.SH SYNOPSIS
+.nf
+c=str2code(str)
+.fi
+.SH PARAMETERS
+.TP 
+str
+: a character string
+.TP
+c
+: vector of character integer codes
+.SH DESCRIPTION
+Return c such that c(i) is the scilab integer code of part(str,i))
+.SH EXAMPLE
+str2code('Scilab')
+.SH SEE ALSO
+code2str

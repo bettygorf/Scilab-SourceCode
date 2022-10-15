@@ -1,0 +1,34 @@
+.TH htrianr 8 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+htrianr - triangularization of polynomial matrix
+.SH CALLING SEQUENCE
+.nf
+[Ar,U,rk]=htrianr(A)
+.fi
+.SH PARAMETERS
+.TP
+A
+: polynomial matrix
+.TP
+Ar
+: polynomial matrix
+.TP
+U
+: unimodular polynomial matrix
+.TP
+rk
+: integer, normal rank of \fVA\fR
+.SH DESCRIPTION
+triangularization of polynomial matrix \fVA\fR.
+.LP
+\fVA\fR is \fV[m,n]\fR ,   \fVm <= n\fR.
+.LP
+\fVAr=A*U\fR
+.LP
+Warning: there is an elimination of "small" terms (see function code).
+.SH SEE ALSO
+hrmt
+
+
+

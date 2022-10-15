@@ -1,0 +1,29 @@
+
+intl(1)                        Scilab Function                        intl(1)
+NAME
+  intl - Cauchy integral
+
+CALLING SEQUENCE
+  [y]=intl(a,b,z0,r,f)
+
+PARAMETERS
+
+  z0          : complex number
+
+  a,b         : two real numbers
+
+  r           : positive real number
+
+  f           : "external" function
+
+DESCRIPTION
+  If f is a complex-valued function, intl(a,b,z0,r,f) computes the integral
+  of f(z)dz along the curve in the complex plane defined by z0 + r.exp(%i*t)
+  for a<=t<=b .(part of the circle with center z0 and radius r with phase
+  between a and b)
+
+SEE ALSO
+  intc
+
+AUTHOR
+  F. D.

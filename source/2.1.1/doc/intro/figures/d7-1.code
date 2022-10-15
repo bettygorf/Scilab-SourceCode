@@ -1,0 +1,4 @@
+xinit('d7-1.ps');
+  t=(0:0.05:1)';
+  ct=cos(2*%pi*t);
+  plot2d(t,ct)

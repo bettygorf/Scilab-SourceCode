@@ -1,0 +1,26 @@
+.TH hank 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+hank - hankel matrix
+.SH CALLING SEQUENCE
+.nf
+[hk]=hank(m,n,cov)
+.fi
+.SH PARAMETERS
+.TP
+m
+: number of bloc-rows
+.TP
+n
+: number of bloc-columns
+.TP
+cov
+: sequence of covariances; it must be given as :[R0 R1 R2...Rk]
+.TP
+hk
+: computed hankel matrix
+.SH DESCRIPTION
+this macro builds the hankel matrix of size \fV(m*d,n*d)\fR
+from the covariance sequence of a vector process
+.SH AUTHOR
+G. Le V.

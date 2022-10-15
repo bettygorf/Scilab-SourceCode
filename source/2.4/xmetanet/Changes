@@ -1,0 +1,14 @@
+Version 3.0.2:
+**************
+
+Item "Quit Modify Mode" of menu "Modify" deleted. Use "Quit" item instead.
+
+========================================================================
+Version 3.0.1:
+**************
+
+Synchrone mode added.
+
+New fonction metanet_sync
+
+========================================================================

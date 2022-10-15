@@ -1,0 +1,132 @@
+
+
+
+fusee(1)                       Scilab Function                       fusee(1)
+
+
+
+
+
+
+NAME
+  fusee - a set of Scilab macro for a landing rocket problem
+
+FUSEE
+  [xdot]=fusee(t,x)
+  Dynamical motion equation for the rocket
+
+FINIT
+  finit()
+  Initialises the following parameters for rocket landing.
+  k    : The acceleration of the rocket engines
+  gamma
+       : The moon gravity acceleration.
+  umax : the gaz ejection flow out.
+  mcap : the mass of the space capsule.
+  cpen : penalisation in the cost function of the final state.
+FUSEEGRAD
+  [ukp1]=fuseegrad(niter,ukp1,pasg)
+  niter
+       : number of gradient iteration steps.
+  ukp1 : initial control value ( vector of sie 135 )
+  pasg : the gradient step value.
+
+DESCRIPTION
+  Iterate a gradient method and returns the computed control.
+
+FUSEEP
+  [pdot]=fuseep(t,p)
+
+DESCRIPTION
+  adjoint equation for the landing rocket problem.
+
+POUSSE
+  [ut]=pousse(t)
+  return the value of a piece wise constant control build on the discrete
+  control uk
+
+UBANG
+  [uk]=ubang(tf,tcom)
+  returns a bang-bang control, 0 form time 0 to tcom and 1 form tcom to tf.
+
+FCOUT
+  [c,xk,pk,ukp1]=fcout(tf,uk,pasg)
+
+DESCRITION
+  optimise the following cost function by gradient iterations.
+  c = -m(tf) + C*( h(tf)**2 + v(tf)**2)
+
+
+
+SFUSEE
+  []=sfusee(tau,h0,v0,m0,Tf)
+
+
+
+
+DESCRIPTION
+  computes the rocket trajectory when a bang-bang control is used tau is the
+  commutation time.
+  h0   : The initial position (high)
+  v0   : The initial speed ( negative if the rocket is landing )
+  m0   : The total initial mass ( capsule and fuel).
+  Tf   : Time horizon.
+EQUAD
+
+DESCRIPTION
+  [xk,pk]=equad(tf,uk)
+  Computes the state and adjoint state of the rocket system for a given con-
+  trol ur.
+
+TRAJ
+  [xt]=traj(t)
+  returns a piece wise value of the mass evolution.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

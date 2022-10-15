@@ -1,0 +1,66 @@
+
+
+
+svplot(1)                      Scilab Function                      svplot(1)
+
+
+
+
+
+
+NAME
+  svplot - singular-value sigma-plot
+
+CALLING SEQUENCE
+  [SVM]=svplot(sl,[w])
+
+PARAMETERS
+
+  sl   : syslin list
+
+  w    : real vector (optional parameter)
+
+DESCRIPTION
+  computes for the system sl=(A,B,C,D) the singular values of its transfer
+  function matrix:
+               G(jw) = C(jw*I-A)B^-1+D
+  or
+               G(exp(jw)) = C(exp(jw)*I-A)B^-1+D
+  evaluated over the frequency range specified by w.
+
+  sl is a syslin list representing the system [A,B,C,D] in state-space form.
+
+  The i-th column of the output matrix SVM contains the singular values of
+  G(exp(jw)) for the i-th frequency value w(i).
+  SVM = svplot(sl)
+  is equivalent to
+  SVM = svplot(sl,logspace(-3,3))  (continuous)
+  SVM = svplot(sl,logspace(-3,%pi)) (discrete)
+
+EXAMPLE
+  x=logspace(-3,3);
+  y=svplot(ssrand(2,2,4));
+  xbasc();plot2d([x',x'],20*log(y')/log(10));
+  xtitle("Singular values (db)");
+  xbasc();gainplot(x,y);
+
+AUTHOR
+  F.D
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

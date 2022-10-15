@@ -1,0 +1,30 @@
+
+logm(1)                        Scilab Function                        logm(1)
+NAME
+  logm - square matrix logarithm
+
+CALLING SEQUENCE
+  y=logm(x)
+
+PARAMETERS
+
+  x         : square matrix
+
+DESCRIPTION
+   logm(x) is the matrix logarithm of x.  The result is complex if x is not
+  positive or definite positive.  If x is a  symmetric matrix, then calcula-
+  tion is made by schur form. Otherwise, x is assumed diagonalizable. One has
+  expm(logm(x))=x
+
+EXAMPLE
+  A=[1,2;3,4];
+  logm(A)
+  expm(logm(A))
+  A1=A*A';
+  logm(A1)
+  expm(logm(A1))
+  A1(1,1)=%i;
+  expm(logm(A1))
+
+SEE ALSO
+  expm, log

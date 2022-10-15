@@ -1,0 +1,56 @@
+.TH intppty 1 "Nov 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+intppty - set interface argument passing properties 
+.SH CALLING SEQUENCE
+.nf
+funs=intppty()
+intppty(fun)
+.fi
+.SH PARAMETERS
+.TP 10
+fun
+: integer an interface number (see funptr)
+.TP 10
+funs
+: integer vector, vector of interface number (see funptr)
+.SH DESCRIPTION
+The interface programs may be written in 2 different ways for the mode
+of function argument passing.
+.LP
+In the first and default way, the arguments are passed by value.
+With the following syntax:
+.nf
+foo(A,1+2)
+.fi
+the argument associated with \fVA\fR will be passed by value (a copy
+of \fVA\fR is made before \fVfoo\fR is called, and
+the argument associated with \fV1+2\fR will be passed by value.
+.LP
+
+In
+the second way arguments may be passed be reference if there are
+"named arguments" (no copy of the variable value is
+done). \fVintppty(fun)\fR with \fVfun>0\fR tells Scilab that the
+interface with number \fVfun\fR can handle arguments passed by
+reference. With the following syntax:
+.nf
+foo(A,1+2)
+.fi
+the argument associated with \fVA\fR will be passed by reference, and
+the argument associated with \fV1+2\fR will be passed by value.
+.LP
+Warning, declaring that the interface with number
+\fVfun\fR can handle arguments passed by reference if it is not the
+case should produce unpredictable results.
+.LP
+\fVintppty(fun)\fR with \fVfun<0\fR suppress this property
+for the interface \fV-fun\fR.
+.LP
+\fVintppty()\fR returns the vector of interfaces which handle
+arguments passed by reference.
+.LP
+This function may be useful for dynamically loaded interface (see
+addinter).
+.SH SEE ALSO
+funptr, addinter

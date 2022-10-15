@@ -1,0 +1,21 @@
+
+sinh(1)                        Scilab Function                        sinh(1)
+NAME
+  sinh - hyperbolic sine
+
+CALLING SEQUENCE
+  [t]=sinh(x)
+
+PARAMETERS
+
+  x,t       : real or complex vectors/matrices
+
+DESCRIPTION
+  the elements   of   vector  t  are the hyperbolic  sine  of elements of
+  vector x.
+
+EXAMPLE
+  asinh(sinh([0,1,%i]))
+
+SEE ALSO
+  asinh

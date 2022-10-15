@@ -1,0 +1,59 @@
+.TH sort 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sort - decreasing order sorting
+.SH CALLING SEQUENCE
+.nf
+[s, [k]]=sort(v)
+[s, [k]]=sort(v,'r')
+[s, [k]]=sort(v,'c')
+.fi
+.SH PARAMETERS
+.TP
+v 
+: real or complex vector/matrix; sparse vector; character string vector/matrix
+.TP
+s
+: real or complex vector or matrix; sparse vector; character string vector/matrix
+.TP
+k
+: vector or matrix of integers
+.SH DESCRIPTION
+\fVs=sort(v)\fR (or, equivalently \fVs=sort(v,'*')\fR) 
+sorts \fVv\fR  in decreasing order. 
+If \fVv\fR is a matrix, sorting
+is done columnwise, \fVv\fR being seen as the stacked vector \fVv(:)\fR.
+\fV[s,k]=sort(v)\fR gives in addition the indices of entries 
+of \fVs\fR in \fVv\fR, i.e. \fVv(k(:)) \fR is the vector \fVs\fR.
+.LP
+\fVs=sort(v,'r')\fR sorts the rows of \fVv\fR in decreasing order i.e.
+each column of \fVs\fR is obtained from each column of \fVv\fR
+by reordering it in decreasing order.
+\fV[s,k]=sort(v,'r')\fR returns in addition in each column of \fVk\fR
+the indices such that \fVv(k(:,i),i)=s(:,i)\fR for each column index \fVi\fR.
+.LP
+\fVs=sort(v,'c')\fR sorts the columns of \fVv\fR in decreasing order i.e.
+each row of \fVs\fR is obtained from each row of \fVv\fR
+by reordering it in decreasing order.
+\fV[s,k]=sort(v,'c')\fR returns in addition in each row of \fVk\fR
+the indices such that \fVv(i,k(i,:))=s(i,:)\fR for each row index \fVi\fR.
+.LP
+Complex matrices or vectors are sorted w.r.t their real part.
+.LP
+\fVy=sort(A)\fR is valid when \fVA\fR is a sparse vector. Column/row
+sorting is not implemented for sparse matrices.
+.SH EXAMPLE
+.nf
+[s,p]=sort(rand(1,10));
+//p  is a random permutation of 1:10
+A=[1,2,5;3,4,2];
+[Asorted,q]=sort(A);A(q(:))-Asorted(:)
+v=1:10;
+sort(v)
+sort(v')
+sort(v,'r')  //Does nothing for row vectors
+sort(v,'c')
+.fi
+.SH SEE ALSO
+find
+

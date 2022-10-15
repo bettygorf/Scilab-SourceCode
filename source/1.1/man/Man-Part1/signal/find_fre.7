@@ -1,0 +1,32 @@
+.TH find_freq 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+find_freq - parameter compatibility for elliptic filter design
+.SH CALLING SEQUENCE
+.nf
+[m]=find_freq(epsilon,A,n)
+.fi
+.SH PARAMETERS
+.TP 10
+epsilon
+: passband ripple
+.TP
+A
+: stopband attenuation
+.TP
+n
+: filter order
+.TP
+m
+: frequency needed for construction of elliptic filter
+.SH DESCRIPTION
+Search for m such that \fVn=K(1-m1)K(m)/(K(m1)K(1-m))\fR
+with 
+.LP
+\fVm1=(epsilon*epsilon)/(A*A-1)\fR;
+.LP
+If \fVm = omegar^2/omegac^2\fR, the parameters
+\fVepsilon,A,omegac,omegar\fR and \fVn\fR are then
+compatible for defining a prototype elliptic filter.
+.SH AUTHOR
+F. D.

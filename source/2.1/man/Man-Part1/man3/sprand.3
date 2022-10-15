@@ -1,0 +1,34 @@
+.TH sprand 1 "January 1995" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+sprand -  sparse random matrix
+.SH SYNTAX
+sp=sprand(nrows,ncols,fill [,typ])
+.SH PARAMETERS
+.TP 10
+nrows
+: integer (number of rows)
+.TP
+ncols
+: integer (number os columns)
+.TP
+fill
+: filling coefficient (density)
+.TP
+typ
+: character string (\fV'uniform'\fR (default) or \fV'normal'\fR)
+.TP
+sp
+: sparse matrix
+.SH DESCRIPTION
+\fVsp=sprand(nrows,ncols,fill)\fR returns a sparse matrix \fVsp\fR 
+with \fVnrows\fR rows, \fVncols\fR columns and approximately
+\fVfill*nrows*ncols\fR non-zero entries.
+.LP
+If \fVtyp='uniform'\fR uniformly distributed values are generated.
+If \fVtyp='normal'\fR normally distributed values are generated.
+.SH SEE ALSO
+sparse, full, rand, speye
+
+
+                        

@@ -1,0 +1,51 @@
+.TH check_io   "Janvier 1997" "Scilab Group" "Scicos function"
+.so ../sci.an
+.SH NAME
+check_io - Checks and sets Scicos block port numbers.
+.SH CALLING SEQUENCE
+.nf
+[model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout)
+.fi
+.SH PARAMETERS
+.TP 10
+model
+: Scicos model data structure (see scicos_model)
+.TP 
+graphics
+: Scicos graphics data structure (see scicos_graphics)
+.TP 
+in
+: vector of regular input port sizes. Set \fVin=[]\fR in no regular
+input port
+.TP 
+out
+: vector of regular output port sizes. Set \fVout=[]\fR in no regular
+output port
+.TP 
+clkin
+: vector of event input port sizes. Set \fVclkin=[]\fR in no event
+input port
+.TP 
+clkout
+: vector of event output port sizes. Set \fVclkout=[]\fR in no event
+output port
+.TP
+ok
+: boolean, \fV%t\fR if specified input/output have been correctly set.
+\fV%f\fR if specified input/output cannot be taken into account.
+
+.SH DESCRIPTION
+This function is to be called when number of regular or event input or
+output ports is modified. It check if it is possible (connected ports
+cannot suppressed) and updates \fV model\fR and \fV graphics\fR block
+substructures. \fV in\fR,\fV out\fR,\fV clkin\fR,\fV clkout\fR are
+the vectors of port sizes for respectively the regular inputs, regular
+outputs, event inputs and event outputs.
+.LP
+Negative values in \fV in\fR or \fV out\fR vector means that
+corresponding ports dimension are to be determined by the context. Two
+equal negative values means that corresponding ports have same size.
+
+.SH SEE ALSO 
+scicos_block, scicos_model, scicos_graphics 
+

@@ -1,0 +1,96 @@
+.TH graph_list 1 "October 1994" "Scilab Group" "Metanet Doc"
+.so man1/sci.an
+.SH NAME
+graph_list - description of the list representing a graph in Scilab
+.SH DESCRIPTION
+A graph in Scilab is represented by a \fVScilab\fR list.
+.PP
+You will find below the complete description of the list.
+Each element is described by two lines.
+The first line describes the order of the element and its meaning.
+The second line describes a name for the element (meaningless in \fVScilab\fR),
+the type of the element, its size (as an element name) if it is 
+meaningful, and the name of the Scilab function to get the element. 
+The argument of all these functions is optional. It is a graph list which 
+defaults to the \fVScilab\fR variable \fVthe_g\fR.
+.PP
+1 graph name
+  name, string 80, g_name([g])
+.PP
+2 directed flag
+  direct, scalar, g_direct([g])
+.PP
+3 number of arcs
+  m, scalar, g_arcnum([g])
+.PP
+4 number of nodes		
+  n, scalar, g_nodnum([g])
+.PP
+5 number of edges
+  ma, scalar, g_edgnum([g])
+.PP
+6 number of arcs for undirected graph
+  mm, scalar, g_arunum([g])
+.PP
+7 arc array for adjacency description for directed graph
+  la1, row m, g_la1([g])
+.PP
+8 pointer array for adjacency description for directed graph
+  lp1, row n+1, g_lp1([g])
+.PP
+9 node array for adjacency description for directed graph
+  ls1, row m, g_ls1([g])
+.PP
+10 arc array for adjacency description for undirected graph
+   la2, row mm, g_la2([g])
+.PP
+11 pointer array for adjacency description for undirected graph
+   lp2, row n+1, g_lp2([g])
+.PP
+12 node array for adjacency description for undirected graph
+   ls2, row mm, g_ls2([g])
+.PP
+13 head arc array
+   he, row ma, g_ahead([g])
+.PP
+14 tail arc array
+   ta, row ma, g_atail([g])
+.PP
+15 node type
+   ntype, row n, g_ntype([g])
+.PP
+16 x node coordinate
+   xnode, row n, g_xnode([g])
+.PP
+17 y node coordinate
+   ynode, row n, g_ynode([g])
+.PP
+18 node color
+   ncolor, row n, g_ncolor([g])
+.PP
+19 node demand
+   demand, row n, g_demand([g])
+.PP
+20 arc color
+   acolor, row ma, g_acolor([g])
+.PP
+21 length edge array
+   length, row ma, g_alen([g])
+.PP
+22 cost edge array
+   cost, row ma, g_acost([g])
+.PP
+23 minimum capacity edge array
+   mincap, row ma, g_mincap([g])
+.PP
+24 maximum capacity edge array
+   maxcap, row ma, g_maxcap([g])
+.PP
+25 quadratic weight edge array
+   qweight, row ma, g_qweig([g])
+.PP
+26 quadratic origin edge array
+   qorig, row ma, g_qorig([g])
+.PP
+27 weight edge array
+   weight, row ma, g_aweig([g])

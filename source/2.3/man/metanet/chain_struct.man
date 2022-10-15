@@ -1,0 +1,66 @@
+.TH chain_struct 1 "September 1996" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+chain_struct - chained structure from adjacency lists of a graph
+.SH CALLING SEQUENCE
+.nf
+[fe,che,fn,chn] = chain_struct(lp,la,ls)
+.fi
+.SH PARAMETERS
+.TP 3
+lp
+: row vector, pointer array of the adjacency lists description of the graph 
+(its size is the number of nodes of the graph + 1) 
+.TP 3
+la
+: row vector, arc array of the adjacency lists description of the graph 
+(its size is the number of edges of the graph) 
+.TP 3
+ls
+: row vector, node array of the adjacency lists description of the graph 
+(its size is the number of edges of the graph) 
+.TP 3
+fe
+: row vector of the numbers of the first edges starting from nodes
+(its size is the number of nodes of the graph)
+.TP 4
+che
+: row vector of the numbers of the chained edges 
+(its size is the number of edges of the graph)
+.TP 3
+fn
+: row vector of the numbers of the first nodes reached by the edges of 
+\fVfe\fR (its size is the number of nodes of the graph)
+.TP 4
+chn
+: row vector of the nodes reached by the edges of \fVche\fR
+.SH DESCRIPTION
+\fVchain_struct\fR computes the row vectors of the edge chained structure 
+description of the graph from the description of the graph given by 
+its adjacency lists.
+
+The vectors \fVfe\fR, \fVche\fR, \fVfn\fR and \fVchn\fR describe the
+chained structure in the following way:
+
+\fVfe(i))\fR is the number of the first edge starting from node i
+
+\fVche(fe(i))\fR is the number of the second edge starting from
+node i, \fVche(che(fe(i)))\fR is the number of the third edge starting from
+node i and so on until the value is 0
+
+\fVfn(i)\fR is the number of the first node reached from node i
+
+\fVch(i)\fR is the number of the node reached by edge \fVche(i)\fR.
+.SH EXAMPLE
+.nf
+ta=[1 1 2 3 5 4 6 7 7 3 3 8 8 5];
+he=[2 3 5 4 6 6 7 4 3 2 8 1 7 4];
+g=make_graph('foo',1,8,ta,he);
+g('node_x')=[116 231 192 323 354 454 305 155];
+g('node_y')=[118 116 212 219 117 185 334 316];
+show_graph(g);
+[lp,la,ls]=adj_lists(1,g('node_number'),ta,he);
+[fe,che,fn,chn] = chain_struct(lp,la,ls)
+.fi
+.SH SEE ALSO
+adj_lists, graph_2_mat

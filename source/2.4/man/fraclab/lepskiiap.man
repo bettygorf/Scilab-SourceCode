@@ -1,0 +1,158 @@
+.TH " lepskiiap" 2 " March 9, 1998" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ lepskiiap -  lepskii adaptive procedure
+.sp
+Author: Christophe Canus
+.sp
+This C_LAB  routine is an   implementation of  the Lepskii's  adaptive
+procedure. This algorithm  selects the "best" estimator which balances
+the  bias-variance tradeoff  in  a   sequence  of  noisy and    biased
+estimators \fItheta_hat_j\fP of a  non-random parameter \fItheta\fP with
+the assumption that when  \fIj\fP increases, bias \fIb_j\fP increases as
+variance \fIsigma2_j\fP decreases.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPK_star,j_hat,I_c_j_min,I_c_j_max,E_c_j_hat_min,E_c_j_hat_max\f(CR]\fP=
+lepskiiap(theta_hat_j,\f(CR[\fPsigma2_j,K\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBtheta_hat_j\fP : real vector \f(CR[\fP1,J\f(CR]\fP or
+\f(CR[\fPJ,1\f(CR]\fP 
+Contains the sequence of estimators.
+
+.TP
+o 
+\fBsigma2_j\fP : strictly positive real vector \f(CR[\fP1,J\f(CR]\fP or
+\f(CR[\fPJ,1\f(CR]\fP 
+Contains the sequence of variances.
+
+.TP
+o 
+\fBK\fP : strictly positive real scalar 
+Contains the confidence constant.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBK_star\fP : strictly positive real scalar 
+Contains the optimal confidence constant.
+
+.TP
+o 
+\fBj_hat\fP : strictly positive real (integer) scalar 
+Contains the selected index.
+
+.TP
+o 
+\fBI_c_j_min\fP : real vector \f(CR[\fP1,J\f(CR]\fP 
+Contains the minimum bounds of the confidence intervals.
+
+.TP
+o 
+\fBI_c_j_max\fP : real vector \f(CR[\fP1,J\f(CR]\fP 
+Contains the maximum bounds of the confidence intervals.
+
+.TP
+o 
+\fBE_c_j_hat_min\fP : real scalar  
+Contains the minimum bound of the selected intersection interval.
+
+.TP
+o 
+\fBE_c_j_hat_max\fP : real scalar  
+Contains the maximum bound of the selected intersection interval.
+.RE
+
+.SH Description
+.SH Parameters 
+The sequence of  variances   \fIsigma_j\fP must be   stricly  positive,
+decreasing  when     \fIj\fP increases and  of    the   same  size than
+\fItheta_hat_j\fP.  When no sequence of variances  is given as input or
+when  it is uniformly equal to  0, the algorithm computes the sequence
+of  variances as \fIsigma2_j=1.\fP\f(CR\fP/\fIj\fP.   The default value for
+\fIepsilon\fP is \fI1.\fP\f(CR\fP/\f(CR[\fP\fI1:J\fP\f(CR]\fP.
+The confidence constant \fIK\fP must be \fI>=1\fP.
+For the meaning of the ouput parameters, see next section.
+.SH Algorithm details 
+Define        the       sequence        of     confidence    intervals
+\fII_c_j=\fP\f(CR[\fP\fItheta_hat_j-K*sigma_j,theta_hat_j+K*sigma_j\fP\f(CR]\fP,
+the  sequence  of  their   decreasing  intersections   \fIE_c_j\fP  and
+\fIj_hat\fP as the largest index \fIj\fP such as  that \fIE_c_j\fP is non
+void.   The best  estimator  with  respect  to the Lepskii's  adaptive
+procedure is selected as \fItheta_hat_j_hat\fP in \fIE_c_j_hat\fP.
+The  two parameters  to be   handled are  the   sequence of  variances
+\fIsigma2_j\fP and the confidence constant \fIK\fP. \fIsigma2_j\fP can be
+any sequence dominating  the  estimator variance. Choosing  a  smaller
+\fIK\fP speeds up the selection and results to smaller \fIj_hat\fP.
+.SH Examples
+.SH Matlab
+.sp
+.ft CR
+.nf
+T=33;
+% linear model
+f_t=linspace(0,1,T);
+% jump for t=floor(3/4*T)
+f_t(floor(3/4*T):T)=2*f_t(floor(3/4*T):T);
+% Wiener process
+W_t=randn(1,T);
+sigma=.1;
+Y_t=f_t+sigma*W_t;
+subplot(2,1,1);
+plot(f_t);hold on;plot(Y_t);
+title('White noise model Y(t)');
+xlabel('index: t');
+ylabel('Y(t)=f(t)+\sigma W(t)');
+% estimation for t=t_0=floor(T/2)
+t_0=floor(T/2)+1;
+Y_t=f_t+sigma*W_t;
+for t=1:floor(T/2)
+  f_hat_t(t)=mean(Y_t(t_0-t:t_0+t));
+end
+% Lespkii's adaptive procedure
+[K_star,t_hat,I_c_t_min,I_c_t_max,E_c_t_hat_min,E_c_t_hat_max]=lepskiiap(f_hat_t,.005*1./[1:floor(T/2)],2);
+% plot and disp results
+plot(t_0,Y_t(t_0),'k*');
+plot(t_0-t_hat,Y_t(t_0-t_hat),'kd');
+plot(t_0+t_hat,Y_t(t_0+t_hat),'kd');
+subplot(2,1,2);
+plot(f_hat_t);
+hold on;
+plot(I_c_t_max,'r^');
+plot(I_c_t_min,'gV');
+title(['estimator \theta_t(t_0) vs. index t with t_0=',num2str(floor(T/2)+1)]);
+xlabel('index: t');
+ylabel('estimator: \theta_t(t_0)');
+plot(t_hat,E_c_t_hat_min,'ko');
+plot(t_hat,E_c_t_hat_max,'ko');
+disp(['linear estimation of f_t for t=t_0=',num2str(t_0)]);
+disp(['selected index t=',num2str(t_hat)]);
+disp(['estimated f_t_0 in [',num2str(E_c_t_hat_min),',',num2str(E_c_t_hat_min),']']);
+.fi 
+.ec
+.ft P
+.sp
+.SH Scilab
+.sp
+.ft CR
+.nf
+// 
+.fi 
+.ec
+.ft P
+.sp
+.SH References
+To be published..SH See Also
+\fBmonolr\fP (C_LAB routine).

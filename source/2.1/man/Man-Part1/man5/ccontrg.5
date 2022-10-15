@@ -1,0 +1,36 @@
+.TH ccontrg 5 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+ccontrg - central H-infinity controller
+.SH CALLING SEQUENCE
+.nf
+[K]=ccontrg(P,r,gamma);
+.fi
+.SH PARAMETERS
+.TP
+P
+: \fVsyslin\fR list (linear system in state-space representation)
+.TP
+r
+: 1x2 row vector, dimension of the 2,2 part of \fVP\fR
+.TP
+gamma
+: real number
+.SH DESCRIPTION
+returns a realization \fVK\fR of the central controller for the
+general standard problem in state-space form.
+.LP
+Note that gamma must be > gopt (ouput of \fVgamitg\fR)
+.LP
+P contains the parameters of plant realization \fV(A,B,C,D)\fR
+(\fVsyslin\fR list) with 
+.nf
+B = ( B1 , B2 ) ,        C= ( C1 ) ,    D = ( D11  D12)
+                            ( C2 )          ( D21  D22)
+.fi
+\fVr(1)\fR and \fVr(2)\fR are the dimensions of \fVD22\fR (rows x columns)
+.SH SEE ALSO
+gamitg, h_inf. 
+.SH AUTHOR 
+P. Gahinet (INRIA)
+

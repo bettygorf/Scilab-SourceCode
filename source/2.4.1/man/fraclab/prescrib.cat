@@ -1,0 +1,60 @@
+
+prescrib(2)                    Scilab Function                    prescrib(2)
+NAME
+  prescrib - Generation of signals with prescribed Holder function
+
+  Author: Khalid Daoudi
+
+  Using the GIFS method, this routine generates a continous function with
+  prescribed Holder function, while interpolating a set of point.
+
+Usage
+  [x,y]=prescrib(Interp_pts, Holder_funct, nbr_iter)
+
+Input parameters
+       o Interp_pts : Real matrix [n,2] Contains the interpolation points in
+         the format : abscissa-ordinate.
+       o Holder_funct : Character string Specifies the Holder function you
+         want to prescribe. It must have the form of compositions of matlab
+         functions of variable t ('2*sqrt(1-t)' for instance). The use of the
+         variable t is crucial. For shake of simplicity, this variable t is
+         supposed to vary in [0,1].
+       o  nbr_iter : integer Number of iteration wanted in the generation
+         process of the GIFS attractor.
+Output parameters
+       o x : Real vector Contains the abscissa of the attractor graph.
+       o y : Real vector Contains the ordinates of the attractor graph.
+Description
+
+Parameters
+       o Interp_pts is a real matrix [n,2] containing the cordinates of the
+         interpolation points.
+       o Holder_funct is a character string specifying the Holder function
+         you want to prescribe. This means that GIFS attrcator will have, at
+         a point t, a Holder exponent equal to the value of this function at
+         pint t.
+       o  nbr_iter is the number of iteration wanted in the generation pro-
+         cess of the GIFS attractor.
+       o x and y contain the cordinates of the GIFS attractor.
+Algorithm details
+  Generalized Iterated Functions Systems (GIFS) are a generalization of the
+  usual IFS. This generalization consists in allowing the contarations to
+  change at each step (scale) of the attractor generation process. We also
+  allow their number and their support to change.  Here, we use the GIFS to
+  construct continuous function with prescribed local regularity. More pre-
+  cisely, if H(t) is the prescribed Holder function, then for each
+  j=1,...,nbr_iter-1, and for each k=0,...,pow(m,j)-1, the GIFS coefficient
+  c_kj is definied as : c_kj = pow(m,H(k*pow(m,-j))), where m+1 is the number
+  of interpolation points.  The resulting attractor is the graph of a con-
+  tinuous function F such that the Holder exponent of F, at each point t, is
+  H(t).  Moreover, if {(t_i, y_i), i=1,...,m+1} is the set of interpolation
+  points, then F(t_i)=y_i for each i=1,...,m+1.
+
+See also:
+  gifs and alphagifs
+
+Example:
+  I = [0 0 1 0]; [x,y] = prescrib(I,'abs(sin(3*pi*t))',10); plot(x,y)
+   [x,y] is the graph of a continuous function F which interpolates {(0,0);
+  (0.5 1); (1,0)} and such that the Holder exponent of F, at each point t, is
+  abs(sin(3*pi*t)).

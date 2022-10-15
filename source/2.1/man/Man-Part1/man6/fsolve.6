@@ -1,0 +1,84 @@
+.TH fsolve G "August 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+fsolve - find a zero of a system of n nonlinear functions
+.SH CALLING SEQUENCE
+.nf
+[x [,v [,info]]]=fsolve(x0,fct [,fjac] [,tol])
+.fi
+.SH PARAMETERS
+.TP 10
+x0 
+: real vector (initial value of function argument).
+.TP
+fct
+: external (i.e function or list or string).
+.TP
+fjac
+: external (i.e function or list or string).
+.TP
+tol
+: real scalar. precision tolerance: termination occurs
+when the algorithm estimates that the relative error
+between x and the solution is at most tol.
+(\fVtol=1.d-10\fR is the default value).
+.TP
+x : 
+real vector (final value of function argument, estimated zero).
+.TP
+v : 
+real vector (value of function at x).
+.TP
+info
+:  termination indicator
+.RS
+.TP
+0
+: improper input parameters.
+.TP
+1
+: algorithm estimates that the relative error between x and the solution
+ is at most tol.
+.TP
+2 
+: number of calls to fcn reached
+.TP
+3  
+: tol is too small. No further improvement in the approximate solution 
+x is possible.
+.TP
+4  
+: iteration is not making good progress.
+.RE
+.SH DESCRIPTION
+find a zero of a system of
+n nonlinear functions in n variables by a modification
+of the powell hybrid method. Jacobian may be provided.
+.nf
+0 = fct(x) w.r.t x.
+.fi
+\fVfct\fR is an "external".
+This external returns \fVv=fct(x)\fR given \fVx\fR.
+.LP
+The simplest calling sequence for \fVfct\fR is:
+.nf
+[v]=fct(x).
+.fi
+If \fVfct\fR is a character string, it refers to a fortran routine
+which must be linked to Scilab (see \fVfsolvf.f\fR for the calling
+sequence). Dynamic link is possible (help \fVlink\fR).
+.LP
+.fi
+\fVjac\fR is an "external".
+This external returns \fVv=d(fct)/dx (x)\fR given \fVx\fR.
+.LP
+The simplest calling sequence for \fVjac\fR is:
+.nf
+[v]=jac(x).
+.fi
+If \fVjac\fR is a character string, it refers to a fortran routine
+which must be linked to Scilab (see \fVfsolvj.f\fR for the calling
+sequence). Dynamic link is possible (help \fVlink\fR).
+
+.SH SEE ALSO
+external, quapro, linpro, optim

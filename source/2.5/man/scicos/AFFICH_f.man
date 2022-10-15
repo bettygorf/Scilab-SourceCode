@@ -1,0 +1,33 @@
+.TH AFFICH_f 5 "Janvier 1997" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+AFFICH_f - Scicos numerical display
+.SH DIALOGUE PARAMETERS
+.TP 15
+font
+: integer, the selected font number (see xset)
+.TP
+fontsize
+: integer, the selected font size (set xset)
+.TP
+color
+: integer, the selected color for the text (see xset)
+.TP
+Total numer of digits
+: an integer greater than 3, the maximum number of digits used to
+represent the number (sign, integer part and rational part)
+.TP
+rational part number of digits
+: an integer greater than or equal 0, the number of digits used to
+represent the  rational part
+
+.SH DESCRIPTION
+This block  displays the value of its unique input inside the block
+(in the diagram) during simulation. The block must be located in the
+main Scicos window. 
+
+Warning: each time the block is moved user must click on it to set its
+parameters. The display position is then automatically updated.
+.SH SEE ALSO
+SCOPE_f
+

@@ -1,0 +1,29 @@
+.TH casc 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+casc -  cascade realization of filter from coefficients
+.SH CALLING SEQUENCE
+.nf
+[cels]=casc(x,z)
+.fi
+.SH PARAMETERS
+.TP
+x
+: (4xN)-matrix where each column is a cascade
+element, the first two column entries being
+the numerator coefficients and the second two
+column entries being the denominator coefficients
+.TP
+z
+: string representing the cascade variable
+.TP
+cels 
+: resulting cascade representation
+.SH DESCRIPTION
+Creates cascade realization of filter from a matrix of coefficients
+(utility function).
+.SH EXAMPLE
+.nf
+x=[1,2,3;4,5,6;7,8,9;10,11,12]
+cels=casc(x,'z')
+.fi

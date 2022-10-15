@@ -1,0 +1,11 @@
+.TH demos G "April 1994" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+demos -  guide for scilab demos
+.SH CALLING SEQUENCE
+.nf
+demos()
+.fi
+.SH DESCRIPTION
+\fVdemos()\fR is an interactive guide to execute various scilab demonstrations
+The source code of each demo is in the directory SCIDIR/demos/...

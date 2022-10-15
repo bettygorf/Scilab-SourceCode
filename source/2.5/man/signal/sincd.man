@@ -1,0 +1,27 @@
+.TH sincd 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sincd - digital sinc function or Direchlet kernel
+.SH CALLING SEQUENCE
+.nf
+[s]=sincd(n,flag)
+.fi
+.SH PARAMETERS
+.TP 10
+n
+: integer
+.TP
+flag
+: if \fVflag = 1\fR the function is centred around the origin;
+if \fVflag = 2\fR the function is delayed by \fV%pi/(2*n)\fR
+.TP
+s
+: vector of values of the function on a dense grid of frequencies
+.SH DESCRIPTION
+function which calculates the function \fVSin(N*x)/N*Sin(x)\fR
+.SH EXAMPLE
+.nf
+plot(sincd(10,1)) 
+.fi
+.SH AUTHOR
+G. Le V.

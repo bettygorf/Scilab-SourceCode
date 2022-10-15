@@ -1,0 +1,50 @@
+.TH "WTMultires" 2 " 01 June 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+WTMultires - Construct a 1D Multiresolution Representation
+.sp
+Author: Bertrand Guiheneuf
+.sp
+This routine constructs a matrix that shows the projections of the signal
+on each multiresolution subspace
+.sp
+.sp
+.SH Usage
+\f(CR[\fPV\f(CR]\fP=WTMultires(wt)
+.SH Input parameter
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : real unidimensional matrix   
+Contains the wavelet transform (obtained with FWT). 
+.RE
+
+.SH Output parameter
+
+
+.RS
+
+.TP
+o 
+\fBV\fP : real matrix \f(CR[\fPNbiter,n\f(CR]\fP 
+Contains the projections on the Multiresolution. Each line is a projection on a subspace different "low-pass" space Vj  
+.RE
+
+.SH Description
+.SH Introduction 
+This routine is used to display all the scales of a wavelet transform. The projections are different from the wavelet coefficients as they represent "filtered" signals. Here each projection
+.SH Parameters  
+\fIwt\fP must be a real matrix containing the wavelet coefficients but also misc informations such as the original signal dimension and the reconstruction filter. It's generally obtained with FW. 
+\fIV\fP Is the matrix containing the projection of the signal (decomposed in \fIwt\fP) on each Multiresolution subspace. The \fINbiter\fP first ones are the projections on the details subspaces. The last one is the projection on the last trend subspace. 
+.SH Example
+x=0.1:0.005:1;
+s=(x.\(ha0.7) .* sin( x.\(ha(-2)) ;
+q1 q2=MakeCQF(1);
+wt = FWT(s,3,q1,q2);
+V=WTMultires(wt);
+plot(V');
+.SH See Also
+FWT, IWT, WTStruct,

@@ -1,0 +1,11 @@
+mode(0);
+xbasc();
+x_message(['Click OK to load data ';'please be patient']);
+getf('SCI/demos/bike/velo1.sci','c');
+getf('SCI/demos/bike/velod.sci','c');
+getf('SCI/demos/bike/velodp.sci','c');
+getf('SCI/demos/bike/show.sci','c');
+x=read('SCI/demos/bike/xdemo.dat',46,401,"(e24.18)");
+show(x(:,1:340),1.6,1.47,velo1)
+
+

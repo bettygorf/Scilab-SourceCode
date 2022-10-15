@@ -1,0 +1,28 @@
+ 
+clear;lines(0);
+ 
+A=rand(3,3);
+ 
+[al,be,Z] = gspec(A,eye(A));al./be
+ ans  =
+ 
+!   0.0300427 + 0.3563346i !
+!   0.0300427 - 0.3563346i !
+!   1.6948371              !
+ 
+clean(inv(Z)*A*Z)  //displaying the eigenvalues (generic matrix)
+ ans  =
+ 
+!   0.0300427 + 0.3563346i    0                         0         !
+!   0                         0.0300427 - 0.3563346i    0         !
+!   0                         0                         1.6948371 !
+ 
+A=A+%i*rand(A);E=rand(A);
+ 
+roots(det(%s*D-A))   //complex case
+ ans  =
+ 
+! - 0.7691531 + 1.4899149i !
+!   0.468816 - 0.6977512i  !
+!   0.6150634 + 0.0782625i !
+ 

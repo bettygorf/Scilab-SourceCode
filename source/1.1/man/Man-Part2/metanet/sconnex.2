@@ -1,0 +1,25 @@
+.TH sconnex 1 "April 1993" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME 
+sconnex - strong connected components 
+.SH CALLING SEQUENCE
+.nf
+[nc,ncomp] = sconnex([g])
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP 3
+nc
+: integer, number of strong connected components
+.TP 6
+ncomp
+: row vector of strong connected components
+.SH DESCRIPTION
+\fVsconnex\fR returns the number \fVnc\fR of strong connected components 
+for the 
+graph \fVg\fR and a row vector \fVncomp\fR giving the number of the 
+strong connected component for each node.
+.SH SEE ALSO
+sconcomp

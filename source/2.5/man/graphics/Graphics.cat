@@ -1,0 +1,247 @@
+
+graphics(2)                    Scilab Function                    graphics(2)
+NAME
+  Graphics - graphics library overview
+
+2D PLOTTING
+
+  plot       : simple plot of a curve
+
+  plot2d     : plot a curve
+
+  plot2d1    : plot a curve, allows logarithmic axes
+
+  plot2d2    : plot a curve as step function
+
+  plot2d3    : plot a curve with vertical bars
+
+  plot2d4    : plot a curve with arrows
+
+  fplot2d    : plot a curve defined by a function
+
+  champ      : 2D vector field
+
+  champ1     : 2D vector field with colored arrows
+
+  fchamp     : direction field of a 2D first order ODE
+
+  contour2d  : level curves of a surface on a 2D plot
+
+  fcontour2d : level curves of a surface defined by a function on a 2D plot
+
+  grayplot   : 2D plot of a surface using colors
+
+  fgrayplot  : 2D plot of a surface defined by a function using colors
+
+  Sgrayplot  : smooth 2D plot of a surface using colors
+
+  Sfgrayplot : smooth 2D plot of a surface defined by a function using colors
+
+  xgrid      : add a grid on a 2D plot
+
+  errbar     : add vertical error bars on a 2D plot
+
+  histplot   : plot a histogram
+
+  Matplot    : 2D plot of a matrix using colors
+
+3D PLOTTING
+
+  plot3d     : plot a surface
+
+  plot3d1    : plot a surface with gray or color level
+  fplot3d    : plot a surface defined by a function
+
+  fplot3d1   : plot a surface defined by a function with gray or color level
+
+  param3d    : plot one curve
+
+  param3d1   : plots curves
+
+  contour    : level curves on a 3D surface
+
+  fcontour   : level curves on a 3D surface defined by a function
+
+  hist3d     : 3D representation of a histogram
+
+  genfac3d   : compute facets of a 3D surface
+
+  eval3dp    : compute facets of a 3D surface
+
+  geom3d     : projection from 3D on 2D after a 3D plot
+
+LINE AND POLYGON PLOTTING
+
+  xpoly      : draw a polyline or a polygon
+
+  xpolys     : draw a set of polylines or polygons
+
+  xrpoly     : draw a regular polygon
+
+  xsegs      : draw unconnected segments
+
+  xfpoly     : fill a polygon
+
+  xfpolys    : fill a set of polygons
+
+RECTANGLE PLOTTING
+
+  xrect      : draw a rectangle
+
+  xfrect     : fill a rectangle
+
+  xrects     : draw or fill a set of rectangles
+
+ARC PLOTTING
+
+  xarc       : draw a part of an ellipse
+
+  xarcs      : draw parts of a set of ellipses
+
+  xfarc      : fill a part of an ellipse
+
+  xfarcs     : fill parts of a set of ellipses
+
+ARROW PLOTTING
+
+  xarrows    : draw a set of arrows
+
+STRINGS
+
+  xstring    : draw strings
+
+  xstringl   : compute a box which surrounds strings
+
+  xstringb   : draw strings into a box
+
+  xtitle     : add titles on a graphics window
+
+  titlepage  : add a title in the middle of a graphics window
+
+  xinfo      : draw an info string in the message subwindow
+
+FRAMES AND AXES
+
+  xaxis      : draw an axis
+
+  graduate   : pretty axis graduations
+
+  plotframe  : plot a frame with scaling and grids
+
+COORDINATES TRANSFORMATIONS
+
+  isoview    : set scales for isometric plot (do not change the size of the
+             window)
+
+  square     : set scales for isometric plot (change the size of the window)
+
+  scaling    : affine transformation of a set of points
+
+  rotate     : rotation of a set of points
+
+  xsetech    : set the sub window of a graphics window for plotting
+
+  xgetech    : get the current graphics scale
+
+  xchange    : transform real to pixel coordinates
+
+COLORS
+
+  colormap   : using colormaps
+
+  getcolor   : dialog to select colors in the current colormap
+
+  addcolor   : add new colors to the current colormap
+
+  graycolormap
+             : linear gray colormap
+
+  hotcolormap
+             : red to yellow colormap
+
+GRAPHICS CONTEXT
+
+  xset       : set values of the graphics context
+
+  xget       : get current values of the graphics context
+
+  xlfont     : load a font in the graphics context or query loaded font
+
+  getsymbol  : dialog to select a symbol and its size
+
+SAVE AND LOAD
+
+  xsave      : save graphics into a file
+
+  xload      : load a saved graphics
+
+  xbasimp    : send graphics to a Postscript printer or in a file
+
+  xs2fig     : send graphics to a file in Xfig syntax
+GRAPHICS PRIMITIVES
+
+  xbasc      : clear a graphics window and erase the associated recorded
+             graphics
+
+  xclear     : clear a graphics window
+
+  driver     : select a graphics driver
+
+  xinit      : initialisation of a graphics driver
+
+  xend       : close a graphics session
+
+  xbasr      : redraw a graphics window
+
+  replot     : redraw the current graphics window with new boundaries
+
+  xpause     : suspend Scilab
+
+  xselect    : raise the current graphics window
+
+  xclea      : erase a rectangle
+
+  xclip      : set a clipping zone
+
+  xdel       : delete a graphics window
+
+  winsid     : return the list of graphics windows
+
+  xname      : change the name of the current graphics window
+
+MOUSE POSITION
+
+  xclick     : wait for a mouse click
+
+  locate     : mouse selection of a set of points
+
+  xgetmouse  : get the current position of the mouse
+
+INTERACTIVE EDITOR
+
+  edit_curv  : interactive graphics curve editor
+
+  gr_menu    : simple interactives graphic editor
+
+  sd2sci     : gr_menu structure to scilab instruction convertor
+
+GRAPHICS FUNCTIONS FOR AUTOMATIC CONTROL
+
+  bode       : Bode plot
+
+  gainplot   : magnitude plot
+
+  nyquist    : Nyquist plot
+
+  m_circle   : M-circle plot
+
+  chart      : Nichols chart
+
+  black      : Black's diagram
+
+  evans      : Evans root locus
+
+  sgrid      : s-plane grid lines
+
+  plzr       : pole-zero plot
+  zgrid      : zgrid plot

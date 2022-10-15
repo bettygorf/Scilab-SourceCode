@@ -1,0 +1,39 @@
+
+QUANT_f(5)                       Scicos Block                      QUANT_f(5)
+NAME
+  QUANT_f - Scicos Quantization block
+
+DIALOGUE PARAMETERS
+
+  Step                : scalar, Quantization step
+
+  Quantization method : scalar with possible values 1,2,3 or 4
+
+                      1 : Round method
+
+                      2 : Truncation method
+
+                      3 : Floor method
+
+                      4 : Ceil method
+
+DESCRIPTION
+  This block outputs the quantization of the input according to a choice of
+  methods
+
+  for Round method
+
+  y(i)=Step*(int(u(i)/Step+0.5)-0.5) if u(i)<0.
+
+  y(i)=Step*(int(u(i)/Step-0.5)+0.5). if u(i)>=0.
+  For truncation method
+
+  y(i)=Step*(int(u(i)/Step+0.5)) if u(i)<0.
+
+  y(i)=Step*(int(u(i)/Step-0.5)) if u(i)>=0.
+  For floor method
+
+  y(i)=Step*(int(u(i)/Step+0.5)) .
+  For ceil method
+
+  y(i)=Step*(int(u(i)/Step-0.5)) .

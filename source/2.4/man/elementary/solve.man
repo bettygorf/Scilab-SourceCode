@@ -1,0 +1,27 @@
+.TH solve 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+solve - symbolic linear system solver
+.SH CALLING SEQUENCE
+.nf
+[x]=solve(A,b)
+.fi
+.SH PARAMETERS
+.TP
+A,b,c
+: matrix (resp. vectors) of character strings
+.SH DESCRIPTION
+solves \fVA*x = b\fR when \fVA\fR is an upper triangular matrix
+made of character strings.
+.SH EXAMPLE
+.nf
+A=['1','a';'0','2'];   //Upper triangular 
+b=['x';'y'];
+w=solve(A,b)
+a=1;x=2;y=5;
+evstr(w)
+inv([1,1;0,2])*[2;5]
+.fi
+.SH SEE ALSO
+trianfml
+

@@ -1,0 +1,25 @@
+.TH rotate 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so man1/sci.an
+.SH NAME
+rotate - geometric rotation of a set of points  
+.SH CALLING SEQUENCE
+.nf
+[xy1]=rotate(xy,[theta,orig])
+.fi
+.SH PARAMETERS 
+.TP 15
+xy,xy1  
+:  matrices of size (2,.)
+.TP
+theta 
+: real (angle en radian) , (default value=0)
+.TP
+orig 
+: center of the rotation [0;0] if omitted 
+.SH DESCRIPTION
+\fVxy1(:,i) = M(theta) *xy(:,i) + orig\fR
+where \fVM\fR stands for a rotation matrix of angle \fVtheta\fR
+
+
+
+

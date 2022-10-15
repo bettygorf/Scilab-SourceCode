@@ -1,0 +1,19 @@
+.TH execstr 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+execstr - command execution by evaluation of strings
+.SH CALLING SEQUENCE
+.nf
+execstr('char-string')
+.fi
+.SH DESCRIPTION
+executes the Scilab command in argument. This macro does not 
+return anything.
+.SH EXAMPLE
+.nf
+execstr('a=1') // sets a=1.
+execstr('1+1') // does nothing (while evstr('1+1') returns 2)
+.fi 
+.SH SEE ALSO
+evstr
+

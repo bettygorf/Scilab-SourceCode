@@ -1,0 +1,22 @@
+xinit('optfir2.ps');
+//FIR bandpass filter; optimization using linear programming
+//
+//definition of relevant parameters
+//
+typ='bp';
+n=128;
+fc=[.28;.3]; 
+tw=[3/n;3/n];
+eps=.001;
+//
+//computation of the filter
+//
+[ad,att,rp,flag,itrans,m,zz]=optfir(typ,n,fc,tw,eps);
+//
+//results and plotting
+//
+att
+20*log(att)/log(10)
+//fr=0:.5/n:.5;
+//plot(fr,20*log(rp)/log(10));
+

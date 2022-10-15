@@ -1,0 +1,34 @@
+.TH mode 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mode - select a mode in exec file
+.SH CALLING SEQUENCE
+.nf
+mode(k) 
+.fi
+.SH DESCRIPTION
+Used inside an exec-file with the following values for \fVk\fR
+.TP
+k=0 
+: no echo, no prompt, no stop.
+.TP
+k=-1 
+: nothing is printed.
+.TP
+k=1 
+: an echo is received after each command line.
+.TP
+k=2 
+: prompt \fV-->\fR is printed.
+.TP
+k=3 
+: there are echoes, prompts, but no stops.
+.TP
+k=4 
+: stops before each prompt and waits for a new command line
+.TP
+k=7 
+: there are stops, prompts and echoes.
+.SH SEE ALSO
+exec
+

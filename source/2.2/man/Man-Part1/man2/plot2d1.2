@@ -1,0 +1,60 @@
+.TH plot2d1 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+plot2d1 - multiple plot of functions
+.SH CALLING SEQUENCE
+.nf
+plot2d1(str,x,y,[style,strf,leg,rect,nax])
+.fi
+.SH PARAMETERS
+.TP 
+str
+: is a string of length three \fV"abc"\fR
+.RS
+.TP 
+a
+: can have the following values : \fVe | o | g\fR
+.RS
+.TP 
+e
+: means empty and specifies the fact that the value of \fVx\fR won't be used 
+( the \fVx\fR values are supposed to be regularly spaced) . The user must 
+anyway give a value to the \fVx\fR parameter when calling \fVplot2d1\fR, for example 
+\fVplot2d1("enn",1,y)\fR.
+.TP
+o
+: stands for one. if there are many curves, they all
+have the same x-values ( x is of size x(n,1) and y
+of size y(n,n1). for example :
+\fV plot2d1("onn",(1:10)',[sin(1:10);cos(1:10)]')\fR
+.TP
+g 
+: stands for general. x and y must then have the same size 
+.RE
+.TP
+b,c
+: can have the values  n or l.
+.RS
+.TP 10
+b=l 
+: a logarithmic axis is used on the X-axis
+.TP
+c=l
+: a logarithmic axis is used on the Y-axis
+.RE
+.RE
+.SH DESCRIPTION
+\fVplot2d1\fR simultaneously plot a set of 2D curves.
+Same as \fVplot2d\fR but with one more argument 
+\fVstr\fR
+which enables logarithmic axis, and less specification for x.
+
+Enter the command  \fVplot2d1()\fR to see a demo.
+.SH SEE ALSO
+plot2d
+.SH AUTHOR
+J.Ph.C..
+
+
+
+

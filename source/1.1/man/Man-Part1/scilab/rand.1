@@ -1,0 +1,44 @@
+.TH rand 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+rand - random number generator
+.SH CALLING SEQUENCE
+.nf
+rand(m,n)
+rand(x)
+rand('key'[,n])
+.fi
+.SH DESCRIPTION
+random matrix generator.
+.TP 20
+rand(m,n) 
+is a random matrix of dimension mxn.
+.TP
+rand(a) 
+is a random matrix of same size as a.
+.TP
+rand('uniform') 
+is for uniform random numbers.
+.TP
+rand('normal') 
+is for gaussian random numbers.
+.TP
+rand('seed') 
+returns the current value of the seed.
+.TP
+rand('seed',n)  
+puts the seed to \fVn\fR. (\fVn=0\fR at first call).
+
+.LP
+\fVrand\fR : with no arguments gives a scalar whose value changes 
+each time it is referenced.
+By default, random numbers are uniformly distributed in
+the interval (0,1). \fVrand('normal')\fR switches to a
+normal distribution with mean 0 and variance 1.
+\fVrand('uniform')\fR switches back to the uniform distribution.
+.SH SEE ALSO
+ssrand
+
+
+
+

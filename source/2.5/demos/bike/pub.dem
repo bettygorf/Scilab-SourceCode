@@ -1,0 +1,5 @@
+mode(0);
+// Copyright INRIA
+xbasc();
+path=SCI+'/demos/bike/';
+getf(path+'bike_pub.sci');pub();

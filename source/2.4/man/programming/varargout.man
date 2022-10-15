@@ -1,0 +1,26 @@
+.TH varargout 1 "April 1998" "Scilab Group" "Scilab keyword"
+.so ../sci.an
+.SH NAME
+varargout -  variable numbers of arguments in an output argument list
+.SH SYNTAX
+\fVvarargout\fR must be the rightmost  argument of the function definition
+output list.
+.SH DESCRIPTION
+A function whose output argument list contains  \fVvarargout\fR must be
+called with more output arguments than indicated in the output argument
+list. The calling arguments passed form \fVvarargout\fR keyword onwards
+are extracted out of the \fVvarargout\fR list defined in the function
+
+\fVvaragout = function ex()\fR may be called with any number of output
+arguments. Within function  \fVex\fR output arguments may be stored in
+in \fVvarargout(i)\fR.
+.SH EXAMPLE
+.nf
+deff('varargout=exampl()','varargout=list(1,2,3,4)')
+
+x=exampl()
+[x,y]=exampl()
+[x,y,z]=exampl()
+.fi
+.SH SEE ALSO
+function, varargin, list

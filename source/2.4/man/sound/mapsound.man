@@ -1,0 +1,29 @@
+.TH mapsound 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mapsound - Plots a sound map 
+.SH CALLING SEQUENCE
+.nf
+mapsound (w,dt,fmin,fmax,simpl,rate)
+.fi
+.SH PARAMETERS
+dt,fmin,fmax,simpl,rate:
+: scalars. default values dt=0.1,fmin=100,fmax=1500,simpl=1,rate=22050;
+.SH DESCRIPTION
+Plots a sound map for a sound. It does FFT at time increments dt.
+\fVrate\fR is the sampling rate. \fVsimpl\fR points are collected for
+speed reasons. \fVfmin\fR and \fVfmax\fR are used for graphic
+boundaries.
+.SH EXAMPLE
+.nf
+// At first we create 0.5 seconds of sound parameters.
+t=soundsec(0.5);
+// Then we generate the sound.
+s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
+[nr,nc]=size(t);
+s(nc/2:nc)=sin(330*t(nc/2:nc));
+mapsound(s);
+.fi 
+
+
+

@@ -1,0 +1,104 @@
+.TH testqp 1 "April 1993" "Scilab Group" "Scilab Function"
+.PD 0 
+.SH NAME
+testqp - testqp
+.SH DESCRIPTION
+.nf
+[ident,info]=testqp(n,irand,idef,imi,icota,nul,eps,modo)
+.fi
+
+test problems for quapro (quadratic programming)
+.TP 10
+n 
+: dimension of the problem
+.TP
+irand 
+: seed for starting the generation of random numbers.
+For irand < 0 the seed will not be recovered
+.TP
+idef 
+: it indicates the type of cuadratic problem. It may
+take the following values:
+.RS
+.TP
+0 
+: for a linear problem
+.TP
+1 
+: for an indefinite quadratic problem
+.TP
+2 
+: for a positive semi-definite quadratic problem
+.RE
+.TP
+imi 
+: biggest number of equality or inequality constraints
+.TP
+icota 
+.TP
+: it indicates the type of bound constraints. It may
+take the values:
+.RS
+.TP 10
+> 2 
+: there are only security bounds
+.TP
+2 
+: there are security bounds for some variables
+.TP
+1 
+: there is at least one real bound for each
+variable
+.RE
+.TP
+nul 
+: number of null columns of the Hessian
+.TP
+eps 
+: maximum absolute differences for predicting active
+inequality constraints in macro postqp (standard
+value=%eps**0.75)
+.TP
+modo 
+: it indicates the way the process begins:
+.RS
+.TP
+1 
+: no initial point has been given. The
+program computes a feasible initial point
+that is a vertex of the region of feasible
+points
+.TP
+2 
+: no initial point has been given. The program
+computes a feasible initial point that is not
+necessarily a vertex. This value of MODO is
+advisable when the quadratic form is positive
+definite and there are a few constraints in
+the problem or when there are large bounds
+on the variables that are security bounds and
+very probably no actives at the solution
+.TP
+3 
+: an initial point is given
+.RE
+.TP
+
+output parameters:
+.TP
+ident 
+: seed for re-starting the generation of random numbers
+when there are several problems to be tested
+.TP
+info 
+: flag showing return conditions:
+.RS
+.TP
+0 
+: normal ending. A local minimum has been found
+.TP
+> 0 
+: abnormal ending
+.RE
+
+

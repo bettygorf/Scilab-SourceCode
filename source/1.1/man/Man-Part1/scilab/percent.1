@@ -1,0 +1,24 @@
+.TH % 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+% - percent
+.SH DESCRIPTION
+Some predefined variables begin with \fV%\fR, such as
+\fV%i\fR (for \fVsqrt(-1)\fR), \fV%inf\fR (for \fVInfinity\fR), \fV%pi\fR (for \fV3.14...\fR),
+\fV%T\fR (for the boolean variable \fV"true"\fR),...
+.LP
+In addition, macros whose names begin with \fV%\fR are special : 
+they are used for coding (extensions of usual) operations .
+.LP
+For example the macro \fV%rmr\fR performs the multiplication (\fVm\fR)
+operation \fVx*y\fR for \fVx\fR and \fVy\fR rational matrices (\fVr\fR).
+The coding conventions are given by the readme file in 
+directory \fVSCIDIR/macros/percent\fR.
+.SH EXAMPLE
+.nf
+x1=list('x',1,2);
+x2=list('x',2,3);
+deff('x=%xmx(x1,x2)','x=list(''x'',x1(2)*x2(2),x2(3)*x2(3))');
+x1*x2
+.fi
+

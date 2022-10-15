@@ -1,0 +1,49 @@
+.TH scifunc_block 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so man1/sci.an
+.SH NAME
+scifunc_block - Scicos block defined interactively
+.SH DESCRIPTION
+This block can realize any type of Scicos block. The function of the
+block is defined interactively using dialog boxes and in Scilab
+language. During simulation, these instructions are interpreted by
+Scilab; the simulation of diagrams that include these types of blocks 
+is slower. For more information see Scicos reference manual.
+.SH DIALOG PARAMETERS
+.TP 
+number of inputs
+: a scalar. Number of regular input ports
+.TP 
+number of outputs
+: a scalar. Number of regular output ports
+.TP 
+number of input events
+: a scalar. Number of input event ports
+.TP 
+number of output events
+: a scalar. Number of output event ports
+.TP
+Initial continuous state
+: a column vector.
+.TP
+Initial discrete state
+: a column vector.
+.TP
+System type
+: a string: z if the block is zero crossing; anything else if it is
+a regular block (c or d for example to specify continuous or discrete). 
+.TP
+System parameter
+: column vector. Any parameters used in the block can be defined here
+a column vector.
+.TP
+initial firing
+: vector. Size of this vector corresponds to the number of event
+outputs. The value of the i-th entry specifies the time of the
+preprogrammed event firing on the i-th output event port. If less than
+zero, no event is preprogrammed.
+.SH SEE ALSO
+Sci_Block_f
+
+
+
+

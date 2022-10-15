@@ -1,0 +1,68 @@
+ 
+clear;lines(0);
+ 
+[n,a1,a2]=msscanf('123 456','%i %s')
+ a2  =
+ 
+ 456   
+ a1  =
+ 
+    123.  
+ n  =
+ 
+    2.  
+ 
+[n,a1,a2,a3]=msscanf('123 456','%i %s')
+ a3  =
+ 
+     []
+ a2  =
+ 
+ 456   
+ a1  =
+ 
+    123.  
+ n  =
+ 
+    2.  
+ 
+data=msscanf('123 456','%i %s')
+ data  =
+ 
+ 
+       data(1)
+ 
+    123.  
+ 
+       data(2)
+ 
+ 456   
+ 
+ 
+fd=mopen(SCI+'/scilab.star','r')
+ fd  =
+ 
+    2.  
+ 
+mfscanf(fd,'%s %s %s')
+ ans  =
+ 
+ 
+       ans(1)
+ 
+ //   
+ 
+       ans(2)
+ 
+ Main   
+ 
+       ans(3)
+ 
+ Scilab   
+ 
+mclose(fd)
+ ans  =
+ 
+    0.  
+ 
+ 

@@ -1,0 +1,68 @@
+.TH lqr 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+lqr - LQ compensator (full state)
+.SH CALLING SEQUENCE
+.nf
+[K,X]=lqr(P12)
+.fi
+.SH PARAMETERS
+.TP 10
+P12
+: \fVsyslin\fR list (state-space linear system)
+.TP
+K,X
+: two real matrices
+.SH DESCRIPTION
+\fVlqr\fR  computes the linear optimal LQ full-state gain
+for the plant \fVP12=[A,B2,C1,D12]\fR in continuous or
+discrete time.
+.LP
+\fVP12\fR is a \fVsyslin\fR list (e.g. \fVP12=syslin('c',A,B2,C1,D12)\fR).
+.LP
+The cost function is l2-norm of \fVz'*z\fR with \fVz=C1 x + D12 u\fR
+i.e. \fV[x,u]' * BigQ * [x;u]\fR where
+.nf
+      [C1' ]               [Q  S]
+BigQ= [    ]  * [C1 D12] = [    ]
+      [D12']               [S' R]
+.fi
+The gain \fVK\fR is such that \fVA + B2*K\fR is stable.
+.LP
+\fVX\fR is the stabilizing solution of the Riccati equation.
+.LP
+
+\fBFor a continuous plant\fR:
+.nf
+(A-B2*inv(R)*S')'*X+X*(A-B2*inv(R)*S')-X*B2*inv(R)*B2'*X+Q-S*inv(R)*S'=0
+.fi
+.nf
+K=-inv(R)*(B2'*X+S)
+.fi
+.LP
+\fBFor a discrete plant\fR:
+.nf
+X=A'*X*A-(A'*X*B2+C1'*D12)*pinv(B2'*X*B2+D12'*D12)*(B2'*X*A+D12'*C1)+C1'*C1;
+.fi
+.nf
+K=-pinv(B2'*X*B2+D12'*D12)*(B2'*X*A+D12'*C1)
+.fi
+An equivalent form for \fVX\fR is
+.nf
+X=Abar'*inv(inv(X)+B2*inv(r)*B2')*Abar+Qbar
+.fi
+with \fVAbar=A-B2*inv(R)*S'\fR and \fVQbar=Q-S*inv(R)*S'\fR
+
+.LP
+The 3-blocks matrix pencils associated with these Riccati equations are:
+.nf
+               discrete                           continuous
+   |I   0    0|   | A    0    B2|         |I   0   0|   | A    0    B2|
+  z|0   A'   0| - |-Q    I    -S|        s|0   I   0| - |-Q   -A'   -S|
+   |0   B2'  0|   | S'   0     R|         |0   0   0|   | S'  -B2'   R|
+.fi
+.SH SEE ALSO
+lqe, gcare, leqr
+.SH AUTHOR
+F.D.
+

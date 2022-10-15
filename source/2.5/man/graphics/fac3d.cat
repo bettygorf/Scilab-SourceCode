@@ -1,0 +1,14 @@
+
+fac3d(2)                       Scilab Function                       fac3d(2)
+NAME
+  fac3d - 3D plot of a surface (obsolete)
+
+CALLING SEQUENCE
+  fac3d(x,y,z,[theta,alpha,leg,flag,ebox])
+  fac3d1(x,y,z,[theta,alpha,leg,flag,ebox])
+
+DESCRIPTION
+  These functions are obsolete and have been replaced by plot3d and plot3d1.
+
+SEE ALSO
+  plot3d, plot3d1

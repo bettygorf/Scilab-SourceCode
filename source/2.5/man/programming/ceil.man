@@ -1,0 +1,26 @@
+.TH ceil 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ceil - rounding up
+.SH CALLING SEQUENCE
+.nf
+[y]=ceil(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: a real matrix
+.TP 10
+y
+: integer matrix
+.SH DESCRIPTION
+.Vb ceil(x) 
+returns an integer matrix made of rounded up elements
+.SH EXAMPLE
+.nf
+ceil([1.9 -2.5])-[2,-2]
+ceil(-%inf)
+x=rand()*10^20;ceil(x)-x
+.fi
+.SH SEE ALSO
+round, floor, int

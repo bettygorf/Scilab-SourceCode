@@ -1,0 +1,462 @@
+
+\def\Mhlp{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=hlp()\\ 
+\cmarg \verb@// Travaux diriges : bibliotheque de macros @\\ 
+\cmarg \verb@// macros du T.P 2@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// tdinit   :  initialise les donnees du td @\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//    PREMIERE PARTIE @\\ 
+\cmarg \verb@// pp       :  Un modele proie-predateur avec insecticide@\\ 
+\cmarg \verb@// equilpp  :  calcule un point d'equilibre du systeme pp@\\ 
+\cmarg \verb@//             pour la commande constante u@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//    DEUXIEME PARTIE @\\ 
+\cmarg \verb@// compet   :  Un modele de competition @\\ 
+\cmarg \verb@// equilcom :  calcule un point d'equilibre du systeme compet@\\ 
+\cmarg \verb@// lincomp  :  linearise le modele compet autour@\\ 
+\cmarg \verb@//               du point d'equilibre donne par equilcom(ue)@\\ 
+\cmarg \verb@// gaincom  :  calcul de la matrice k de gain pour @\\ 
+\cmarg \verb@//               la commande du modele de competition @\\ 
+\cmarg \verb@// gainobs  :  calcul de la matrice l de gain pour @\\ 
+\cmarg \verb@//               l'observateur du modele de competition@\\ 
+\cmarg \verb@// boucle   :  simule les trajectoires d'un systeme observe-controle@\\ 
+\cmarg \verb@//          de dimension 2 avec bruit d'observation@\\ 
+\cmarg \verb@//          utilise pour le modele de competition @\\ 
+\cmarg \verb@// obscont  :  renvoit un systeme observe-controle.@\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@// test     :  dynamique linearisee du systeme precedent @\\ 
+\cmarg \verb@//               observateur-controleur (voir boucle)@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//    TROISIEME PARTIE @\\ 
+\cmarg \verb@// comric   :  calcul d'un gain de commande a l'aide @\\ 
+\cmarg \verb@//          d'une equation de riccati@\\ 
+\cmarg \verb@// obsric   :  calcul d'un gain d'observateur (de filtre)@\\ 
+\cmarg \verb@//          a l'aide d'une equation de riccati@\\ 
+\cmarg \verb@// exemple  : un essai de calcul de gains avec riccati@\\ 
+\cmarg \verb@//          et simulations.@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg 0;\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mtdinit{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=tdinit()\\ 
+\cmarg //$<$$>$=tdinit()\\ 
+\cmarg \verb@// constantes pour le modele proie-predateur@\\ 
+\cmarg \verb@// et le modele de competition  @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg ppr=1/100;\\ 
+\cmarg ppk=1000;\\ 
+\cmarg ppa=1/20000;\\ 
+\cmarg ppb=1/10000;\\ 
+\cmarg ppm=1/100;\\ 
+\cmarg pps=1/200;\\ 
+\cmarg ppl=500;\\ 
+\cmarg $<$ppr,ppk,ppa,ppb,ppm,ppl,pps$>$={\bf resume}(ppr,ppk,ppa,ppb,ppm,ppl,pps);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mpp{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xdot$>$=pp(t,x,u)\\ 
+\cmarg //$<$xdot$>$=pp(t,x,$[$u$]$)\\ 
+\cmarg \verb@// Un modele proie-predateur avec insecticide@\\ 
+\cmarg \verb@// x(1) : la proie (insecte nuisible)@\\ 
+\cmarg \verb@// x(2) : le predateur (un gentil insecte)@\\ 
+\cmarg \verb@// u    : taux de mortalite du a l'insecticide @\\ 
+\cmarg \verb@//        qui agit a la fois sur la proie et le predateur@\\ 
+\cmarg \verb@//        par defaut u=0 (pas d'insecticide)@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg {\bf if} rhs=2,u=0,{\bf end}\\ 
+\cmarg xdot(1) = ppr$\star$x(1)$\star$(1$-$x(1)/ppk) $-$ ppa$\star$x(1)$\star$x(2) $-$ u$\star$x(1);\\ 
+\cmarg xdot(2) = $-$ppm$\star$x(2)             + ppb$\star$x(1)$\star$x(2) $-$ u$\star$x(2);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mequilpp{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xe$>$=equilpp(ue)\\ 
+\cmarg //$<$xe$>$=equilpp($[$ue$]$)\\ 
+\cmarg \verb@// calcule un point d'equilibre xe du systeme pp@\\ 
+\cmarg \verb@// pour la commande constante ue a choisir lors de l'appel de la macro@\\ 
+\cmarg \verb@//  ue=0 par defaut@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);{\bf if} rhs=0,ue=0,{\bf end}\\ 
+\cmarg xe(1) =  (ppm+ue)/ppb;\\ 
+\cmarg xe(2) =  (ppr$\star$(1$-$xe(1)/ppk)$-$ue)/ppa;\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mcompet{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xdot$>$=compet(t,x,u)\\ 
+\cmarg //$<$xdot$>$=compet(t,x,$[$u$]$) u est optionnel\\ 
+\cmarg \verb@// Un modele de competition @\\ 
+\cmarg \verb@// x(1),x(2) deux populations vivant sur une meme ressource @\\ 
+\cmarg \verb@// 1/u est le niveau de la ressource (vaut 1 par defaut)@\\ 
+\cmarg \verb@// ex : deux souches de levure @\\ 
+\cmarg \verb@// ex : des crustaces sur une algue @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg {\bf if} rhs=2,u=1,{\bf end}\\ 
+\cmarg xdot=0$\star${\bf ones}(2,1);\\ 
+\cmarg xdot(1) = ppr$\star$x(1)$\star$(1$-$x(1)/ppk) $-$ u$\star$ppa$\star$x(1)$\star$x(2) ,\\ 
+\cmarg xdot(2) = pps$\star$x(2)$\star$(1$-$x(2)/ppl) $-$ u$\star$ppb$\star$x(1)$\star$x(2) ,\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mequilcom{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xe$>$=equilcom(ue)\\ 
+\cmarg //$<$xe$>$=equilcom($[$ue$]$)\\ 
+\cmarg \verb@// calcule un point d'equilibre du systeme compet@\\ 
+\cmarg \verb@// pour un niveau de ressource ue  (vaut 1 par defaut)@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg {\bf if} rhs=0,ue=1,{\bf end}\\ 
+\cmarg mat=$<$  ppr/ppk , ue$\star$ppa; ue$\star$ppb , pps/ppl $>$\\ 
+\cmarg cte=$<$ppr;pps $>$\\ 
+\cmarg xe= {\bf inv}(mat)$\star$cte;\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mlincomp{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$f,g,h,linsy$>$=lincomp(ue)\\ 
+\cmarg //$<$f,g,h,linsy$>$=lincomp(ue)\\ 
+\cmarg \verb@// fournit les matrices f,g et h du modele compet avec sortie@\\ 
+\cmarg \verb@// linearise  autour du point d'equilibre donne par equilpp(ue).@\\ 
+\cmarg \verb@// la sortie y est la premiere composante x(1) du systeme.@\\ 
+\cmarg \verb@// linsy : est une macro qui donne la dynamique du syt\ `eme @\\ 
+\cmarg \verb@// lin\ 'eaire tangent @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$f,g,linsy$>$=tangent('compet',equilcom(ue),ue);\\ 
+\cmarg h=$<$1,0$>$;\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mgaincom{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=gaincom(pole,ue)\\ 
+\cmarg //$<$$>$=gaincom(pole,$[$ue$]$)\\ 
+\cmarg \verb@// calcul de la matrice k de gain pour @\\ 
+\cmarg \verb@// la commande du mod\ `ele de competition @\\ 
+\cmarg \verb@// de sorte que la matrice f -g*k ait pour p\ \^oles @\\ 
+\cmarg \verb@// le vecteur colonne pole@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg {\bf if} rhs=1,ue=1,{\bf end}\\ 
+\cmarg $<$f,g,h$>$=lincomp(ue);\\ 
+\cmarg k={\bf ppol}(f,g,pole)\\ 
+\cmarg $<$f,g,h,k$>$={\bf resume}(f,g,h,k)\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mgainobs{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=gainobs(pole,ue)\\ 
+\cmarg //$<$$>$=gainobs(pole,$[$ue$]$)\\ 
+\cmarg \verb@// calcul de la matrice l de gain pour @\\ 
+\cmarg \verb@// l'observateur du modele de competition@\\ 
+\cmarg \verb@// de sorte que la matrice f -l*h ait pour poles @\\ 
+\cmarg \verb@// le vecteur colonne pole @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg {\bf if} rhs=1,ue=1,{\bf end}\\ 
+\cmarg $<$f,g,h$>$=lincomp(ue);\\ 
+\cmarg l={\bf ppol}(f',h',pole)\\ 
+\cmarg l=l'\\ 
+\cmarg $<$f,g,h,l$>$={\bf resume}(f,g,h,l)\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mboucle{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=boucle(fch,abruit,xdim,npts,farrow)\\ 
+\cmarg //$<$$>$=boucle(fch,$[$abruit,xdim,npts,farrow$]$)\\ 
+\cmarg \verb@// Donne le portrait de phase et des trajectoires du syst\ `eme @\\ 
+\cmarg \verb@// dynamique fch suppose etre un systeme dynamique observe-controle@\\ 
+\cmarg \verb@// avec sortie bruit\ 'ee  de dimension d'etat 4 ( x:2 , xchap:2)@\\ 
+\cmarg \verb@// zdot=fch(t,z) dans le cadre xdim=<xmin,ymin,ymax,ymax>@\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@// Dans la forme d'appel par d\ 'efaut : boucle(fch) les valeurs@\\ 
+\cmarg \verb@// du cadre  et les pas d'int\ 'egration sont demand\ 'es interactivement.@\\ 
+\cmarg \verb@// La macro boucle  va chercher dans l'environnement @\\ 
+\cmarg \verb@// global les valeurs de (xe,ue) le point d'equilibre@\\ 
+\cmarg \verb@//   f,g,h les matrices du systeme linearise @\\ 
+\cmarg \verb@//   l et k  les deux matrices de gain @\\ 
+\cmarg \verb@// Arguments:@\\ 
+\cmarg \verb@// fch  : nom du systeme a integrer. @\\ 
+\cmarg \verb@//       si c'est une chaine de caract\ `ere, on peut lui donner les valeurs@\\ 
+\cmarg \verb@//       'bcomp' : pour mod\ `ele de competition non-lineaire @\\ 
+\cmarg \verb@//               observe-commande @\\ 
+\cmarg \verb@//       'lcomp' : pour mod\ `ele linearise observe-comande@\\ 
+\cmarg \verb@//       sinon on peut lui donner le nom d'une macro que l'on aura cree@\\ 
+\cmarg \verb@//       avec la commande obscont @\\ 
+\cmarg \verb@//  @\\ 
+\cmarg \verb@// abruit : amplitude du bruit rajoute sur les observations@\\ 
+\cmarg \verb@//    @\\ 
+\cmarg \verb@// npts=<nombre-de-points,pas> ->  sert \ `a donner le nombre de points et @\\ 
+\cmarg \verb@//          le pas pour l'int\ 'egration num\ 'erique.@\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@// xdim=<xmin,ymin,xmax,ymax> -> sert \ `a donner le cadre du dessin @\\ 
+\cmarg \verb@// farrow vaur 't' ou 'f' : s'il vaut 't' on rajoute des fleches@\\ 
+\cmarg \verb@//  le long des trajectoires @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$lhs,rhs$>$={\bf argn}(0);\\ 
+\cmarg \verb@// appel minimal @\\ 
+\cmarg {\bf if} rhs$<$=4,farrow='f';{\bf end};\\ 
+\cmarg {\bf if} rhs$<$=3,{\bf write}(\%io(2),'integration : nb points,pas du systeme '),\\ 
+\cmarg \hspace{0.5cm}npts={\bf read}(\%io(1),1,2),\\ 
+\cmarg {\bf end}\\ 
+\cmarg {\bf if} rhs $<$= 2,\\ 
+\cmarg \hspace{0.5cm}{\bf write}(\%io(2),'cadre du dessin : xmin,ymin,xmax,ymax'),\\ 
+\cmarg \hspace{0.5cm}xdim={\bf read}(\%io(1),1,4),\\ 
+\cmarg \verb@// Test sur le cadre @\\ 
+\cmarg \hspace{0.5cm}{\bf if} xdim(3) $<$= xdim(1),\\ 
+\cmarg \hspace{0.5cm}{\bf write}(\%io(2),'Erreur:  xmin $>$ xmax '),{\bf return},{\bf end}\\ 
+\cmarg \hspace{0.5cm}{\bf if} xdim(4) $<$= xdim(2),\\ 
+\cmarg \hspace{0.5cm}{\bf write}(\%io(2),'Erreur:  ymin $>$ ymax '),{\bf return},{\bf end}\\ 
+\cmarg {\bf end} \\ 
+\cmarg {\bf if} rhs $<$=1,abruit=0.0;{\bf end} \\ 
+\cmarg tcal=npts(2)$\star$(0:npts(1))\\ 
+\cmarg {\bf rand}('normal')\\ 
+\cmarg br={\bf sqrt}(abruit)$\star${\bf rand}(1,npts(1)+1);\\ 
+\cmarg {\bf if} {\bf type}(fch)=10;\\ 
+\cmarg \verb@// Passage des constantes a un programme Fortran d'initialisation @\\ 
+\cmarg \hspace{0.5cm}idisp=0;\\ 
+\cmarg \hspace{0.5cm}pp\_c=$<$ppr,ppk,ppa,ppb,ppm,pps,ppl$>$\\ 
+\cmarg \hspace{0.5cm}{\bf fort}('icomp',xe,1,'r',ue,2,'r',f,3,'r',g,4,'r',h,5,'r',...\\ 
+\cmarg \hspace{1.5cm}k,6,'r',l,7,'r',br,8,'r',npts(2),9,'r',npts(1),10,'i',...\\ 
+\cmarg \hspace{1.5cm}pp\_c,11,'r',idisp,12,'i','{\bf sort}');\\ 
+\cmarg {\bf end} \\ 
+\cmarg xset("window",0);xselect();xclear();\\ 
+\cmarg \verb@// Boucle sur les points de depart @\\ 
+\cmarg \hspace{0.5cm}goon=1\\ 
+\cmarg \hspace{0.5cm}{\bf while} goon=1,\\ 
+\cmarg \hspace{1.8cm}ftest=1;\\ 
+\cmarg \hspace{1.8cm}{\bf while} ftest=1,\\ 
+\cmarg \hspace{2.5cm}addtitle(fch);\\ 
+\cmarg \hspace{2.5cm}plot2d($<$xdim(1);xdim(1);xdim(3)$>$,$<$xdim(2);xdim(4);xdim(4)$>$)\\ 
+\cmarg \hspace{2.5cm}plot2d($<$xe(1)$>$,$<$xe(2)$>$,$<$2,4$>$,"111",...\\ 
+\cmarg \hspace{3.5cm}"Point d''equilibre pour ue='+{\bf string}(ue),xdim);\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),'Utilisez la souris : ');\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),' $-$$>$ Bouton de droite pour quiter ');\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),' $-$$>$ Bouton du milieu ou de gauche ');\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),'      pour indiquer x0 ');\\ 
+\cmarg \hspace{2.5cm}$<$n,x,y$>$=xclick()\\ 
+\cmarg \hspace{2.5cm}{\bf if} n=2,goon=0;{\bf return};{\bf end}\\ 
+\cmarg \hspace{2.5cm}$<$xx0,yy0,recc$>$=xchange(x,y,'i2f');\\ 
+\cmarg \hspace{2.5cm}x0=$<$xx0,yy0$>$;\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),'Utilisez la souris : ');\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),' $-$$>$ Bouton de droite pour quiter ');\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),' $-$$>$ Bouton du milieu ou de gauche ');\\ 
+\cmarg \hspace{2.5cm}{\bf write}(\%io(2),'      pour indiquer xchap0 (observateur) ');\\ 
+\cmarg \hspace{2.5cm}$<$n,x,y$>$=xclick()\\ 
+\cmarg \hspace{2.5cm}{\bf if} n=2,goon=0;{\bf return};{\bf end}\\ 
+\cmarg \hspace{2.5cm}$<$xx0,yy0,recc$>$=xchange(x,y,'i2f');\\ 
+\cmarg \hspace{2.5cm}xchap0=$<$xx0,yy0$>$;\\ 
+\cmarg \hspace{2.5cm}{\bf if} {\bf type}(fch)=10,\\ 
+\cmarg \hspace{3.2cm}ftest=desorb1($<$x0,xchap0$>$',npts,fch,farrow,xdim);\\ 
+\cmarg \hspace{2.5cm}{\bf else} \\ 
+\cmarg \hspace{3.2cm}ftest=desorb1($<$x0,xchap0$>$',npts,{\bf list}(fch,abruit,...\\ 
+\cmarg \hspace{6.2cm}npts(2),npts(1)),farrow,xdim);             \\ 
+\cmarg \hspace{2.5cm}{\bf end}\\ 
+\cmarg \hspace{2.5cm}{\bf if} ftest=1;{\bf write}(\%io(2),'conditions initiales hors du cadre'),{\bf end}\\ 
+\cmarg \hspace{1.8cm}{\bf end}\\ 
+\cmarg \hspace{0.5cm}{\bf end}\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mdesorbu{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$res$>$=desorb1(x0,n1,fch,farrow,xdim);\\ 
+\cmarg //$<$res$>$=desorb1(x0,n1,fch,farrow,xdim);\\ 
+\cmarg \verb@//!@\\ 
+\cmarg res=0\\ 
+\cmarg {\bf write}(\%io(2),'Calculs en cours')\\ 
+\cmarg tcal=n1(2)$\star$(0:n1(1))\\ 
+\cmarg xxx={\bf ode}(x0,0,tcal,fch);\\ 
+\cmarg $<$nn1,nn2$>$={\bf size}(tcal);\\ 
+\cmarg comcom=$-$k$\star$(xxx(3:4,:)$-$xe$\star${\bf ones}(1,nn2));\\ 
+\cmarg \verb@//dessin de l'evolution conjointe de la deuxieme@\\ 
+\cmarg \verb@//composante de l'etat et de son estimee (observateur)@\\ 
+\cmarg xset("window",1);xclear();\\ 
+\cmarg plot2d($<$tcal;tcal$>$',xxx($<$2,4$>$,:)',$<$$-$1,$-$2$>$,"111",...\\ 
+\cmarg \hspace{1.8cm}"x2(t) @observateur de x2(t)",$<$0,xdim(2),n1(1)$\star$n1(2),xdim(4)$>$)\\ 
+\cmarg xset("window",2);xclear();\\ 
+\cmarg \verb@//dessin de la commande lineaire@\\ 
+\cmarg plot2d($<$tcal$>$',$<$comcom$>$',$<$$-$1$>$,"121",...\\ 
+\cmarg \hspace{1.8cm}"commande lineaire en fonction du temps (ecart par rapport a ue)")\\ 
+\cmarg xset("window",0);xclear();\\ 
+\cmarg \verb@//portrait de phase @\\ 
+\cmarg plot2d(xxx($<$1,3$>$,:)',xxx($<$2,4$>$,:)',$<$$-$1,$-$2$>$,"111","(x1,x2)@observateur ",...\\ 
+\cmarg xdim);\\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+
+\def\Mobscont{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$macr$>$=obscont(sysn)\\ 
+\cmarg //$<$macr$>$=obscont(sysn)\\ 
+\cmarg \verb@// @\\ 
+\cmarg \verb@//cette macro renvoit le systeme observe-commande @\\ 
+\cmarg \verb@//construit a partir du systeme sysn linearise autour de (xe,ue)@\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// sysn : chaine de caractere donnant le nom du systeme a commander @\\ 
+\cmarg \verb@// gaincom,gainobs : vecteurs colonnes des gains demandes @\\ 
+\cmarg \verb@//@\\ 
+\cmarg \verb@// Retour : une nouvelle macro donnant le syst\ `eme observe-commande@\\ 
+\cmarg \verb@// <x1dot>=macr(t,x1,abruit,pas,n)@\\ 
+\cmarg \verb@//    x1=<x;xchap>,@\\ 
+\cmarg \verb@// pour l'appel il faudra creer un vecteur de bruit de nom br @\\ 
+\cmarg \verb@// d'autre part la macro cr\ 'ee va chercher dans l'environnement @\\ 
+\cmarg \verb@// global les valeurs de (xe,ue) le point d'equilibre@\\ 
+\cmarg \verb@//   f,g,h les matrices du systeme linearise @\\ 
+\cmarg \verb@//   l et k  les deux matrices de gain @\\ 
+\cmarg \verb@// exemple :@\\ 
+\cmarg \verb@//    pas=10;n=200;@\\ 
+\cmarg \verb@//    br=rand(1,n)@\\ 
+\cmarg \verb@//    ode(<x0;xchap0>,0,pas*(0:n),list(macr,1.0,pas,n));@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg {\bf deff}('$<$zdot$>$=macr(t,z,abr,pas,n)',...\\ 
+\cmarg \hspace{1.0cm}$<$'u=ue$-$k(1)$\star$(z(3)$-$xe(1))$-$k(2)$\star$(z(4)$-$xe(2))';\\ 
+\cmarg \hspace{1.2cm}'ff\_brui=abr$\star$br({\bf ent}({\bf mini}(t/pas+1,n)))';\\ 
+\cmarg \hspace{1.2cm}'y=h(1)$\star$z(1)+h(2)$\star$z(2)+ff\_brui';\\ 
+\cmarg \hspace{1.2cm}'xdot='+sysn+'(t,z(1:2),u)';\\ 
+\cmarg \hspace{1.2cm}'xdot1=f$\star$(z(3:4)$-$xe) +g$\star$(u$-$ue)$-$l$\star$(h$\star$z(3:4)$-$y)';\\ 
+\cmarg \hspace{1.2cm}'zdot=$<$xdot;xdot1$>$';$>$);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+
+\def\Mcomric{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=comric(q1,q2,r)\\ 
+\cmarg //$<$$>$=comric(q1,q2,r)\\ 
+\cmarg \verb@// pi est la solution de l'equation de riccati stationnaire @\\ 
+\cmarg \verb@// f'*pi+pi*f+ q*eye(2)-pi*g*(1/r)*g'*pi=0@\\ 
+\cmarg \verb@// pour calculer le gain r\^-1*g'*pi de la commande.@\\ 
+\cmarg \verb@// ici, q et r sont des matrices de ponderation d'une fonction @\\ 
+\cmarg \verb@// cout quadratique.@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$pi$>$={\bf ricc}(f,(1/r)$\star$g$\star$g',$<$q1,0;0,q2$>$,'cont');\\ 
+\cmarg k= (1/r) $\star$g'$\star$pi;\\ 
+\cmarg $<$k$>$={\bf resume}(k);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mobsric{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=obsric(q1,q2,r)\\ 
+\cmarg //$<$$>$=obsric(q1,q2,r)\\ 
+\cmarg \verb@// p est la solution de l'equation de riccati stationnaire @\\ 
+\cmarg \verb@// f*p+p*f'+ q*eye(2)-(1/r)*p*h'*h*p=0@\\ 
+\cmarg \verb@// pour calculer le gain r\^-1*p*h' de l'observateur@\\ 
+\cmarg \verb@// confondu avec le filtre de Kalman.@\\ 
+\cmarg \verb@// ici, q est la variance du bruit d'etat, @\\ 
+\cmarg \verb@//      r la variance du bruit de mesure. @\\ 
+\cmarg \verb@//!@\\ 
+\cmarg $<$p$>$={\bf ricc}(f',(1/r)$\star$h'$\star$h,$<$q1,0;0,q2$>$,'cont');\\ 
+\cmarg l= (1/r) $\star$p$\star$h'\\ 
+\cmarg $<$l$>$={\bf resume}(l);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mexemple{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=exemple()\\ 
+\cmarg \verb@// un essai de calcul de gains avec riccati@\\ 
+\cmarg \verb@// et simulation.@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg ue=1;\\ 
+\cmarg xe=equilcom(ue);\\ 
+\cmarg $<$f,g,h,vv$>$=lincomp(ue);\\ 
+\cmarg obsric(3,1,1);\\ 
+\cmarg comric(3,1,1);\\ 
+\cmarg ue=1;\\ 
+\cmarg xe=equilcom(ue);\\ 
+\cmarg boucle('bcomp',0.1,$<$0,150,50,210$>$,$<$100,10$>$);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mtest{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$f1,f2$>$=test(ue)\\ 
+\cmarg //$<$f1,f2$>$=test(ue)\\ 
+\cmarg \verb@// f1 est la dynamique linearisee @\\ 
+\cmarg \verb@//autour du point d'equilibre donne par equilcom(ue)@\\ 
+\cmarg \verb@//du systeme precedent observateur-controleur (voir simulcomp)@\\ 
+\cmarg \verb@// f2 est la valeur theorique de f1 (voir cours)@\\ 
+\cmarg \verb@//!@\\ 
+\cmarg {\bf deff}('$<$yy,zdot$>$=fff(z,vv)',...\\ 
+\cmarg \hspace{1.0cm}$<$'u=1$-$k$\star$z(3:4)';\\ 
+\cmarg \hspace{1.2cm}'yy=0';\\ 
+\cmarg \hspace{1.2cm}'xdot(1,1) = ppr$\star$z(1)$\star$(1$-$z(1)/ppk) $-$ u$\star$ppa$\star$z(1)$\star$z(2)';\\ 
+\cmarg \hspace{1.2cm}'xdot(2,1) = pps$\star$z(2)$\star$(1$-$z(2)/ppl) $-$ u$\star$ppb$\star$z(1)$\star$z(2)';\\ 
+\cmarg \hspace{1.2cm}'xdot1 = (f$-$l$\star$h$-$g$\star$k)$\star$z(3:4) + l$\star$(z(1)$-$xe(1))';\\ 
+\cmarg \hspace{1.2cm}'zdot=$<$xdot;xdot1$>$'$>$);\\ 
+\cmarg xe=equilcom(ue)\\ 
+\cmarg $<$f1,g1,h1,k1$>$=lin(fff,$<$xe;0;0$>$,0),\\ 
+\cmarg f2=$<$ f, $-$g$\star$k; l$\star$h,f$-$l$\star$h$-$g$\star$k$>$,\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+

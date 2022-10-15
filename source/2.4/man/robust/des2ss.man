@@ -1,0 +1,49 @@
+.TH des2ss 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+des2ss - descriptor to state-space
+.SH CALLING SEQUENCE
+.nf
+[Sl]=des2ss(A,B,C,D,E [,tol])
+[Sl]=des2ss(Des)
+.fi
+.SH PARAMETERS
+.TP 16
+A,B,C,D,E
+: real matrices of appropriate dimensions
+.TP
+Des
+: list
+.TP
+Sl
+: \fVsyslin\fR list
+.TP
+tol
+: real parameter (threshold) (default value \fV100*%eps\fR).
+.SH DESCRIPTION
+Descriptor to state-space transform.
+.LP
+\fVSl=des2ss(A,B,C,D,E)\fR returns 
+a linear system \fVSl\fR equivalent to the descriptor system 
+\fV(E,A,B,C,D)\fR.
+.LP
+For index one \fV(E,A)\fR pencil, explicit formula is used and
+for higher index pencils \fVrowshuff\fR is used.
+.LP
+\fVSl=des2ss(Des)\fR with \fVDes=list('des',A,B,C,D,E)\fR returns
+a linear system \fVSl\fR in state-space form with possibly 
+a polynomial \fVD\fR matrix.
+.LP
+A generalized Leverrier algorithm is used.
+.SH EXAMPLE
+.nf
+s=poly(0,'s');G=[1/(s-1),s;1,2/s^3];
+S1=tf2des(G);S2=tf2des(G,"withD");
+W1=des2ss(S1);W2=des2ss(S2);
+clean(ss2tf(W1))
+clean(ss2tf(W2))
+.fi
+.SH SEE ALSO
+des2tf, glever, rowshuff
+
+

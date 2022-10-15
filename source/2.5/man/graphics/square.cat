@@ -1,0 +1,33 @@
+
+square(2)                      Scilab Function                      square(2)
+NAME
+  square - set scales for isometric plot (change the size of the window)
+
+CALLING SEQUENCE
+  square(xmin,ymin,xmax,ymax)
+
+PARAMETERS
+
+  xmin,xmax,ymin,ymax  : four real values
+
+DESCRIPTION
+  square is used to have isometric scales on the x and y axes.  The requested
+  values xmin, xmax, ymin, ymax are the boundaries of the graphics frame and
+  square changes the graphics window dimensions in order to have an isometric
+  plot. square set the current graphics scales and can be used in conjunction
+  with graphics routines which request the current graphics scale (for
+  instance fstrf="x0z" in plot2d).
+
+EXAMPLE
+  t=[0:0.1:2*%pi]';
+  plot2d(sin(t),cos(t))
+  xbasc()
+  square(-1,-1,1,1)
+  plot2d(sin(t),cos(t))
+  xset("default")
+
+SEE ALSO
+  isoview, xsetech
+
+AUTHOR
+  Steer S.

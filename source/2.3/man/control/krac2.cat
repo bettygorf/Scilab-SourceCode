@@ -1,0 +1,27 @@
+
+krac2(1)                       Scilab Function                       krac2(1)
+NAME
+  krac2 - continuous SISO system limit feedback gain
+
+CALLING SEQUENCE
+  g=krac2(sys)
+
+PARAMETERS
+
+  sys  : SISO linear system (syslin)
+
+  g    : constant
+
+DESCRIPTION
+  krac2(sys) computes the gains g such that the system sys fedback by g
+  (sys/.g)  has  2 real equal poles.
+
+EXAMPLE
+  h=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+  xbasc();evans(h,100)
+  g=krac2(h)
+  hf1=h/.g(1);roots(denom(hf1))
+  hf2=h/.g(2);roots(denom(hf2))
+
+SEE ALSO
+  evans, kpure

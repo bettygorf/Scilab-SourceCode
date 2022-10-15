@@ -1,0 +1,26 @@
+
+faurre(1)                      Scilab Function                      faurre(1)
+NAME
+  faurre - filter
+
+CALLING SEQUENCE
+  [Pn,Rt,T]=faurre(n,H,F,G,r0)
+
+PARAMETERS
+
+  n           : number of iterations.
+
+  H, F, G     : estimated triple from the covariance sequence of y.
+
+  r0          : E(yk*yk')
+
+  Pn          : solution of the Riccati equation after n iterations.
+
+  Rt, T       : gain matrix of the filter.
+
+DESCRIPTION
+  function which computes iteratively the minimal solution of the algebraic
+  Riccati equation and gives the matrices Rt and Tt of the filter model.
+
+AUTHOR
+  G. Le V.

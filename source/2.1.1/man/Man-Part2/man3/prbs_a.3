@@ -1,0 +1,17 @@
+.TH prbs_a 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+prbs_a - pseudo random binary sequences generation 
+.SH CALLING SEQUENCE
+.nf
+[u]=prbs_a(n,nc,[ids])
+.fi 
+.SH DESCRIPTION
+generation of pseudo random binary sequences
+\fV u=[u0,u1,...,u_(n-1)];\fR
+u takes values in {-1,1} and changes at most nc times its sign.
+ids can be used to fix the date at which u must change its sign 
+ids is then an integer vector with values in \fV[1:n]\fR.
+
+
+

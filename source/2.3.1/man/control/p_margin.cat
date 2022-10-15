@@ -1,0 +1,33 @@
+
+p_margin(1)                    Scilab Function                    p_margin(1)
+NAME
+  p_margin - phase margin
+
+CALLING SEQUENCE
+  [phm,fr]=p_margin(h)
+  phm=p_margin(h)
+
+PARAMETERS
+
+  h         : SISO linear system (syslin list).
+
+  phm       : phase margin (in degree)
+
+  fr        : corresponding frequency (hz)
+
+DESCRIPTION
+  The phase margin is the values of the phase at points where the nyquist
+  plot of h crosses the unit circle.
+
+EXAMPLE
+  h=syslin('c',-1+%s,3+2*%s+%s^2)
+  [p,fr]=p_margin(h)
+  [p,fr]=p_margin(h+0.7)
+  nyquist(h+0.7)
+  t=(0:0.1:2*%pi)';plot2d(sin(t),cos(t),-3,'000')
+
+SEE ALSO
+  chart, black, g_margin, nyquist
+
+AUTHOR
+  S. S.

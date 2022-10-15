@@ -1,0 +1,20 @@
+.TH isdef 3 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+isdef - check variable  existence
+.SH CALLING SEQUENCE
+.nf
+isdef('var-name')
+.fi
+.SH DESCRIPTION
+returns \fV%T\fR if the variable \fV'var-name'\fR exists 
+and \fV%F\fR otherwise.
+.SH EXAMPLE
+.nf
+A=1;
+isdef('A')
+clear A
+isdef('A')
+.fi
+.SH SEE ALSO
+exists, whereis, type, typeof, clear

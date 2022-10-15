@@ -1,0 +1,36 @@
+
+GeneWei(2)                     Scilab Function                     GeneWei(2)
+NAME
+  GeneWei -  Generalized Weierstrass function
+
+  Author: Paulo Goncalves
+
+  Generates a Generalized Weierstrass function
+
+Usage
+
+  [x,Ht]=GeneWei(N,ht,lambda,tmax,randflag)
+Input parameters
+       o  N  : Positive integer Sample size of the synthesized signal
+       o  ht  : Real vector or character string
+          ht : real vector of size [1,N]: each element prescribes the local
+         Holder regularity of the function. All elements of  ht  must be in
+         the interval [0,1].
+          ht : character string : contains the analytic expression of the
+         Holder trajectory  (e.g. '0.5*sin(16*t) + 0.5')
+       o  lambda  : positive real Geometric progression of the Weierstrass
+         function. Default value is lambda = 2.
+       o tmax  : positive real Time support of the Weierstrass function.
+         Default value is tmax = 1.
+       o  randflag  : flag 0/1
+          flag  = 0 : deterministic Weierstrass function
+          flag  = 1 : random Weierstrass process Default value is randflag =
+         0
+Output parameters
+       o  x  : real vector  [1,N] Time samples of the Weierstrass function
+       o  Fj  : real vector [1,N] Holder trajectory of the Weierstrass func-
+         tion
+See also:
+
+Example:
+  [x,Ht] = GeneWei(1024,'abs(sin(16*t))',2,1,0) ;

@@ -1,0 +1,24 @@
+
+who(1)                         Scilab Function                         who(1)
+NAME
+  who - listing of variables
+
+CALLING SEQUENCE
+  who
+  who()
+  names=who('local')
+  [names,mem]=who('local')
+  names=who('global')
+  [names,mem]=who('global')
+
+DESCRIPTION
+  who displays current variable names.
+
+  who('local') or who('get')  Returns current variable names and memory used
+  in double precision worlds.
+
+  who('global') returns global  variable names and memory used in double pre-
+  cision worlds.
+
+SEE ALSO
+  whos

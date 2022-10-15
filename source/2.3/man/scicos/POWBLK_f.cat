@@ -1,0 +1,12 @@
+
+POWBLK_f(5)                     Scicos Block                      POWBLK_f(5)
+NAME
+  POWBLK_f - Scicos u^a block
+
+DIALOGUE PARAMETERS
+
+  a :  real scalar
+
+DESCRIPTION
+  This block realizes y(i)=u(i)^a. The input and output port sizes are deter-
+  mined by the compiler according to the connected blocks port sizes.

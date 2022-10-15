@@ -1,0 +1,37 @@
+.TH LISSAGE 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+smooth - smoothing by spline functions
+.SH CALLING SEQUENCE
+.nf
+[pt]=smooth(ptd [,step])
+.fi
+.SH PARAMETERS
+.TP 10
+ptd
+: (2xn) real vector
+.TP 10
+step
+: real (discretization step of abscissae) (default=\fV0.01*magnitude(v)\fR)
+.TP 10
+pt
+: (2xn) real vector
+.SH DESCRIPTION
+this macro computes interpolation by spline 
+functions for a given set of points in the plane.
+The  coordinates  are   \fV(ptd(1,i),ptd(2,i))\fR.  The
+components \fRptd(1,:)\fR must be in ascending order.
+The default value for the step is
+\fVabs(maxi(ptd(1,:))-mini(ptd(1,:)))/100\fR
+.SH EXAMPLE
+.nf
+x=[1 10 20 30 40];
+y=[1 30 -10 20 40];
+plot2d(x',y',[3],"011"," ",[-10,-40,50,50]);
+yi=smooth([x;y],0.1);
+plot2d(yi(1,:)',yi(2,:)',[-1],"000");
+.fi
+.SH SEE ALSO
+splin, interp, interpln
+
+

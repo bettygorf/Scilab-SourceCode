@@ -1,0 +1,154 @@
+
+plot2d(2)                      Scilab Function                      plot2d(2)
+NAME
+  plot2d - 2D plot
+
+CALLING SEQUENCE
+  plot2d(x,y,[style,strf,leg,rect,nax])
+  plot2d(y)
+
+PARAMETERS
+
+  x,y    : two matrices of the same size (nl,nc). Each column of y is plotted
+         with respect to the corresponding column of x. nc curves are plotted
+         using nl points.
+
+         For instance, to plot one curve: x=[1:10]' and y=sin(x).
+
+         For instance, to plot 2 curves: x1=[1:10]', x2=[11:20]', x=[x1 x2]
+         and y=[sin(x1) cos(x1)].
+
+  style  : is a real row vector of size nc. The style to use for curve i is
+         defined by style(i).
+
+         The default style is 1:nc (1 for the first curve, 2 for the second,
+         etc.).
+
+         -  if style(i) is negative the curve is plotted using the mark with
+            id abs(style(i))+1; use xset() to see the mark ids.
+
+         -  if style(i) is strictly positive, a plain line with color id
+            style(i) or a dashed line with dash id style(i) is used; use
+            xset() to see the color ids.
+
+         -  When only one curve is drawn, style can be the row vector of size
+            2 [sty,pos] where sty is used to specify the style and pos is an
+            integer ranging from 1 to 6 which specifies a position to use for
+            the caption.  This can be useful when a user wants to draw multi-
+            ple curves on a plot by calling the function plot2d several times
+            and wants to give a caption for each curve.
+
+  strf   : is a string of length 3 "xyz".
+
+         The default is "021".
+
+         x  : controls the display of captions.
+
+            x=0  : no captions.
+
+            x=1  : captions are displayed. They are given by the optional
+                 argument leg.
+
+         y  : controls the computation of the frame.
+
+            y=0  : the current boundaries (set by a previous call to another
+                 high level plotting function) are used. Useful when super-
+                 posing multiple plots.
+
+            y=1  : the optional argument rect is used to specify the
+                 boundaries of the plot.
+
+            y=2  : the boundaries of the plot are computed using min and max
+                 values of x and y.
+
+            y=3  : like y=1 but produces isoview scaling.
+
+            y=4  : like y=2 but produces isoview scaling.
+
+            y=5  : like y=1 but plot2d can change the boundaries of the plot
+                 and the ticks of the axes to produce pretty graduations.
+                 When the zoom button is activated, this mode is used.
+
+            y=6  : like y=2 but plot2d can change the boundaries of the plot
+                 and the ticks of the axes to produce pretty graduations.
+                 When the zoom button is activated, this mode is used.
+
+         z  : controls the display of information on the frame around the
+            plot.
+
+            z=0  : nothing is drawn around the plot.
+
+            z=1  : axes are drawn. The number of tics can be specified by the
+                 nax optional argument.
+
+            z=2  : the plot is surrounded by a box without tics.
+
+  leg    : a string. It is used when the first character x of argument strf
+         is 1.  leg has the form "leg1@leg2@...." where leg1, leg2, etc. are
+         respectively the captions of the first curve, of the second curve,
+         etc.
+
+         The default is " ".
+
+  rect   : This argument is used when the second character y of argument strf
+         is 1, 3 or 5. It is a row vector of size 4 and gives the dimension
+         of the frame: rect=[xmin,ymin,xmax,ymax].
+
+  nax    : This argument is used when the third character z of argument strf
+         is 1.  It is a row vector with four entries [nx,Nx,ny,Ny] where nx
+         (ny) is the number of subgraduations on the x (y) axis and Nx (Ny)
+         is the number of graduations on the x (y) axis.
+
+DESCRIPTION
+  plot2d plots a set of 2D curves: each column of y is plotted with respect
+  to the corresponding column of x. Piecewise linear plotting is used.
+
+  By default, successive plots are superposed. To clear the previous plot,
+  use xbasc.
+
+  Invoked with only one argument, plot2d(y) plots all the columns of y with
+  respect to the vector 1:<number of rows of y>.
+
+  Enter the command plot2d() to see a demo.
+
+  Other high level plot2d function exist:
+
+  plot2d1: same as plot2d but enables logarithmic plots and
+       more facilities to specify x vectors.
+
+  plot2d2: same as plot2d1 but the curve is supposed to be
+       piecewise constant.
+
+  plot2d3: same as plot2d1 but the curve is plotted with
+       vertical bars.
+
+  plot2d4: same as plot2d1 but the curve is plotted with
+       arrows.
+
+EXAMPLE
+  //simple plot
+  x=[0:0.1:2*%pi]';
+  plot2d(sin(x))
+  //multiple plot
+  xbasc()
+  plot2d([x x x],[sin(x) sin(2*x) sin(3*x)])
+  // multiple plot giving the dimensions of the frame
+  xbasc()
+  plot2d([x x x],[sin(x) sin(2*x) sin(3*x)],..
+    1:3,"011"," ",[0,0,6,0.5])
+  //multiple plot with captions and given tics
+  xbasc()
+  plot2d([x x x],[sin(x) sin(2*x) sin(3*x)],..
+    [1,2,3],"111","L1@L2@L3",[0,-2,2*%pi,2],[2,10,2,10])
+  // isoview
+  xbasc()
+  plot2d(x,sin(x),1,"041")
+  // auto scale
+  xbasc()
+  plot2d(x,sin(x),1,"061")
+
+SEE ALSO
+  plot2d1, plot2d2, plot2d3, plot2d4, xbasc, xset
+
+AUTHOR
+  J.Ph.C.

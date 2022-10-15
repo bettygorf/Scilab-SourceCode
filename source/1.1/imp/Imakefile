@@ -1,0 +1,31 @@
+#include "../Imake.incl"
+
+ENTETE=$(SCIDIR)/imp/NperiPos.pos
+SBIN=$(SCIDIR)/bin
+IM=../Imake.incl
+NP=NullParameter
+MAIN_DEFINES = -DENTETE=\"$(ENTETE)\" 
+
+PROGRAMS= $(SBIN)/Blpr $(SBIN)/Blatexprs $(SBIN)/Blatexpr $(SBIN)/Blatexpr2
+SRCS= Blpr.c Blatexprs.c Blatexpr2.c
+
+
+AllTarget($(PROGRAMS))
+
+SpecialObjectRule(Blpr.o,$(IM),$(MAIN_DEFINES))
+SpecialObjectRule(Blatexprs.o,$(NP),$(MAIN_DEFINES))
+SpecialObjectRule(Blatexpr2.o,$(NP),$(MAIN_DEFINES))
+
+NormalProgramTarget($(SBIN)/Blpr,Blpr.o,$(IM),$(NP),$(NP))
+NormalProgramTarget($(SBIN)/Blatexprs,Blatexprs.o,$(IM),$(NP),$(NP))
+NormalProgramTarget($(SBIN)/Blatexpr2,Blatexpr2.o,$(IM),$(NP),$(NP))
+
+$(SBIN)/Blatexpr	: Blatexpr.g $(IM)
+	sed "s+ENTETE+$(ENTETE)+" $(@F).g > $@
+	chmod +x $@
+
+DependTarget()
+
+distclean:: clean 
+	$(RM) $(PROGRAMS)
+

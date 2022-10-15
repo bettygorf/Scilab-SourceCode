@@ -1,0 +1,31 @@
+
+REMEZ(G)                       Scilab Function                       REMEZ(G)
+NAME
+  remez - Remez's algorithm
+
+CALLING SEQUENCE
+  [an]=remez(nc,fg,ds,wt)
+
+PARAMETERS
+
+  nc   : integer, number of cosine functions
+
+  fg,ds,wt
+       : real vectors
+
+  fg   : grid of frequency points in [0,.5)
+
+  ds   : desired magnitude on grid fg
+
+  wt   : weighting function on error on grid fg
+
+DESCRIPTION
+  minimax approximation of a frequency domain magnitude response.  The
+  approximation takes the form
+   h = sum[a(n)*cos(wn)]
+  for n=0,1,...,nc. An FIR, linear-phase filter can be obtained from the the
+  output of remez by using the following commands:
+                   hn(1nc-1)=an(nc-12)/2;
+                   hn(nc)=an(1);
+                   hn(nc+12*nc-1)=an(2nc)/2;
+  where an = cosine filter coefficients

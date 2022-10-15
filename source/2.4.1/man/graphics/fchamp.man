@@ -1,0 +1,52 @@
+.TH fchamp 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+fchamp - draw a 2d vector field 
+.SH CALLING SEQUENCE
+.nf
+fchamp(f,t,xr,yr,[arfact,brect,strf])
+.fi
+.SH PARAMETERS
+.TP 10
+f
+: a function which describes the vector field. 
+.RS 
+.TP
+-
+It can be a function name \fVf\fR,
+where \fVf\fR is supposed to be a function of type \fV[y]=f(t,x,[u])\fR ( \fVf\fR returns 
+a column vector of dimension 2, \fVy\fR, which gives the value of the vector field 
+\fVf\fR at point \fVx\fR and time \fVt\fR. 
+.TP
+-
+It can also be an object of type list,
+\fVlist(f1,u1)\fR
+where \fVf1\fR is a function (\fVf [y]=f1(t,x,u)\fR ) and \fVu1\fR gives the value of the parameter \fVu\fR.
+.RE
+.TP 
+t 
+: The selected time.
+.TP 
+xr,yr
+: two vectors of size (1,n1) (1,n2) which specifies the grid on which the vector field is to be computed.
+.TP 
+arfact,brect,strf
+: optional arguments, see \fVchamp\fR.
+.SH DESCRIPTION 
+the \fVfchamp\fR is used to draw a two dimensional vector field described by a a Scilab 
+external.
+
+Enter the command \fVchamp()\fR to see a demo.
+.SH EXAMPLE
+.nf
+ deff('[xdot] = derpol(t,x)',['xd1 = x(2)';
+           "xd2 = -x(1) + (1 - x(1)**2)*x(2)";
+           "xdot = [ xd1 ; xd2 ]"]);
+ xf= -1:0.1:1;
+ yf= -1:0.1:1;
+ fchamp(derpol,0,xf,yf);
+ xbasc();
+ fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011");
+.fi
+.SH AUTHOR
+J.Ph.C.

@@ -1,0 +1,20 @@
+
+ldivf(1)                       Scilab Function                       ldivf(1)
+NAME
+  ldivf - left symbolic division
+
+CALLING SEQUENCE
+  ldivf('d','c')
+
+DESCRIPTION
+  returns the string 'c\d' Trivial simplifications such as '1\c' = 'c' are
+  performed.
+
+EXAMPLE
+  ldivf('1','1')
+  ldivf('a','0')
+  ldivf('a','x')
+  ldivf('2','4')
+
+SEE ALSO
+  rdivf, addf, mulf, evstr

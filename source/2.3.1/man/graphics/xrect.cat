@@ -1,0 +1,24 @@
+
+xrect(2)                       Scilab Function                       xrect(2)
+NAME
+  xrect - draw a rectangle
+
+CALLING SEQUENCE
+  []=xrect(x,y,w,h)
+
+PARAMETERS
+
+  x,y,w,h        : four real values (rectangle def)
+
+DESCRIPTION
+  draws a rectangle [x,y,w,h] (upper-left point, width, height) using current
+  scale and style.
+
+EXAMPLE
+  plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
+  xset("pattern",5);
+  xrect(-1,1,2,2)
+  xset("default");
+
+AUTHOR
+  J.Ph.C.

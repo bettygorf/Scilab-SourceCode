@@ -1,0 +1,12 @@
+
+warning(1)                     Scilab Function                     warning(1)
+NAME
+  warning - warning messages
+
+CALLING SEQUENCE
+  warning('string')
+
+DESCRIPTION
+  prints the character string 'string' in a warning message
+SEE ALSO
+  error

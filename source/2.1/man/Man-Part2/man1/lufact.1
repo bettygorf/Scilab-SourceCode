@@ -1,0 +1,36 @@
+.TH lufact G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+lufact - sparse lu factorization
+.SH CALLING SEQUENCE
+.nf
+[hand,rk]=lufact(A)
+.fi
+.SH PARAMETERS
+.TP
+A
+: square sparse matrix
+.TP 
+hand
+: handle to sparse lu factors
+.TP
+rk
+: integer  (rank of A)
+.SH DESCRIPTION
+\fV[hand,rk]=lufact(A)\fR performs the lu factorization of sparse matrix \fVA\fR.
+\fVhand\fR (no display) is used by \fVlusolve\fR (for solving linear
+system) and \fVluget\fR (for retrieving the factors).
+\fVhand\fR should be cleared by the command: \fVludel(hand)\fR;
+.LP
+The A matrix needs not be full rank but must be square 
+(since A is assumed sparse one may add zeros if necessary to squaring
+down A).
+.SH EXAMPLE
+.nf
+a=rand(5,5);b=rand(5,1);A=sparse(a);
+[h,rk]=lufact(A);
+x=lusolve(h,b);a*x-b
+ludel(h)
+.fi
+.SH SEE ALSO
+sparse, lusolve, luget

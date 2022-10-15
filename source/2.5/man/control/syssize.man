@@ -1,0 +1,24 @@
+.TH abcd 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+syssize - size of state-space system
+.SH CALLING SEQUENCE
+.nf
+[r,nx]=syssize(Sl)
+.fi
+.SH PARAMETERS
+.TP 8
+Sl
+: linear system (\fVsyslin\fR list) in state-space
+.TP
+r
+: 1 x 2 real vector 
+.TP
+nx
+: integer
+.SH DESCRIPTION
+returns in \fVr\fR the vector [number of outputs, number of inputs]
+of the linear system \fVSl\fR. \fVnx\fR is the number of states of \fVSl\fR.
+.SH SEE ALSO 
+size
+

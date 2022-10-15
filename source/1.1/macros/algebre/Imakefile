@@ -1,0 +1,21 @@
+#include "../../Imake.incl"
+
+NAME=alglib
+NAM=algebre
+
+MACROS= coff.sci colcomp.sci reduct.sci \
+	givens.sci im_inv.sci lufact.sci lusolve.sci ludel.sci \
+	proj.sci rowcomp.sci pen2ea.sci kroneck.sci quaskro.sci \
+	spaninte.sci spanplus.sci sqroot.sci \
+	fullrf.sci fullrfk.sci projspec.sci penlaur.sci glever.sci \
+	rowshuff.sci polar.sci orth.sci pencan.sci \
+	pbig.sci psmall.sci range.sci nlev.sci spantwo.sci
+
+OBJ=$(MACROS:.sci=.bin)
+MACROSN=$(MACROS:.sci=)
+
+SciLibTarget($(OBJ))
+NormalScilabObjectRule()
+DependTarget()
+
+

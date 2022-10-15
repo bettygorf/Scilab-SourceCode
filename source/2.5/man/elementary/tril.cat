@@ -1,0 +1,26 @@
+
+tril(1)                        Scilab Function                        tril(1)
+NAME
+  tril - lower triangular part of matrix
+
+CALLING SEQUENCE
+  tril(x [,k])
+
+PARAMETERS
+
+  x         : matrix (real, complex, polynomial, rational)
+
+  k         : integer (default value 0)
+
+DESCRIPTION
+  Lower triangle part of a matrix.  tril(x,k)  is made by entries below the
+  kth diagonal : k>0 (upper diagonal) and   k<0 (diagonals below the main
+  diagonal).
+
+EXAMPLE
+  s=poly(0,'s');
+  tril([s,s;s,1])
+  tril([1/s,1/s;1/s,1])
+
+SEE ALSO
+  triu, ones, eye, diag

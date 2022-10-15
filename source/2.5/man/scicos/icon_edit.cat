@@ -1,0 +1,19 @@
+
+icon_edit(2)                   Scilab Function                   icon_edit(2)
+NAME
+  icon_edit - simple interactive graphic block icon editor
+
+CALLING SEQUENCE
+  txt=icon_edit()
+
+PARAMETERS
+
+  txt       : a vector of strings
+
+DESCRIPTION
+  icon_edit is a simple interactive graphic icon editor based on gr_menu txt
+  contains the scilab instructions necessary to draw the icon. These instruc-
+  tions may be entered in the scicos icon dialog.
+
+AUTHOR
+  Serge Steer INRIA 1998

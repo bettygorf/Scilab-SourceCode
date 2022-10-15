@@ -1,0 +1,23 @@
+
+or(1)                          Scilab Function                          or(1)
+NAME
+  or | - logical or
+
+CALLING SEQUENCE
+  or(A)
+  A|B
+
+DESCRIPTION
+  or(A)  gives the  or of the elements of the  boolean matrix  A. or(A) is
+  true (%t) iff at least one entry of A is %t.
+
+  A|B  gives the element-wise logical or of the booleans matrices
+   A and  B .A and  B must be matrices with the same
+   dimensions or one from them must be a single boolean.
+EXAMPLES
+  or([%t %t %f])
+  [%t %t %f]|[%f %t %t]
+  [%t %t %f]|%f
+
+SEE ALSO
+  and, not, find

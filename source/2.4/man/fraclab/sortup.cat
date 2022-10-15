@@ -1,0 +1,28 @@
+
+sortup(2)                      Scilab Function                      sortup(2)
+NAME
+  sortup - Sorts the elements of an array in increasing order
+
+  Author: Paulo Goncalves
+
+  Sorts the elements of an array in increasing order
+
+Usage
+
+  [yup,kup] = sortup(x[,how])
+Input parameters
+       o x : Real valued array [rx,cx]
+       o how : option argument Default value is '*'
+Output parameters
+       o yup : Real matrix [rx,cx] Sorted elements of x
+       o kup : Integer matrix [rx,cx] Indices of the sorted elements of x
+See also:
+  sort
+
+Example:
+
+  [y,x] = sort(rand(4,4)) ;
+  x
+  xSortAll = sortup(x,'*')
+  xSortCol = sortup(x,'c')
+  xSOrtRow = sortup(x,'r')

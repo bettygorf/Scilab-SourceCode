@@ -1,0 +1,71 @@
+
+getvalue(1)                    Scilab Function                    getvalue(1)
+NAME
+  getvalue - xwindow dialog for data acquisition
+
+CALLING SEQUENCE
+  [ok,x1,..,x14]=getvalue(desc,labels,typ,ini)
+
+PARAMETERS
+
+  desc : column vector of strings, dialog general comment
+
+  labels
+       : n column vector of strings, labels(i) is the label of the ith
+       required value
+
+  typ  : list(typ1,dim1,..,typn,dimn)
+
+       typi
+         : defines the type of the ith value, may have the following values:
+
+         "mat"
+           : for constant matrix
+
+         "col"
+           : for constant column vector
+
+         "row"
+           : for constant row vector
+
+         "vec"
+           : for  constant vector
+
+         "str"
+           : for string
+
+         "lis"
+           : for list
+
+       dimi
+         : defines the size of the ith value it must be a integer or a 2-vec-
+         tor of integer, -1 stands for undefined dimension
+
+  ini  : n column vector of strings, ini(i) gives the suggested response for
+       the ith required value
+
+  ok   : boolean ,%t if ok button pressed, %f if cancel button pressed
+
+  xi   : contains the ith value if ok=%t. If left hand side as one more xi
+       than required values the last  xi contains the vector of answered
+       strings.
+
+DESCRIPTION
+  This function encapsulate x_mdialog function with error checking, evalua-
+  tion of numerical response, ...
+
+REMARKS
+  All valid expressions can be used as answers; for matrices and vectors get-
+  values automatically adds [ ] around the given answer before numeric evalu-
+  ation.
+
+EXAMPLE
+  labels=["magnitude";"frequency";"phase    "];
+  [ok,mag,freq,ph]=getvalue("define sine signal",labels,...
+       list("vec",1,"vec",1,"vec",1),["0.85";"10^2";"%pi/3"])
+
+SEE ALSO
+  x_mdialog, x_matrix, x_dialog
+
+AUTHOR
+  S. Steer

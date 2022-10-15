@@ -1,0 +1,66 @@
+
+
+
+plot2d1(2)                     Scilab Function                     plot2d1(2)
+
+
+
+
+
+
+NAME
+  plot2d1 - multiple plot of functions
+
+CALLING SEQUENCE
+  plot2d1(str,x,y,[style,strf,leg,rect,nax])
+
+PARAMETERS
+
+  str  : is a string of length three "abc"
+
+       a : can have the following values : e | o | g
+
+         e : means empty and specifies the fact that the value of x won't be
+           used ( the x values are supposed to be regularly spaced) . The
+           user must anyway give a value to the x parameter when calling
+           plot2d1, for example plot2d1("enn",1,y).
+
+         o : stands for one. if there are many curves, they all have the same
+           x-values ( x is of size x(n,1) and y of size y(n,n1). for example
+           :
+            plot2d1("onn",(1:10)',[sin(1:10);cos(1:10)]')
+
+         g : stands for general. x and y must then have the same size
+
+       b,c
+         : can have the values  n or l.
+
+         b=l       : a logarithmic axis is used on the X-axis
+
+         c=l       : a logarithmic axis is used on the Y-axis
+
+DESCRIPTION
+  plot2d1 simultaneously plot a set of 2D curves.  Same as plot2d but with
+  one more argument str which enables logarithmic axis, and less specifica-
+  tion for x.
+
+  Enter the command  plot2d1() to see a demo.
+
+SEE ALSO
+  plot2d
+
+AUTHOR
+  J.Ph.C..
+
+
+
+
+
+
+
+
+
+
+
+
+

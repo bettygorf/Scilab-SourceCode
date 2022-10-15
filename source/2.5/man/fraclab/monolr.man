@@ -1,0 +1,295 @@
+.TH " monolr" 2 " March 9, 1998" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ monolr -  monovariate linear regression
+.sp
+Author: Christophe Canus
+.sp
+This C_LAB routine provides six different algorithms to proceed linear
+regression on monovariate data:  least square, weighted  least square,
+penalized least square, multiple least square, maximum likelyhood and
+Lepskii's adaptive procedure least square, in one sole routine.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPa_hat,\f(CR[\fPb_hat,y_hat,e_hat,sigma2_e_hat,optvarargout\f(CR]\fP=
+monolr(x,y,\f(CR[\fPlrstr,optvarargin\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : real vector \f(CR[\fP1,J\f(CR]\fP or
+\f(CR[\fPJ,1\f(CR]\fP 
+Contains the abscissa.
+
+.TP
+o 
+\fBy\fP : real vector \f(CR[\fP1,J\f(CR]\fP or
+\f(CR[\fPJ,1\f(CR]\fP 
+Contains the ordinates to be regressed.
+
+.TP
+o 
+\fBlrstr\fP : string 
+Contains the  string which specifies  the type of linear regression to
+be used.
+
+.TP
+o 
+\fBoptvarargin\fP : 
+Contains optional variable input arguments. Depending on the choice of
+linear regression, the fourth parameter can be
+
+
+.RS
+
+.TP
+o 
+\fBw\fP : strictly positive real vector \f(CR[\fP1,J\f(CR]\fP or
+\f(CR[\fPJ,1\f(CR]\fP 
+If weighted least square is chosen, contains the weights.
+
+.TP
+o 
+\fBI\fP : strictly positive real (integer) scalar 
+If penalized least square is chosen, contains the number of iterations.
+
+.TP
+o 
+\fBsigma2_j\fP : strictly positive real vector \f(CR[\fP1,J\f(CR]\fP or
+\f(CR[\fPJ,1\f(CR]\fP 
+If Lepskii's  adaptive procedure least square  is chosen, contains the
+sequence of variances.
+.RE
+
+The fifth parameter can be
+
+
+.RS
+
+.TP
+o 
+\fBm\fP : real scalar 
+If penalized least square is chosen, contains the mean of the normal weights.
+
+.TP
+o 
+\fBK\fP : strictly positive real scalar 
+If Lepskii's adaptive procedure least square is chosen, contains the
+confidence constant.
+.RE
+
+The sixth parameter can be
+
+
+.RS
+
+.TP
+o 
+\fBs\fP : strictly positive real scalar  
+If penalized  least  square is  chosen, contains  the variance  of the
+normal weights.
+.RE
+
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBa_hat\fP : real scalar or vector \f(CR[\fP1,J\f(CR]\fP 
+Contains the estimated slope.
+
+.TP
+o 
+\fBb_hat\fP : real scalar or vector \f(CR[\fP1,J\f(CR]\fP 
+Contains the estimated ordimate at the origin.
+
+.TP
+o 
+\fBy_hat\fP : real vector \f(CR[\fP1,J\f(CR]\fP or
+\f(CR[\fP1,(J+2)*(J-1)/2\f(CR]\fP 
+Contains the regressed ordinates.
+
+.TP
+o 
+\fBe_hat\fP : real vector \f(CR[\fP1,J\f(CR]\fP or
+\f(CR[\fP1,(J+2)*(J-1)/2\f(CR]\fP 
+Contains the residuals.
+
+.TP
+o 
+\fBsigma2_e_hat\fP : real scalar  
+Contains the residuals' variance (that is, the mean square error).
+
+.TP
+o 
+\fBoptvarargout\fP : 
+Contains optional  variable output  arguments.  If  Lepskii's adaptive
+procedure least square is chosen, the parameters are
+
+
+.RS
+
+.TP
+o 
+\fBK_star\fP : strictly positive real scalar 
+Contains the optimal confidence constant.
+
+.TP
+o 
+\fBj_hat\fP : strictly positive real (integer) scalar 
+Contains the selected index.
+
+.TP
+o 
+\fBI_c_j_min\fP : real vector \f(CR[\fP1,J\f(CR]\fP 
+Contains the minimum bounds of the confidence intervals.
+
+.TP
+o 
+\fBI_c_j_max\fP : real vector \f(CR[\fP1,J\f(CR]\fP 
+Contains the maximum bounds of the confidence intervals.
+
+.TP
+o 
+\fBE_c_j_hat_min\fP : real scalar  
+Contains the minimum bound of the selected intersection interval.
+
+.TP
+o 
+\fBE_c_j_hat_max\fP : real scalar  
+Contains the maximum bound of the selected intersection interval.
+.RE
+
+.RE
+
+.SH Description
+.SH Parameters 
+The abscissa \fIx\fP and the ordinate \fIy\fP  to be regressed with must
+be of the same size \f(CR[\fP1,J\f(CR]\fP or \f(CR[\fPJ,1\f(CR]\fP.
+The linear regression string \fIlrstr\fP  specifies the type of  linear
+regression used.  It can be '\fIls\fP' for least square, '\fIwls\fP' for
+weighted least square, '\fIpls\fP' for penalized least
+square,   '\fImls\fP' for multiple   least square  (that is for  \fIj\fP
+varying from  \fI1\fP  to \fIJ\fP),  '\fIml\fP' for  maximum
+likelyhood,  '\fIlapls\fP'  for   Lepskii's adaptive   procedure  least
+square.  The default value for \fIlrstr\fP is '\fIls\fP'.
+The weights \fIw\fP or the sequence  of variances \fIsigma2_j\fP must be
+strictly positive and of size \f(CR[\fP1,J\f(CR]\fP or \f(CR[\fPJ,1\f(CR]\fP.
+For   the   meaning  of  the     variable  optional input   parameters
+\fIsigma2_j\fP  and  \fIK\fP,   see  \fIlepskiiap\fP (Lepskii's  Adaptive
+Procedure) C_LAB routine's help.
+The number of iterations \fII\fP must be \fI>=2\fP.
+The variance of the normal weights \fIs\fP must be strictly positive.
+If multiple least square,   maximum likelyhood or Lepskii's   adaptive
+procedure  least square is chosen,  the estimated slope \fIa_hat\fP and
+the ordinate   at   the   origin  \fIb_hat\fP  are   vectors  of   size
+\f(CR[\fP1,J\f(CR]\fP, resp.  the  regressed  ordinates  \fIy_hat\fP  and the
+residuals \fIe_hat\fP vectors  are  of size \f(CR[\fP1,(J+2)*(J-1)/2\f(CR]\fP
+(as they contains results for multiple  linear regression, be aware of
+that  when vizualising  them :-),  see examples),  otherwise there are
+scalars,   resp.  vectors   of size     \f(CR[\fP1,J\f(CR]\fP.  For  maximum
+likelyhood, multiple least square  linear regressions are proceeded in
+order to obtain  variance estimates.   Then maximum likelyhood  linear
+regression is     proceeded   (corresponding results   are    found in
+\fIa_hat(1)\fP,  \fIb_hat(1)\fP, \fIy_hat(1:J)\fP,  \fIe_hat(1:J)\fP   and
+\fIsigma2_e_hat(1)\fP, see examples).
+For  the  meaning   of   the   variable  optional   output  parameters
+\fIK_star\fP,    \fIj_hat\fP,         \fII_c_j_min\fP,    \fII_c_j_max\fP,
+\fIE_c_j_max\fP, and   \fIE_c_j_max\fP,  see  \fIlepskiiap\fP  (Lepskii's
+Adaptive Procedure) C_LAB routine's help.
+.SH Algorithm details
+For   the   details  of  the      Lepskii's  adaptive procedure,   see
+\fIlepskiiap\fP (Lepskii's Adaptive Procedure) C_LAB routine's help.
+.SH Examples
+.SH Matlab
+.sp
+.ft CR
+.nf
+J=32;
+x=1+linspace(0,1,J);
+% Wiener process
+W=randn(1,J); 
+epsilon=.1;
+y=x+epsilon*W;
+% least square
+[a_hat,b_hat,y_hat,e_hat,sigma2_e_hat]=monolr(x,y);
+plot(x);hold on;plot(y);plot(y_hat,'kd');
+plot(epsilon.*W);hold on;plot(e_hat); 
+title('least square');
+disp('type return');
+pause;
+clf;
+% weighted least square
+epsilon=linspace(.05,.5,J);
+y=x+epsilon.*W;
+[a_hat,b_hat,y_hat,e_hat,sigma2_e_hat]=monolr(x,y,'wls',1./epsilon);
+plot(x);hold on;plot(y);plot(y_hat,'kd');
+plot(epsilon.*W);hold on;plot(e_hat); 
+title('weighted least square');
+disp('type return');
+pause;
+clf;
+% penalized least square
+[a_hat,b_hat,y_hat,e_hat,sigma2_e_hat]=monolr(x,y,'pls',30);
+plot(x);hold on;plot(y);plot(y_hat);
+title('penalized least square');
+disp('type return');
+pause;
+clf;
+% multiple least square
+[a_hat,b_hat,y_hat,e_hat,sigma2_e_hat]=monolr(x,y,'mls');
+plot(x);hold on;plot(y)
+start_j=0;
+hold on;
+for j=2:J
+  plot([1:j],y_hat(start_j+1:start_j+j),'k');
+  disp(['estimated slope a_hat =',num2str(a_hat(j))]);
+  disp('type return');
+  pause;
+  start_j=start_j+j;
+  j=j+1; 
+end
+clf
+% maximum likelyhood
+[a_hat,b_hat,y_hat,e_hat,sigma2_e_hat]=monolr(x,y,'ml');
+plot(x);hold on;plot(y_hat(1:J),'kd');
+plot(epsilon.*W);hold on;plot(e_hat(1:J));
+clf;
+% Lespkii's adaptive procedure
+epsilon=.01;
+y(1:16)=x(1:16)+epsilon*W(1:16);
+y(16:32)=2*x(16:32)+epsilon*W(16:32);
+[a_hat,b_hat,y_hat,e_hat,sigma2_e_hat,K_star,j_hat,I_c_j_min,I_c_j_max,E_c_j_hat_min,E_c_j_hat_max]=monolr(x,y,'lapls');
+plot(a_hat);
+hold on;
+plot(I_c_j_max,'r^');
+plot(I_c_j_min,'gV');
+title('LAP: estimator vs. index');
+xlabel('index: j');
+ylabel('estimator: \theta_j');
+plot(j_hat,E_c_j_hat_min,'ko');
+plot(j_hat,E_c_j_hat_max,'ko');
+.fi 
+.ec
+.ft P
+.sp
+.SH Scilab
+.sp
+.ft CR
+.nf
+// 
+.fi 
+.ec
+.ft P
+.sp
+.SH References
+To be published..SH See Also
+\fBlepskiiap\fP (C_LAB routine).

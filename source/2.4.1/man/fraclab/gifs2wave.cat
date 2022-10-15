@@ -1,0 +1,35 @@
+
+gifs2wave(2)                   Scilab Function                   gifs2wave(2)
+NAME
+  gifs2wave - wavelet coefficients from  new GIFS coefficients
+
+  Author: Khalid Daoudi
+
+  Computes the wavelet c0efficients of  the synthetic 1-D real signal from
+  its new GIFS coefficients.
+
+Usage
+  [wt_new]=gifs2wave(Ci_new,wt,wt_idx,wt_lg)
+
+Input parameters
+       o Ci_new : Real matrix Contains the new GIFS coefficients
+       o wt : Real matrix contains the wavelet coefficients (obtained using
+         FWT)
+       o wt_idx : Real matrix [1,n] contains the indexes (in wt) of the pro-
+         jection of the signal on the multiresolution subspaces
+
+       o wt_lg : Real matrix [1,n] contains the dimension of each projection
+Output parameters
+       o wi_new : Real matrix Contains the new wavelet coefficients plus
+         other informations.
+Description
+
+Parameters
+
+Algorithm details
+
+See also:
+
+  wave2gifs.
+
+Example:

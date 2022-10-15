@@ -1,0 +1,27 @@
+.TH isglobal G "April 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+isglobal -  check if a variable is global
+.SH CALLING SEQUENCE
+.nf
+t=isglobal(x)
+.fi
+.SH PARAMETERS
+.TP
+x 
+: any variable 
+.TP
+t
+: a boolean
+.SH DESCRIPTION
+\fVisglobal(x)\fR returns true if x has been declared to be a global
+    variable and false otherwise.
+.SH EXAMPLE
+.nf
+isglobal(1)
+global a
+isglobal(a)
+.fi
+.SH SEE ALSO
+global, clearglobal, who
+

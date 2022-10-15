@@ -1,0 +1,26 @@
+This directory contains the tools for testing the examples given in
+the help files.
+
+Requires files:
+
+.scilab         scilab local startup file used to refine some functions
+
+functions.sci   new definition of the function
+
+get_examples.sh Unix shell script used to extract the *.man.tst files
+
+check.sh        Unix shell script used to check the execution of
+                *.man.tst files 
+
+Makefile       The make file with following targets
+ - get         extract the examples out of the man/*/*.man files and
+               creates a *.man.tst file for each 
+
+ - check       executes all the *.man.tst and generates *.man.dia files
+               and a global report check.log
+
+ - clean       removes the *.man.dia files and check.log
+
+ - distclean   removes the *.man.* files
+
+ - all         executes make get and make check

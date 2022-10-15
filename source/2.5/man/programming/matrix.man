@@ -1,0 +1,49 @@
+.TH matrix 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+matrix - reshape a vector or a matrix to a different size matrix
+.SH CALLING SEQUENCE
+.nf
+y=matrix(v,n,m)
+y=matrix(v,[sizes])
+.fi
+.SH PARAMETERS
+.TP 10
+v
+: a vector, a matrix or an hypermatrix
+
+.TP 10
+n,m
+: integers
+.TP 10
+sizes
+: vector of integers
+.TP 10
+y
+: a vector  matrix or hypermatrix
+.SH DESCRIPTION
+For a vector or a matrix with \fVn\fR x \fVm\fR entries
+\fVy=matrix(v,n,m)\fR or similarily \fVy=matrix(v,[n,m])\fR.
+transforms the \fVv\fR vector (or matrix) into an \fVnxm\fR matrix by
+stacking columnwise the entries of \fVv\fR.
+.LP
+if one of the dimension m or n is equal to -1 it is automatically
+assigned  to the quotient of  size(v,'*') by the other dimension,
+.LP
+
+For an hypermatrix such as
+\fVprod(size(v))==prod(sizes)\fR,\fVy=matrix(v,sizes)\fR (or
+equivalently \fVy=matrix(v,n1,n2,...nm)\fR) transforms
+\fVv\fR  into an  matrix or hypermatrix by 
+stacking columnwise the entries of \fVv\fR. \fVy=matrix(v,sizes)\fR
+results in a regular matrix if sizes is a scalar or a 2-vector.
+
+.SH SEE ALSO
+matrices, hypermatrices, ones, zeros, rand, poly, empty
+.SH EXAMPLES
+.nf
+a=[1 2 3;4 5 6]
+matrix(a,1,6)
+matrix(a,1,-1)
+matrix(a,3,2)
+.fi

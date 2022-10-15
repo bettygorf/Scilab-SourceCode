@@ -1,0 +1,12 @@
+xinit('analog.2.ps')
+//         File polesp.ps
+//square();          //Normalisation to get a square Basile window...
+n=13;                 //Number of poles
+angles=ones(1,n)*(%pi/2+%pi/(2*n))+(0:n-1)*%pi/n;
+s=exp(%i*angles);     //Location of the poles
+xset("mark",0,1)
+plot2d(real(s)',imag(s)',[2],"012"," ",[-1.2,-1.2,1.2,1.2]);
+xarc(-1,1,2,2,0,360*64);
+xsegs([-1.2,0;1.2,0],[0,-1.2;0,1.2])
+xtitle('Pole positions of Butterworth filter');
+xend()

@@ -1,0 +1,67 @@
+.TH max_flow 1 "September 1995" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+max_flow - maximum flow between two nodes
+.SH CALLING SEQUENCE
+.nf
+[v,phi,flag] = max_flow(i,j,g)
+.fi
+.SH PARAMETERS
+.TP 2
+i
+: integer, number of start node
+.TP 2
+j
+: integer, number of end node
+.TP 2
+g
+: graph list
+.TP 2
+v
+: value of the maximum flow it is exists
+.TP 4
+phi
+: row vector of the value of the flow on the arcs
+.TP 5
+flag
+: feasible problem flag (0 or 1)
+.SH DESCRIPTION
+\fVmax_flow\fR returns the value of maximum flow \fVv\fR from node number
+\fVi\fR to node number \fVj\fR if it exists, and the value of the flow 
+on each arc as a row vector \fVphi\fR. All the computations are made with 
+integer numbers. The graph must be directed. If the problem is not 
+feasible, \fVflag\fR is equal to 0, otherwise it is equal to 1.
+
+The bounds of the flow are given by the elements \fVedge_min_cap\fR and
+\fVedge_max_cap\fR of the graph list. 
+The value of the maximum capacity must be greater than or equal to the 
+value of the minimum capacity.
+If the value of \fVedge_min_cap\fR or \fVedge_max_cap\fR is not given (empty
+row vector \fV[]\fR), it is assumed to be equal to 0 on each edge.
+.SH EXAMPLE
+.nf
+ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15];
+ta=[ta, 15 8 9 10 11 12 13 14];
+he=[10 13 9 14 8 11 9 11 8 10 12 13 8 9 12 8 11 1 2 3 4];
+he=[he, 5 6 7 16 16 16 16 16 16 16];
+n=16;
+g=make_graph('foo',1,n,ta,he);
+g('node_x')=[42 615 231 505 145 312 403 233 506 34 400 312 142 614 260 257];
+g('node_y')=[143 145 154 154 147 152 157 270 273 279 269 273 273 274 50 376];
+ma=edge_number(g);
+g('edge_max_cap')=ones(1,ma);
+g('edge_min_cap')=zeros(1,ma);
+source=15; sink=16;
+nodetype=0*ones(1,n); nodetype(source)=2; nodetype(sink)=1;
+g('node_type')=nodetype;
+nodecolor=0*ones(1,n); nodecolor(source)=11; nodecolor(sink)=11;
+g('node_color')=nodecolor;
+show_graph(g);
+[v,phi,ierr]=max_flow(source,sink,g);
+ii=find(phi<>0); edgecolor=phi; edgecolor(ii)=11*ones(ii);
+g('edge_color')=edgecolor;
+edgefontsize=8*ones(1,ma); edgefontsize(ii)=18*ones(ii);
+g('edge_font_size')=edgefontsize;
+g('edge_label')=string(phi);
+show_graph(g);
+.fi

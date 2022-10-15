@@ -1,0 +1,65 @@
+.TH linfn 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+linfn - infinity norm
+.SH CALLING SEQUENCE
+.nf
+[x,freq]=linfn(G,PREC,RELTOL,options);
+.fi
+.SH PARAMETERS
+.TP 10
+G 
+: is a \fVsyslin\fR list
+.TP  
+PREC 
+: desired relative accuracy on the norm
+.TP  
+RELTOL
+: relative threshold to decide when an eigenvalue can be 
+considered on the imaginary axis.
+.TP  
+options
+: available options are \fV'trace'\fR or \fV'cond'\fR
+.TP
+x 
+is the computed norm.
+.TP  
+freq
+: vector 
+.SH DESCRIPTION
+Computes the Linf (or Hinf) norm of \fVG\fR
+This norm is well-defined as soon as the realization
+\fVG=(A,B,C,D)\fR has no imaginary eigenvalue which is both 
+controllable and observable.
+.LP
+\fVfreq\fR is a list of the frequencies for which \fV||G||\fR is 
+attained,i.e., such that \fV||G (j om)|| = ||G||\fR.
+.LP
+If -1 is in the list, the norm is attained at infinity.
+.LP 
+If -2 is in the list, \fVG\fR is all-pass in some direction so that 
+\fV||G (j omega)|| = ||G||\fR for all frequencies omega.
+.LP
+The algorithm follows the paper by G. Robel 
+(AC-34 pp. 882-884, 1989).
+The case \fVD=0\fR is not treated separately due to superior 
+accuracy of the general method when \fV(A,B,C)\fR is nearly 
+non minimal.
+.LP
+The \fV'trace'\fR option traces each bisection step, i.e., displays 
+the lower and upper bounds and the current test point.
+.LP
+The \fV'cond'\fR option estimates a confidence index on the computed 
+value and issues a warning if computations are 
+ill-conditioned
+.LP
+In the general case (\fVA\fR neither stable nor anti-stable), 
+no upper bound is  prespecified. 
+.LP
+If by contrast \fVA\fR is stable or anti stable, lower
+and upper bounds are computed using the associated 
+Lyapunov solutions.
+.SH SEE ALSO
+h_norm
+.SH AUTHOR
+P. Gahinet

@@ -1,0 +1,38 @@
+
+scicos_link(Janvier 1997)                           scicos_link(Janvier 1997)
+NAME
+  scicos_link - Scicos link data structure
+
+DEFINITION
+  lnk=list('Link',xx,yy,'drawlink',id,[0,0],ct,from,to)
+
+PARAMETERS
+
+  "Link"    : keyword used to define list as a Scicos link representation
+
+  xx        : vector of x coordinates of the link path.
+
+  yy        : vector of y coordinates of the link path.
+
+  id        : Character string, the link id
+
+  ct        : 2 x 1 vector, [color,typ] where color defines the color used
+            for the link drawing and typ defines its type (0 for regular link
+            ,1 for event link).
+
+  from      : 2 x 1 vector, [block,port] where block is the index of the
+            block at the origin of the link and port is the index of the
+            port.
+
+  to        : 2 x 1 vector, [block,port] where block is the index of the
+            block at the end of the link and port is the index of the port.
+
+DESCRIPTION
+  Scicos editor creates and uses for each link a data structure containing
+  all information relative to the graphic interface and interconnection
+  information. Each of them are stored in the Scicos editor main data struc-
+  ture. Index of these in Scicos editor main data structure is given by the
+  creation order.
+
+SEE ALSO
+  scicos, scicos_main, scicos_graphics, scicos_model

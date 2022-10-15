@@ -1,0 +1,33 @@
+.TH xgetech 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME 
+xgetech - get the current graphic 2d scale
+.SH DESCRIPTION
+.nf
+[frect1,frect]=xgetech()
+.fi
+.SH PARAMETERS
+.TP 15
+frect1, frect
+: real vectors (rect. def)
+.SH DESCRIPTION
+This function returns the current graphic scale.
+If one uses the current graphic scale, the points in the 
+\fVfrect\fR rectangle [xmin,ymin,xmax,ymax] will be drawn in the 
+the region of the current graphic window specified by \fVfrect1\fR. 
+.LP
+\fVfrect1=[x,y,w,h]\fR ( Upper-Left Width Height ) describes a region inside 
+the graphic window. The values in \fVwrect1\fR are specified using proportion
+ of the width or height of the graphic window. 
+.LP
+\fVfrect1=[0,0,1.0,1.0]\fR means that all the graphic window will be used.
+.LP
+\fVfrect1=[0.5,0,0.5,1.0]\fR means that the graphic region will be the right 
+half of the graphic window.
+.SH SEE ALSO
+xsetech 
+.SH AUTHOR
+J.Ph.C.
+
+
+

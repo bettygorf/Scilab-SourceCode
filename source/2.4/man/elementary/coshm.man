@@ -1,0 +1,27 @@
+.TH coshm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+coshm - matrix hyperbolic cosine
+.SH CALLING SEQUENCE
+.nf
+t=coshm(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x,t
+: real or complex square matrix
+.SH DESCRIPTION
+coshm is the matrix hyperbolic  cosine  of the matrix x.
+\fVt=(expm(x)+expm(-x))/2\fR. Result may be inaccurate for nonsymmetric
+matrix.
+.SH EXAMPLE
+.nf
+A=[1,2;2,4]
+acoshm(coshm(A))
+.fi
+.SH SEE ALSO
+cosh, expm
+
+
+
+

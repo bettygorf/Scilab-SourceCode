@@ -1,0 +1,13 @@
+ 
+clear;lines(0);
+ 
+addmenu('foo')
+               !--error  1020 
+synchronous actions are not supported with -nw option                           
+ 
+ 
+delmenu('foo')
+ ans  =
+ 
+ foo   
+ 

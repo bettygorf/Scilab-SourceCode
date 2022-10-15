@@ -1,0 +1,55 @@
+.TH fprintf 1 "May 1994" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+fprintf - Emulator of C language fprintf function
+.SH CALLING SEQUENCE
+.nf
+fprintf(file,format,value_1,..,value_n)
+.fi
+.SH PARAMETERS
+.TP 10
+format
+: a Scilab string. Specifies a character string combining literal characters with conversion
+specifications.
+.TP
+value_i
+: Specifies the data to be converted according to the format parameter.
+.TP
+str
+: column vector of character strings
+.TP
+file
+: a Scilab string specifying a file name or a logical unit number (see \fVfile\fR)
+.SH DESCRIPTION
+The \fVfprintf\fR function converts, formats, and writes
+its \fVvalue\fR parameters, under control of the \fVformat\fR
+parameter, to the file specified by its \fVfile\fR parameter.
+.PP
+The \fVformat\fR parameter is a character string that contains two
+types of objects:
+.TP 10
+Literal characters
+: which are copied to the output stream.
+.TP
+Conversion specifications
+: each of which causes zero or more items
+to be fetched from the \fVvalue\fR parameter list. see
+\fVprintf_conversion\fR for details
+.PP
+If any \fVvalue\fRs remain after the entire \fVformat\fR has been
+processed, they are ignored.
+
+.SH EXAMPLES
+.nf
+u=file('open','results','unknown') //open the result file
+t=0:0.1:2*%pi;
+for tk=t
+ fprintf(u,'time = %6.3f value = %6.3f',tk,sin(tk)) // write a line
+end
+file('close',u) //close the result file
+.fi
+.SH SEE ALSO
+string, print, write, format, disp, file, printf, sprintf
+
+
+

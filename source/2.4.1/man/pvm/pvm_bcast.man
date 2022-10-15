@@ -1,0 +1,59 @@
+.TH pvm_bcast 1 "May 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_bcast - broacasts a message to all members of a group
+.SH CALLING SEQUENCE
+.nf
+[info] = pvm_bcast(group, buff, msgtag)
+.fi
+.SH PARAMETERS
+.TP 5
+group
+: string, string group name of an existing group.
+.TP 4
+buff
+:  data to be send.
+.TP 4
+msgtag
+: integer,  message tag supplied by the user.
+.TP 4
+info
+: integer, 
+.SH DESCRIPTION
+\fVpvm_bcast\fR broadcasts a message to all the members of
+.I group.
+In PVM 3.2 and later the broadcast message is not sent back to the sender.
+Any PVM task can call pvm_bcast(), it need not be a member of the group.
+The content of the message can be distinguished by
+.I msgtag.
+If pvm_bcast is successful,
+.I info
+will be 0. If some error occurs then
+.I info
+will be < 0.
+.PP
+pvm_bcast is asynchronous.
+Computation on the sending processor resumes as soon as the message is
+safely on its way to the receiving processors.  This is in
+contrast to synchronous communication, during which computation on
+the sending processor halts until a matching receive is
+executed by all the receiving processors.
+.PP
+pvm_bcast first determines the tids of the
+group members by checking a group data base.
+A multicast is performed to these tids.
+If the group is changed during a broadcast the change will not
+be reflected in the broadcast.
+Multicasting is not supported by most multiprocessor vendors.
+Typically their native calls only support broadcasting to \fIall\fR
+the user's processes on a multiprocessor. Because of this omission,
+pvm_bcast may not be an efficient communication method on
+some multiprocessors.
+
+.SH EXAMPLE
+.nf
+info = pvm_bcast( "worker",[12+%i,4,5;3,4+%i,5],10)
+.fi
+
+.SH SEE ALSO
+pvm_joingroup

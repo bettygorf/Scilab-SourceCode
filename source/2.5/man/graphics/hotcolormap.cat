@@ -1,0 +1,24 @@
+
+hotcolormap(1)                 Scilab Function                 hotcolormap(1)
+NAME
+  hotcolormap - red to yellow colormap
+
+CALLING SEQUENCE
+  cmap=hotcolormap(n)
+
+PARAMETERS
+
+  n     : integer >= 3, the colormap size.
+
+  cmap  : matrix with 3 columns [R,G,B].
+
+DESCRIPTION
+  hotcolormap computes a colormap with n hot colors varying from red to yel-
+  low.
+
+EXAMPLE
+  xset("colormap",hotcolormap(32))
+  plot3d1()
+
+SEE ALSO
+  colormap, graycolormap, xset

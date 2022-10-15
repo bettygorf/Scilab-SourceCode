@@ -1,0 +1,472 @@
+%%Missile File : J.Ph Chancelier 1991
+%%EndComments
+
+/saved save def 
+/$pictdict 100 dict def
+$pictdict begin
+
+/dogrey
+{ /Arraybox exch def
+	/Arraygrey exch def
+	/nargs exch def 
+	/func exch cvx def
+	Arraybox 0 nargs getinterval Arraygrey 0 get func 
+	1 1 Arraygrey length 1 sub 
+	{/i exch def
+	Arraybox i nargs mul nargs getinterval 
+	Arraygrey i get func
+	}for
+} def
+%--------------------------------------------
+% [x y width height] nivgris drawbox 
+% si niv gris > 1.0 alors on fait un stroke 
+% sans closepath 
+%--------------------------------------------
+/drawbox 
+	{/glev exch def /Ar exch def 
+	/x Ar 0 get def /y Ar 1 get def 
+	/w Ar 2 get def /h Ar 3 get def 
+	newpath
+	x y moveto
+	x w add y lineto
+	x w add y h add lineto
+	x y h add lineto
+	glev WhiteLev le {closepath glev Setgray eofill}
+	{ 0 Setgray closepath stroke} ifelse 
+} def 
+
+
+
+%------------------------------------------------------
+% trace de polygones rempli ou de polylignes 
+%------------------------------------------------------
+/absolu true def 
+/closeflag false def 
+
+/drawpoly
+	{/glev exch def /Ar exch def
+	newpath
+	Ar 0 get Ar 1 get moveto 
+	2 2 Ar length 1 sub 
+	{/i exch def
+	Ar i get Ar i 1 add get absolu {lineto} {rlineto} ifelse
+	}for
+	glev WhiteLev le 
+	{ % polygone ferme et gris
+	  closepath glev Setgray eofill}
+	{ glev WhiteLev 2 add ge 
+	   {%polygone ferme dont on efface l'interieur 
+		%(peint avec un niveau de gris en blanc)
+	    closepath WhiteLev 2 mul 2 add glev sub Setgray 
+		  gsave eofill grestore 
+	    0 Setgray stroke}
+	   {%polygone simple eventuellement ferme
+	    0 Setgray closeflag {closepath} if stroke} 
+	ifelse }
+	ifelse 
+} def 
+
+
+%------------------------------------------------------
+% segments non connectes 
+%------------------------------------------------------
+
+/drawsegs
+	{/glev exch def /Ar exch def
+	newpath
+	Ar 0 get Ar 1 get moveto Ar 2 get Ar 3 get lineto stroke 
+	4 4 Ar length 3 sub 
+	{/i exch def
+	newpath 
+	Ar i get Ar i 1 add get moveto
+	Ar i 2 add get Ar i 3 add get lineto stroke 
+	}for
+} def 
+
+
+%------------------------------------------------------
+% unconected arrows
+%-----------------------------------------------------
+
+/drawarrows
+	{/arsize10 exch def /Ar exch def
+	Ar 0 get  Ar 1 get Ar 2 get Ar 3 get arsize10 drawarrow
+	4 4 Ar length 3 sub 
+	{/i exch def
+	Ar i get Ar i 1 add get  Ar i 2 add get  Ar i 3 add get arsize10 
+	drawarrow
+	}for
+} def 
+		
+/cos20 20 cos def
+/sin20 20 sin def
+
+/drawarrow                                
+  { 
+      /arsize exch 10 div def 
+      /tipy exch def /tipx exch def       
+      /taily exch def /tailx exch def
+      /dx tipx tailx sub  def               
+      /dy tipy taily sub  def               
+      newpath tipx tipy moveto tailx taily lineto stroke   
+      /norme dx dx mul dy dy mul add sqrt def 
+      norme 1.e-8 ge 
+	{
+	 arsize dx mul norme div /dx1 exch def 
+	 arsize dy mul norme div /dy1 exch def 
+	 /depx tipx cos20 dx1 mul add def 
+	/depy  tipy cos20 dy1 mul add def 
+	newpath depx depy moveto 
+	cos20 neg dx1 mul sin20 dy1 mul sub depx add
+	sin20 dx1  mul cos20 dy1 mul sub depy add lineto 
+	cos20 neg dx1 mul sin20 dy1 mul add  depx add
+	sin20 neg dx1 mul cos20 dy1 mul sub depy add lineto closepath 
+	0 setgray fill
+	} {} ifelse 
+  } def
+
+
+%------------------------------------------------------
+% cercle ou portions de cercle 
+% attention argument (x y w h angl1*64 angl2*64 )
+% devrait tracer une ellipse a modifier donc 
+%------------------------------------------------------
+
+/drawarc
+	{/glev exch def /Ar exch def
+	/cx Ar 0 get Ar 2 get 2 div add def 
+	/cy Ar 1 get Ar 3 get 2 div add def 
+	/hom Ar 3 get Ar 2 get div def 
+	/Cmsave1 matrix def Cmsave1 currentmatrix 
+	%-- on change de transformation pour faire homothetie en (x,y) 
+	cx cy [1 0 0 hom 0 0 ] transform
+	/t1 exch neg cy add def 
+	/t2 exch neg cx add def 
+	[1 0 0 hom t2 t1 ] concat 
+	glev WhiteLev le
+	{newpath
+	cx cy moveto 
+	cx cy Ar 2 get 2 div Ar 5 get 64 div neg
+	 Ar 4 get 64 div neg  arc closepath
+	glev Setgray eofill}
+	{newpath
+	cx cy Ar 2 get 2 div Ar 5 get 64 div neg Ar 4 get 64 div neg arc
+	closepath 0 Setgray stroke} ifelse 
+	Cmsave1 setmatrix clear} def 
+
+%------------------------------------------------------
+% centred hard mark 
+%------------------------------------------------------
+
+% x y str ShowCString 
+% on fait un show mais string est centre autour du point (x,y) 
+
+/ShowCString { /str exch def /y exch def /x exch def 
+ newpath 
+ x y moveto 
+ str true charpath flattenpath pathbbox 
+ /y2 exch def /x2 exch def /y1 exch def /x1 exch def 
+ x 2 mul x2 x1 add 2 div sub 
+ y 2 mul y2 y1 add 2 div sub moveto str show 
+ } def 
+
+/drawpolymark {/glev exch def /Ar exch def 
+	Ar 0 get Ar 1 get HardMark ShowCString 
+	2 2 Ar length 1 sub 
+	{/i exch def
+	Ar i get Ar i 1 add get HardMark ShowCString
+	}for
+} def 
+
+%---------------------------------------------------
+% chaines de caracteres 
+%---------------------------------------------------
+/FBox {/Ar exch def /rot exch def /str exch def /y exch def /x exch def 
+ newpath Ar 0 get Ar 1 get moveto 
+	/sina rot sin def /cosa rot cos def 
+	/-sina sina neg def 
+	[cosa -sina sina cosa 0 0 ] CtmModif
+ Ar 2 get 0 rlineto 0 Ar 3 get neg rlineto Ar 2 get neg 0 rlineto 
+ 0 Ar 3 get  rlineto  stroke CtmRestore 
+ x y str rot ShowRotate 
+ } def 
+
+% x y str ang Showrotate 
+% inverse du sens trigo 
+
+/ShowRotate { /ang exch def /str exch def 
+	/y exch def /x exch def 
+	x y moveto 
+	/sina ang sin def /cosa ang cos def 
+	/-sina 0 sina sub def 
+	[cosa -sina sina cosa 0 0 ] CtmModif
+	str show CtmRestore } def 
+
+/HardMark (0) def 
+
+%(Chaine de caracteres) x y flag angle [arfbox] Show
+
+/Show { /Ar exch def 
+	/rot exch def /flag exch def /y exch def /x exch def /str exch def 
+	flag 1 eq 
+	{x y str rot Ar FBox}
+	{x y str rot ShowRotate } ifelse} def 
+
+/L {/y2 exch def /x2 exch def /y1 exch def /x1 exch def 
+    newpath x1 y1 moveto x2 y2 lineto stroke } def 
+
+%---------------------------------------------------------
+% drawing an axis 
+% angle [nsep1,nsep2] ,[siz1,siz2,coeff] [x0,y0] drawaxis",
+%---------------------------------------------------------
+
+/drawaxis {/XX exch def /Arsize exch def /Arsep exch def /ang exch def 
+	/Cmsave1 matrix def Cmsave1 currentmatrix 
+	/sina ang sin def /cosa ang cos def /-sina sina neg def 
+	/x XX 0 get def /y XX 1 get def
+	%-- on change de transformation pour tourner autour de (x,y) 
+	x y [cosa sina -sina cosa 0 0 ] transform
+	/t1 exch neg y add def 
+	/t2 exch neg x add def 
+	[cosa sina -sina cosa t2 t1 ] concat 
+	newpath x y moveto 0 Arsize 1 get Arsize 2 get mul rlineto
+	stroke 
+	0 1 Arsep 1 get 1 sub
+	{newpath 
+	x y moveto 
+	0 1 Arsep 0 get 1 sub
+		{Arsize 0 get 0  rlineto
+		 0 Arsize 1 get rlineto 
+	 	0 Arsize 1 get  neg rlineto}
+		for 
+	currentpoint /y exch def /x exch def 
+	stroke 
+	newpath x y moveto 0 Arsize 1 get Arsize 2 get mul rlineto
+	stroke }
+	for 
+	Cmsave1 setmatrix } def 
+
+
+
+%---------------------------------------------------------
+% change and restore CTM
+%---------------------------------------------------------
+
+/CtmModif {/arg exch def 
+	/Cmsave matrix def 
+	Cmsave currentmatrix 
+	[1 0 0 -1 0 0 ] concat 
+	arg concat } def 
+
+/CtmRestore { Cmsave setmatrix } def 
+
+/Thickness { 2 div /th exch def th 0 le {/th 0.1 def} if th setlinewidth} def 
+
+/WhiteLev 15 def
+
+/Setgray { WhiteLev div setgray} def 
+
+/fillsolid { 0 setgray } def 
+
+%--------------------------------------
+% clip zones ( rectangle ) 
+%-------------------------------------
+
+/setclipzone {initclip 
+	/h exch def /w exch def /y exch def /x exch def 
+	newpath x y moveto w 0 rlineto 0 h rlineto w neg 0 rlineto 
+	0 h neg rlineto closepath clip} def 
+
+%------------------
+% to change the position of a picture 
+%------------------
+/cm{28.346457 mul}def
+
+/DesPosi { /YH exch def /XW exch def /YP exch def /XP exch def 
+	XP cm YP cm neg translate 
+	XW cm 6000 div YH cm 4240 div  scale } def 
+
+0 setlinecap 
+2 setlinejoin 
+1 setlinewidth
+
+%-- Color database 
+/ColorR [0.000000 0.000000 0.000000 0.529412 0.498039 0.133333 0.000000 0.878431 0.000000 1.000000 1.000000 1.000000 0.933333 1.000000 1.000000 0.960784 1.000000 ] def
+/ColorG [0.000000 0.000000 0.000000 0.807843 1.000000 0.545098 1.000000 1.000000 1.000000 0.647059 0.000000 0.000000 0.509804 1.000000 0.843137 0.960784 1.000000 ] def
+/ColorB [0.000000 0.501961 1.000000 0.921569 0.831373 0.133333 0.000000 1.000000 1.000000 0.000000 0.000000 1.000000 0.933333 0.000000 0.000000 0.862745 1.000000 ] def
+
+/Setcolor {/i exch def ColorR i get ColorG i get ColorB i get setrgbcolor } def 
+
+%------ End Main Program ------%
+% XP YP XW YW DesPosi in the following code 
+% will output the picture in the rectangle defined by 
+% upper left point (XP,YP) wide :XW Height: YW
+% the coordinates are given in centimeter and 
+% are the (0,0) point is the down-left point of the paper 
+
+
+% Dessin en bas a gauche de taille 3000,2120
+[0.5 10 div 0 0 0.5 10 div neg  0 2120 10 div] concat
+0 Thickness
+% 3 setalufunction
+-1 -1 200000 200000 setclipzone
+[] 0 setdash
+/Times-Roman findfont 100 scalefont setfont
+fillsolid
+/WhiteLev 16 def
+/localsave save def 
+clear (drawbox) 4 [ 17]
+[750 530 4500 3180 
+] dogrey localsave restore
+fillsolid
+ 0 [2 10] [225.000000 31.800000 2.000000] [750 3710] drawaxis
+(0.0) 664 3906 0  0.00 [664 3816 172 120] Show
+(0.1) 1114 3906 0  0.00 [1114 3816 172 120] Show
+(0.2) 1564 3906 0  0.00 [1564 3816 172 120] Show
+(0.3) 2014 3906 0  0.00 [2014 3816 172 120] Show
+(0.4) 2464 3906 0  0.00 [2464 3816 172 120] Show
+(0.5) 2914 3906 0  0.00 [2914 3816 172 120] Show
+(0.6) 3364 3906 0  0.00 [3364 3816 172 120] Show
+(0.7) 3814 3906 0  0.00 [3814 3816 172 120] Show
+(0.8) 4264 3906 0  0.00 [4264 3816 172 120] Show
+(0.9) 4714 3906 0  0.00 [4714 3816 172 120] Show
+(1.0) 5164 3906 0  0.00 [5164 3816 172 120] Show
+ -90 [2 10] [159.000000 -30.000000 2.000000] [750 3710] drawaxis
+(-21.0) 391 3740 0  0.00 [391 3650 287 120] Show
+(-18.9) 391 3422 0  0.00 [391 3332 287 120] Show
+(-16.8) 391 3104 0  0.00 [391 3014 287 120] Show
+(-14.6) 391 2786 0  0.00 [391 2696 287 120] Show
+(-12.5) 391 2468 0  0.00 [391 2378 287 120] Show
+(-10.4) 391 2150 0  0.00 [391 2060 287 120] Show
+(-8.3) 449 1832 0  0.00 [449 1742 229 120] Show
+(-6.2) 449 1514 0  0.00 [449 1424 229 120] Show
+(-4.1) 449 1196 0  0.00 [449 1106 229 120] Show
+(-2.0) 449 878 0  0.00 [449 788 229 120] Show
+(0.2) 506 560 0  0.00 [506 470 172 120] Show
+750 530 4500 3180 setclipzone
+[] 0 setdash
+/closeflag false def
+/localsave save def 
+clear (drawpoly) 452 [ 17]
+[750 581 755 581 759 580 764 580 768 579 773 577 777 576 782 574 786 572 791 570 
+795 568 800 565 804 563 809 560 813 558 818 555 822 552 827 550 831 547 836 545 
+840 543 845 540 849 538 854 537 858 535 863 534 867 532 872 531 876 531 881 530 
+885 530 890 530 894 530 899 531 903 532 908 533 912 534 917 536 921 537 926 539 
+930 541 935 544 939 546 944 549 948 551 953 554 957 557 962 559 966 562 971 565 
+975 567 980 570 984 572 989 574 993 576 998 577 1002 579 1007 580 1011 581 1016 581 
+1020 581 1025 581 1029 580 1034 579 1038 578 1043 577 1047 575 1052 573 1056 571 1061 568 
+1065 566 1070 563 1074 560 1079 557 1083 554 1088 551 1092 548 1097 545 1101 543 1106 540 
+1110 538 1115 536 1119 534 1124 532 1128 531 1133 530 1137 530 1142 530 1146 530 1151 531 
+1155 533 1160 535 1164 537 1169 540 1173 544 1178 548 1182 553 1187 559 1191 565 1196 572 
+1200 580 1205 589 1209 598 1214 609 1218 620 1223 632 1227 645 1232 660 1236 675 1241 692 
+1245 710 1250 729 1254 750 1259 772 1263 796 1268 822 1272 850 1277 881 1281 914 1286 950 
+1290 990 1295 1035 1299 1085 1304 1142 1308 1208 1313 1287 1317 1386 1322 1520 1326 1741 1331 2950 
+1335 1785 1340 1591 1344 1487 1349 1420 1353 1374 1358 1342 1362 1320 1367 1306 1371 1299 1376 1297 
+1380 1301 1385 1311 1389 1325 1394 1345 1398 1372 1403 1406 1407 1449 1412 1503 1416 1575 1421 1673 
+1425 1827 1430 2163 1434 2147 1439 1824 1443 1675 1448 1580 1452 1510 1457 1458 1461 1416 1466 1383 
+1470 1357 1475 1337 1479 1321 1484 1310 1488 1302 1493 1298 1497 1298 1502 1301 1506 1308 1511 1318 
+1515 1333 1520 1352 1524 1375 1529 1405 1533 1441 1538 1486 1542 1542 1547 1616 1551 1719 1556 1882 
+1560 2272 1565 2118 1569 1832 1574 1691 1578 1597 1583 1529 1587 1476 1592 1434 1596 1400 1601 1372 
+1605 1350 1610 1332 1614 1318 1619 1308 1623 1301 1628 1298 1632 1298 1637 1301 1641 1307 1646 1316 
+1650 1329 1655 1346 1659 1368 1664 1394 1668 1426 1673 1466 1677 1515 1682 1577 1686 1660 1691 1779 
+1695 1986 1700 3710 1704 1988 1709 1781 1713 1661 1718 1578 1722 1516 1727 1467 1731 1428 1736 1395 
+1740 1369 1745 1348 1749 1331 1754 1318 1758 1308 1763 1301 
+] dogrey localsave restore
+/localsave save def 
+clear (drawpoly) 452 [17]
+[1767 1298 1772 1298 1776 1300 1781 1306 1785 1315 1790 1328 1794 1344 1799 1364 1803 1388 1808 1419 
+1812 1456 1817 1501 1821 1559 1826 1634 1830 1738 1835 1903 1839 2312 1844 2119 1848 1841 1853 1701 
+1857 1609 1862 1540 1866 1487 1871 1444 1875 1409 1880 1381 1884 1358 1889 1339 1893 1324 1898 1313 
+1902 1305 1906 1300 1911 1298 1915 1298 1920 1302 1925 1309 1929 1319 1934 1333 1938 1350 1942 1371 
+1947 1397 1951 1429 1956 1468 1961 1516 1965 1577 1970 1657 1974 1770 1979 1960 1983 2613 1987 2037 
+1992 1809 1996 1682 2001 1596 2006 1531 2010 1480 2015 1439 2019 1406 2023 1378 2028 1356 2032 1338 
+2037 1323 2042 1312 2046 1304 2051 1299 2055 1298 2060 1299 2064 1302 2069 1309 2073 1319 2078 1332 
+2082 1349 2087 1370 2091 1396 2096 1427 2100 1464 2105 1511 2109 1569 2114 1646 2118 1752 2123 1923 
+2127 2370 2132 2102 2136 1839 2141 1703 2145 1611 2150 1544 2154 1491 2159 1448 2163 1413 2168 1385 
+2172 1361 2177 1342 2181 1327 2186 1315 2190 1306 2195 1300 2199 1297 2204 1297 2208 1300 2213 1305 
+2217 1314 2222 1325 2226 1340 2231 1358 2235 1381 2240 1409 2244 1442 2249 1483 2253 1533 2258 1597 
+2262 1682 2267 1804 2271 2019 2276 2908 2280 1990 2285 1790 2289 1673 2294 1591 2298 1529 2303 1480 
+2307 1440 2312 1407 2316 1380 2321 1358 2325 1340 2330 1325 2334 1314 2339 1306 2343 1300 2348 1297 
+2352 1298 2357 1300 2361 1306 2366 1314 2370 1325 2375 1340 2379 1358 2384 1380 2388 1407 2393 1439 
+2397 1478 2402 1525 2406 1585 2411 1664 2415 1774 2420 1954 2424 2482 2429 2081 2433 1837 2438 1705 
+2442 1616 2447 1550 2451 1498 2456 1455 2460 1421 2465 1392 2469 1368 2474 1348 2478 1332 2483 1320 
+2487 1310 2492 1303 2496 1299 2501 1297 2505 1298 2510 1301 2514 1307 2519 1315 2523 1327 2528 1341 
+2532 1359 2537 1381 2541 1407 2546 1438 2550 1476 2555 1521 2559 1578 2564 1651 2568 1751 2573 1905 
+2577 2245 2582 2215 2586 1895 2591 1746 2595 1648 2600 1576 2604 1521 2609 1476 2613 1439 2618 1408 
+2622 1383 2627 1361 2631 1343 2636 1329 2640 1317 2645 1309 2649 1302 2654 1298 2658 1297 2663 1298 
+2667 1301 2672 1306 2676 1314 2681 1324 2685 1338 2690 1354 2694 1373 2699 1396 2703 1423 2708 1456 
+2712 1495 2717 1542 2721 1601 2726 1677 2730 1781 2735 1945 2739 2340 2744 2176 2748 1892 2753 1750 
+2757 1656 2762 1586 2766 1532 2771 1487 2775 1450 2780 1420 
+] dogrey localsave restore
+/localsave save def 
+clear (drawpoly) 452 [17]
+[2784 1394 2789 1372 2793 1353 2798 1338 2802 1325 2807 1315 2811 1307 2816 1302 2820 1298 2825 1297 
+2829 1298 2834 1300 2838 1305 2843 1312 2847 1321 2852 1332 2856 1346 2861 1363 2865 1382 2870 1405 
+2874 1433 2879 1464 2883 1502 2888 1547 2892 1603 2897 1674 2901 1769 2906 1912 2910 2197 2915 2358 
+2919 1964 2924 1801 2928 1697 2933 1622 2937 1563 2942 1515 2946 1476 2951 1443 2955 1415 2960 1391 
+2964 1371 2969 1353 2973 1339 2978 1327 2982 1317 2987 1309 2991 1303 2996 1300 3000 1298 3005 1298 
+3009 1300 3014 1303 3018 1309 3023 1317 3027 1327 3032 1339 3036 1353 3041 1371 3045 1391 3050 1415 
+3054 1443 3059 1476 3063 1515 3068 1563 3072 1622 3077 1697 3081 1801 3086 1964 3090 2358 3095 2197 
+3099 1912 3104 1769 3108 1674 3113 1603 3117 1547 3122 1502 3126 1464 3131 1433 3135 1405 3140 1382 
+3144 1363 3149 1346 3153 1332 3158 1321 3162 1312 3167 1305 3171 1300 3176 1298 3180 1297 3185 1298 
+3189 1302 3194 1307 3198 1315 3203 1325 3207 1338 3212 1353 3216 1372 3221 1394 3225 1420 3230 1450 
+3234 1487 3239 1532 3243 1586 3248 1656 3252 1750 3257 1892 3261 2176 3266 2340 3270 1945 3275 1781 
+3279 1677 3284 1601 3288 1542 3293 1495 3297 1456 3302 1423 3306 1396 3311 1373 3315 1354 3320 1338 
+3324 1324 3329 1314 3333 1306 3338 1301 3342 1298 3347 1297 3351 1298 3356 1302 3360 1309 3365 1317 
+3369 1329 3374 1343 3378 1361 3383 1383 3387 1408 3392 1439 3396 1476 3401 1521 3405 1576 3410 1648 
+3414 1746 3419 1895 3423 2215 3428 2245 3432 1905 3437 1751 3441 1651 3446 1578 3450 1521 3455 1476 
+3459 1438 3464 1407 3468 1381 3473 1359 3477 1341 3482 1327 3486 1315 3491 1307 3495 1301 3500 1298 
+3504 1297 3509 1299 3513 1303 3518 1310 3522 1320 3527 1332 3531 1348 3536 1368 3540 1392 3545 1421 
+3549 1455 3554 1498 3558 1550 3563 1616 3567 1705 3572 1837 3576 2081 3581 2482 3585 1954 3590 1774 
+3594 1664 3599 1585 3603 1525 3608 1478 3612 1439 3617 1407 3621 1380 3626 1358 3630 1340 3635 1325 
+3639 1314 3644 1306 3648 1300 3653 1298 3657 1297 3662 1300 3666 1306 3671 1314 3675 1325 3680 1340 
+3684 1358 3689 1380 3693 1407 3698 1440 3702 1480 3707 1529 3711 1591 3716 1673 3720 1790 3725 1990 
+3729 2908 3734 2019 3738 1804 3743 1682 3747 1597 3752 1533 3756 1483 3761 1442 3765 1409 3770 1381 
+3774 1358 3779 1340 3783 1325 3788 1314 3792 1305 3797 1300 
+] dogrey localsave restore
+/localsave save def 
+clear (drawpoly) 452 [17]
+[3801 1297 3806 1297 3810 1300 3815 1306 3819 1315 3824 1327 3828 1342 3833 1361 3837 1385 3842 1413 
+3846 1448 3851 1491 3855 1544 3860 1611 3864 1703 3869 1839 3873 2102 3878 2370 3882 1923 3887 1752 
+3891 1646 3896 1569 3900 1511 3905 1464 3909 1427 3914 1396 3918 1370 3923 1349 3927 1332 3932 1319 
+3936 1309 3941 1302 3945 1299 3950 1298 3954 1299 3959 1304 3963 1312 3968 1323 3972 1338 3977 1356 
+3981 1378 3986 1406 3990 1439 3995 1480 3999 1531 4004 1596 4008 1682 4013 1809 4017 2037 4022 2613 
+4026 1960 4031 1770 4035 1657 4040 1577 4044 1516 4049 1468 4053 1429 4058 1397 4062 1371 4067 1350 
+4071 1333 4076 1319 4080 1309 4085 1302 4089 1298 4094 1298 4098 1300 4103 1305 4107 1313 4112 1324 
+4116 1339 4121 1358 4125 1381 4130 1409 4134 1444 4139 1487 4143 1540 4148 1609 4152 1701 4157 1841 
+4161 2119 4166 2312 4170 1903 4175 1738 4179 1634 4184 1559 4188 1501 4193 1456 4197 1419 4202 1388 
+4206 1364 4211 1344 4215 1328 4220 1315 4224 1306 4229 1300 4233 1298 4238 1298 4242 1301 4247 1308 
+4251 1318 4256 1331 4260 1348 4265 1369 4269 1395 4274 1428 4278 1467 4283 1516 4287 1578 4292 1661 
+4296 1781 4301 1988 4305 3710 4310 1986 4314 1779 4319 1660 4323 1577 4328 1515 4332 1466 4337 1426 
+4341 1394 4346 1368 4350 1346 4355 1329 4359 1316 4364 1307 4368 1301 4373 1298 4377 1298 4382 1301 
+4386 1308 4391 1318 4395 1332 4400 1350 4404 1372 4409 1400 4413 1434 4418 1476 4422 1529 4427 1597 
+4431 1691 4436 1832 4440 2118 4445 2272 4449 1882 4454 1719 4458 1616 4463 1542 4467 1486 4472 1441 
+4476 1405 4481 1375 4485 1352 4490 1333 4494 1318 4499 1308 4503 1301 4508 1298 4512 1298 4517 1302 
+4521 1310 4526 1321 4530 1337 4535 1357 4539 1383 4544 1416 4548 1458 4553 1510 4557 1580 4562 1675 
+4566 1824 4571 2147 4575 2163 4580 1827 4584 1673 4589 1575 4593 1503 4598 1449 4602 1406 4607 1372 
+4611 1345 4616 1325 4620 1311 4625 1301 4629 1297 4634 1299 4638 1306 4643 1320 4647 1342 4652 1374 
+4656 1420 4661 1487 4665 1591 4670 1785 4674 2950 4679 1741 4683 1520 4688 1386 4692 1287 4697 1208 
+4701 1142 4706 1085 4710 1035 4715 990 4719 950 4724 914 4728 881 4733 850 4737 822 4742 796 
+4746 772 4751 750 4755 729 4760 710 4764 692 4769 675 4773 660 4778 645 4782 632 4787 620 
+4791 609 4796 598 4800 589 4805 580 4809 572 4814 565 
+] dogrey localsave restore
+/localsave save def 
+clear (drawpoly) 194 [17]
+[4818 559 4823 553 4827 548 4832 544 4836 540 4841 537 4845 535 4850 533 4854 531 4859 530 
+4863 530 4868 530 4872 530 4877 531 4881 532 4886 534 4890 536 4895 538 4899 540 4904 543 
+4908 545 4913 548 4917 551 4922 554 4926 557 4931 560 4935 563 4940 566 4944 568 4949 571 
+4953 573 4958 575 4962 577 4967 578 4971 579 4976 580 4980 581 4985 581 4989 581 4994 581 
+4998 580 5003 579 5007 577 5012 576 5016 574 5021 572 5025 570 5030 567 5034 565 5039 562 
+5043 559 5048 557 5052 554 5057 551 5061 549 5066 546 5070 544 5075 541 5079 539 5084 537 
+5088 536 5093 534 5097 533 5102 532 5106 531 5111 530 5115 530 5120 530 5124 530 5129 531 
+5133 531 5138 532 5142 534 5147 535 5151 537 5156 538 5160 540 5165 543 5169 545 5174 547 
+5178 550 5183 552 5187 555 5192 558 5196 560 5201 563 5205 565 5210 568 5214 570 5219 572 
+5223 574 5228 576 5232 577 5237 579 5241 580 5246 580 5250 581 
+] dogrey localsave restore
+fillsolid
+/absolu true def
+[] 0 setdash
+-1 -1 200000 200000 setclipzone
+ showpage
+
+ clear end saved restore 

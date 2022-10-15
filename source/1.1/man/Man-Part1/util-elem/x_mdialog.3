@@ -1,0 +1,25 @@
+.TH x_mdialog 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+x_mdialog - Xwindow dialog
+.SH CALLING SEQUENCE
+.nf
+[result]=x_mdialog(title,labels,default_inputs) 
+.fi
+.SH DESCRIPTION
+X-window interactive input function
+.SH EXAMPLES
+.nf
+ txt=['magnitude';'frequency';'phase    '];
+ sig=x_mdialog('enter sine signal',txt,['1';'10';'0'])
+ mag=evstr(sig(1))
+ frq=evstr(sig(2))
+ ph=evstr(sig(3))
+
+ rep=x_mdialog(['System Simulation';'with PI regulator'],...
+                      ['P gain';'I gain '],[' ';' '])
+.fi
+.SH SEE ALSO
+x_dialog, x_choose, x_message , evstr, getvalue
+
+

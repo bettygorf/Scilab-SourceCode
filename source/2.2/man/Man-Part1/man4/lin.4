@@ -1,0 +1,50 @@
+.TH lin 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+lin - linearization
+.SH CALLING SEQUENCE
+.nf
+[A,B,C,D]=lin(sim,x0,u0)
+[sl]=lin(sim,x0,u0)
+.fi
+.SH PARAMETERS
+.TP 10
+sim
+: function
+.TP
+x0, u0
+: vectors of compatible dimensions
+.TP
+A,B,C,D
+: real matrices
+.TP
+sl
+: \fVsyslin\fR list
+.SH DESCRIPTION
+linearization of the non-linear system \fV[y,xdot]=sim(x,u)\fR
+around \fVx0,u0\fR.
+.LP
+\fVsim\fR is a function which computes \fVy\fR and \fVxdot\fR.
+.LP
+The output is a linear system (\fVsyslin\fR list) \fVsl\fR or the 
+four matrices \fV(A,B,C,D)\fR
+
+For example, if \fVftz\fR is the function passed to ode e.g.
+.nf
+[zd]=ftz(t,z,u)
+.fi
+and if we assume that \fVy=x\fR
+.LP
+\fV[z]=ode(x0,t0,tf,list(ftz,u)\fR compute \fVx(tf)\fR.
+.LP
+If \fVsimula\fR is the following function:
+.nf
+deff('[y,xd]=simula(x,u)','xd=ftz(tf,x,u); y=x;');
+.fi
+the tangent linear system \fVsl\fR can be obtained by:
+.nf
+[A,B,C,D]=lin(simula,z,u)
+sl = syslin('c',A,B,C,D,x0)
+.fi
+.SH SEE ALSO
+external, derivat

@@ -1,0 +1,42 @@
+
+evstr(1)                       Scilab Function                       evstr(1)
+NAME
+  evstr - evaluation of expressions
+
+CALLING SEQUENCE
+  H=evstr(Z)
+  [H,ierr]=evstr(Z)
+
+PARAMETERS
+
+  Z     : matrix of character strings M or list(M,Subexp)
+
+        M         : matrix of character strings
+
+        Subexp    : vector of character strings
+
+  H     : matrix
+
+  ierr  : integer, error indicator
+
+DESCRIPTION
+  returns the evaluation of the matrix of character strings. Each element of
+  the M matrix must be a character string defining a scilab expression.
+
+  If evaluation of M expression leads to an error H=evstr(M) produces an
+  error which is handled as usual. [H,ierr]=evstr(M) produces an error mes-
+  sage and return the error number in ierr.
+
+  If Z is a list, Subexp is a  character strings vector which defines
+  sub_expressions evaluated before evaluation of M.  These sub_expressions
+  must be referred as  %(k) in M (k is the sub-expression index in Subexp).
+
+  evstr('a=1') is not valid (use execstr ).
+EXAMPLES
+  a=1; b=2; Z=['a','b'] ; evstr(Z)
+
+  a=1; b=2; Z =list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+  evstr(Z)
+
+SEE ALSO
+  execstr

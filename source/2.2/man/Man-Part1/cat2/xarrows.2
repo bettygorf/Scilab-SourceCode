@@ -1,0 +1,66 @@
+
+
+
+xarrows(2)                     Scilab Function                     xarrows(2)
+
+
+
+
+
+
+NAME
+  xarrows - draw a set of arrows
+
+CALLING SEQUENCE
+  []=xarrows(nx,ny,[arsize,style])
+
+PARAMETERS
+
+  nx   : real matrix of size (n1,n2)
+
+  ny   : real matrix of size (n1,n2)
+
+  arsize
+       : real scalar (size of the arrow head). The default value can be
+       obtained by setting arsize to value -1.0.
+
+  style
+       : a matrix of size n or a scalar. If style is a positive scalar it
+       gives the dash style to use for all segments, if it is a negative
+       scalar then current dash style is used, if it is a vector style[i]
+       gives the style to use for segment i.
+
+DESCRIPTION
+  This function draws a set of arrows which are given by the vector or
+  matrices nx and ny.  The ith arrow is defined by (nx(i),ny(i))--
+  >(nx(i+1),ny(i+1)).  nx, ny can also be matrices :
+  nx=[ xi_1,x1_2,...; xf_1,xf_2,...]
+  ny=[ yi_1,y1_2,...; yf_1,yf_2,...]
+  in which case the arrows are  (xi_k,yi_k)->(xf_k,yf_k)
+
+  This function uses the current graphic scale which can be set by calling a
+  high level drawing function such as plot2d.
+
+EXAMPLE
+  x=2*%pi*(0:9)/8;
+  x1=[sin(x);9*sin(x)];
+  y1=[cos(x);9*cos(x)];
+  plot2d([-10,10],[-10,10],[-1,-1],"022");
+  xset('clipgrf')
+  xarrows(x1,y1,1,0:9);
+  xset('clipoff')
+
+SEE ALSO
+  plot2d, xchange.
+
+AUTHOR
+  J.Ph.C..
+
+
+
+
+
+
+
+
+

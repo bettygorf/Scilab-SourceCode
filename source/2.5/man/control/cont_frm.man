@@ -1,0 +1,30 @@
+.TH cont_frm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+cont_frm - transfer to controllable state-space
+.SH CALLING SEQUENCE
+.nf
+[sl]=cont_frm(NUM,den)
+.fi
+.SH PARAMETERS
+.TP
+NUM
+: polynomial matrix
+.TP
+den
+: polynomial
+.TP
+sl
+: \fVsyslin\fR list, \fVsl=[A,B,C,D]\fR.
+.SH DESCRIPTION
+controllable state-space form of the transfer \fVNUM/den\fR.
+.SH EXAMPLE
+.nf
+s=poly(0,'s');NUM=[1+s,s];den=s^2-5*s+1;
+sl=cont_frm(NUM,den); 
+slss=ss2tf(sl);       //Compare with NUM/den
+.fi
+.SH SEE ALSO
+tf2ss, canon, contr
+
+

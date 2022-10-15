@@ -1,0 +1,21 @@
+
+sin(G)                         Scilab Function                         sin(G)
+NAME
+  sin -  sine function
+
+CALLING SEQUENCE
+  [t]=sin(x)
+
+PARAMETERS
+
+  x         : real or complex vector or  matrix
+
+DESCRIPTION
+  For a vector or a matrix, sin(x) is the sine of its elements . For matrix
+  sine use  sinm(X) function.
+
+EXAMPLE
+  asin(sin([1,0,%i]))
+
+SEE ALSO
+  sinm

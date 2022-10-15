@@ -1,0 +1,43 @@
+
+mdfl2d(2)                      Scilab Function                      mdfl2d(2)
+NAME
+  mdfl2d - Discrete Legendre spectrum estimation on 2d measure
+
+  Author: Christophe Canus
+
+  This routine estimates the discrete Legendre spectrum on a pre-multifractal
+  2d measure.
+
+Usage
+  [alpha,fl_alpha]=mdfl2d(mu_n,N,n)
+
+Input parameters
+       o mu_n : strictly positive real matrix [nux_n,nuy_n] Contains the
+         pre-multifractal measure.
+       o N : strictly positive real (integer) scalar Contains the number of
+         Hoelder exponents.
+       o n : strictly positive real (integer) scalar Contains the final reso-
+         lution.
+Output parameters
+       o alpha : real vector [1,N] Contains the Hoelder exponents.
+       o fl_alpha : real vector [1,N] Contains the dimensions.
+Description
+
+Parameters
+
+  The  discrete Legendre  spectrum   fl_alpha is estimated   on the finite
+  finer resolution  of the 2d  measure mu_n. The three steps of the estima-
+  tion are:
+       o estimation of the discrete partition function;
+       o estimation of the Reyni exponents;
+       o estimation of the Legendre transform.
+Algorithm details
+  The discrete partition function is estimated by coarse-graining masses mu_n
+  into     non-overlapping  boxes   of   increasing  diameter  (box method).
+  If nux_n   and  nuy_n  are power   of 2,  2n corresponds to the coarser
+  scale.  The Reyni exponents are estimated by least square linear regres-
+  sion.  The Legendre transform of the mass exponent function is estimated
+  with the linear-time Legendre transform.
+
+See also
+  mdznq1d,mdznq2d,reynitq,linearlt,mdfl1d.

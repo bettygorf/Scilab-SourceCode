@@ -1,0 +1,23 @@
+.TH sinh 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sinh - hyperbolic sine
+.SH CALLING SEQUENCE
+.nf
+[t]=sinh(x) 
+.fi
+.SH PARAMETERS
+.TP 10
+x,t
+: real or complex vectors/matrices
+.SH DESCRIPTION
+the elements   of   vector  \fVt\fR  are the   
+hyperbolic  sine  of elements of vector \fVx\fR.
+.SH EXAMPLE
+.nf
+asinh(sinh([0,1,%i]))
+.fi
+.SH SEE ALSO
+asinh
+
+

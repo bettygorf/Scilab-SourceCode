@@ -1,0 +1,18 @@
+. Scilab is now case sensitive and identifiers may be up to 24 character long
+  check for your own scilab-1 version macros files for unwanted different upper
+  and lower case identifiers
+
+. Many changes have been done on the major scilab window, help and graphics
+
+. Geci
+
+. New functions
+  plot3di, unix_s, unix_g, unix_x, xgetmouse, 
+
+. TESTED ON:
+   Sun (SunOS 4.1.3)
+   HP-UX 9.01
+   DEC mips
+   DEC alpha (OSF/1 1.3)
+   IBM RS600
+   PC (linux)

@@ -1,0 +1,23 @@
+ 
+clear;lines(0);
+ 
+sp=sparse([1,2;4,5;3,10],[1,2,3])
+ sp  =
+ 
+(    4,   10) sparse matrix
+ 
+(    1,    2)        1. 
+(    3,   10)        3. 
+(    4,    5)        2. 
+ 
+size(sp)
+ ans  =
+ 
+!   4.    10. !
+ 
+x=rand(2,2);abs(x)-full(abs(sparse(x)))
+ ans  =
+ 
+!   0.    0. !
+!   0.    0. !
+ 

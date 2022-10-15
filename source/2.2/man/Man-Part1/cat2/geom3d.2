@@ -1,0 +1,66 @@
+
+
+
+geom3d(2)                      Scilab Function                      geom3d(2)
+
+
+
+
+
+
+NAME
+  geom3d -  projection from 3D on 2D
+
+CALLING SEQUENCE
+  [x,y]=geom3d(x1,y1,z1)
+
+PARAMETERS
+
+  x1,y1,z1       : real matrices of the same size (points in R3)
+
+  x,y            : real matrices of the same size as x1,y1 or z1
+
+DESCRIPTION
+  After having used a 3d plotting function as plot3d, plot3d1 and param3d,
+  this function gives the correspondence between a point in R3 space
+  (x1(i),y1(i),z1(i)) and the corresponding point in the projected graphic
+  plan (x(i),y(j)).  all the graphical primitives working on (x,y) can then
+  be used for superposition on a plot3d
+
+EXAMPLE
+  deff("[z]=surf(x,y)","z=sin(x)*cos(y)");
+  t=%pi*(-10:10)/10;
+  fplot3d(t,t,surf,35,45,"X@Y@Z");
+      //Gives a plot3d
+      //now  (t,t,sin(t).*cos(t) ) is a curve on the surface
+      //which can be drawn using param3d or the following code
+  [x,y]=geom3d(t,t,sin(t).*cos(t));
+  xpoly(x,y,"lines")
+      //adding a comment
+  [x,y]=geom3d([0,0],[0,0],[5,0]);
+  xsegs(x,y);
+  xstring(x(1),y(1)," The point (0,0,0)");
+
+AUTHOR
+  J.Ph.C.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

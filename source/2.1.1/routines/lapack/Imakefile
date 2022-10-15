@@ -1,0 +1,21 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+
+OBJS=	dgelqf.o dgels.o dgemm.o dgemv.o dgeqrf.o dger.o dlae2.o dlaev2.o \
+        dlarf.o dlarfg.o dlartg.o dlascl.o dlaset.o dlasr.o dlasrt.o \
+        dlassq.o dopgtr.o dorg2l.o dorg2r.o dormqr.o dpptrf.o dspev.o \
+        dspgst.o dspgv.o dspmv.o dspr.o dspr2.o dsptrd.o dsptrf.o \
+        dsteqr.o dtpmv.o dtpsv.o lsame.o xerbla.o dtrcon.o \
+        ilaenv.o dlamch.o dlabad.o dlange.o dtrsm.o dormlq.o dlansp.o \
+        dsterf.o dgeqr2.o dlarft.o dlarfb.o dorm2r.o dgelq2.o dlanst.o \
+        dlapy2.o dlantr.o dlacon.o dlatrs.o drscl.o dorml2.o dtrmv.o \
+        dtrmm.o dtrsv.o
+
+
+FSRCS =$(OBJS:.o=.f)
+
+LibraryTarget($(PATHO)/lapack.a,$(OBJS))
+FortranDependTarget()
+
+

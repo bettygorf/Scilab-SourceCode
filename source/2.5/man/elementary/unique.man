@@ -1,0 +1,40 @@
+.TH unique 1 "April 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+unique - extract unique components of a vector
+.SH CALLING SEQUENCE
+.nf
+[N, [k]]=unique(M)
+
+.fi
+.SH PARAMETERS
+.TP
+M 
+: vector of real numbers or strings
+.TP
+N
+: vector of real numbers or strings
+.TP
+k
+: vector  of integers
+.SH DESCRIPTION
+\fVunique(M)\fR returns a vector which retains the unique entries of  \fVM\fR
+in ascending order. 
+.LP
+If required the output argument \fVk\fR contains the position of the
+first encountered unique entries.
+
+.SH EXAMPLE
+.nf
+M=round(2*rand(20,1));
+
+unique(M)
+[N,k]=unique(M)
+
+unique(string(M))
+[N,k]=unique(string(M))
+
+.fi
+.SH SEE ALSO
+union, sort, lex_sort
+

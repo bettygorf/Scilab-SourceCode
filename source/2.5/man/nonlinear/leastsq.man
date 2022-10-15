@@ -1,0 +1,161 @@
+.TH leastsq G "April 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+leastsq - Solves non-linear least squares problems
+.SH CALLING SEQUENCE
+.nf
+[f,xopt]=leastsq([imp,] fun [,Dfun],x0)
+[f,[xopt,[gradopt]]]=leastsq(fun [,Dfun],[contr],x0,['algo'],[df0,[mem]],
+     ,[stop],['in'])
+.fi
+.SH PARAMETERS
+.TP 10
+imp
+: scalar argument used to set the trace mode. \fVimp=0\fR nothing
+(execpt errors) is reported, \fVimp=1\fR initial and final reports,
+\fVimp=2\fR adds a report per iteration, \fVimp>2\fR add reports on
+linear search. Warning, most of these reports are written on the
+Scilab standard output.
+
+.TP
+fun
+: external, i.e Scilab function or string (\fVfun\fR is the function
+defining the least square probleme: see below.
+.TP
+x0 
+: real vector (initial value of variable to be minimized).
+.TP
+f
+: value of optimal least square value.
+.TP
+xopt
+: best value of \fVx\fR found.
+.TP
+contr 
+: \fV'b',binf,bsup\fR  with \fVbinf\fR and \fVbsup\fR real vectors with same
+dimension as \fVx0\fR. \fVbinf\fR and \fVbsup\fR are lower and upper bounds on \fVx\fR.
+.TP
+algo
+: A string with possible values :\fV'qn'\fR or \fV'gc'\fR or \fV'nd'\fR . This string stands for quasi-Newton (default), 
+conjugate gradient or non-differentiable respectively. 
+Note that \fV'nd'\fR does not accept bounds on \fVx\fR ).
+.TP
+df0 
+: real scalar. Guessed decreasing of \fVf\fR at first iteration.
+(\fVdf0=1\fR is the default value).
+.TP
+mem :
+ integer, number of variables used to approximate the 
+Hessian, (\fValgo='gc' or 'nd'\fR). Default value is around 6.
+.TP
+stop 
+:  sequence of optional parameters controlling the 
+convergence of the algorithm.
+\fV  stop=  'ar',nap, [iter [,epsg [,epsf [,epsx]]]]\fR
+.RS
+.TP
+"ar"
+: reserved keyword for stopping rule selection defined as follows:
+.TP
+nap 
+: maximum number of calls to \fVfun\fR allowed.
+.TP
+iter  
+: maximum number of iterations allowed.
+.TP
+epsg  
+: threshold on gradient norm.
+.TP
+epsf  
+: threshold controlling decreasing of \fVf\fR
+.TP
+epsx 
+: threshold controlling variation of \fVx\fR.
+This vector (possibly matrix) of same size as \fVx0\fR can be used
+to scale \fVx\fR.
+.RE
+.TP
+"in" 
+: reserved  keyword for initialization of parameters
+used when \fVfun\fR in given as a Fortran routine (see below).
+.TP
+gradopt
+:  gradient of \fVfun\fR at \fVxopt\fR
+.SH DESCRIPTION
+Non-linear optimization routine for programs without constraints or with bound constraints: 
+.nf
+min sum(f(x).^2  w.r.t x.
+.fi
+.TP
+\fVfun\fR 
+is an "external" i.e function, or list or Fortran routine (see "external").
+This external must return (\fVf(x)\fR) for a given \fVx\fR.
+.LP
+If \fVfun\fR is a function, the calling sequence for \fVfun\fR must be:
+.nf
+[f]=fun(x, [optional parameters]).
+.fi
+Here, \fVfun\fR is a function from R^n to R^m which returns \fVf(x)\fR, a
+real vector ( value of function at \fVx\fR) 
+.LP
+If fun is defined by a Fortran or C routine first argument must be a
+list:
+\list(fun_name,m,...)
+If \fVfun_name\fR is a character string, it refers to the name of the routine
+which must be linked to Scilab. 
+.LP
+Here, the generic calling sequence for the Fortran subroutine is: 
+\fVsubroutine fun(m,n,x,td,f)\fR
+
+.LP
+\fVn\fR is the dimension of \fVx\fR, \fVx\fR is an \fVn\fR vector, 
+\fVtd\fR are working arrays which may also be used to pass parameters
+
+.LP
+If \fVfun\fR is given as a Fortran routine, it is possible to initialize
+parameters or to send Scilab variables to this routine using sequence
+of arguments \fV'td' , valtd\fR. Then, the Fortran function
+\fVfun(m,n , x, f, td)\fR is evaluated with  \fVtd=valtd\fR.
+Thus, the Scilab variables  \fVvaltd\fR  are sent to the Fortran
+function \fVfun\fR.
+.TP
+\fVDfun\fR 
+is an "external".This external must return a matrix \fVg\fR such 
+as (\fVg(i,j)=dfi/dxj\fR) for a given \fVx\fR. 
+.LP
+If \fVDfun\fR is a function, the calling sequence for \fVfun\fR must be:
+.nf
+[g]=Dfun(x, [optional parameters]).
+.fi
+.LP
+If Dfun is defined by a Fortran or C routine first argument must be a
+list:
+\list(fun_name,m,...)
+If \fVfun_name\fR is a character string, it refers to the name of the routine
+which must be linked to Scilab. 
+.LP
+Here, the generic calling sequence for the Fortran subroutine is: 
+\fVsubroutine dfun(m,n,x,td,g)\fR
+
+
+.SH EXAMPLES
+.nf
+
+a=rand(3,2);b=[1;1;1];x0=[1;-1];
+deff('f=fun(x,a,b)','f=a*x-b');
+deff('g=dfun(x,a,b)','g=a');
+
+[f,xopt]=leastsq(fun,x0)      //Simplest call
+xopt-a\b  //compare with linear algebra solution
+
+[f,xopt]=leastsq(fun,dfun,x0)      //specify gradient
+
+[f,xopt]=leastsq(list(fun,[1 2;3 4],[1;2]),x0)    
+
+deff('f=fun(x,a,b)','f=exp(a*x)-b');
+deff('g=dfun(x,a,b)','g=a.*(exp(a*x)*ones(1,size(a,2)))');
+
+[f,xopt]=leastsq(list(fun,[1 2;3 4],[1;2]),x0)  
+.fi
+.SH SEE ALSO
+external, quapro, linpro

@@ -1,0 +1,33 @@
+.TH lcm 8 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+lcm - least common multiple
+.SH CALLING SEQUENCE
+.nf
+[pp,fact]=lcm(p)
+.fi
+.SH PARAMETERS
+.TP
+p
+: 
+.TP
+fact
+: polynomial vector
+.TP
+pp
+: polynomial
+.SH DESCRIPTION
+\fVpp=lcm(p)\fR computes the lcm \fVpp\fR of polynomial vector \fVp\fR.
+.LP
+\fV[pp,fact]=lcm(p)\fR computes in addition the vector \fVfact\fR such that:
+.LP
+\fVp.*fact=pp*ones(p)\fR
+.SH EXAMPLE 
+.nf
+s=poly(0,'s');
+p=[s,s*(s+1)^2,s^2*(s+2)];
+[pp,fact]=lcm(p);
+p.*fact, pp
+.fi
+.SH SEE ALSO
+gcd, bezout

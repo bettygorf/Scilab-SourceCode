@@ -1,0 +1,46 @@
+.TH phasemag 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+phasemag - phase magnitude computation
+.SH CALLING SEQUENCE
+.nf
+[phi,db]=phasemag(z [,mod])
+.fi
+.SH PARAMETERS
+.TP 
+z     
+: matrix or row vector of complex numbers.
+.TP 
+mod   
+: character string
+.RS 
+.TP 10
+mod='c'  
+: representation between -infinity and +360
+.TP
+mod='m'  
+: representation between -360 and 0 (default)
+.RE
+.TP 
+phi   
+: phases (in degree) of \fVz\fR (element-by-element)
+.TP
+db    
+: magnitude (en db)
+.SH DESCRIPTION
+\fVphasemag\fR computes the phases and magnitudes of the entries of
+a complex matrix
+.SH EXAMPLE
+.nf
+  s=poly(0,'s');
+  h=syslin('c',1/((s+5)*(s+10)*(100+6*s+s*s)*(s+.3)));
+  [frq,rf]=repfreq(h,0.1,20,0.005);
+  xbasc(0);
+  plot2d(frq',phasemag(rf,'c')');
+  xbasc(1);
+  plot2d(frq',phasemag(rf,'m')');
+.fi
+.SH SEE ALSO
+repfreq, gainplot
+
+

@@ -1,0 +1,22 @@
+.TH gtild 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+gtild - tilde operation
+.SH CALLING SEQUENCE
+.nf
+[gt]=gtild(g)
+[at,bt,ct,dt]=gtild(a,b,c,[d])
+.fi
+.SH PARAMETERS
+.TP 10
+g
+: linear system (\fVsyslin\fR list) or g=g(s) 
+.TP
+gt
+: linear system (\fVsyslin\fR list)
+.SH DESCRIPTION
+\fVgtild\fR returns \fVgtild(s) = g(-s)'\fR (in transfer form 
+or in state-space)
+.SH SEE ALSO
+syslin, horner
+

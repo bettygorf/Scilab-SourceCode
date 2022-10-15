@@ -1,0 +1,75 @@
+
+dilate(2)                      Scilab Function                      dilate(2)
+NAME
+  dilate -  Dilation of a signal
+
+  Author: Paulo Goncalves
+
+  Computes dilated/compressed version of a signal using Fast Mellin
+  transform.
+
+Usage
+  [sscaled,mellin,beta] = dilate(s,a,[fmin,fmax,N])
+
+Input parameters
+       o s : real vector [1,nt] or [nt,1] Time samples of the signal to be
+         scaled.
+       o a : real strictly positive vector [1,N_scale] Dilation/compression
+         factors. a < 1 corresponds to compression in time
+       o fmin : real scalar in [0,0.5] Lower frequency bound of the signal
+         (necessary for the intermediate computation of the Mellin transform)
+       o fmax :  real scalar [0,0.5] and fmax > Upper frequency bound of the
+         signal (necessary for the intermediate computation of the Mellin
+         transform)
+       o N : positive integer. number of Mellin samples.
+Output parameters
+       o sscaled : Real matrix with N_scale columns Each column j (for j = 1
+         .. N_scale) contains the dilated/compressed version of s by scale
+         a(j). First element of each column gives the effective time support
+         for each scaled version of s.
+       o mellin : complex vector [1,N] Mellin transform of s.
+       o beta : real vector [1,N] Variable of the Mellin transform mellin.
+
+Description
+
+Parameters
+       o s : signal to be analyzed. Real or complex vector. Size of s should
+         be odd. If even, a zero sample is appended at the end of the signal
+       o a scale factor. Maximum allowed scale is determined by the spectral
+         extent of the signal to be compressed: the spectral extent of the
+         compressed signal can not go beyond the Nyquist frequency (1/2).
+         There is no theoretical limit for the minimum allowed scale, other
+         than the computational cost.
+       o fmin : lower frequency bound of the analysis. fmin is real scalar
+         comprised in  [0,0.5]
+       o fmax : upper frequency bound of the analysis. fmax is a real scalar
+         comprised in [0,0.5] and fmax > fmin
+       o N : number of Mellin samples. This number must be greater than some
+         ammount determined by the spectral extent of the signal, to avoid
+         aliasing in the Mellin domain.
+Algorithm details
+  This algorith uses a Fast Mellin Transform (dmt) to diagonalize the Scale
+  operator. The algorithm runs as follows
+       o  compute the Fourier-Mellin transform of the signal
+       o  Multiply the result by a(-i.beta) (beta is the Mellin variable),
+         for each values of scale a
+       o  compute the inverse Fourier-Mellin transform to get the a-dilated
+         version of s
+See also:
+  dmt, idmt
+
+Example:
+   Signal synthesis
+
+  x = morlet(0.1,32) ;
+  plot(x)
+
+   Dilation by a factor 2
+
+  [sscaled,mellin,beta] = dilate(x,2,0.01,0.5,256) ;
+  plot(sscaled(2:sscaled(1)))
+
+   Compression by a factor 2
+
+  [sscaled,mellin,beta] = dilate(x,1/2,0.01,0.5,256) ;
+  plot(sscaled(2:sscaled(1)))

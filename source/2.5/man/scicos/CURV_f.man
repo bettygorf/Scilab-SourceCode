@@ -1,0 +1,17 @@
+.TH CURV_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+CURV_f - Scicos block, tabulated function of time
+.SH DIALOGUE PARAMETERS
+Tabulated function is entered using a graphics curve editor (see
+edit_curv in Scilab documentation)
+
+.SH DESCRIPTION
+This block defines a tabulated function of time. Between mesh
+points block performs a linear interpolation. Outside tabulation block
+outputs last tabulated value.
+
+User may define the tabulation of the function using a curve editor.
+
+
+

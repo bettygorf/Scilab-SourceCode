@@ -1,0 +1,30 @@
+.TH RAND_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+RAND_f - Scicos random wave generator
+.SH DESCRIPTION
+This block is a random wave generator: each output component takes piecewise
+constant random values. Every time an event is received on the 
+input event port, the outputs take  new independent random values.
+.LP
+output port size is given by the size of \fVA\fR and \fVB\fR vectors
+.SH DIALOGUE PARAMETERS
+.TP
+flag
+: 0 or 1. 0 for uniform distribution on \fV[A,A+B\fR] and 1 for normal
+distribution \fVN(A,B*B)\fR.
+.TP
+A
+: scalar
+.TP
+B
+: scalar
+.SH SEE ALSO
+GENSIN_f, SAWTOOTH_f, GENSQR_f
+
+
+
+
+
+
+

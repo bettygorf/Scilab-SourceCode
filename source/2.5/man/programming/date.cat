@@ -1,0 +1,20 @@
+
+date(1)                        Scilab Function                        date(1)
+NAME
+  date - Current date as date string
+
+CALLING SEQUENCE
+  dt=date()
+
+PARAMETERS
+
+  dt   : a string
+
+DESCRIPTION
+  dt=date() returns a string containing the date in dd-mmm-yyyy format.
+
+EXAMPLES
+  date()
+
+SEE ALSO
+  getdate, timer

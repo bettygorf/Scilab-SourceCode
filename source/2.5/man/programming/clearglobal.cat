@@ -1,0 +1,32 @@
+
+clearglobal(1)                 Scilab Function                 clearglobal(1)
+NAME
+  clearglobal - kills global variables
+
+CALLING SEQUENCE
+  clearglobal()
+  clearglobal nam1 .. namn
+  clearglobal('nam1', ..,'namn')
+
+PARAMETERS
+
+  nam1,..., namn
+            : valid variable names
+
+DESCRIPTION
+  clearglobal()  kills all the global variables.
+
+  clearglobal nam1 .. namn  kills  the global variables given by their names
+
+  Note that clearglobal()  only clears the global variables, the local vari-
+  ables pointing on these global variables are not destroyed.
+
+SEE ALSO
+  global, who
+
+EXAMPLE
+  global a b c
+  a=1;b=2;c=3;
+  who('global')
+  clearglobal b
+  who('global')

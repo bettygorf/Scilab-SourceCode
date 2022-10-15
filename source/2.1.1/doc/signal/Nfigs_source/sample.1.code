@@ -1,0 +1,25 @@
+//exec('sample.1.code')
+  xinit('sample.1.ps')
+//no axes or tick marks
+
+//plot axes
+
+   rect=[-5,-2,5,5]
+   plot2d([-.05 0 .05]',[4.8 5 4.8]',[-1],"011",' ',rect),
+   plot2d([4.8 5 4.8]',[.05 0 -.05]',[-1],"000"),
+
+//plot figure
+
+   plot2d([-1 0 1]',[0 2 0]',[-1],"000")
+   xstring(0,0,'W'),
+   xstring(0,0,' c'),
+   xstring(0,0,'-W'),
+   xstring(0,0,'   c'),
+   xstring(0,0,'X')
+   xstring(0,0,' (W)')
+   xstring(0,0,'W')
+   xstring(0,0,'X(0)'),
+   xend(),
+
+
+

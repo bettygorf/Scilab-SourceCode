@@ -1,0 +1,19 @@
+
+round(G)                       Scilab Function                       round(G)
+NAME
+  round - rounding
+
+CALLING SEQUENCE
+  [y]=round(x)
+
+PARAMETERS
+
+  x         : real or complex matrix
+
+  y         : integer or complex (with integer real and imag) matrix
+
+DESCRIPTION
+  round(x) rounds the elements of x to the nearest integers.
+
+SEE ALSO
+  int, floor, ceil

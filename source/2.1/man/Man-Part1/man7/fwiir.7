@@ -1,0 +1,48 @@
+.TH fwiir 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+fwiir - IIR filters in cascade realization
+.SH CALLING SEQUENCE
+.nf
+[maxer,gain,trfun]=fwiir(nbit1,nbit2,w,x,y,weight,nsect)
+.fi
+.SH PARAMETERS
+.TP
+nbit1
+: desired number of bits for coding the filter coefficients
+.TP
+nbit2
+: initial search increment
+.TP
+w
+: grid of frequencies were the specifications on the
+ response are given. They must be given in normalized frequency
+ (i.e. in [0-0.5])
+.TP
+x
+: initial "infinite precision" coefficients.
+.TP
+y
+: desired magnitude response at the specified grid of frequency
+(must be equal to zero or one in the present function)
+.TP
+weight
+: weighting in each specified frequency for the error criterion
+.TP
+nsect
+: number of second order sections.
+maxer
+: maximum error on the frequency response.
+.TP
+gain
+: gain of the finite precision filter.
+.TP
+trfun
+: transfer function of the finite precision filter in
+second order sections cascade form.
+.SH DESCRIPTION
+function for the optimum design of IIR filters in cascade realization,
+with prescribed number of bits.
+
+
+

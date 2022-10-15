@@ -1,0 +1,66 @@
+
+
+
+obs_gram(1)                    Scilab Function                    obs_gram(1)
+
+
+
+
+
+
+NAME
+  obs_gram - observability grammian
+
+CALLING SEQUENCE
+  [Go]=obsv_gram(A,C [,dom])
+  [Go]=obsv_gram(sl)
+
+PARAMETERS
+
+  A,C       : real matrices (of appropriate dimensions)
+
+  dom       : string ("d' or "c" (default value))
+
+  sl        : syslin list
+
+DESCRIPTION
+  Observability gramian of the pair (A,C) or linear system sl (syslin list).
+  dom is the domain which can be
+
+  "c"  :  continuous system (default)
+
+  "d"  :  discrete system
+
+                    /+inf                             ---+inf
+                    [  A't    At                      \   k      k
+               Go = | e  C'C e   dt       or      Go = > A' C'C A
+                    ]                                 /
+                   /0                                 ---0
+
+
+
+
+
+
+SEE ALSO
+   contrss, ctr_gram, obsvss, obs_mat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

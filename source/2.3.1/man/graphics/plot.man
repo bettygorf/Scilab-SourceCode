@@ -1,0 +1,31 @@
+.TH plot 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+plot - simple plot 
+.SH CALLING SEQUENCE
+.nf
+plot(x,y,[xcap,ycap,caption])
+plot(y,[xcap,ycap,caption])
+.fi
+.SH PARAMETERS 
+.TP 15
+x,y
+: two vectors.
+.TP
+caption, xcap, ycap
+:
+character strings or string matrices 
+.SH DESCRIPTION
+plot \fVy\fR as function of \fVx\fR.
+\fVxcap\fR and \fVycap\fR are captions for x-axis 
+and y-axis respectively.
+Invoked with one argument, \fVplot(y)\fR plots the \fVy\fR vector or,
+if \fVy\fR is a matrix, its rows.
+.SH SEE ALSO
+plot2d
+.SH AUTHOR
+J.Ph.C..
+
+
+
+

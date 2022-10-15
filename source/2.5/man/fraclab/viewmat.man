@@ -1,0 +1,87 @@
+.TH "viewmat" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+viewmat -  Vizualisation of a matrix
+.SH Usage
+.nf
+viewmat(Z [,X,Y])
+.fi
+.SH Input parameters
+.TP
+o 
+\fBZ\fP : Real valued matrix \f(CR[\fPny,nx\f(CR]\fP
+2-D matrix to be displayed
+
+.TP
+o 
+\fBX\fP : Real  vector \f(CR[\fP1,nx\f(CR]\fP or \f(CR[\fPnx,1\f(CR]\fP
+x-axis
+
+.TP
+o 
+\fBY\fP : Real  vector \f(CR[\fP1,ny\f(CR]\fP or \f(CR[\fPny,1\f(CR]\fP
+Controls the vertical axis.  \fIy\fP forces the vertical axis to be
+numbered from bottom to top in the increasing order. 
+When not specified, the coordinate system is set to its
+"Cartesian" axes mode.  The coordinate system origin is at the lower
+left corner.  The \fIx\fP axis is horizontal and is numbered from left
+to right.  The \fIy\fP axis is vertical and is numbered from bottom to
+top.
+
+
+
+.RS
+
+.TP
+o 
+\fItype\fP = 0 	: image 
+
+.TP
+o 
+\fItype\fP = 1 	: pseudo color 
+
+.TP
+o 
+\fItype\fP = 2 	: contour plot 
+
+.TP
+o 
+\fItype\fP = 3 	: mesh plot 
+
+.TP
+o 
+\fItype\fP = 4	: shaded surface with lighting 
+
+.TP
+o 
+\fIscale\fP = 0	: linear dynamic 
+
+.TP
+o 
+\fIscale\fP = 1	: logarithmic dynamic 
+
+.TP
+o 
+\fIlevel\fP 	: scalar setting the minimum level of the display 
+0 < level < +1 for linear scale 
+0 dB < level < Infty dB for logarithmic scale 
+.RE
+
+  
+\fB Scilab version: \fI cmd \fP is ineffective and frozen to \f(CR[\fP1 0 0\f(CR]\fP \fP. 
+.RE
+.SH Remark
+  viewmat changes the color map
+.SH See also:
+plot3d, grayplot
+.SH Example:
+.nf
+//Signal synthesis:
+x = oscillsing(1,1,0,128) ; 
+X = x(:)*x(:)' ; 
+//Matrix vizualisation: 
+
+viewmat(abs(X))
+.fi
+.SH AUTHOR
+Author: Paulo Goncalves - Bertrand Guiheneuf

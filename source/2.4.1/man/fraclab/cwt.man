@@ -1,0 +1,73 @@
+.TH "cwt" 2 " 12 February 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+cwt - Continuous Wavelet Transform
+.sp
+Author: Bertrand Guiheneuf
+.sp
+This routine computes the \fIcontinuous wavelet transform\fP of a real signal. Two wavelets are available: the \fIMexican Hat\fP or the \fIMorlet Wavelet\fP.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPwt,scales,freqs\f(CR]\fP=cwt(sig,fmin,fmax,nbscales,\f(CR[\fPwvlt_length\f(CR]\fP)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBsig\fP : real vector \f(CR[\fP1,n\f(CR]\fP or \f(CR[\fPn,1\f(CR]\fP 
+Contains the signal to be decomposed. 
+
+.TP
+o 
+\fBfmin\fP : real positive scalar 
+Lowest frequency of the wavelet analysis
+
+.TP
+o 
+\fBfmax\fP : real positive scalar 
+Highest frequency of the wavelet analysis
+
+.TP
+o 
+\fBnbscales\fP : integer positive scalar 
+Number of scales to compute between the lowest and the highest frequencies.
+
+.TP
+o 
+\fBwvlt_length\fP : real positive scalar (optionnal) 
+If equal to 0 or not specified, the wavelet is the \fIMexican Hat\fP and its length is automaticaly choosen. Otherwise, Morlet's wavelet is used and it's length at scale 1 is given by \fIwvlt_length\fP
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : complex matrix \f(CR[\fPnbscales,n\f(CR]\fP 
+Wavelet transform. The first line is the finer scale ( scale 1 ). It is real if the \fIMexican Hat\fP has been used, complex otherwise.
+
+.TP
+o 
+\fBscales\fP : real vector \f(CR[\fP1,nbscales\f(CR]\fP 
+Scale corresponding to each line of the wavelet transform.
+
+.TP
+o 
+\fBfreqs\fP : real vector \f(CR[\fP1,nbscales\f(CR]\fP 
+Frequency corresponding to each line of the wavelet transform. 
+.RE
+
+.SH Description
+.SH Parameters 
+The wavelet transform of \fIsig\fP is computed via convolutions of dilated and translated versions of a single function called the "wavelet". The scales are given by the dilatation factor. As the scales are not absolute, the scale factor is determined through the specification of the minimum and maximum frequency of the decomposition considered as a time/frequency transform. The maximum frequency might not be greater than the Nyquist Frequency i.e. 0.5 as the wavelet at this scale would be undersampled.
+The number of scales tells how many convolutions are computed. The bigger it is, the slower the transform is. The frequency (or scale) axis is logarithmicaly sampled. The resulting scales and frequencies values  can be obtained as output parameters. 
+The meaning of the wavelet length parameter is twofold. If non zero, it tells the routine to use a Morlet Wavelet and gives its length at scale 1 (maximum frequency). Otherwise (zero or not specified), the Mexican Hat is used. The resulting wavelet transform is then real but has a quite poor frequency resolution.
+.SH Algorithm details 
+Convolutions are computed through discrete linear convolutions in time domain. No FFT is used. 
+The linear filters are obtained by a sampling of the wavelet after dilatation. 
+The signal is mirrored at its boundaries. 

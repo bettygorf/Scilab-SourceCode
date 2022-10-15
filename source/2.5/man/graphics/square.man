@@ -1,0 +1,33 @@
+.TH square 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+square - set scales for isometric plot (change the size of the window)
+.SH CALLING SEQUENCE
+.nf
+square(xmin,ymin,xmax,ymax)
+.fi
+.SH PARAMETERS
+.TP 21
+xmin,xmax,ymin,ymax
+: four real values
+.SH DESCRIPTION
+\fVsquare\fR is used to have isometric scales on the x and y axes. 
+The requested values 
+\fVxmin, xmax, ymin, ymax\fR are the boundaries of the graphics frame
+and \fVsquare\fR changes the graphics window dimensions in order to
+have an isometric plot. \fVsquare\fR set the current graphics scales 
+and can be used in conjunction with graphics routines which request
+the current graphics scale (for instance \fVfstrf="x0z"\fR in \fVplot2d\fR).
+.SH EXAMPLE
+.nf
+t=[0:0.1:2*%pi]';
+plot2d(sin(t),cos(t))
+xbasc()
+square(-1,-1,1,1)
+plot2d(sin(t),cos(t))
+xset("default")
+.fi
+.SH SEE ALSO
+isoview, xsetech
+.SH AUTHOR
+Steer S.

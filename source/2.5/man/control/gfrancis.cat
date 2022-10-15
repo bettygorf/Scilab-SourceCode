@@ -1,0 +1,50 @@
+
+gfrancis(1)                    Scilab Function                    gfrancis(1)
+NAME
+  gfrancis - Francis equations for tracking
+
+CALLING SEQUENCE
+  [L,M,T]=gfrancis(Plant,Model)
+
+PARAMETERS
+
+  Plant          : syslin list
+
+  Model          : syslin list
+
+  L,M,T          : real matrices
+
+DESCRIPTION
+  Given the the linear plant:
+      x'= F*x + G*u
+      y = H*x + J*u
+  and the linear model
+      xm'= A*xm + B*um
+      ym = C*xm + D*um
+  the goal is for the plant to track the model i.e. e = y - ym ---> 0 while
+  keeping stable the state x(t) of the plant.  u is given by feedforward and
+  feedback
+   u = L*xm + M*um + K*(x-T*xm) = [K , L-K*T] *(x,xm) + M*um
+  The matrices T,L,M satisfy generalized Francis equations
+      F*T + G*L = T*A
+      H*T + J*L = C
+            G*M = T*B
+            J*M = D
+  The matrix K must be chosen as stabilizing the pair (F,G) See example of
+  use in directory demos/tracking.
+
+EXAMPLE
+  Plant=ssrand(1,3,5);
+  [F,G,H,J]=abcd(Plant);
+  nw=4;nuu=2;A=rand(nw,nw);
+  st=maxi(real(spec(A)));A=A-st*eye(A);
+  B=rand(nw,nuu);C=2*rand(1,nw);D=0*rand(C*B);
+  Model=syslin('c',A,B,C,D);
+  [L,M,T]=gfrancis(Plant,Model);
+  norm(F*T+G*L-T*A,1)
+  norm(H*T+J*L-C,1)
+  norm(G*M-T*B,1)
+  norm(J*M-D,1)
+
+SEE ALSO
+  lqg, ppol

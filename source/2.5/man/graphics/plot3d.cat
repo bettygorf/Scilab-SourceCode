@@ -1,0 +1,130 @@
+
+plot3d(2)                      Scilab Function                      plot3d(2)
+NAME
+  plot3d - 3D plot of a surface
+
+CALLING SEQUENCE
+  plot3d(x,y,z,[theta,alpha,leg,flag,ebox])
+  plot3d(xf,yf,zf,[theta,alpha,leg,flag,ebox])
+  plot3d(xf,yf,list(zf,colors),[theta,alpha,leg,flag,ebox])
+
+PARAMETERS
+
+  x,y          : row vectors of sizes n1 and n2 (x-axis and y-axis coordi-
+               nates). These coordinates must be monotone.
+
+  z            : matrix of size (n1,n2). z(i,j) is the value of the surface
+               at the point (x(i),y(j)).
+
+  xf,yf,zf     : matrices of size (nf,n).  They define the facets used to
+               draw the surface. There are n facets.  Each facet i is defined
+               by a polygon with nf points.  The x-axis, y-axis and z-axis
+               coordinates of the points of the ith facet are given respec-
+               tively by xf(:,i), yf(:,i) and zf(:,i).
+
+               You can give a specific color for each facet by using
+               list(zf,colors) instead of zf, where colors is a vector of
+               size n. colors(i) is the color of facet i. If colors(i) is
+               negative, color id -colors(i) is used and the boundary of the
+               facet is drawn.  Use xset() to see the ids of the colors.
+
+  theta, alpha : real values giving in degree the spherical coordinates of
+               the observation point.
+
+  leg          : string defining the captions for each axis with @ as a field
+               separator, for example "X@Y@Z".
+
+  flag         : a real vector of size three flag=[mode,type,box].
+
+               mode : string (treatment of hidden parts).
+
+                    mode>0
+                      the hidden parts of the surface are removed and the
+                      surface is painted with color mode.
+
+                    mode=0
+                      the hidden parts of the surface are drawn.
+
+                    mode<0
+                      only the shadow of the surface is painted with color or
+                      pattern id -mode. Use xset() to see the meaning of the
+                      ids.
+
+               type : an integer (scaling).
+
+                    type=0  the plot is made using the current 3D scaling
+                            (set by a previous call to param3d, plot3d, con-
+                            tour or plot3d1).
+
+                    type=1  the boundaries are specified by the value of the
+                            optional argument ebox.
+
+                    other values
+                            the boundaries are computed using the given data.
+
+               box  : an integer (frame around the plot).
+
+                    box=0
+                      nothing is drawn around the plot.
+
+                    box=1
+                      unimplemented (like box=0).
+
+                    box=2
+                      only the axes behind the surface are drawn.
+
+                    box=3
+                      a box surrounding the surface is drawn and captions are
+                      added.
+
+                    box=4
+                      a box surrounding the surface is drawn, captions and
+                      axes are added.
+
+  ebox         : used when type in flag is 1. It specifies the boundaries of
+               the plot as the vector [xmin,xmax,ymin,ymax,zmin,zmax].
+
+DESCRIPTION
+  plot3d(x,y,z,[theta,alpha,leg,flag,ebox]) draws the surface z=f(x,y).
+
+  plot3d(xf,yf,zf,[theta,alpha,leg ,flag,ebox]) draws a surface defined by a
+  set of facets. You can draw multiple plots by replacing xf, yf and zf by
+  multiple matrices assembled by rows as [xf1 xf2 ...], [yf1 yf2 ...] and
+  [zf1 zf2 ...].
+
+  You can use the function genfac3d to compute four sided facets from the
+  surface z=f(x,y). eval3dp can also be used.
+
+  Enter the command  plot3d() to see a demo.
+
+EXAMPLE
+  // simple plot using z=f(x,y)
+  t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+  plot3d(t,t,z)
+  // same plot using facets computed by genfac3d
+  [xx,yy,zz]=genfac3d(t,t,z);
+  xbasc()
+  plot3d(xx,yy,zz)
+  // multiple plots
+  xbasc()
+  plot3d([xx xx],[yy yy],[zz 4+zz])
+  // multiple plots using colors
+  xbasc()
+  plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
+  // simple plot with viewpoint and captions
+  xbasc()
+  plot3d(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
+  // plot of a sphere using facets computed by eval3dp
+  deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";..
+    "y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)";..
+    "z=r*sin(alp)+orig(3)*ones(tet)"]);
+  r=1; orig=[0 0 0];
+  [xx,yy,zz]=eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20));
+  xbasc()
+  plot3d(xx,yy,zz)
+
+SEE ALSO
+  eval3dp, genfac3d, geom3d, param3d, plot3d1, xset
+
+AUTHOR
+  J.Ph.C.

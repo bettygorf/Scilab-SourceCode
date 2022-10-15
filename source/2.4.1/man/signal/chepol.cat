@@ -1,0 +1,26 @@
+
+chepol(1)                      Scilab Function                      chepol(1)
+NAME
+  chepol - Chebychev polynomial
+
+CALLING SEQUENCE
+  [Tn]=chepol(n,var)
+
+PARAMETERS
+
+  n    : integer : polynomial order
+
+  var  : string : polynomial variable
+
+  Tn   : polynomial in the variable var
+
+DESCRIPTION
+  Recursive implementation of Chebychev polynomial.
+  Tn=2*poly(0,var)*chepol(n-1,var)-chepol(n-2,var) with T0=1 and
+  T1=poly(0,var).
+
+EXAMPLE
+  chepol(4,'x')
+
+AUTHOR
+  F. D.

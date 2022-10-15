@@ -1,0 +1,40 @@
+
+frfit(1)                       Scilab Function                       frfit(1)
+NAME
+  frfit - frequency response fit
+
+CALLING SEQUENCE
+  sys=frfit(w,fresp,order)
+  [num,den]=frfit(w,fresp,order)
+  sys=frfit(w,fresp,order,weight)
+  [num,den]=frfit(w,fresp,order,weight)
+
+PARAMETERS
+
+  w         : positive real vector of frequencies (rad/sec)
+
+  fresp     : complex vector of frequency responses (same size as w)
+
+  order     : integer (required order, degree of den)
+
+  weight    : positive real vector (default value ones(w)).
+
+  num,den   : stable polynomials
+
+DESCRIPTION
+  sys=frfit(w,fresp,order,weight) returns a bi-stable transfer function
+  G(s)=sys=num/den, of of given order such that its frequency response
+  G(w(i)) matches fresp(i), i.e.  freq(num,den,%i*w) should be close to
+  fresp.  weight(i) is the weight given to w(i).
+
+EXAMPLE
+  w=0.1:0.1:10;s=poly(0,'s');G=2*(s^2+0.1*s+2)/(s^2+s+1)/(s^2+0.3*s+1);
+  fresp=freq(G('num'),G('den'),%i*w);
+  [num,den]=frfit(w,fresp,4);
+  frespfit=freq(num,den,%i*w);
+  bode(w,fresp)
+  xbasc();
+  bode(w,frespfit)
+
+SEE ALSO
+  cepstrum, mrfit, freq, calfrq

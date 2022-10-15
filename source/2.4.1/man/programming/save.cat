@@ -1,0 +1,33 @@
+
+save(1)                        Scilab Function                        save(1)
+NAME
+  save - saving variables
+
+CALLING SEQUENCE
+  save(file-name [,x1,x2,...,xn])
+
+PARAMETERS
+
+  file-name : character string
+
+  xi        : arbitrary Scilab variable(s)
+
+DESCRIPTION
+  The save command can be used to save Scilab current variables in binary
+  form in a file.
+
+  save('filename') saves all current variables in the file named filename.
+
+  save('file-name',x,y) saves only named variables x and y.
+
+  Saved  variables can be reloaded by the load command.
+
+EXAMPLES
+  a=eye(2,2);b=ones(a);
+  save('val.dat',a,b);
+  clear a
+  clear b
+  load('val.dat','a','b');
+
+SEE ALSO
+  load

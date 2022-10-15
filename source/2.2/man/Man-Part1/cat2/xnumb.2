@@ -1,0 +1,66 @@
+
+
+
+xnumb(2)                       Scilab Function                       xnumb(2)
+
+
+
+
+
+
+NAME
+  xnumb - draw numbers on a graphic
+
+CALLING SEQUENCE
+  xnumb(x,y,nums,[flag,angle])
+
+PARAMETERS
+
+  x,y,nums
+       : vectors or matrices of same size
+
+  flag : an integer value
+
+  angle
+       : a vector of the same size as x,y,nums
+
+DESCRIPTION
+  Displays the value of nums[i] using the current number format at position
+  x[i],y[i] in the current scale.  if flag is 1 a frame box is added around
+  the strings.  if angle is present it's a vector. angle[i] gives the slope
+  in degree (clockwise) to use  for the display of the string.
+
+EXAMPLE
+  plot2d([-100,500],[-100,600],[-1,-1],"022");
+  x=0:100:200;
+  xnumb(x,500*ones(x),[10,20,35],1);
+
+AUTHOR
+  J.Ph.C.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

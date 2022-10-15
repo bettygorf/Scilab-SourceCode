@@ -1,0 +1,30 @@
+
+exec(1)                        Scilab Function                        exec(1)
+NAME
+  exec - script file execution
+
+CALLING SEQUENCE
+  exec('file-name' [,mode])
+
+DESCRIPTION
+  executes the content of the file 'file-name' with an optional execution
+  mode mode .
+
+  The different cases for mode are :
+
+  00    : the default value
+
+  --11   : nothing is printed
+
+  11    : echo of each command line
+
+  22    : prompt --> is printed
+
+  33    : echoes + prompts
+
+  44    : stops before each prompt
+
+  77    : stops + prompts + echoes : useful mode for demos.
+
+SEE ALSO
+  getf, comp, mode

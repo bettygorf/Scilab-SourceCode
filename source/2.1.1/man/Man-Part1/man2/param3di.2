@@ -1,0 +1,49 @@
+.TH param3di 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+param3di - parametric curves in 3-D with interactive view selection
+.SH CALLING SEQUENCE
+.nf
+param3di(x,y,z,[theta,alpha,leg,flag,ebox]
+.fi
+.SH PARAMETERS
+.TP 15
+x,y,z
+: three matrices of the same size (considered as vectors with
+the fortran storage convention)  (points of the parametric curve)
+.TP
+theta, alpha
+: gives the coordinates in spherical angle of the observation point 
+.TP
+leg
+: string describing the caption for each axis, the different fields
+in the string are separated by the symbol @, for exemple : "X@Y@Z"
+.TP
+flag =[type,box] :
+where  type and  box have the same meaning as in \fVplot3d\fR
+.TP
+ebox
+: a vector of size (1,6) which gives the boundaries of the plot
+\fV[xmin,xmax,ymin,ymax,zmin,zmax]\fR when the value of type is
+\fV1\fR
+.SH DESCRIPTION
+Draw the 3D curve  \fVf(x,y)\fR  and allow the user to change the view
+with the mouse :
+
+
+Pick a point within the graphic window (Left mouse button) and drag
+the mouse (theta
+increases for left to right move and alpha increases for down to up
+move). When view is ok click with the left button to have the surface
+drawn. click rigth button  to exit.
+
+
+For Pos and Fig drivers plot3di woks just like plot3d
+
+.SH EXAMPLE 
+enter the command \fVparam3di()\fR to see a demo
+.fi
+.SH AUTHOR
+S Steer INRIA
+
+

@@ -1,0 +1,53 @@
+.TH glever 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+glever - inverse of matrix pencil 
+.SH CALLING SEQUENCE
+.nf
+[Bfs,Bis,chis]=glever(E,A [,s])
+.fi
+.SH PARAMETERS
+.TP 12
+E, A
+: two real square matrices of same dimensions
+.TP
+s
+: character string (default value '\fVs\fR')
+.TP
+Bfs,Bis
+: two polynomial matrices
+.TP
+chis
+: polynomial
+.SH DESCRIPTION
+Computation of 
+.IG
+(s*E-A)^-1
+.FI
+.LA $(sE-A)^{-1} $
+ by generalized Leverrier's algorithm for a matrix pencil.
+.nf
+(s*E-A)^-1 = (Bfs/chis) - Bis.
+.fi
+\fVchis\fR = characteristic polynomial (up to a multiplicative constant).
+.LP
+\fVBfs\fR  = numerator polynomial matrix.
+.LP
+\fVBis\fR
+= polynomial matrix ( - expansion of \fV(s*E-A)^-1\fR at infinity).
+.LP
+Note the - sign before \fVBis\fR.
+
+.SH Caution 
+This function uses \fVcleanp\fR to simplify \fVBfs,Bis\fR and \fVchis\fR.
+.SH EXAMPLE
+.nf
+s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
+[Bfs,Bis,chis]=glever(F)
+inv(F)-((Bfs/chis) - Bis)
+.fi
+.SH AUTHOR
+F. D. (1988)
+.SH SEE ALSO
+rowshuff, det, invr, coffg, pencan, penlaur
+

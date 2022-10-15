@@ -1,0 +1,17 @@
+
+tanhm(1)                       Scilab Function                       tanhm(1)
+NAME
+  tanhm - matrix hyperbolic tangent
+
+CALLING SEQUENCE
+  t=tanhm(x)
+
+PARAMETERS
+
+  x,t       : real or complex square matrix
+
+DESCRIPTION
+  tanhm is the matrix hyperbolic tangent  of the matrix x.
+
+SEE ALSO
+  tanh

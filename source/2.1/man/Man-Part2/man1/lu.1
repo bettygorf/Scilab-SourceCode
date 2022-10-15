@@ -1,0 +1,26 @@
+.TH lu G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+lu - LU factors of Gaussian elimination
+.SH CALLING SEQUENCE
+.nf
+[L,U]= lu(A)
+.fi
+.SH PARAMETERS
+.TP
+A 
+: a real or complex square matrix
+.TP 8
+L,U
+: two real or complex matrices
+.SH DESCRIPTION
+.Vb [L,U]= lu(A)
+produces two matrices \fVL\fR and \fVU\fR with \fVL\fR lower triangular
+and \fVU\fR upper triangular such that \fVA*E = L*U\fR  for a column 
+permutation matrix E.
+.SH Remark
+\fVE\fR is not returned by LU: as such this primitive is not 
+interesting (old stuff)
+.SH SEE ALSO
+lufact, lusolve, qr, svd.
+

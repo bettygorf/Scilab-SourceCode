@@ -1,0 +1,36 @@
+
+locate(2)                      Scilab Function                      locate(2)
+NAME
+  locate - mouse selection of a set of points
+
+CALLING SEQUENCE
+  [x]=locate([n,flag])
+
+PARAMETERS
+
+  n, flag        : two integer values
+
+  x              : vector (2,n1) ( n1=n if the parameter n is given)
+
+DESCRIPTION
+  This function is used to get the coordinates of one or more points selected
+  with the mouse on a graphic window. The coordinates are given using the
+  current graphic scale.
+
+  x=locate(n)    : if n>0, n points are selected and their coordinates are
+                 returned in x(2,n)
+
+  x=locate(n)    : If n<=0 points are selected until the user click with the
+                 left button which stands for stop. The last point ( clicked
+                 with the left button) is not returned.
+
+  x=locate()     : same as x=locate(-1)
+
+  If flag = 1 a cross is drawn at location point each time the mouse is
+  clicked.
+
+SEE ALSO
+  xclick
+
+AUTHOR
+  S.S. & J.Ph.C

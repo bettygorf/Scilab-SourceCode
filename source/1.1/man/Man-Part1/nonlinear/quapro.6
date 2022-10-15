@@ -1,0 +1,137 @@
+.TH quapro 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+quapro - quadratic programming
+.SH DESCRIPTION
+.nf
+[x,f,lagr,info]=quapro(x0,h,p,c,d,ci,cs,mi,mod [,imp])
+.fi
+.SH PARAMETERS
+.TP
+x0 
+: initial guess if \fVmod=3\fR (if not take \fVx0=0\fR).
+.TP
+h  
+: nxn symmetric matrix.
+.TP
+p  
+: n vector.
+.TP
+c    
+: \fVnx(mi+md)\fR matrix defining the constraints. 
+If no constraints, set \fVc=0\fR.
+.TP
+d   
+: \fVmi+md\fR vector of RHS bounds.
+.TP
+ci  
+: \fVn\fR vector of lower bounds. If no lower bounds at all take \fVci=[]\fR.
+If some components of \fVx\fR are not bounded from below take \fVci\fR's
+very large and negative.
+.TP
+cs   
+: \fVn\fR vector of upper bounds.If no upper bounds at all take \fVcs=[]\fR.
+If some components of \fVx\fR are not bounded from above take \fVcs\fR's
+very large and positive.
+.TP
+mi   
+: number of equality constraints. 
+.TP
+mod
+: indicates the way the process begins
+.RS
+.TP
+1  
+: no initial point has been given. 
+The program computes a feasible initial point
+that is a vertex of the region of feasible points.
+.TP
+2  
+: no initial point has been given. 
+The program computes a feasible initial point that is not
+necessarily a vertex. This value of \fVmod\fR is advisable 
+when the quadratic form is positive definite and there 
+are a few constraints in the problem or when there 
+are large bounds on the variables that are security bounds and
+very probably  no actives at the solution.
+.TP
+3 
+: an initial point is given
+.RE
+.TP
+imp
+: verbose option.
+.TP
+x 
+: solution.
+.TP
+f 
+: value of \fVf\fR at \fVx\fR.
+.TP
+lagr 
+: vector of Lagrange multipliers. 
+If lower and upper-bounds are provided, \fVlagr\fR has 
+\fVn + mi + md\fR components
+.RS
+.TP
+lagr(1:n)
+: is the multiplier vector associated with the
+bound constraints.
+.TP
+lagr (n+1 : n + mi + md)
+: is the multiplier vector
+associated with the ci's constraints.
+(If an upper-bound (resp. lower-bound) \fVi\fR is active 
+\fVlagr(i)\fR is > 0 (resp. <0).
+If no bounds are provided, vector lagr has only \fVmi + md\fR
+components and is the multiplier associated with the \fVci\fR's.
+.RE
+.TP
+info 
+: integer variable with following meaning
+.RS
+.TP
+1 
+: more iterations than the limit given by the program 
+were necessary.
+.TP
+0 
+: normal output.
+.TP
+-1 
+: the cost function is not bounded from below
+.TP
+-2 
+: cycling limit point, no convergence...
+.TP
+-3 
+: unbounded solution
+.TP
+-4 
+: incorrect inputs
+.TP
+-12 
+: no feasible solution
+.TP
+-13 
+: degenerate starting point
+.TP
+-14 
+: no feasible point has been found.
+.RE
+.SH DESCRIPTION
+Linear-quadratic optimization solver:
+.nf
+       Min f(x)=1/2x'hx + p'x
+.fi
+under the constraints:
+.nf
+       c(1,j)'x = d(j),     j=1,...,mi.
+       c(1,j)'x <=d(j),     j=mi+1,...,mi+md.
+       ci(i) <= x(i) <= cs(i),     i=1,...,n
+.fi
+  where \fVn>1\fR is the dimension of \fVx\fR.
+
+
+
+

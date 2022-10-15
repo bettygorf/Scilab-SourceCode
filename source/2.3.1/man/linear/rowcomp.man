@@ -1,0 +1,56 @@
+.TH rowcomp 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+rowcomp - row compression, range
+.SH CALLING SEQUENCE
+.nf
+[W,rk]=rowcomp(A, flag, tol)
+.fi
+.SH PARAMETERS
+.TP 10
+A
+: real or complex matrix
+.TP 10
+flag
+: character string
+.TP 10
+tol
+:
+real number
+.TP
+W
+: square non-singular matrix (change of basis)
+.TP
+rk
+: integer (rank of \fVA\fR)
+.SH DESCRIPTION
+Row compression of \fVA\fR. \fVAc = W*A\fR is a row compressed matrix: i.e. 
+\fVAc=[Af;0]\fR with \fVAf\fR full row rank.
+.LP
+\fVflag\fR and \fVtol\fR are optional parameters: \fVflag='qr'\fR 
+or \fV'svd'\fR (default \fV'svd'\fR).
+.LP
+\fVtol\fR is a tolerance parameter (of order \fV%eps\fR as default value).
+.LP
+The \fVrk\fR first columns of \fVW'\fR span the range of \fVA\fR.
+.LP
+The \fVrk\fR first (top) rows of \fVW\fR span the row range of \fVA\fR.
+.SH Remark
+A non zero vector \fVx\fR belongs to range(\fVA\fR) iff \fVW*x\fR is row 
+compressed in accordance with \fVAc\fR i.e the norm of its last components
+is small w.r.t its first components.
+.SH EXAMPLE
+.nf
+A=rand(5,2)*rand(2,4);   // 4 col. vectors, 2 independent.
+[X,dim]=rowcomp(A);Xp=X';
+svd([Xp(:,1:dim),A])     //span(A) = span(Xp(:,1:dim)
+x=A*rand(4,1);      //x belongs to span(A)
+y=X*x  
+norm(y(dim+1:$))/norm(y(1:dim))    // small
+.fi
+.SH SEE ALSO
+colcomp, fullrf, fullrfk
+.SH AUTHOR
+F. D.
+
+

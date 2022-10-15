@@ -1,0 +1,80 @@
+.TH odeoptions G "February 1998" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+odeoptions - set options for ode solvers
+.SH CALLING SEQUENCE
+.nf
+odeoptions()
+.fi
+.SH DESCRIPTION
+This function interactively displays a command which
+should be executed to set various options of ode solvers.
+The global variable \fV%ODEOPTIONS\fR sets the options.
+
+CAUTION: the \fVode\fR function checks if this variable
+exists and in this case it uses it. For using default
+values you should clear this variable. Note that \fVodeoptions\fR
+does not create this variable. To create it you must execute
+the command line displayed by \fVodeoptions\fR.
+
+The variable \fV%ODEOPTIONS\fR is a vector with the following elements:
+.nf
+[itask,tcrit,h0,hmax,hmin,jactyp,mxstep,maxordn,maxords,ixpr,ml,mu]
+.fi
+The default value is:
+.nf
+[1,0,0,%inf,0,2,500,12,5,0,-1,-1]
+.fi
+
+The meaning of the elements is described below.
+
+\fVitask\fR
+ 1 : normal computation at specified times
+ 2 : computation at mesh points (given in first row of output of \fVode\fR)
+ 3 : one step at one internal mesh point and return
+ 4 : normal computation without overshooting \fVtcrit\fR
+ 5 : one step, without passing \fVtcrit\fR, and return
+
+\fVtcrit\fR
+  assumes \fVitask\fR equals 4 or 5, described above
+
+\fVh0\fR
+  first step tried
+
+\fVhmax\fR
+  max step size
+
+\fVhmin\fR
+  min step size
+
+\fVjactype\fR
+ 0 : functional iterations, no jacobian used (\fV"adams"\fR or
+     \fV"stiff"\fR only)
+ 1 : user-supplied full jacobian
+ 2 : internally generated full jacobian
+ 3 : internally generated diagonal jacobian (\fV"adams"\fR or 
+     \fV"stiff"\fR only)
+ 4 : user-supplied banded jacobian (see \fVml\fR and \fVmu\fR below)
+ 5 : internally generated banded jacobian (\fVsee\fR ml and \fVmu\fR below)
+
+\fVmaxordn\fR 
+ maximum non-stiff order allowed, at most 12
+
+\fVmaxords\fR
+ maximum stiff order allowed, at most 5
+
+\fVixpr\fR 
+ print level, 0 or 1
+
+\fVml\fR,\fVmu\fR
+ If \fVjactype\fR equals 4 or 5, \fVml\fR and \fVmu\fR are the lower
+ and upper half-bandwidths of the banded jacobian: the band is the
+ i,j's with i-ml <= j <= ny-1.
+ If \fVjactype\fR equals 4 the jacobian function must return
+ a matrix J which is  ml+mu+1 x ny (where ny=dim of y in ydot=f(t,y))
+ such that column 1 of J is made of mu zeros followed by
+ df1/dy1, df2/dy1, df3/dy1, ... (1+ml possibly non-zero entries)
+ column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2, etc
+
+.SH SEE ALSO
+ode

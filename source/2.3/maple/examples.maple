@@ -1,0 +1,9 @@
+read(`maple2scilab.maple`);
+m:=ln(1+x)/sin(x);
+maple2scilab(foo1,m,x,`/tmp`);
+
+m:=linalg[randmatrix](10,10);
+maple2scilab(foo2,m,[]);
+
+m[1,1]:=x; m[1,2]:=y;
+maple2scilab(foo3,m,[x,y]);

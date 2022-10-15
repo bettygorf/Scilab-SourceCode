@@ -1,0 +1,32 @@
+.TH rowcomprX 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+rowcompr - row compression of polynomial matrix
+.SH CALLING SEQUENCE
+.nf
+[X,rk,Ac]=rowcompr(A)
+.fi
+.SH PARAMETERS
+.TP
+A
+: polynomial matrix
+.TP
+Y 
+: square polynomial matrix (left unimodular basis)
+.TP
+rk 
+: normal rank of \fVA\fR
+.TP
+Ac 
+: \fVAc=X*A\fR, polynomial matrix
+.SH DESCRIPTION
+row compression of polynomial matrix \fVA \fR.
+.LP
+\fVX\fR is a left polynomial unimodular basis wich row compresse
+thee rows of \fVA\fR. \fVrk\fR is the normal rank of A.
+.LP
+Warning: elimination of "small" terms (use with care!).
+.SH SEE ALSO
+colcompr
+
+

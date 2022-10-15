@@ -1,0 +1,28 @@
+.TH TAN 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+tan - tangent
+.SH CALLING SEQUENCE
+.nf
+[t]=tan(x)   
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: vector or matrix
+.TP 10
+t
+: vector or matrix
+.SH DESCRIPTION
+The  elements  of \fVt\fR   are  the tangent of  the elements of \fVx\fR.
+.SH EXAMPLE
+.nf
+x=[1,%i,-1,-%i]
+tan(x)
+sin(x)./cos(x)
+.fi
+.SH SEE ALSO
+atan, tanm
+
+
+

@@ -1,0 +1,23 @@
+.TH sin G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sin -  sine function
+.SH CALLING SEQUENCE
+.nf
+[t]=sin(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex vector or  matrix
+.SH DESCRIPTION
+For a vector or a matrix, \fVsin(x)\fR is the sine of its elements . 
+For matrix  sine use  \fVsinm(X)\fR function.
+.SH EXAMPLE
+.nf
+asin(sin([1,0,%i]))
+.fi
+.SH SEE ALSO
+sinm
+
+

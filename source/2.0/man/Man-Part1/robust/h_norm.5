@@ -1,0 +1,26 @@
+.TH h_norm 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+H_norm - H-infinity norm
+.SH CALLING SEQUENCE
+.nf
+[hinfnorm [,frequency]]=h_norm(sl [,rerr])
+.fi
+.SH PARAMETERS
+.TP 10
+sl        
+: the state space system (\fVsyslin\fR list)
+.TP 
+rerr      
+: max. relative error, default value \fV1e-8\fR
+.TP 
+hinfnorm  
+: the infinity norm of \fVSl\fR
+.TP
+frequency 
+: frequency at which maximum is achieved
+.SH DESCRIPTION
+produces the infinity norm  of a state-space system 
+(the maximum over all frequencies of the maximum singular value).
+.SH SEE ALSO
+linfn, linf

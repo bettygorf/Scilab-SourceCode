@@ -1,0 +1,18 @@
+.TH SAWTOOTH_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+SAWTOOTH_f - Scicos sawtooth wave generator
+.SH DESCRIPTION
+This block is a sawtooth wave generator: output is (t-t_i)
+from ti to t_(i+1) where t_i and t_(i+1) denote the times of
+two successive input events.
+.SH DIALOGUE PARAMETERS
+None.
+.SH SEE ALSO
+GENSIN_f, GENSQR_f, RAND_f
+
+
+
+
+
+

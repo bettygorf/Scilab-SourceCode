@@ -1,0 +1,17 @@
+
+INTRPLBLK_f(5)                  Scicos Block                   INTRPLBLK_f(5)
+NAME
+  INTRPLBLK_f - Scicos linear interpolation block
+
+DIALOGUE PARAMETERS
+
+  X coord.            : a vector (strictly increasing)
+
+  Y coord.            : a vector (same size as X coord)
+
+DESCRIPTION
+  The output of this block is a function of the input obtained by linear
+  interpolation. This block has a single scalar input and a single scalar
+  output port. The X coord. and Y coord. give respectively the X coordinate
+  and the Y coordinate of the data points to be interpolated. X coord must be
+  strictly increasing.

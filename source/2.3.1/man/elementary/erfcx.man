@@ -1,0 +1,30 @@
+.TH erfcx 3 "December 1994" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+erfcx -  scaled complementary error function.
+.SH CALING SEQUENCE
+.nf
+ y = erfcx(x)
+.fi
+.SH PARAMETERS
+.TP
+x
+: real vector
+.TP
+y
+: real vector (of same size)
+.SH DESCRIPTION
+ \fVerfcx\fR computes the  scaled complementary error function:
+.IG
+.nf
+ 	y = exp(x^2) * erfc(x) ~ (1/sqrt(pi)) * 1/x for large x.
+.fi
+.FI
+.LA $$ 	y = exp(x^2)  erfc(x) ~ (1/\sqrt{pi}) 1/x \mbox{for large} x $$
+.SH SEE ALSO
+erf, erfc, calerf
+
+
+
+
+

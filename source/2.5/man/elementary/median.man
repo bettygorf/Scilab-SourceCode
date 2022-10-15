@@ -1,0 +1,36 @@
+.TH median 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+median - median (row median, column median) of vector/matrix entries
+.SH CALLING SEQUENCE
+.nf
+y=median(x)
+y=median(x,'r')
+y=median(x,'c')
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real vector or matrix 
+.TP 10
+y
+: scalar or vector
+.SH DESCRIPTION
+For a vector or a matrix \fVx\fR, \fVy=median(x)\fR  returns in the
+scalar \fVy\fR the median of all the entries of \fVx\fR.
+.LP
+\fVy=median(x,'r')\fR (or, equivalently, \fVy=median(x,2)\fR) is the rowwise median. It returns in each 
+entry of the column vector \fVy\fR the median of each row of \fVx\fR.
+.LP
+
+\fVy=median(x,'c')\fR (or, equivalently, \fVy=median(x,1)\fR) is the columnwise median. It returns in each entry of the row vector 
+\fVy\fR the median of each column  of \fVx\fR.
+.SH EXAMPLE
+.nf
+A=[1,2,10;7,7.1,7.01];
+median(A)
+median(A,'r')
+median(A,'c')
+.fi
+.SH SEE ALSO
+sum, mean

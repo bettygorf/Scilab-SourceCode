@@ -1,0 +1,102 @@
+.TH cainv 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+cainv -  Dual of abinv
+.SH CALLING SEQUENCE
+.nf
+[X,dims,J,Y,k,Z]=cainv(Sl,alfa,beta)
+.fi
+.SH PARAMETERS
+.TP 10
+sl
+: \fVsyslin\fR list containing the matrices \fV[A,B,C,D]\fR.
+.TP
+alfa 
+: real number or vector (possibly complex, location of closed loop poles)
+.TP
+alfa 
+: real number or vector (possibly complex, location of closed loop poles)
+.TP
+X
+: orthogonal matrix of size nx (dim of state space).
+.TP
+dims
+:
+integer row vector \fVdims=[nd1,nu1,dimS,dimSg,dimN]\fR  (5 entries, nondecreasing order)
+.TP
+J
+: real matrix (output injection)
+.TP
+Y
+: orthogonal matrix of size ny (dim of output space).
+.TP
+k
+: integer (normal rank of \fVSl\fR)
+.TP
+Z
+: non-singular linear system (\fVsyslin\fR list)
+.SH DESCRIPTION
+\fVcainv\fR finds a bases \fV(X,Y)\fR (of state space and output space resp.)
+and output injection matrix \fVJ\fR such that the matrices of Sl in 
+bases (X,Y) are displayed as:
+.nf
+
+                  [A11,*,*,*,*,*]                [*]
+                  [0,A22,*,*,*,*]                [*]
+   X'*(A+J*C)*X = [0,0,A33,*,*,*]   X'*(B+J*D) = [*]
+                  [0,0,0,A44,*,*]                [0]
+                  [0,0,0,0,A55,*]                [0]
+                  [0,0,0,0,0,A66]                [0]
+
+          Y*C*X = [0,0,C13,*,*,*]          Y*D = [*]
+                  [0,0,0,0,0,C26]                [0]
+
+
+.fi
+.LP
+The partition of \fVX\fR is defined by the vector 
+\fVdims=[nd1,nu1,dimS,dimSg,dimN]\fR and the partition of \fVY\fR
+is determined by \fVk\fR.
+.LP
+Eigenvalues of \fVA11\fR \fV(nd1 x nd1)\fR are unstable.
+Eigenvalues of \fVA22\fR \fV(nu1-nd1 x nu1-nd1)\fR are stable.
+.LP
+The pair \fV(A33, C13)\fR \fV(dimS-nu1 x dimS-nu1, k x dimS-nu1)\fR is observable, 
+and eigenvalues of \fVA33\fR are set to \fValfa\fR.
+.LP
+Matrix \fVA44\fR \fV(dimSg-dimS x dimSg-dimS)\fR is unstable.
+Matrix \fVA55\fR \fV(dimN-dimSg,dimN-dimSg)\fR is stable
+.LP
+The pair \fV(A66,C26)\fR \fV(nx-dimN x nx-dimN)\fR is observable, 
+and eigenvalues of \fVA66\fR set to \fVbeta\fR.
+.LP
+The \fVdimS\fR first columns of \fVX\fR span S= smallest (C,A) invariant
+subspace which contains Im(B), \fVdimSg\fR first columns of \fVX\fR
+span Sg the maximal "complementary detectability subspace" of \fVSl\fR
+.LP 
+The \fVdimN\fR first columns of \fVX\fR span the maximal
+"complementary observability subspace" of \fVSl\fR. 
+(\fVdimS=0\fR iff B(ker(D))=0).
+.LP
+This function can be used to calculate an unknown input observer:
+.nf
+// DDEP: dot(x)=A x + Bu + Gd
+//           y= Cx   (observation)
+//           z= Hx    (z=variable to be estimated, d=disturbance)
+//  Find: dot(w) = Fw + Ey + Ru such that
+//          zhat = Mw + Ny
+//           z-Hx goes to zero at infinity
+//  Solution exists iff Ker H contains Sg(A,C,G) inter KerC
+//i.e. H is such that:
+// For any W which makes a column compression of [Xp(1:dimSg,:);C]
+// with Xp=X' and [X,dims,J,Y,k,Z]=cainv(syslin('c',A,G,C));
+// [Xp(1:dimSg,:);C]*W = [0 | *] one has
+// H*W = [0 | *]  (with at least as many columns as above).
+.fi
+.SH SEE ALSO
+abinv, dt_ility
+
+
+
+
+

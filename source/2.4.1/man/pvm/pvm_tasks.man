@@ -1,0 +1,98 @@
+.TH pvm_tasks 1 "May 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_tasks - returns information about the tasks running
+on the virtual machine.
+.SH CALLING SEQUENCE
+.nf
+res  = pvm_tasks([where 0])
+.fi
+.SH PARAMETERS
+.TP 5
+where (optional)
+: integer, specifying what tasks to return information about.
+The options are:
+.ta 0.5i 1.5i
+.nf
+
+	0(default)	for all the tasks on the virtual machine
+	pvmd tid	for all tasks on a given host
+	  tid		for a specific task
+.fi
+.IP res,  list of 7 elements such that:
+.br
+.IP res(1): 
+integer returning task ID of one task
+.br
+.IP res(2): 
+integer returning parent task ID
+.br
+.IP res(3): 
+integer returning pvmd task ID of host task is on
+.br
+.IP res(4): 
+integer returning status of task
+.br
+.IP res(5): 
+string returning the name of spawned task.
+Manually started tasks return blank.
+.br
+.IP res(6): 
+integer returning the number of tasks being reported on.
+.br
+.IP res(7): 
+integer status code returned by the routine.
+
+
+.SH DESCRIPTION
+\fVpvm_tasks\fR 
+returns information about
+tasks presently running on the virtual machine.
+The information returned is the same as
+that available from the console command
+.I ps.
+The \fVpvm_tasks\fR function returns information about the entire
+virtual machine in one call. 
+
+If pvm_tasks is successful,
+.I info
+will be 0.
+If some error occurs then
+.I info
+will be < 0.
+
+for example:
+.nf
+-->res = pvm_tasks()
+ res  =
+ 
+       res(1)
+ 
+!   262148.    262151.    262152. !
+ 
+       res(2)
+ 
+!   262147.    0.    262151. !
+ 
+       res(3)
+ 
+!   262144.    262144.    262144. !
+ 
+       res(4)
+ 
+!   6.    4.    6. !
+ 
+       res(5)
+ 
+!pvmgs    /home/ubeda/SCILAB/scilab-2.4/bin/scilex  !
+ 
+       res(6)
+ 
+    3.  
+ 
+       res(7)
+ 
+    0. 
+.fi
+.SH SEE ALS
+pvm_config, pvm_tidtohost

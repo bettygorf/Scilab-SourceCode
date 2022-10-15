@@ -1,0 +1,49 @@
+.TH iconvert 1 "October 99" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+iconvert  - conversion to 1 or 4 byte integer representation
+
+.SH CALLING SEQUENCE
+.nf
+y=iconvert(X,itype)
+.fi
+.SH PARAMETERS
+.TP
+X 
+: matrix of floats or integers
+.TP
+y
+: matrix of integers coded on one, two or four bytes.
+.SH DESCRIPTION
+converts and stores data two one, two or four bytes integers. 
+.TP 12
+itype=0
+: return floating point numbers
+.TP 
+itype=1
+: return int8 numbers in the range [-128,127] 
+.TP 
+itype=11
+: return uint8 numbers in the range [0,255] 
+.TP
+itype=2
+: return int16 numbers in the range [-32768,32767] 
+.TP 
+itype=12
+: return uint16 numbers in the range [0, 65535] 
+.TP
+itype=4
+: return int32 numbers in the range [-2147483648,2147483647] 
+.TP 
+itype=14
+: return uint32 numbers in the range [0, 4294967295] 
+.SH EXAMPLE
+.nf
+b=int32([1 -120 127 312])
+y=iconvert(b,8)
+
+.fi
+.SH SEE ALSO
+double, inttype
+
+

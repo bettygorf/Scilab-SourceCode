@@ -1,0 +1,13 @@
+.TH warning 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+warning - warning messages 
+.SH CALLING SEQUENCE
+.nf
+warning('string')
+.fi
+.SH DESCRIPTION
+prints the character string \fV'string'\fR in a warning message
+
+.SH SEE ALSO
+error

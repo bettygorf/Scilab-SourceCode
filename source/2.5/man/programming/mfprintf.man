@@ -1,0 +1,77 @@
+.TH mprintf 1 "May 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ mprintf  - interface to the C printf function 
+ mfprintf - interface to the C fprintf function 
+ msprintf - interface to the C sprintf function 
+.SH CALLING SEQUENCE
+.nf
+mfprintf(fd,format,value_1,..,value_n)
+mprintf(format,value_1,..,value_n)
+str=msprintf(format,value_1,..,value_n)
+.fi
+.SH PARAMETERS
+.TP 10
+format 
+: a Scilab string describing  the
+format to use to write  the  remaining  operands. 
+The format operand follows, as close as possible, 
+the C printf format operand syntax. 
+.TP
+value_i
+: Specifies the data to be converted according to the format
+parameter.
+.TP
+str
+: a Scilab string. 
+.TP
+fd:
+The fd parameter returned by the function \fVmopen\fR is used as a
+file descriptor (it is a positive integer). When specifying the fd
+parameter, the value -1 refers to the default file (i.e the last
+opened file).
+.SH DESCRIPTION
+The \fVmfprintf\fR function writes formatted operands to the stream 
+\fVfd\fR. The  argument operands are formatted under control
+of the format operand.
+.LP
+The \fVmprintf\fR function 
+writes formatted operands to the standard Scilab output
+(i.e the Scilab window). The  argument operands are formatted under control
+of the format operand.
+.LP
+The \fVmsprintf\fR 
+writes formatted operands in its returned value (a Scilab string).
+The  argument operands are formatted under control
+of the format operand. Note that, in this case, the \fV"\n, \t,.."\fR escape
+sequences are treated as a normal sequence of characters.
+.SH EXAMPLES
+.nf
+mprintf('For iteration %i,\\tResult is:\\nalpha=%f",10,0.535)
+
+t=msprintf('For iteration %i, Result is: alpha=%f",10,0.535)
+
+mprintf('The hexadecimal value of %i is %x',123456,123456)
+
+x=1.23456789;
+mprintf('!%f!%15f!%.1f!%#.0f!%.13f!',x,x,x,x,x);
+x=-341.234567;
+mprintf('!%g!%15g!%.1g!%#.0g!%.13g!',x,x,x,x,x);
+
+x=-0.0000023456;
+mprintf('!%e!%15e!%.1e!%#.0e!%.13e!',x,x,x,x,x);
+
+u=mopen(TMPDIR+'/foo','w')
+t=0:0.1:2*%pi;
+for tk=t
+ mfprintf(u,'time = %6.3f value = %6.3f\n',tk,sin(tk)) // write a line
+end
+mclose(u) //close the result file
+unix_g('cat '+TMPDIR+'/foo')
+.fi
+.SH SEE ALSO
+mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr, mopen, mprintf, mput, mputstr, mscanf, mseek, mtell
+
+
+
+

@@ -1,0 +1,26 @@
+/**/include ../Path.incl
+#include "../Imake.incl"
+
+SBIN=$(SCIDIR)/bin
+IM=../Imake.incl ../Path.incl
+NP=NullParameter
+
+PROGRAMS= $(SBIN)/Slpr $(SBIN)/Slatexprs $(SBIN)/Slatexpr2
+SRCS= Slpr.c Slatexprs.c Slatexpr2.c
+
+
+AllTarget($(PROGRAMS))
+
+SpecialObjectRule(Slpr.o,$(IM),$(MAIN_DEFINES))
+SpecialObjectRule(Slatexprs.o,$(NP),$(MAIN_DEFINES))
+SpecialObjectRule(Slatexpr2.o,$(NP),$(MAIN_DEFINES))
+
+NormalProgramTarget($(SBIN)/Slpr,Slpr.o,$(IM),$(NP),$(NP))
+NormalProgramTarget($(SBIN)/Slatexprs,Slatexprs.o,$(IM),$(NP),$(NP))
+NormalProgramTarget($(SBIN)/Slatexpr2,Slatexpr2.o,$(IM),$(NP),$(NP))
+
+DependTarget()
+
+distclean:: clean 
+	$(RM) $(PROGRAMS)
+

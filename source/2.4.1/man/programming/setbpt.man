@@ -1,0 +1,31 @@
+.TH setbpt 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+setbpt - setting breakpoints 
+.SH CALLING SEQUENCE
+.nf
+setbpt(macro-name [,line-num])
+.fi
+.SH PARAMETERS
+.TP 10
+macro-name
+: string
+.TP 10
+line-num
+: integer
+.SH DESCRIPTION
+\fVsetbpt\fR interactively inserts a breakpoint in the line number \fVline-num\fR 
+(default value is 1) of the function  \fVmacro-name\fR 
+.LP
+When reaching the breakpoint, Scilab evaluates the specified line 
+, prints the number of the line and the name of the function. If the 
+function is not compiled ( see \fVcomp\fR ) the line is printed on the screen.
+Then Scilab goes into a \fVpause\fR mode in which the user can check 
+current values. The \fVpause\fR is exited with \fVresume\fR or \fVabort\fR.
+Redefining the function does not clear the breakpoints, the user must explicitly
+delete breakpoints using \fVdelbpt\fR. The maximum number of functions with 
+breakpoints enabled must be less than 20 and the maximum number of breakpoints
+is set to 100.
+.SH SEE ALSO
+delbpt, dispbpt, pause, resume
+

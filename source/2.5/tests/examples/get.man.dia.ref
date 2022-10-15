@@ -1,0 +1,28 @@
+ 
+clear;lines(0);
+ 
+h=uicontrol('string', 'Button');
+Sorry, TK has not been enabled this the session.
+
+ 
+// Opens a window with a  button.
+ 
+p=get(h,'position');
+Sorry, TK has not been enabled this the session.
+
+ 
+// get the geometric qspect of the button
+ 
+disp('Button width: ' + string(p(3)));
+                                    !--error    21 
+invalid index
+ 
+ 
+// print the width of the button
+ 
+close();
+Sorry, TK has not been enabled this the session.
+
+ 
+// close figure
+ 

@@ -1,0 +1,29 @@
+.TH abs G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+manedit -  editing a manual item
+.SH CALLING SEQUENCE
+.nf
+manedit(manitem ,[editor])
+.fi
+.SH PARAMETERS
+.TP 10
+manitem
+: character string (usually, name of a function)
+.TP 10
+editor
+: character string
+.SH DESCRIPTION
+\fVedit(manitem ,[editor])\fR opens the file \fVmanitem\fR
+in the editor given by \fVeditor\fR.
+.LP
+Default editor is Emacs. This function should be customized according
+to your needs.
+.SH EXAMPLE
+.nf
+manedit('lqg')
+.fi
+.SH SEE ALSO
+whereis, edit
+
+

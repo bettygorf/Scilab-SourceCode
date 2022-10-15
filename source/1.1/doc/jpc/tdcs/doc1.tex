@@ -1,0 +1,172 @@
+
+\documentstyle[modif.article]{article}
+
+\textheight=660pt 
+\textwidth=470pt 
+\topmargin=-27pt 
+\oddsidemargin=0pt 
+\evensidemargin=0pt 
+\def\cmarg{\hspace{1cm}}
+\title{Travaux dirig\'es 1}
+\author{J.Ph. Chancelier et M. Cohen de Lara}
+
+\begin{document}
+\maketitle
+\vspace{2cm}
+
+\begin{itemize}
+\item Entrer sous {\em Basile},
+\item taper la commande {\bf xinit ('unix:0.0')} pour pouvoir disposer
+d'une fen\^etre graphique.
+ \end{itemize}
+
+\centerline{{\bf Le fichier des macros de la s\'eance de T.D. 1}}
+
+\def\tit#1{ \begin{center} \fbox{{\bf  #1}} \end{center}}
+
+% Ce fichier est genere par Basile ne pas l'editer 
+\input{TdAuto1.tex}
+
+\Mhlp
+
+\section{Premi\`ere partie : stabilit\'e}
+\tit{part1}
+
+En tapant la commande {\bf part1()}, vous chargez des valeurs par d\'efaut
+pour les macros de la premi\`ere partie du T.D.
+\medskip
+
+\Mpartu
+
+\tit{linear}
+
+Cette macro d\'efinit le champ de vecteurs lin\'eaire $f(x) = alin \star x$.
+\medskip
+
+\Mlinear
+
+\centerline{{\sc Questions}}
+
+\begin{itemize}
+\item Taper la commande {\bf fchamp(linear,0,-5:1:5,-5:1:5)}. 
+Visualiser quelques trajectoires gr\^ace \`a la commande {\bf portrait(linear)} (on pourra prendre 100 pour le nombre de points et 0.1 pour le pas).
+\item Taper {\bf help spec}, puis {\bf spec(alin)}. Commenter.
+\item Choisir d'autres matrices {\bf alin} en tapant une commande du
+type  {\bf alin}= $<1 \;  2;3 \;  4>$. Quels sont les types de comportements
+possibles pour les trajectoires au voisinage de 0~?
+\end{itemize}
+
+\tit{linper}
+
+Cette macro d\'efinit un champ de vecteurs non lin\'eaire, perturb\'e du champ 
+pr\'ec\'edent.
+\medskip
+
+\Mlinper
+
+\centerline{{\sc Questions}}
+
+\begin{itemize}
+\item Taper la commande {\bf fchamp(linper,0,-5:1:5,-5:1:5)}. 
+ Visualiser quelques trajectoires
+gr\^ace \`a la commande {\bf portrait(linper)}.
+\item Prendre la matrice {\bf alin}= $<0 \; 1 ; -1 \; 0 >$. 
+Faire varier la perturbation en tapant une commande du
+type  {\bf qeps}= $5e-02$. Quels sont les ph\'enom\`enes
+observ\'es lorsque {\bf qeps} cro\^{\i}t~?
+\end{itemize}
+
+\tit{cycllim}
+
+Cette macro d\'efinit un champ de vecteurs qui admet un cycle limite.
+\medskip
+
+\Mcycllim
+
+\centerline{{\sc Questions}}
+
+\begin{itemize}
+\item Taper la commande {\bf fchamp(cycllim,0,-2:0.2:2,-2:0.2:2)}. 
+ Visualiser quelques trajectoires
+gr\^ace \`a la commande {\bf portrait(cycllim)}.
+\item D\'ecrire les ph\'enom\`enes et les objets g\'eom\'etriques
+observ\'es. Que se passe-t-il lorsque le point initial d'une
+trajectoire est situ\'e sur le cercle limite~? Et en son voisinage~?
+\item Changer le signe de {\bf qeps} et observer (on pourra prendre {\bf qeps =-0.5}, nombre de points=150 et pas=0.05). Que peut-on en d\'eduire
+sur la robustesse du syst\`eme pour\\ {\bf qeps} $=0$~?
+ 
+\end{itemize}
+
+\section{deuxi\`eme partie : mod\`ele de bior\'eacteur }
+
+\tit{part2}
+
+En tapant la commande {\bf part2()}, vous chargez des valeurs par d\'efaut
+pour les macros de la deuxi\`eme partie du T.D.
+\medskip
+\Mpartd
+
+\tit{bioreact}
+
+Cette macro d\'efinit un champ de vecteurs qui mod\'elise la dynamique
+d'un bior\'eacteur.
+\medskip
+
+\Mbioreact
+\medskip
+
+\centerline{{\sc Questions}}
+
+\begin{itemize}
+\item Taper la commande {\bf fchamp(bioreact,0,0:0.2:4,0:0.2:4)}.  
+Visualiser quelques trajectoires
+gr\^ace \`a la commande {\bf portrait(bioreact)}.
+\item Combien y a-t-il de points d'\'equilibre~?
+Quelle est leur nature~? ( utiliser la macro {\bf tangent} pour obtenir le 
+ syst\`eme lin\'earis\'e)
+\item Changer progressivement la valeur du d\'ebit (commande)
+et observer l'\'evolution des points d'\'equilibre.
+\item V\'erifier th\'eoriquement ces r\'esultats.
+\end{itemize}
+
+\tit{mu}
+
+Cette fonction intervient dans l'expression du champ {\bf bioreact}.
+\medskip
+
+\Mmu
+
+\section{troisi\`eme partie : feedback lin\'eaire}
+
+\tit{part3}
+
+En tapant la commande {\bf part3()}, vous chargez des valeurs par d\'efaut
+pour les macros de la troisi\`eme partie du T.D.
+\medskip
+
+\Mpartt
+
+\tit{lincom}
+
+Cette macro d\'efinit un syst\`eme lin\'eaire command\'e par
+un feedback lin\'eaire d'\'etat $u=-K \star x$.
+\medskip
+
+\Mlincom
+
+\begin{itemize}
+\item Taper la commande {\bf fchamp(list(lincom,$<$0,0$>$),-5:1:5,-5:1:5)},
+ pour visualiser le champ de vecteur original ( la notation {\bf list(lincom,k)} permet de sp\'ecifier une valeur de la matrice de gain k) . 
+Quelle est la nature du point d'\'equilibre $0$~?
+\item Changer la valeur du gain $K$ du feedback de sorte que le
+point d'\'equilibre $0$ soit asymptotiquement stable. utilisez {\bf fchamp(lisp(lincom,k),\ldots)} et {\bf portrait(list(lincom,k))} pour la visualisation du champ et des portraits de phase.
+\item Donner un moyen th\'eorique de trouver des matrices de gain
+$K$ telles que $0$ soit un point asymptotiquement stable du syst\`eme
+ lin\'eaire boucl\'e.
+\item Reprendre les questions avec la matrice diagonale 
+\[
+	a =\left( \begin{array}{cc} 1 & 0 \\ 0 & 2 \end{array} \right)
+\]
+\end{itemize}
+
+\end{document}

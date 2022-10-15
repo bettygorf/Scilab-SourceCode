@@ -1,0 +1,13 @@
+.TH xdel 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xdel - delete a graphics window
+.SH CALLING SEQUENCE
+.nf
+xdel([win-num]) 
+.fi
+.SH DESCRIPTION
+\fVxdel\fR deletes the graphics window \fVwin-num\fR or the current
+graphics window if no argument is given.
+.SH AUTHOR
+J.Ph.C.

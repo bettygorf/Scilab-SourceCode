@@ -1,0 +1,66 @@
+
+
+
+show_graph(1)                  Scilab function                  show_graph(1)
+
+
+
+
+
+
+NAME
+  show_graph - display a graph
+
+CALLING SEQUENCE
+  show_graph(g,[mode,scale])
+
+PARAMETERS
+  g : graph-list
+  mode : string, mode value
+  scale : real value, scale factor
+
+DESCRIPTION
+  show_graph displays the graph g in the current Metanet window. If there is
+  no current Metanet window, a Metanet window is created.  If there is
+  already a graph displayed in the current Metanet window, the optional argu-
+  ment mode must be equal to the string 'rep' to display the new graph
+  instead.  If the optional argument mode is equal to the string 'new', a new
+  Metanet window is created.  The optional argument scale is the value of the
+  scale factor when drawing the graph. The default value is 1.
+
+  The labels of the nodes and edges, if they exist, are displayed.
+
+EXAMPLE
+  ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
+  he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
+  gt=make_graph('foo',1,17,ta,he);
+  gt('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+  gt('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+  show_graph(gt,'rep',2);
+  show_graph(gt,'rep',0.5);
+  show_graph(gt,'rep',1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

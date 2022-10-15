@@ -1,0 +1,269 @@
+ 
+clear;lines(0);
+ 
+A=[0,1;0,0];B=[1;1];C=[1,1];
+ 
+S1=syslin('c',A,B,C)   //Linear system definition
+ S1  =
+ 
+ 
+       S1(1)   (state-space system:)
+ 
+!lss  A  B  C  D  X0  dt  !
+ 
+       S1(2) = A matrix = 
+ 
+!   0.    1. !
+!   0.    0. !
+ 
+       S1(3) = B matrix = 
+ 
+!   1. !
+!   1. !
+ 
+       S1(4) = C matrix = 
+ 
+!   1.    1. !
+ 
+       S1(5) = D matrix = 
+ 
+    0.  
+ 
+       S1(6) = X0 (initial state) = 
+ 
+!   0. !
+!   0. !
+ 
+       S1(7) = Time domain = 
+ 
+ c   
+ 
+S1("A")    //Display of A-matrix
+ ans  =
+ 
+!   0.    1. !
+!   0.    0. !
+ 
+S1("X0"), S1("dt") // Display of X0 and time domain
+ ans  =
+ 
+!   0. !
+!   0. !
+ ans  =
+ 
+ c   
+ 
+s=poly(0,'s');
+ 
+D=s;
+ 
+S2=syslin('c',A,B,C,D)
+ S2  =
+ 
+ 
+       S2(1)   (state-space system:)
+ 
+!lss  A  B  C  D  X0  dt  !
+ 
+       S2(2) = A matrix = 
+ 
+!   0.    1. !
+!   0.    0. !
+ 
+       S2(3) = B matrix = 
+ 
+!   1. !
+!   1. !
+ 
+       S2(4) = C matrix = 
+ 
+!   1.    1. !
+ 
+       S2(5) = D matrix = 
+ 
+    s   
+ 
+       S2(6) = X0 (initial state) = 
+ 
+!   0. !
+!   0. !
+ 
+       S2(7) = Time domain = 
+ 
+ c   
+ 
+H1=(1+2*s)/s^2, S1bis=syslin('c',H1)
+ H1  =
+ 
+    1 + 2s   
+    ------   
+       2     
+      s      
+ S1bis  =
+ 
+    1 + 2s   
+    ------   
+       2     
+      s      
+ 
+H2=(1+2*s+s^3)/s^2, S2bis=syslin('c',H2)
+ H2  =
+ 
+              3  
+    1 + 2s + s   
+    ----------   
+         2       
+        s        
+ S2bis  =
+ 
+              3  
+    1 + 2s + s   
+    ----------   
+         2       
+        s        
+ 
+S1+S2
+ ans  =
+ 
+ 
+       ans(1)   (state-space system:)
+ 
+!lss  A  B  C  D  X0  dt  !
+ 
+       ans(2) = A matrix = 
+ 
+!   0.    1.    0.    0. !
+!   0.    0.    0.    0. !
+!   0.    0.    0.    1. !
+!   0.    0.    0.    0. !
+ 
+       ans(3) = B matrix = 
+ 
+!   1. !
+!   1. !
+!   1. !
+!   1. !
+ 
+       ans(4) = C matrix = 
+ 
+!   1.    1.    1.    1. !
+ 
+       ans(5) = D matrix = 
+ 
+    s   
+ 
+       ans(6) = X0 (initial state) = 
+ 
+!   0. !
+!   0. !
+!   0. !
+!   0. !
+ 
+       ans(7) = Time domain = 
+ 
+ c   
+ 
+[S1,S2]
+ ans  =
+ 
+ 
+       ans(1)   (state-space system:)
+ 
+!lss  A  B  C  D  X0  dt  !
+ 
+       ans(2) = A matrix = 
+ 
+!   0.    1.    0.    0. !
+!   0.    0.    0.    0. !
+!   0.    0.    0.    1. !
+!   0.    0.    0.    0. !
+ 
+       ans(3) = B matrix = 
+ 
+!   1.    0. !
+!   1.    0. !
+!   0.    1. !
+!   0.    1. !
+ 
+       ans(4) = C matrix = 
+ 
+!   1.    1.    1.    1. !
+ 
+       ans(5) = D matrix = 
+ 
+!   0    s  !
+ 
+       ans(6) = X0 (initial state) = 
+ 
+!   0. !
+!   0. !
+!   0. !
+!   0. !
+ 
+       ans(7) = Time domain = 
+ 
+ c   
+ 
+ss2tf(S1)-S1bis
+ ans  =
+ 
+  - 3.331D-16   
+    ---------   
+         2      
+        s       
+ 
+S1bis+S2bis
+ ans  =
+ 
+              3  
+    2 + 4s + s   
+    ----------   
+         2       
+        s        
+ 
+S1*S2bis
+ ans  =
+ 
+ 
+       ans(1)   (state-space system:)
+ 
+!lss  A  B  C  D  X0  dt  !
+ 
+       ans(2) = A matrix = 
+ 
+!   0.    1.  - 0.6454972    0.  !
+!   0.    0.  - 0.6454972    0.  !
+!   0.    0.    0.4        - 0.4 !
+!   0.    0.    0.4        - 0.4 !
+ 
+       ans(3) = B matrix = 
+ 
+!   1.        !
+!   0.        !
+! - 3.0983867 !
+!   0.7745967 !
+ 
+       ans(4) = C matrix = 
+ 
+!   1.    1.    0.    0. !
+ 
+       ans(5) = D matrix = 
+ 
+    2.  
+ 
+       ans(6) = X0 (initial state) = 
+ 
+!   0. !
+!   0. !
+!   0. !
+!   0. !
+ 
+       ans(7) = Time domain = 
+ 
+ c   
+ 
+size(S1)
+ ans  =
+ 
+!   1.    1. !
+ 

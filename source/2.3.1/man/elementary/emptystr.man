@@ -1,0 +1,37 @@
+.TH emptystr 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+emptystr - zero length string
+.SH CALLING SEQUENCE
+.nf
+s=emptystr()	
+s=emptystr(a)	
+s=emptystr(m,n)	
+.fi
+.SH PARAMETERS
+.TP 10 
+a 
+: any type of matrix
+.TP  
+s
+: character string matrix 
+.TP  
+m,n
+: integers
+.SH DESCRIPTION
+Returns a matrix of zero length character strings
+.LP
+With no input argument returns a zero length character string.
+.LP
+With a matrix for input argument returns  a zero length character strings 
+matrix of the same size.
+.LP
+With two integer arguments returns a mxn zero length character strings 
+matrix
+.SH EXAMPLE
+.nf
+x=emptystr();for k=1:10, x=x+','+string(k);end
+.fi
+.SH SEE ALSO
+part, length, string
+

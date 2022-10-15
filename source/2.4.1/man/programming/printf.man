@@ -1,0 +1,51 @@
+.TH printf 1 "May 1994" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+printf - Emulator of C language printf function
+.SH CALLING SEQUENCE
+.nf
+printf(format,value_1,..,value_n)
+.fi
+.SH PARAMETERS
+.TP 10
+format
+: a Scilab string. Specifies a character string combining literal characters with conversion
+specifications.
+.TP
+value_i
+: Specifies the data to be converted according to the format parameter.
+.TP
+str
+: column vector of character strings
+.TP
+file
+: a Scilab string specifying a file name or a logical unit number (see \fVfile\fR)
+.SH DESCRIPTION
+The \fVprintf\fR function converts, formats, and writes its
+\fVvalue\fR parameters, under control of the \fVformat\fR parameter,
+to the standard output.
+.PP
+The \fVformat\fR parameter is a character string that contains two
+types of objects:
+.TP 10
+Literal characters
+: which are copied to the output stream.
+.TP
+Conversion specifications
+: each of which causes zero or more items
+to be fetched from the \fVvalue\fR parameter list. see
+\fVprintf_conversion\fR for details
+.PP
+
+If any \fVvalue\fRs remain after the entire \fVformat\fR has been
+processed, they are ignored.
+
+.SH EXAMPLES
+.nf
+printf('Result is:\\nalpha=%f",0.535)
+.fi
+.SH SEE ALSO
+string, print, write, format, disp, file, fprintf, sprintf
+
+
+

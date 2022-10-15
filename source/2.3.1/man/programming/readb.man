@@ -1,0 +1,28 @@
+.TH readb 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+readb - binary read 
+.SH CALLING SEQUENCE
+.nf
+x=readb(file-name,m,n [,rec])
+.fi
+.SH PARAMETERS
+.TP 10
+file-name
+: string or integer 
+.TP 10
+m, n
+: integers (dimensions of the matrix x). Set m=-1 if you do not know the
+numbers of rows, so all the file is read
+.TP
+rec
+: vector of positive integers. the selected records for direct access.
+This vector size must be equal to the number of rows of desired \fVx\fR.
+.SH DESCRIPTION
+binary read of the matrix \fVx\fR in the file \fVfile-name\fR.
+.LP
+For direct record access, file must have been previously opened using
+\fVfile\fR function to set the record_length. \fVfile-name\fR must be
+the result of the \fVfile\fR function. 
+.SH SEE ALSO
+file, write, writb

@@ -1,0 +1,36 @@
+
+sensi(5)                       Scilab Function                       sensi(5)
+NAME
+  sensi - sensitivity functions
+
+CALLING SEQUENCE
+  [Se,Re,Te]=sensi(G,K)
+
+PARAMETERS
+
+  G         : standard plant (syslin list)
+
+  K         : compensator (syslin list)
+
+  Se        : sensitivity function (I+G*K)^-1
+
+  Re        : K*Se
+
+  Te        : G*K*Se (complementary sensitivity)
+
+DESCRIPTION
+  computes sensitivity functions. Calculation is made by lft, e.g., Se can be
+  given by the commands
+   P = augment(G,'S'), Se=lft(P,K).
+
+EXAMPLE
+  G=ssrand(1,1,3);K=ssrand(1,1,3);
+  [Se,Re,Te]=sensi(G,K);
+  Se1=inv(eye+G*K);  //Other way to compute
+  ss2tf(Se)    //Se seen in transfer form
+  ss2tf(Se1)
+  ss2tf(Te)
+  ss2tf(G*K*Se1)
+
+SEE ALSO
+  augment, lft, h_cl

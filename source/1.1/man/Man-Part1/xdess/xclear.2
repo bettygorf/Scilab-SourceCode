@@ -1,0 +1,27 @@
+.TH xclear 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xclear - clear a graphic window
+.SH CALLING SEQUENCE
+.nf
+xclear([window-id])
+.fi
+.SH PARAMETERS
+.TP 15
+window-id
+: integer vector
+.SH DESCRIPTION
+Without any argument, this function wipes out the current window.
+Otherwise it wipes out the graphic windows whose numbers are included 
+in the vector \fVwindow-id\fR, for example \fVxclear(1:3)\fR.
+If one of the windows does not 
+exist then it is automatically created.
+.LP
+Warning : in recording mode the graphic command \fVxclear\fR wipes out the window,
+ but it doesn't wipe out the recorded commands.
+In this case one must use the macro \fVxbasc\fR.
+.SH AUTHOR
+J.Ph.C.
+
+
+

@@ -1,0 +1,21 @@
+.TH TANBLK_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+TANBLK_f - Scicos tan block
+.SH DIALOGUE PARAMETERS
+None.
+.SH DESCRIPTION
+This block realizes vector tangent operation.
+input (output) port size is determined by the compiler.
+.SH SEE ALSO
+SINBLK_f
+
+
+
+
+
+
+
+
+
+

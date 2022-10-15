@@ -1,0 +1,91 @@
+.TH fplot3d 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so man1/sci.an
+.SH NAME
+fplot3d - 3D plot of a surface defined by an external
+.SH CALLING SEQUENCE
+.nf
+fplot3d(xr,yr,f,[theta,alpha,leg,flag,ebox])
+.fi
+.SH PARAMETERS
+.TP 10
+xr
+: matrix of size (1,n1)
+.TP
+yr
+: matrix of size (1,n2). 
+.TP
+f
+: external (\fVz=f(x,y)\fR)
+.TP
+theta, alpha
+: real (spherical coordinates in degrees of the observation point)
+.TP
+leg 
+: string (caption for each axis. \fV@\fR is a field separator
+e.g. \fV"X@Y@Z"\fR)
+.TP
+flag
+:  real vector of size three \fVflag=[mode,type,box]\fR
+.RS
+.TP
+mode 
+: integer (treatment of hidden parts)
+.RS
+.TP 10
+mode >=2
+the hidden parts of the surface are removed and the surface is painted 
+in gray (from low gray to black according to the value of mode)
+.TP
+mode = 1
+The hidden parts of the surface are drawn 
+.TP
+mode <= 0
+Only the shadow of the surface is painted with a gray level depending
+on mode
+.RE
+.TP
+type 
+:  Scaling
+.RS 
+.TP 10
+if type = 0
+the plot is made using the current 3D scaling ( set by a previous call to
+\fVparam3d, plot3d, contour, plot3d1\fR
+.TP
+if type = 1,
+the value of \fVebox=[xmin,xmax,ymin,ymax,zmin,zmax]\fR specifies 
+the boundaries 
+.TP
+else
+the boundaries are computed with the given datas.
+.RE
+.TP
+box
+: frame display around the plot.
+.RS
+.TP 10
+box=0
+: Nothing is drawn around the plot
+.TP
+ box=1
+:not implemented
+.TP
+box=2
+: only the axes behind the surface are drawn
+.TP
+box=3
+: a box surrounding the surface is drawn and captions are added 
+.RE
+.RE
+.LP
+.SH DESCRIPTION
+This routines plots a surface defined by an external \fVf\fR.
+the values of \fVf\fR on the grid defined by \fVxr.yr\fR are first computed 
+using \fVfeval\fR, then control is passed to the primitive \fVplot3d\fR.
+
+Enter the command  \fVfplot3d()\fR to see a demo.
+.SH AUTHOR
+J.Ph.C.
+
+
+

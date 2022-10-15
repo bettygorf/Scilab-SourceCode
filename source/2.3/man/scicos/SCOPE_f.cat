@@ -1,0 +1,48 @@
+
+SCOPE_f(5)                      Scicos Block                       SCOPE_f(5)
+NAME
+  SCOPE_f - Scicos visualization block
+
+DESCRIPTION
+  This block realizes the visualization of the evolution of the signals on
+  the standard input port(s) at instants of events on the event input port.
+
+DIALOGUE PARAMETERS
+
+  Curve colors        : a vector of integers. The i-th element is the color
+                      number (>0) or dash type (<0) used to draw the evolu-
+                      tion of the i-th input port signal. See plot2d for
+                      color (dash type) definitions.
+
+  Output window number
+                      : The number of graphic window used for the display. It
+                      is often good to use high values to avoid conflict with
+                      palettes and Super Block windows. If you have more than
+                      one scope, make sure they don't have the same window
+                      numbers (unless superposition of the curves is
+                      desired).
+
+  Output window position
+                      : a 2 vector specifying the coordinates of the upper
+                      left corner of the graphic window. Answer [] for
+                      default window position.
+
+  Output window size  : a 2 vector specifying the width and height  of the
+                      graphic window. Answer [] for default window dimen-
+                      sions.
+
+  Ymin, Ymax          : Minimum and maximum values of the input; used to set
+                      up the Y-axis of the plot in the graphics window.
+
+  Refresh period      : Maximum value on the X-axis (time). The plot is
+                      redrawn when time reaches a multiple of this value.
+
+  Buffer size         : To improve efficiency it is possible to buffer the
+                      input data. The drawing is only done after each Buffer
+                      size call to the block.
+
+REMARKS
+  Output window number, Output window size, Output window position are only
+  taken into account at the initialisation time of the simulation.
+SEE ALSO
+  SCOPXY_f, EVENTSCOPE_f, ANIMXY_f

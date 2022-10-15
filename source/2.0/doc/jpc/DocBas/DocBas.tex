@@ -1,0 +1,201 @@
+\documentstyle[11pt]{article}
+             \textheight=660pt 
+             \textwidth=15cm
+             \topmargin=-27pt 
+             \oddsidemargin=0.7cm
+             \evensidemargin=0.7cm
+             \marginparwidth=60pt
+             \title{Biblioth\`eque Basile} 
+             \author{J.Ph. Chancelier\thanks{Cergrene. Ecole Nationale des Ponts et Chauss\'ees, La Courtine  93167 Noisy le Grand C\'{e}dex }}
+	
+\begin{document}
+	
+\maketitle	
+\section{Introduction}
+Nous d\'ecrivons ici les biblioth\`eques de macro rajout\'ees dans Basile 
+et permettant d'utiliser la biblioth\`eque graphique \'ecrite en C 
+appell\'ee ``Missile'' (JPh Chancelier). Cette biblioth\`eque est pour l'instant 
+ interfac\'ee en utilisant les primitive interf et fort de Basile. 
+Les macros acc\'essibles dans Basile sont d\'ecrites ci-dessous, elles 
+ utilisent toutes fort pour s'interfacer avec une fonction C remplissant la m\^eme fonction.
+\begin{describe}
+\item[fonction g\'en\'erales de gestion des \'ecrans et des contextes graphiques]
+ \begin{enumerate}
+  \item driver   : choix du driver 
+  \item xinit    : initialisation du driver 
+  \item xclear   : efface la fen\^etre courante ou une fenetre de numero donne
+  \item xpause   : attente d'un caract\`ere au clavier 
+  \item xselect  : choix d'une fen\^etre 
+  \item xclick        : choix d'un point \`a la souris 
+  \item xclea    : clear a specific zone 
+  \item xload    : dynamic load of the X-11 driver (Hacker)
+	\item   xend     : fin d'une session graphique 
+	\item   xset     : fixe des valeurs du contexte graphique.
+	\item   xget     : pour obtenir des valeurs du contexte graphique.
+	\item   xlfont   : charge une nouvelle famille de font
+\end{enumerate}
+\item[Fonction de dessin]
+\begin{enumerate]
+	\item   xpoly,xpolys,xfpoly,xfpolys   : dessin ou remplissage d'un ou de plusieurs polygones.
+	\item   xsegs    : dessins d'un ensemble de segments.
+	\item   xarrows  : dessins d'un ensemble de fl\`eches.
+	\item   xrect, xfrect, xrects  : 
+	\item   xarc,   xfarc, xarcs    :dessin ou remplissage d'un ou plusieurs cercle ou arc de cercle. 
+	\item   xstring  : dessin d'une chaine de caractere 
+	\item   xstringl : calcul d'un rectangle entourant une chaine de caracteres  
+	\item   xnumb    : dessin d'un ensemble de nombres 
+	\item   xaxis    : dessin d'un ``axe''
+\end{enumerate}
+\item[Fonction de haut niveau]
+\begin{enumerate}
+\item     fplot3d, plot3d  :  dessin 3D d'une surface 
+\item     param3d :  dessin 3D d'une courbe param\'etrique
+\item     plot2d,plot2d1,plot2d2,plot2d3,plo2d4  :  dessin 2D de courbes
+\item     fchamp, champ  : champ de vecteur dans le plan 
+\item     fcontour, fcontour: courbes de niveau d'une surface.
+\item     xgrid   :  rajout d'une grille sur un dessin 2D 
+\item     xtitle  :  rajout d'un titre sur un dessin 2D 
+\item     xchange :  transformation de syst\`eme de coordonn\'ees 
+\item     errbar  : rajout de barres d'erreur sur un plot2d 
+\end{enumerate}
+\end{describe}
+
+\section{fonction g\'en\'erales de gestion des \'ecrans et des contextes graphiques}
+\begin{verbatim}
+driver(dr_name)
+\end{verbatim}
+Choisit un driver Graphique : \verb+dr_name+ peut prendre les valeurs 
+\begin{itemize}
+\item X11 pour XWindow
+\item Pos pour Postscript
+\item Fig pour Xfig
+\item Rec pour XWindow + m\'emorisation des commandes.
+\end{itemize}
+Seuls X11 et Pos sont compl\'etement finis.
+
+\begin{verbatim}
+xinit(name)
+\end{verbatim}
+Une fois un driver choisit cette fonction doit \^etre appell\'ee.
+ Pour XWindow \verb+name+ doit \^etre un nom de display par exemple 
+ ``unix:0.0'', pour Postscript ou Xfig \verb+name+ est un nom de fichier. 
+ Exemple d'utilisation~:
+\begin{verbatim}
+driver(``X11''); 
+xinit('unix:0.0') ; // cree une fenetre graphique
+...
+driver(``Pos'');    
+xinit('file'); // ouver un fichier pour le code Postscript
+...
+xend(); // ferme le fichier Postscript 
+...     // les ordres graphiques qui suivent iront a l'ecran 
+...     // si l'on n'ouvre pas un nouveau fichier 
+driver(``X11'');
+...    // on utilise a nouveau XWindow il est inutile de rappeller 
+       // xinit car on a deja une fenetre graphique
+\end{verbatim}
+\begin{verbatim}
+xend()
+\end{verbatim}
+Pour Postscript ou Xfig cette fonction ferme le fichier graphique courant
+\begin{verbatim}
+xclear();	
+\end{verbatim}
+pour XWindow : efface la fenetre graphique courante, pour les autres drivers 
+ cette fonction ne fait rien.
+\begin{verbatim}
+xpause()	
+\end{verbatim}
+Pour XWindow cette fonction attend que l'utilisateur tape sur une touche au 
+ clavier pour continuer.
+\begin{verbatim}
+xselect()	
+\end{verbatim}
+Pour XWindow : cette fonction met au premier plan la fenetre graphique courante
+\begin{verbatim}
+<c,x,y>=xclick()	
+\end{verbatim}
+Pour Xwindow cette fonction attend que l'utilisateur clique dans la fenetre 
+graphique courante. elle renvoit le num\'ero du bouton appuy\'e et les coordonn\'ees 
+du point ou l'on a cliqu\'e la souris en pixel.
+
+\begin{verbatim}
+<>=xarc(x,y,w,h,a1,a2)
+\end{verbatim}
+Dessine une ellipse ou une portion d'ellipse contenue dans le rectangle 
+ d\'efini par (x,y,w,h). (x,y) sont les coordonn\'ees du point en haut ˆ gauche du rectangle 
+ w est la longuer et h la hauteur, toutes ces dimensions sont donn\'ees en pixel. 
+ a1 et a2 sont deux nombre r\'eel, la portiob d'ellipse ou de cercle est dessin\'ee
+  entre les angle a1/64 en degr\'e et a2/64  en degr\'e. Le trac\'e se fait avec 
+  le style courant (cfre xset)
+
+\begin{verbatim}
+<>=xfarc(x,y,w,h,a1,a2)
+\end{verbatim}
+Renplit  une ellipse ou une portion d'ellipse contenue dans le rectangle 
+ d\'efini par (x,y,w,h). (x,y) sont les coordonn\'ees du point en haut ˆ gauche du rectangle 
+ w est la longuer et h la hauteur, toutes ces dimensions sont donn\'ees en pixel. 
+ a1 et a2 sont deux nombre r\'eel, la portion d'ellipse ou de cercle est dessin\'ee
+  entre les angle a1/64 en degr\'e et a2/64  en degr\'e.
+  Le remplissage se fait avec le niveau de gris courant (cfre xset)
+
+\begin{verbatim}
+<>=xarcs(arcs,fill)
+\end{verbatim}
+Dessine ou remplit un ensemble d'ellipse ou de secteurs d'ellipses. 
+arcs est une matrice Basile~:  
+\begin{verbatim}
+arcs= < x,y,w,h,a1,a2 ; x,y,w,h,a1,a2 ; .....> ' 
+\end{verbatim}
+dont chaque colonne d\'efinit une ellipse (cfre xarc). 
+ fill est un vecteur basile de mme taille que le nombre de colonne 
+ de la matrice arcs.  Ce vecteur donne le pattern a utiliser 
+  pour le remplissage de l'ellipse, si fill[i] >= blanc +1 l'ellipse est juste 
+  trac\'ee avec le style courant 
+  sinon elle est remplit avec le pattern fill[i]. blanc est le num\'ero du pattern blanc 
+  ( cfre xset)
+
+
+<>=xpoly(xv,yv,dtype,close)
+
+Dessine un polygone ou une polyligne d\'efinis par les points (xv(i),yv(i))
+si close=1  la polyligne sera ferm\'ee; dtype peut prendre deux valeurs 
+itemize
+item "lines" : on utilise le style de trac\'e courant pour le dessin 
+item "marks" : on utilise la marque courante pour le dessin 
+
+<>=xfpoly(xv,yv,close)
+<>=xfpoly(xv,yv,close)
+
+remplit un polygone ou une polyligne d\'efinis par les points (xv(i),yv(i))
+avec le pattern courant. 
+si close=1  la polyligne sera ferm\'ee; 
+
+<>=xpolys(xpols,ypols,draw)
+<>=xpolys(xpols,ypols,[draw])
+
+Dessine une famille de polygones. xpolys et ypols sont des matrices 
+(p,q) qui d\'efinissent q polygones a p points.  xpols(:,i),ypols(:,i)  
+deffinissent les points du polygone i et draw(i) donne alors le mode ou style de 
+trac\'e 
+si draw(i) >=0 on utilisera la marque num\'ero draw(i) pour le trac\'e
+si draw(i) < 0  on utlisera un trac\'e d\'efini par le style abs(draw(i)). 
+cfre xset pour plus d'explication. 
+
+<>=xfpolys(xpols,ypols,fill)
+<>=xfpolys(xpols,ypols,[fill])
+Remplit une famille de polygones. xpolys et ypols sont des matrices 
+(p,q) qui d\'efinissent q polygones a p points.  xpols(:,i),ypols(:,i)  
+deffinissent les points du polygone i et fill(i) donne alors le mode de 
+remplissage.
+si fill(i) <= blanc. le pattern max(fill(i),0) sera utilis\'e pour le remplissage
+si fill(i) == blanc+1. le polygone est juste trac\'e avec le style de ligne courant 
+( si le polgone donn\'e est une polyligne le contour n'est pas automatiquement
+ferm\'e
+si fill(i) >= blanc+2. le polygone est remplit avec le pattern .... 
+puis son contour automatiquement ferm\'e est trac\'e .
+
+
+<>=xrect(x,y,w,h)
+<>=xrect(x,y,w,h)
+ Dessine le re

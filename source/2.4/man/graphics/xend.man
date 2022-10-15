@@ -1,0 +1,17 @@
+.TH xend 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xend - ends a graphic session
+.SH CALLING SEQUENCE
+.nf
+xend()
+.fi
+.SH DESCRIPTION
+This command is used to end a graphic session. Under the Postscript or 
+Xfig drivers this command closes the current 
+file which was opened by the command \fVxinit\fR. 
+.SH AUTHOR
+J.Ph.C.
+
+
+

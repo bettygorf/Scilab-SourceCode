@@ -1,0 +1,16 @@
+.TH MUX_f 5 "Janvier 1997" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+MUX_f - Scicos multiplexer block
+.SH DIALOGUE PARAMETERS
+.TP 25
+number of output ports
+:
+integer greater than or equal to 1 and less than 8
+.SH DESCRIPTION
+Given \fVn\fR vector valued inputs this block merges inputs in an single
+output vector. So \fVy=[u1;u2....;un]\fR, where \fVui\fR are numbered
+from top to bottom. Input and Output port sizes are determined by the
+context.
+.SH SEE ALSO
+MUX_f

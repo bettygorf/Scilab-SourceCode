@@ -1,0 +1,17 @@
+// Construction du TP avion
+
+// Compilation et lien des routines en fortran
+//unix("f77 -e -c F4.f");
+if ~c_link('f4') then link('F4.o','f4');end
+
+//unix("f77 -e -c CDV.f");
+if ~c_link('cdv') then link('CDV.o','cdv');end
+
+//unix("f77 -e -c boudif.f");
+if ~c_link('boudif') then link('boudif.o','boudif');end
+
+// Chargement des fonctions
+getf('fun_F4','c');
+getf('voirbo','c');
+getf('voirbf','c');
+

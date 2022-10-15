@@ -1,0 +1,38 @@
+.TH mlist 1 "September 1995" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mlist - Scilab object, matrix oriented typed list definition.
+.SH CALLING SEQUENCE
+.nf
+mlist(typ,a1,....an )  
+.fi
+.SH PARAMETERSp
+.TP 10
+typ
+: vector of character strings
+.TP 
+ai
+: any Scilab object (\fVmatrix, list,string...\fR).
+.SH DESCRIPTION
+mlist object are very similar to tlist objects. But if \fVM\fR is an
+mlist, for any index \fVi\fR which is not a field name, \fVM(i)\fR is
+interpreted as the \fVi\fR th entry of \fVM\fR seen has a
+matrix. 
+.LP
+
+mlist fields must then be designed by there names.
+
+.SH EXAMPLE
+.nf
+M=mlist(['V','name','value'],['a','b','c'],[1 2 3]);
+//define display
+deff('%V_p(M)','disp([M(''name'');string(M(''value''))])')
+//define extraction operation
+deff('r=%V_e(i,M)','r=mlist([''V'',''name'',''value''],M(''name'')(i),M(''value'')(i))')
+//define M as a tlist
+M=tlist(['V','name','value'],['a','b','c'],[1 2 3]);
+M(2)
+M('name')
+.fi
+.SH SEE ALSO
+tlist, list

@@ -1,0 +1,66 @@
+
+
+
+load_graph(1)                  Scilab function                  load_graph(1)
+
+
+
+
+
+
+NAME
+  load_graph - load a graph
+
+CALLING SEQUENCE
+  [g]=load_graph(path)
+
+PARAMETERS
+  name : string, the path of the graph to load
+  g : graph-list
+
+DESCRIPTION
+  path is the name of a graph file which contains the ASCII description of a
+  graph. Such a file must have the "graph" extension.  path can be the name
+  or the pathname of the file ; if the "graph" extension is missing in path,
+  it is assumed.  load_graph returns the corresponding graph-list.
+
+EXAMPLE
+  g=load_graph(SCI+'/demos/metanet/mesh100.graph');
+  show_graph(g,'rep');
+  g=load_graph(SCI+'/demos/metanet/colored');
+  show_graph(g,'new');
+
+SEE ALSO
+  save_graph
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

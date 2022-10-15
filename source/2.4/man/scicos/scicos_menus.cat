@@ -1,0 +1,12 @@
+
+scicos_menus(5)                  Scicos GUI                   scicos_menus(5)
+NAME
+  scicos_menus - Scicos menus description
+
+DESCRIPTION
+  Here is a list of operations available in Scicos:
+
+  Main menus
+       :
+
+  scicos

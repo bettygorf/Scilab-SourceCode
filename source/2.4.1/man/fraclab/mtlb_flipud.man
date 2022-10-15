@@ -1,0 +1,61 @@
+.TH "mtlb_flipud" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mtlb_flipud - Flip matrix in up/down direction
+.sp
+Author: Paulo Goncalves
+.sp
+Flip matrix in up/down direction.  For matrices, fliplr(x) returns
+x with columns preserved and rowa flipped in the up/down direction.
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+y = mtlb_flipud(x) ;
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : Real or complex valued matrix \f(CR[\fPrx,cx\f(CR]\fP
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBy\fP : Real or complex valued matrix \f(CR[\fPrx,cx\f(CR]\fP
+.RE
+
+.SH See also:
+fliplr, fftshift
+.SH Example:
+\fI Matrix synthesis: \fP 
+.sp
+.ft CR
+.nf
+x = [1 4 ; 2 5 ; 3 6] 
+.fi 
+.ec
+.ft P
+.sp
+\fI Up - Down flip \fP 
+.sp
+.ft CR
+.nf
+FlipX = mtlb_flipud(x) 
+.fi 
+.ec
+.ft P
+.sp

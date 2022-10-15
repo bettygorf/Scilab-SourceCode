@@ -1,0 +1,20 @@
+.TH titlepage 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+titlepage - add a title in the middle of a graphics window
+.SH CALLING SEQUENCE
+.nf
+titlepage(str)
+.fi
+.SH PARAMETERS
+.TP 5
+str
+: matrix of strings
+.SH DESCRIPTION
+\fVtitlepage\fR displays the matrix of strings \fVstr\fR in the middle of 
+the current graphics window
+with a font as big as possible.
+.SH SEE ALSO
+xtitle
+.SH AUTHOR
+S. S.

@@ -1,0 +1,53 @@
+ 
+clear;lines(0);
+ 
+s=poly(0,'s');
+ 
+H=[2/s,(s+1)/(s^2-5)];
+ 
+Sys=tf2ss(H)
+ Sys  =
+ 
+ 
+       Sys(1)   (state-space system:)
+ 
+!lss  A  B  C  D  X0  dt  !
+ 
+       Sys(2) = A matrix = 
+ 
+!   1.           1.490712     0.        !
+!   1.1925696    0.           1.3333333 !
+!   0.2236068    1.6666667  - 1.        !
+ 
+       Sys(3) = B matrix = 
+ 
+! - 1.3333333  - 0.6666667 !
+!   0.8944272    0.        !
+!   1.1925696  - 0.7453560 !
+ 
+       Sys(4) = C matrix = 
+ 
+! - 1.5    0.    0. !
+ 
+       Sys(5) = D matrix = 
+ 
+!   0.    0. !
+ 
+       Sys(6) = X0 (initial state) = 
+ 
+!   0. !
+!   0. !
+!   0. !
+ 
+       Sys(7) = Time domain = 
+ 
+     []
+ 
+clean(ss2tf(Sys))
+ ans  =
+ 
+!   2     1 + s  !
+!   -     -----  !
+!              2 !
+!   s   - 5 + s  !
+ 

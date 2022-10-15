@@ -1,0 +1,18 @@
+ 
+clear;lines(0);
+ 
+ceil([1.9 -2.5])-[2,-2]
+ ans  =
+ 
+!   0.    0. !
+ 
+ceil(-%inf)
+ ans  =
+ 
+  -Inf  
+ 
+x=rand()*10^20;ceil(x)-x
+ ans  =
+ 
+    0.  
+ 

@@ -1,0 +1,22 @@
+.TH kron 3 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+kron - Kronecker product (.*.)
+.SH CALLING SEQUENCE
+.nf
+kron(x,y) 
+x.*.y
+.fi
+.SH DESCRIPTION
+Kronecker tensor product of two matrices \fVx\fR and \fVy\fR.
+Same as \fVx.*.y\fR . \fVx\fR and \fVy\fR can be sparse matrices.
+.SH EXAMPLE
+.nf
+A=[1,2;3,4];
+kron(A,A)
+A.*.A
+sparse(A).*.sparse(A)
+A(1,1)=%i;
+kron(A,A)
+.fi
+

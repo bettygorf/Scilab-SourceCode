@@ -1,0 +1,22 @@
+
+lcf(1)                         Scilab Function                         lcf(1)
+NAME
+  lcf - normalized coprime factorization
+
+CALLING SEQUENCE
+  [N,M]=lcf(sl)
+
+PARAMETERS
+
+  sl        : linear system given in state space or transfer function (syslin
+            list)
+
+  N,M       : two linear systems (syslin list)
+
+DESCRIPTION
+  Computes normalized coprime factorization of the linear dynamic system sl.
+
+  sl = M^-1 N
+
+AUTHOR
+  F. D.

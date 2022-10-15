@@ -1,0 +1,66 @@
+
+
+
+stabil(1)                      Scilab Function                      stabil(1)
+
+
+
+
+
+
+NAME
+  stabil - stabilization
+
+CALLING SEQUENCE
+  F=stabil(A,B,alfa)
+
+PARAMETERS
+
+  A         : square real matrix (nx x nx)
+
+  B         :  real matrix (nx x nu)
+
+  alfa      :  real or complex vector (conjugate pairs)
+
+  F         : real matrix (nx x nu)
+
+DESCRIPTION
+  F=stabil(A,B,alfa) returns a gain matrix F such that A+B*F is stable if
+  pair (A,B) is stabilizable. Assignable poles are set to
+  alfa(1),alfa(2),....  If (A,B) is not stabilizable a warning is given and
+  assignable poles are set to alfa(1),alfa(2),....
+
+EXAMPLE
+  //Sys=ssrand(0,2,5,list('st',2,3,3));
+  //[A,B,C,D]=abcd(Sys);F=stabil(A,B);
+  //spec(A) //2 controllable modes 2 unstable uncontrollable modes
+  //and one stable uncontrollable mode
+  //spec(A+B*F) //the two controllable modes are set to -1.
+
+SEE ALSO
+  st_ility, contr, ppol
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

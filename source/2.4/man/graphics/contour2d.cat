@@ -1,0 +1,13 @@
+
+contour2d(2)                   Scilab Function                   contour2d(2)
+NAME
+  contour2d - level curves of surface on a 2D graphics
+
+CALLING SEQUENCE
+  contour2d(x,y,z,nz,[style,strf,leg,rect,nax])
+
+DESCRIPTION
+  see contour
+
+EXAMPLE
+  contour2d(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11]);

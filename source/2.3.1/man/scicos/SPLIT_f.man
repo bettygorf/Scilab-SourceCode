@@ -1,0 +1,16 @@
+.TH SPLIT_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+SPLIT_f - Scicos regular split block
+.SH DIALOGUE PARAMETERS
+None.
+.SH DESCRIPTION
+This block is a regular split block with an input and two outputs. The
+outputs reproduces the input port on each output ports. 
+Strictly speaking, SPLIT is not a Scicos block because it is
+discarded at the compilation phase. This block is automatically
+created when creating a new link issued from a link.
+
+Port sizes are determined by the context.
+
+

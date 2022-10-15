@@ -1,0 +1,31 @@
+.TH xchange 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xchange - coordinates transform 
+.SH CALLING SEQUENCE
+.nf
+[x1,y1,rect]=xchange(x,y,dir)
+.fi
+.SH PARAMETERS
+.TP 10
+x,y 
+: two matrices of size (n1,n2) (coordinates of a set of points)
+.TP
+x1,y1
+: two matrices of size (n1,n2) (coordinates of the set of points )
+.TP
+rect
+: a vector of size 4 (values in pixel of the coordinates
+of the rectangle in which the scale was fixed)
+.SH DESCRIPTION
+After having used a graphic function, this function allows one to change real
+coordinates into pixel coordinates and vice-versa, 
+according to the value of the parameter \fVdir\fR.
+\fVdir = 'f2i' or 'i2f'\fR ( float to int or int to float)
+ \fVx1,y1\fR are the coordinates of the set of points described by \fVx,y\fR after 
+the coordinate change.
+.SH AUTHOR
+J.Ph.C..
+
+
+

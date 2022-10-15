@@ -1,0 +1,22 @@
+
+coshm(1)                       Scilab Function                       coshm(1)
+NAME
+  coshm - matrix hyperbolic cosine
+
+CALLING SEQUENCE
+  t=coshm(x)
+
+PARAMETERS
+
+  x,t       : real or complex square matrix
+
+DESCRIPTION
+  coshm is the matrix hyperbolic  cosine  of the matrix x.
+  t=(expm(x)+expm(-x))/2. Result may be inaccurate for nonsymmetric matrix.
+
+EXAMPLE
+  A=[1,2;2,4]
+  acoshm(coshm(A))
+
+SEE ALSO
+  cosh, expm

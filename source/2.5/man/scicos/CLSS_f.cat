@@ -1,0 +1,26 @@
+
+CLSS_f(5)                        Scicos Block                       CLSS_f(5)
+NAME
+  CLSS_f - Scicos continuous-time linear state-space system
+
+DESCRIPTION
+  This block realizes a continuous-time linear state-space system.
+  xdot=A*x+B*u
+  y   =C*x+D*u
+  The system is defined by the (A,B,C,D) matrices and the initial state x0.
+  The dimensions must be compatible.
+
+DIALOGUE PARAMETERS
+
+  A                   : square matrix. The A matrix
+
+  B                   : the B matrix, [] if system has no input
+
+  C                   : the C matrix , [] if system has no output
+
+  D                   : the D matrix, [] if system has no D term.
+
+  x0                  : vector. The initial state of the system.
+
+SEE ALSO
+  CLR_f, INTEGRAL_f

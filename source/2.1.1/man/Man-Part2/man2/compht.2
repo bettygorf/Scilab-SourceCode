@@ -1,0 +1,22 @@
+.TH compht 1 "October 1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME 
+compht - from adjacency vectors to head-tail vectors
+.SH CALLING SEQUENCE
+.nf
+[he,ta] = compht(la,lp,ls,dir)
+.fi
+.SH PARAMETERS
+.TP 6
+he,ta
+: head and tail arc arrays
+.TP 9
+la,lp,ls
+: vectors of the adjacency description, la is the arc array, lp is 
+  the pointer array and ls is the node array
+.TP 4
+dir
+: integer flag, 1 if the graph is directed, 0 if the graph is 
+  undirected
+.SH DESCRIPTION
+\fVcompht\fR computes the head-tail vectors from the adjacency vectors.

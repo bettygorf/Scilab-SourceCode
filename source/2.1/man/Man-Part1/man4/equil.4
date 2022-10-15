@@ -1,0 +1,24 @@
+.TH equil 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+equil - balancing of pair of symmetric matrices
+.SH CALLING SEQUENCE
+.nf
+[T]=equil(P,Q)
+.fi
+.SH PARAMETERS
+.TP 10
+P, Q
+: two positive definite symmetric matrices
+.TP
+T
+: nonsingular matrix
+.SH DESCRIPTION
+\fVequil\fR returns \fVt\fR such that:
+.LP
+\fVT*P*T'\fR and  \fVinv(T)'*Q*inv(T)\fR  are both equal to a same 
+diagonal and positive matrix.
+.SH SEE ALSO
+equil1, balanc, ctr_gram
+
+

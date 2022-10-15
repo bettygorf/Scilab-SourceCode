@@ -1,0 +1,33 @@
+
+funcprot(1)                    Scilab Function                    funcprot(1)
+NAME
+  funcprot - switch scilab functions protection mode
+
+CALLING SEQUENCE
+  prot=funcprot()
+  funcprot(prot)
+
+PARAMETERS
+
+  prot      : integer with possible values 0,1,2
+
+DESCRIPTION
+  Scilab functions are variable, funcprot allows the user to specify what
+  scilab do when such  variables are redefined.
+
+       * If prot==0  nothing special is done
+
+       * If prot==1  scilab issues a warning message when a function is rede-
+         fined (default mode)
+
+       * If prot==2 scilab issues an error when a function is redefined
+
+EXAMPLE
+  funcprot(1)
+  deff('[x]=foo(a)','x=a')
+  deff('[x]=foo(a)','x=a+1')
+  foo=33
+  funcprot(0)
+  deff('[x]=foo(a)','x=a')
+  deff('[x]=foo(a)','x=a+1')
+  foo=33

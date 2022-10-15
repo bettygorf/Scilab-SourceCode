@@ -1,0 +1,34 @@
+
+mtlb_fftshift(2)               Scilab Function               mtlb_fftshift(2)
+NAME
+  mtlb_fftshift - Move zeroth lag to center of spectrum
+
+  Author: Paulo Goncalves
+
+   Move zeroth lag to center of spectrum. Shift FFT.  For vectors
+  MTLB_FFTSHIFT(X) returns a vector with the left and right halves swapped.
+  For matrices, MTLB_FFTSHIFT(X) swaps the upper and the lower halves.
+
+Usage
+
+  y = mtlb_fftshift(x) ;
+Input parameters
+       o x : Real or complex valued matrix [rx,cx]
+Output parameters
+       o y : Real or complex valued matrix [rx,cx]
+See also:
+  fft
+
+Example:
+   Matrix synthesis:
+
+  t = linspace( 0,1,128 ) ;
+  x = sin( 2*%pi*t*16 ) ;
+  SpectX = abs( fft( x,-1 ) ) ;
+
+   FFT-SHIFT
+
+  xsetech([0 0 0.5 1]) ; plot2d( Freq,SpectX ) ;
+  SwapSpectX = mtlb_fftshift( SpectX ) ;
+  Freq = linspace( -0.5,0.5,128 ) ;
+  xsetech([0.5 0 0.5 1]) ; plot2d( Freq,SwapSpectX )

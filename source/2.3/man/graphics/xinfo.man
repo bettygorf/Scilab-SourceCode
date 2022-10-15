@@ -1,0 +1,19 @@
+.TH xinfo 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xinfo - add an info string on a graphic window
+.SH CALLING SEQUENCE
+.nf
+xinfo(string)
+.fi
+.SH PARAMETERS 
+.TP 15
+string 
+: a scilab string.
+.SH DESCRIPTION
+This function is used to add a sentence on the current graphic window.
+
+
+
+
+

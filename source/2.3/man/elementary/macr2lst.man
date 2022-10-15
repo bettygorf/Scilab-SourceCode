@@ -1,0 +1,16 @@
+.TH macr2lst 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+macr2lst - function to list conversion
+.SH CALLING SEQUENCE
+.nf
+[txt]=macr2lst(function-name)
+.fi
+.SH DESCRIPTION
+This primitive converts a compiled Scilab function \fVfunction-name\fR
+into a list which codes the internal representation of
+the function. For use with \fVmac2for\fR. 
+.SH SEE ALSO
+macrovar
+
+

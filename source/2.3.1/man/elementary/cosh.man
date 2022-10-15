@@ -1,0 +1,24 @@
+.TH cosh 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+cosh - hyperbolic cosine
+.SH CALLING SEQUENCE
+.nf
+[t]=cosh(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x,t
+: real or complex vectors/matrices
+.SH DESCRIPTION
+The  elements  of \fVt\fR are  the  hyperbolic  cosine   
+of  the corresponding entries of vector \fVx\fR.
+.SH EXAMPLE
+.nf
+x=[0,1,%i]
+acosh(cosh(x))
+.fi
+.SH SEE ALSO
+cos, acosh
+
+

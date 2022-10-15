@@ -1,0 +1,28 @@
+.TH dlgamma 3 "September 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+dlgamma -  derivative  of gammaln function.
+.SH CALLING SEQUENCE
+.nf
+ y = dlgamma(x)
+.fi
+.SH PARAMETERS
+.TP
+x
+: real vector 
+.TP
+y
+: real vector with same size.
+.SH DESCRIPTION
+\fVdlgamma(x)\fR evaluates the derivative  of gammaln function at all the
+elements of \fVx\fR. 
+\fVx\fR must be real.
+
+.SH EXAMPLE
+.nf
+dlgamma(0.5)
+
+.fi
+.SH SEE ALSO
+gamma, gammaln
+

@@ -1,0 +1,34 @@
+.TH atanh 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+atanh - hyperbolic tangent inverse
+.SH CALLING SEQUENCE
+.nf
+[t]=atanh(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex vector
+.TP 10
+t
+: real or complex vector
+.SH DESCRIPTION
+The components of vector \fVt\fR are the hyperbolic tangent inverse of the 
+corresponding entries of vector \fVx\fR.
+Definition domain is ]-1,1[
+.LP
+This function takes values in
+.IG
+.nf
+     ] inf,inf[ x ]-pi/2,pi/2[
+     ]-inf, 0 [ x [-pi/2]
+and  ]  0 ,inf[ x [pi/2]
+.fi
+.FI
+\" This is for LaTeX 
+.LA    $$  ]-\infty +\infty[\times ] -\pi/2,\pi/2[ $$
+.LA    $$ [-\infty,0[  \times [-\pi/2] \quad\mbox{and} 
+.LA   \quad ]0,\infty[ \times [\pi/2] \quad \mbox{(real x imag)} $$
+
+

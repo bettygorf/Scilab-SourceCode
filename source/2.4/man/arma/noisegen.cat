@@ -1,0 +1,19 @@
+
+gbruit(1)                      Scilab Function                      gbruit(1)
+NAME
+  noisegen - noise generation
+
+CALLING SEQUENCE
+  []=noisegen(pas,Tmax,sig)
+
+DESCRIPTION
+  generates a Scilab function [b]=Noise(t) where Noise(t) is a piecewise con-
+  stant function ( constant on  [k*pas,(k+1)*pas] ). The value on each con-
+  stant interval are random values from  i.i.d  Gaussian variables of stan-
+  dard deviation sig. The function is constant for t<=0 and t>=Tmax.
+
+EXAMPLE
+  noisegen(0.5,30,1.0);
+  x=-5:0.01:35;
+  y=feval(x,Noise);
+  plot(x,y);

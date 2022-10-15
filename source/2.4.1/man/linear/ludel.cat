@@ -1,0 +1,21 @@
+
+ludel(G)                       Scilab Function                       ludel(G)
+NAME
+  ludel - utility function used with lufact
+
+CALLING SEQUENCE
+  ludel(hand)
+
+PARAMETERS
+
+  hand : handle to sparse lu factors (output of lufact)
+
+DESCRIPTION
+  This function is used in conjunction with lufact. It clears the internal
+  memory space used to store the result of lufact.
+
+  The sequence of commands [p,r]=lufact(A);x=lusolve(p,b);ludel(p); solves
+  the sparse linear system  A*x = b and clears p.
+
+SEE ALSO
+  sparse, lufact, luget

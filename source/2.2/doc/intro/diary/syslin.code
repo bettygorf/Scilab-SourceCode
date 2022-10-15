@@ -1,0 +1,17 @@
+//list defining a linear system 
+A=[0 -1;1 -3];B=[0;1];C=[-1 0];
+h=syslin('c',A,B,C)
+//conversion from state-space form to transfer form
+hs=ss2tf(h)
+size(hs)
+hs(1)
+hs(2)
+hs(3)
+hs(4)
+typeof(hs)
+//inversion of transfer matrix
+inv(hs)
+//inversion of state-space form
+inv(h)
+//conversion of this inverse
+ss2tf(ans)

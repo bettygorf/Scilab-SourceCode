@@ -1,0 +1,19 @@
+.TH select 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+select - select keyword 
+.SH DESCRIPTION
+.nf
+ select expr,
+   case expr1 then instructions1,
+   case expr2 then instructions2,
+   ...
+   case exprn then instructionsn,
+   [else instructions],
+ end
+.fi
+\fVinstructions1\fR are executed if \fVexpr1=expr\fR, etc.
+.SH SEE ALSO
+ifthenelse, while, for
+
+

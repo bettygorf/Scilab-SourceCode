@@ -1,0 +1,37 @@
+.TH lusolve G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+lusolve - sparse linear system solver
+.SH CALLING SEQUENCE
+.nf
+lusolve(W,b)
+.fi
+.SH PARAMETERS
+.TP
+b 
+: real vector
+.TP
+W 
+: list (output of lufact)
+.SH DESCRIPTION
+.Vb x=lusolve(W,b)
+solves the sparse linear system  \fVA*x = b\fR.
+.LP
+\fVW=lufact(A)\fR is the output of lufact.
+\fVA\fR is a list representing the \fVA\fR matrix:
+.nf
+A=list('sp',values,[rows;cols],nrows,ncols) 
+.fi
+.LP
+(see \fVsparse\fR) \fVb\fR is a column vector.
+.SH EXAMPLE
+.nf
+non_zeros=[1,2,3,4];rows_cols=[1,1;2,2;3,3;4,4];
+sp=sparse(non_zeros,rows_cols);
+w=lufact(sp);x=lusolve(W,[1;1;1;1])
+diag(non_zeros)*x
+ludel(w)
+.fi
+.SH SEE ALSO
+sparse, lufact, slash, backslash.
+

@@ -1,0 +1,66 @@
+
+
+
+x_message(1)                   Scilab Function                   x_message(1)
+
+
+
+
+
+
+NAME
+  x_message - X window message
+
+CALLING SEQUENCE
+  [num]=x_message(strings [,buttons])
+
+PARAMETERS
+
+  strings
+       : vector of characters strings to be displayed
+
+  buttons
+       : character string or 2 vector of character strings wich specifies
+       button(s) name(s). Default value is "Ok"
+
+  num  : number  of button clicked (if 2 buttons are specified)
+
+DESCRIPTION
+  for displaying a message (diagnostic, user-guide ...)
+
+
+EXAMPLES
+   gain=0.235;x_message('value of gain is :'+string(gain))
+   x_message(['singular matrix';'use least squares'])
+
+   r=x_message(['Your problem is ill conditionned';
+               'continue ?'],['Yes','No'])
+
+SEE ALSO
+  x_dialog, x_mdialog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

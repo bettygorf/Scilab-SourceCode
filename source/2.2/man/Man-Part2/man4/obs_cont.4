@@ -1,0 +1,30 @@
+.TH obs_cont 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+obs_cont - a controlled-observed system
+.SH CALLING SEQUENCE
+.nf
+[macr]=obs_cont(sysn)
+.fi
+.SH PARAMETERS
+.TP
+sysn 
+: A Scilab string which gives the name of the controlled system.
+.TP
+gaincom,gainobs 
+: column vectors giving the requested gains 
+.TP
+macr
+: a new Scilab function which simulates the controlled observed system.
+.nf
+[x1dot]=macr(t,x1,abruit,pas,n)
+x1=[x;xchap],
+.fi 
+.SH DESCRIPTION 
+This macros return a new function which computes the controlled observed 
+version of a linearised system around the \fV(xe,ue)\fR point.
+
+before calling this function, a noise vector \fVbr\fR should be created.
+the equilibrium point \fV(xe,ue)\fR should be given as a global Scilab.
+ the linearised system $f,g,h$ and the two  gain matrices \fVl,k\fR are 
+returned as global Scilab data.

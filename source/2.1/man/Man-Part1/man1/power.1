@@ -1,0 +1,22 @@
+.TH ^ 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+^  - power operation 
+.SH DESCRIPTION
+For square matrices \fVA^p\fR is calculated by successive
+multiplication if \fVp\fR is a positive integer, and by diagonalization
+if not.
+For non-square matrices the operation is done entry by entry.
+Note that Kronecker product is noted \fV.*.\fR (e.g. \fV A.*.2 \fR returns
+the elementwise squared \fVA\fR matrix).
+.LP
+Note that \fV**\fR can be used instead of \fV^\fR.
+.SH EXAMPLE
+.nf
+A=rand(2,3);A^2
+A=rand(5,5);X=A^(0.2);X^5-A
+.fi
+.SH SEE ALSO
+exp, function mpow in SCIDIR/macros/util
+
+

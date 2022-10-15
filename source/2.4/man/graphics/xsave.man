@@ -1,0 +1,26 @@
+.TH xsave 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xsave - save graphics in a (reloadable) file.
+.SH CALLING SEQUENCE
+.nf
+xsave('file-name' [, win-num] ) 
+.fi
+.SH PARAMETERS 
+.TP 15
+win-num 
+: an integer ( optional argument ) which stands for the graphic window
+which is to be saved.
+.SH DESCRIPTION
+This function is used to save the graphics contained in the graphic-window \fVwin-num\fR.
+The graphics are stored in a binary file in a  machine independent way ( using the 
+xdr library) and can be reloaded in Scilab with the \fVxload\fR command.
+.SH SEE ALSO
+xload
+.SH AUTHOR
+J.Ph.C..
+
+
+
+
+

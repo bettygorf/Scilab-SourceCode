@@ -1,0 +1,27 @@
+.TH atan G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+atan - tangent inverse
+.SH CALLING SEQUENCE
+.nf
+[t]=atan(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex vector
+.TP 10
+t
+: real or complex vector
+.SH DESCRIPTION
+The components of vector \fVt\fR are the arctangent of the 
+corresponding entries of vector \fVx\fR.
+.LP
+\fVatan(x,y)\fR is the same as \fVatan(x/y)\fR but \fVy\fR is
+allowed to be zero.
+.SH EXAMPLE
+.nf
+x=[1,%i,-1,%i]
+phasex=atan(imag(x),real(x))
+.fi
+

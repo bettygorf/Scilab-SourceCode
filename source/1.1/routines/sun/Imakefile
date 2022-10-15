@@ -1,0 +1,16 @@
+#include "../../Imake.incl"
+
+SUN_FORTRAN=  bashos.o basin.o basout.o\
+	cluni0.o clunit.o ctrlc.o dbasin.o dynstr.o getpro.o\
+	inffic.o inibrk.o sigbas.o
+
+SUN_CSTS= d1mach.o i1mach.o r1mach.o
+
+SUN_C= getenvc.o link_sun.o systemc.o zzledt.o  csignal.o
+
+SRCS=$(SUN_C:.o=.c)
+FSRCS =$(SUN_FORTRAN:.o=.f) $(SUN_CSTS:.o=.f)
+
+LibraryTarget($(PATHO)/sun.a,$(SUN_FORTRAN) $(SUN_CSTS) $(SUN_C))
+FortranDependTarget()
+DependTarget()

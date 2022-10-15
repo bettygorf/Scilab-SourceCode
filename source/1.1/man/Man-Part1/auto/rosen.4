@@ -1,0 +1,35 @@
+.TH rosen 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+rosen - impulse to transfer
+.SH CALLING SEQUENCE
+.nf
+[den,num,err]=rosen(y,den0 [,n,eps])
+.fi
+.SH PARAMETERS
+.TP 10
+y
+: real vector (series to be approximated)
+.TP
+den0  
+: polynomial (initial guess of denominator)
+.TP
+n    
+: integer (degree a approximant (default=60))
+.TP
+eps  
+: real (error bound (default \fV10*%eps\fR))
+.TP
+num,den  
+: polynomials (optimal numerator and denominator)
+.TP
+err    
+: real (L2 approximation error \fV||y-n/d||2\fR)
+.SH DESCRIPTION
+L2 approximation of discrete SISO system given by its impulse
+response.
+.LP
+Coefficients of the series are given by :
+\fVy^=[0,ldiv(num,den,ny)]\fR
+.SH SEE ALSO
+arl2

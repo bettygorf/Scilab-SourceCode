@@ -1,0 +1,39 @@
+.TH inttype 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+inttype -  type integers used in integer data types
+.SH CALLING SEQUENCE
+.nf
+[i]=inttype(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: an matrix of integers (see int8,..)
+.TP 10
+i
+: integer
+.SH DESCRIPTION
+\fVinttype(x)\fR  returns an integer which is the type of the entries
+of \fVx\fR as following :
+.IP 1 
+:  one byte integer representation
+.IP 2 
+:  two bytes integer representation
+.IP 4 
+:  four bytes integer representation
+.IP 11 
+:  one byte unsigned integer representation
+.IP 12 
+:  two bytes unsigned integer representation
+.IP 14 
+:  four bytes unsigned integer representation
+.SH EXAMPLE
+.nf
+x=uint16(1:10);
+inttype(x)
+.fi
+.SH SEE ALSO
+int8
+
+

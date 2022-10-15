@@ -1,0 +1,18 @@
+.TH while 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+while - while keyword 
+.SH DESCRIPTION
+\fVwhile\fR clause. Must be terminated by \fV"end"\fR
+.LP
+.Vb while expr ,instruction1,instruction2,...,end
+.LP
+.Vb while expr do instruction1,instruction2,...,end
+.SH EXAMPLE
+.nf
+e=1; a=1; k=1;
+while norm(a-(a+e),1) > %eps, e=e/2; k=k+1; end
+e,k
+.fi
+.SH SEE ALSO
+for, select, break, return, pause

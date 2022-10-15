@@ -1,0 +1,35 @@
+.TH h_cl 5 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+h_cl - closed loop matrix
+.SH CALLING SEQUENCE
+.nf
+[Acl]=h_cl(P,r,K)
+[Acl]=h_cl(P22,K)
+.fi
+.SH PARAMETERS
+.TP 8
+P, P22
+: linear system (\fVsyslin\fR list), augmented plant or nominal plant respectively
+.TP
+r
+: 1x2 row vector, dimensions of 2,2 part of \fVP\fR (\fVr=[rows,cols]=size(P22)\fR)
+.TP
+K
+: linear system (\fVsyslin\fR list), controller
+.TP
+Acl
+: real square matrix
+.SH DESCRIPTION
+Given the standard plant \fVP\fR (with \fVr=size(P22)\fR) and the controller
+\fVK\fR, this function returns the closed loop matrix \fVAcl\fR.
+.LP
+The poles of \fVAcl\fR must be stable for the internal stability 
+of the closed loop system.
+.LP
+\fVAcl\fR is the \fVA\fR-matrix of the linear system \fV[I -P22;-K I]^-1\fR i.e.
+the \fVA\fR-matrix of \fVlft(P,r,K)\fR
+.SH SEE ALSO
+lft
+.SH AUTHOR
+F. D.

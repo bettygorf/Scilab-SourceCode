@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<!--Converted with LaTeX2HTML 96.1 (Feb 5, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Descriptor Riccati equations</TITLE>
+<META NAME="description" CONTENT="Descriptor Riccati equations">
+<META NAME="keywords" CONTENT="lmidoc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="lmidoc.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html177" HREF="node11.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www-rocq.inria.fr/scilab/icons/next_motif.gif"></A> <A NAME="tex2html175" HREF="node5.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www-rocq.inria.fr/scilab/icons/up_motif.gif"></A> <A NAME="tex2html169" HREF="node9.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www-rocq.inria.fr/scilab/icons/previous_motif.gif"></A> <A NAME="tex2html179" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www-rocq.inria.fr/scilab/icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html178" HREF="node11.html">Linear programming with equality </A>
+<B>Up:</B> <A NAME="tex2html176" HREF="node5.html">Examples</A>
+<B> Previous:</B> <A NAME="tex2html170" HREF="node9.html">Mixed  Control</A>
+<BR> <P>
+<H3><A NAME="SECTION00032500000000000000">Descriptor Riccati equations</A></H3>
+<P>
+In Kalman filtering for descriptor system
+<P> <IMG WIDTH=500 HEIGHT=39 ALIGN=BOTTOM ALT="eqnarray175" SRC="img44.gif"  > <P>
+where <I>u</I> and <I>r</I> are zero-mean, white Gaussian noise sequences with 
+covariance <I>Q</I> and <I>R</I> respectively, one needs to obtain the positive
+solution to the descriptor Riccati equation (see [<A HREF="node22.html#ramine">4</A>])
+<P> <IMG WIDTH=460 HEIGHT=61 ALIGN=BOTTOM ALT="displaymath778" SRC="img45.gif"  > <P>
+<P>
+It can be shown that this problem can be formulated as a  <IMG WIDTH=9 HEIGHT=11 ALIGN=BOTTOM ALT="tex2html_wrap_inline590" SRC="img7.gif"  > 
+problem as follows: maximize Trace(P) under constraints
+<P> <IMG WIDTH=292 HEIGHT=15 ALIGN=BOTTOM ALT="displaymath779" SRC="img46.gif"  > <P>
+and 
+<P> <IMG WIDTH=380 HEIGHT=59 ALIGN=BOTTOM ALT="displaymath780" SRC="img47.gif"  > <P>
+<P>
+The evaluation function is:
+<PRE> function [LME,LMI,OBJ]=ric_dscr_eval(XLIST)
+ LME=P-P'
+ LMI=[A*P*A'+Q,zeros(A*C'),E*P;zeros(C*A'),R,C*P;P*E',P*C',P]
+ OBJ=-trace(P)</PRE>
+which can be used as follows (asuming <I>E</I>, <I>A</I>, <I>C</I>, <I>Q</I> and <I>R</I> are
+defined and have compatible sizes-note that <I>E</I> and <I>A</I> need not be
+square).
+<PRE>--&gt; P_init=zeros(A'*A)
+--&gt; P=lmisolver(XLIST0,ric_dscr_eval)</PRE>
+<P>
+<BR> <HR>
+<P><ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

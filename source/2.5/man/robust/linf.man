@@ -1,0 +1,28 @@
+.TH linf 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+linf - infinity norm
+.SH CALLING SEQUENCE
+.nf
+linf(g [,eps],[tol]) 
+.fi
+.SH PARAMETERS
+.TP 10 
+g 
+: is a \fVsyslin\fR linear system.
+.TP 
+eps 
+: is error tolerance on n.
+.TP 
+tol 
+: threshold for imaginary axis poles.
+.SH DESCRIPTION
+returns the L_infinity norm of \fVg\fR.
+.nf
+    n=sup [sigmax(g(jw)] 
+       w
+.fi
+(sigmax largest singular value).
+.SH SEE ALSO
+h_norm, linfn
+

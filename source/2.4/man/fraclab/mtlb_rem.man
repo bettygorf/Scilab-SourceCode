@@ -1,0 +1,24 @@
+.TH "mtlb_rem" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mtlb_rem - Remainder after division
+.sp
+Author: Paulo Goncalves
+.SH SYNTAX
+.nf
+leftover = mtlb_rem(x,q)
+.fi 
+.SH PARAMETERS
+.TP  10
+x
+: Real number 
+.TP
+q
+: Real number , Divider of \fIx\fP
+.TP
+leftover 
+: Real number , Remainder of the division of \fIx\fP by \fIq\fP
+.SH DESCRIPTION
+Remainder after division. MTLB_REM(x,y) is x - y.*int(x./y) if y
+\f(CR~=\fP 0. The input x and y must be real arrays of the same size,
+or real scalars.

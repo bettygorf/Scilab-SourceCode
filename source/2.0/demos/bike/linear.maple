@@ -1,0 +1,16 @@
+#                   MAPLE PROGRAM FOR LINEARIZATION
+#This program requires the matrix II and the vector h calculated
+#by the simulation program simul.maple.
+# 
+lambda:=array(1..nf+ng):
+all:=convert(stack(convert(qdd,matrix),convert(lambda,matrix)),vector):
+
+jaco:=map(simplify,jacobian( evalm(II &* all) ,q )):
+hq:=map(simplify,jacobian(h,q)):
+hqd:=map(simplify,jacobian(h,qd)):
+hu:=map(simplify,jacobian(h,u)):
+
+maple2scilab(`jaco`,jaco,[q,qd,qdd,lambda,param]):
+maple2scilab(`hq`,hq,[q,qd,u,param,alfa,beta,gama]):
+maple2scilab(`hqd`,hqd,[q,qd,u,param,alfa,beta,gama]):
+maple2scilab(`hu`,hu,[q,qd,u,param,alfa,beta,gama]):

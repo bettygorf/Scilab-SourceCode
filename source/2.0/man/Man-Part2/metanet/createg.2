@@ -1,0 +1,21 @@
+.TH createg 1 "October 1994" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME 
+createg - new graph from a graph list
+.SH CALLING SEQUENCE
+.nf
+[]=createg(g,graph-name)
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph list
+.TP 11
+graph-name 
+: string, name for new graph
+.SH DESCRIPTION
+\fVg\fR being a graph list in \fVScilab\fR, \fVcreateg\fR creates the 
+corresponding graph called \fVgraph-name\fR for \fVMetanet\fR. 
+This new graph is not displayed in the Metanet \fVwindow\fR.
+.SH SEE ALSO
+graph_list, loadg

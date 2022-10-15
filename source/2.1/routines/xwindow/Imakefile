@@ -1,0 +1,21 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+OBJS=   message.o choose.o dialog.o mdialog.o string.o testfrac.o \
+	matdialog.o idialog.o 
+
+SRCS=$(OBJS:.o=.c)
+
+LibraryTarget($(PATHO)/xwindow.a, $(OBJS))
+DependTarget()
+
+TESTS= testa test 
+
+tests	: $(TESTS)
+
+test	:  test.f $(PATHO)/xwindow.a
+	$(FC) $(CFLAGS) -o test test.f  
+
+NormalProgramTarget(testa,testa.o $(OBJS),NullParameter, $(SCIDIR)/libs/X11G.a $(SCIDIR)/libs/xsci.a $(SCIDIR)/libs/comm.a $(SCIDIR)/libs/metanet.a $(SCIDIR)/libs/sun.a $(SCIDIR)/libs/xsci.a XawClientLibs ,$(TERMCAPLIB) $(PTYLIB) -lm)
+
+

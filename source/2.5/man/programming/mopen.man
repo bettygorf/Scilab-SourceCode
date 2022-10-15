@@ -1,0 +1,41 @@
+.TH mopen 1 "April 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mopen - open a file  
+.SH CALLING SEQUENCE
+.nf
+[fd,err]=mopen(file [, mode,  swap ])
+.fi
+.SH PARAMETERS
+.TP 10
+file
+: a character string. The pathname of the file to open.
+.TP
+mode 
+: a character string. The \fVmode\fR parameter can be \fV"rb"\fR for
+read binary or \fV"wb"\fR for write binary or \fV"ab"\fR for
+append. The default value is  \fV"rb"\fR.
+.TP
+swap 
+: a scalar. If \fVswap\fR is present and \fVswap=0\fR then automatic
+bytes swap is disabled.
+.TP 
+err
+: a scalar. Error indicator
+.TP
+fd
+: scalar. The \fVfd\fR parameter returned by the function \fVmopen\fR is
+used as a file descriptor (it's a positive integer). 
+
+.SH DESCRIPTION
+\fVmopen\fR may be used to open a file in a way compatible with the C
+\fVfopen\fR procedure. Without swap argument the file is supposed to
+be coded in "little endian IEEE format" and data are swaped if
+necessary to match the IEEE format of the processor. 
+.LP
+To open files in a way compatible with Fortran like functions use
+function \fVfile\fR.
+.SH SEE ALSO
+mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr, mopen, mprintf, mput, mputstr, mscanf, mseek, mtell
+
+

@@ -1,0 +1,15 @@
+
+gpeche(1)                      Scilab Function                      gpeche(1)
+
+NAME
+  gpeche - a fishing program
+
+CALLING SEQUENCE
+  [xk,ukp1]=gpeche(uk,pasg)
+  [ut]=peche(t)
+  [pdot]=pechep(t,p)
+
+DESCRIPTION
+  gpeche Iterates a gradient method on a fishing problem Computes the trajec-
+  tory associated to the command law uk prints the cost value and computes a
+  new control.

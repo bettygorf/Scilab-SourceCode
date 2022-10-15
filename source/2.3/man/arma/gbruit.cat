@@ -1,0 +1,13 @@
+
+gbruit(1)                      Scilab Function                      gbruit(1)
+NAME
+  gbruit - noise generation
+
+CALLING SEQUENCE
+  []=gbruit(pas,Tmax,sig)
+
+DESCRIPTION
+  generates a Scilab function [b]=bruit(t) where bruit(t) is a piecewise con-
+  stant function ( constant on  [k*pas,(k+1)*pas] ). The value on each con-
+  stant interval are random values from  i.i.d  Gaussian variables of stan-
+  dard deviation sig. The function is constant for t<=0 and t>=Tmax.

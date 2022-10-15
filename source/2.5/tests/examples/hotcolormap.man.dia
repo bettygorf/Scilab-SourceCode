@@ -1,0 +1,9 @@
+ 
+clear;lines(0);
+ 
+xset("colormap",hotcolormap(32))
+ 
+plot3d1()
+ Demo of plot3d1
+t=-%pi:0.3:%pi;plot3d1(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[2,2,4]);
+ 

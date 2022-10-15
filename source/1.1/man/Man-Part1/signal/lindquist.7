@@ -1,0 +1,30 @@
+.TH lindquist 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+lindquist - Lindquist's algorithm
+.SH CALLING SEQUENCE
+.nf
+[Pn,Rt,T]=lindquist(n,H,F,G,r0)
+.fi
+.SH PARAMETERS
+.TP 16
+n
+: number of iterations.
+.TP
+H, F, G
+: estimated triple from the covariance sequence of \fVy\fR.
+.TP
+r0
+: E(yk*yk')
+.TP
+Pn
+: solution of the Riccati equation after n iterations.
+.TP
+RtP Tt
+: gain matrices of the filter.
+.SH DESCRIPTION
+computes iteratively the minimal solution of the algebraic
+Riccati equation and gives the matrices \fVRt\fR and \fVTt\fR of the 
+filter model, by the Lindquist's algorithm.
+.SH AUTHOR
+G. Le V.

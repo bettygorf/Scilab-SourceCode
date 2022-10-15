@@ -1,0 +1,21 @@
+
+log(1)                         Scilab Function                         log(1)
+NAME
+  log - natural logarithm
+
+CALLING SEQUENCE
+  y=log(x)
+
+PARAMETERS
+
+  x         : constant vector or constant matrix
+
+DESCRIPTION
+  log(x) is the "element-wise" logarithm. y(i,j)=log(x(i,j)).  For matrix
+  logarithm see logm.
+
+EXAMPLE
+  exp(log([1,%i,-1,-%i]))
+
+SEE ALSO
+  exp, logm

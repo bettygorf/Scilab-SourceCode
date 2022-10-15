@@ -1,0 +1,18 @@
+
+ANDLOG_f(5)                      Scicos Block                     ANDLOG_f(5)
+NAME
+  ANDLOG_f - Scicos logical AND block
+
+DIALOGUE PARAMETERS
+  None.
+
+DESCRIPTION
+  This block, with two event inputs and a regular output, outputs +1 or -1 on
+  its regular ouput depending on input events.
+
+  +1  : When events are synchronously present on both event input ports
+
+  -1  : When only one event is present.
+
+SEE ALSO
+  IFTHEL_f

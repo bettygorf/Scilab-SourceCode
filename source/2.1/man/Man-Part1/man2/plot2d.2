@@ -1,0 +1,100 @@
+.TH plot2d 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+plot2d - multiple plot of functions
+.SH CALLING SEQUENCE
+.nf
+plot2d(x,y,[style,strf,leg,rect,nax])
+.fi
+.SH PARAMETERS 
+.TP 10
+x,y
+: two matrices of the same size \fV[nl,nc]\fR.
+.RS
+.TP
+nc
+: is the number of curves
+.TP
+nl
+: is the number of points of each curve
+for example : \fVx=[ 1:10;1:10]',y= [ sin(1:10);cos(1:10)]'\fR
+.RE
+.TP
+style
+: is a real vector of size (1,nc). the style to use for curve j is
+defined by size(j).
+.RS
+.TP
+-
+if \fVstyle[i]\fR is positive the curve is plotted using the mark of Id \fVstyle[i]\fR,
+.TP
+-
+if \fVstyle[i]\fR is strictly negative a dashed or plain line of id \fVabs(style[i])\fR
+is used. 
+.TP
+- 
+When only one curve is drawn style can be of size (1,2) \fV[style,pos]\fR
+where \fVstyle\fR is used to specify the style and \fVpos\fR is an integer in the range 
+1,6 which specifies a position to use for the caption (this can be useful 
+when a user wants to draw multiple curves on a plot by calling the function plot
+several times and wants to give a caption for each curve)
+.RE
+.TP
+strf
+: is a string of length 3 \fV"xyz"\fR
+.RS
+.TP
+x
+: captions are displayed if \fVx\fR is the character 1. Captions are given by the 
+string leg \fV"leg1@leg2@...."\fR
+.TP
+y
+: controls the computation of the frame 
+.RS
+.TP
+y=1
+: the argument \fVrect\fR is used to specify the boundaries of the plot.
+\fVrect=[xmin,ymin,xmax,ymax]\fR
+.TP
+y=2 
+: the boundaries of the plot are computed using max and min values of \fVx\fR and \fVy\fR.
+.TP
+y=0
+: the current boundaries ( set by a previous call to an other high level
+plotting function ) are used.
+.RE
+.TP
+z 
+: controls the display of information on the frame around the plot
+.RS 
+.TP
+z=1
+: an axis is drawn the number of tics can be specified by the nax argument.
+.TP
+z=2
+: the plot is only surrounded by a box
+.TP
+.I other value
+Nothing around the plot
+.RE
+.RE
+.LP
+.SH DESCRIPTION
+\fVplot2d\fR simultaneously plot a set of 2D curves which are given by a set of points 
+using piecewise linear plotting
+.SH EXAMPLE
+enter the command \fVplot2d()\fR to see a demo 
+.LP
+Another example :
+.nf
+x=0:0.1:2*%pi;
+plot2d([x;x;x]',[sin(x);sin(2*x);sin(3*x)]');
+plot2d([x;x;x]',[sin(x);sin(2*x);sin(3*x)]',...
+[-1,-2,3],"111","L1@L2@L3",[0,-2,2*%pi,2],[2,10,2,10]);
+.fi
+.SH AUTHOR
+J.Ph.C..
+
+
+
+

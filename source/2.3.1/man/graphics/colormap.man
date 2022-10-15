@@ -1,0 +1,8 @@
+.TH colormap 2 "August 1996" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME 
+colormap - Using colors in Scilab
+.SH DESCRIPTION
+Colormaps.
+.SH SEE ALSO
+xget, xset

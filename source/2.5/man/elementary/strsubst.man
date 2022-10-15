@@ -1,0 +1,33 @@
+.TH strsubst 3 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+strsubst - substitute  a character string by another in a  character string.
+.SH CALLING SEQUENCE
+.nf
+str=strsubst(str1,str2,str3)
+.fi
+.SH PARAMETERS
+.TP 15
+str1
+: a matrix of character string. The strings where to search occurrences of \fVstr2\fR
+.TP
+str2
+: a character string. The string to search in \fVstr1\fR.
+.TP
+str3
+: a character string. The replacement string.
+.TP
+str
+: a matrix of character string. The result of the substitution on
+ \fVstr2\fR by  \fVstr3\fR in  \fVstr1\fR
+.SH DESCRIPTION
+\fVstrsubst\fR replaces all occurrences of \fVstr2\fR in \fVstr1\fR by \fVstr3\fR.
+.SH EXAMPLE
+.nf
+strsubst('SCI/demos/scicos','SCI','.')
+strsubst('SCI/demos/scicos','/',' ')
+.fi
+.SH SEE ALSO
+string, strings
+
+

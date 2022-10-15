@@ -1,0 +1,12 @@
+.TH LOOKUP_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+LOOKUP_f - Scicos Lookup table with graphical editor
+.SH DESCRIPTION
+This block realizes a non-linear function defined using a graphical
+editor. 
+
+
+
+
+

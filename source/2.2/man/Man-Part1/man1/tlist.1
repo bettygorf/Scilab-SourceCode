@@ -1,0 +1,57 @@
+.TH tlist 1 "September 1995" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+"Scilab object: tlist" - typed list definition
+.SH CALLING SEQUENCE
+.nf
+tlist(typ,a1,....an )  
+.fi
+.SH PARAMETERS
+.TP 10
+typ
+: Character string or vector of character strings
+.TP 
+ai
+: any Scilab object (\fVmatrix, list,string...\fR).
+.SH DESCRIPTION
+Creates a \fVtyped-list\fR with elements \fVai\fR's. The \fVtyp\fR
+argument specifies the list type. Such \fVtyped-list\fR allow the user
+to define new operations working on these object through scilab
+functions. The only difference between \fVtyped-list\fR and \fVlist\fR
+is the value of the type (16 instead of 15).
+.LP
+\fVtyp(1)\fR specifies the list type (character string used to define
+soft coded operations)
+.LP
+if specified \fVtyp(i)\fR may give the \fVi+1\fRth element formal name
+.LP
+Standard Operations on \fVlist\fR work similarly for \fVtyped-list\fR: 
+.IP extraction 
+: \fV[x,y,z...]=l(v)\fR where \fVv\fR is a vector of indices; 
+\fV[x,y,z]=l(:)\fR extracts all the elements.
+.IP  insertion
+: \fVl(i)=a\fR
+.IP deletion
+: \fVl(i)=null()\fR removes the i-th element of the \fVtlist l\fR.
+.IP display
+.LP
+Moreover if \fVtyp(2:n+1)\fR are specified, user may point elements by
+their names 
+
+We give below examples where tlist are used.
+
+Linear systems are represented by specific \fVtyped-list\fR e.g. a
+linear system \fV[A,B,C,D]\fR is represented by the tlist
+\fVSys=tlist(['lss';'A';'B';'C';'D';'X','dt']),A,B,C,D,x0,'c')\fR 
+and this specific list may be created by the function \fVsyslin\fR.
+.LP
+Sys(2) or Sys('A') is the state-matrix 
+.LP
+A rational matrix \fVH\fR is represented by the \fVtyped-list\fR
+\fVH=tlist(['r';'num';'den';'dt'],Num,Den)\fR where \fVNum\fR and \fVDen\fR are two
+polynomial matrices and a  (e.g. continuous time) linear system with
+transfer matrix \fVH\fR maybe created by \fVsyslin('c',H)\fR.
+.LP
+H(2) or H('num') is the transfer matrix numerator
+.SH SEE ALSO
+null, percent, syslin, list

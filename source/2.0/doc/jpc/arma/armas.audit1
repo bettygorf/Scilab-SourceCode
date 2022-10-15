@@ -1,0 +1,8 @@
+ <> 
+ <>load('Temp3314');
+load('Temp3314');
+                /--erreur 
+ fichier inaccessible ou inexistant :load('Temp3314');
+exec('temp3314')
+ 
+ <>

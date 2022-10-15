@@ -1,0 +1,72 @@
+
+fplot3d(2)                     Scilab Function                     fplot3d(2)
+NAME
+  fplot3d - 3D plot of a surface defined by an external
+
+CALLING SEQUENCE
+  fplot3d(xr,yr,f,[theta,alpha,leg,flag,ebox])
+
+PARAMETERS
+
+  xr        : matrix of size (1,n1)
+
+  yr        : matrix of size (1,n2).
+
+  f         : external (z=f(x,y))
+
+  theta, alpha
+            : real (spherical coordinates in degrees of the observation
+            point)
+
+  leg       : string (caption for each axis. @ is a field separator e.g.
+            "X@Y@Z")
+
+  flag      :  real vector of size three flag=[mode,type,box]
+
+            mode
+              : integer (treatment of hidden parts)
+
+              mode >=2  the hidden parts of the surface are removed and the
+                        surface is painted in gray (from low gray to black
+                        according to the value of mode)
+
+              mode = 1  The hidden parts of the surface are drawn
+
+              mode <= 0 Only the shadow of the surface is painted with a gray
+                        level depending on mode
+
+            type
+              :  Scaling
+
+              if type = 0
+                        the plot is made using the current 3D scaling ( set
+                        by a previous call to param3d, plot3d, contour,
+                        plot3d1
+
+              if type = 1,
+                        the value of ebox=[xmin,xmax,ymin,ymax,zmin,zmax]
+                        specifies the boundaries
+
+              else      the boundaries are computed with the given datas.
+
+            box
+              : frame display around the plot.
+
+              box=0     : Nothing is drawn around the plot
+
+               box=1    :not implemented
+
+              box=2     : only the axes behind the surface are drawn
+
+              box=3     : a box surrounding the surface is drawn and captions
+                        are added
+
+DESCRIPTION
+  This routines plots a surface defined by an external f.  the values of f on
+  the grid defined by xr.yr are first computed using feval, then control is
+  passed to the primitive plot3d.
+
+  Enter the command  fplot3d() to see a demo.
+
+AUTHOR
+  J.Ph.C.

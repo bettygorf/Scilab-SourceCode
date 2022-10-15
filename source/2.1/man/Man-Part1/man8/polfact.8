@@ -1,0 +1,32 @@
+.TH polfact 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+polfact - minimal factors 
+.SH CALLING SEQUENCE
+.nf
+[f]=polfact(p)
+.fi
+.SH PARAMETERS
+.TP
+p 
+: polynomial
+.TP
+f 
+: vector \fV[f0 f1 ... fn]\fR such that \fVp=prod(f)\fR 
+.RS
+.TP
+f0
+: constant
+.TP
+fi
+: polynomial
+.RE
+.SH DESCRIPTION
+.Vb f=polfact(p)
+returns the minimal factors of p i.e. \fVf=[f0 f1 ... fn]\fR such 
+that \fVp=prod(f)\fR 
+.SH SEE ALSO
+lcm, cmndred
+
+
+

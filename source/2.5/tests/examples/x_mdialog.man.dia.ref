@@ -1,0 +1,60 @@
+ 
+clear;lines(0);
+ 
+ txt=['magnitude';'frequency';'phase    '];
+ 
+ sig=x_mdialog('enter sine signal',txt,['1';'10';'0'])
+ sig  =
+ 
+!1   !
+!    !
+!10  !
+!    !
+!0   !
+ 
+ mag=evstr(sig(1))
+ mag  =
+ 
+    1.  
+ 
+ frq=evstr(sig(2))
+ frq  =
+ 
+    10.  
+ 
+ ph=evstr(sig(3))
+ ph  =
+ 
+    0.  
+ 
+ 
+ rep=x_mdialog(['System Simulation';'with PI regulator'],...
+                      ['P gain';'I gain '],[' ';' '])
+ rep  =
+ 
+     []
+ 
+ 
+ 
+ n=5;m=4;mat=rand(n,m);
+ 
+ row='row';labelv=row(ones(1,n))+string(1:n)
+ labelv  =
+ 
+!row1  row2  row3  row4  row5  !
+ 
+ col='col';labelh=col(ones(1,m))+string(1:m)
+ labelh  =
+ 
+!col1  col2  col3  col4  !
+ 
+ new=evstr(x_mdialog('Matrix to edit',labelv,labelh,string(mat)))
+ new  =
+ 
+!   0.2113249    0.6283918    0.5608486    0.2320748 !
+!   0.7560439    0.8497452    0.6623569    0.2312237 !
+!   0.0002211    0.685731     0.7263507    0.2164633 !
+!   0.3303271    0.8782165    0.1985144    0.8833888 !
+!   0.6653811    0.068374     0.5442573    0.6525135 !
+ 
+ 

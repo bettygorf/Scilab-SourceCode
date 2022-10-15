@@ -1,0 +1,81 @@
+
+plot_graph(1)                  Scilab function                  plot_graph(1)
+NAME
+  plot_graph - general plot of a graph
+
+CALLING SEQUENCE
+  plot_graph(g,[rep,rep1])
+
+PARAMETERS
+
+  g  : graph list
+
+  rep : row vector of 13 values for the parameters of the plot
+
+  rep1 : row vector of 4 values defining the plotting rectangle
+
+DESCRIPTION
+  plot_graph plots graph g in a Scilab graphical window.  The optional argu-
+  ments rep and rep1 define the parameters of the plot. If there are not
+  given, a dialog box for the definition of these parameters is opened.
+
+  rep must be a row vector with 13 integer numbers which must be 1 or 2.  The
+  meaning of the values of rep are:
+
+  Frame definition: 1 = Automatic
+                    2 = Given (see below)
+
+  Plotting arrows: 1 = yes, 2 = no
+
+  Plotting sink and source nodes: 1 = yes, 2 = no
+
+  Plotting node names: 1 = yes, 2 = no
+
+  Plotting node labels: 1 = yes, 2 = no
+
+  Plotting arc names : 1 = yes, 2 = no
+
+  Plotting arc labels: 1 = yes, 2 = no
+
+  Plotting node demand: 1 = yes, 2 = no
+
+  Plotting edge length: 1 = yes, 2 = no
+
+  Plotting edge cost: 1 = yes, 2 = no
+
+  Plotting edge min cap: 1 = yes, 2 = no
+
+  Plotting edge max cap: 1 = yes, 2 = no
+
+  Plotting edge weight: 1 = yes, 2 = no
+
+  If rep(1) is 2, the frame definition must be given by rep1. Otherwise,
+  rep1can be omitted.  rep1 must be a row vector [orx,ory,w,h] giving respec-
+  tively the coordinates of the upper-left point, the width and the height of
+  the plotting rectangle.
+
+EXAMPLE
+  // simple graph with different choices for the plot
+  ta=[2 2 1 1 2 4 3 3 4];
+  he=[2 2 3 2 3 2 1 2 1];
+  g=make_graph('foo',1,4,ta,he);
+  g('node_type')=[1 1 1 2];g('node_name')=string([1:4]);
+  g('node_x')=[73 737 381 391]; g('node_y')=[283 337 458 142];
+  g('node_color')=[3 3 3 11];
+  g('node_diam')=[30 30 30 60];
+  g('edge_color')=[10 0 2 6 11 11 0 0 11];
+  rep=[2 2 1 1 2 2 2 2 2 2 2 2 2];
+  rep1=[100 -400 650 300];
+  xbasc(); plot_graph(g,rep,rep1);
+  rep=[2 1 1 1 2 2 2 2 2 2 2 2 2];
+  x_message('plot the graph with different parameters');
+  xbasc(); plot_graph(g,rep,rep1);
+  // plotting using dialogs
+  xbasc(); plot_graph(g);
+  xset("thickness",4);
+  xbasc();
+  plot_graph(g);
+  xset('default');
+
+SEE ALSO
+  show_graph

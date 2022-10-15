@@ -1,0 +1,1018 @@
+function [scs_m,newparameters,needcompile,edited]=scicos(scs_m,menus)
+if ~exists('MODE_X') then MODE_X = 0; end
+// scicos - block diagram graphic editor
+//%SYNTAX
+// scs_m=scicos(scs_m,job)
+//%PARAMETERS
+// scs_m    : scilab list, scicos main data structure
+//      scs_m(1) contains system name and other infos
+//      scs_m(i+1) contains description of ith block diagram element
+// menus : vector of character strings,optional parameter giving usable menus 
+//!
+// Copyright INRIA
+[lhs,rhs]=argn(0)
+//check if superblock editing mode
+[l,mac]=where()
+slevel=prod(size(find(mac=='scicos')))
+super_block=slevel>1
+if ~super_block then
+  // define scicos libraries
+  if exists('scicoslib')==0 then load('SCI/macros/scicos/lib'),end
+  if exists('blockslib')==0 then load('SCI/macros/scicos_blocks/lib'),end
+end
+
+
+
+scicos_ver='scicos2.4' // set current version of scicos
+Main_Scicos_window=1000
+
+//Initialisation
+newparameters=list()
+enable_undo=%f
+edited=%f
+path='./'
+exp_dir=PWD
+WIDTH_default=1000;HIGHT_default=800;
+
+
+
+if ~super_block then // global variables
+  pal_mode=%f // Palette edition mode
+  newblocks=[] // table of added functions in pal_mode
+  super_path=[] // path to the currently opened superblock
+  errcatch(-1,'continue','nomessage')
+  load('.scicos_pal')
+  if iserror(-1) then    
+    errclear(-1)
+    errcatch(-1,'continue')
+    save('.scicos_pal',scicos_pal)
+    if iserror(-1) then
+      errclear(-1)
+      message('Cannot save .scicos_pal in current directory')
+    end
+  end
+end
+//
+if rhs>=1 then
+  if type(scs_m)==10 then //diagram is given by its filename
+    fil=scs_m
+    alreadyran=%f
+    [ok,scs_m,cpr,edited]=do_load(fil,'diagram')
+    if ~ok then return,end
+    if size(cpr)==0 then
+      needcompile=4
+      state0=list()
+    else
+      state0=cpr(1);
+      needcompile=0
+    end
+  else //diagram is given by its data structure
+    if ~super_block then 
+      cpr=list();needcompile=4;alreadyran=%f,state0=list()
+    end
+  end
+else
+  xset('window',Main_Scicos_window);
+  scs_m=empty_diagram()
+  cpr=list();needcompile=4;alreadyran=%f;state0=list()
+end
+//
+if type(scs_m)<>15 then error('first argument must be a scicos list'),end
+
+
+
+
+//Menu definitions
+ 
+menu_e=['Palettes','Context','Smart Move','Move (m)','Copy (c)','Copy Region',..
+	'Replace','Align','Link (l)','Delete (d)','Delete Region','Add new block',..
+	'Flip (f)','Undo (u)','Pal editor']
+menu_s=['Setup','Compile','Eval','Run']
+menu_f=['Replot (r)','New','Region to Super Block','Purge','Rename','Save (s)','Save As',..
+	'Load','Load as Palette','Save as Palette','Save as Interf. Func.',..
+	'Set Diagram Info','Navigator','Export','Export All','Quit (q)']
+menu_b=['Open/Set (o)','Resize','Icon','Icon Editor','Color','Label','Get Info (i)','Identification','Documentation']
+menu_v=['Window','Background color','Default link colors','ID fonts','3D aspect',..
+	'Add color','Focus','Shift','Zoom in','Zoom out','Help','Calc']
+
+menus=tlist(['xxx','Diagram','Edit','Simulate','Object','Misc'],..
+    menu_f,menu_e,menu_s,menu_b,menu_v)
+
+//Create callbacks
+w='menus(''Edit'')(';rpar=')'
+Edit=w(ones(menu_e))+string(1:size(menu_e,'*'))+rpar(ones(menu_e))
+w='menus(''Simulate'')(';rpar=')'
+Simulate=w(ones(menu_s))+string(1:size(menu_s,'*'))+rpar(ones(menu_s))
+w='menus(''Diagram'')(';rpar=')'
+Diagram=w(ones(menu_f))+string(1:size(menu_f,'*'))+rpar(ones(menu_f))
+w='menus(''Object'')(';rpar=')'
+Object=w(ones(menu_b))+string(1:size(menu_b,'*'))+rpar(ones(menu_b))
+w='menus(''Misc'')(';rpar=')'
+Misc=w(ones(menu_v))+string(1:size(menu_v,'*'))+rpar(ones(menu_v))
+ 
+//keyboard definiton
+%tableau=emptystr([1:100]);
+%tableau(-31+[100,99,109,117,102,111,115,105,114,108,113])    =..
+    ['Delete (d)','Copy (c)','Move (m)','Undo (u)','Flip (f)','Open/Set (o)',..
+    'Save (s)','Get Info (i)','Replot (r)','Link (l)','Quit (q)'];
+    
+
+
+//viewport
+wpar=scs_m(1)
+wsiz=wpar(1)
+options=wpar(7)
+
+if ~super_block then
+  xset('window',Main_Scicos_window);
+  curwin=xget('window');
+  palettes=list();
+  noldwin=0
+  windows=[1 curwin]
+  pixmap=xget('pixmap')==1
+  //
+  oldfont=xget('font')
+  
+  %rect=[];
+  for i=0:5
+    xset('font',oldfont(1),i)
+    ktmp=xstringl(0,0,['this is a test'])
+    %rect=[%rect;[ktmp(3)  ktmp(4)  ]  ]
+  end
+  //%rect=%rect/%rect(1)
+  xset('font',oldfont(1),oldfont(2))
+  //
+else
+  noldwin=size(windows,1)
+  windows=[windows;slevel curwin]
+  palettes=palettes;
+end
+
+//initialize graphics
+xdel(curwin)
+xset('window',curwin);
+
+xset('default')
+xbasc();
+
+if pixmap then xset('pixmap',1); end
+xset('pattern',1)
+xset('dashes',1)
+if ~set_cmap(options('Cmap')) then // add colors if required
+  options('3D')(1)=%f //disable 3D block shape
+end
+if pixmap then xset('wwpc');end
+xbasc();xselect()
+dr=driver();driver('Rec');
+set_background()
+
+// ration between xset and xget wdim
+
+wsiz=wpar(1)
+
+if MODE_X then //resize physical window
+  xset("wresize",1);
+  xset('wdim',wsiz(1),wsiz(2))
+end
+
+window_set_size(wsiz)
+
+if size(wsiz,'*')<5 then wsiz(5)=wsiz(1);wsiz(6)=wsiz(2);end
+f_xsetech(wsiz)
+
+xset('alufunction',6)
+
+
+execstr('Edit_'+string(curwin)+'=Edit')
+execstr('Simulate_'+string(curwin)+'=Simulate')
+execstr('Object_'+string(curwin)+'=Object')
+execstr('Misc_'+string(curwin)+'=Misc')
+execstr('Diagram_'+string(curwin)+'=Diagram')
+
+//scs_m(1)(1)(2)=maxi(scs_m(1)(1)(2),450)
+
+//draw diagram and menus
+drawobjs(scs_m)
+
+if pixmap then xset('wshow'),end
+
+
+menu_stuff()
+
+menuss=menus;
+menuss(1)=menus(1)(2:$);
+menubar(curwin,menuss)
+if ~super_block then
+  delmenu(curwin,'stop')
+  addmenu(curwin,'stop',list(1,'haltscicos'))
+  unsetmenu(curwin,'stop')
+else
+  unsetmenu(curwin,'Simulate')
+end
+
+//set context (variable definition...)
+if size(scs_m(1))>4 then 
+  if type(scs_m(1)(5))==10 then
+    execstr(scs_m(1)(5)) ,
+  else
+    scs_m(1)(5)=' ' 
+  end
+end
+%pt=[];%win=0;
+Cmenu='Open/Set (o)'
+while %t
+//  disp(Cmenu),disp(%pt)
+  while %t do
+    if Cmenu==[]&%pt==[] then
+      [btn,xc,yc,win,Cmenu]=cosclick()
+
+      if Cmenu<> [] then 
+	%pt=[];
+	break
+      elseif btn>31 then
+	%pt=[xc;yc];%win=win;Cmenu=%tableau(min(100,btn-31));
+	if Cmenu==emptystr() then Cmenu=[];%pt=[];end
+	break
+      end
+    else
+      break
+    end
+    
+  end
+
+  select Cmenu
+  case 'Quit (q)' then  // OK
+    if or(winsid()==Main_Scicos_window & ~MODE_X) then
+      wdm12=round(xget('wdim'))
+      if maxi(abs((scs_m(1)(1)(1:2)-wdm12))./wdm12)>0.01 then
+	scs_m(1)(1)(1)=wdm12(1);scs_m(1)(1)(2)=wdm12(2);
+	edited=%t
+      end
+    end
+
+    Cmenu=[]
+    do_exit()
+    break
+  case 'Palettes' then
+    Cmenu='Open/Set (o)'
+    [palettes,windows]=do_palettes(palettes,windows)
+
+  case 'New' then
+    Cmenu='Open/Set (o)'
+    r=2
+    if edited then
+      r=message(['Diagram has not been saved';
+	  'Are you sure you want to proceed'],['No';'Yes'])
+    end
+    if r==2 then
+      if alreadyran then do_terminate(),end  //terminate current simulation
+      alreadyran=%f
+      scs_m=empty_diagram()
+      wpar=scs_m(1);wsiz=wpar(1);
+      f_xsetech(wsiz)
+      xbasc();drawobjs(scs_m)
+      edited=%f
+    end
+
+  case 'Smart Move' then  // Move
+    Cmenu='Open/Set (o)'
+    xinfo('Click object to move, drag and click (left to fix, right to cancel)')
+    [%pt,scs_m]=do_move(%pt,scs_m)
+    xinfo(' ')
+
+  case 'Move (m)' then  // Move
+    xinfo('Click object to move, drag and click (left to fix, right to cancel)')
+
+    [%pt,scs_m]=do_stupidmove(%pt,scs_m)
+    xinfo(' ')
+
+
+  case 'Copy (c)' then  // Copy
+    Cmenu='Open/Set (o)'
+    xinfo('Click on the object to copy, drag, click (left to copy, right to cancel)')
+    [%pt,scs_m,needcompile]=do_copy(%pt,scs_m,needcompile)
+    xinfo(' ')
+
+  case 'Copy Region' then  // Copy Region
+    Cmenu='Open/Set (o)'
+    xinfo('Copy Region: Click, drag region, click (left to fix, right to cancel)')
+    [scs_m,needcompile]=do_copy_region(scs_m,needcompile);
+    xinfo(' ')
+
+  case 'Replace' then  // Replace
+    Cmenu=[]
+    xinfo('Click on new object , click on object to be replaced')
+    scs_m_save=scs_m;nc_save=needcompile;enable_undo=%t
+    [scs_m,needcompile]=do_replace(scs_m,needcompile);
+    xinfo(' ')
+
+  case 'Align' then
+    Cmenu='Open/Set (o)'
+    xinfo('Click on an a port , click on a port of object to be moved')
+    scs_m_save=scs_m;nc_save=needcompile;
+    scs_m=prt_align(scs_m)
+    xinfo(' ')
+
+  case 'Link (l)' then  // Link
+    Cmenu='Open/Set (o)'
+    xinfo('Click link origin, drag, click left for final or intermediate points or right to cancel')
+    [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile);
+
+    xinfo(' ')
+
+  case 'Delete (d)' then  // Delete
+    Cmenu='Open/Set (o)'
+    xinfo('Delete: Click on the object to delete')
+    [%pt,scs_m,needcompile]=do_delete(%pt,scs_m,needcompile)
+    xinfo(' ')
+
+  case 'Delete Region' then  // Delete region
+    Cmenu='Open/Set (o)'
+    xinfo('Delete Region: Click, drag region and click (left to delete, right to cancel)')
+    [scs_m,needcompile]=do_delete_region(scs_m,needcompile);
+    xinfo(' ')
+    %pt=[]
+
+  case 'Flip (f)' then
+    Cmenu='Open/Set (o)'
+    xinfo('Click on block to be flipped')
+    scs_m_save=scs_m;nc_save=needcompile;
+    scs_m=do_tild(scs_m)
+    xinfo(' ')
+    %pt=[]
+
+  case 'Undo (u)' then
+    Cmenu='Open/Set (o)'
+    %pt=[]
+    if enable_undo then
+      disablemenus()
+      scs_m=scs_m_save;needcompile=nc_save
+      wpar=scs_m(1)
+      wdm=wpar(1)
+      do_xsetech(wdm)
+      drawobjs(scs_m),
+      xset('alufunction',6);
+      if pixmap then xset('wshow'),end
+      enable_undo=%f
+      enablemenus()
+    end
+
+
+  case 'Replot (r)' then
+    Cmenu='Open/Set (o)'
+    %pt=[];
+    disablemenus()
+    xset('alufunction',3);xbasc();xselect();xset('alufunction',6);
+    if ~MODE_X then
+      wdm12=round(xget('wdim'))
+      if maxi(abs((scs_m(1)(1)(1:2)-wdm12))./wdm12)>0.01 then
+	scs_m(1)(1)(1)=wdm12(1);scs_m(1)(1)(2)=wdm12(2);
+	edited=%t
+      end
+    end
+    wdm=scs_m(1)(1)
+    f_xsetech(wdm)   
+    
+    drawobjs(scs_m),
+    if pixmap then xset('wshow'),end
+    enablemenus()
+
+  case 'Window' then
+    Cmenu='Open/Set (o)'
+    disablemenus()
+    if ~MODE_X then 
+      wdm12=round(xget('wdim'))
+      scs_m(1)(1)(1)=wdm12(1);scs_m(1)(1)(2)=wdm12(2);
+    end
+    wpar=scs_m(1);wdx=wpar(1);
+    wpar=do_window(wpar)
+    edited=or(wpar<>scs_m(1))
+    if or(wdx<>wpar(1)) then
+      xset('alufunction',3);xbasc();xselect();xset('alufunction',6);
+      wd=wpar(1)
+      
+      window_set_size(wd)
+
+      if ~MODE_X then
+	wdm12=round(xget('wdim'))
+      else
+	wdm12=wd
+      end
+      
+      scs_m(1)(1)(1)=wdm12(1);scs_m(1)(1)(2)=wdm12(2);
+      wdm=scs_m(1)(1)
+      wdm(5:6)=(wd(1:2)./wdx(1:2)).*wdm(5:6)
+      scs_m(1)(1)(5)=wdm(5);scs_m(1)(1)(6)=wdm(6);
+      
+      f_xsetech(wdm)
+      drawobjs(scs_m),
+      if pixmap then xset('wshow'),end
+    end
+    enablemenus()
+
+  case 'Setup' then
+    Cmenu='Open/Set (o)'
+    wpar=do_setup(scs_m(1))
+    scs_m(1)=wpar
+
+  case 'Context' then
+    Cmenu=[]
+    while %t do
+      [context,ok]=do_context(scs_m(1)(5))
+      if ~ok then break,end
+      ierr=execstr(context,'errcatch')
+      if ierr==0 then 
+	scs_m(1)(5)=context;
+  	disablemenus()
+        [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr)
+	if needcompile<>4&size(cpr)>0 then state0=cpr(1),end
+        edited=%t
+        alreadyran=%f
+        enablemenus()
+  break,
+      else
+	message(['Incorrect context definition,';
+	         'see message in Scilab window'])
+      end
+    end
+
+  case 'Compile' then
+    nc_save=4
+    Cmenu='Open/Set (o)'
+    [cpr,ok]=do_compile(scs_m)
+    if ok then
+      newparameters=list()
+      tcur=0 //temps courant de la simulation
+      alreadyran=%f
+      state0=cpr(1);
+      needcompile=0;
+    else
+      needcompile=4,
+    end
+
+  case 'Run' then
+    nc_save=4
+    Cmenu='Open/Set (o)'
+    ok=%t
+    [ok,tcur,cpr,alreadyran,needcompile,state0]=do_run(cpr)
+    if ok then newparameters=list(),end
+
+  case 'Rename' then
+    Cmenu='Open/Set (o)'
+    [scs_m,edited]=do_rename(scs_m) 
+
+  case 'Save (s)' then
+    Cmenu='Open/Set (o)'
+    %pt=[]
+    if ~MODE_X then
+      wdm12=round(xget('wdim'))
+      scs_m(1)(1)(1)=wdm12(1);scs_m(1)(1)(2)=wdm12(2);
+    end
+    ok=do_save(scs_m) 
+    if ok&~super_block then edited=%f,end
+
+  case 'Save As' then
+    if ~MODE_X then
+      wdm12=round(xget('wdim'))
+      scs_m(1)(1)(1)=wdm12(1);scs_m(1)(1)(2)=wdm12(2);
+    end
+    disablemenus()
+    Cmenu='Open/Set (o)'
+    [scs_m,editedx]=do_SaveAs()
+    if ~super_block then edited=editedx;end
+    enablemenus()
+
+  case 'FSave' then
+    if ~MODE_X then
+      wdm12=round(xget('wdim'))
+      scs_m(1)(1)(1)=wdm12(1);scs_m(1)(1)(2)=wdm12(2);
+    end
+    Cmenu='Open/Set (o)'
+    ok=do_fsave(fscs_m)
+  if ~super_block then edited=edited&~ok; end
+
+case 'Load' then
+
+    Cmenu='Open/Set (o)'
+    if edited&~super_block then
+      r=message(['Diagram has not been saved';
+	  'Are you sure you want to proceed'],['No';'Yes'])
+      if r==0 then 
+	break;
+      else
+	if alreadyran then do_terminate(),end  //terminate current simulation
+	alreadyran=%f
+      end
+      
+    end
+    disablemenus()
+    [ok,scs_m,cpr,edited]=do_load()
+    if super_block then edited=%t;end
+    if ok then
+      wpar=scs_m(1);
+      options=wpar(7)
+      if ~set_cmap(options('Cmap')) then 
+	options('3D')(1)=%f //disable 3D block shape
+      end
+      wdm=wpar(1)
+      xset('alufunction',3);xbasc();xselect();
+      set_background()
+      
+      window_set_size(wdm)
+      if size(wdm,'*')<5 then wdm(5)=wdm(1);wdm(6)=wdm(2);scs_m(1)(1)=wdm;end
+      f_xsetech(wdm)
+      xselect();
+
+      xset('alufunction',6)
+      drawobjs(scs_m),
+      execstr(scs_m(1)(5)) ,
+      if size(cpr)==0 then
+	needcompile=4
+	alreadyran=%f
+      else
+	state0=cpr(1)
+	needcompile=0
+	alreadyran=%f
+      end
+    end
+    enablemenus()
+
+  case 'Purge' then
+    Cmenu='Open/Set (o)'
+    disablemenus()
+    scs_m=do_purge(scs_m);
+    enablemenus()
+    needcompile=4;
+    edited=%t
+
+
+  case 'Shift' then
+    Cmenu='Open/Set (o)'
+    xinfo('Click on the point you want to put in the middle of the window')
+    wdm=do_view(scs_m)
+    do_xsetech(wdm)
+    wpar=scs_m(1)
+    scs_m_save=scs_m,nc_save=needcompile,enable_undo=%t,edited=%t
+    wpar(1)=wdm;scs_m(1)=wpar
+    drawobjs(scs_m),
+    xinfo(' ')
+    if pixmap then xset('wshow'),end
+
+
+  case 'Focus' then
+    Cmenu='Open/Set (o)'
+    xinfo('Select rectangle to focus into')
+    wdm=do_focus(scs_m)
+    do_xsetech(wdm)
+    wpar=scs_m(1)
+    scs_m_save=scs_m,nc_save=needcompile,enable_undo=%t,edited=%t
+    wpar(1)=wdm;scs_m(1)=wpar
+    drawobjs(scs_m),
+    xinfo(' ')
+    if pixmap then xset('wshow'),end
+
+
+  case 'Zoom in' then
+    Cmenu='Open/Set (o)'
+    xinfo('Zoom in')
+    wdm=do_zoomin(scs_m)
+    do_xsetech(wdm)
+    wpar=scs_m(1)
+    scs_m_save=scs_m,nc_save=needcompile,enable_undo=%t,edited=%t
+    wpar(1)=wdm;scs_m(1)=wpar
+    drawobjs(scs_m),
+    xinfo(' ')
+    if pixmap then xset('wshow'),end
+
+
+  case 'Zoom out' then
+    Cmenu='Open/Set (o)'
+    xinfo('Zoom out')
+    wdm=do_zoomout(scs_m)
+    do_xsetech(wdm)
+    wpar=scs_m(1)
+    scs_m_save=scs_m,nc_save=needcompile,enable_undo=%t,edited=%t
+    wpar(1)=wdm;scs_m(1)=wpar
+    drawobjs(scs_m),
+    xinfo(' ')
+    if pixmap then xset('wshow'),end
+
+
+  case 'Calc' then
+    Cmenu=[]
+    xinfo('You may enter any Scilab instruction. enter return to terminate')
+    scs_gc=save_scs_gc()
+    disablemenus()
+    pause
+    //xinfo(' ')
+    restore_scs_gc(scs_gc);scs_gc=null()
+    enablemenus()
+    Cmenu='Replot (r)'
+
+  case 'Save as Interf. Func.' then
+    Cmenu=[]
+    ok=%f
+    while ~ok then
+      fname=xgetfile('*.sci')
+      if fname<>emptystr() then 
+	[dir,name,ext]=splitfilepath(fname)
+	select ext
+	case 'sci' then
+	  ok=%t
+	else
+	  message('Only *.sci files allowed');
+	  ok=%f
+	end
+      else
+	ok=%t
+      end
+    end
+    if fname<>emptystr() then
+      scs_m(1)(2)(1)=name
+      [ok,wh]=getvalue(['Enter the type of Interf. Func. to create'],..
+	  ['Block(0) or SuperBlock(1)'],list('vec','1'),..
+	  ['1'])
+      if ok then
+	scs_m(1)(2)(1)=name
+	if wh==0 then
+	  path=save_csuper(scs_m,dir)
+	else
+	  path=save_super(scs_m,dir)
+	end
+	errcatch(-1,'continue')
+	if path<>[] then getf(path),end
+	if iserror(-1) then
+	  errclear(-1)
+	  message(name+': error. Perhaps bad name')
+	end
+      end
+    end
+
+  case 'Region to Super Block' then
+    Cmenu='Open/Set (o)'
+    xinfo(' Click, drag region and click (left to fix, right to cancel)')
+    disablemenus()
+    scs_m=do_region2block(scs_m)
+    enablemenus()
+
+  case 'Nyquist' then
+    syst=analyse(scs_m)
+    sl=bloc2ss(syst)
+    xset('window',curwin+1);xbasc()
+    nyquist(sl)
+    xset('window',curwin);
+
+  case 'Open/Set (o)' then
+    xinfo('Click to open block or make a link')
+    k=[]
+    while %t 
+      if %pt==[] then
+	[btn,xc,yc,win,Cmenu]=cosclick()
+
+	if Cmenu<>[] then
+	  %pt=[];break
+	elseif btn>31 then
+	  Cmenu=%tableau(min(100,btn-31));%pt=[xc;yc];%win=win
+	  if Cmenu==emptystr() then 
+	    Cmenu=[];%pt=[];
+	  end 
+	  break
+	end
+      else
+	xc=%pt(1);yc=%pt(2);win=%win;%pt=[]
+      end
+      
+      disablemenus()
+      if windows(find(win==windows(:,2)),1)==100000 then
+	//click in navigator
+	[Path,k,ok]=whereintree(Tree,xc,yc)
+	if ok&k<>[] then Path($)=null();Path($)=null();end
+	if ~ok then k=[],end
+      else
+	k=getobj(scs_m,[xc;yc])
+	Path=k
+      end
+      if k<>[] then
+	super_path=[super_path,k] 
+	[o,modified,newparametersb,needcompileb,editedb]=clickin(scs_m(Path))
+	if Cmenu=='Link (l)' then
+	  %pt=[xc,yc];
+	  enablemenus()
+	  break
+	end
+	
+
+	// in case previous window has been destroyed
+	if ~or(curwin==winsid()) then
+	  xset('window',curwin);
+	  xset('default')
+	  xbasc();
+	  if pixmap then xset('pixmap',1); end
+	  xset('pattern',1)
+	  xset('dashes',1)
+	  if ~set_cmap(options('Cmap')) then // add colors if required
+	    options('3D')(1)=%f //disable 3D block shape
+	  end
+	  if pixmap then xset('wwpc');end
+	  xbasc();xselect()
+	  dr=driver();driver('Rec');
+	  set_background()
+	  
+	  window_set_size(wsiz)
+
+	  if size(wsiz,'*')<5 then wsiz(5)=wsiz(1);wsiz(6)=wsiz(2);end
+	  
+	  f_xsetech(wsiz)	  
+	  xset('alufunction',6)
+	  drawobjs(scs_m)
+	  
+	  if pixmap then xset('wshow'),end
+
+	  menu_stuff()
+
+	  
+	  if ~super_block then
+	    delmenu(curwin,'stop')
+	    addmenu(curwin,'stop',list(1,'haltscicos'))
+	    unsetmenu(curwin,'stop')
+	  else
+	    unsetmenu(curwin,'Simulate')
+	  end
+	  //
+	end
+	//end of redrawing deleted parent  
+	
+	if needcompileb==4 then
+	  kw=find(windows(:,1)==100000)
+	  if kw<>[] then
+	    xdel(windows(kw,2))
+	    Tree=list()
+	  end
+	end
+	edited=edited|editedb
+	super_path($-size(k,2)+1:$)=[]
+	if editedb then
+	  scs_m_save=scs_m;nc_save=needcompile
+	  if ~pal_mode then
+	    needcompile=max(needcompile,needcompileb)
+	  end
+	  scs_m=update_redraw_obj(scs_m,Path,o)
+
+	end
+	
+	//note if block parameters have been modified
+	if modified&~pal_mode  then
+	  model=o(3)
+	  newparameters=mark_newpars(k,newparametersb,newparameters)
+	end
+      end
+      enablemenus()
+    end
+    xinfo(' ')
+
+  case 'Resize' then
+    Cmenu=[]
+    scs_m_save=scs_m;nc_save=needcompile;enable_undo=%t
+    xinfo('Click block to resize')
+    scs_m=do_resize(scs_m)
+    xinfo(' ')
+    edited=%t
+
+  case 'Icon' then
+    Cmenu=[]
+    xinfo('Click on block to edit its icon')
+    scs_m_save=scs_m;nc_save=needcompile;enable_undo=%t
+    scs_m=do_block(scs_m)
+    xinfo(' ')
+    edited=%t
+
+  case 'Icon Editor' then
+    Cmenu=[]
+    scs_m_save=scs_m;nc_save=needcompile;enable_undo=%t
+    disablemenus()
+    scs_m=do_icon_edit(scs_m)
+    Cmenu=[]
+    enablemenus()
+    xinfo(' ')
+    edited=%t  
+
+  case 'Color' then
+    xinfo('Click on object to paint')
+    scs_m_save=scs_m;nc_save=needcompile;enable_undo=%t
+    [%pt,scs_m]=do_color(%pt,scs_m)
+    xinfo(' ')
+    edited=%t
+
+  case 'Label' then
+    Cmenu=[]
+    xinfo('Click block to label')
+    scs_m_save=scs_m;nc_save=needcompile;enable_undo=%t
+    [mod,scs_m]=do_label(scs_m)
+    edited=edited|mod
+    xinfo(' ')
+
+  case 'Eval' then
+    Cmenu='Open/Set (o)'
+    disablemenus()
+    [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr)
+    if needcompile<>4 then state0=cpr(1),end
+    alreadyran=%f
+    enablemenus()
+
+  case 'Help' then
+    Cmenu=[]
+    xinfo('Click on object or menu to get help')
+    do_help()
+    xinfo(' ')
+
+  case 'Add new block' then
+    Cmenu='Open/Set (o)'
+    [scs_m,fct]=do_addnew(scs_m)
+    if fct<>[] then 
+      getf(fct),
+      newblocks=[newblocks;fct]
+    end
+
+  case 'Pal editor' then
+    Cmenu=[]
+    load('.scicos_pal')
+
+    scicos_palnew=do_edit_pal(scicos_pal)
+    if scicos_palnew<>[] then 
+      scicos_pal=scicos_palnew
+      errcatch(-1,'continue')
+      save('.scicos_pal',scicos_pal)
+      if iserror(-1) then
+	errclear(-1)
+	message('Cannot save .scicos_pal in current directory')
+      end
+    end
+    
+  case 'Load as Palette' then
+    Cmenu=[]
+    [palettes,windows]=do_load_as_palette(palettes,windows)
+
+  case 'Save as Palette' then
+    Cmenu=[]
+    if ~MODE_X then
+      wdm12=round(xget('wdim'))
+      scs_m(1)(1)(1)=wdm12(1);scs_m(1)(1)(2)=wdm12(2);
+    end
+    spmode=pal_mode
+    pal_mode=%t
+
+    [scs_m,editedx]=do_SaveAs()
+    if ~super_block then edited=editedx,end
+    pal_mode=spmode
+
+  case 'Background color' then
+    Cmenu=[]
+    [edited,options]=do_options(scs_m(1)(7),'Background')
+    scs_m(1)(7)=options
+    if edited then
+      scs_m(1)(7)=options
+      set_background()
+      Cmenu='Replot (r)'
+    end
+
+  case 'Default link colors' then
+    Cmenu=[]
+    [edited,options]=do_options(scs_m(1)(7),'LinkColor')
+    scs_m(1)(7)=options,
+    if edited then Cmenu='Replot (r)',end
+
+  case 'ID fonts' then
+    Cmenu=[]
+    [edited,options]=do_options(scs_m(1)(7),'ID')
+    scs_m(1)(7)=options
+    if edited then Cmenu='Replot (r)',end
+
+  case '3D aspect' then
+    Cmenu=[]
+    [edited,options]=do_options(scs_m(1)(7),'3D')
+    scs_m(1)(7)=options
+    if edited then Cmenu='Replot (r)',end
+
+  case 'Add color' then
+    Cmenu=[]
+    [edited,options]=do_options(scs_m(1)(7),'Cmap')
+    if edited then 
+      scs_m(1)(7)=options
+      set_cmap(options('Cmap'))
+      set_background()
+      Cmenu='Replot (r)'
+    end       
+
+  case 'Get Info (i)' then   
+    Cmenu='Open/Set (o)'
+    xinfo('Click on object  to get information on it')
+    %pt=do_block_info(%pt,scs_m)
+    xinfo(' ')
+
+
+  case 'Set Diagram Info' then
+    Cmenu='Open/Set (o)'
+    [ok,info]=do_set_info(scs_m(1)(10))
+    if ok then scs_m(1)(10)=info,end
+  case 'Identification' then
+    Cmenu='Open/Set (o)'
+    xinfo('Click on an object to set or get identification')
+    scs_m = do_ident(scs_m)
+    xinfo(' ')
+  case  'Documentation' then
+    Cmenu='Open/Set (o)'
+    xinfo('Click on a block to set or get it''s documentation')
+    scs_m = do_doc(scs_m)
+    xinfo(' ')
+  case 'Navigator' then
+    [Tree,windows]=do_navigator(scs_m,windows)
+    Cmenu='Open/Set (o)'
+
+  case 'Export' then
+    do_export(scs_m)
+    Cmenu='Replot (r)'
+
+  case 'Export All' then
+    lwin=xget('window')
+    oh=%t
+    while oh==%t
+      oh=%f
+      exp_dir=x_dialog('Directory where exported figures are placed',exp_dir)
+      if size(exp_dir,'*')>1 then x_message('Try again');oh=%t;end
+    end
+    if exp_dir<>[] then 
+      systexport(scs_m,exp_dir),
+      if MSDOS then
+	fname=exp_dir+'\'+'navigator'
+      else
+	fname=exp_dir+'/'+'navigator'
+      end
+      [junk,jwin]=do_navigator(scs_m,windows)
+      winc=jwin(find(jwin(:,1)==100000),2)
+      xbasimp(winc,fname)
+      if MSDOS then
+	unix_g(''"'+SCI+'\bin\BEpsf'" -landscape '+fname+'.'+string(winc))
+      else
+	unix_g(SCI+'/bin/BEpsf -landscape '+fname+'.'+string(winc))
+      end
+      xdel(winc)
+      //
+      xset('window',lwin)
+      wsiz=scs_m(1)(1)
+      window_set_size(wsiz)
+     
+      set_background()
+      Cmenu='Replot (r)'
+    else
+      Cmenu=[]
+    end
+    
+  else
+    Cmenu=[]
+  end
+
+  if pixmap then xset('wshow'),end
+end
+
+
+  
+  
+  
+function menu_stuff()
+
+//unsetmenu(curwin,'File',1) //clear
+//unsetmenu(curwin,'File',2) //select
+//unsetmenu(curwin,'File',3) //print
+//unsetmenu(curwin,'File',4) //export
+//unsetmenu(curwin,'File',5) //save
+//unsetmenu(curwin,'File',7) //close
+//unsetmenu(curwin,'File',6) //load
+//unsetmenu(curwin,'3D Rot.')
+//draw diagram and menus
+
+if ~MSDOS then
+  delmenu(curwin,'3D Rot.')
+  delmenu(curwin,'UnZoom')
+  delmenu(curwin,'2D Zoom')
+  delmenu(curwin,'File')
+else
+  delmenu(curwin,'3D &Rot.')
+  delmenu(curwin,'&UnZoom')
+  delmenu(curwin,'2D &Zoom')
+  delmenu(curwin,'&File')
+end
+menuss=menus;
+menuss(1)=menus(1)(2:$);
+menubar(curwin,menuss)
+	  
+
+function window_set_size(wsiz)
+if MODE_X then
+  WIDTH_default=3*wsiz(1);HIGHT_default=3*wsiz(2);
+  XSHIFT_default=wsiz(1);YSHIFT_default=wsiz(2);
+  xset("wresize",0);
+  xset('wdim',WIDTH_default,HIGHT_default);
+  xset('viewport',XSHIFT_default,YSHIFT_default)
+else
+  xset('wdim',wsiz(1),wsiz(2))
+end

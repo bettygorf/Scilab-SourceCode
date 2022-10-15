@@ -1,0 +1,17 @@
+ 
+clear;lines(0);
+ 
+x=[1+%i,-%i;%i,2*%i];
+ 
+conj(x)
+ ans  =
+ 
+!   1. - i      i   !
+! - i         - 2.i !
+ 
+x'-conj(x)  //x'  is conjugate transpose
+ ans  =
+ 
+!   0    - 2.i !
+!   2.i    0   !
+ 

@@ -1,0 +1,26 @@
+#include "../Imake.incl"
+
+PROGS= newfun
+NP=NullParameter
+FSRCS=newfun.f
+
+all	: $(PROGS)
+	chmod a+x fdepend wdepend
+
+FortranProgramTarget(../bin/newfun,newfun.f,$(NP),$(NP),$(NP))
+FortranDependTarget()
+
+$(SCIDIR)/routines/default/funtab.f :  newfun fundef 
+	\rm -f $(SCIDIR)/util/funtab.f 
+	\rm -f $(SCIDIR)/util/funtab.f.new
+	cp $(SCIDIR)/routines/default/funtab.f .
+	$(SCIDIR)/util/newfun
+	mv  $(SCIDIR)/routines/default/funtab.f  \
+		$(SCIDIR)/routines/default/funtab.f-old
+	mv funtab.f.new $(SCIDIR)/routines/default/funtab.f 
+
+
+
+
+
+

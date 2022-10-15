@@ -1,0 +1,27 @@
+#include "../Imake.incl"
+
+SBIN=$(SCIDIR)/bin
+IM=../Imake.incl
+
+PROGRAMS= $(SBIN)/scihelp $(SBIN)/scilab $(SBIN)/xscilab $(SBIN)/xscihelp \
+	$(SCIDIR)/scilab.star $(SBIN)/minfopr $(SBIN)/scilink
+
+AllTarget($(PROGRAMS))
+
+ScilabScriptsTarget($(SBIN)/minfopr,minfopr.g,$(IM))
+ScilabScriptsTarget($(SBIN)/scilab,scilab.g,$(IM))
+ScilabScriptsTarget($(SBIN)/xscilab,xscilab.g,$(IM))
+ScilabScriptsTarget($(SBIN)/xscihelp,xscihelp.g,$(IM))
+ScilabScriptsTarget($(SCIDIR)/scilab.star,scilab.star.g,$(IM))
+ScilabScriptsTarget($(SBIN)/scilink,scilink.g,$(IM))
+
+
+#if defined(HPArchitecture)
+ScilabScriptsTarget($(SBIN)/scihelp,scihelp-hp.g,$(IM))
+#else 
+ScilabScriptsTarget($(SBIN)/scihelp,scihelp.g,$(IM))
+#endif
+
+
+
+DependTarget()

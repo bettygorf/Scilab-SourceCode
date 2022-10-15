@@ -1,0 +1,32 @@
+
+hist3d(2)                      Scilab Function                      hist3d(2)
+NAME
+  hist3d - 3D representation of a histogram
+
+CALLING SEQUENCE
+  hist3d(f,[theta,alpha,leg,flag,ebox])
+  hist3d(list(f,x,y),[theta,alpha,leg,flag,ebox])
+
+PARAMETERS
+
+  f            : matrix of size (m,n) defining the histogram
+               f(i,j)=F(x(i),y(j)), where x and y  are taken as 0:m and 0:n.
+
+  list(f,x,y)  : where f is a matrix of size (m,n)defining the histogram
+               f(i,j)=F(x(i),y(j)), with x and y vectors of size (1,n+1) and
+               (1,m+1).
+
+  theta,alpha,leg,flag,ebox
+               : see plot3d.
+
+DESCRIPTION
+  hist3d represents a 2d histogram as a 3D plot.  The values are associated
+  to the intervals [x(i) x(i+1)[ X [y(i) y(i+1)[.
+
+  Enter the command hist3d() to see a demo.
+
+SEE ALSO
+  histplot, plot3d
+
+AUTHOR
+  Steer S. & JPhilippe C.

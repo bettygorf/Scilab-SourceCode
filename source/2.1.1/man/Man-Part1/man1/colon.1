@@ -1,0 +1,44 @@
+.TH : 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+: - colon operator
+.SH DESCRIPTION
+.TP 10
+:   
+: Colon. Used in subscripts and loops.
+.LP
+.SH EXAMPLES
+.TP 10
+j:k 
+is the vector 
+.Vb [j, j+1, ..., k]   
+(empty if \fVJ>K\fR).
+.TP
+j:d:k 
+is the vector 
+.Vb [j, j+d, ..., j+m*d] 
+.LP
+The colon notation can be used to pick out selected rows,
+columns and elements of vectors and matrices.
+\fVA(:)\fR is the vector of all the elements of \fVA\fR  regarded as a single
+column. 
+.TP 10
+A(:,j) 
+is the \fVj\fR-th column of \fVA\fR
+.TP
+A(j:k) 
+is 
+.Vb [A(j),A(j+1),...,A(k)] 
+.TP
+A(:,j:k) 
+is 
+.Vb [A(:,j),A(:,j+1),...,A(:,k)]
+and so on.
+.LP
+\fV A(:)=w \fR fills the matrix \fVA\fR with entries of \fVw\fR (taken
+column by column if \fVw\fR is a matrix).
+.SH SEE ALSO
+matrix
+
+
+

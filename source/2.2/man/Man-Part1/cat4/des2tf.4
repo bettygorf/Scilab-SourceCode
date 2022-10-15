@@ -1,0 +1,66 @@
+
+
+
+des2tf(1)                      Scilab Function                      des2tf(1)
+
+
+
+
+
+
+NAME
+  des2tf - descriptor to transfer function conversion
+
+CALLING SEQUENCE
+  [S]=des2tf(sl)
+  [Bfs,Bis,chis]=des2tf(sl)
+
+PARAMETERS
+
+  sl          : list (linear system in descriptor form)
+
+  Bfs, Bis    : two polynomial matrices
+
+  chis        : polynomial
+
+  S           : rational matrix
+
+DESCRIPTION
+  Given the linear system in descriptor form i.e.  Sl=list('des',A,B,C,0,E),
+  des2tf converts sl into its transfer function representation:
+  S=C*(s*E-A)^(-1)*B
+  Called with 3 outputs arguments des2tf returns Bfs and Bis two polynomial
+  matrices, and chis polynomial such that:
+  S=Bfs/chis - Bis
+  chis is the determinant of (s*E-A) (up to a xcative constant);
+
+SEE ALSO
+  glever, pol2des, tf2des, ss2tf, des2ss, rowshuff
+
+AUTHOR
+  F. D.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+.TH rref  1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+rref - computes  matrix row echelon form by lu transformations
+.SH CALLING SEQUENCE
+.nf
+R=rref(A)
+.fi
+.SH PARAMETERS
+.TP
+A
+:  m x n matrix with scalar entries
+.TP
+R
+:  m x n matrix,row echelon form of a
+.SH DESCRIPTION
+\fVrref\fR computes the row echelon form of the given matrix by left lu
+decomposition. If ones need the transformation used just call
+\fVX=rref([A,eye(m,m)])\fR the row echelon form \fVR\fR is \fVX(:,1:n)\fR and
+the left transformation \fVL\fR is given by \fVX(:,n+1:n+m)\fR such as \fVL*A=R\fR
+.SH EXAMPLE
+.nf
+A=[1 2;3 4;5 6];
+X=rref([A,eye(3,3)]);
+R=X(:,1:2)
+L=X(:,3:5);L*A
+.fi
+.SH SEE ALSO
+lu, qr

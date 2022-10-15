@@ -1,0 +1,23 @@
+
+logspace(1)                    Scilab Function                    logspace(1)
+NAME
+  logspace - logarithmically spaced vector
+
+CALLING SEQUENCE
+  logspace(d1,d2, [n])
+
+PARAMETERS
+
+  d1,d2     : real or complex scalar (special meaning for %pi)
+
+  n         : integer (number of values) (default value = 50)
+
+DESCRIPTION
+  returns a row vector of n logarithmically equally spaced points between
+  10^d1 and 10^d2.  If d2=%pi then the points are between 10^d1 and pi.
+
+EXAMPLE
+  logspace(1,2,10)
+
+SEE ALSO
+  linspace

@@ -1,0 +1,105 @@
+.TH file 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+file - file management
+.SH CALLING SEQUENCE
+.nf
+[unit [,err]]=file('open', file-name [,status] [,access [,recl]] [,format])
+file(action,unit)
+.fi
+.SH PARAMETERS
+.TP 10
+file-name
+: string, file name of the file to be opened
+.TP 10
+status
+: string, The status of the file to be opened
+.RS
+.TP 13
+"new" 
+: file must not exist new file (default)
+.TP
+"old" 
+: file must already exists.
+.TP
+"unknown" 
+: unknown status
+.TP
+"scratch" 
+: file is to be deleted at end of session
+.RE
+.TP 10
+access
+: string, The type of access to the file
+.RS
+.TP 13
+"sequential" 
+: sequential access (default)
+.TP
+"direct" 
+: direct access.
+.RE
+.TP 10
+format
+: string,
+.RS
+.TP 13
+"formatted" 
+: for a  formatted file (default)
+.TP
+"unformatted" 
+: binary record.
+.RE
+.TP 10
+recl
+: integer,is the size of records in bytes when \fVaccess="direct"\fR
+.TP
+unit
+: integer, logical unit descriptor of the opened file
+.TP
+err
+: integer, error message number (see error), if open fails. If err is
+omitted an error message is issued.
+.TP
+action
+: is one of the following strings:
+.RS
+.TP 13
+"close" 
+: closes the file
+.TP
+"rewind" 
+: puts the pointer at beginning of file
+.TP
+"backspace" 
+: puts the pointer at beginning of last record.
+.TP
+"last" 
+: puts the pointer after last record.
+.RE
+.SH DESCRIPTION
+selects a logical unit \fVunit\fR and manages the file
+\fVfile-name\fR.
+.LP
+\fV[unit [,err]]=file('open', file-name [,status] [,access [,recl]]
+[,format])\fR allows to open a file with specified properties and to
+get the associated unit number \fVunit\fR. This unit number may be
+used for further actions on this file or as file descriptor in
+\fVread\fR, \fVwrite\fR, \fVreadb\fR, \fVwritb\fR,\fVsave\fR,
+\fVload\fR function calls.
+
+\fVfile(action,unit)\fR allows to close the file , or move the current
+file pointer .
+.SH EXAMPLE
+.nf
+u=file('open',TMPDIR+'/foo','unknown')
+for k=1:4
+  a=rand(1,4)
+  write(u,a)
+end
+file('rewind',u)
+x=read(u,2,4)
+file('close',u)
+.fi
+.SH SEE ALSO
+save, load, write, read, writb, readb, xgetfile

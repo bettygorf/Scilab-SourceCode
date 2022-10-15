@@ -1,0 +1,4 @@
+clear;lines(0);
+hn=eqfir(33,[0 .2;.25 .35;.4 .5],[0 1 0],[1 1 1]);
+[hm,fr]=frmag(hn,256);
+plot(fr,hm),

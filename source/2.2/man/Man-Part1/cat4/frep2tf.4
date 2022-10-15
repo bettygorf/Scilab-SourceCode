@@ -1,0 +1,66 @@
+
+
+
+frep2tf(4)                     Scilab Function                     frep2tf(4)
+
+
+
+
+
+
+NAME
+  frep2tf - transfer function realization of a frequency response
+
+CALLING SEQUENCE
+  [h [,err]]=frep2tf(frq,repf,dg)
+
+PARAMETERS
+
+  frq       : vector of frequencies
+
+  repf      : vector of frequency response
+
+  dg        : degree of linear system
+
+  h         : SISO transfer function
+
+  err       : error norm([ n(2i*pi*frq) - rep.*d(2i*pi*frq)],'fro')
+
+DESCRIPTION
+  Frequency response to  transfer function conversion. The order of h is a
+  priori given in dg which must be provided.
+
+SEE ALSO
+  imrep2ss, arl2, time_id , armax
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

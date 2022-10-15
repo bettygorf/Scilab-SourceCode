@@ -1,0 +1,54 @@
+.TH "mexhat" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mexhat -  Mexican hat wavelet
+.sp
+Author: Paulo Goncalves
+.sp
+Computes a Mexican Hat wavelet (seconde derivative of the gaussian).
+.sp
+.sp
+.SH Usage
+\f(CR[\fPwavelet,alpha\f(CR]\fP = mexhat(nu) 
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBnu\fP :  real scalar between 0 and 1/2
+Central (reduced) frequency of the wavelet.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBwavelet\fP : real vector \f(CR[\fP1,2*N+1\f(CR]\fP
+Mexican Hat wavelet in time.
+
+.TP
+o 
+\fBalpha\fP : real scalar
+Attenuation exponent of the Gaussian enveloppe of the Mexican Hat wavelet.
+.RE
+
+.SH See also:
+morlet, contwt
+.SH Example:
+\fI wavelet synthesis \fP 
+.sp
+.ft CR
+.nf
+wavelet1 = mexhat(0.05) ; 
+wavelet2 = mexhat(0.2) ;
+plot(wavelet1) ; pause
+plot(wavelet2)
+.fi 
+.ec
+.ft P
+.sp

@@ -1,0 +1,34 @@
+.TH sysdiag 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+sysdiag - block diagonal system connection
+.SH CALLING SEQUENCE
+.nf
+r=sysdiag(a1,a2,...,an)
+.fi
+.SH DESCRIPTION
+Returns the block-diagonal system made with subsystems put in the main
+diagonal
+.TP
+ai 
+: subsystems (i.e. gains, or linear systems in state-space or
+transfer form)
+.LP
+Used in particular for system interconnections.
+.SH REMARK 
+At most 17 arguments.
+.SH EXAMPLES
+.nf
+ s=poly(0,'s')
+ sysdiag(rand(2,2),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
+ sysdiag(tf2ss(1/s),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
+ -----------------------------------------------------
+ s=poly(0,'s')
+ sysdiag(rand(2,2),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
+ sysdiag(tf2ss(1/s),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
+.fi
+.SH SEE ALSO
+concatenation,insertion, feedback.
+
+
+

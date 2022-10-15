@@ -1,0 +1,24 @@
+
+TAN(1)                         Scilab Function                         TAN(1)
+NAME
+  tan - tangent
+
+CALLING SEQUENCE
+  [t]=tan(x)
+
+PARAMETERS
+
+  x         : vector or matrix
+
+  t         : vector or matrix
+
+DESCRIPTION
+  The  elements  of t   are  the tangent of  the elements of x.
+
+EXAMPLE
+  x=[1,%i,-1,-%i]
+  tan(x)
+  sin(x)./cos(x)
+
+SEE ALSO
+  atan, tanm

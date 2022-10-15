@@ -1,0 +1,38 @@
+
+INTERP(G)                      Scilab Function                      INTERP(G)
+NAME
+  interp - interpolation
+
+CALLING SEQUENCE
+  [f0 [,f1 [,f2 [,f3]]]]=interp(xd,x,f,d)
+
+PARAMETERS
+
+  xd        : real vector
+
+  x,f,d     : real vectors from spline
+
+  fi        : vectors (derivatives)
+
+DESCRIPTION
+  given three vectors (x,f,d) defining a spline function (see splin) with
+  fi=S(xi), di = S'(xi) this function evaluates S (resp. S', S'', S''') at
+  xd(i).
+
+  x         : vector of xi  (x(1) < x(2) < ...)
+
+  f         : vector of S(xi)
+
+  d         : vector of S'(xi)
+
+  f0        : vector [S(xd(1),S(xd(2)),S(xd(3)),...]
+
+  f(1 2 3)  : vector of first, second, third derivative of S at
+            xd=[xd(1),xd(2),...] i.e.
+
+  f1 = [S'(xd(1)),S'(xd(2)),...]
+
+  f2 = [S''(xd(1)),S''(xd(2)),...]
+
+SEE ALSO
+  splin, smooth, interpln

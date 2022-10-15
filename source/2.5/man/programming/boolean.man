@@ -1,0 +1,35 @@
+.TH boolean 1 "April 1993" "Scilab Group" "Scilab Objects"
+.so ../sci.an
+.SH NAME
+boolean - Scilab Objects, boolean variables and operators & | ~
+.SH DESCRIPTION
+A boolean variable is \fV%T\fR (for "true") or \fV%F\fR (for "false").
+These variables can be used to define matrices of booleans,
+with the usual syntax. Boolean matrices can be manipulated as ordinary
+matrices for elements extraction/insertion and concatenation. Note
+that  other usual operations  (\fV+, *, -, ^,\fR etc) are undefined
+for booleans matrices, three special operators are defined for boolean
+matrices:
+.TP 10
+~b
+: is the element wise negation of boolean \fVb\fR (matrix).
+.TP
+b1&b2
+: is the element wise logical \fVand\fR of \fVb1\fR and \fVb2\fR (matrices).
+.TP
+b1|b2
+: is the  element wise logical \fVor\fR of \fVb1\fR and \fVb2\fR (matrices).
+.TP 
+Boolean variables can be used for indexing matrices or vectors.
+For instance \fVa([%T,%F,%T],:)\fR returns the submatrix 
+made of rows \fV1\fR and \fV3\fR of \fVa\fR.
+Boolean sparse matrices are supported.
+.SH EXAMPLE
+.nf
+[1,2]==[1,3]
+[1,2]==1
+a=1:5; a(a>2)
+.fi
+.SH SEE ALSO
+matrices, or, and, not
+

@@ -1,0 +1,22 @@
+.TH getd 1 "April 1998" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+getd - getting function defined in a directory .sci files 
+.SH CALLING SEQUENCE
+.nf
+getd(path)
+.fi
+.SH PARAMETERS
+.TP 10
+path
+: Scilab string. The directory pathname
+.SH DESCRIPTION
+loads all function defined in the directory .sci  files 
+.SH EXAMPLE
+.nf
+	getd('SCI/macros/auto')
+.fi
+.SH SEE ALSO
+getf, lib
+
+

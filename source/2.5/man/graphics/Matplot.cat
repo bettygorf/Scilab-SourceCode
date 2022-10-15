@@ -1,0 +1,32 @@
+
+Matplot(2)                     Scilab Function                     Matplot(2)
+NAME
+  Matplot - 2D plot of a matrix using colors
+
+CALLING SEQUENCE
+  Matplot(a,[strf,rect,nax])
+
+PARAMETERS
+
+  a  : real matrix of size (n1,n2).
+
+  strf,rect,nax
+     : optional arguments, see plot2d.
+
+DESCRIPTION
+  The entries of matrix int(a) are used as colormap entries in the current
+  colormap. The color associated to a(i,j) is used do draw a small square of
+  length 1 with center at location (x=j,y=(n2-i+1)).
+
+  Enter the command Matplot() to see a demo.
+
+EXAMPLE
+  Matplot([1 2 3;4 5 6])
+  // draw the current colormap
+  Matplot((1:xget("lastpattern")))
+
+SEE ALSO
+  colormap, plot2d
+
+AUTHOR
+  J.Ph.C.

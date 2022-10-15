@@ -1,0 +1,51 @@
+
+scifunc_block(5)                Scicos Block                 scifunc_block(5)
+NAME
+  scifunc_block - Scicos block defined interactively
+
+DESCRIPTION
+  This block can realize any type of Scicos block. The function of the block
+  is defined interactively using dialogue boxes and in Scilab language. Dur-
+  ing simulation, these instructions are interpreted by Scilab; the simula-
+  tion of diagrams that include these types of blocks is slower. For more
+  information see Scicos reference manual.
+
+DIALOGUE PARAMETERS
+
+  number of inputs
+       : a scalar. Number of regular input ports
+
+  number of outputs
+       : a scalar. Number of regular output ports
+
+  number of input events
+       : a scalar. Number of input event ports
+
+  number of output events
+       : a scalar. Number of output event ports
+
+  Initial continuous state
+       : a column vector.
+
+  Initial discrete state
+       : a column vector.
+
+  System type
+       : a string: c or d (CBB or DBB, other types are not supported).
+
+  System parameter
+       : column vector. Any parameters used in the block can be defined here
+       a column vector.
+
+  initial firing
+       : vector. Size of this vector corresponds to the number of event out-
+       puts. The value of the i-th entry specifies the time of the prepro-
+       grammed event firing on the i-th output event port. If less than zero,
+       no event is preprogrammed.
+  Instructions
+       : other dialogues are opened consecutively where used may input Scilab
+       code associated with the computations needed (block initialization,
+       outputs, continuous and discrete state, output events date, block end-
+       ing),
+SEE ALSO
+  GENERIC_f

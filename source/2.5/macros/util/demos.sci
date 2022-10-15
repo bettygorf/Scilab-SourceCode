@@ -1,0 +1,35 @@
+function demos()
+// Copyright INRIA
+oldln=lines()
+lines(0)
+deff('[]=demoex(num)','exec(''SCI/demos/''+demolist(num,2))')
+demolist=[
+'Introduction to SCILAB','intro/dem01.dem';
+'Graphics I','graphics/dessin.dem';
+'Graphics Misc.','graphics/divers.dem';
+'Graphics : X primitives','graphics/xdemo.dem';
+'Inverted pendulum','pendulum/pendule.dem';
+'n-pendulum','npend/npend.dem';
+'Car parking','flat/flat.dem';
+'Wheel simulation ','wheel2/wheel.dem';
+'Bike Simulation (1)','bike/bike.dem';
+'Bike Simulation (2)','bike/bike2.dem';
+'Signal Processing','signal/signal.dem';
+'Dialog (Xwindow)','dialog/dialog.dem';
+'Fortran translator','transl/demotrad.dem';
+'ODE''S','ode/ode.dem';
+'Arma','arma/arma.dem';
+'Tracking','tracking/track.dem';
+'Robust control','robust/rob.dem'];
+
+while %t then
+  num=x_choose(demolist(:,1),'Click to choose a demo');
+  if num==0 then 
+     lines(oldln(1))
+     return
+  else
+     demoex(num)
+  end,
+end
+
+

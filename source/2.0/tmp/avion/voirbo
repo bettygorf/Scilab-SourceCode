@@ -1,0 +1,107 @@
+function foo = voirbo(t,x)
+
+foo = "OK";
+xbasc(0:4);
+
+
+/////////////////////////
+/// Planche 0 (x,y,z) ///
+/////////////////////////
+xset("window",0)
+xclear()  
+xselect()     
+
+xsetech([0,0,1,1/3])
+plot2d(t',x(1,:)', -1, "021")
+xtitle('x','sec.','m');
+
+xsetech([0,1/3,1,1/3])
+plot2d(t',x(2,:)', -1, "021")
+xtitle('y','sec.','m');
+
+xsetech([0,2/3,1,1/3])
+plot2d(t',-x(3,:)', -1, "021")
+xtitle('Altitude (-z)','sec.','m');
+
+
+/////////////////////////////////////
+/// Planche 1 (V,Mach,alpha,beta) ///
+/////////////////////////////////////
+xset("window",1)
+xclear()       
+xselect()
+
+xsetech([0,0,1/2,1/2])
+plot2d(t',x(4,:)', -1, "021")
+xtitle('V','sec.','m/sec');
+
+xsetech([1/2,0,1/2,1/2])
+Mach = x(4,:)./sqrt( 1.4*287.053*( 288.15*ones(t) + 0.0065*x(3,:) ) );
+plot2d(t',Mach', -1, "021")
+xtitle('Mach','sec.','Mach');
+
+xsetech([0,1/2,1/2,1/2])
+plot2d(t',x(5,:)', -1, "021")
+xtitle('alpha','sec.','rad');
+
+xsetech([1/2,1/2,1/2,1/2])
+plot2d(t',x(6,:)', -1, "021")
+xtitle('beta','sec.','rad');
+
+
+////////////////////////////////
+/// Planche 2 (gamma,chi,mu) ///
+////////////////////////////////
+xset("window",2)
+xclear()  
+xselect()     
+
+xsetech([0,0,1,1/3])
+plot2d(t',x(7,:)', -1, "021")
+xtitle('gamma','sec.','rad');
+
+xsetech([0,1/3,1,1/3])
+plot2d(t',x(8,:)', -1, "021")
+xtitle('chi','sec.','rad');
+
+xsetech([0,2/3,1,1/3])
+plot2d(t',x(9,:)', -1, "021")
+xtitle('mu','sec.','rad');
+
+
+///////////////////////////
+/// Planche 3 (p,q,r,F) ///
+///////////////////////////
+xset("window",3)
+xclear()       
+xselect()
+
+xsetech([0,0,1/2,1/2])
+plot2d(t',x(10,:)', -1, "021")
+xtitle('p','sec.','rad/sec');
+
+xsetech([1/2,0,1/2,1/2])
+plot2d(t',x(11,:)', -1, "021")
+xtitle('q','sec.','rad/sec');
+
+xsetech([0,1/2,1/2,1/2])
+plot2d(t',x(12,:)', -1, "021")
+xtitle('r','sec.','rad/sec');
+
+//xsetech([1/2,1/2,1/2,1/2])
+//plot2d(t',x(13,:)', -1, "021")
+//xtitle('Fn','sec.');
+
+
+/////////////////
+/// Planche 4 ///
+/////////////////
+xset("window",4)
+xclear()
+xselect()
+xsetech([0,0,1,1])
+param3d(x(1,:),x(2,:),-x(3,:),-45,35,'X@Y@-Z',[3,3]); 
+xtitle('Trajectoire du centre de masse')
+xset("window",0)
+
+

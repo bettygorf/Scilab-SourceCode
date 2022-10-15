@@ -1,0 +1,32 @@
+.TH pvm_get_timer 1 "January 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_get_timer - Gets the  system's notion  of  the current time.
+.SH CALLING SEQUENCE
+.nf
+[time] = pvm_get_timer()
+.fi
+.SH PARAMETERS
+.TP 5
+time
+: scalar
+.SH DESCRIPTION
+\fVpvm_get_timer\fR returns the  time elapsed since  the last  call of
+pvm_get_timer or   the  last  call  of  pvm_set_timer.  The  time   is
+expressed in elapsed microseconds.  The resolution of the system clock
+is  hardware  dependent; the  time may  be  updated continuously or in
+clock ticks.
+.I timer
+will be > 0.
+If some error occurs then
+.I timer
+will be -1.
+
+.SH EXAMPLE
+.nf
+B = rand(100,100);
+A = rand(100,100);
+pvm_set_timer();C=A*B;t=pvm_get_timer()
+.fi
+.SH SEE ALSO
+pvm_set_timer

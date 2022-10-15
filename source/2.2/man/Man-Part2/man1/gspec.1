@@ -1,0 +1,32 @@
+.TH gspec G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+gspec - eigenvalues of matrix pencil
+.SH CALLING SEQUENCE
+.nf
+[al,be]=gspec(A,E)
+[al,be,Z]=gspec(A,E)
+.fi
+.SH PARAMETERS
+.TP 10
+A, E
+: real square matrices
+.TP
+al, be
+: real vectors
+.TP
+Z
+: real square non-singular matrix
+.SH DESCRIPTION
+.Vb [al,be] = gspec(A,E) 
+returns the spectrum of the matrix pencil
+s E - A, i.e. the roots of the polynomial matrix s E - A.
+The eigenvalues are given by \fVal./be\fR and if \fVbe(i) = 0\fR the ith
+eigenvalue is at infinity. (For \fVE = eye(A), al./be\fR is \fVspec(A)\fR).
+.LP
+.Vb [al,be,Z] = gspec(A,E)
+returns in addition the matrix \fVZ\fR of generalized
+right eigenvectors of the pencil.
+.SH SEE ALSO
+gschur, balanc, spec.
+

@@ -1,0 +1,17 @@
+
+GAIN_f(5)                          Scilab                           GAIN_f(5)
+Group                                                                   Group
+Scicos                                                                 Scicos
+NAME
+  GAIN_f - Scicos gain block
+
+DIALOGUE PARAMETERS
+
+  Gain           : a real matrix.
+
+DESCRIPTION
+  This block is a gain block. The output is the Gain times the regular input
+  (vector). The dimensions of Gain determines the input (number of columns)
+  and output (number of rows) port sizes.
+
+  This block is obsolete. Use GAINBLK_f block instead of it

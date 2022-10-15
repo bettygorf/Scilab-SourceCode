@@ -1,0 +1,36 @@
+.TH xtape 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xtape -  set up the record process of graphics
+.SH CALLING SEQUENCE
+.nf
+xtape(str,num)
+.fi
+.SH PARAMETERS
+.TP
+str 
+: string ( 'on' or 'replay' or 'clear')
+.TP
+num
+: an integer
+.SH DESCRIPTION
+\fVxtape\fR is used to set up the record process of graphics
+.TP 15
+xtape('on') 
+: just select the driver "Rec" which records all the 
+graphics operations.
+.TP 
+xtape('clear', num) 
+: clear the graphic window \fVnum\fR and clear the recorded 
+graphics associated with window \fVnum\fR.
+.TP
+xtape('replay',xx) 
+: clear the window \fVnum\fR and redisplay all the recorded
+graphics in it ( used when a user changes the size of a graphic window
+under \fVxscilab\fR).
+.LP
+.SH AUTHOR
+J.Ph.C.
+
+
+

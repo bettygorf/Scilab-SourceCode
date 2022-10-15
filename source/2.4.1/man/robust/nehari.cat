@@ -1,0 +1,24 @@
+
+nehari(1)                      Scilab Function                      nehari(1)
+NAME
+  nehari - Nehari approximant
+
+CALLING SEQUENCE
+  [x]=nehari(R [,tol])
+
+PARAMETERS
+
+  R    : linear system (syslin list)
+
+  x    : linear system (syslin list)
+
+  tol  : optional threshold
+
+DESCRIPTION
+  [x]=nehari(R [,tol]) returns the Nehari approximant of R.
+
+  R = linear system in state-space representation (syslin list).
+
+  R is strictly proper and - R~ is stable (i.e. R is anti stable).
+      || R - X ||oo = min || R - Y ||oo
+                    Y in Hoo

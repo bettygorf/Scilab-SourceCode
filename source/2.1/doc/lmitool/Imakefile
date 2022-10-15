@@ -1,0 +1,33 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+TEXFILES= lmidoc.tex 
+
+AllTarget(info)
+
+info 	:
+	@echo "  lmidoc.ps.Z is Scilab documentation "
+	@echo "  in compressed Postscript source "
+	@echo 
+	@echo "  To remake it from scratch, you need" 
+	@echo "  scilab, latex and makeindex type :"
+	@echo "     rm lmidoc.ps.Z ; xmkmf ; make Makefiles ; make doc "
+
+doc	: lmidoc.ps.Z
+
+lmidoc.ps.Z: $(TEXFILES)
+	latex lmidoc
+	latex lmidoc
+	dvips -o lmidoc.ps lmidoc.dvi 
+	$(RM) lmidoc.ps.Z
+	compress lmidoc.ps
+
+clean	::
+	$(RM) *.aux *.log  *.dvi *.ind *.idx *.ilg *.lof *.lot *.toc lmidoc.ps
+
+distclean:: clean 
+
+depend::
+
+
+

@@ -1,0 +1,21 @@
+.TH trfmod 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+trfmod - poles and zeros display
+.SH CALLING SEQUENCE
+.nf
+[hm]=trfmod(h [,job])
+.fi
+.SH DESCRIPTION
+To visualize the pole-zero structure of a SISO transfer 
+function \fVh\fR .
+.TP 10
+job='p' 
+: visualization of polynomials (default)
+.TP
+job='f' 
+: visualization of natural frequencies and damping
+.LP
+Interactive simplification of h.
+.SH SEE ALSO
+poly

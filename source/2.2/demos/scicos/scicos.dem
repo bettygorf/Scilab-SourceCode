@@ -1,0 +1,45 @@
+mode(-1)
+demos_name=[
+    'Thermostat'
+    'Continuous Plant discrete controller'
+    'Simple demo'
+    'Bouncing ball'
+    'Table lookup example'
+    'Threshold'
+    'Scilab Block']
+
+while %t do
+  n=x_choose(demos_name,'Choose a demo')
+  select n
+  case 0 then 
+    break
+  case 1 then  
+    exec('SCI/demos/scicos/demo1.cosf',-1)
+    scicos(x);
+  case 2 then  
+    exec('SCI/demos/scicos/demo2.cosf',-1)
+    scicos(x);
+  case 3 then  
+    exec('SCI/demos/scicos/demo3.cosf',-1)
+    scicos(x);
+  case 4 then  
+    exec('SCI/demos/scicos/demo4.cosf',-1)
+    scicos(x);
+  case 5 then  
+    exec('SCI/demos/scicos/demo5.cosf',-1)
+    scicos(x);
+  case 6 then  
+    xset('window',10)
+    p10=xget('wpos')
+    xset('wpos',p10(1),0)
+    p10=xget('wpos')
+    d10=xget('wdim')
+    xset('window',11)
+    xset('wpos',p10(1),d10(2))
+    exec('SCI/demos/scicos/demo6.cosf',-1)
+    scicos(x);
+  case 7 then  
+    exec('SCI/demos/scicos/demo7.cosf',-1)
+    scicos(x);
+  end
+end

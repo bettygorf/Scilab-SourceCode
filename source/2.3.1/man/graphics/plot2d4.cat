@@ -1,0 +1,22 @@
+
+plot2d4(2)                     Scilab Function                     plot2d4(2)
+NAME
+  plot2d4 - multiple plot of functions
+
+CALLING SEQUENCE
+  plot2d4(str,x,y,[style,strf,leg,rect,nax])
+
+PARAMETERS
+  see plot2d and plot2d1
+
+DESCRIPTION
+  Same as plot2d1 but curves are plotted using arrows style. This can be use-
+  ful when plotting solutions of ode in a phase space.
+
+  Enter the command plot2d4() to see a demo.
+
+SEE ALSO
+  plot2d, plot2d1
+
+AUTHOR
+  J.Ph.C..

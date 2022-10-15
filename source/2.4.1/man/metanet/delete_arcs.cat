@@ -1,0 +1,41 @@
+
+delete_arcs(1)                 Scilab function                 delete_arcs(1)
+NAME
+  delete_arcs - deletes all the arcs or edges between a set of nodes
+
+CALLING SEQUENCE
+  g1 = delete_arcs(ij,g)
+
+PARAMETERS
+
+  ij : matrix of integers (number of nodes)
+
+  g : graph list
+
+  g1 : graph list of the new graph without the arcs or edges defined by ij
+
+DESCRIPTION
+  If g is a directed graph, delete_arcs returns the graph g1 with the arcs
+  defined by matrix ij being deleted.  ij must be a n x 2 matrix of node
+  numbers: the n arcs to be deleted are defined by couples of nodes (ij(i,1),
+  ij(i,2)).
+
+  If g is an undirected graph, the edges corresponding to matrix ij are
+  deleted.
+
+EXAMPLE
+  ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
+  he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 13 15 12 13 9 10 14 11 16 1 17 14 15];
+  g=make_graph('foo',1,17,ta,he);
+  g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+  g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+  show_graph(g);
+  ij=[13 10;8 6;5 4;4 2];
+  gt=delete_arcs(ij,g);
+  show_graph(gt,'new');
+  g('directed')=0;
+  gt=delete_arcs(ij,g);
+  show_graph(gt,'new');
+
+SEE ALSO
+  add_edge, add_node, delete_nodes

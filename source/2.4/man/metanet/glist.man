@@ -1,0 +1,24 @@
+.TH glist 1 "Jan 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+glist - graph list creation
+.SH CALLING SEQUENCE
+.nf
+g = glist(a1, ... ,a34)
+.fi
+.SH DESCRIPTION
+\fVglist(a1,....a34)\fR is a shortcut to  to
+\fVtlist(['graph','name','directed','node_number','tail','head',..
+          'node_name','node_type','node_x','node_y','node_color',..
+          'node_diam','node_border','node_font_size','node_demand',..
+          'edge_name','edge_color','edge_width','edge_hi_width',..
+          'edge_font_size','edge_length','edge_cost',..
+          'edge_min_cap','edge_max_cap','edge_q_weight','edge_q_orig',..
+          'edge_weight','default_node_diam','default_node_border',..
+          'default_edge_width','default_edge_hi_width',..
+          'default_font_size','node_label','edge_label'],a1, ... ,a34)\fR
+It is a low level function to create graph lists, mainly used by programmers. 
+No checking is done.
+For standard creation of graph lists, use \fVmake_graph\fR.
+.SH SEE ALSO
+check_graph, graph-list, make_graph

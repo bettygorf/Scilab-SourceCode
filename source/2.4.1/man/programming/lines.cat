@@ -1,0 +1,20 @@
+
+lines(1)                       Scilab Function                       lines(1)
+NAME
+  lines - rows and columns used for display
+
+CALLING SEQUENCE
+  [nl,nc]=lines([n [,nc]])
+
+DESCRIPTION
+  lines handles Scilab display paging.
+
+  lines() returns the vector [# columns, # rows] currently used by Scilab for
+  displaying the results.
+
+  lines(n) sets the number of displayed lines (before user is asked for more)
+  to n.
+
+  lines(0) disables vertical paging
+
+  lines(n,nc) changes also the size of the output to nc columns.

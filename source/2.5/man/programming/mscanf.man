@@ -1,0 +1,73 @@
+.TH mscanf 1 "Aug 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ mfscanf - scan data from  file 
+ mscanf - scan data from input 
+ msscanf - scan data from string
+.SH CALLING SEQUENCE
+.nf
+[n,a1,...,am]=mfscanf(fd,format);
+data=mfscanf(fd,format);
+
+[n,a1,...,am]=mscanf(format);
+data=mscanf(format);
+
+[n,a1,...,am]=msscanf(str,format);
+data=msscanf(str,format);
+.fi
+.SH PARAMETERS
+.TP 10
+fd : scalar, file descriptor given by \fVmopen\fR (it's a positive
+integer). The value \fV-1\fR refers to the default file ( i.e the last
+opened file).
+.TP 
+format
+: a character string, a C like format.
+.TP 
+str
+: a character string, string to be scanned.
+.TP
+n
+: a scalar integer, the number or data really read.
+.TP
+a1,...,am 
+: Output variables. if \fVm>n\fR the \fVn+1:n\fR last
+\fVai'\fR are set to \fV[]\fR.
+.TP
+data
+: a list formed by the data really read.
+.SH DESCRIPTION
+The mscanf(), mfscanf(), and msscanf() functions are interface for
+C-coded version of \fVfscanf\fR, \fVsscanf\fR and \fVscanf\fR
+functions.
+.LP
+The mscanf(), mfscanf(), and msscanf() functions read character data,
+interpret it according to a format (see cformat), and store the
+converted results into variables. The format parameter contains
+conversion specifications used to interpret the input.
+.LP
+These functions read their input from the following sources:
+.TP 10
+mscanf()
+:  Reads from the Scilab input.
+.TP
+mfscanf()  
+: Reads from the file given by the file descriptor \fVfd\fR.
+.TP
+msscanf()
+: Reads from the character string specified by the \fVstr\fR parameter.
+.SH EXAMPLE
+.nf
+[n,a1,a2]=msscanf('123 456','%i %s')
+[n,a1,a2,a3]=msscanf('123 456','%i %s')
+data=msscanf('123 456','%i %s')
+
+fd=mopen(SCI+'/scilab.star','r')
+mfscanf(fd,'%s %s %s')
+mclose(fd)
+
+.fi
+.SH SEE ALSO
+mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr, mopen, mprintf, mput, mputstr, mscanf, mseek, mtell
+
+

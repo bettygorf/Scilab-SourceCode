@@ -1,0 +1,123 @@
+
+smultim2dsm_u_lStUiBmT2IdTL_E__S_U=BsTtIoTcLhEa_s_t=iSscctiomlcuahlbatsiFtnuioncmcitmaiulolnt2idnommeiaaslur2ed smyenatshuerseiss(y2n)thesis(2)
+NAME
+  smultim2d __SUBTITLE__=stochastic multinomial 2d measure synthesis -
+
+  Author: Christophe Canus
+
+  This  C_LAB   routine   synthesizes two   types    of pre-multifractal
+  stochastic measures related to the multinomial 2d measure (uniform law and
+  lognormal law).
+
+Usage
+  [varargout,[optvarargout]]=sbinom(bx,by,str,varargin,[optvarargin])
+
+Input parameters
+       o bx : strictly positive real (integer) scalar Contains the abscissa
+         base of the multinomial.
+       o by : strictly positive real (integer) scalar Contains the ordonate
+         base of the multinomial.
+       o str : string Contains the type of ouput.
+       o varargin : variable input argument Contains the variable input argu-
+         ment.
+       o optvarargin : optional variable input arguments Contains optional
+         variable input arguments.
+Output parameters
+       o varargout : variable output argument Contains the variable output
+         argument.
+       o optvarargout : optional variable output argument Contains an
+         optional variable output argument.
+Description
+Parameters
+  The stochastic multinomial 2d measure is completly characterized by its
+  abscissa base bx, ordonate base by. These first two parameters must be >1.
+
+  The third parameter str is a variable string used to determine the desired
+  type of output. There are four suffix strings ('meas' for measure, 'cdf'
+  for cumulative distribution function q, 'pdf' for probability density func-
+  tion, 'spec' for multifractal spectrum) and a two prefix strings for the
+  type of stochastic measure ('unif' for uniform and 'logn' for lognormal)
+  which must added to the first ones to form composed. For example,
+  'unifmeas' is for the synthesis of a uniform law multinomial 2d pre-multi-
+  fractal measure and 'lognspec' is for the computation of the multifractal
+  spectrum of a lognormal multinomial 2d measure.  When a string containing
+  suffix string 'meas' is given as third input, a pre-multifractal measure
+  mu_n (first output argument) is synthesized on the bx-adic and by-adic
+  intervals I_nx and I_ny (second and third optional output argument) of the
+  unit square. In that case, the fourth input argument is a strictly positive
+  real (integer) scalar n which contains the resolution of the pre-multifrac-
+  tal measure. The size of the output real matrix mu_n is equal to bx^n*by^n
+  and the one of the output real vectors I_nx and I_ny (if used) is equal to
+  bx^n and by^n (so be aware the stack size ;-)). This option is implemented
+  for the uniform law ('unifmeas') and the lognormal law ('lognmeas') multi-
+  nomial 2d measures.  When a string containing prefix 'unif' is given as
+  third input, the synthesis or the computation is made for a uniform law
+  multinomial 2d measure. In that case, the optional fourth input argument is
+  a strictly positive real scalar epsilon which contains the pertubation
+  around weight .5. The weight is an independant random variable identically
+  distributed between epsilon and 1-epsilon which must be >0., <1. The
+  default value for epsilon is 0.  When a string containing prefix 'logn' is
+  given as third input, the synthesis or the computation is made for a log-
+  normal law multinomial 2d measure. In that case, the optional fifth input
+  argument is a strictly positive real scalar sigma which contains the stan-
+  dard deviation of the lognormal law.  When replacing suffix string 'meas'
+  with suffix string 'cdf', respectively suffix string 'pdf', the cumulative
+  distribution function F_n, respectively the probability density function
+  p_n, related to this pre-multifractal measure is computed (first output
+  argument).
+
+Algorithm details
+
+  For the uniform and lognormal law multinomial 2d, the synthesis algorithm
+  is implemented is a recursive way (to be able to pick up a i.i.d. r.v. at
+  each level of the multiplicative cascade and for all nodes of the corre-
+  sponding binary tree w.r.t. the given law). Note that the lognormal law
+  multinomial 2d measure is not conservative.
+
+Examples
+
+Matlab
+
+  n=5;
+  bx=2;
+  by=3;
+  % synthesizes a pre-multifractal uniform Law multinomial 2d measure
+  [mu_n,I_nx,I_ny]=smultim2d(bx,by,'unifmeas',n);
+  mesh(I_nx,I_ny,mu_n);
+  s=1.;
+  % synthesizes the cdf of a pre-multifractal lognormal law multinomial 2d measure
+  F_n=smultim2d(bx,by,'logncdf',n,s);
+  mesh(I_nx,I_ny,F_n);
+  e=.19;
+  % synthesizes the pdf of a pre-multifractal uniform law multinomial 2d measure
+  p_n=smultim2d(bx,by,'unifpdf',n,e);
+  mesh(I_nx,I_ny,p_n);
+Scilab
+
+  n=5;
+  bx=2;
+  by=3;
+  // synthesizes a pre-multifractal uniform Law multinomial 2d measure
+  [mu_n,I_nx,I_ny]=smultim2d(bx,by,'unifmeas',n);
+  mesh(I_nx,I_ny,mu_n);
+  s=1.;
+  // synthesizes the cdf of a pre-multifractal lognormal law multinomial 2d measure
+  F_n=smultim2d(bx,by,'logncdf',n,s);
+  mesh(I_nx,I_ny,F_n);
+  e=.19;
+  // synthesizes the pdf of a pre-multifractal uniform law multinomial 2d measure
+  p_n=smultim2d(bx,by,'unifpdf',n,e);
+  mesh(I_nx,I_ny,p_n);
+References
+  "A class of Multinomial Multifractal Measures with negative (latent) values
+  for the "Dimension" f(alpha)", Benoit B. MandelBrot. In Fractals' Physical
+  Origins and Properties, Proceeding of the Erice Meeting, 1988. Edited by L.
+  Pietronero, Plenum Press, New York, 1989 pages 3-29.  "Limit Lognormal Mul-
+  tifractal Measures", Benoit B. MandelBrot. In Frontiers of Physics, Landau
+  Memorial Conference, Proceeding of the Tel-Aviv Meeting, 1988. Edited by
+  Errol Asher Gotsman, Yuval Ne'eman and Alexander Voronoi, New York Perga-
+  mon, 1990 pages 309-340.
+
+See also
+  binom, sbinom, multim1d, multim2d, smultim1d (C_LAB routines).  MFAS_mea-
+  sures, MFAS_dimensions, MFAS_spectra (Matlab and/or Scilab demo scripts).

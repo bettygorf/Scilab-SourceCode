@@ -1,0 +1,66 @@
+
+
+
+armax(3)                       Scilab Function                       armax(3)
+
+
+
+
+
+
+NAME
+  armax - armax identification
+
+CALLING SEQUENCE
+  [la,lb,sig,resid]=armax(r,s,y,u,[b0f,prf])
+
+PARAMETERS
+  y              : output process  y(ny,n); ( ny: dimension of y , n : sample
+                 size)
+  u              : input process   u(nu,n); ( nu: dimension of u , n : sample
+                 size)
+  r and s        : auto-regression orders r >=0 et s >=-1
+  b0f            : optional parameter. Its default value is 0 and it means
+                 that the coefficient b0 must be identified. if bof=1 the b0
+                 is supposed to be zero and is not identified
+  prf            : optional parameter for display control. If prf =1, the
+                 default value, a display of the identified Arma is given.
+  la             : is the list(a,a+eta,a-eta) ( la = a in dimension 1) ;
+                 where eta is the estimated standard deviation. ,
+                 a=[Id,a1,a2,...,ar] where each ai is a matrix of size
+                 (ny,ny)
+  lb             : is the list(b,b+etb,b-etb) (lb =b in dimension 1) ; where
+                 etb is the estimated standard deviation.  b=[b0,.....,b_s]
+                 where each bi is a matrix of size (nu,nu)
+  sig            : is the estimated standard deviation of the noise and
+                 resid=[ sig*e(t0),....] (
+
+DESCRIPTION
+  armax is used to identify the coefficients of a n-dimensional ARX process
+     A(z^-1)y= B(z^-1)u + sig*e(t)
+  where e(t) is a n-dimensional white noise with variance I.  sig  an nxn
+  matrix and A(z) and B(z):
+  A(z) = 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
+  B(z) = b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
+  for the method see Eykhoff in trends and progress in system identification,
+  page 96.  with
+   z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s)] and
+   coef= [-a1,..,-ar,b0,...,b_s] we can write y(t)= coef* z(t) + sig*e(t) and
+  the algorithm minimises sum_{t=1}^N ( [y(t)- coef'z(t)]^2) where
+  t0=maxi(maxi(r,s)+1,1))).
+
+EXAMPLE
+  [a,b,sig,resid]=armax(); // will gives an example in dimension 1
+
+AUTHOR
+  J-Ph. Chancelier.
+
+
+
+
+SEE ALSO
+  imrep2ss , time_id, arl2 , armax, frep2tf
+
+
+
+

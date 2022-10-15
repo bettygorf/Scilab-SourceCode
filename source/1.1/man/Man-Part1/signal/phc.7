@@ -1,0 +1,28 @@
+.TH phc 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+phc - from the hankel matrix to state-space model
+.SH CALLING SEQUENCE
+.nf
+[H,F,G]=phc(hk,d,r)
+.fi
+.SH PARAMETERS
+.TP 14
+hk
+: hankel matrix
+.TP
+d
+: dimension of the observation
+.TP
+r
+: desired dimension of the state vector
+for the approximated model
+.TP
+H, F, G
+: relevant matrices of the state-space model
+.SH DESCRIPTION
+macro which computes the matrices \fVH, F, G\fR by the principal hankel
+component approximation method, from the hankel matrix built
+from the covariance sequence of a stochastic process.
+.SH AUTHOR
+G. Le V.

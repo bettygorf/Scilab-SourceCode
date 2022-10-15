@@ -1,0 +1,13 @@
+#include "../../Imake.incl"
+NAME=optlib
+NAM=optim
+
+MACROS= linpro.sci karmarkar.sci       
+
+
+OBJ=$(MACROS:.sci=.bin)
+MACROSN=$(MACROS:.sci=)
+
+SciLibTarget($(OBJ))
+NormalScilabObjectRule()
+DependTarget()

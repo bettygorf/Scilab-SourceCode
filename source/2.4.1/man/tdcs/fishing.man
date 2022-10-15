@@ -1,0 +1,15 @@
+.TH gpeche 1 "April 1993" "Scilab Group" "Scilab Function"
+.SH NAME
+gpeche - a fishing program
+.SH CALLING SEQUENCE
+.nf
+[xk,ukp1]=gpeche(uk,pasg)
+[ut]=peche(t)
+[pdot]=pechep(t,p)
+.fi
+.SH DESCRIPTION
+\fVgpeche\fR Iterates a gradient method on a fishing problem 
+Computes the trajectory associated to the command law \fVuk\fR
+prints the cost value and computes a new control.
+
+

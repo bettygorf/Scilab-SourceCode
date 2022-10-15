@@ -1,0 +1,15 @@
+.TH gbruit 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+gbruit - noise generation 
+.SH CALLING SEQUENCE
+.nf
+[]=gbruit(pas,Tmax,sig)
+.fi 
+.SH DESCRIPTION
+generates a Scilab function \fV[b]=bruit(t)\fR
+where \fVbruit(t)\fR is a piecewise constant function 
+( constant on  \fV[k*pas,(k+1)*pas]\fR ). The value on each constant 
+interval are random values from  i.i.d  Gaussian variables of 
+standard deviation sig. The function is constant for \fVt<=0\fR and 
+\fVt>=Tmax\fR.

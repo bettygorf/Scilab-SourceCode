@@ -1,0 +1,66 @@
+
+
+
+colregul(1)                    Scilab Function                    colregul(1)
+
+
+
+
+
+
+NAME
+  colregul - removing poles and zeros at infinity
+
+CALLING SEQUENCE
+  [Stmp,Ws]=colregul(Sl,alfa,beta)
+
+PARAMETERS
+
+  Sl,Stmp        : syslin lists
+
+  alfa,beta : reals (new pole and zero positions)
+
+DESCRIPTION
+  computes a prefilter Ws such that Stmp=Sl*Ws is proper and with full rank D
+  matrix.
+
+  Poles at infinity of Sl are moved to alfa;
+
+  Zeros at infinity of Sl are moved to beta;
+
+  Sl is a assumed to be a left invertible linear system (syslin list) in
+  state-space representation with possibly a polynomial D matrix.
+
+SEE ALSO
+  invsyslin, inv, rowregul
+
+AUTHOR
+  F. D. , R. N.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,85 @@
+.TH " bbch" 2 " March 10, 1998" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ bbch -  beneath-beyond concave hull
+.sp
+Author: Christophe Canus
+.sp
+This C_LAB routine determines the concave hull of a function graph using the beneath-beyond algorithm.
+.sp
+.sp
+.SH Usage
+\f(CR[\fP\f(CRrx,ru_x]\fP=bbch(x,u_x)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : real vector \f(CR[\fP1,N\f(CR]\fP or
+\f(CR[\fPN,1\f(CR]\fP 
+Contains the abscissa.
+
+.TP
+o 
+\fBu_x\fP : real vector \f(CR[\fP1,N\f(CR]\fP or
+\f(CR[\fPN,1\f(CR]\fP 
+Contains the function to be regularized.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBrx\fP : real vector \f(CR[\fP1,M\f(CR]\fP 
+Contains the abscissa of the regularized function.
+
+.TP
+o 
+\fBru_x\fP : real vector \f(CR[\fP1,M\f(CR]\fP 
+Contains the regularized function.
+.RE
+
+.SH Description
+.SH Parameters 
+The abscissa \fIx\fP and the function \fIu_x\fP  to be regularized must
+be of the same size \f(CR[\fP1,N\f(CR]\fP or \f(CR[\fPN,1\f(CR]\fP.
+The abscissa \fIrx\fP and the concave regularized function \fIru_x\fP
+are of the same size \f(CR[\fP1,M\f(CR]\fP with \fIM\fP\f(CR<=\fP\fIN\fP. 
+.SH Algorithm details
+Standard beneath-beyond algorithm.
+.SH Examples
+.SH Matlab
+.sp
+.ft CR
+.nf
+h=.3;beta=3;
+N=1000;
+% chirp singularity (h,beta)
+x=linspace(0.,1.,N);
+u_x=abs(x).^h.*sin(abs(x).^(-beta));
+plot(x,u_x);
+hold on;
+[rx,ru_x]=bbch(x,u_x);
+plot(rx,ru_x,'rd');
+plot(x,abs(x).^h,'k');
+.fi 
+.ec
+.ft P
+.sp
+.SH Scilab
+.sp
+.ft CR
+.nf
+// 
+.fi 
+.ec
+.ft P
+.sp
+.SH References
+None.SH See Also
+\fBlinearlt\fP (C_LAB routine).

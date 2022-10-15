@@ -1,0 +1,16 @@
+
+xpause(2)                      Scilab Function                      xpause(2)
+NAME
+  xpause - suspend Scilab
+
+CALLING SEQUENCE
+  xpause(microsecs)
+
+DESCRIPTION
+  xpause suspends the current process for the number of microseconds speci-
+  fied by the argument. The actual suspension time may be longer because of
+  other activities in the system, or because of the time spent in processing
+  the call.
+
+AUTHOR
+  J.Ph.C.

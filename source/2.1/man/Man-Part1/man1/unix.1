@@ -1,0 +1,22 @@
+.TH unix 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+unix - shell (sh) command execution
+.SH CALLING SEQUENCE
+.nf
+unix(command-name)
+.fi
+.SH DESCRIPTION
+sends a string \fVcommand-name\fR to Unix for execution by the sh
+shell. standard output and standard errors of the shell command are
+written in the calling shell
+
+.SH EXAMPLE
+.nf
+unix("ls $SCI/demos");
+unix("emacs $SCI/demos/wheel2/Makefile");
+deff('wd=pwd()','unix(''pwd>/tmp/path'');wd=read(''/tmp/path'',1,1,''(a)'')')
+wd=pwd()
+.fi
+.SH SEE ALSO
+edit, manedit, unix_g, unix_s, unix_x

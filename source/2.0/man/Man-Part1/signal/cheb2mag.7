@@ -1,0 +1,31 @@
+.TH Cheb2mag 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+Cheb2mag - response of type 2 Chebyshev filter
+.SH CALLING SEQUENCE
+.nf
+[h2]=cheb2mag(n,omegar,A,sample)
+.fi
+.SH PARAMETERS
+.TP 10
+n
+: integer ; filter order 
+.TP
+omegar
+: real scalar : cut-off frequency
+.TP
+A
+: attenuation in stop band
+.TP
+sample
+: vector of frequencies where cheb2mag is evaluated
+.TP
+h2
+: vector of Chebyshev II filter values at sample points
+.SH DESCRIPTION
+Square magnitude response of a type 2 Chebyshev filter.
+.LP
+\fVomegar\fR = stopband edge, \fVsample\fR = vector of 
+frequencies where the square magnitude \fVh2\fR is desired.
+.SH AUTHOR
+F. D.

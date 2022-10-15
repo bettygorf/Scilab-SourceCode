@@ -1,0 +1,22 @@
+.TH derivat 8 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+derivat - rational matrix derivative
+.SH CALLING SEQUENCE
+.nf
+pd=derivat(p)  
+.fi
+.SH PARAMETERS
+.TP
+p
+: polynomial or rational matrix
+.SH DESCRIPTION
+computes the derivative of the polynomial 
+or rational function matrix w.r.t the dummy variable.
+.SH EXAMPLE
+.nf
+s=poly(0,'s');
+derivat(1/s)  // -1/s^2;
+.fi
+
+

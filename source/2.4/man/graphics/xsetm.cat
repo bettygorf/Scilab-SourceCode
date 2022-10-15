@@ -1,0 +1,21 @@
+
+xsetm(2)                       Scilab Function                       xsetm(2)
+NAME
+  xsetm - dialog to set values of the graphic context
+
+CALLING SEQUENCE
+  xsetm()
+
+DESCRIPTION
+  xsetm is used to set values of the graphic context. A choice menu is
+  created showing the current values and changes can be performed through
+  toggle buttons.
+
+SEE ALSO
+  xset
+
+REFERENCE
+  X11 documentation
+
+AUTHOR
+  J.Ph.C.

@@ -1,0 +1,20 @@
+
+getsymbol(2)                   Scilab Function                   getsymbol(2)
+NAME
+  getsymbol - dialog to select a symbol an its size
+
+CALLING SEQUENCE
+  c=getsymbol(title)
+
+PARAMETERS
+
+  title     : string, dialog title
+
+  c         : Vector with 2 entries [n,sz].
+
+DESCRIPTION
+  getsymbol opens a dialog choice box where user may select a symbol type n
+  and size  sz .
+
+SEE ALSO
+  xset, xsetm

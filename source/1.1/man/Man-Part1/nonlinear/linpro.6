@@ -1,0 +1,128 @@
+.TH linpro 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+linpro - linear programming solver
+.SH CALLING SEQUENCE
+.nf
+[x,f,lagr,info]=linpro(x0,p,c,d,ci,cs,mi,modo [,imp])
+.fi
+.SH PARAMETERS
+.TP 10
+x0 
+: initial guess (given if \fVmodo = 3\fR)
+.TP
+p 
+: real vector of dimension \fVn\fR
+.TP
+c 
+: matrix of dimension \fVn x (mi + md)\fR
+(If no constraints are given, set \fVc = 0\fR)
+.TP
+d 
+: RHS vector of dimension \fVmi + md\fR
+.TP
+ci 
+: vector of lower-bounds.
+If \fVx\fR is not bounded from below, put \fVci = 0\fR.
+If some components of \fVx\fR are bounded from below,
+set the other (unconstrained) values of \fVci\fR to a very 
+large negative  number (e.g. \fVci(j) = -(% eps)^(-1)\fR.
+.TP
+cs 
+: vector of upper-bounds. (Same remarks as above).
+.TP
+mi 
+: number of equality constraints.
+.TP
+modo     
+: it indicates the way the process begins
+.RS
+.TP
+1  
+: no initial point has been given. The
+program computes a feasible initial point
+that is a vertex of the region of feasible points.
+.TP
+2  
+: no initial point has been given. The program
+computes a feasible initial point that is not
+necessarily a vertex. This value of  \fVmodo\fR is
+advisable when the quadratic form is positive
+definite and there are a few constraints in
+the problem or when there are large bounds
+on the variables that are security bounds and
+very probably  no actives at the solution.
+.TP
+3  
+: an initial point is given
+.RE
+.TP
+imp 
+: verbose option
+.TP
+x 
+: optimal solution found.
+.TP
+f 
+: optimal value of the cost function
+.TP
+lagr 
+: vector of Lagrange multipliers. 
+If lower and upper-bounds are provided, \fVlagr\fR has 
+\fVn + mi + md\fR components :
+.RS
+.TP
+lagr(1:n)
+: is the multiplier vector associated with the
+bound constraints.
+.TP
+lagr (n+1 : n + mi + md)
+: is the multiplier vector
+associated with the \fVci\fR's constraints.
+(If an upper-bound (resp. lower-bound) constraint \fVi\fR is active 
+\fVlagr(i)\fR is > 0 (resp. <0).
+If no bounds are provided, vector lagr has only \fVmi + md\fR
+components and is the multiplier associated with the \fVci\fR's.
+.RE
+.TP
+info 
+: integer variable with following meaning
+.RS
+.TP 10
+  1
+: more iterations than the limit given by the program were
+necessary.
+.TP
+  0 
+: normal output.
+.TP
+ -1 
+: the cost function is not bounded from below
+.TP
+ -2 
+: cycling limit point no convergence...
+.TP
+ -3 
+: unbounded solution
+.TP
+ -4 
+: incorrect inputs
+.TP
+-12 
+: no feasible solution
+.TP
+-13 
+: degenerate starting point
+.TP
+-14 
+: no feasible point has been found.
+.RE
+.SH DESCRIPTION
+Minimize \fVp'*x\fR
+.PP
+under the constraints 
+.nf
+ c(:,j)'x = d(j), j=1,...,mi
+ c(:,j)'x <=d(j), j=mi+1,...,mi+md
+ ci(i) <= x(i) <= cs(i), i=1,...,n
+.fi

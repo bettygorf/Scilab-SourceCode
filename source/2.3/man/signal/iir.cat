@@ -1,0 +1,49 @@
+
+iir(1)                         Scilab Function                         iir(1)
+NAME
+  iir - iir digital filter
+
+CALLING SEQUENCE
+  [hz]=iir(n,ftype,fdesign,frq,delta)
+
+PARAMETERS
+
+  n         : filter order (pos. integer)
+
+  ftype     : string  specifying the filter type
+             'lp','hp','bp','sb'
+
+  fdesign   : string specifying the analog filter design
+             ='butt','cheb1','cheb2','ellip'
+
+  frq       : 2-vector of discrete cut-off frequencies (i.e., 0<frq<.5). For
+            lp and hp filters only frq(1) is used. For bp and sb filters
+            frq(1) is the lower cut-off frequency and frq(2) is the upper
+            cut-off frequency
+
+  delta     : 2-vector of error values for cheb1, cheb2, and ellip filters
+            where only delta(1) is used for cheb1 case, only delta(2) is used
+            for cheb2 case, and delta(1) and delta(2) are both used for ellip
+            case. 0<delta(1),delta(2)<1
+
+            - for cheb1 filters 1-delta(1)<ripple<1 in passband
+
+            - for cheb2 filters 0<ripple<delta(2) in stopband
+
+            - for ellip filters 1-delta(1)<ripple<1 in passband and
+              0<ripple<delta(2) in stopband
+
+DESCRIPTION
+  function which designs an iir digital filter using analog filter designs.
+
+EXAMPLE
+  hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
+  [hzm,fr]=frmag(hz,256);
+  plot2d(fr',hzm')
+  xtitle('Discrete IIR filter band pass  0.15<fr<0.25 ',' ',' ');
+
+SEE ALSO
+  eqfir, eqiir
+
+AUTHOR
+  C. B.

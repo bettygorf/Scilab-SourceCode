@@ -1,0 +1,77 @@
+
+file(1)                        Scilab Function                        file(1)
+NAME
+  file - file management
+
+CALLING SEQUENCE
+  [unit [,err]]=file('open', file-name [,status] [,access [,recl]] [,format])
+  file(action,unit)
+
+PARAMETERS
+
+  file-name : string, file name of the file to be opened
+
+  status    : string, The status of the file to be opened
+
+            "new"        : file must not exist new file (default)
+
+            "old"        : file must already exists.
+
+            "unknown"    : unknown status
+
+            "scratch"    : file is to be deleted at end of session
+
+  access    : string, The type of access to the file
+
+            "sequential" : sequential access (default)
+
+            "direct"     : direct access.
+
+  format    : string,
+
+            "formatted"  : for a  formatted file (default)
+
+            "unformatted"
+                         : binary record.
+
+  recl      : integer,is the size of records in bytes when access="direct"
+
+  unit      : integer, logical unit descriptor of the opened file
+
+  err       : integer, error message number (see error), if open fails. If
+            err is omitted an error message is issued.
+
+  action    : is one of the following strings:
+
+            "close"      : closes the file
+
+            "rewind"     : puts the pointer at beginning of file
+
+            "backspace"  : puts the pointer at beginning of last record.
+
+            "last"       : puts the pointer after last record.
+
+DESCRIPTION
+  selects a logical unit unit and manages the file file-name.
+
+  [unit [,err]]=file('open', file-name [,status] [,access [,recl]] [,format])
+  allows to open a file with specified properties and to get the associated
+  unit number unit. This unit number may be used for further actions on this
+  file or as file descriptor in read, write, readb, writb,save, load function
+  calls.
+
+  file(action,unit) allows to close the file , or move the current file
+  pointer .
+
+EXAMPLE
+  u=file('open',TMPDIR+'/foo','unknown')
+  for k=1:4
+    a=rand(1,4)
+    write(u,a)
+  end
+  file('rewind',u)
+  x=read(u,2,4)
+  file('close',u)
+
+SEE ALSO
+  save, load, write, read, writb, readb, xgetfile

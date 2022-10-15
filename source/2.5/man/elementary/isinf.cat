@@ -1,0 +1,22 @@
+
+isinf(G)                       Scilab Function                       isinf(G)
+NAME
+  isinf -  check for infinite entries
+
+CALLING SEQUENCE
+  r=isinf(x)
+
+PARAMETERS
+
+  x         : real or complex vector or  matrix r : boolean vector or matrix
+
+DESCRIPTION
+  isinf(x) returns a boolean vector or matrix which contains true entries
+  corresponding with infinite x entries and false entries corresponding with
+  finite x entries.
+
+EXAMPLE
+  isinf([1 0.01 -%inf %inf])
+
+SEE ALSO
+  isnan

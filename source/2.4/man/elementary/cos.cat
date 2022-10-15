@@ -1,0 +1,22 @@
+
+COS(G)                         Scilab Function                         COS(G)
+NAME
+  cos -  cosine function
+
+CALLING SEQUENCE
+  [y]=cos(x)
+
+PARAMETERS
+
+  x         : real or complex vector/matrix
+
+DESCRIPTION
+  For a vector or a matrix, cos(x) is the cosine of its elements . For matrix
+  cosine use  cosm(X) function.
+
+EXAMPLE
+  x=[0,1,%i]
+  acos(cos(x))
+
+SEE ALSO
+  cosm

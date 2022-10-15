@@ -1,0 +1,36 @@
+
+reynitq(2)                     Scilab Function                     reynitq(2)
+NAME
+  reynitq - Reyni exponents estimation
+
+  Author: Christophe Canus
+
+  This routine estimates the Reyni exponents on a partition function.
+
+Usage
+  [tq,[Dq]]=reynitq(znq,n,q)
+
+Input parameters
+       o znq : strictly positive real matrix Contains the partition function.
+       o n : strictly positive real (integer) vector Contains the resolu-
+         tions.
+       o q : strictly positive real vector Contains the exponents.
+Output parameters
+       o tq : real vector [1,size(q)] Contains the discrete Legendre Spec-
+         trum.
+       o Dq : real vector [1,size(q)] Contains the generalized dimensions.
+Description
+
+Parameters
+
+  The mass exponents tq and the generalized dimensions Dq (if used) are com-
+  puted on the partition function znq.  The input real matrix znq must be of
+  height size(q) and of width size(n).
+
+  The output real vectors tq and Dq (if used) are of size size(q).
+Algorithm details
+
+  The mass exponent function tq by least mean square linear-fit.
+
+See also
+  mdzq1d,mdzq2d,linearlt,mdfl1d,mdfl2d.

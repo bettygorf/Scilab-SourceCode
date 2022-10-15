@@ -1,0 +1,173 @@
+
+\def\Mhlp{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=hlp()\\ 
+\cmarg \verb@//@ Travaux diriges 1 : bibliotheque de macros \\ 
+\cmarg \verb@//@     \\ 
+\cmarg \verb@//@    PREMIERE PARTIE \\ 
+\cmarg \verb@//@ part1    :  initialise les donnees de la partie 1\\ 
+\cmarg \verb@//@ linear   :  dynamique d'un systeme lineaire \\ 
+\cmarg \verb@//@ linper   :  systeme lineaire avec perturbation  quadratique \\ 
+\cmarg \verb@//@ cycllim  :  dynamique d'un systeme avec cercle limite \\ 
+\cmarg \verb@//@    DEUXIEME PARTIE \\ 
+\cmarg \verb@//@ part2    :  initialise les donnees de la partie 2.\\ 
+\cmarg \verb@//@ bioreact :  modele de bioreacteur\\ 
+\cmarg \verb@//@ mu       : taux specifique de croissance (utilise par bioreact)\\ 
+\cmarg \verb@//@    TROISIEME PARTIE \\ 
+\cmarg \verb@//@ part3    :  initialise les donnees de la partie 3.\\ 
+\cmarg \verb@//@ lincom   :  systeme lineaire commande par feedback lineaire d'etat\\ 
+\cmarg \verb@//@            (u=-k*x)\\ 
+\cmarg \verb@//@!\\ 
+\cmarg 0;\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mpartu{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=part1()\\ 
+\cmarg //$<$$>$=part1()\\ 
+\cmarg \verb@//@ Macro qui initialise les donnees de \\ 
+\cmarg \verb@//@ la partie 1\\ 
+\cmarg \verb@//@!\\ 
+\cmarg \verb@//@ matrice du systeme lineaire \\ 
+\cmarg alin=$<$$-$1,0;0,$-$2$>$;\\ 
+\cmarg \verb@//@ donnees pour la perturbation quadratique \\ 
+\cmarg qeps=1/10.;\\ 
+\cmarg q1linper=qeps$\star$$<$1,0;0,1$>$;\\ 
+\cmarg q2linper=q1linper;\\ 
+\cmarg rlinper=$<$1,$-$1$>$';\\ 
+\cmarg $<$alin,qeps,q1linper,q2linper,rlinper$>$={\bf resume}(...\\ 
+\cmarg \hspace{1.2cm}alin,qeps,q1linper,q2linper,rlinper);\\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+
+\def\Mlinear{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xdot$>$=linear(t,x)\\ 
+\cmarg //$<$xdot$>$=linear(t,x)\\ 
+\cmarg \verb@//@------------------------------------------------\\ 
+\cmarg \verb@//@ un systeme lineaire xdot=alin*x\\ 
+\cmarg \verb@//@ la matrice du systeme est une variable globale\\ 
+\cmarg \verb@//@ alin \\ 
+\cmarg \verb@//@-----------------------------------------------\\ 
+\cmarg \verb@//@!\\ 
+\cmarg xdot=alin$\star$x,\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mlinper{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xdot$>$=linper(t,x)\\ 
+\cmarg //$<$xdot$>$=linper(t,x)\\ 
+\cmarg \verb@//@-----------------------------------\\ 
+\cmarg \verb@//@ systeme lineaire avec perturbation \\ 
+\cmarg \verb@//@ quadratique \\ 
+\cmarg \verb@//@------------------------------------\\ 
+\cmarg \verb@//@!\\ 
+\cmarg xdot= alin$\star$x+(1/2)$\star$qeps$\star$$<$(x')$\star$q1linper$\star$x;(x')$\star$q2linper$\star$x$>$+rlinper\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mcycllim{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xdot$>$=cycllim(t,x)\\ 
+\cmarg //$<$xdot$>$=cycllim(t,x)\\ 
+\cmarg \verb@//@-----------------------------------\\ 
+\cmarg \verb@//@ xdot=a*x+qeps(1-||x||**2)x\\ 
+\cmarg \verb@//@------------------------------------\\ 
+\cmarg \verb@//@!\\ 
+\cmarg xdot= $<$ 0 ,$-$1 ; 1 , 0$>$$\star$x+ qeps$\star$(1$-$(x'$\star$x))$\star$x;\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mpartd{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=part2()\\ 
+\cmarg //$<$$>$=part2()\\ 
+\cmarg \verb@//@ Initialisation de la partie 2\\ 
+\cmarg \verb@//@  bioreact \\ 
+\cmarg \verb@//@!\\ 
+\cmarg k=2.0\\ 
+\cmarg debit=1.0\\ 
+\cmarg x2in=3;\\ 
+\cmarg $<$k,debit,x2in$>$={\bf resume}(k,debit,x2in);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mbioreact{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xdot$>$=bioreact(t,x)\\ 
+\cmarg //$<$xdot$>$=bioreact(t,x)\\ 
+\cmarg \verb@//@ modele de bioreacteur\\ 
+\cmarg \verb@//@   x(1): concentration de biomasse \\ 
+\cmarg \verb@//@   x(2): ''            de sucre \\ 
+\cmarg \verb@//@!\\ 
+\cmarg xdot(1)=mu(x(2))$\star$x(1)$-$ debit$\star$x(1);\\ 
+\cmarg xdot(2)=$-$k$\star$mu(x(2))$\star$x(1)$-$debit$\star$x(2)+debit$\star$x2in;\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mmu{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$y$>$=mu(x)\\ 
+\cmarg //$<$y$>$=mu(x)\\ 
+\cmarg \verb@//@ mu : taux specifique de croissance \\ 
+\cmarg \verb@//@!\\ 
+\cmarg y=x/(1+x);\\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+
+\def\Mpartt{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=part3()\\ 
+\cmarg //$<$$>$=part3()\\ 
+\cmarg \verb@//@ Initialisation de la partie 3\\ 
+\cmarg \verb@//@ lincom portfeed champfeed \\ 
+\cmarg \verb@//@!\\ 
+\cmarg a={\bf eye}(2);\\ 
+\cmarg b=$<$1,1$>$';\\ 
+\cmarg $<$a,b$>$={\bf resume}(a,b);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mlincom{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xdot$>$=lincom(t,x,k)\\ 
+\cmarg \verb@//@ systeme lineaire commande par \\ 
+\cmarg \verb@//@ feedback lineaire d'etat (u=-k*x)\\ 
+\cmarg \verb@//@!\\ 
+\cmarg xdot= a$\star$x +b$\star$($-$k$\star$x);\\ 
+\cmarg //end }
+\end{flushleft}}
+
+
+

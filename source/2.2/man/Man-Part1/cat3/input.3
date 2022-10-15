@@ -1,0 +1,66 @@
+
+
+
+read(1)                        Scilab Function                        read(1)
+
+
+
+
+
+
+NAME
+  input - prompt for user input
+
+CALLING SEQUENCE
+  [x]=input(message,["string"])
+
+PARAMETERS
+
+  message   : character string
+
+  "string"  : the character string "string" (may be abbreviated to "s")
+
+  x         : real number (or character string if "string" is in the calling
+            sequence)
+
+DESCRIPTION
+  input(message) gives the user the prompt in the text string and then waits
+  for input from the keyboard.
+
+  The input can be expression which is evaluated by evstr.
+
+  Invoked with two arguments, the output is a character string which is the
+  expression entered at keyboard.
+
+EXAMPLE
+  x=input("How many iterations?")
+  x=input("What is your name?","string")
+
+SEE ALSO
+  file, read, write, %io, evstr, x_dialog, x_mdialog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

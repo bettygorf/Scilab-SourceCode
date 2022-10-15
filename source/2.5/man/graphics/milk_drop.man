@@ -1,0 +1,29 @@
+.TH milkdrop 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+milk_drop - milk drop 3D function
+.SH CALLING SEQUENCE
+.nf
+z=milk_drop(x,y)
+.fi
+.SH PARAMETERS
+.TP 5
+x,y 
+: two row vectors of size n1 and n2.
+.TP
+z
+: matrix of size (n1,n2).
+.SH DESCRIPTION
+\fVmilk_drop\fR is a function representing the surface of a milk drop
+falling down into milk. It
+can be used to test functions \fVeval3d\fR adn \fVplot3d\fR.
+.SH EXAMPLE
+.nf
+x=-2:0.1:2; y=x;
+z=eval3d(milk_drop,x,y);
+plot3d(x,y,z)
+.fi
+.SH SEE ALSO
+eval3d, plot3d
+.SH AUTHOR
+Steer S.

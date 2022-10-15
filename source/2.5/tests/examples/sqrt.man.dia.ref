@@ -1,0 +1,13 @@
+ 
+clear;lines(0);
+ 
+sqrt([2,4])
+ ans  =
+ 
+!   1.4142136    2. !
+ 
+sqrt(-1)
+ ans  =
+ 
+    i    
+ 

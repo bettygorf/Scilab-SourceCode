@@ -1,0 +1,37 @@
+
+pvm_addhosts(1)                Scilab function                pvm_addhosts(1)
+NAME
+  pvm_addhosts - add hosts to the virtual machine.
+
+CALLING SEQUENCE
+  [infos] = pvm_addhosts(hosts)
+PARAMETERS
+
+  hosts
+       : row of strings, naming the hosts to be added.
+
+  infos
+      : row of integer,  corresponding to the status for each host.
+DESCRIPTION
+  pvm_addhosts adds the computers named in hosts to the configuration of com-
+  puters making up the virtual machine.  The names should have the same syn-
+  tax as lines of a pvmd hostfile (see man page for pvmd3): A hostname fol-
+  lowed by options of the form xx=y.
+
+  The array infos can be checked to determine the status for each host.
+  Values less than zero indicate an error, while positive values are TIDs of
+  the new hosts.
+
+  The status of hosts can be requested by the application using
+   pvm_config.  If a host fails it will be automatically deleted from the
+  configuration.  Using pvm_addhosts a replacement host can be added by the
+  application, however it is the responsibility of the application developer
+  to make his application tolerant of host failure.  Another use of this
+  feature would be to add more hosts as they become available, for example on
+  a weekend, or if the application dynamically determines it could use more
+  computational power.
+EXAMPLE
+  info = pvm_addhosts(["isostar","loop"])
+
+SEE ALSO
+  pvm_delhosts, pvm_config

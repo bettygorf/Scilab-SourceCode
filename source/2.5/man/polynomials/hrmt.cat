@@ -1,0 +1,28 @@
+
+hrmt(1)                        Scilab Function                        hrmt(1)
+NAME
+  hrmt - gcd of polynomials
+
+CALLING SEQUENCE
+  [pg,U]=hrmt(v)
+
+PARAMETERS
+
+  v    : row of polynomials i.e. 1xk polynomial matrix
+
+  pg   : polynomial
+
+  U    : unimodular matrix polynomial
+
+DESCRIPTION
+  [pg,U]=hrmt(v) returns a unimodular matrix U and  pg = gcd of row of poly-
+  nomials v such that v*U = [pg,0].
+
+EXAMPLE
+  x=poly(0,'x');
+  v=[x*(x+1),x^2*(x+1),(x-2)*(x+1),(3*x^2+2)*(x+1)];
+  [pg,U]=hrmt(v);U=clean(U)
+  det(U)
+
+SEE ALSO
+  gcd, htrianr

@@ -1,0 +1,66 @@
+.TH black 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+black - Black's diagram (Nichol's chart)
+.SH CALLING SEQUENCE
+.nf
+black( sl,[fmin,fmax] [,step] [,comments] )
+black( sl,frq [,comments] )
+black(frq,db,phi [,comments])
+black(frq,repf  [,comments]) 
+.fi
+.SH PARAMETERS
+.TP 10
+sl
+: list ( linear system \fVsyslin\fR)
+.TP 10
+fmin,fmax
+: real scalars (frequency bounds)
+.TP 10
+frq
+: row vector or matrix (frequencies)
+.TP 10
+db,phi
+: row vectors or matrices (modulus, phase)
+.TP 10
+step
+: real
+.TP 10
+comments
+: string
+.SH DESCRIPTION
+Black's diagram (Nichols'chart) for a linear system \fVsl\fR.
+\fVsl\fR can be a continuous-time or discrete-time SIMO system (see \fVsyslin\fR).
+In case of multi-output the outputs are plotted with different symbols.
+.LP
+The frequencies are given by the bounds \fVfmin,fmax\fR (in Hz) or by a row-vector
+(or a matrix for multi-output) \fVfrq\fR.
+.LP
+\fVstep\fR is the ( logarithmic ) discretization step. (see \fVcalfrq\fR for the
+choice of default value).
+.LP
+\fVcomments \fR is a vector of character strings (captions).
+.LP
+\fVdb,phi\fR are the matrices of modulus (in Db) and phases (in degrees). 
+(One row for each response).
+.LP
+\fVrepf \fR matrix of complex numbers. One row for each response.
+.LP
+To plot the grid of iso-gain and iso-phase of \fVy/(1+y)\fR use \fVchart()\fR.
+.LP
+Default values for \fVfmin\fR and \fVfmax\fR are
+\fV1.d-3\fR, \fV1.d+3\fR if \fVsl\fR is continuous-time
+or \fV1.d-3\fr, \fV0.5\fR if \fVsl\fR is discrete-time.
+.SH EXAMPLE
+.nf
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+chart();
+sstr='(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)';
+black(h,0.01,100,sstr);
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+black([h1;h],0.01,100,['h1';'h'])
+.fi
+.SH SEE ALSO
+bode, nyquist, chart, freq, repfreq, calfrq, phasemag
+

@@ -1,0 +1,58 @@
+ 
+clear;lines(0);
+ 
+figure(5);
+Sorry, TK has not been enabled this the session.
+
+ 
+figure();
+Sorry, TK has not been enabled this the session.
+
+ 
+figure();
+Sorry, TK has not been enabled this the session.
+
+ 
+gcf()
+Sorry, TK has not been enabled this the session.
+
+ ans  =
+ 
+    5.  
+ 
+// returns 2
+ 
+close(gcf());
+Sorry, TK has not been enabled this the session.
+
+Sorry, TK has not been enabled this the session.
+
+ 
+// close figure 2
+ 
+gcf()
+Sorry, TK has not been enabled this the session.
+
+ ans  =
+ 
+! T T T !
+ 
+// returns 1
+ 
+close(1);
+Sorry, TK has not been enabled this the session.
+
+ 
+gcf()
+Sorry, TK has not been enabled this the session.
+
+ ans  =
+ 
+    1.  
+ 
+// returns 5
+ 
+close(5);
+Sorry, TK has not been enabled this the session.
+
+ 

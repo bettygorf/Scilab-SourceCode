@@ -1,0 +1,19 @@
+SHELL = /bin/sh
+
+include $(SCIDIR)/Makefile.incl
+
+OBJS=callsci.o
+
+all:: callsci 
+
+world:: callsci 
+
+include config/Makefile.Top
+include config/Makefile 
+
+distclean::
+	$(RM) callsci
+	$(RM) -f -r  config
+
+
+

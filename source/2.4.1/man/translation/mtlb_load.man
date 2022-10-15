@@ -1,0 +1,38 @@
+.TH mtlb_load 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mtlb_load - load variables from file with matlab4 format.
+.SH CALLING SEQUENCE
+.nf 
+mtlb_load fname
+mtlb_load xxx.yyy
+mtlb_load fname -ascii
+.fi
+.SH PARAMETERS
+.TP 10
+fname
+: a file name
+.TP
+xxx.yyy
+: a file name with extension 
+.SH DESCRIPTION
+mtlb_load   load variables on file with matlab4 formats.
+.TP 20
+\fVmtlb_load fname\fR 
+loads in scilab all variables stored in
+file binary \fVfname.mat\fR .
+.TP
+\fVmtlb_load fname -ascii\fR 
+loads in scilab  variable stored in ascii file \fVfname\fR, 
+which must contain a
+rectangular array of numeric data, arranged in m lines with n values
+in each line.  The result is an m-by-n matrix named \fVfname\fR .
+.TP
+\fVmtlb_load xxx.yyy\fR
+reads the ascii file \fVxxx.yyy\fR, which must contain a
+rectangular array of numeric data, arranged in m lines with n values
+in each line.  The result is an m-by-n matrix named \fVxxx\fR.
+.TP
+ "stdio" value for  \fVfname\fR doesnt redirect load from standard input.
+.SH SEE ALSO
+mtlb_save, save , load

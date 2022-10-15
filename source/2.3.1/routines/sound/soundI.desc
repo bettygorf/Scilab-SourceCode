@@ -1,0 +1,109 @@
+savewave	file res [rate 22050]
+file 	string	n
+res	vector  n1
+rate 	scalar 
+
+savewave	file res rate n1 err 
+file	char
+res	double
+rate	int
+
+out	sequence res 
+**********************
+loadwave	file 
+file 	string	n
+res	scalar
+
+loadwave	file res err 
+file	char
+res	double
+
+out	sequence	res 
+**********************
+mopen	file  [status rb] [swap 1]
+file 	string	n
+status	string  k
+res	scalar
+fd	scalar
+swap	scalar
+
+mopen	fd file status swap res err 
+file	char
+status  char 
+res	double
+fd	int 
+swap 	int 
+
+out	sequence	fd res
+***********************
+mputstr	str  [fd -1]
+str 	string	n
+res	scalar
+fd	scalar
+
+mputstr	fd str res err 
+str	char
+res	double
+fd	int 
+
+out	sequence	res 
+***********************
+mclose	[fd -1] 
+res	scalar
+fd	scalar 
+
+mclose	fd res 
+res	double
+fd	int 
+
+out	sequence	res 
+***********************
+mput	res   [type l] [fd -1]
+res	row	n
+type 	string  k
+fd	scalar
+
+mput	fd res n type err 
+res	double
+n	integer
+type 	char 
+fd	int 
+
+out	sequence	res 
+*********************
+mget	[n 1] [type l] [fd -1]
+n	scalar
+res	row	n
+type 	string  k
+fd	scalar
+
+mget	fd res n type err 
+res	double
+n	integer
+type	char 
+fd	int 
+
+out	sequence	res 
+*********************
+mgetstr	[n 1] [fd -1]
+n	scalar
+res	string  n
+fd	scalar
+
+mgetstr fd res n err 
+res	ccharf
+n	integer
+fd	int 
+
+out	sequence	res 
+*********************
+meof	[fd -1]
+res	scalar 
+fd	scalar
+
+meof 	fd res 
+res	double
+fd	int
+
+out	sequence	res 
+*********************

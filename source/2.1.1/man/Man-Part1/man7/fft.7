@@ -1,0 +1,70 @@
+.TH FFT G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+fft - fast fourier transform.
+.SH CALLING SEQUENCE
+.nf
+[x]=fft(a,-1)
+[x]=fft(a,1)
+x=fft(a,-1,dim,incr)
+x=fft(a,1,dim,incr)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex vector. Real or complex matrix (2-dim fft)
+.TP
+a
+: real or complex vector.
+.TP
+dim
+: integer
+.TP
+incr
+: integer
+.SH DESCRIPTION
+\fBShort syntax (one or two dimensional fft)\fR
+.LP
+.Vb x=fft(a,-1)
+gives a direct transform (the \fV-1\fR refers to
+the sign of the exponent..., NOT to "inverse"), that is
+.IG
+x(k)=sum over m of a(m)*exp(-2i*pi*m*k/n)
+.FI
+.LA $$ x(k)=\sum_{m}{ a(m) exp(-2i \pi m k/n)} $$
+for k varying from 0 to n-1 (n=size of vector \fVa\fR).
+.LP
+(known bug \fVfft(x,-1)\fR for \fVx\fR of size 99 infinite loop!
+add one or more zeros...)
+.LP
+.Vb a=fft(x,1)
+performs the inverse transform normalized by \fV1/n\fR.
+.LP
+(\fVfft(fft(.,-1),1)\fR is identity).
+.LP
+When the first argument given to \fVfft\fR is a matrix
+a two-dimensional FFT is performed.
+.LP
+
+\fBLong syntax (multidimensional FFT)\fR
+.Vb x=fft(a,-1,dim,incr)
+allows to perform an multidimensional fft.
+.LP
+If a is a real or complex vector implicitly indexed by
+\fVx1,x2,..,xp\fR i.e. \fVa(x1,x2,..,xp)\fR where \fVx\fR1 lies in 
+\fV1..dim1,\fR \fVx2\fR in \fV1.. dim2,...\fR one gets 
+a p-dimensional FFT p by calling p times \fVfft\fR as follows
+.nf
+ a1=fft(a ,-1,dim1,incr1)
+ a2=fft(a1,-1,dim2,incr2) ...
+.fi
+where \fVdimi\fR is the dimension of the current variable w.r.t which
+one is integrating and incri is the increment which separates
+two successive \fVxi\fR elements in \fVa\fR.
+.LP
+In particular,if \fVa\fR is an nxm matrix,
+\fVx=fft(a,-1)\fR is equivalent to the two instructions:
+.LP
+\fVa1=fft(a,-1,m,1)\fR and \fVx=fft(a1,-1,n,m)\fR.
+.SH SEE ALSO
+corr.

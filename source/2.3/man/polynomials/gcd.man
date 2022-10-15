@@ -1,0 +1,28 @@
+.TH gcd 8 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+gcd - gcd calculation
+.SH CALLING SEQUENCE
+.nf
+[pgcd,U]=gcd(p)
+.fi
+.SH PARAMETERS
+.TP
+p
+: polynomial row vector \fVp=[p1,..,pn]\fR
+.SH DESCRIPTION
+.Vb [pgcd,u]=gcd(p) 
+computes the gcd  of components of \fVp\fR and a unimodular 
+matrix (with polynomial inverse) \fVU\fR, with minimal degree such that
+.LP
+\fVp*U=[0 ... 0 pgcd]\fR
+.SH EXAMPLE 
+.nf
+s=poly(0,'s');
+p=[s,s*(s+1)^2,2*s^2+s^3];
+[pgcd,u]=gcd(p);
+p*u
+.fi
+.SH SEE ALSO
+bezout, lcm, hermit
+

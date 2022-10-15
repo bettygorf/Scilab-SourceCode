@@ -1,0 +1,162 @@
+.TH "dilate" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+dilate -  Dilation of a signal
+.sp
+Author: Paulo Goncalves
+.sp
+Computes dilated/compressed version of a signal using Fast Mellin
+transform.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPsscaled,mellin,beta\f(CR]\fP = dilate(s,a,\f(CR[\fPfmin,fmax,N\f(CR]\fP) 
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBs\fP : real vector \f(CR[\fP1,nt\f(CR]\fP or \f(CR[\fPnt,1\f(CR]\fP
+Time samples of the signal to be scaled. 
+
+.TP
+o 
+\fBa\fP : real strictly positive vector \f(CR[\fP1,N_scale\f(CR]\fP 
+Dilation/compression factors. \fIa\fP \f(CR<\fP 1 corresponds to
+compression in time
+
+.TP
+o 
+\fBfmin\fP : real scalar in \f(CR[\fP0,0.5\f(CR]\fP
+Lower frequency bound of the signal (necessary for the intermediate
+computation of the Mellin transform)
+
+.TP
+o 
+\fBfmax\fP :  real scalar \f(CR[\fP0,0.5\f(CR]\fP and \fIfmax\fP \f(CR>\fP 
+Upper frequency bound of the  signal (necessary for the intermediate
+computation of the Mellin transform)
+
+.TP
+o 
+\fBN\fP : positive integer. 
+number of Mellin samples.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBsscaled\fP : Real matrix with \fIN_scale\fP columns
+Each column \fIj\fP (for \fIj\fP = 1 .. \fIN_scale\fP) contains the
+dilated/compressed version of \fIs\fP by scale \fIa(j)\fP. First element
+of each column gives the effective time support for each scaled
+version of s.
+
+.TP
+o 
+\fBmellin\fP : complex vector \f(CR[\fP1,N\f(CR]\fP
+Mellin transform of \fIs\fP.
+
+.TP
+o 
+\fBbeta\fP : real vector \f(CR[\fP1,N\f(CR]\fP
+Variable of the Mellin transform \fImellin\fP.
+.RE
+
+.SH Description
+.SH Parameters
+
+
+.RS
+
+.TP
+o 
+\fIs\fP : signal to be analyzed. Real or complex vector. Size of
+\fIs\fP should be odd. If even, a zero sample is appended at the end of
+the signal 
+
+.TP
+o 
+\fIa\fP scale factor. Maximum allowed scale is determined by the
+spectral extent of the signal to be compressed: the spectral extent of
+the compressed signal can not go beyond the Nyquist frequency (1/2).
+There is no theoretical limit for the minimum allowed scale, other
+than the computational cost.
+
+.TP
+o 
+\fIfmin\fP : lower frequency bound of the analysis. \fIfmin\fP is
+real scalar comprised in  \f(CR[\fP0,0.5\f(CR]\fP
+
+.TP
+o 
+\fIfmax\fP : upper frequency bound of the analysis. \fIfmax\fP is
+a real scalar comprised in \f(CR[\fP0,0.5\f(CR]\fP and \fIfmax\fP \f(CR>\fP
+\fIfmin\fP
+
+.TP
+o 
+\fIN\fP : number of Mellin samples. This number must be greater
+than some ammount determined by the spectral extent of the signal, to
+avoid aliasing in the Mellin domain.
+.RE
+
+.SH Algorithm details
+This algorith uses a Fast Mellin Transform (\fIdmt\fP) to diagonalize the Scale operator. The algorithm runs as follows
+
+
+.RS
+
+.TP
+o 
+ compute the Fourier-Mellin transform of the signal 
+
+.TP
+o 
+ Multiply the result by \fIa\f(CR\(ha\fP(-i.beta)\fP (\fIbeta\fP is the
+Mellin variable), for each values of scale \fIa\fP
+
+.TP
+o 
+ compute the inverse Fourier-Mellin transform to get the \fIa\fP-dilated version of \fIs\fP
+.RE
+
+.SH See also:
+dmt, idmt
+.SH Example:
+\fI Signal synthesis \fP 
+.sp
+.ft CR
+.nf
+x = morlet(0.1,32) ; 
+plot(x) 
+.fi 
+.ec
+.ft P
+.sp
+\fI Dilation by a factor 2\fP 
+.sp
+.ft CR
+.nf
+[sscaled,mellin,beta] = dilate(x,2,0.01,0.5,256) ;
+plot(sscaled(2:sscaled(1)))
+.fi 
+.ec
+.ft P
+.sp
+\fI Compression by a factor 2\fP 
+.sp
+.ft CR
+.nf
+[sscaled,mellin,beta] = dilate(x,1/2,0.01,0.5,256) ;
+plot(sscaled(2:sscaled(1)))
+.fi 
+.ec
+.ft P
+.sp

@@ -1,0 +1,245 @@
+/* main directory of SCILAB */
+SCIDIR = /usr/wolfgang2/scilab
+
+/* Override C compilation options */
+/* Do this only if you REALLY know what you do ! */
+/* CCOPTIONS = */
+/* CDEBUGFLAGS = */
+
+/* Fortran compilation options */
+/* Change them only if you REALLY know what you do ! */
+
+#if defined(SparcArchitecture)
+FFOPTIONS = 
+FDEBUGFLAGS = -O
+/* Flag for static compilation on Sun architecture */
+/* #undef STATICCOMP */
+#define STATICCOMP
+/* If you have and you want to use f2c instead of the fortran compiler */
+/*   FC=fc */
+#endif
+
+#if defined(MipsArchitecture)
+FFOPTIONS = -C -fpe1
+FDEBUGFLAGS = -O0  
+#endif
+
+#if defined(HPArchitecture)
+FFOPTIONS = +E4 
+FDEBUGFLAGS = 
+EXTRA_LOAD_FLAGS = -lm
+FC = fort77
+#endif
+
+#if defined(AIXArchitecture)
+FFOPTIONS = -qcharlen=4096
+FDEBUGFLAGS =
+CFLAGS = $(CCOPTIONS) -Daix $(CDEBUGFLAGS) $(ALLDEFINES)
+#endif
+
+/*
+ *****************************************************************************
+ *                                                                           *
+ *                       DO NOT MODIFY BELOW THIS LINE                       *
+ *                                                                           *
+ *****************************************************************************
+*/
+
+/* option for static linking on Sun computers */
+#if defined(SunArchitecture)
+#if defined(STATICCOMP) 
+FLOCAL_LDFLAGS=  -Bstatic
+#if HasGcc
+LOCAL_LDFLAGS=  -static
+#else
+LOCAL_LDFLAGS=  -Bstatic
+#endif
+#endif
+#endif
+
+/* C options */
+#if AlternateUsrLibDir && defined(UseInstalled)
+LDOPTIONS = $(CDEBUGFLAGS) $(CCOPTIONS) $(LOCAL_LDFLAGS) -L$(USRLIBDIR)
+#else
+LDOPTIONS = $(CDEBUGFLAGS) $(CCOPTIONS) $(LOCAL_LDFLAGS)
+#endif
+
+/* Fortran options */
+FFLAGS = $(FDEBUGFLAGS) $(FFOPTIONS)
+#if AlternateUsrLibDir && defined(UseInstalled)
+FLDOPTIONS = $(FDEBUGFLAGS) $(FFOPTIONS) $(FLOCAL_LDFLAGS) -L$(USRLIBDIR)
+#else
+FLDOPTIONS = $(FDEBUGFLAGS) $(FFOPTIONS) $(FLOCAL_LDFLAGS)
+#endif
+
+PATHSP=$(SCIDIR)/routines
+PATHO=$(SCIDIR)/libs
+
+/* Scilab files */
+.SUFFIXES: .sci .bin .dia .tst $(SUFFIXES)
+
+/* termcap library :used in xsci and bin/scilex */
+
+#ifndef TermcapLibrary
+#if SystemV && !defined(MacIIArchitecture)
+#if defined(CrayArchitecture) || defined(HPArchitecture) || defined(RsArchitecture)
+#define TermcapLibrary -lcurses		/* special cases of System V */
+#else
+#define TermcapLibrary -ltermlib	/* usually in here */
+#endif
+#else
+#define TermcapLibrary -ltermcap	/* bsd puts it here */
+#endif
+#endif
+
+     TERMCAPLIB = TermcapLibrary
+
+#ifndef NullParameter
+#define NullParameter
+#endif 
+
+/*
+ * FortranProgramTarget - generate rules to compile and link the indicated 
+ * program; since it does not use any default object files, it may be used for
+ * multiple programs in the same Imakefile.
+ */
+#ifndef FortranProgramTarget
+#define	FortranProgramTarget(program,objects,deplibs,locallibs,syslibs)	@@\
+program: objects deplibs						@@\
+	RemoveTargetProgram($@)						@@\
+	$(FC) -o $@ objects $(FLDOPTIONS) locallibs $(LDLIBS) syslibs $(EXTRA_LOAD_FLAGS) @@\
+									@@\
+clean::									@@\
+	$(RM) program 							@@\
+									@@\
+distclean:: clean 							@@\
+
+#endif /* FortranProgramTarget */
+
+
+/*
+ * LibraryTarget - generate rules to create a library.
+ */
+#ifndef LibraryTarget
+#define	LibraryTarget(libname,objlist)					@@\
+AllTarget(libname)							@@\
+									@@\
+libname: objlist							@@\
+	$(RM) $@							@@\
+	$(AR) $@ objlist						@@\
+	ranlib $@ 							@@\
+									@@\
+distclean:: clean 							@@\
+	$(RM) libname							@@\
+
+#endif /* LibraryTarget */
+
+/*
+ * FortranDependTarget - generate rules to compute dependencies for all 
+ * Fortran files listed in $(FSRCS).
+ */
+#ifndef FortranDependTarget
+#define	FortranDependTarget()						@@\
+depend::								@@\
+	$(SCIDIR)/util/fdepend $(FSRCS) @@\
+
+#endif /* DependTarget */
+
+/*
+ * Target for Scilab macros 
+ */
+
+#ifndef SciLibTarget
+#define SciLibTarget(objlist)						@@\
+all :: objlist lib							@@\
+									@@\
+lib : objlist names							@@\
+	@echo generating lin and names 					@@\
+	@$(SCIDIR)/util/scilib $(SCIDIR) $(NAME) $(NAM)			@@\
+									@@\
+names: objlist								@@\
+	@$(RM) names;touch names;					@@\
+	@for i in $(MACROSN); do  (echo $$i >> names );done 		@@\
+									@@\
+distclean:: clean 							@@\
+	$(RM) lib names *.bin						@@\
+
+#endif /* SciLibTarget */
+
+/*
+ * Target for Scilab macros 
+ */
+#ifndef NormalScilabObjectRule
+#define NormalScilabObjectRule()					@@\
+									@@\
+.sci.bin:								@@\
+	@$(SCIDIR)/util/scicomp $(SCIDIR) $*.sci			@@\
+
+#endif /* NormalScilabObjectRule  */
+
+/*
+ * Target for whatis in Man
+ */
+#ifndef WhatisRule
+#define WhatisRule(objects)				@@\
+whatis	:  	objects					@@\
+	@echo "Updating whatis database"		@@\
+	$(MW) `pwd`					@@\
+
+#endif /* WhatisRule  */
+
+/*
+ * depend target for whatis 
+ */
+#ifndef WhatisDependTarget
+#define	WhatisDependTarget()						@@\
+depend::								@@\
+	$(SCIDIR)/util/wdepend  @@\
+
+#endif /* DependTarget */
+
+#ifndef ScilabTestTarget
+#define	ScilabTestTarget()						@@\
+.tst.dia : 								@@\
+	@$(SCIDIR)/util/scidem $(SCIDIR)/bin/scilab $*.tst $*.dia	@@\
+
+#endif	ScilabTestTarget
+
+#ifndef ScilabScriptsTarget
+#define	ScilabScriptsTarget(program,source,depend)			@@\
+program: source depend							@@\
+	$(RM) program							@@\
+	sed "s+SCILAB_DIRECTORY+$(SCIDIR)+" source > program		@@\
+	chmod +x program						@@\
+									@@\
+distclean:: clean							@@\
+	$(RM) program							@@\
+
+#endif /* ScilabScriptsTarget */
+
+
+/*
+ * DistCleanSubdirs - generate rules to do distclean
+ * in the given subdirectories.
+ */
+#ifndef DistCleanSubdirs
+#define DistCleanSubdirs(dirs) \
+NamedTargetSubdirs(distclean,dirs,"making" distclean,NullParameter,distclean)
+#endif /* DistCleanSubdirs */
+
+/*
+ * Tr2texTarget - generate rules to produce tex source whith tr2tex 
+ */
+
+#define SEDJOB  sed -e 's/\\documentstyle/%\\documentstyle/' \
+			-e 's/\\end{document}//' -e 's/\\begin{document}//' 
+
+#ifndef Tr2texTarget
+#define Tr2texTarget(chap,mandir) 					@@\
+chap : $(TR2TEX) mandir							@@\
+	$(TR2TEX)  -m mandir > /tmp/chap				@@\
+	@SEDJOB /tmp/chap > chap					@@\
+	$(RM) /tmp/chap							@@\
+
+#endif /* Tr2texTarget */
+

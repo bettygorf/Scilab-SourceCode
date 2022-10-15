@@ -1,0 +1,29 @@
+
+plot2d3(2)                     Scilab Function                     plot2d3(2)
+NAME
+  plot2d3 - 2D plot (vertical bars)
+
+CALLING SEQUENCE
+  plot2d3(str,x,y,[style,strf,leg,rect,nax])
+
+PARAMETERS
+  [ ] : see plot2d1  for a description of parameters.
+
+DESCRIPTION
+  plot2d3 is the same as plot2d1 but curves are plotted using vertical bars.
+
+  By default, successive plots are superposed. To clear the previous plot,
+  use xbasc.
+
+  Enter the command plot2d3() to see a demo.
+
+EXAMPLE
+  // compare the following with plot2d1
+  x=[0:0.1:2*%pi]';
+  plot2d3("onn",x,[sin(x) sin(2*x) sin(3*x)])
+
+SEE ALSO
+  plot2d, plot2d1, plot2d2, plot2d4, xbasc
+
+AUTHOR
+  J.Ph.C.

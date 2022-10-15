@@ -1,0 +1,39 @@
+.TH driver 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+driver - select a driver for plotting
+.SH CALLING SEQUENCE
+.nf
+driver(driver_name)
+curent_driver=driver()
+.fi
+.SH PARAMETERS 
+.TP 15
+driver_name 
+: string (driver to be selected).
+.SH DESCRIPTION
+This function is used to select a graphic driver, or with no arguments to get the current driver name.
+Most of the time, a user can ignore this function and change its driver
+by calling high level functions such as \fVxbasc\fR or \fVxbasimp\fR.
+The selected driver can be one of the following :
+.TP 10
+"X11"
+: an X Window driver.
+.TP
+"Pos" 
+: a Postscript driver.
+.TP
+"Rec" 
+: an X Window driver (X11) which also records all the graphic
+commands. this is the default driver.
+.TP
+"Fig" 
+: an XFig driver ( not fully released )
+.SH SEE ALSO
+xtape,xbasc,xbasimp
+.SH AUTHOR
+J.Ph.C.
+
+
+
+

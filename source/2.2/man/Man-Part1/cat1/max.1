@@ -1,0 +1,66 @@
+
+
+
+Maximum(G)                     Scilab Function                     Maximum(G)
+
+
+
+
+
+
+NAME
+  max - maximum
+
+CALLING SEQUENCE
+  [m [,k]]=max(V)
+  [m [,k]]=maxi(V)
+
+PARAMETERS
+
+  V         : real vector or matrix or list.
+
+DESCRIPTION
+  For V a vector, matrix or list, max(V) is the largest element V.
+
+  For matrices, [m,k]=max(V) gives in addition the index of the maximum.
+
+  For example:
+
+  [m,[k]]=max([V1,V2,...,Vn])
+  returns the vector m:
+  m(i)=max([V1(i),....,Vn(1)])
+  and the vector k contains for each m(i) the number of the first Vj(i)
+  achieving the maximum.
+  [m [,k]]=max(list(v1,...,vn))
+  is an equivalent syntax.
+
+  Note that max and maxi are equivalent.
+
+SEE ALSO
+  sort, find, mini
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

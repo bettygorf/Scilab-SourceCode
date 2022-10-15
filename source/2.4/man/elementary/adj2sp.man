@@ -1,0 +1,52 @@
+.TH adj2sp 1 "JUN 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+adj2sp - converts adjacency form into  sparse matrix.
+.SH CALLING SEQUENCE
+A = adj2sp(xadj,adjncy,anz)
+A = adj2sp(xadj,adjncy,anz,mn)
+.SH PARAMETERS
+.nf
+.TP 7
+xadj  
+:  integer vector of length (n+1).
+.TP 7
+adjncy
+:  integer vector of length nz containing the row indices 
+   for the corresponding elements in anz
+.TP 7
+anz  
+:  column vector of length nz, containing the non-zero 
+   elements of A
+.TP 7
+mn
+: row vector with 2 entries, \fVmn=size(A)\fR (optional).
+.TP 7
+A  
+:  real or complex sparse matrix (nz non-zero entries)
+.fi 
+.SH DESCRIPTION
+.nf
+\fVsp2adj\fR converts an adjacency form representation of a matrix
+into its standard Scilab representation (utility fonction).
+\fVxadj, adjncy, anz\fR = adjacency representation of \fVA\fR i.e:
+.LP
+\fVxadj(j+1)-xadj(j)\fR = number of non zero entries in row j.
+\fVadjncy\fR = column index of the non zeros entries 
+in row 1, row 2,..., row n.
+\fVanz\fR = values of non zero entries in row 1, row 2,..., row n.
+\fVxadj\fR is a (column) vector of size n+1 and 
+\fVadjncy\fR is an integer (column) vector of size \fVnz=nnz(A)\fR.
+\fVanz\fR is a real vector of size \fVnz=nnz(A)\fR.
+.fi
+.SH EXAMPLE
+.nf
+A = sprand(100,50,.05);
+[xadj,adjncy,anz]= sp2adj(A);
+[n,m]=size(A);
+p = adj2sp(xadj,adjncy,anz,[n,m]);
+A-p,
+.fi
+.SH SEE ALSO
+sp2adj, spcompack
+

@@ -1,0 +1,25 @@
+
+sincd(1)                       Scilab Function                       sincd(1)
+NAME
+  sincd - digital sinc function or Direchlet kernel
+
+CALLING SEQUENCE
+  [s]=sincd(n,flag)
+
+PARAMETERS
+
+  n         : integer
+
+  flag      : if flag = 1 the function is centred around the origin; if flag
+            = 2 the function is delayed by %pi/(2*n)
+
+  s         : vector of values of the function on a dense grid of frequencies
+
+DESCRIPTION
+  function which calculates the function Sin(N*x)/N*Sin(x)
+
+EXAMPLE
+  plot(sincd(10,1))
+
+AUTHOR
+  G. Le V.

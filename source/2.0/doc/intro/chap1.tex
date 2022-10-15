@@ -1,0 +1,694 @@
+\chapter{Introduction}
+
+\section{What is $\Psi$lab}
+\index{signals!saving and loading}
+
+ Since the introduction of the ``classic'' Fortran MATLAB 
+by C. Moler in 1982 there have been a number of interactive software 
+packages which have been developed for the study of systems theory and 
+signal processing.
+
+$\Psi$lab is an extension of the classic MATLAB, developed at INRIA.
+It is freely distributed in source code format (see the file {\tt notice.tex}). 
+%It is in part based on a previous software package, BASILE. 
+The code which is provided is made for a Unix/Xwindow environment. 
+Its libraries and most of the interpreter are written in Fortran to keep 
+a better compatibility with numerical librairies. 
+The graphic facilities and the Unix interface are written in C. 
+$\Psi$lab is made of three distinct parts: an interpreter, 
+librairies of macros ($\Psi$lab procedures) and libraries of Fortran 
+and C routines. 
+These routines (which, strictly speaking, do not belong to $\Psi$lab but
+are interactively called by the interpreter) are of 
+independent interest and most of them are available through netlib. 
+A few a them have been slightly modified for a better compatibility
+with $\Psi$lab's interpreter.
+A very useful tool which is distributed with $\Psi$lab is {\tt intersci} which
+is a set of routines which allow to add easily new primitives into
+$\Psi$lab i.e. to add new modules of Fortran or C code into $\Psi$lab.
+ Thus the facilities which are available may change from one machine
+to an other: $\Psi$lab is organized in such a way that it is easily
+customized. The code which is
+distributed should be seen as an example; since $\Psi$lab is distributed with
+the complete source code as well as the Makefile files which build $\Psi$lab,
+it should be easy to adapt $\Psi$lab to your needs and in particular to
+add new Netlib routines to it.
+ 
+A key feature of the MATLAB syntax is its ability to handle matrices: 
+basic matrix manipulations such as concatenation, 
+extraction or transpose are immediately performed as well as basic operations
+such as addition or mutiplication. 
+$\Psi$lab's aims are the following: first to use the MATLAB syntax 
+for more complex objects than numerical matrices,
+(e.g. control people may want to manipulate transfer matrices) and
+second to be an open interface to numerical libraries (e.g. a specific  
+routine can be either called dynamically from $\Psi$lab or included 
+in the package as a new primitive). 
+
+$\Psi$lab is an interactive, interpreted software package with 
+the MATLAB syntax which has a number of powerful features.  
+%
+\begin{itemize}
+	\item Lists
+	\item Symbolic Manipulation of Polynomials and Matrix Polynomials
+        \item Symbolic Manipulation of Linear and Non-Linear systems
+	\item Non-Linear Calculation: Simulation and Optimization
+	\item Easy Interfacing with Numeric Subprograms
+\end{itemize}
+%
+Each one of these features are essential to the development 
+of complicated systems analyses.
+
+ The list structure allows a natural symbolic representation of complicated
+mathematical objects such as transfer functions and linear systems
+(see Section~\ref{s2.5}).
+
+	Polynomials, matrix polynomials and transfer matrices 
+are also defined and 
+$\Psi$lab permits the definition and manipulation of these objects in a
+natural, symbolic fashion (see Section~\ref{s2.4}).  In addition,
+the syntax used for manipulating these matrices
+is identical to that used for manipulating constant vectors and matrices.
+
+	$\Psi$lab provides a variety of powerful primitives for
+the analysis of non-linear systems.  
+Integration of explicit and implicit systems can be accomplished 
+numerically.  In addition there are numerical optimization 
+facilities available for non linear optimization (including
+non differentiable optimization), quadratic optimization or 
+linear optimization.
+
+	$\Psi$lab has an open programming environment where the
+creation of macros and libraries of macros is completely in the
+hands of the user (see Chapter~\ref{ch4}).    
+Macros are recognized as data objects in $\Psi$lab and, thus, can be 
+manipulated or created as other data objects.  For example, macros
+can be passed as the arguments of primitives or other macros.
+
+In addition $\Psi$lab supports a character chain data type 
+which, in particular, allows the automatic creation of macros.
+Matrices of character strings are also manipulated with the same
+syntax or ordinary matrices.
+	Finally, $\Psi$lab is easily interfaced with Fortran or C 
+subprograms (see Chapter~\ref{intersci}).  This permits use of standardized 
+packages and libraries in the interpreted environment of $\Psi$lab.
+
+	The general philosophy of $\Psi$lab is to provide the following
+sort of computing environment:
+\begin{itemize}
+   \item To have data types which are varied and flexible.
+   \item To have a syntax which is natural and easy to use.
+   \item To provide a reasonable set of primitives which serve
+	   as a basis for a wide variety of calculations.
+   \item To have an open programming environment where new
+	   primitives are easily added.
+   \item To support library development through ``toolboxes'' of
+         macros devoted to specific
+	   applications (linear control, signal processing, 
+	   networks analysis, non-linear control, etc.)
+\end{itemize}
+
+	The objective of this introduction manual is to give the user 
+an idea of what $\Psi$lab can do. On line documentation for all the
+$\Psi$lab functions is also available.
+
+\section{Sample Session}
+
+$\Psi$lab is called by typing {\tt scilab} (or {\tt scilab}).
+These shell scripts  (in the directory {\tt SCIDIR/bin}) run $\Psi$lab 
+in an X-window environment or in a pure Unix-environment respectively.
+
+A first contact with $\Psi$lab can be made by clicking on ``demos''
+and running the introduction demo.
+
+	To give the user an idea of some of the capabilities of $\Psi$lab
+we give the following sample session in $\Psi$lab.\\
+\bigskip
+{\tt scilab}
+\begin{verbatim}
+
+     ===========
+     S C I L A B        31-DEC-1990 at 23:28:13 
+     ===========
+
+ Scilab Version 1.0 (01-01-1990) Copyright (C) INRIA
+   
+ -->
+
+\end{verbatim}
+After the initial call to $\Psi$lab the $\Psi$lab banner is displayed
+and the prompt represented by the {\tt -->}.  Several libraries
+(see the {\tt SCIDIR/scilab.star} file) are automatically loaded and 
+now the user can evaluate expressions in $\Psi$lab.
+
+	Now for some simple commands.
+
+\noindent.\dotfill.
+\begin{verbatim}
+
+-->a=1;
+\end{verbatim}
+Give the value of 1 to the variable {\tt a}.  The semi-colon
+at the end of the command suppresses the display of the result.
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->c=[1 2];b=1.5
+ b         =
+ 
+    1.5  
+\end{verbatim}
+Two commands are processed and the second result is displayed because
+it is not followed by a semi-colon.
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->a=1;b=1.5;
+ 
+-->2*a+b^2
+ ans       =
+ 
+    4.25  
+\end{verbatim}
+Here an example of an expression which mixes constants with existing
+variables.  The result is retained in the standard default variable 
+called {\tt ans}\index{ans@{\tt ans}}.
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->sqrt([4  -4])
+ ans       =
+ 
+!   2.    2.i !
+\end{verbatim} 
+Call to a function (or primitive) with a vector argument.  The response
+is a complex vector.
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->p=poly([1 2 3],'s','coeff')
+ p         =
+ 
+               2  
+    1 + 2s + 3s   
+ 
+-->//p is the polynomial in z with coefficients 1,2,3.
+\end{verbatim}
+A command a little more complicated which creates a polynomial.  The
+chain of characters which follow the {\tt //} is not interpreted by
+$\Psi$lab.
+
+\noindent.\dotfill.
+\begin{verbatim}
+
+-->M=[p, p-1; p+1 ,2]
+m         =
+ 
+!              2             2    !
+!   1 + 2s + 3s       2s + 3s     !
+!                                 !
+!              2                  !
+!   2 + 2s + 3s         2         !
+ 
+
+-->det(m)
+
+ans      =
+
+          2     3    4  
+    2 - 4s - 12s - 9s   
+
+\end{verbatim}
+Definition of a polynomial matrix. The syntax for polynomial matrices
+is the same as that for matrices of constants. Calculation of the
+determinant of the polynomial matrix by the {\tt det} function. 
+Note that {\tt scilab} is not case-sensitive.
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->z=poly(0,'z');
+ 
+-->f=[1/z        ,(z+1)/(1-z)
+     z/p        ,   z^2   ]
+ f         =
+ 
+!   1               1 + z  !
+!  ---              ------ !
+!   z               1 - z  !
+!                          !
+!                      2   !
+!       z             z    !
+!   ---------        ---   !
+!             2            !
+!  1 + 2z + 3z        1    !
+ 
+\end{verbatim}
+Definition of a matrix of rational polynomials.  The internal representation
+of {\tt f} is as a list {\tt list('r',num,den)} where {\tt num} and 
+{\tt den} are two matrix polynomials.  
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->pause
+ 
+-1->pt=return(z*p)
+ 
+-->pt
+ pt        =
+ 
+          2    3  
+    z + 2z + 3z   
+ 
+\end{verbatim}
+Here we push into a new environment using the command 
+{\tt pause}\index{pause@{\tt pause}}
+and we obtain the new prompt {\tt -1->} which indicates the level
+of the new environment (level 1).  All variables that are available
+in the first environment are available in the new environment.  Variables
+created in the new environment can be returned to the original environment
+by using {\tt return}\index{return@{\tt return}}.  
+Use of {\tt return} without an argument 
+destroys all the variables created in the new environment before returning
+to the old environment. The {\tt pause} facility is very useful 
+for debugging macros.
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->f21=f(2,1);v=0:0.01:%pi;frequencies=exp(%i*v);
+ 
+-->response=freq(f21(2),f21(3),frequencies);
+ 
+-->plot2d(v',abs(response)',[-1],'011',' ',[0,0,3.5,0.7],[5,4,5,7]);
+ 
+-->xtitle(' ','radians','magnitude');
+\end{verbatim}
+
+Definition of a rational polynomial by extraction of an element
+of the matrix {\tt f} defined above.  This is followed by the evaluation
+of the rational polynomial at the vector of complex frequency values defined
+by {\tt frequencies}.  The evaluation of the polynomial is done by
+the primitive {\tt freq}. {\tt f21(2)} is the numerator
+polynomial and {\tt f21(3)} is the denominator polynomial.
+The  visualization of the resulting evaluation
+is made by using the command {\tt plot2d} (see Figure~\ref{f1.1}).
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->w=(1-z)/(1+z);f=1/p
+ f         =
+ 
+         1        
+    ------------  
+               2  
+    1 + 2z + 3z   
+ 
+-->horner(f,w)
+ ans       =
+ 
+              2   
+    1 + 2z + z    
+    -----------   
+               2  
+    6 - 4z + 2z   
+\end{verbatim}  
+The macro {\tt horner} allows the
+user to make a change of variables for a polynomial (for example, to
+perform the bilinear transformation as seen above).
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->A=[-1,0;1,2];B=[1,2;2,3];C=[1,0];
+ 
+-->Sl=syslin('c',A,B,C);
+ 
+-->ss2tf(Sl)
+ ans       =
+ 
+!     1         2    !
+!   ------    ------ !
+!   1 + s     1 + s  !
+
+\end{verbatim}
+Definition of a linear system in state-space representation.
+The macro {\tt syslin} defines here the continuous time ({\tt 'c'}) system
+{\tt Sl} with state-space matrices ({\tt A,B,C}). The macro
+{\tt ss2tf} transforms {\tt Sl} into transfer matrix representation.
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->s=poly(0,'s');
+ 
+-->R=[1/s,s/(1+s),s^2]
+ r         =
+ 
+!                    2 !
+!   1       s       s  !
+!  ---     ---     --- !
+!   s     1 + s     1  !
+ 
+-->Sl=syslin('c',R);
+ 
+-->tf2ss(sl)
+ ans       =
+ 
+ 
+       ans(1)   (state-space system:)
+ 
+ lss   
+ 
+       ans(2) = A matrix = 
+ 
+! - 0.5  - 0.5 !
+! - 0.5  - 0.5 !
+ 
+       ans(3) = B matrix = 
+ 
+! - 1.    1.    0. !
+!   1.    1.    0. !
+ 
+       ans(4) = C matrix = 
+ 
+! - 1.    0. !
+ 
+       ans(5) = D matrix = 
+ 
+!               2 !
+!   0    1     s  !
+ 
+       ans(6) = X0 (initial state) = 
+ 
+!   0. !
+!   0. !
+ 
+       ans(7) = Time domain = 
+ 
+ c   
+ 
+\end{verbatim}
+Definition of the rational matrix {\tt R}. {\tt Sl} is the
+continuous-time linear system with (improper) transfer matrix
+R. {\tt tf2ss} puts {\tt Sl} in state-space representation with a
+polynomial {\tt D} matrix. Note that linear systems are represented
+by lists.
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->sl1=[sl;2*sl+eye]
+ sl1       =
+ 
+!                        2  !
+!   1           s       s   !
+!  ---         ---     ---  !
+!   s         1 + s     1   !
+!                           !
+!                         2 !
+!   2 + s      2s       2s  !
+!   ------     ---      --- !
+!     s       1 + s     1   !
+
+-->size(sl1)
+  ans       =
+ 
+!   2.    3. !
+
+-->size(tf2ss(sl1))
+ ans       =
+ 
+!   2.    3. !
+
+\end{verbatim}
+
+{\tt sl1} is the linear system in transfer matrix representation
+obtained by the parallel inter-connection of {\tt sl} and {\tt 2*sl +eye}.
+The same syntax is valid with {\sl} in state-space representation.
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->deff('[Cl]=compen(Sl,Kr,Ko)',[ '[A,B,C,D]=abcd(Sl);';
+       'A1=[A-B*Kr ,B*Kr; 0*A ,A-Ko*C]; Id=eye(A);';
+       'B1=[Id     ,0*Ko; Id  ,-Ko   ];';
+       'C1=[C ,0*C];Cl=syslin(''c'',A1,B1,C1)' ])
+ 
+-->comp(compen)
+\end{verbatim}
+On-line definition of a macro which calculates the state space representation
+({\tt Cl}) of a linear system controlled by an observer with gain {\tt Ko}
+and a controller with gain {\tt Kr}.  Note that matrices are constructed
+in block form using other matrices.  The macro {\tt compen} is then
+compiled by {\tt comp}.
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->A=[1,1 ;0,1];B=[0;1];C=[1,0];Sl=syslin('c',A,B,C);
+ 
+-->Cl=compen(Sl,ppol(A,B,[-1,-1]),...
+                     ppol(A',C',[-1+%i,-1-%i])');
+ 
+-->f=Cl(2),spec(f)
+ f         =
+ 
+!   1.    1.    0.    0. !
+! - 4.  - 3.    4.    4. !
+!   0.    0.  - 3.    1. !
+!   0.    0.  - 5.    1. !
+ ans       =
+ 
+! - 1.       !
+! - 1.       !
+! - 1. + i   !
+! - 1. - i   !
+\end{verbatim}
+Call to the macro {\tt compen} defined above where the gains were
+calculated by a call to the primitive {\tt ppol} which performs pole
+placement.
+The resulting {\tt f} matrix is displayed and the placement
+of its poles is verified using the primitive {\tt spec} which calculates
+the eigen-values of a matrix.
+
+\noindent.\dotfill.
+\begin{verbatim}
+
+-->save('myfile')
+\end{verbatim}
+Saves the environment in a file named {\tt mufile}.
+
+\noindent.\dotfill.
+\begin{verbatim}
+
+-->unix_x('more myfile')
+\end{verbatim}
+Request to the host system to perform a system command.
+
+\noindent.\dotfill.
+\begin{verbatim}
+
+-->q
+  /--error 
+ undefined variable: q       
+\end{verbatim}
+An error message: command is not interpretable by the system since the
+variable {\tt q} is unknown.
+
+\noindent.\dotfill.
+\begin{verbatim}
+-->foo=['      subroutine foo(a,b,c)';
+        '      c=a+b';
+        '      end'  ];
+
+-->write('foo.f',foo);
+
+-->unix_s('make foo.o') 
+
+-->link('foo.o','foo')  
+
+-->deff('[c]=myplus(a,b)',
+   'c=fort(''foo'',a,1,''r'',b,2,''r'',''out'',[1,1],3,''r'')')
+
+-->myplus(5,7)
+ans
+
+ 12
+\end{verbatim}
+Definition of a column vector of character chains defining a Fortran
+subroutine. The routine is compiled, dynamically loaded into $\Psi$lab,
+and interactivelly called by the macro {\tt myplus}.
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->deff('[ydot]=f(t,y)','ydot=[a-y(2)*y(2) -1;1 0]*y')
+ 
+-->a=1;comp(f);y0=[1;0];t0=0;instants=0:0.02:20;
+ 
+-->y=ode(y0,t0,instants,f);
+ 
+-->plot2d(y(1,:)',y(2,:)',[-1],'011',' ',[-3,-3,3,3],[10,2,10,2])
+ 
+-->xtitle('Van der Pol')
+\end{verbatim}
+Definition of a macro which calculates a first order vector differential
+{\tt f(t,y)}.  This is followed by the definition of the constant {\tt a}
+used in the macro and the macro is compiled.  The primitive {\tt ode}
+then integrates the differential equation defined by {\tt f(t,y)}
+for $y(0)=\langle 1;0\rangle$ at $t=0$ and where the solution is given
+at the time values $t=0,.02,.04,\ldots,20$.  The result is plotted in
+Figure~\ref{f1.2} where the first element of the integrated vector is 
+plotted against the second element of this vector.
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->m=['a' 'cos(b)';'sin(a)' 'c']
+ m         =
+ 
+!a       cos(b)  !
+!                !
+!sin(a)  c       !
+ 
+-->m*m'
+     !--error    43 
+not implemented in scilab....
+ 
+ 
+-->deff('[x]=%cmc(a,b)',['[l,m]=size(a);[m,n]=size(b);x=[];';
+  'for j=1:n,y=[];';
+  'for i=1:l,t='' '';';
+  'for k=1:m;';
+  'if k>1 then t=t+''+(''+a(i,k)+'')*''+''(''+b(k,j)+'')'';';
+  'else t=''('' + a(i,k) + '')*'' + ''('' + b(k,j) + '')'';';
+  'end,end;';
+  'y=[y;t],end;';
+  'x=[x y],end,'])
+ 
+--> m*m'
+ ans       =
+ 
+!(a)*(a)+(cos(b))*(cos(b))  (a)*(sin(a))+(cos(b))*(c)  !
+!                                                      !
+!(sin(a))*(a)+(c)*(cos(b))  (sin(a))*(sin(a))+(c)*(c)  !
+ 
+\end{verbatim}
+Definition of a matrix containing character chains. The 
+operation of symbolic multiplication of two matrices of character
+strings is not defined in $\Psi$lab.  The (on-line)
+macro definition for {\tt \%cmc} defines the multiplication of 
+matrices of character chains (Note that the double quote is necessary
+because the body of the {\tt deff} contains quotes inside of quotes).
+The {\tt \%} which begins the macro definition for {\tt \%cmc}
+allows the definition of an operation which did not previously 
+exist in $\Psi$lab, and the name {\tt cmc} means ``chain multiply chain''.
+
+\noindent.\dotfill.
+\begin{verbatim}
+ 
+-->deff('[y]=calcul(x,method)','z=method(x),y=poly(z,''x'')')
+ 
+-->deff('[z]=meth1(x)','z=x')
+ 
+-->deff('[z]=meth2(x)','z=2*x')
+ 
+-->calcul([1,2,3],meth1)
+ ans       =
+ 
+                2   3  
+  - 6 + 11x - 6x + x   
+ 
+-->calcul([1,2,3],meth2)
+ ans       =
+ 
+                  2   3  
+  - 48 + 44x - 12x + x   
+ 
+\end{verbatim}
+A simple example which illustrates the passing of a macro as an argument
+to another macro. $\Psi$lab macros are objects which may be defined, loaded,
+or manipulated as other objects such as matrices or lists.
+
+\noindent.\dotfill.
+\begin{verbatim}
+
+-->quit
+
+\end{verbatim}
+Exit from $\Psi$lab.
+
+\noindent.\dotfill.
+\input{\Figdir d1.7.tex}
+\dessin{A Simple Response}{f1.1}
+
+\input{\Figdir d1.14.tex}
+\dessin{Phase Plot}{f1.2}
+
+\section{Software Organization}
+
+$\Psi$lab is divided into a set of directories. The main directory
+\verb!SCIDIR! contains the files scilab.star (startup file), the
+copyright file notice.tex, and the file \verb!Imake.incl! (see(\ref{install})).
+The subdirectories are the following:
+\begin{itemize}
+\item{{\tt macros} contains the libraries of main $\Psi$lab macros
+which are available on-line. A new library can be easily added 
+(see the Makefile). This directory is divided into a number of subdirectories
+which contain Toolboxes for control, signal processing, etc..}
+
+\item{{\tt demos} is the directory of $\Psi$lab demos. The file 
+{\tt alldems.dem} allows to add a new demo which can be run by 
+clicking in ``demos''.}
+
+\item{{\tt man} is the manual (Unix manual), divided into submanuals.
+The manual is given in Latex format. The \LaTeX code is produced by a 
+translation of the Unix format $\Psi$lab manual (see the subdirectory
+{\tt Man-General}).
+To get information about an item enter {\tt help item} in $\Psi$lab
+or use the help window facility obtained with help button.
+To get functions corresponding to a key word enter {\tt apropos
+key-word}
+or use apropos filed of the help window facility.
+
+
+\item{{\tt routines} is a directory with contains the source code of all
+the numerical routines. The subdirectory {\tt default} contains the
+source code of routines which are useful to customize $\Psi$lab.}
+In particular ``external'' routines for ODE solvers or optimization
+should be included here (see e.g. thee file {\tt fydot.f}.
+\item{{\tt intersci} is the facility provided to add new Fortran or C 
+primitives to $\Psi$lab.}
+
+\item{{\tt doc} is documentation: \LaTeX, dvi and Postscript files. 
+This documentation is {\tt SCIDIR/doc/intro/intro.tex}. See 
+also the manual in the directory {\tt SCIDIR/man}}
+
+\item{{\tt libs} contains the $\Psi$lab libraries (compiled code).}
+
+\item{{\tt scripts} is the directory which contains the source code of 
+shell scripts files.}
+
+\item{{\tt xmetanet} is the directory which contains {\tt xmetanet}, a 
+graphic display for networks. Enter {\tt metanet()} in $\Psi$lab to use it.}
+
+\item{{\tt imp}} is the directory where Postscipt files ar managed for
+print.
+
+\end{itemize}
+%The file {\tt make.incl} must be adapted to your machine. It  
+%contains thee pathname if the directory where $\Psi$lab is
+%installed.
+
+\section{Installing $\Psi$lab}
+\label{install}
+$\Psi$lab is given in source code format, with a collection
+of {\tt Imakefile} to compile and install it.
+The files {\tt Imake.incl , Path.incl} should be adapted to your machine \index{install}.  .
+See the README file in main Scilab directory.

@@ -1,0 +1,32 @@
+.TH circuit 1 "September 1995" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME
+circuit - find a circuit or the rank function in a directed graph
+.SH CALLING SEQUENCE
+.nf
+[p,r] = circuit(g)
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph-list
+.TP 2
+p
+: row vector of integer numbers of the arcs of the circuit if it exists
+.TP 2
+r
+: row vector of rank function if there is no circuit
+.SH DESCRIPTION 
+\fVcircuit\fR tries to find a circuit for the directed graph \fVg\fR.
+It returns the circuit \fVp\fR as a row vector of the
+corresponding arc numbers if it exists and it returns the empty vector \fV[]\fR
+otherwise.
+If the graph has no circuit, the rank function is returned in \fVr\fR, 
+otherwise its value is the empty vector \fV[]\fR.
+.SH EXAMPLE
+.nf
+g=make_graph('foo',1,3,[1 2 3],[2 3 1]);
+circuit(g)
+g=make_graph('foo',1,4,[1 2 2 3],[2 3 4 4]);
+[p,r]=circuit(g)
+.fi

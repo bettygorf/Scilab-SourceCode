@@ -1,0 +1,248 @@
+
+% Dessin en bas a gauche de taille 3000,2120
+[0.5 10 div 0 0 0.5 10 div neg  0 2120 10 div] concat
+0 Thickness
+% 3 setalufunction
+-1 -1 200000 200000 setclipzone
+[] 0 setdash
+/Times-Roman findfont 100 scalefont setfont
+fillsolid
+/WhiteLev 16 def
+ (drawbox) 4 [ 17]
+[750 530 4500 3180 
+] dogrey 
+fillsolid
+ 0 [2 10] [225.000000 31.800000 2.000000] [750 3710] drawaxis
+(1.0) 664 3906 0  0.00 [664 3816 172 120] Show
+(1.4) 1114 3906 0  0.00 [1114 3816 172 120] Show
+(1.8) 1564 3906 0  0.00 [1564 3816 172 120] Show
+(2.2) 2014 3906 0  0.00 [2014 3816 172 120] Show
+(2.6) 2464 3906 0  0.00 [2464 3816 172 120] Show
+(3.0) 2914 3906 0  0.00 [2914 3816 172 120] Show
+(3.4) 3364 3906 0  0.00 [3364 3816 172 120] Show
+(3.8) 3814 3906 0  0.00 [3814 3816 172 120] Show
+(4.2) 4264 3906 0  0.00 [4264 3816 172 120] Show
+(4.6) 4714 3906 0  0.00 [4714 3816 172 120] Show
+(5.0) 5164 3906 0  0.00 [5164 3816 172 120] Show
+ -90 [2 10] [159.000000 -30.000000 2.000000] [750 3710] drawaxis
+(1.0) 506 3740 0  0.00 [506 3650 172 120] Show
+(1.9) 506 3422 0  0.00 [506 3332 172 120] Show
+(2.8) 506 3104 0  0.00 [506 3014 172 120] Show
+(3.7) 506 2786 0  0.00 [506 2696 172 120] Show
+(4.6) 506 2468 0  0.00 [506 2378 172 120] Show
+(5.5) 506 2150 0  0.00 [506 2060 172 120] Show
+(6.4) 506 1832 0  0.00 [506 1742 172 120] Show
+(7.3) 506 1514 0  0.00 [506 1424 172 120] Show
+(8.2) 506 1196 0  0.00 [506 1106 172 120] Show
+(9.1) 506 878 0  0.00 [506 788 172 120] Show
+(10.0) 449 560 0  0.00 [449 470 229 120] Show
+750 530 4500 3180 setclipzone
+/closeflag false def
+ (drawpoly) 6 [ 17]
+[750 3687 808 3692 868 3710 
+] dogrey 
+fillsolid
+/absolu true def
+(-1.26) 808 3692 0  0.00 [808 3602 287 120] Show
+/closeflag false def
+ (drawpoly) 10 [ 17]
+[5250 2537 4972 2563 4824 2650 4978 2736 5250 2776 
+] dogrey 
+fillsolid
+/absolu true def
+(-1.26) 4824 2650 0  0.00 [4824 2560 287 120] Show
+/closeflag false def
+ (drawpoly) 10 [ 17]
+[5250 3346 5229 3350 5221 3357 5235 3361 5250 3364 
+] dogrey 
+fillsolid
+/absolu true def
+(-1.26) 5221 3357 0  0.00 [5221 3267 287 120] Show
+/closeflag false def
+ (drawpoly) 18 [ 17]
+[1875 2920 2200 2752 2434 2650 2037 2599 1875 2606 1716 2600 1620 2650 1541 2755 1875 2920 
+] dogrey 
+fillsolid
+/absolu true def
+(-1.26) 1875 2606 0  0.00 [1875 2516 287 120] Show
+/closeflag false def
+ (drawpoly) 6 [ 17]
+[750 3526 1216 3564 1703 3710 
+] dogrey 
+fillsolid
+/absolu true def
+(-0.44) 1216 3564 0  0.00 [1216 3474 287 120] Show
+/closeflag false def
+ (drawpoly) 38 [ 17]
+[750 3174 1306 3178 1320 3178 1875 3182 2318 3142 2694 3003 2812 2944 3000 2865 3338 2756 3487 2650 
+3384 2529 3000 2463 2629 2534 2357 2499 1875 2519 1402 2501 1117 2650 1047 2743 750 2800 
+] dogrey 
+fillsolid
+/absolu true def
+(-0.44) 3487 2650 0  0.00 [3487 2560 287 120] Show
+/closeflag false def
+ (drawpoly) 10 [ 17]
+[750 2464 1143 2420 980 2297 1015 2213 750 2184 
+] dogrey 
+fillsolid
+/absolu true def
+(-0.44) 980 2297 0  0.00 [980 2207 287 120] Show
+/closeflag false def
+ (drawpoly) 16 [ 17]
+[5250 1467 5024 1519 5073 1590 5016 1664 4920 1840 4822 1943 4895 2055 5250 2095 
+] dogrey 
+fillsolid
+/absolu true def
+(-0.44) 4920 1840 0  0.00 [4920 1750 287 120] Show
+/closeflag false def
+ (drawpoly) 10 [ 17]
+[5250 2424 4693 2475 4398 2650 4705 2821 5250 2902 
+] dogrey 
+fillsolid
+/absolu true def
+(-0.44) 4398 2650 0  0.00 [4398 2560 287 120] Show
+/closeflag false def
+ (drawpoly) 10 [ 17]
+[5250 3156 4848 3230 4703 3357 4964 3446 5250 3491 
+] dogrey 
+fillsolid
+/absolu true def
+(-0.44) 4703 3357 0  0.00 [4703 3267 287 120] Show
+/closeflag false def
+ (drawpoly) 10 [ 17]
+[3225 3710 3225 3639 3000 3540 2617 3590 2172 3710 
+] dogrey 
+fillsolid
+/absolu true def
+(-0.44) 3000 3540 0  0.00 [3000 3450 287 120] Show
+/closeflag false def
+ (drawpoly) 42 [ 17]
+[1875 1987 2111 2017 2682 2043 3000 2155 3357 2056 3359 1943 3276 1857 3174 1645 3132 1590 3174 1535 
+3000 1498 2864 1547 2884 1590 2732 1674 2628 1827 2167 1852 1875 1901 1729 1898 1646 1943 1691 2001 
+1875 1987 
+] dogrey 
+fillsolid
+/absolu true def
+(-0.44) 3000 1498 0  0.00 [3000 1408 287 120] Show
+/closeflag false def
+ (drawpoly) 18 [ 17]
+[3000 989 3337 989 3427 883 3270 798 3000 791 2858 839 2737 883 2781 952 3000 989 
+] dogrey 
+fillsolid
+/absolu true def
+(-0.44) 3000 791 0  0.00 [3000 701 287 120] Show
+/closeflag false def
+ (drawpoly) 18 [ 17]
+[4125 1254 4213 1264 4269 1237 4180 1219 4125 1179 3943 1180 3991 1237 4042 1263 4125 1254 
+] dogrey 
+fillsolid
+/absolu true def
+(-0.44) 4125 1179 0  0.00 [4125 1089 287 120] Show
+/closeflag false def
+ (drawpoly) 10 [ 17]
+[750 3366 788 3369 1018 3357 780 3347 750 3347 
+] dogrey 
+fillsolid
+/absolu true def
+(0.39) 1018 3357 0  0.00 [1018 3267 229 120] Show
+/closeflag false def
+ (drawpoly) 30 [ 17]
+[750 2013 1093 2051 1010 1943 1324 1770 1875 1783 2275 1716 2502 1590 2421 1418 1875 1306 1427 1377 
+1153 1363 1227 1440 1042 1590 1286 1758 750 1797 
+] dogrey 
+fillsolid
+/absolu true def
+(0.39) 2421 1418 0  0.00 [2421 1328 229 120] Show
+/closeflag false def
+ (drawpoly) 22 [ 17]
+[750 852 800 868 988 883 1530 992 1875 1002 2056 940 2020 883 2472 718 3000 538 3027 539 
+3049 530 
+] dogrey 
+fillsolid
+/absolu true def
+(0.39) 2056 940 0  0.00 [2056 850 229 120] Show
+/closeflag false def
+ (drawpoly) 18 [ 17]
+[5250 626 4718 697 4654 696 4633 724 4313 883 4604 1034 4655 1070 4830 1105 5250 1204 
+] dogrey 
+fillsolid
+/absolu true def
+(0.39) 4313 883 0  0.00 [4313 793 229 120] Show
+/closeflag false def
+ (drawpoly) 10 [ 17]
+[5250 2275 5140 2262 5077 2297 5187 2316 5250 2311 
+] dogrey 
+fillsolid
+/absolu true def
+(0.39) 5077 2297 0  0.00 [5077 2207 229 120] Show
+/closeflag false def
+ (drawpoly) 20 [ 17]
+[5250 3617 4694 3531 4184 3357 4217 3328 4125 3217 3963 3306 3866 3357 3868 3437 3615 3550 3616 3710 
+] dogrey 
+fillsolid
+/absolu true def
+(0.39) 3963 3306 0  0.00 [3963 3216 229 120] Show
+/closeflag false def
+ (drawpoly) 18 [ 17]
+[1875 2433 2256 2416 2702 2297 2301 2163 1875 2107 1392 2145 1328 2297 1489 2418 1875 2433 
+] dogrey 
+fillsolid
+/absolu true def
+(0.39) 1875 2107 0  0.00 [1875 2017 229 120] Show
+/closeflag false def
+ (drawpoly) 30 [ 17]
+[4125 2070 4367 2019 4317 1943 4398 1858 4552 1724 4655 1590 4561 1453 4125 1402 3676 1449 3570 1590 
+3677 1731 3822 1848 3914 1943 3913 2010 4125 2070 
+] dogrey 
+fillsolid
+/absolu true def
+(0.39) 4125 1402 0  0.00 [4125 1312 229 120] Show
+/closeflag false def
+ (drawpoly) 10 [ 17]
+[1282 530 1581 622 1875 665 2073 592 2254 530 
+] dogrey 
+fillsolid
+/absolu true def
+(1.21) 1875 665 0  0.00 [1875 575 229 120] Show
+/closeflag false def
+ (drawpoly) 10 [ 17]
+[5250 755 4963 793 4781 883 4959 975 5250 1044 
+] dogrey 
+fillsolid
+/absolu true def
+(1.21) 4781 883 0  0.00 [4781 793 229 120] Show
+/closeflag false def
+ (drawpoly) 10 [ 17]
+[4719 3710 4258 3668 4125 3620 4007 3673 4007 3710 
+] dogrey 
+fillsolid
+/absolu true def
+(1.21) 4125 3620 0  0.00 [4125 3530 229 120] Show
+/closeflag false def
+ (drawpoly) 18 [ 17]
+[1875 2346 2013 2340 2175 2297 2030 2248 1875 2228 1700 2242 1677 2297 1735 2341 1875 2346 
+] dogrey 
+fillsolid
+/absolu true def
+(1.21) 1875 2228 0  0.00 [1875 2138 229 120] Show
+/closeflag false def
+ (drawpoly) 18 [ 17]
+[1875 1666 2031 1639 2120 1590 2089 1523 1875 1479 1640 1516 1549 1590 1651 1660 1875 1666 
+] dogrey 
+fillsolid
+/absolu true def
+(1.21) 1875 1479 0  0.00 [1875 1389 229 120] Show
+/closeflag false def
+ (drawpoly) 18 [ 17]
+[4125 1697 4216 1619 4238 1590 4218 1561 4125 1550 4029 1560 4007 1590 4030 1620 4125 1697 
+] dogrey 
+fillsolid
+/absolu true def
+(1.21) 4125 1550 0  0.00 [4125 1460 229 120] Show
+-1 -1 200000 200000 setclipzone
+(contour  ) 2714 337 0  0.00 [2714 247 516 120] Show
+(  ) 5540 3517 0  0.00 [5540 3427 114 120] Show
+(  ) 1040 469 0  0.00 [1040 379 114 120] Show
+ showpage
+
+ end saved restore 

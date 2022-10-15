@@ -1,0 +1,22 @@
+In this directory we show how to customize Scilab help by 
+adding two new sections. Unix-Linux platforms only!
+
+Directories helpdir1 and helpdir2 contain .man files which
+are processed (transformed into .cat files) and the whatis
+files are generated. 
+
+Defining in Scilab an updated %helps variable:
+%helps = [%helps; 
+"./helpdir1", "Title1";
+"./helpdir2", "Title2";
+];
+allows the items in helpdir1 and helpdir2 to be in the
+Scilab help.
+
+Edit the Makefile and set SCIDIR to your 
+Scilab version path. Then run make to compile the manuals. 
+
+You can change your Scilab startup ( .scilab ) 
+by adding the content of the file help.sce 
+in order to get access to the new help sections.
+

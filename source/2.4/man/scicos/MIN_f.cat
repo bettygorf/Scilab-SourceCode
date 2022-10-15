@@ -1,0 +1,15 @@
+
+MIN_f(5)                        Scicos Block                         MIN_f(5)
+NAME
+  MIN_f - Scicos min block
+
+DIALOGUE PARAMETERS
+  None.
+
+DESCRIPTION
+  The block outputs the minimum of the input vector: y=min(u1,...un).  The
+  input vector size is determined by the compiler according to the connected
+  blocks port sizes.
+
+SEE ALSO
+  MAX_f

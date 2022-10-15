@@ -1,0 +1,43 @@
+.TH abs G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+edit -  function editing
+.SH CALLING SEQUENCE
+.nf
+newname=edit(functionname [, editor])
+.fi
+.SH PARAMETERS
+.TP 10
+functionname
+: character string
+.TP 10
+editor
+: character string
+.SH DESCRIPTION
+If functionname is the name of a defined scilab function 
+\fVedit(functionname ,[editor])\fR try to open the associated file
+ \fVfunctionname.sci\fR. If this file can't be modified \fVedit\fR
+first create a copy of this file in the TMPDIR directory.
+.LP
+
+If functionname is the name of a undefined scilab function \fVedit\fR
+create a functionname.sci file in the TMPDIR directory.
+.LP
+
+When leaving the editor the modified or defined function is loaded
+into Scilab under the name \fVnewname\fR.
+.LP
+
+The editor character string can be used to specify your favorite text
+editor.
+.LP
+
+Default editor is Emacs. This function should be customized according
+to your needs.
+.SH EXAMPLE
+newedit=edit('edit')  //open editor with text of this function
+myfunction=edit('myfunction')  //open editor for a new function
+.SH SEE ALSO
+manedit
+
+

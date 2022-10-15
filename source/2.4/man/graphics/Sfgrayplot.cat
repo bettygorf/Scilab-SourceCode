@@ -1,0 +1,27 @@
+
+Sfgrayplot(2)                  Scilab Function                  Sfgrayplot(2)
+NAME
+  Sfgrayplot - 2D plot with gray levels
+
+CALLING SEQUENCE
+  Sfgrayplot(x,y,f,[strf,rect,nax])
+
+DESCRIPTION
+  Like fgrayplot but the function fec is used to smooth the result. f is
+  evaluated on the grid x.*.y   and the result is plotted assuming that f is
+  linear on the triangles built on the x.*.y  grid. Enter Sfgrayplot() to see
+  a demo.
+      ______
+      | /| /|
+      |/_|/_|
+      | /| /|
+      |/_|/_|
+
+EXAMPLE
+  Sfgrayplot()
+
+AUTHOR
+  J.Ph.C..
+
+SEE ALSO
+  Sgrayplot, fgrayplot, grayplot, fec

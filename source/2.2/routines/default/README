@@ -1,0 +1,10 @@
+The Fortran routine newfun.f
+    generates the source code of the scilab routine
+    funtab.f .
+    newfun takes the two files fundef and funtab.f and from these
+    two files it makes the file funtab.f.new which is the new source code
+    of funtab.f. This new funtab.f manages all the primitives defined
+    in fundef. 
+    fundef is a three columns table: first column = name
+    of a primitive  second column = internal coding in scilab third column=
+    type of primitive (0 low-level, 1 system function, 2 macro-like primitive)

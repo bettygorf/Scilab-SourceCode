@@ -1,0 +1,4 @@
+analyze - 
+loadwave - load a sound <<wav>> file into scilab 
+mapsound - 
+savewave - save data into a sound <<wav>> file.

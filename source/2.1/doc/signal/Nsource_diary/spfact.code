@@ -1,0 +1,14 @@
+z=poly(0,'z');
+ diary(0)
+ diary('spfact1.dia')
+a=[ -0.09-0.35z+z^2 ,-0.02-0.13z
+   -0.03-0.15z     ,  -0.08-0.36z+z^2  ]
+ diary(0)
+ diary('spfact2.dia') 
+  sp=a*tild(a)
+ diary(0)
+ diary('spfact3.dia') 
+  d=sfact(sp)
+ diary(0)
+ diary('spfact4.dia') 
+  sp-d*tild(d)

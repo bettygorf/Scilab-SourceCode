@@ -1,0 +1,66 @@
+
+
+
+projsl(1)                      Scilab Function                      projsl(1)
+
+
+
+
+
+
+NAME
+  projsl - linear system projection
+
+CALLING SEQUENCE
+  [slp]=projsl(sl,Q,M)
+
+PARAMETERS
+
+  sl,slp         : syslin lists
+
+  Q,M            : matrices (projection factorization)
+
+DESCRIPTION
+  slp= projected model of sl where Q*M is the full rank factorization of the
+  projection.
+
+  If (A,B,C,D) is the representation of sl, the projected model is given by
+  (M*A*Q,M*B,C*Q,D).
+
+  Usually, the projection Q*M is obtained as the spectral projection of an
+  appropriate auxiliary matrix W e.g. W = product of (weighted) gramians or
+  product of Riccati equations.
+
+SEE ALSO
+  pbig
+
+AUTHOR
+  F. D.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

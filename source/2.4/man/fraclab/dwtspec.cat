@@ -1,0 +1,38 @@
+
+dwtspec(2)                     Scilab Function                     dwtspec(2)
+NAME
+  dwtspec -  Discrete wavelet based Legendre spectrum
+
+  Author: Paulo Goncalves
+
+  Estimates the multifractal Legendre spectrum of a 1-D signal from the
+  wavelet coefficients of a discrete decomposition
+
+Usage
+
+  [alpha,f_alpha,logpart] = dwtspec(wt,Q[,ChooseReg])
+Input parameters
+       o wt : Real vector [1,N] Wavelet coefficients of a discrete wavelet
+         transform (output of FWT)
+       o Q :  real vector [1,N_Q] Exponents of the partition function
+       o ChooseReg : 0/1 flag or integer vector [1,N_reg], (N_reg <= N_scale)
+         ChooseReg = 0 : full scale range regression ChooseReg = 1 : asks
+         online the scale indices setting the range for the linear regression
+         of the partition function. ChooseReg = [n1 ... nN_reg] : scale
+         indices for the linear regression of the partition function.
+Output parameters
+       o alpha : Real vector [1,N_alpha], N_alpha <= N_Q Singularity support
+         of the multifractal Legendre spectrum
+       o f_alpha : real vector [1,N_alpha] Multifractal Legendre spectrum
+       o logpart : real matrix [N_scale,N_Q] Log-partition function
+       o tau : real vector [1,N_Q] Regression function
+See also:
+  cwtspec, FWT, WTStruct, MakeQMF, flt, iflt
+Example:
+
+  N = 2048 ; H = 0.3 ; Q = linspace(-4,4,11) ;
+  [x] = fbmlevinson(N,H) ;
+  qmf = MakeQMF('daubechies',2) ;
+  [wt] = FWT(x,log2(N),qmf) ;
+  [alpha,f_alpha,logpart,tau] = dwtspec(wt,Q,1) ;
+  plot(alpha,f_alpha),

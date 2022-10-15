@@ -1,0 +1,11 @@
+
+end(1)                         Scilab Function                         end(1)
+NAME
+  end - end keyword
+
+DESCRIPTION
+  Used at end of loops or conditionals.  for, while, if, select must be ter-
+  minated by end .
+
+SEE ALSO
+  for, while, if, select

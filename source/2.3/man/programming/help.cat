@@ -1,0 +1,32 @@
+
+help(1)                        Scilab Function                        help(1)
+NAME
+  help - on-line help command
+
+CALLING SEQUENCE
+          help word
+          fhelp('word')
+
+DESCRIPTION
+  To each documented word corresponds a word.cat ascii file. these files are
+  organised within directories (chapters). Each chapter must contain *.cat
+  files and a whatis file with one line for each documented word in the
+  chapter. Each line must have the following format :
+
+  word - quick description
+
+  List of chapter directories is given in a file (whose path is given in the
+  $MANCHAPTERS environment variable) with the following format for each
+  chapter:
+
+  chapter_path    chapter_title
+
+  MANCHAPTERS default value is SCI/man/Chapters. If you want to add new help
+  chapters you have to do a copy of the SCIDIR/man/Chapters file where you
+  want, to add descriptions lines for each new chapter and to define the new
+  value of MANCHAPTERS environment variable.
+
+  See also Scilab's manual
+
+SEE ALSO
+  apropos

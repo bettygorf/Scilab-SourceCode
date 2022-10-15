@@ -1,0 +1,66 @@
+
+
+
+abs(G)                         Scilab Function                         abs(G)
+
+
+
+
+
+
+NAME
+  sci2exp - converts  variable to a scilab expression
+
+CALLING SEQUENCE
+  t=sci2exp(a [,nam])
+
+PARAMETERS
+
+  a    : a scilab variable, may be
+
+       -         constant,
+
+       -         polynomial
+
+       -          string matrix
+
+       -          list
+
+       -         boolean matrix
+
+  nam  : character string
+
+  t    : vector of string, contains the expression or instruction definition
+
+DESCRIPTION
+  sci2exp converts  variable to an instruction if nam is given or to an
+  expression .
+
+Example
+    a=[1 2;3 4]
+    sci2exp(a,'aa')
+
+    sci2exp(ssrand(2,2,2))
+    sci2exp(poly([1 0 3 4],'s'),'fi')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

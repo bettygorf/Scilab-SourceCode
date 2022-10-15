@@ -1,0 +1,18 @@
+
+mulf(1)                        Scilab Function                        mulf(1)
+NAME
+  mulf -  symbolic multiplication
+
+CALLING SEQUENCE
+  mulf('d','c')
+
+DESCRIPTION
+  returns the string 'c*d' Trivial simplifications such as '1*c' = 'c' are
+  performed.
+
+EXAMPLE
+  mulf('1','a')
+  mulf('0','a')
+
+SEE ALSO
+  rdivf, addf, subf

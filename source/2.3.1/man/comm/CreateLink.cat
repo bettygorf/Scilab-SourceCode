@@ -1,0 +1,28 @@
+
+CreateLink(1)                  Scilab function                  CreateLink(1)
+NAME
+  CreateLink - creates a link between two applications
+
+CALLING SEQUENCE
+  CreateLink(appli1,appli2)
+
+PARAMETERS
+
+  appli1, name of an application
+         : string
+
+  appli2 : string, name of an application
+
+DESCRIPTION
+  CreateLink creates a link from appli1 to appli2.  Note that this link is
+  directed.  This link being created, appli1 can send messages to appli2 and
+  appli2 can receive messages from appli1.
+
+  If the name of appli1 or appli2 is "SELF", it corresponds to the name of
+  the application where we execute CreateLink.
+
+  If the name of appli1 or appli2 is "XGeCI", it corresponds to the name of
+  the first Scilab application started.
+
+SEE ALSO
+  DestroyLink, GetMsg, SendMsg

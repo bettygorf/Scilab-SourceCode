@@ -1,0 +1,32 @@
+
+rotate(2)                      Scilab Function                      rotate(2)
+NAME
+  rotate - rotation of a set of points
+
+CALLING SEQUENCE
+  xy1=rotate(xy,[theta,orig])
+
+PARAMETERS
+
+  xy     : matrice of size (2,.).
+
+  xy1    : matrice of size (2,.).
+
+  theta  : real, angle en radian; default value is 0.
+
+  orig   : center of the rotation; default value is [0;0].
+
+DESCRIPTION
+  rotate performs a rotation with angle theta:
+
+  xy1(:,i) = M(theta) *xy (:,i) + orig
+
+  where M stands for the corresponding rotation matrix.
+
+EXAMPLE
+  xsetech([0,0,1,1],[-1,-1,1,1])
+  xy=[(0:0.1:10);sin(0:0.1:10)]/10;
+  for i=2*%pi*(0:10)/10,
+    [xy1]=rotate(xy,i);
+    xpoly(xy1(1,:),xy1(2,:),"lines")
+  end

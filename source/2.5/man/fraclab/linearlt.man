@@ -1,0 +1,82 @@
+.TH " linearlt" 2 " March 10, 1998" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+ linearlt -  linear time legendre transform
+.sp
+Author: Christophe Canus
+.sp
+This C_LAB routine the Legendre transform of a function using the linear time Legendre transform algorithm.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPs,u_star_s\f(CR]\fP=linearlt(x,u_x)
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : real vector \f(CR[\fP1,N\f(CR]\fP or
+\f(CR[\fPN,1\f(CR]\fP 
+Contains the abscissa.
+
+.TP
+o 
+\fBy\fP : real vector \f(CR[\fP1,N\f(CR]\fP or
+\f(CR[\fPN,1\f(CR]\fP 
+Contains the function to be transformed.
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBs\fP : real vector \f(CR[\fP1,M\f(CR]\fP 
+Contains the abscissa of the regularized function.
+
+.TP
+o 
+\fBu_star_s\fP : real vector \f(CR[\fP1,M\f(CR]\fP 
+Contains the Legendre conjugate function.
+.RE
+
+.SH Description
+.SH Parameters 
+The abscissa \fIx\fP and the function \fIu_x\fP  to be transformed must
+be of the same size \f(CR[\fP1,N\f(CR]\fP or \f(CR[\fPN,1\f(CR]\fP.
+The abscissa \fIs\fP and the Legendre conjugate function \fIu_star_s\fP
+are of the same size \f(CR[\fP1,M\f(CR]\fP with \fIM\fP\f(CR<=\fP\fIN\fP. 
+.SH Algorithm details
+The linear time Legendre transform algorithm is based on  the use of a
+concave regularization before slopes' computation.
+.SH Examples
+.SH Matlab
+.sp
+.ft CR
+.nf
+x=linspace(-5.,5.,1024);
+u_x=-1+log(6+x);
+plot(x,u_x);
+% looks like a Reyni exponents function, isn't it ?
+[s,u_star_s]=linearlt(x,u_x);
+plot(s,u_star_s); 
+.fi 
+.ec
+.ft P
+.sp
+.SH Scilab
+.sp
+.ft CR
+.nf
+// 
+.fi 
+.ec
+.ft P
+.sp
+.SH References
+None..SH See Also
+\fBbbch\fP (C_LAB routine).

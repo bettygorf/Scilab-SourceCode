@@ -1,0 +1,21 @@
+#
+# TransFig makefile
+#
+
+all: pointselle.tex 
+
+# translation into latexps
+
+pointselle.tex: pointselle.fig FigMake
+	fig2dev -L latexps -m 0.5  pointselle.fig pointselle.tex-0
+	fig2ps2tex pointselle.ps > pointselle.tex-1
+	echo "\begin{center}\mbox{" >pointselle.tex
+	cat pointselle.tex-0 >> pointselle.tex
+	echo "}\makebox[0pt][r]{"  >> pointselle.tex
+	cat pointselle.tex-1 >> pointselle.tex
+	echo "}\end{center}" >> pointselle.tex
+	\rm -f pointselle.tex-0 pointselle.tex-1 
+
+clean::
+	rm -f pointselle.tex
+

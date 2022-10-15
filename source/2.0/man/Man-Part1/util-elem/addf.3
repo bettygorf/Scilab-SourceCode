@@ -1,0 +1,20 @@
+.TH addf G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME  
+addf - symbolic addition
+.SH CALLING SEQUENCE
+.nf
+addf("a","b")
+.fi
+.SH PARAMETERS
+.TP 10
+"a","b" 
+: character strings
+.SH DESCRIPTION
+Returns the character string \fV"a+b"\fR.
+Trivial simplifications such as \fVaddf("0","a")\fR or
+\fVaddf("1",2")\fR are performed.
+.SH SEE ALSO
+mulf, subf, ldivf, rdivf, eval, evstr
+
+

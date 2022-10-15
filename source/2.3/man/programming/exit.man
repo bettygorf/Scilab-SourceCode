@@ -1,0 +1,9 @@
+.TH exit 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+exit -  Scilab quit
+.SH DESCRIPTION
+Ends the current Scilab session. Same as \fVquit\fR .
+.SH SEE ALSO
+quit, abort, break, return, resume
+

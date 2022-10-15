@@ -1,0 +1,36 @@
+.TH scanf 1 "May 1994" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+scanf  - Converts formatted input on standard input
+.SH CALLING SEQUENCE
+.nf
+ [v_1,...v_n]=scanf (format);
+.fi
+.SH PARAMETERS
+.TP 7
+format
+:Specifies the format conversion.
+.SH DESCRIPTION
+The scanf functions get character data on standard input (%io(1)), interpret it according
+to a format, and returns the converted results.
+.LP
+The format parameter contains conversion specifications
+used to interpret the input.
+.PP
+The format parameter can contain
+white-space characters (blanks, tabs, newline, or formfeed)
+that, except in the following two cases, read the input up to the
+next nonwhite-space character. Unless there is a match in the control
+string, trailing white space (including a newline character) is not
+read.
+.TP 4
+-
+Any character except % (percent sign), which must match the next character
+of the input stream.
+.TP  
+-
+A conversion specification that directs the conversion of the
+next input field. see \fVscanf_conversion\fR for details.
+
+.SH SEE ALSO
+printf, read, fscanf, sscanf

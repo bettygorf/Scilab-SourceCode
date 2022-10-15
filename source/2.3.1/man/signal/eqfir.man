@@ -1,0 +1,34 @@
+.TH eqfir 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+eqfir - minimax approximation of FIR filter
+.SH CALLING SEQUENCE
+.nf
+[hn]=eqfir(nf,bedge,des,wate)
+.fi
+.SH PARAMETERS
+.TP 10
+nf
+: number of output filter points desired
+.TP
+bedge
+: Mx2 matrix giving a pair of edges for each band
+.TP
+des
+: M-vector giving desired magnitude for each band
+.TP
+wate
+: M-vector giving relative weight of error in each band
+.TP
+hn
+: output of linear-phase FIR filter coefficients
+.SH DESCRIPTION
+Minimax approximation of multi-band, linear phase, FIR filter
+.SH EXAMPLE
+.nf
+hn=eqfir(33,[0 .2;.25 .35;.4 .5],[0 1 0],[1 1 1]);
+[hm,fr]=frmag(hn,256);
+plot(fr,hm),
+.fi
+.SH AUTHOR
+C. B.

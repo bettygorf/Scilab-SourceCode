@@ -1,0 +1,25 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+OBJS=   dialog.o message.o choose.o mdialog.o string.o testfrac.o \
+	matdialog.o idialog.o
+
+SRCS=$(OBJS:.o=.c)
+
+LibraryTarget($(PATHO)/xwindow.a, $(OBJS))
+DependTarget()
+
+TESTS= testa test 
+
+tests	: $(TESTS)
+
+test	:  test.f 
+	$(FC) $(CFLAGS) -o test test.f 
+
+testa	:  testa.c
+	$(CC) $(CFLAGS) -o testa testa.c
+
+
+
+
+

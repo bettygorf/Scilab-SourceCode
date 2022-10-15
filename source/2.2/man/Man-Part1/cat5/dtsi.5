@@ -1,0 +1,66 @@
+
+
+
+dtsi(1)                        Scilab Function                        dtsi(1)
+
+
+
+
+
+
+NAME
+  dtsi - stable anti-stable decomposition
+
+CALLING SEQUENCE
+  [Ga,Gs,Gi]=dtsi(G,[tol])
+
+PARAMETERS
+
+  G       : linear system (syslin list)
+
+  Ga      : linear system (syslin list) antistable and strictly proper
+
+  Gs      : linear system (syslin list) stable and strictly proper
+
+  Gi      : real matrix (or polynomial matrix for improper systems)
+
+  tol     : optional parameter for detecting stables poles. Default value:
+          100*%eps
+
+DESCRIPTION
+  returns the stable-antistable decomposition of G:
+
+  G = Ga + Gs + Gi,  (Gi = G(oo))
+
+  G can be given in state-space form or in transfer form.
+
+SEE ALSO
+  syslin, pbig, psmall, pfss
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

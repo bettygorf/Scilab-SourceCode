@@ -1,0 +1,61 @@
+.TH printing 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+printing - printing scilab graphics 
+.SH CALLING SEQUENCE
+.nf
+Blatexpr xscale yscale filename.ps
+BEpsf filename.ps 
+Blpr "Title" filename1.ps filename2.ps ... filenamen.ps | lpr 
+.fi
+.SH DESCRIPTION
+The scilab graphics can be saved with the \fVxbasimp\fR
+command into unix files. The Scilab command :
+.nf 
+	xbasimp(xx,'des.ps',0)
+.fi
+will save the graphics recorded in the graphic window xx in the 
+file \fVdes.ps.xx\fR. This file can't be directly send to a Postscript
+printer and a set of programs ( in the \fVbin\fR Scilab directory ) are 
+given with Scilab to print it :
+.TP 10
+BEpsf 
+: The \fVBEpsf\fR command will create an Epsf file from your \fVdes.ps.xx\fR
+under the name \fVdes.epsf\fR, this Epsf file can be printed on a
+Postscript printer or inserted into an other Postscript document.
+.TP
+Blatexpr 
+: The  \fVBlatexpr\fR command will create an Epsf file from your
+\fVdes.ps.xx\fR
+.nf 
+  mv des.ps.xx des.ps
+  Blatexpr 1.0 1.0 des.ps
+.fi
+ under the name \fVdes.epsf\fR and a LaTeX file 
+\fVdes.tex\fR. The file \fVdes.tex\fR can be inserted in a LaTeX 
+file in order to get the latex figure as follows ( the postscript 
+file is inserted with the \fVspecial\fR command of LaTeX )
+.nf 
+	\input des.tex 
+	\dessin{caption}{label}
+.fi
+.TP
+Blpr 
+: The \fVBlpr\fR command is used to print a set of graphics on a same 
+sheet of paper. For example to print two graphics on a unique page, one
+can use :
+.nf 
+Blpr "Two graphics" file1.ps.0 file2.ps.1 | lpr 
+.fi
+.TP
+Blatexprs 
+: The \fVBlatexprs\fR command is used to insert in a single LaTeX figure 
+a set of Scilab Graphics 
+.nf 
+Blatexprs res file1.ps.0 file2.ps.1
+.fi 
+will create two files \fVres.ps\fR and \fVres.tex\fR. The file \fVres.tex\fR
+is used as in the \fVBlatexpr\fR command in order to get the figure.
+.SH SEE ALSO
+xbasimp
+

@@ -1,0 +1,28 @@
+.TH hypermatrices 1 "April 1993" "Scilab Group" "Scilab data type"
+.so ../sci.an
+.SH NAME
+hypermatrices - Scilab object, N dimensional matrices in Scilab
+.SH DESCRIPTION
+Hypermatrix type allows to manipulate multidimensional arrays
+
+They can be defined by extension of 2D matrices as follows
+a=[1 2;3 4];a(:,:,2)=rand(2,2)
+
+or directly using \fVhypermat\fR function
+
+Entries  can be real or complex numbers, polynomials,
+rationals, strings, booleans.
+
+Hypermatrices are \fVmlists\fR:
+\fVmlist(['hm','dims','entries'],sz,v)\fV where \fVsz\fR is the row
+vector of dimensions and \fVv\fR the column vector of entries (first dimension are stored first)
+
+.SH EXAMPLES
+.nf
+a(1,1,1,1:2)=[1 2]
+a=[1 2;3 4];a(:,:,2)=rand(2,2)
+a(1,1,:)
+[a a]
+.fi
+.SH SEE ALSO
+hypermat

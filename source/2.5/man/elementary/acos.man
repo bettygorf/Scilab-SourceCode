@@ -1,0 +1,38 @@
+.TH acos 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+acos - element wise cosine inverse
+.SH CALLING SEQUENCE
+.nf
+t=acos(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex vector
+.TP 10
+t
+: real or complex vector
+.SH DESCRIPTION
+The components of vector \fVt\fR are cosine inverse of the 
+corresponding entries of vector \fVx\fR.
+Definition domain is [-1, 1].
+.LP
+\fVacos\fR takes values in :
+.IG
+.nf
+    ] 0,pi[ x ]-inf +inf[
+    [0] x [0,+inf] and [pi] x ]-inf,0]   (real x imag)
+.fi
+.FI
+\" This is for LaTeX 
+.LA    $$ ] 0,\pi[ \times ]-\infty +\infty[ $$
+.LA    $$ [0] \times [0,+\infty] \quad\mbox{and} 
+.LA   \quad [\pi] \times ]-\infty,0] \quad \mbox{(real x imag)} $$
+.SH EXAMPLE
+.nf
+x=[1,%i,-1,-%i]
+cos(acos(x))
+.fi
+
+

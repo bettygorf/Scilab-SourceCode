@@ -1,0 +1,23 @@
+.TH sconcomp 1 "October 1994" "Scilab Group" "Scilab macro"
+.so man1/sci.an
+.SH NAME 
+sconcomp - node set of a strong connected component  
+.SH CALLING SEQUENCE
+.nf
+[ns] = sconcomp(i,[g])
+.fi
+.SH PARAMETERS
+.TP 2
+i 
+: integer, strong connected component number
+.TP 2
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP 3
+ns
+: row vector of node numbers 
+.SH DESCRIPTION 
+\fVconcomp\fR returns the row vector \fVns\fR of the node numbers which
+belong to the strong connected component number \fVi\fR.
+.SH SEE ALSO
+sconnex

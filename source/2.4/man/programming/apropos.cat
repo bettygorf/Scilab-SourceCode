@@ -1,0 +1,19 @@
+
+apropos(1)                     Scilab Function                     apropos(1)
+NAME
+  apropos - searches keywords in Scilab help
+
+CALLING SEQUENCE
+  apropos word
+  apropos 'string'
+
+DESCRIPTION
+  Looks for keywords in  man/*/whatis files.
+
+EXAMPLE
+  apropos '+'
+  apropos ode
+  apropos 'list of'
+
+SEE ALSO
+  help

@@ -1,0 +1,1718 @@
+algebre/aff2ab.sci:   [p,un]=size(b);
+algebre/coff.sci:[n1,n1]=size(m);
+algebre/colcomp.sci://the ma-rk first columns of w span the kernel of a when size(a)=(na,ma)
+algebre/colcomp.sci:[ma,na]=size(a)
+algebre/fullrfk.sci:[n,n]=size(A);
+algebre/im_inv.sci:[nA,mA]=size(A);[nB,mB]=size(B);
+algebre/kernel.sci:  [n,m]=size(A);
+algebre/kernel.sci:  [ma,na]=size(A);
+algebre/linsolve.sci:  Ab=[A,b];[ma,na]=size(Ab);
+algebre/linsolve.sci:  [ma,na]=size(A);
+algebre/nlev.sci:[m1 n1]=size(a)
+algebre/pbig.sci: [n,n]=size(A);
+algebre/pencan.sci:[i1,i2]=size(M1);
+algebre/proj.sci:[l,k]=size(x1);
+algebre/projspec.sci:[n,n]=size(A);
+algebre/psmall.sci: [n,n]=size(A);
+algebre/quaskro.sci:[na,ma]=size(A);
+algebre/randpencil.sci:  if k=0 then [p,q]=size(Eps); Eps=[Eps,zeros(p,1)];end
+algebre/randpencil.sci:  if k=0 then [p,q]=size(Eta); Eta=[Eta;zeros(1,q)];end
+algebre/randpencil.sci:[p,q]=size(F);ncols=q;
+algebre/randpencil.sci:  F=[zeros(p,prod(size(eps))),F];
+algebre/randpencil.sci:  if F=[] then ncols=prod(size(eps));end
+algebre/randpencil.sci:  [p,q]=size(F);
+algebre/randpencil.sci:  F=[F;zeros(prod(size(eta)),q)];
+algebre/randpencil.sci:  F=[F;zeros(prod(size(eta)),ncols)];
+algebre/randpencil.sci:[p,q]=size(F);
+algebre/range.sci:       [n,n]=size(A);  
+algebre/rowcomp.sci:[ma,na]=size(A)
+algebre/rowshuff.sci:[n,n]=size(E);Ws=eye(n,n);
+algebre/spaninter.sci:[na,ma]=size(a);[nb,mb]=size(b);
+algebre/spanplus.sci:[na,ma]=size(a);[nb,mb]=size(b);
+algebre/spantwo.sci:  [n1,n2]=size(A);
+algebre/trace.sci:  [m,n]=size(a)
+algebre/trace.sci:  [m,n]=size(a)
+algebre/trace.sci:    [m,n]=size(a)
+algebre/trace.sci:    [m,n]=size(a)
+algebre/trace.sci:  [m,n]=size(a)
+arma/acf.sci:if rhs <= 1 ; n=prod(size(x))/4;end
+arma/acf.sci://stde=sqrt((1+2*ac(2:n+1)'*ac(2:n+1))*1/prod(size(x)))
+arma/acf.sci:stde=2*sqrt(1/prod(size(x)));
+arma/armac.sci:[na,la]=size(a);
+arma/armac.sci:[nb,lb]=size(b);
+arma/armac.sci:[nd,ld]=size(d);
+arma/armap.sci:deff('[ta]=%cv(x)',['[m,n]=size(x);';
+arma/armap.sci:[ny,vid]=size(ar(2));
+arma/armap.sci:  [na,lna]=size(a)
+arma/armap.sci:  [na,lna]=size(a)
+arma/armax.sci:[ny,n2]=size(y)
+arma/armax.sci:[nu,n2u]=size(u)
+arma/armax.sci: [nzl,nzc]=size(zz);
+arma/armax.sci:     [nla,nca]=size(la(2));
+arma/armax.sci:     [nlb,ncb]=size(lb(2));
+arma/armax1.sci:[n1,n2]=size(y)
+arma/arsimul.sci:[bl,bc]=size(b);[al,ac]=size(a);[dl,dc]=size(d);
+arma/arsimul.sci:[mmu,Nu]=size(u);
+arma/arsimul.sci:   up_s=size(up)
+arma/arsimul.sci:  yp_s=size(yp);
+arma/arsimul.sci:  ep_s=size(ep);
+arma/arsimul.sci:if size(a_fff)=[0,1];
+arma/epred.sci:[n1,n2]=size(y);
+arma/gbruit.sci:[nn1,nn2]=size(dua_g);
+arma/narsimul.sci:   [al,ac]=size(a);adeg=int(ac/al);
+arma/narsimul.sci:   [dl,dc]=size(d);ddeg=int(dc/dl);
+arma/narsimul.sci:   [bl,bc]=size(b);[mmu,Nu]=size(u);bdeg=int(bc/mmu);
+arma/narsimul.sci:   if size(up)<>[mmu,(bdeg-1)],
+arma/narsimul.sci:  if size(yp)<>[al,(adeg-1)]
+arma/narsimul.sci:  if size(ep)<>[al,(ddeg-1)]
+arma/narsimul.sci:[n1,n2]=size(y);
+arma/prbs_a.sci:  [n1,n2]=size(ids);
+arma/prbs_a.sci:[n1,n2]=size(ids);
+arma/reglin.sci:[n1,n2]=size(x)
+arma/reglin.sci:[p1,p2]=size(y)
+arma/reglin.sci:	write(%io(2),"[n1,n2]=size(x),[p1,p2]=size(y), n2 must be equal to p2");
+arma/sdiff.sci:// z : a matrix of size(n1,n2) z(t)=z(:,t)
+arma/sdiff.sci:for i=1:d,[n1,n2]=size(w); w=w(:,2:n2)-w(:,1:(n2-1));end
+arma/vpmacr.sci:[n1,n2]=size(uequ);
+auto/abinv.sci:[nx,nu]=size(B);
+auto/arhnk.sci:[n,n]=size(a)
+auto/balreal.sci:ns=size(s,'*');
+auto/cainv.sci:[nx,nx]=size(X);dimS=nx-nv;dimSg=nx-nvg;dimN=nx-nr;nu1=nx-noc;nd1=nx-nos;
+auto/calfrq.sci:[m,n]=size(h(2))
+auto/calfrq.sci:  'if prod(size(r))==0 then return,end';
+auto/calfrq.sci:  '    f=atan(imag(f),real(f));nf=prod(size(f))';
+auto/calfrq.sci:pp=sort([sing' zers']);npp=size(pp,'*');
+auto/calfrq.sci:  frqs=[fmin real(matrix([0.999*pp;1.001*pp],2*size(pp,'*'),1)') fmax]
+auto/calfrq.sci:nfrq=size(frqs,'*');
+auto/calfrq.sci:frq( size(frq,'*') )=fmax
+auto/canon.sci:[na,ni]=size(b);[l,k]=size(ro);k0=na+1;k1=k0-ro(k);
+auto/canon.sci:ind=0*ones(1,ni);[xx,mi]=size(ro);
+auto/colregul.sci:n=size(D);n1=n(1);n2=n(2);
+auto/colregul.sci:[nx,nx]=size(Stmp(2));
+auto/cont_frm.sci:if size(den,'*')<>1 then  error(54,2);end
+auto/cont_frm.sci:[ns,ne]=size(num);
+auto/cont_frm.sci:[n,n]=size(a);
+auto/cont_mat.sci:    [m,n]=size(a)
+auto/cont_mat.sci:    [mb,nb]=size(b);if mb<>n then error(60),end
+auto/cont_mat.sci:    [n,n]=size(a)
+auto/cont_mat.sci:    [n,n]=size(a)  
+auto/csim.sci:[ma,mb]=size(b);
+auto/csim.sci:nt=size(dt,'*');x=0*ones(ma,nt)
+auto/csim.sci:  tx=' ';for l=2:size(u), tx=tx+',%'+string(l-1);end;
+auto/csim.sci:     ['['+part(tx,3:length(tx))+']=%sim2(3:'+string(size(%sim2))+')';
+auto/ctr_gram.sci:    [m,n]=size(a)
+auto/ctr_gram.sci:    [mb,nb]=size(b);if mb<>n then error(60),end
+auto/ctr_gram.sci:    [n,n]=size(a)
+auto/ctr_gram.sci:    [n,n]=size(a)    
+auto/dscr.sci:[n1,m1]=size(b),
+auto/dt_ility.sci:[nx,nx]=size(sl(2));
+auto/equil1.sci:[n,n]=size(p);
+auto/flts.sci:[nu,mu]=size(u)
+auto/flts.sci:    [nb,mb]=size(sl(3))
+auto/flts.sci:    [num,den]=sl(2:3);[ns,ne]=size(num)
+auto/flts.sci:       [mx,nx]=size(x0);maxdgd=maxi(degree(nden))
+auto/flts.sci:                    [nn,mm]=size(yl);
+auto/francis.sci:[n,mm]= size(B2);
+auto/francis.sci:[r,r1]=size(C2);
+auto/francis.sci:[d,d1]= size(F);
+auto/francis.sci:rhs=[0*ones(n*d,1);matrix(G,size(G,'*'),1)];
+auto/frep2tf.sci:n=size(w,'*');
+auto/gfrancis.sci:[nf,nf]=size(F);[ny,nu]=size(J);
+auto/gfrancis.sci:[na,na]=size(A);[lc,num]=size(D);
+auto/gfrancis.sci:     matrix(C,size(C,'*'),1);
+auto/gfrancis.sci:     matrix(D,size(D,'*'),1)];
+auto/imrep2ss.sci:[no,nv]=size(v);
+auto/invsyslin.sci:[p,m]=size(t(5));
+auto/kpure.sci:if size(n(2),'*') > 1 then error(95,1),end
+auto/kpure.sci:[s,t]=size(r);
+auto/kpure.sci:  t=prod(size(r(i,:)));
+auto/kpure.sci:  h=prod(size(k)),
+auto/krac2.sci:if size(n,'*')<>1 then error(95,1),end
+auto/lqg2stan.sci:[nx,nu]=size(B);
+auto/lqg2stan.sci:[ny,nx]=size(C);
+auto/lqg2stan.sci:m=size(C2*B2);
+auto/lqr.sci:[n,nu]=size(B2);
+auto/lqr.sci:[ny,n]=size(C1);
+auto/markp2ss.sci:nmax=maxi(size(markpar));
+auto/obs_gram.sci:    [m,n]=size(a)
+auto/obs_gram.sci:    [mb,nb]=size(c);if nb<>n then error(60),end
+auto/obs_gram.sci:    [n,n]=size(a)
+auto/obs_gram.sci:    [n,n]=size(a)
+auto/obscont.sci:r=size(D);
+auto/observer.sci:[nx,nx]=size(Sys(2));
+auto/observer.sci:  if size(alfa,'*')==1 then alfa=alfa*ones(1,nx);end
+auto/obsv_mat.sci:    [m,n]=size(a)
+auto/obsv_mat.sci:    [mb,nb]=size(c);if nb<>n then error(60),end
+auto/obsv_mat.sci:    [n,n]=size(a)
+auto/obsv_mat.sci:    [n,n]=size(a)
+auto/pfss.sci:[n,n]=size(f);
+auto/pfss.sci:  nb=size(bs,'*');
+auto/pfss.sci:     for k=1:size(elts);
+auto/pfss.sci:  nb=size(bs,'*');
+auto/pfss.sci:     for k=1:size(elts);
+auto/pfss.sci:   k=size(elts);
+auto/phasemag.sci:[m,n]=size(z)
+auto/repfreq.sci:  [mn,nn]=size(n)
+auto/repfreq.sci:  [mn,nn]=size(b)
+auto/sm2des.sci:// n=size(A) (assumed square) (optional parameter)
+auto/sm2des.sci:[nl,nc]=size(sysmat);
+auto/sm2ss.sci:// [n,n]=size(A) 
+auto/sm2ss.sci:[nl,nc]=size(sysmat);
+auto/ss2des.sci:[n1,n1]=size(N);
+auto/ss2des.sci:[n2,n2]=size(A2);
+auto/ss2tf.sci:if size(sl(2),'*')==0 then
+auto/ss2tf.sci:[n1,n1]=size(a)
+auto/ss2tf.sci:[m1,n1]=size(m);[m,den]=simp(m,den*ones(m1,n1))
+auto/ss2tf.sci:  [m,n]=size(sl(5))
+auto/st_ility.sci:[na,na]=size(a);[nw,nb]=size(b);
+auto/stabil.sci:[nx,nx]=size(A);[nn,nu]=size(B);
+auto/stabil.sci:if prod(size(alfa))==1 then
+auto/stabil.sci:k=size(alfa,'*');
+auto/statgain.sci:   [m,p]=size(sl(2));
+auto/svplot.sci:nf = maxi(size(w)); nsv = mini(size(d)); j = sqrt(-1);
+auto/svplot.sci:nf = maxi(size(w)); nsv = mini(size(d)); j = sqrt(-1);
+auto/svplot.sci:nf = maxi(size(w)); nsv = mini(size(d)); j = sqrt(-1);
+auto/tf2ss.sci:[nd,md]=size(den)
+auto/tf2ss.sci:   [n2,m2]=size(bk);
+auto/time_id.sci:npt=size(y,'*');
+auto/trzeros.sci:   [m,n]=size(D);
+auto/trzeros.sci:   if size(Sl)==1 then nt=roots(Sl(2));dt=[];rk=1;return;end
+auto/trzeros.sci:  [m,n]=size(D);
+auto/trzeros.sci:if size(A,'*')=0 then 
+auto/trzeros.sci:       [m,n]=size(D);
+auto/trzeros.sci:[ld,kd]=size(D);
+auto/unobs.sci:[p,p]=size(A);tol=1.d-10;
+auto/zeropen.sci:[n,m]=size(BD);
+calpol/cmndred.sci:[m1,n1]=size(num)
+calpol/coffg.sci:[n,np]=size(Fs);
+calpol/colcompr.sci:[m,n]=size(A);
+calpol/derivat.sci:  [m,n]=size(p);var=varn(p);
+calpol/derivat.sci:    [m,n]=size(num)
+calpol/determ.sci:[n1,n1]=size(W);maj=n1*maxi(degree(W))+1;
+calpol/detr.sci:   [m,n]=size(h);
+calpol/detr.sci:   [m,n]=size(h(2));
+calpol/gcd.sci:[m,n]=size(p)
+calpol/hermit.sci:[m,n]=size(a);if m<>n then error('square matrix only!'),end
+calpol/horner.sci:[m,n]=size(p)
+calpol/hrmt.sci:[n,m]=size(v)
+calpol/htrianr.sci:[m,n]=size(A);U=eye(n,n);
+calpol/invr.sci:[m,n]=size(h);
+calpol/invr.sci:   [m,n]=size(h(2));
+calpol/lcm.sci:[m,n]=size(p),
+calpol/pdiv.sci:[n,m]=size(P1);
+calpol/pdiv.sci:[n1,m1]=size(P2);
+calpol/pdivg.sci:[n,m]=size(P1);
+calpol/pfactors.sci:n=size(w,'*');
+calpol/pol2des.sci:[nout,nin]=size(Ds);
+calpol/polfact.sci:if size(p,'*')<>1 then error('polynomial argument required!'),end
+calpol/r2l.sci:[rF,cF] = size(Fs);
+calpol/r2l.sci:[roF,coF] = size(F);
+calpol/r2l.sci:      [rc,cc] = size(c);
+calpol/r2l.sci:      [rrE,ccE] = size(E); [rC,cC] = size(C1);
+calpol/r2l.sci:sizeE = size(E)
+calpol/r2l.sci:[na,ma]=size(a);long=ma/(degA+1);
+calpol/rowcompr.sci:[n,m]=size(A);
+calpol/simstab.sci:                        'n=prod(size(z));';
+calpol/simstab.sci:[m,W]=size(p)
+elem/acosh.sci:[m,n]=size(x)
+elem/acoshm.sci:[m,n]=size(x)
+elem/acosm.sci:[m,n]=size(x)
+elem/and.sci:  if size(k,'*')==size(a,'*') then x=%t,return,end
+elem/asinhm.sci:[m,n]=size(x)
+elem/asinm.sci:[m,n]=size(x)
+elem/atanh.sci:[m,n]=size(x)
+elem/atanhm.sci:[m,n]=size(x)
+elem/atanm.sci:[m,n]=size(a)
+elem/calerf.sci:[mx,nx]=size(x);x=matrix(x,1,mx*nx);
+elem/calerf.sci:    skip(size(k,'*'))=%f
+elem/calerf.sci:    skip(k2)=t(ones(size(k2,'*'),1))
+elem/calerf.sci:      result(k2)=sqrpi/y(k2);skip(k2)=t(ones(size(k2,'*'),1))
+elem/cothm.sci:[m,n]=size(a)
+elem/integrate.sci:if size(x0,'*')<>1 then error('x0 must be a real scalar number'),end
+elem/integrate.sci:[m,n]=size(x1),x1=matrix(x1,1,m*n)
+elem/interpln.sci:[md,nd]=size(xyd);
+elem/interpln.sci:n=size(x,'*');
+elem/interpln.sci:    k=k(size(k,'*'));
+elem/intsplin.sci:  d=splin((1:size(s,'*'))',s);
+elem/intsplin.sci:  if size(x,'*')<>size(s,'*') then
+elem/inttrap.sci:  if size(x,'*')<>size(y,'*') then
+elem/logm.sci:[m,n]=size(a)
+elem/modulo.sci:if size(m,'*')==1 then 
+elem/modulo.sci:elseif size(n,'*')==1 then 
+elem/pertrans.sci:[n,m]=size(A);
+elem/signm.sci:[m,n]=size(a)
+elem/smooth.sci:[m,n]=size(ptd)
+elem/speye.sci:if rhs==1 then [m,n]=size(m),end
+elem/sprand.sci:nel1=size(ij,'*')
+elem/spzeros.sci:if rhs==1 then [m,n]=size(m),end
+elem/tanhm.sci:[m,n]=size(a)
+elem/tanm.sci:[m,n]=size(a)
+elem/toeplitz.sci:nr=size(r,'*');r=matrix(r,1,nr)
+elem/toeplitz.sci:nc=size(c,'*');c=matrix(c,nc,1)
+metanet/add_edge.sci:ma=prod(size(g('tail')))
+metanet/add_edge.sci:if prod(size(i))<>1 then
+metanet/add_edge.sci:if prod(size(j))<>1 then
+metanet/add_node.sci:  s=size(xy);
+metanet/add_node.sci:  if type(name)<>10|prod(size(name))<>1 then
+metanet/adj_lists.sci:if prod(size(n))<>1|n<1
+metanet/adj_lists.sci:s=size(tail)
+metanet/adj_lists.sci:s=size(head)
+metanet/arc_graph.sci:ma=prod(size(g('tail')));
+metanet/arc_number.sci:ma=prod(size(g('tail')))
+metanet/articul.sci:ma=prod(size(g('tail')))
+metanet/bandwr.sci:  if (size(diag(a),1) < n) then   
+metanet/bandwr.sci:nz=size(v,2);
+metanet/best_match.sci:m=prod(size(g('tail')));
+metanet/chain_struct.sci:s=size(lp)
+metanet/chain_struct.sci:s=size(la)
+metanet/chain_struct.sci:s=size(ls)
+metanet/chain_struct.sci:n=size(lp,2);lpm=lp(1:(n-1));
+metanet/chain_struct.sci:m=size(la,2);la1=[la 0];ls1=[ls 0];
+metanet/check_graph.sci:if size(g)<>l then
+metanet/check_graph.sci:s=size(g(2))
+metanet/check_graph.sci:if prod(size(g(4)))<>1|g(4)<1
+metanet/check_graph.sci:s=size(g(5))
+metanet/check_graph.sci:s=size(g(6))
+metanet/check_graph.sci:s=size(g(7))
+metanet/check_graph.sci:s=size(g(8))
+metanet/check_graph.sci:s=size(g(9))
+metanet/check_graph.sci:s=size(g(10))
+metanet/check_graph.sci:s=size(g(11))
+metanet/check_graph.sci:s=size(g(12))
+metanet/check_graph.sci:s=size(g(13))
+metanet/check_graph.sci:s=size(g(14))
+metanet/check_graph.sci:s=size(g(15))
+metanet/check_graph.sci:s=size(g(16))
+metanet/check_graph.sci:s=size(g(17))
+metanet/check_graph.sci:s=size(g(18))
+metanet/check_graph.sci:s=size(g(19))
+metanet/check_graph.sci:s=size(g(20))
+metanet/check_graph.sci:s=size(g(21))
+metanet/check_graph.sci:s=size(g(22))
+metanet/check_graph.sci:s=size(g(23))
+metanet/check_graph.sci:s=size(g(24))
+metanet/check_graph.sci:s=size(g(25))
+metanet/check_graph.sci:s=size(g(26))
+metanet/check_graph.sci:s=size(g(27))
+metanet/check_graph.sci:s=size(g(28))
+metanet/check_graph.sci:s=size(g(29))
+metanet/check_graph.sci:s=size(g(30))
+metanet/check_graph.sci:s=size(g(31))
+metanet/check_graph.sci:s=size(g(32))
+metanet/check_graph.sci:s=size(g(33))
+metanet/check_graph.sci:s=size(g(34))
+metanet/circuit.sci:ma=prod(size(g('tail')))
+metanet/con_nodes.sci:if prod(size(i))<>1 then
+metanet/connex.sci:ma=prod(size(g('tail')))
+metanet/convex_hull.sci:n1=size(xy,1);
+metanet/convex_hull.sci:n=size(xy,2);
+metanet/cycle_basis.sci:n=g('node_number');m=prod(size(g('tail')));
+metanet/cycle_basis.sci:  itron=[];jmax=min(size(bac,2),size(dir,2));
+metanet/cycle_basis.sci:  ncy=size(cycle,2);
+metanet/delete_arcs.sci:if (type(ij)<>1|size(ij,2) <> 2) then
+metanet/delete_arcs.sci:g1=g;ma=prod(size(g('tail')));n=g('node_number');
+metanet/delete_arcs.sci:  for jj=1:size(ij,1),
+metanet/delete_arcs.sci:  for jj=1:size(ij,1),
+metanet/delete_nodes.sci:s=size(v)
+metanet/delete_nodes.sci:g1=g;ma=prod(size(g('tail')));
+metanet/delete_nodes.sci:im=prod(size(v));
+metanet/delete_nodes.sci:[atri,indic]=sort(v);nn=size(atri,2);
+metanet/edge_number.sci:ma=prod(size(g('tail')))
+metanet/find_path.sci:if prod(size(i))<>1 then
+metanet/find_path.sci:if prod(size(j))<>1 then
+metanet/find_path.sci:ma=prod(size(g('tail')))
+metanet/gen_net.sci:  if type(name)<>10|prod(size(name))<>1 then
+metanet/gen_net.sci:  s=size(v)
+metanet/girth.sci:l=size(p,2);
+metanet/graph_2_mat.sci:ma=prod(size(g('tail')))
+metanet/graph_center.sci:ma=prod(size(g('tail')))
+metanet/graph_complement.sci:n=g('node_number');m=prod(size(g('tail')));
+metanet/graph_complement.sci:  nma=gmax('node_number');mma=prod(size(gmax('tail')));
+metanet/graph_diameter.sci:ma=prod(size(g('tail')))
+metanet/graph_simp.sci:spg=sparse([ta' he'],ones(size(ta,2),1),[n n]);
+metanet/graph_simp.sci:  spg1=sparse(kk,ones(1,(size(ir,2))),[n n]);
+metanet/graph_sum.sci:ta2=[ta ta1];he2=[he he1];ng2=size(ta2,2);
+metanet/graph_union.sci:ninter=size(ic1,2);
+metanet/graph_union.sci:w=[1:(size(uu,2))];
+metanet/hamilton.sci:m=prod(size(g('tail')));
+metanet/is_connex.sci:ma=prod(size(g('tail')))
+metanet/knapsack.sci:n=size(profit,2);nn=size(weight,2);
+metanet/knapsack.sci:m=size(capa,2);
+metanet/line_graph.sci:ma=prod(size(g('tail')));
+metanet/load_graph.sci:if type(path)<>10|prod(size(path))<>1 then
+metanet/make_graph.sci:if type(name)<>10|prod(size(name))<>1 then
+metanet/make_graph.sci:if prod(size(n))<>1|n<0
+metanet/make_graph.sci:s=size(tail)
+metanet/make_graph.sci:s=size(head)
+metanet/make_graph.sci:  n2=size(ij,1);
+metanet/make_graph.sci:  n=size(atri,2);
+metanet/make_graph.sci:  uu=[1:n];nij2=size(ij2,2);vv2=[1:nij2];uu(ij2)=uu(ij2)-vv2;
+metanet/make_graph.sci:  nij1=size(ij1,2);vv1=[1:nij1];uu(ij1)=vv1;
+metanet/mat_2_graph.sci:if prod(size(v))<>2*m then
+metanet/mat_2_graph.sci:  if prod(size(itab))<>prod(size(jtab)) then
+metanet/mat_2_graph.sci:  ma=prod(size(k)); he=he(ma:-1:1)
+metanet/mat_2_graph.sci:  ma=prod(size(k)); ta=ta(ma:-1:1)
+metanet/mat_2_graph.sci:  s=size(ijp)
+metanet/max_cap_path.sci:if prod(size(i))<>1 then
+metanet/max_cap_path.sci:if prod(size(j))<>1 then
+metanet/max_cap_path.sci:ma=prod(size(g('tail')))
+metanet/max_clique.sci:m=prod(size(g('tail')))
+metanet/max_clique.sci:  nodes=wcl;nsize=size(wcl,2);
+metanet/max_flow.sci:if prod(size(i))<>1 then
+metanet/max_flow.sci:if prod(size(j))<>1 then
+metanet/max_flow.sci:ma=prod(size(g('tail')))
+metanet/mesh2d.sci:nbs=size(x,2);n1=size(y,2);
+metanet/mesh2d.sci:  lfront=size(front,2);
+metanet/metanet.sci:if type(path)<>10|prod(size(path))<>1 then
+metanet/metanet.sci:s=size(winsize)
+metanet/metanet.sci:scr=m6inimet(path,winsize(1),winsize(2))
+metanet/min_lcost_cflow.sci:if prod(size(i))<>1 then
+metanet/min_lcost_cflow.sci:if prod(size(j))<>1 then
+metanet/min_lcost_cflow.sci:if prod(size(cv))<>1 then
+metanet/min_lcost_cflow.sci:ma=prod(size(g('tail')))
+metanet/min_lcost_flow1.sci:ma=prod(size(g('tail')))
+metanet/min_lcost_flow2.sci:ma=prod(size(g('tail')))
+metanet/min_qcost_flow.sci:if prod(size(eps))<>1 then
+metanet/min_qcost_flow.sci:ma=prod(size(g('tail')))
+metanet/min_weight_tree.sci:  if prod(size(i))<>1 then
+metanet/min_weight_tree.sci:ma=prod(size(g('tail')))
+metanet/nodes_2_path.sci:s=size(ns)
+metanet/nodes_2_path.sci:ma=prod(size(g('tail')))
+metanet/path_2_nodes.sci:s=size(p)
+metanet/path_2_nodes.sci:ma=prod(size(g('tail')))
+metanet/perfect_match.sci:m=prod(size(g('tail')));m2=2*m;
+metanet/perfect_match.sci:ii=size(arcost,2);
+metanet/plot_graph.sci:  s=size(rep);
+metanet/plot_graph.sci:  if ((size(cadre,2)<>4)|(cadre(3)==0)|(cadre(4)==0)) then
+metanet/plot_graph.sci:n=g('node_number');ma=prod(size(g('tail')));
+metanet/plot_graph.sci:gona=diag(spp);ii=find(gona<>0);kk=size(ii);
+metanet/plot_graph.sci:  nodetype=g('node_type');ii=find(nodetype==1);kk=size(ii);
+metanet/plot_graph.sci:  ii=find(nodetype==2);kk=size(ii);
+metanet/plot_graph.sci:whid=xget("white");whin=whid*ones(1,size(ncolor,2));
+metanet/qassign.sci:n=size(c,1);n1=size(c,2);
+metanet/qassign.sci:n=size(f,1);n1=size(f,2);
+metanet/qassign.sci:n=size(d,1);n1=size(d,2);
+metanet/save_graph.sci:ma=prod(size(g('tail')))
+metanet/save_graph.sci:if size(g('node_name'))==0 then
+metanet/save_graph.sci:if size(g('node_type'))==0 then
+metanet/save_graph.sci:if size(g('node_x'))==0 then
+metanet/save_graph.sci:if size(g('node_y'))==0 then
+metanet/save_graph.sci:if size(g('node_color'))==0 then
+metanet/save_graph.sci:if size(g('node_diam'))==0 then
+metanet/save_graph.sci:if size(g('node_border'))==0 then
+metanet/save_graph.sci:if size(g('node_font_size'))==0 then
+metanet/save_graph.sci:if size(g('node_demand'))==0 then
+metanet/save_graph.sci:if size(g('edge_name'))==0 then
+metanet/save_graph.sci:if size(g('edge_color'))==0 then
+metanet/save_graph.sci:if size(g('edge_width'))==0 then
+metanet/save_graph.sci:if size(g('edge_hi_width'))==0 then
+metanet/save_graph.sci:if size(g('edge_font_size'))==0 then
+metanet/save_graph.sci:if size(g('edge_length'))==0 then
+metanet/save_graph.sci:if size(g('edge_cost'))==0 then
+metanet/save_graph.sci:if size(g('edge_min_cap'))==0 then
+metanet/save_graph.sci:if size(g('edge_max_cap'))==0 then
+metanet/save_graph.sci:if size(g('edge_q_weight'))==0 then
+metanet/save_graph.sci:if size(g('edge_q_orig'))==0 then
+metanet/save_graph.sci:if size(g('edge_weight'))==0 then
+metanet/save_graph.sci:if size(g('default_node_diam'))==0 then
+metanet/save_graph.sci:if size(g('default_node_border'))==0 then
+metanet/save_graph.sci:if size(g('default_edge_width'))==0 then
+metanet/save_graph.sci:if size(g('default_edge_hi_width'))==0 then
+metanet/save_graph.sci:if size(g('default_font_size'))==0 then
+metanet/save_graph.sci:if type(data)<>10|prod(size(data))<>1 then
+metanet/shortest_path.sci:if prod(size(i))<>1 then
+metanet/shortest_path.sci:if prod(size(j))<>1 then
+metanet/shortest_path.sci:  if type(typ)<>10|prod(size(typ))<>1 then
+metanet/shortest_path.sci:ma=prod(size(g('tail')))
+metanet/show_arcs.sci:s=size(p)
+metanet/show_graph.sci:    if prod(size(scale))<>1 then
+metanet/show_graph.sci:ma=prod(size(g('tail')))
+metanet/show_graph.sci:if size(g('node_name'))==0 then
+metanet/show_graph.sci:if size(g('node_type'))==0 then
+metanet/show_graph.sci:if size(g('node_x'))==0 then
+metanet/show_graph.sci:if size(g('node_y'))==0 then
+metanet/show_graph.sci:if size(g('node_color'))==0 then
+metanet/show_graph.sci:if size(g('node_diam'))==0 then
+metanet/show_graph.sci:if size(g('node_border'))==0 then
+metanet/show_graph.sci:if size(g('node_font_size'))==0 then
+metanet/show_graph.sci:if size(g('node_demand'))==0 then
+metanet/show_graph.sci:if size(g('edge_name'))==0 then
+metanet/show_graph.sci:if size(g('edge_color'))==0 then
+metanet/show_graph.sci:if size(g('edge_width'))==0 then
+metanet/show_graph.sci:if size(g('edge_hi_width'))==0 then
+metanet/show_graph.sci:if size(g('edge_font_size'))==0 then
+metanet/show_graph.sci:if size(g('edge_length'))==0 then
+metanet/show_graph.sci:if size(g('edge_cost'))==0 then
+metanet/show_graph.sci:if size(g('edge_min_cap'))==0 then
+metanet/show_graph.sci:if size(g('edge_max_cap'))==0 then
+metanet/show_graph.sci:if size(g('edge_q_weight'))==0 then
+metanet/show_graph.sci:if size(g('edge_q_orig'))==0 then
+metanet/show_graph.sci:if size(g('edge_weight'))==0 then
+metanet/show_graph.sci:if size(g('default_node_diam'))==0 then
+metanet/show_graph.sci:if size(g('default_node_border'))==0 then
+metanet/show_graph.sci:if size(g('default_edge_width'))==0 then
+metanet/show_graph.sci:if size(g('default_edge_hi_width'))==0 then
+metanet/show_graph.sci:if size(g('default_font_size'))==0 then
+metanet/show_graph.sci:if size(g('node_label'))==0 then
+metanet/show_graph.sci:if size(g('edge_label'))==0 then
+metanet/show_graph.sci:if prod(size(scale))<>1 then
+metanet/show_graph.sci:if type(smode)<>10|prod(size(smode))<>1 then
+metanet/show_graph.sci:  m6inimet(' ',winsize(1),winsize(2))
+metanet/show_graph.sci:  cw=m6inimet(' ',winsize(1),winsize(2))
+metanet/show_nodes.sci:s=size(ns)
+metanet/show_nodes.sci:if type(sup)<>10|prod(size(sup))<>1 then
+metanet/split_edge.sci:  if type(name)<>10|prod(size(name))<>1 then
+metanet/split_edge.sci:if size(ii,2)>1 then
+metanet/strong_con_nodes.sci:if prod(size(i))<>1 then
+metanet/strong_connex.sci:ma=prod(size(g('tail')))
+metanet/subgraph.sci:s=size(v)
+metanet/subgraph.sci:ne=prod(size(g('tail')));noe=[1:ne];
+metanet/subgraph.sci:  n1=size(a(v),2);
+metanet/subgraph.sci:  tri=[a(v) b(v)];[atri,indic]=sort(tri);nn=size(atri,2);
+metanet/subgraph.sci:  uu=[1:nn];nij2=size(ij2,2);vv2=[1:nij2];uu(ij2)=uu(ij2)-vv2;
+metanet/subgraph.sci:  nij1=size(ij1,2);vv1=[1:nij1];uu(ij1)=vv1;
+metanet/subgraph.sci:  [atri,indic]=sort(v);nn=size(atri,2);
+metanet/subgraph.sci:  nnew=size(v,2);
+metanet/supernode.sci:s=size(v)
+metanet/supernode.sci:g1=g;ne=size(g('tail'),2); 
+metanet/supernode.sci:ndel=size(vv,2);
+metanet/supernode.sci:if (size(vv,2)>1) then
+metanet/supernode.sci:  for i=size(vv,2):-1:2,
+metanet/supernode.sci:if size(g('edge_label'),2) <> 0,
+metanet/trans_closure.sci:ma=prod(size(g('tail')))
+metanet/trans_closure.sci:n1=prod(size(lp1))-1
+metanet/trans_closure.sci:m1=prod(size(ls1))
+optim/aplat.sci:n=size(l)
+optim/aplat.sci:    ni=size(ind1)
+optim/aplat.sci:    nr=size(r)
+optim/karmarkar.sci:[n,p]=size(a)
+optim/karmarkar.sci:w=size(b)
+optim/karmarkar.sci:w=size(c)
+optim/karmarkar.sci:w=size(x0)
+optim/linpro.sci:n=maxi(size(p));Q=0*ones(n,n);
+optim/list2vec.sci://varsizes: k x 2 matrix, with varsiz(i,:)=size(Xi)
+optim/list2vec.sci:  sm=size(mati);
+optim/lmisolver.sci:for %ia=1:size(%Xinit)
+optim/lmisolver.sci:    %dim_X(%ia)=size(%Xinit(%ia))
+optim/lmisolver.sci:%dim_X=matrix(list2vec(%dim_X),2,size(%dim_X))';
+optim/lmisolver.sci:%nvars=size(%x0,'*')
+optim/lmisolver.sci:if size(%linobj0,'*')==0 then
+optim/lmisolver.sci:    [%mk,%mk]=size(%lmii);%blck_szs=[%blck_szs,%mk]
+optim/lmisolver.sci:%lX=size(%Xinit)
+optim/lmisolver.sci:if size(%Ncstr,'*')==0 then
+optim/lmisolver.sci:[%fm,%m]=size(%F_is);
+optim/lmisolver.sci:if size(%F_is,'*')<>0 then
+optim/lmisolver.sci:    if size(%linobj,'*') <> 0 then
+optim/lmisolver.sci:if size(%F_is,'*')==0 then
+optim/lmisolver.sci:if %sm>=-%tol & size(%linobj,'*')==0 then
+optim/lmisolver.sci:	%blck_szs=matrix(%blck_szs,1,size(%blck_szs,'*'));
+optim/lmisolver.sci:if size(%linobj,'*')<>0 then
+optim/lmisolver.sci:nr=size(r)
+optim/lmisolver.sci:   mm=size(ind(k),'*');
+optim/lmisolver.sci:  if size(vv,'*')==ma then vj=vv(1:ma-1); else vj=[]; end
+optim/lmisolver.sci:  sm=size(mati);
+optim/lmitool.sci:        [p,q]=size(mat);
+optim/lmitool.sci:        if size(ind,'*')<>4 then 
+optim/lmitool.sci:[p,q]=size(w);ma=max(w);
+optim/lmitool.sci:[m,n]=size(txt)
+optim/pack.sci:blck_szs=matrix(blck_szs,1,size(blck_szs,'*'))
+optim/quapro.sci:   if x0='v' then modo=1;x0=0*ones(size(Q,1),1);end
+optim/quapro.sci:   if x0='g' then modo=2;x0=0*ones(size(Q,1),1);end
+optim/quapro.sci:   if x0='v' then modo=1;x0=0*ones(size(Q,1),1);end
+optim/quapro.sci:   if x0='g' then modo=2;x0=0*ones(size(Q,1),1);end
+optim/quapro.sci:   if size(mi,'*')==1 then
+optim/quapro.sci:     x0=0*ones(size(Q,1),1);modo=1;
+optim/quapro.sci:     if x0='v' then modo=1;x0=0*ones(size(Q,1),1);end
+optim/quapro.sci:     if x0='g' then modo=2;x0=0*ones(size(Q,1),1);end
+optim/quapro.sci:   imp=0;x0=0*ones(size(Q,1),1);modo=1;mi=0;
+optim/quapro.sci:   if x0='v' then modo=1;x0=0*ones(size(Q,1),1);end
+optim/quapro.sci:   if x0='g' then modo=2;x0=0*ones(size(Q,1),1);end
+optim/quapro.sci:   modo=1;x0=0*ones(size(Q,1),1);
+optim/unpack.sci:[mM,nM]=size(M)
+percent/%cic.sci:  if size(i)=[-1 -1] then s=[],return,end
+percent/%cic.sci:  mn=prod(size(s))
+percent/%cic.sci:  [m,n]=size(s)
+percent/%cic.sci:  if and(size(i)==[-1 -1]) then
+percent/%cic.sci:  if and(size(j)==[-1 -1]) then
+percent/%lnl.sci:n1=size(l1)
+percent/%lnl.sci:r=n1<>size(l2)
+percent/%lol.sci:n1=size(l1)
+percent/%lol.sci:r=n1==size(l2)
+percent/%lssalss.sci:[n1,n1]=size(a1);[n2,n2]=size(a2);
+percent/%lssclss.sci:[n1,n1]=size(a1);[n2,n2]=size(a2);
+percent/%lssclss.sci:[p1,m1]=size(d1);[p2,m2]=size(d2);
+percent/%lsscp.sci:[n1,m1]=size(b1);[p2,m2]=size(d2);
+percent/%lsscs.sci:[n1,m1]=size(b1);[p2,m2]=size(d2);
+percent/%lsse.sci:  for k=1:prod(size(i))
+percent/%lssflss.sci:[n1,n1]=size(a1);[n2,n2]=size(a2)
+percent/%lssflss.sci:[p1,m1]=size(d1);[p2,m2]=size(d2)
+percent/%lssfp.sci:[n1,m1]=size(c1);[p2,m2]=size(d2);
+percent/%lssfs.sci:[n1,m1]=size(c1);[p2,m2]=size(d2);
+percent/%lssilss.sci:[m1,p1]=size(s1(5));[m2,p2]=size(s2(5));
+percent/%lssilss.sci:if size(i)==[-1,-1] then i=1:m2,end
+percent/%lssilss.sci:if size(j)==[-1,-1] then j=1:p2,end
+percent/%lssilss.sci:   [m2,p2]=size(s2(5));
+percent/%lssilss.sci:   [m2,p2]=size(s2(5));
+percent/%lssilss.sci:jj=0*ones(1,p2);jj(j)=ones(1,prod(size(j)));
+percent/%lssilss.sci:ii=0*ones(1,m2);ii(i)=ones(1,prod(size(i)));
+percent/%lssip.sci:[n1,n1]=size(a1);
+percent/%lssis.sci:[n1,n1]=size(a1);
+percent/%lssms.sci:[n2,m2]=size(D2);
+percent/%lssms.sci:if prod(size(s1))==1 then
+percent/%lssms.sci: [Q,M]=fullrf(D2);[n2,mq]=size(Q);
+percent/%lssslss.sci:[n1,n1]=size(a1);[n2,n2]=size(a2);
+percent/%par.sci:[nf,mf]=size(f)
+percent/%par.sci:[nm,mm]=size(m)
+percent/%par.sci:  if size(num,'*')==1&size(m,'*')>1 then
+percent/%pclss.sci:[n2,m2]=size(b2);[p1,m1]=size(d1)
+percent/%pcr.sci:[p,q]=size(m),
+percent/%pdp.sci:if size(p1,'*')==1 then
+percent/%pdp.sci:elseif size(p2,'*')==1 then
+percent/%pds.sci:[m,n]=size(x)
+percent/%pflss.sci:[n2,m2]=size(c2);[p1,m1]=size(d1)
+percent/%pfr.sci:[p,q]=size(m),
+percent/%pilss.sci:  if size(s2(kf))<>size(j) then 
+percent/%pip.sci:  if size(i)=[-1 -1] then s=[],return,end
+percent/%pip.sci:  mn=prod(size(s))
+percent/%pip.sci:  [m,n]=size(s)
+percent/%pip.sci:  if and(size(i)==[-1 -1]) then
+percent/%pip.sci:  if and(size(j)==[-1 -1]) then
+percent/%pir.sci:  if size(f(kf))<>size(j) then 
+percent/%pir.sci:[n,d]=f(2:3),[ld,cd]=size(d),l=maxi(i),c=maxi(j)
+percent/%pir.sci:n(i,j)=f2,[l,c]=size(f2),d(i,j)=ones(l,c)
+percent/%pis.sci:  if size(i)=[-1 -1] then s=[],return,end
+percent/%pis.sci:  mn=prod(size(s))
+percent/%pis.sci:  [m,n]=size(s)
+percent/%pis.sci:  if and(size(i)==[-1 -1]) then
+percent/%pis.sci:  if and(size(j)==[-1 -1]) then
+percent/%pjs.sci:[m,n]=size(p)
+percent/%pjs.sci:[ms,ns]=size(s)
+percent/%plp.sci:[l,c]=size(p2)
+percent/%plp.sci:[l,c]=size(p1)
+percent/%plr.sci:[l,c]=size(p1),
+percent/%pls.sci:[mp,np]=size(p)
+percent/%pls.sci:  [l,c]=size(m)
+percent/%pmr.sci:[l1,m1]=size(p);[l2,m2]=size(n2);
+percent/%pps.sci:[m,n]=size(p)
+percent/%pps.sci:[ms,ns]=size(s)
+percent/%pqp.sci:if size(p1,'*')==1 then
+percent/%pqp.sci:elseif size(p2,'*')==1 then
+percent/%pqs.sci:if size(p1,'*')==1 then
+percent/%pqs.sci:elseif size(p2,'*')==1 then
+percent/%prp.sci:[l,c]=size(p2)
+percent/%prp.sci:[l,c]=size(p1)
+percent/%prr.sci:if prod(size(f(2)))<>1 then f=m*invr(f),return,end
+percent/%prr.sci:[l,c]=size(m);
+percent/%prs.sci:[l,c]=size(m)
+percent/%prs.sci:[mp,np]=size(p);
+percent/%psr.sci:[nf,mf]=size(f)
+percent/%psr.sci:[nm,mm]=size(m)
+percent/%psr.sci:  if size(num,'*')==1&size(m,'*')>1 then
+percent/%pvp.sci:[m1,n1]=size(h1)
+percent/%pvp.sci:[m2,n2]=size(h2)
+percent/%pvr.sci:[m1,n1]=size(h1)
+percent/%pvr.sci:[m2,n2]=size(h2(2))
+percent/%rap.sci:[nf,mf]=size(f)
+percent/%rap.sci:[nm,mm]=size(m)
+percent/%rap.sci:  if size(num,'*')==1&size(m,'*')>1 then
+percent/%rar.sci:[m1,n1]=size(num1)
+percent/%rar.sci:[m2,n2]=size(num2)
+percent/%ras.sci:[nf,mf]=size(f)
+percent/%ras.sci:[nm,mm]=size(m)
+percent/%ras.sci:  if size(num,'*')==1&size(m,'*')>1 then
+percent/%rcs.sci:[p,q]=size(m)
+percent/%rds.sci:if size(m,'*')==0 then r=[],return,end
+percent/%re.sci:  for k=1:prod(size(i))
+percent/%rfs.sci:[p,q]=size(m)
+percent/%rip.sci:[l,c]=size(n),
+percent/%rip.sci:if size(i)<>[-1,-1]; l=maxi([l,maxi(i)]); end;
+percent/%rip.sci:if size(j)<>[-1,-1]; c=maxi([c,maxi(j)]); end;
+percent/%rir.sci:[n1,n2]=size(d);
+percent/%rir.sci:if size(i)<>[-1,-1] then 
+percent/%rir.sci:if size(j)<>[-1,-1] then 
+percent/%ris.sci:[l,c]=size(n),
+percent/%ris.sci:if size(i)<>[-1,-1]; l=maxi([l,maxi(i)]); end;
+percent/%ris.sci:if size(j)<>[-1,-1]; c=maxi([c,maxi(j)]); end;
+percent/%rjs.sci:[m,n]=size(f)
+percent/%rjs.sci:[ms,ns]=size(s)
+percent/%rlp.sci:if prod(size(f(2)))<>1 then f=invr(f)*m,return,end
+percent/%rlp.sci:[l,c]=size(m);
+percent/%rlr.sci:[n,m]=size(s1(2))
+percent/%rls.sci:if prod(size(f(2)))<>1 then f=invr(f)*m,return,end
+percent/%rls.sci:[l,c]=size(m);
+percent/%rmp.sci:[l1,m1]=size(n1);[l2,m2]=size(n2),
+percent/%rmr.sci:[l1,m1]=size(n1);[l2,m2]=size(n2),
+percent/%rms.sci:[l1,m1]=size(n1);[l2,m2]=size(n2),
+percent/%rps.sci:[m,n]=size(f(2))
+percent/%rps.sci:[ms,ns]=size(s)
+percent/%rqs.sci:if size(n2,'*')==0 then f=[],return,end
+percent/%rrp.sci:if prod(size(p2)) <>1 then f=f1*invr(p2),return,end
+percent/%rrr.sci:[n,m]=size(s2(2))
+percent/%rrs.sci:if size(b,'*')==0 then a=[],return,end
+percent/%rrs.sci:[ma,na]=size(num);
+percent/%rrs.sci:[mb,nb]=size(b);
+percent/%rsp.sci:[nf,mf]=size(f)
+percent/%rsp.sci:[nm,mm]=size(m)
+percent/%rsp.sci:  if size(num,'*')==1&size(m,'*')>1 then
+percent/%rsr.sci:[m1,n1]=size(num1)
+percent/%rsr.sci:[m2,n2]=size(num2)
+percent/%rss.sci:[nf,mf]=size(f)
+percent/%rss.sci:[nm,mm]=size(m)
+percent/%rss.sci:  if size(num,'*')==1&size(m,'*')>1 then
+percent/%rvp.sci:[m1,n1]=size(h1(2))
+percent/%rvp.sci:[m2,n2]=size(h2)
+percent/%rvr.sci:[m1,n1]=size(h1(2))
+percent/%rvr.sci:[m2,n2]=size(h2(2))
+percent/%rvs.sci:[m1,n1]=size(h1(2))
+percent/%rvs.sci:[m2,n2]=size(h2)
+percent/%rxs.sci:if size(n2,'*')==0
+percent/%sar.sci:[nf,mf]=size(f)
+percent/%sar.sci:[nm,mm]=size(m)
+percent/%sar.sci:  if size(num,'*')==1&size(m,'*')>1 then
+percent/%sasp.sci:if size(a)==[-1,-1] then
+percent/%sasp.sci:  [m,n]=size(b)
+percent/%sclss.sci:[n2,m2]=size(b2);[p1,m1]=size(d1)
+percent/%scr.sci:[p,q]=size(m)
+percent/%sdp.sci:if size(p1,'*')==1 then
+percent/%sdp.sci:elseif size(p2,'*')==1 then
+percent/%sdr.sci:if size(n1,'*')==0 then f=[],return,end
+percent/%sdsp.sci:if size(v,'*')<>mn(1)*mn(2) then
+percent/%sflss.sci:[n2,m2]=size(c2);[p1,m1]=size(d1)
+percent/%sfr.sci:[p,q]=size(m)
+percent/%sib.sci:  if size(i)=[-1 -1] then s=[],return,end
+percent/%sib.sci:  mn=prod(size(s))
+percent/%sib.sci:  [m,n]=size(s)
+percent/%sib.sci:  if and(size(i)==[-1 -1]) then
+percent/%sib.sci:  if and(size(j)==[-1 -1]) then
+percent/%sic.sci:  if size(i)=[-1 -1] then s=[],return,end
+percent/%sic.sci:  mn=prod(size(s))
+percent/%sic.sci:  [m,n]=size(s)
+percent/%sic.sci:  if and(size(i)==[-1 -1]) then
+percent/%sic.sci:  if and(size(j)==[-1 -1]) then
+percent/%silss.sci:  if size(s2(kf))<>size(j) then 
+percent/%silss.sci:    if kf<>7|prod(size(j))>1 then
+percent/%silss.sci:  [m,n]=size(s2)
+percent/%silss.sci:  if and(size(i)==[-1 -1]) then
+percent/%silss.sci:  if and(size(j)==[-1 -1]) then
+percent/%sip.sci:  if size(i)=[-1 -1] then s=[],return,end
+percent/%sip.sci:  mn=prod(size(s))
+percent/%sip.sci:  [m,n]=size(s)
+percent/%sip.sci:  if and(size(i)==[-1 -1]) then
+percent/%sip.sci:  if and(size(j)==[-1 -1]) then
+percent/%sir.sci:  if size(s2(kf))<>size(j) then 
+percent/%sir.sci:    if kf<>4|prod(size(j))>1 then
+percent/%sir.sci:[m,n]=size(s2(2))
+percent/%sir.sci:  [m,n]=size(s2(2))
+percent/%sir.sci:  if and(size(i)==[-1 -1]) then
+percent/%sir.sci:  if and(size(j)==[-1 -1]) then
+percent/%sir.sci:  [n,d]=s2(2:3),[ld,cd]=size(d),l=maxi(i),c=maxi(j)
+percent/%sir.sci:  n(i,j)=s1,[l,c]=size(s1),d(i,j)=ones(l,c)
+percent/%sis.sci:  if size(i)=[-1 -1] then s=[],return,end
+percent/%sis.sci:  mn=prod(size(s))
+percent/%sis.sci:  [m,n]=size(s)
+percent/%sis.sci:  if and(size(i)==[-1 -1]) then
+percent/%sis.sci:  if and(size(j)==[-1 -1]) then
+percent/%sisp.sci:  [m,n]=size(a)
+percent/%slp.sci:[l,c]=size(m)
+percent/%slp.sci:[mp,np]=size(p);
+percent/%slr.sci:if  size(a,'*')==0  then b=[],return,end
+percent/%slr.sci:[mb,nb]=size(num);mb=abs(mb);nb=abs(nb);
+percent/%slr.sci:[ma,na]=size(a);na=abs(na);ma=abs(ma);
+percent/%smlss.sci:if prod(size(s2))==1 then 
+percent/%smr.sci:[l1,m1]=size(n1);[l2,m2]=size(n2),
+percent/%spas.sci:if size(b)==[-1 -1] then
+percent/%spas.sci:  [m,n]=size(a)
+percent/%spasp.sci:if size(a)==[1 1] then
+percent/%spasp.sci:elseif size(b)==[1 1] then
+percent/%spbgspb.sci:if prod(size(a))==1 then
+percent/%spbgspb.sci:    [mb,nb]==size(b)
+percent/%spbgspb.sci:elseif prod(size(b))==1  then
+percent/%spbgspb.sci:    [ma,na]==size(a)
+percent/%spbhspb.sci:if prod(size(a))==1 then
+percent/%spbhspb.sci:    r=sparse([],[],size(b))<>0
+percent/%spbhspb.sci:elseif prod(size(b))==1  then
+percent/%spbhspb.sci:    r=sparse([],[],size(a))<>0
+percent/%spls.sci:[ma,na]=size(a)
+percent/%spls.sci:[mb,nb]=size(b)
+percent/%splsp.sci:[ma,na]=size(a)
+percent/%splsp.sci:[mb,nb]=size(b)
+percent/%spqs.sci:if size(v,'*')<>mn(1)*mn(2) then
+percent/%sprsp.sci:[ma,na]=size(a)
+percent/%sprsp.sci:[mb,nb]=size(b)
+percent/%spss.sci:if size(b)==[-1 -1] then
+percent/%spss.sci:  [m,n]=size(a)
+percent/%spssp.sci:if size(a)==[1 1] then
+percent/%spssp.sci:elseif size(b)==[1 1] then
+percent/%spysp.sci:if size(ijb,1)<>prod(mnb)|or(vb==0) then error(27),end
+percent/%spzsp.sci:if size(ija,1)<>prod(mna)|or(va==0) then error(27),end
+percent/%sqp.sci:[m,n]=size(x)
+percent/%sqr.sci:if size(s,'*')==0 then f=[],return,end
+percent/%srp.sci:[mp,np]=size(p)
+percent/%srp.sci:  [l,c]=size(m)
+percent/%srr.sci:if prod(size(f(2)))<>1 then f=m*invr(f),return,end
+percent/%srr.sci:[l,c]=size(m);
+percent/%srsp.sci:[ma,na]=size(a)
+percent/%srsp.sci:[mb,nb]=size(b)
+percent/%ssr.sci:[nf,mf]=size(f)
+percent/%ssr.sci:[nm,mm]=size(m)
+percent/%ssr.sci:  if size(num,'*')==1&size(m,'*')>1 then
+percent/%sssp.sci:if size(a)==[-1,-1] then
+percent/%sssp.sci:  [m,n]=size(b)
+percent/%svr.sci:[m1,n1]=size(h1)
+percent/%svr.sci:[m2,n2]=size(h2(2))
+percent/%svs.sci:[m1,n1]=size(h1)
+percent/%svs.sci:[m2,n2]=size(h2)
+percent/%sxr.sci:if size(n1,'*')==0 then 
+robust/augment.sci:r=size(G);
+robust/augment.sci: [ny,nu]=size(G);Iu=eye(nu,nu);Iy=eye(ny,ny);
+robust/bstap.sci:  [a,b,c]=sl(2:4),[n,n]=size(a),[m,n]=size(c),
+robust/ccontrg.sci:[na,na]=size(a); nh=2*na;
+robust/ccontrg.sci:[p1,m2]=size(d12),
+robust/ccontrg.sci:[p2,m1]=size(d21),
+robust/ccontrg.sci:[u,s,v]=svd(d12); r12=maxi(size(find(diag(s) > 1.0e-10)));
+robust/ccontrg.sci:[w,p,z]=svd(d21); r21=maxi(size(find(diag(p) > 1.0e-10)));
+robust/ccontrg.sci:[ra,cb]=size(b); [rc,ca]=size(c); xo=0;
+robust/copfac.sci:[r,p,t]=size(g);
+robust/des2ss.sci:[ns,ns] = size(a);
+robust/dhnorm.sci:[n,n]=size(A);Id=eye(n,n);Z=0*Id;
+robust/dtsi.sci:  [t1,t2]=size(num),
+robust/dtsi.sci:  [n1,n2,t]=size(g),
+robust/dtsi.sci:[nn,mm]=size(num),D=0*ones(nn,mm),
+robust/fstabst.sci:    [s1,s2,t]=size(Stplant);
+robust/gamatest.sci:[nx,nx]=size(A);
+robust/gamatest.sci:[nx,nw]=size(B1);[ny,nx]=size(C2);
+robust/gamatest.sci:          stint=and(abs(spec(h_cl(P,size(C2*B2),sk))) < ones(2*nx,1))
+robust/gamatest.sci://Sk1=lqg(P,size(c2*B2));
+robust/gamatest.sci:          stint=and(abs(spec(h_cl(P,size(C2*B2),sk))) < ones(2*nx,1))
+robust/gamatest.sci:stint=and(real(spec(h_cl(P,size(C2*B2),sk))) < zeros(2*nx,1))
+robust/gamatest.sci://Sk1=lqg(P,size(c2*B2));
+robust/gamiter.sci:[nx,nx]=size(A);
+robust/gamiter.sci:[nx,nw]=size(B1);[ny,nx]=size(C2);
+robust/gamiter.sci://[F,X,err]=dleqr(P,size(C2*B2),gama);
+robust/gamiter.sci://[L,Y,err]=dleqe(P,size(C2*B2),gama);
+robust/gamiter.sci:          stint=and(abs(spec(h_cl(P,size(C2*B2),sk))) < ones(2*nx,1))
+robust/gamiter.sci://Sk1=lqg(P,size(c2*B2));
+robust/gamiter.sci:stint=and(real(spec(h_cl(P,size(C2*B2),sk))) < zeros(2*nx,1))
+robust/gamiter.sci://Sk1=lqg(P,size(c2*B2));
+robust/gamitg.sci:[na,na]=size(a); twona=2*na;
+robust/gamitg.sci:[p1,m2]=size(d12),
+robust/gamitg.sci:[p2,m1]=size(d21),
+robust/gtild.sci:[m,n]=size(mp),z=varn(mp)
+robust/h2norm.sci:[t1,t2]=size(num),
+robust/h_cl.sci://Given the standard plant P (with r=size(P22)) and the controller
+robust/h_cl.sci://if type(K)=1 then [ny,nu]=size(K),Ac=0;Bc=0*ones(1,nu);Cc=0*ones(ny,1);Dc=K;
+robust/h_cl.sci:[n,pp]=size(B2);[ndc1,ndc2]=size(Dc);[nd1,nd2]=size(D22);
+robust/h_cl.sci:[m,q]=size(Bc);
+robust/h_cl.sci:[n1,m2]=size(Cc);
+robust/h_cl.sci:[n2,m1]=size(C2);
+robust/h_inf.sci:     [na,na]=size(A);
+robust/h_inf.sci:     [p1,m2]=size(D12),
+robust/h_inf.sci:     [p2,m1]=size(D21),
+robust/h_inf.sci:     if size(nt,'*') > 0 then
+robust/h_inf.sci:     if size(nt,'*')>0 then
+robust/h_inf.sci:     [p1,m2]=size(D12),
+robust/h_inf.sci:     [p2,m1]=size(D21),
+robust/h_inf.sci://          with D11=0; P4=Fl(Teta,size(D11'),P3,r);
+robust/h_inf.sci:     [p2,m1]=size(D21),
+robust/h_inf.sci:     [p1,m2]=size(D12),
+robust/h_inf_st.sci://where size(D22)=r=[r1 r2]
+robust/h_inf_st.sci:[l,k]=size(D);
+robust/h_norm.sci:[no,ns] = size(c); [ns,ni] = size(b);
+robust/h_norm.sci:  q = maxi(size(imev));
+robust/h_norm.sci:    for j = 1:maxi(size(M)),
+robust/h_norm.sci:[n,n]=size(A);Id=eye(n,n);Z=0*Id;
+robust/lcf.sci:[A,B,C,D]=Sl(2:5);[nw,nb]=size(B);[nc,nw]=size(C);
+robust/leqr.sci:[n,nu]=size(b2);
+robust/leqr.sci:[ny,n]=size(c1);
+robust/lft.sci://r= size(p22) r#=size(p22#);
+robust/lft.sci:  r=size(p#');
+robust/lft.sci:    [nl,nc]=size(p);
+robust/lft.sci:    [nl,nc]=size(p);
+robust/lft.sci:      [nl,nc]=size(p#);
+robust/lft.sci:      r1=size(dd22);
+robust/lft.sci:      r1=size(dd22);
+robust/lft.sci:      r1=size(ptfg22)
+robust/lft.sci:      [nl,nc]=size(p#);
+robust/lft.sci:      r1=size(dd22);
+robust/lft.sci:      r1=size(dd22);
+robust/lft.sci:    r1=size(ptfg22)
+robust/lft.sci:  rhs=3;k=r;r=size(k');
+robust/lft.sci:  [pp,qq]=size(p);
+robust/lft.sci:  [l3,k4]=size(k);
+robust/lft.sci:  [pp,qq]=size(p);
+robust/lft.sci:  [pk,qk]=size(k);
+robust/linf.sci:      [a,b,c,d]=g(2:5),[t,t]=size(a),
+robust/linf.sci:            [tp,tp]=size(slp(2)),[tm,tm]=size(slm(2)),
+robust/linfn.sci:[na,na]=size(a); twona=2*na;
+robust/linfn.sci:[p,m]=size(d);
+robust/linfn.sci:[nf,nf]=size(f);
+robust/linfn.sci:      for i=1:maxi(size(evals)),
+robust/linfn.sci:   for i=1:maxi(size(evals)),
+robust/linfn.sci:[nf,nf]=size(f);
+robust/linfn.sci:for i=1:maxi(size(frequ)),
+robust/linfn.sci:nl=maxi(size(l));
+robust/lqg_ltr.sci:     [m,p]=size(sl);
+robust/macglov.sci:[A,B,C,D]=Sl(2:5);[n,nb]=size(B);[nc,n]=size(C);
+robust/macglov.sci:r=size(D);
+robust/nehari.sci:[m,k,n]=size(r),m=m(1),
+robust/newhinf.sci:// r=size(P22)=[#ouputs, #inputs]
+robust/newhinf.sci:[nx,nx]=size(A);
+robust/newhinf.sci:[nx,nw]=size(B1);[ny,nx]=size(C2);
+robust/newhinf.sci:          stint=and(abs(spec(h_cl(P,size(C2*B2),sk))) < ones(2*nx,1))
+robust/newhinf.sci://Sk1=lqg(P,size(c2*B2));
+robust/newhinf.sci:          stint=and(abs(spec(h_cl(P,size(C2*B2),sk))) < ones(2*nx,1))
+robust/newhinf.sci:stint=and(real(spec(h_cl(P,size(C2*B2),sk))) < zeros(2*nx,1))
+robust/newhinf.sci://Sk1=lqg(P,size(c2*B2));
+robust/parrot.sci://where size(D22)=r=[r1,r2]
+robust/parrot.sci:[l,k]=size(D);
+robust/parrt.sci:[ra,cb]=size(b); [rc,ca]=size(c); xo=0;
+robust/ric_desc.sci:   [n2,n2]=size(H);
+robust/ric_desc.sci:   [n2,n2]=size(H);n1=n2/2;
+robust/riccati.sci:      [n,n]=size(a),
+robust/rowinout.sci:[rows,cols]=size(G);
+robust/sensi.sci:[ny,nu]=size(G);Iu=eye(nu,nu);Iy=eye(ny,ny);
+robust/smga.sci:  [s1,s2,t]=size(slp);
+robust/smga.sci:  [nl,nk]=size(slp);
+robust/tf2des.sci:[n,m]=size(Num);
+robust/tf2des.sci:[n1,n1]=size(sp(2));
+robust/tf2des.sci:[n2,n2]=size(spol(2));
+sci2for/%a2for.sci:it1=prod(size(s1))-1;it2=prod(size(s2))-1
+sci2for/%m2for.sci:it1=prod(size(s1))-1;it2=prod(size(s2))-1
+sci2for/callfun.sci:n=prod(size(arg))
+sci2for/cla2for.sci:  ncl=size(clause)
+sci2for/cla2for.sci:    nv=size(vtps)+1
+sci2for/cla2for.sci:  ncas=(size(clause)-3)/2
+sci2for/cod2for.sci:nlst=size(lst)
+sci2for/cod2for.sci:    if size(prev,'*')<2 then
+sci2for/cod2for.sci:      it=prod(size(expk(1)))-1
+sci2for/cod2for.sci:          nv=size(vtps)+1  
+sci2for/cod2for.sci:	    nv=size(vtps)
+sci2for/cod2for.sci:	    nv=size(vtps)
+sci2for/exp2for.sci:nlst=size(lst)
+sci2for/exp2for.sci:  n3=prod(size(nwrk3))
+sci2for/exp2for.sci:  n6=prod(size(nwrk6))
+sci2for/f_abs.sci:it2=prod(size(v))-1
+sci2for/f_cond.sci:it2=prod(size(v))-1
+sci2for/f_cos.sci:  it2=prod(size(v))-1
+sci2for/f_exp.sci:it2=prod(size(v))-1
+sci2for/f_expm.sci:  it2=prod(size(v))-1
+sci2for/f_log.sci:it2=prod(size(v))-1
+sci2for/f_rank.sci:it2=prod(size(v))-1
+sci2for/f_sin.sci:  it2=prod(size(v))-1
+sci2for/f_size.sci:function [stk,nwrk,txt,top]=f_size(nwrk)
+sci2for/f_sqrt.sci:it2=prod(size(v))-1
+sci2for/f_svd.sci:it2=prod(size(v))-1
+sci2for/f_tan.sci:it2=prod(size(v))-1
+sci2for/gencall.sci:n=prod(size(arg))
+sci2for/genif.sci:if rhs==2&prod(size(t1))==1 then
+sci2for/get2f.sci:      nv=prod(size(vnms))/2+1;
+sci2for/get2f.sci:      nv=prod(size(vnms))/2+1;
+sci2for/getlocal.sci:  nw=nwrk(11);[m,n]=size(nw)
+sci2for/getlocal.sci:  nw=nwrk(13);[m,n]=size(nw)
+sci2for/getwrk.sci:  nw2=nwrk(2);[m2,n2]=size(nw2)
+sci2for/getwrk.sci:  nw5=nwrk(5);[m5,n5]=size(nw5)
+sci2for/indent.sci:n=prod(size(txt))
+sci2for/indentfor.sci:n=prod(size(k))
+sci2for/ins2for.sci:nlst=size(lst)
+sci2for/lin2for.sci:nt=prod(size(kt))
+sci2for/makeargs.sci:n=prod(size(args))
+sci2for/modlst.sci:nlst=size(lst);top=0
+sci2for/outname.sci:nvar=prod(size(typ))
+sci2for/sci2for.sci:macrhs=size(vtps)
+sci2for/sci2for.sci:na=prod(size(vnms))/2
+sci2for/sci2for.sci:maclhs=prod(size(lst(2)))
+sci2for/sci2for.sci:  nw=size(w)
+sci2for/sci2for.sci:na=size(vtps)
+sci2for/sci2for.sci:  if prod(size(nwrk(3)))=1 then
+sci2for/sci2for.sci:    nams=nwrk(10);loc=nwrk(11);nl=prod(size(loc))/2
+sci2for/sci2for.sci:  if prod(size(nwrk(6)))=1 then
+sci2for/sci2for.sci:    nams=nwrk(12);loc=nwrk(13);nl=prod(size(loc))/2
+sci2for/sci2for.sci:    for l=1:prod(size(msgk))
+sci2for/sci2for.sci:  nk=prod(size(kk))
+sci2for/sci2for.sci:    txt=[txt(1:k1-1);t1;txt(k1+1:prod(size(txt)))]
+scicos/#tz22527mir-inria-fr.sci:nblk=size(bllst)
+scicos/add_palette.sci:n=size(path,1)
+scicos/add_palette.sci:for k=size(palettes)+1:max(kpal), palettes(k)=list(),end
+scicos/adjust.sci:	      k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
+scicos/adjust.sci:	      k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
+scicos/analyse.sci:nx=size(scs_m)
+scicos/bad_connection.sci:  lp=mini(size(path_out,'*'),size(path_in,'*'))
+scicos/bad_connection.sci:    for k=1:size(path,'*')
+scicos/bad_connection.sci:    for k=size(path,'*'):-1:1,xdel(mxwin+k),end
+scicos/bad_connection.sci:    for k=1:size(path,'*')
+scicos/bad_connection.sci:    for k=size(path,'*'):-1:1,xdel(mxwin+k),end
+scicos/c_pass1.sci:n=size(scs_m)
+scicos/c_pass1.sci:	for kk=1:prod(size(connected))
+scicos/c_pass1.sci:      for kk=1:prod(size(connected))
+scicos/c_pass1.sci:      nbs=size(blklsts)
+scicos/c_pass1.sci:	model(1)=list(genmac(model(9),size(model(2),'*'),size(model(3),'*')),3)
+scicos/c_pass1.sci:	for ii=2:size(fnp,'*')
+scicos/c_pass1.sci:[nc,nw]=size(cmat)
+scicos/c_pass1.sci:	for ii=2:size(fnp,'*')
+scicos/c_pass1.sci:[nc,nw]=size(cmat)
+scicos/c_pass1.sci:[nc,nw]=size(cmat)
+scicos/c_pass1.sci:    nto=size(kto,'c');
+scicos/c_pass1.sci:      nc=size(cmat,'r');
+scicos/c_pass1.sci:    [nc,nw]=size(cmat)
+scicos/c_pass1.sci:[nc,nw]=size(ccmat)
+scicos/c_pass1.sci:[nc,nw]=size(ccmat)
+scicos/c_pass1.sci:  nto=size(kto,'c');
+scicos/c_pass1.sci:    nc=size(ccmat,'r');
+scicos/c_pass1.sci:  [nc,nw]=size(ccmat)
+scicos/c_pass1.sci:	for ii=2:size(fnp,'*')
+scicos/c_pass1.sci:[nc,nw]=size(ccmat)
+scicos/c_pass1.sci:	for ii=2:size(fnp,'*')
+scicos/c_pass2.sci:nblk=size(bllst)
+scicos/c_pass2.sci:  ordptr2(1+o)=size(r,1)+ordptr2(o)
+scicos/c_pass2.sci:n=size(cord,1)
+scicos/c_pass2.sci:  ordptr3(1+o)=size(r,1)+ordptr3(o)
+scicos/c_pass2.sci:nb=prod(size(vec));kk=zeros(vec);
+scicos/c_pass2.sci:nb=size(vec,'*')
+scicos/c_pass2.sci:  nn=size(indx,'*')
+scicos/c_pass2.sci:    if size(indy,'*')>1 then 
+scicos/c_pass2.sci:  boptr=[boptr;boptr($)+size(r,1)]
+scicos/c_pass2.sci:  blptr=[blptr;blptr($)+size(r,1)]
+scicos/c_pass2.sci:  select size(k1,'*')
+scicos/c_pass2.sci:for i=1:size(corinv_s)
+scicos/c_pass2.sci:    if size(con,'*')>=2 then
+scicos/c_pass2.sci:    if size(con,'*')>=2 then 
+scicos/c_pass2.sci:      iini=[find(con(2:$)-con(1:$-1)<>0),size(clkconnectj,1)]
+scicos/c_pass2.sci:  new_ordptr1=[new_ordptr1;new_ordptr1($)+size(r,1)]
+scicos/c_pass2.sci:  inpptr=[inpptr;inpptr($)+size(inpnum,'*')]
+scicos/c_pass2.sci:  outptr=[outptr;outptr($)+size(outnum,'*')]
+scicos/c_pass2.sci:  cliptr=[cliptr;cliptr($)+size(cinpnum,'*')]
+scicos/c_pass2.sci:  clkptr=[clkptr;clkptr($)+size(coutnum,'*')]
+scicos/c_pass2.sci:  xptr=[xptr;xptr($)+size(ll(6),'*')]
+scicos/c_pass2.sci:  zptr=[zptr;zptr($)+size(xd0k,'*')]
+scicos/c_pass2.sci:  rpptr=[rpptr;rpptr($)+size(rpark,'*')]
+scicos/c_pass2.sci:    ipptr=[ipptr;ipptr($)+size(ll(9),'*')]
+scicos/c_pass2.sci:    nprt=prod(size(prt))
+scicos/c_pass2.sci:  if size(ll)>=13 then
+scicos/c_pass2.sci:nlnk=size(connectmat,1)
+scicos/c_pass2.sci:nblk0=size(clkptr,'*')
+scicos/c_pass2.sci:for i=nblk0:size(bllst)
+scicos/c_pass2.sci:nb=size(wec,'*');
+scicos/c_pass2.sci:nlnk=size(connectmat,1)
+scicos/c_pass2.sci:	  k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
+scicos/c_pass2.sci:	  k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
+scicos/c_pass2.sci:  lp=mini(size(path_out,'*'),size(path_in,'*'))
+scicos/c_pass2.sci:    for k=1:size(path,'*')
+scicos/c_pass2.sci:    for k=size(path,'*'):-1:1,xdel(mxwin+k),end
+scicos/c_pass2.sci:nb=size(wec,'*')
+scicos/c_pass3.sci:for k=1:size(corinv)
+scicos/c_pass3.sci:  if size(corinv(k),'*')==1 then
+scicos/c_pass3.sci:  xc0=[xc0;ll(6)(:)];xptr=[xptr;xptr($)+size(ll(6),'*')]
+scicos/c_pass3.sci:  xd0=[xd0;ll(7)(:)];zptr=[zptr;zptr($)+size(ll(7),'*')]
+scicos/c_pass3.sci:  rpar=[rpar;ll(8)(:)];rpptr=[rpptr;rpptr($)+size(ll(8),'*')]
+scicos/c_pass3.sci:    ipar=[ipar;ll(9)(:)];ipptr=[ipptr;ipptr($)+size(ll(9),'*')]
+scicos/c_pass3.sci:      prt=find(ll11);nprt=prod(size(prt))
+scicos/c_pass3.sci:      prt=find(ll11>=zeros(ll11));nprt=prod(size(prt))
+scicos/change_tree_elt.sci:n=prod(size(path))
+scicos/changeports.sci:nip=size(ip,'*')
+scicos/changeports.sci:nipn=size(nin_n,'*')
+scicos/changeports.sci:nop=size(op,'*')
+scicos/changeports.sci:nopn=size(nout_n,'*')
+scicos/changeports.sci:ncip=size(cip,'*')
+scicos/changeports.sci:ncipn=size(ncin_n,'*')
+scicos/changeports.sci:ncop=size(cop,'*')
+scicos/changeports.sci:ncopn=size(ncout_n,'*')
+scicos/changeports.sci:for i1=1:size(connected,'*')
+scicos/changeports.sci:  nl=prod(size(xl))
+scicos/changeports.sci:[mxx,nxx]=size(xx)
+scicos/changeports.sci:  for i=1:prod(size(ii))
+scicos/changeports.sci:    xl=oi(2);yl=oi(3);nl=prod(size(xl))
+scicos/changeports.sci:    nl=prod(size(xl))
+scicos/check_io.sci:in=int(in(:));nin=size(in,1)
+scicos/check_io.sci:out=int(out(:));nout=size(out,1);
+scicos/check_io.sci:clkin=int(clkin(:));nclkin=size(clkin,1);
+scicos/check_io.sci:clkout=int(clkout(:));nclkout=size(clkout,1);
+scicos/check_io.sci:n1=size(in1,'*');n=size(in,'*')
+scicos/check_io.sci:n1=size(out1,'*');n=size(out,'*')
+scicos/check_io.sci:n1=size(clkin1,'*');n=size(clkin,'*')
+scicos/check_io.sci:n1=size(clkout1,'*');n=size(clkout,'*')
+scicos/choosefile.sci:if prod(size(lst))>0 then
+scicos/clickin.sci:    modified=prod(size(newparameters))>0
+scicos/clickin.sci:    modified=prod(size(newparameters))>0
+scicos/cos2cosf.sci:for k=2:size(scs_m)
+scicos/cos2cosf.sci:      n1=size(t1,1)
+scicos/cos2cosf.sci:    n1=size(t1,1)
+scicos/cos2txt.sci:for k=2:size(scs_m)
+scicos/cos2txt.sci:      n1=size(t1,1)
+scicos/cos2txt.sci:    n1=size(t1,1)
+scicos/countblocks.sci:nx=size(scs_m)
+scicos/ctree.sci:nb=prod(size(vec));kk=zeros(vec);
+scicos/delete_unconnected.sci:n=size(scs_m)
+scicos/delete_unconnected.sci:    for k=1:size(path,'*')
+scicos/delete_unconnected.sci:  for k=size(path,'*'):-1:1,xdel(mxwin+k),end
+scicos/do_copy.sci:  scs_m(size(scs_m)+1)=o
+scicos/do_copy_region.sci:modified=size(reg)>1
+scicos/do_copy_region.sci:n=size(scs_m)
+scicos/do_copy_region.sci:for k=2:size(reg)
+scicos/do_copy_region.sci:for k=2:size(scs_m)
+scicos/do_delete1.sci:      if size(connected,'*')==2 then
+scicos/do_delete_region.sci:for k=2:size(scs_m)
+scicos/do_edit_pal.sci:windows=[windows;[-(size(palettes)+1) curwin]]
+scicos/do_eval.sci:if size(scs_m(1))<5 then scs_m(1)(5)=[] ,end //compatibility
+scicos/do_eval.sci:nx=size(scs_m)
+scicos/do_exit.sci:  for win=windows(size(windows,1):-1:noldwin+1,2)',xbasc(win),xdel(win);end
+scicos/do_label.sci:if size(model)<13 then model(13)=' ',model(14)=list(),end
+scicos/do_load.sci:  if size(scs_m(1)(1),'*') <4 then scs_m(1)(1)=[scs_m(1)(1),0,0],end //compatibility
+scicos/do_load.sci:  if size(scs_m(1))<5 then scs_m(1)(5)=' ',end  //compatibility
+scicos/do_move.sci:  nl=prod(size(xl))
+scicos/do_move.sci:[mxx,nxx]=size(xx)
+scicos/do_move.sci:  for i=1:prod(size(ii))
+scicos/do_move.sci:    xl=oi(2);yl=oi(3);nl=prod(size(xl))
+scicos/do_move.sci:    nl=prod(size(xl))
+scicos/do_move.sci:nl=size(o(2),'*')  // number of link points
+scicos/do_move.sci:    for kk=2:size(connected,'*')
+scicos/do_move.sci:    for kk=2:size(connected,'*')
+scicos/do_purge.sci:nx=size(scs_m);
+scicos/do_purge.sci:for k=1:size(retained,'*')
+scicos/do_replace.sci:nin=size(in,'*')
+scicos/do_replace.sci:nout=size(out,'*')
+scicos/do_replace.sci:nclkin=size(clkin,'*')
+scicos/do_replace.sci:nclkout=size(clkout,'*')
+scicos/do_replace.sci:nin_n=size(in_n,'*')
+scicos/do_replace.sci:nout_n=size(out_n,'*')
+scicos/do_replace.sci:nclkin_n=size(clkin_n,'*')
+scicos/do_replace.sci:nclkout_n=size(clkout_n,'*')
+scicos/do_resize.sci:function scs_m=do_resize(scs_m)
+scicos/do_run.sci:	//if size(path)==1 then path=path(1),end
+scicos/do_run.sci:      //if size(path)==1 then path=path(1),end
+scicos/do_run.sci:    //if size(path)==1 then path=path(1),end
+scicos/do_save.sci:if size(scs_m(1)(2),'*')<2 then 
+scicos/do_update.sci:  if size(newparameters)<>0 then
+scicos/do_update.sci:  if size(newparameters)<>0 then
+scicos/do_update.sci:  for k=1:size(corinv)
+scicos/do_update.sci:    if size(corinv(k),'*')==1 then
+scicos/do_version.sci:nx=size(scs_m);
+scicos/do_version.sci:if size(wsiz,'*')>=4 then x_new=x,return,end
+scicos/do_version.sci:  for ko=2:size(oo)
+scicos/do_version.sci:  ns=size(model(6),'*');nin=1;nout=1;
+scicos/do_version.sci:  ns=prod(size(x0))
+scicos/do_version.sci:  for ko=2:size(oo)
+scicos/do_version.sci:  ns=size(model(7),'*');nin=1;nout=1;
+scicos/do_version.sci:  ns=prod(size(x0))
+scicos/do_version.sci:  gr_i=['rpar=model(8);n=size(rpar,''*'')/2;';
+scicos/do_version.sci:  if size(clrs,'*')<8 then clrs(8)=1;end
+scicos/do_version.sci:  z0=model(7);nin=size(model(2),1);
+scicos/do_version.sci:  ns=prod(size(x0));nin=nin-ns
+scicos/do_view.sci:if size(wdm,'*')<4 then wdm(3)=0;wdm(4)=0;end
+scicos/draw.sci:nx=size(scs_m)
+scicos/drawobjs.sci:nx=size(scs_m)
+scicos/drawpal.sci:nm=size(palettes)
+scicos/genfunc1.sci:ni=size(inp,'*')
+scicos/genfunc1.sci:no=size(out,'*')
+scicos/genfunc1.sci:if size(tt)<>7 then
+scicos/genfunc1.sci:	w=[];for k=1:size(k1,'*'),w=[w,'y'+string(k1)],end
+scicos/get_tree_elt.sci:n=prod(size(path))
+scicos/getblock.sci:n=size(objs)
+scicos/getcolor.sci:m=prod(size(cini))
+scicos/getcolor.sci://if size(legs,'*')<>m then error(42),end
+scicos/getcolor.sci:m=prod(size(cini))
+scicos/getlink.sci:  kfrom=size(scs_m)+1;port_number=2;
+scicos/getlink.sci:    port_number=k-prod(size(find(typout==1)))
+scicos/getlink.sci:      port_number=k-prod(size(find(typin==1)))
+scicos/getlink.sci:nx=prod(size(xl))
+scicos/getlink.sci:  nx=size(scs_m)+1
+scicos/getlink.sci:  link2(2)=[d(1);xx(wh+1:size(xx,1))];
+scicos/getlink.sci:  link2(3)=[d(2);yy(wh+1:size(yy,1))];
+scicos/getlink.sci:  nx=size(scs_m)+1
+scicos/getlink.sci:nx=size(scs_m)+1
+scicos/getlink.sci:scs_m(size(scs_m)+1)=lk
+scicos/getobj.sci:n=size(objs)
+scicos/getobj.sci:    n=prod(size(xx))
+scicos/getobj.sci:    for j=1:prod(size(l))
+scicos/getparpath.sci:for k=2:size(scs_m)
+scicos/getparpath.sci:	  ppath(size(ppath)+1)=[bpath k],
+scicos/init_agenda.sci:nblk=size(clkptr,1)-1
+scicos/init_agenda.sci:ninit=size(initexe,1)
+scicos/lstfiles.sci:[np,mp]=size(path);np=np*mp;path=matrix(path,np,1);
+scicos/lstfiles.sci:if prod(size(lst))==0 then lst=[],end
+scicos/lstfiles.sci:n=prod(size(lst))
+scicos/mark_newpars.sci:      newparameters(size(newparameters)+1)=[k npb];
+scicos/mark_newpars.sci:    newparameters(size(newparameters)+1)=k
+scicos/modipar.sci:nb=prod(size(rpptr))-1
+scicos/modipar.sci:  if prod(size(k))==1 then //parameter of a simple block
+scicos/modipar.sci:    nk=size(k,2)
+scicos/modipar.sci:  nek=prod(size(statek))-(xptr(kc+1)-xptr(kc))
+scicos/modipar.sci:  nek=prod(size(dstatek))-(zptr(kc+1)-zptr(kc))
+scicos/modipar.sci:  nek=prod(size(rpark))-(rpptr(kc+1)-rpptr(kc))
+scicos/modipar.sci:  nek=prod(size(ipark))-(ipptr(kc+1)-ipptr(kc))
+scicos/restore_scs_gc.sci:for i=3:size(scs_gc)
+scicos/restore_scs_gc.sci:  select size(x(2)),
+scicos/save_csuper.sci:for k=2:size(scs_m)
+scicos/save_csuper.sci:if size(ppath)>0 then
+scicos/save_csuper.sci:       bl(ones(size(t1,1),1))+t1;
+scicos/save_csuper.sci:       '    np=size(path,''*'')'
+scicos/save_csuper.sci:       '      newpar(size(newpar)+1)=path'+com+' Notify modification'
+scicos/save_csuper.sci:   bl(ones(size(t1,1),1))+t1;
+scicos/save_scs_gc.sci:for i=1:prod(size(vals)),
+scicos/save_super.sci:for k=2:size(scs_m)
+scicos/save_super.sci:'    for k=2:size(x)';
+scicos/save_super.sci:   bl(ones(size(t1,1),1))+t1;
+scicos/scicos.sci:slevel=prod(size(find(mac=='scicos')))
+scicos/scicos.sci:    if size(cpr)==0 then
+scicos/scicos.sci:if size(wsiz,'*')<4 then wsiz(3)=0;wsiz(4)=0;wpar(1)=wsiz;end
+scicos/scicos.sci:    for k=1:size(menus,'*')
+scicos/scicos.sci:  noldwin=size(windows,1)
+scicos/scicos.sci:if size(scs_m(1))>4 then 
+scicos/scicos.sci:	needcompile=~edited|size(scs_m)>1
+scicos/scicos.sci:      if size(cpr)==0 then
+scicos/scicos.sci:    scs_m=do_resize(scs_m)
+scicos/setvalue.sci:n=prod(size(labels))
+scicos/setvalue.sci:if size(typ)<>2*n then
+scicos/setvalue.sci:      [mv,nv]=size(v)
+scicos/setvalue.sci:      nv=prod(size(v))
+scicos/setvalue.sci:      nv=prod(size(v))
+scicos/setvalue.sci:      [mv,nv]=size(v)
+scicos/setvalue.sci:      [mv,nv]=size(v)
+scicos/setvalue.sci:      nv=prod(size(v))
+scicos/setvalue.sci:      nv=size(v)
+scicos/setvalue.sci:      [mv,nv]=size(v(2))
+scicos/shiftcors.sci:n=size(cors)
+scicos/standard_define.sci:nin=size(nin,1);if nin>0 then pin(nin,1)=0,else pin=[],end
+scicos/standard_define.sci:nout=size(nout,1);if nout>0 then pout(nout,1)=0,else pout=[],end
+scicos/standard_define.sci:ncin=size(ncin,1);if ncin>0 then pcin(ncin,1)=0,else pcin=[],end
+scicos/standard_define.sci:ncout=size(ncout,1);if ncout>0 then pcout(ncout,1)=0,else pcout=[],end
+scicos/standard_draw.sci:nin=size(o(3)(2),1);
+scicos/standard_draw.sci:nout=size(o(3)(3),1);
+scicos/standard_draw.sci:clkin=size(o(3)(4),1);
+scicos/standard_draw.sci:clkout=size(o(3)(5),1);
+scicos/standard_draw.sci:if size(o(2))>8 then //compatibility
+scicos/standard_inputs.sci:inp=size(model(2),1);clkinp=size(model(4),1);
+scicos/standard_outputs.sci:out=size(model(3),1);clkout=size(model(5),1);
+scicos/stripblanks.sci:[m,n]=size(txt)
+scicos/systshow.sci:nx=size(scs_m)
+scicos/tree.sci:for i=1:prod(size(ord))
+scicos/update_scicos_pal.sci:for k=1:size(newblocks,'*')
+scicos_blocks/AFFICH_f.sci:  if size(label,'*')==4 then label(4)=' ';label(5)=' ';end //compatibility
+scicos_blocks/AFFICH_f.sci:[m,n]=size(z)
+scicos_blocks/ANIMXY_f.sci:  if size(label,'*')==8 then label=[label(1:3);'[]';'[]';label(4:8)],end
+scicos_blocks/ANIMXY_f.sci:    if size(wpos,'*')<>0 &size(wpos,'*')<>2 then
+scicos_blocks/ANIMXY_f.sci:    if size(wdim,'*')<>0 &size(wdim,'*')<>2 then
+scicos_blocks/ANIMXY_f.sci:      if prod(size(state))<>2*N+1 then state=zeros(2*N+1,1),end
+scicos_blocks/BIGSOM_f.sci:    in=-ones(size(sgn,'*'),1)
+scicos_blocks/BIGSOM_f.sci:          'for k=1:size(x,''*'')';
+scicos_blocks/BOUND_f.sci:  if size(label,'*')==3 then label=label(2:3),end //compatibility
+scicos_blocks/BOUND_f.sci:	 list('vec',-1,'vec','size(x1,''*'')'),label)
+scicos_blocks/BOUND_f.sci:      model(2)=size(v,'*')
+scicos_blocks/BOUND_f.sci:      model(3)=size(v,'*')
+scicos_blocks/CLOCK_f.sci:    newpar(size(newpar)+1)=path// Notify modification
+scicos_blocks/CLR_f.sci:  ns=prod(size(x0));nin=1;nout=1
+scicos_blocks/CLR_f.sci:      [ns1,ns1]=size(A)
+scicos_blocks/CLSS_f.sci:  if size(label,'*')==7 then label=label([1:4 7]),end //compatibility
+scicos_blocks/CLSS_f.sci:	    'mat',['size(x1,2)','-1'],..
+scicos_blocks/CLSS_f.sci:	    'mat',['-1','size(x1,2)'],..
+scicos_blocks/CLSS_f.sci:	    'vec','size(x1,2)'),..
+scicos_blocks/CLSS_f.sci:    out=size(C,1);if out==0 then out=[],end
+scicos_blocks/CLSS_f.sci:    in=size(B,2);if in==0 then in=[],end
+scicos_blocks/CLSS_f.sci:    [ms,ns]=size(A)
+scicos_blocks/CONST_f.sci:    nout=size(C,'*')
+scicos_blocks/CONST_f.sci:    'if size(C,''*'')==1 then ';
+scicos_blocks/CURV_f.sci:    n=size(xx,'*')
+scicos_blocks/CURV_f.sci:      model(9)=[size(xx,'*');axisdata(:)]
+scicos_blocks/CURV_f.sci:  ipar=[size(xx,1);axisdata(:)]
+scicos_blocks/DELAYV_f.sci:    if size(zz0,'*')<2 then 
+scicos_blocks/DELAYV_f.sci:      model(7)=[zz0;told];model(8)=T/(size(zz0,'*'));
+scicos_blocks/DELAY_f.sci:    if prod(size(z0))<2 then
+scicos_blocks/DLRADAPT_f.sci:	['size(x1,''*'')','-1'],'vec','size(x1,''*'')',..
+scicos_blocks/DLRADAPT_f.sci:	'vec','size(x2,2)','vec','size(x3,2)'),label)
+scicos_blocks/DLRADAPT_f.sci:    m=size(rn,2)
+scicos_blocks/DLRADAPT_f.sci:    [npt,n]=size(rd)
+scicos_blocks/DLRADAPT_f.sci:    elseif size(rn,1)<>0&size(rn,1)<>size(p,'*') then
+scicos_blocks/DLR_f.sci:  x0=model(7);ns=prod(size(x0));
+scicos_blocks/DLR_f.sci:      [ns1,ns1]=size(A)
+scicos_blocks/DLSS_f.sci:  if size(label,'*')==7 then label=label([1:4 7]),end //compatibility
+scicos_blocks/DLSS_f.sci:	 'mat',['size(x1,2)','-1'],..
+scicos_blocks/DLSS_f.sci:	 'mat',['-1','size(x1,2)'],..
+scicos_blocks/DLSS_f.sci:	 'vec','size(x1,2)'),..
+scicos_blocks/DLSS_f.sci:    out=size(C,1);if out==0 then out=[],end
+scicos_blocks/DLSS_f.sci:    in=size(B,2);if in==0 then in=[],end
+scicos_blocks/DLSS_f.sci:    [ms,ns]=size(A)
+scicos_blocks/DOLLAR_f.sci:    out=size(a,'*');if out==0 then out=[],end
+scicos_blocks/EVENTSCOPE_f.sci:    if size(wpos,'*')<>0 &size(wpos,'*')<>2 then
+scicos_blocks/EVENTSCOPE_f.sci:    if size(wdim,'*')<>0 &size(wdim,'*')<>2 then
+scicos_blocks/EVENTSCOPE_f.sci:    if size(clrs,'*')<>nclock then
+scicos_blocks/EXPBLK_f.sci:  if size(label,'*')==2 then label=label(2),end
+scicos_blocks/GAINBLK_f.sci:      [out,in]=size(gain)
+scicos_blocks/GAIN_f.sci:      [out,in]=size(gain)
+scicos_blocks/GENERAL_f.sci:      n=size(rp,2)/2
+scicos_blocks/GENSQR_f.sci:  if size(label,'*')==2 then label=label(2),end //compatibility
+scicos_blocks/INTRP2BLK_f.sci:    if size(a,'*') <> size(c,'c') | size(b,'*') <> size(c,'r') then
+scicos_blocks/INTRP2BLK_f.sci:	model(9)=[size(a,'*');size(b,'*')]
+scicos_blocks/INTRPLBLK_f.sci:    if size(a,'*') <> size(b,'*') then
+scicos_blocks/IN_f.sci:  if size(label,'*')==2 then label=label(1),end //compatibility
+scicos_blocks/LOGBLK_f.sci:  if size(label,'*')==2 then label=label(2),end //compatibility
+scicos_blocks/LOOKUP_f.sci:  n=size(rpar,'*')/2
+scicos_blocks/LOOKUP_f.sci:    n=size(xx,'*')
+scicos_blocks/LOOKUP_f.sci:  gr_i=['rpar=model(8);n=size(rpar,''*'')/2;';
+scicos_blocks/MCLOCK_f.sci:    np=size(path,'*')
+scicos_blocks/MCLOCK_f.sci:      newpar(size(newpar)+1)=path// Notify modification
+scicos_blocks/MSCOPE_f.sci:  if size(label)<10 then label(10)='0',end // compatibility
+scicos_blocks/MSCOPE_f.sci:	 'vec','size(x1,''*'')','vec','size(x1,''*'')','vec',1,..
+scicos_blocks/MSCOPE_f.sci:    if size(in,'*')<=0 then
+scicos_blocks/MSCOPE_f.sci:    if size(clrs,'*')<sum(in) then 
+scicos_blocks/MSCOPE_f.sci:    if size(wpos,'*')<>0 &size(wpos,'*')<>2 then
+scicos_blocks/MSCOPE_f.sci:    if size(wdim,'*')<>0 &size(wdim,'*')<>2 then
+scicos_blocks/MSCOPE_f.sci:	ipar=[win;size(in,'*');N;wpos(:);wdim(:);in(:);clrs(:);heritance]
+scicos_blocks/MSCOPE_f.sci:	if prod(size(state))<>(sum(in)+1)*N+1 then 
+scicos_blocks/MSCOPE_f.sci:  ipar=[win;size(in,'*');N;wpos(:);wdim(:);in(:);clrs(1:sum(in));0]
+scicos_blocks/OUT_f.sci:  if size(label,'*')==2 then label=label(1),end //compatibility
+scicos_blocks/POWBLK_f.sci:  if size(label,'*')==2 then label=label(2),end //compatibility
+scicos_blocks/RAND_f.sci:  if size(label,'*')==5 then label=label(1:3),end //compatibility
+scicos_blocks/RAND_f.sci:	list('vec',1,'vec',-1,'vec','size(x2,''*'')'),label)
+scicos_blocks/RAND_f.sci:      nout=size(a,'*')
+scicos_blocks/REGISTER_f.sci:    if prod(size(z0))<2 then
+scicos_blocks/RFILE_f.sci:    if prod(size(tmask1))>1 then
+scicos_blocks/RFILE_f.sci:    elseif lunit>0&size(tmask1)<>size(tmask) then
+scicos_blocks/RFILE_f.sci:	if prod(size(state))<>(nout+ievt)*N+3 then
+scicos_blocks/SCOPE_f.sci:  if size(label)<9 then label(9)='0',end // compatibility
+scicos_blocks/SCOPE_f.sci:    if size(wpos,'*')<>0 &size(wpos,'*')<>2 then
+scicos_blocks/SCOPE_f.sci:    if size(wdim,'*')<>0 &size(wdim,'*')<>2 then
+scicos_blocks/SCOPE_f.sci:      if prod(size(state))<>(8+1)*N+1 then state=-eye((8+1)*N+1,1),end
+scicos_blocks/SCOPXY_f.sci:    if size(wpos,'*')<>0 &size(wpos,'*')<>2 then
+scicos_blocks/SCOPXY_f.sci:    if size(wdim,'*')<>0 &size(wdim,'*')<>2 then
+scicos_blocks/SCOPXY_f.sci:      if prod(size(state))<>2*N+1 then state=-eye(2*N+1,1),end
+scicos_blocks/SOM_f.sci:  if size(label,'*')==2 then label=label(2),end
+scicos_blocks/SUPER_f.sci:    for k=2:size(x)
+scicos_blocks/TCLSS_f.sci:  if size(label,'*')==7 then label=label([1:4,7]),end //compatibility
+scicos_blocks/TCLSS_f.sci:	    'mat',['size(x1,2)','-1'],..
+scicos_blocks/TCLSS_f.sci:	    'mat',['-1','size(x1,2)'],..
+scicos_blocks/TCLSS_f.sci:	    'vec','size(x1,2)'),..
+scicos_blocks/TCLSS_f.sci:    out=size(C,1);if out==0 then out=[],end
+scicos_blocks/TCLSS_f.sci:    in=size(B,2);if in==0 then in=[],end
+scicos_blocks/TCLSS_f.sci:    [ms,ns]=size(A)
+scicos_blocks/TCLSS_f.sci:  nx=size(x0,'*')
+scicos_blocks/WFILE_f.sci:      if prod(size(state))<>(nin+1)*N+2 then
+scicos_blocks/scifunc_block.sci:    nrp=prod(size(rpar))
+scicos_blocks/scifunc_block.sci:    i=int(i(:));ni=size(i,1);
+scicos_blocks/scifunc_block.sci:    o=int(o(:));no=size(o,1);
+scicos_blocks/scifunc_block.sci:    ci=int(ci(:));nci=size(ci,1);
+scicos_blocks/scifunc_block.sci:    co=int(co(:));nco=size(co,1);
+scicos_blocks/scifunc_block.sci:    [ok,tt,dep_ut]=genfunc1(label(2),i,o,nci,nco,size(xx,1),size(z,1),..
+signal/%k.sci:   [n1,n2]=size(m);
+signal/%sn.sci:[n1,n2]=size(x);
+signal/bilt.sci:   order=maxi(size(n))-1;
+signal/bilt.sci:   ms=maxi(size(pl));ns=maxi(size(zr));
+signal/bilt.sci:      if prod(size(d))==1 then d=[d,0];end
+signal/buttmag.sci:   [n1,n2]=size(sample);
+signal/cepstrum.sci:[p,q]=size(m);
+signal/cheb1mag.sci:   [n1,n2]=size(sample);
+signal/cheb2mag.sci:   [n1,n2]=size(sample);
+signal/convol.sci:n=prod(size(x))
+signal/convol.sci:m=prod(size(h))
+signal/cspect.sci:   if maxi(size(x))=1 then,
+signal/czt.sci:   n=maxi(size(x));
+signal/dft.sci:n=maxi(size(x));
+signal/eqfir.sci:   [nb,c2]=size(bedge);
+signal/eqfir.sci:      fgs=maxi(size(fg));
+signal/eqiir.sci:if maxi(size(om))=2 then
+signal/eqiir.sci:nb=maxi(size(b0));
+signal/eqiir.sci:[k,j]=size(cells);
+signal/frfit.sci:mean=sum(fresp)/size(fresp,'*');
+signal/frfit.sci:[nc,nv]=size(Acons);
+signal/frfit.sci:  for kk=1:prod(size(relerr));relerr(kk)=min(1,relerr(kk));end
+signal/frfit.sci:[p,q]=size(m);
+signal/fsfir.sci:   n1=prod(size(hd));//filter length
+signal/fsfirlin.sci:   n1=prod(size(hd));//filter length
+signal/fwiir.sci:m=prod(size(w));
+signal/group.sci:         hs=maxi(size(h));
+signal/group.sci:         hcs=maxi(size(h(2)));
+signal/hank.sci:   d=mini(size(cov));
+signal/iirgroup.sci:[m,n]=size(td);if m>n,td=td';end;
+signal/iirgroup.sci:[m,n]=size(omega);if m>n,omega=omega';end;
+signal/iirgroup.sci:[m,n]=size(r);if n>m,r=r';m=n;end;
+signal/iirgroup.sci:[m,n]=size(theta);if n>m,theta=theta';m=n;end;
+signal/iirlp.sci:[m,n]=size(ad);if m>n,ad=ad';end
+signal/iirlp.sci:[m,n]=size(td);if m>n,td=td';end
+signal/iirlp.sci:[m,n]=size(omega);if m>n,omega=omega';end;
+signal/iirlp.sci:[m,n]=size(r);if n>m,r=r';m=n;end;
+signal/iirlp.sci:[m,n]=size(theta);if n>m,theta=theta';m=n;end;
+signal/iirmod.sci:[m,n]=size(ad);if m>n,ad=ad';end;
+signal/iirmod.sci:[m,n]=size(omega);if m>n,omega=omega';end;
+signal/iirmod.sci:[m,n]=size(r);if n>m,r=r';m=n;end;
+signal/iirmod.sci:[m,n]=size(theta);if n>m,theta=theta';m=n;end;
+signal/intdec.sci:   xsize=size(x);
+signal/intdec.sci:   if xsize(1)=1 then, lom=[1 lom]; end,
+signal/intdec.sci:   if xsize(2)=1 then, lom=[lom 1]; end,
+signal/intdec.sci:      y=xmax*ones(xmsize(1),xmsize(2));
+signal/intdec.sci:         xlf=[xf(1:fm(1),:);xf(xsize(1)-fmc(1)+1:xsize(1),:)];
+signal/intdec.sci:         if xmsize(1)=xsize(1) then,//no changes in row length
+signal/intdec.sci:                 0*ones(xmsize(1)-fpc(1)-fp(1),xsize(2));...
+signal/intdec.sci:                 xf(xsize(1)-fpc(1)+1:xsize(1),:)];
+signal/intdec.sci:         xlf=[xlf(:,1:fm(2)),xlf(:,xsize(2)-fmc(2)+1:xsize(2))];
+signal/intdec.sci:         if xmsize(2)=xsize(2) then,//no changes in column length
+signal/intdec.sci:                 0*ones(xmsize(1),xmsize(2)-fpc(2)-fp(2)),...
+signal/intdec.sci:                 xlf(:,xsize(2)-fpc(2)+1:xsize(2))];
+signal/lattn.sci:   [l,d]=size(cov);
+signal/lattn.sci:[l,d]=size(cov);
+signal/lev.sci:   rsize=maxi(size(r));
+signal/levin.sci:      [l,d]=size(cov);
+signal/lgfft.sci:   nz=maxi(size(z));
+signal/lindquist.sci:   [d,m]=size(H);
+signal/mcr.sci:       K=maxi(size(y));
+signal/mcr.sci:       sphi=size(phi);
+signal/mcr.sci:       spsi=size(psi);
+signal/mcr.sci:   K=maxi(size(y));
+signal/mcr.sci:   tphi=size(phi);
+signal/mfft.sci:   dims=[1 matrix(dim,1,maxi(size(dim)))];
+signal/mfft.sci:   for k=1:maxi(size(dim)),
+signal/mrfit.sci:p=size(ww(:),'*');
+signal/optfir.sci:p=prod(size(fc));
+signal/optfir.sci:p1=prod(size(tw));
+signal/optfir.sci:m1=2:2:2*(k1-1);nm1=prod(size(m1));
+signal/optfir.sci:m3=2*(k1+nbech):2:2*n;nm3=prod(size(m3));
+signal/optfir.sci:nm=prod(size(m));
+signal/optfir.sci:c=0*ones(1,maxi(size(a)));c(nbech+1)=1;
+signal/phc.sci:   [p,q]=size(hk);
+signal/pspect.sci:   xsize=maxi(size(x));
+signal/pspect.sci:   if maxi(size(x))=1 then,
+signal/remezb.sci:   ngrid=maxi(size(fg));
+signal/remezb.sci:   dsize=maxi(size(ds));
+signal/remezb.sci:   wsize=maxi(size(wt));
+signal/srfaur.sci:   [d,m]=size(h);
+signal/srkf.sci:   n=maxi(size(x0));
+signal/srkf.sci:   p=maxi(size(y));
+signal/wfir.sci:   [dummy,forder]=size(win_l);
+signal/wiener.sci:   [n,x0j]=size(x0);
+signal/wiener.sci:   [m,tf]=size(y);
+signal/wigner.sci:l=prod(size(x));
+signal/wigner.sci:n=prod(size(h));
+signal/yulewalk.sci:[mf,nf]=size(frq);
+signal/yulewalk.sci:[mm,nn]=size(mag);
+signal/yulewalk.sci:n=max(size(Ht));
+signal/yulewalk.sci:nr=max(size(R));
+signal/yulewalk.sci:nA=size(A,'*');
+signal/yulewalk.sci:Qhsci=poly(Qh( size(Qh,'*'):-1:1 ),'z','c')
+signal/yulewalk.sci:nna=max(size(aa));nnb=max(size(bb));
+signal/yulewalk.sci:nB=size(B,'*');
+signal/yulewalk.sci:ll=size(a,'*');
+signal/yulewalk.sci:na=size(a,'*');nb=size(b,'*');
+signal/yulewalk.sci:nh=max(size(h));
+signal/zpell.sci:   un=ones(1:maxi(size(v)));
+sound/mapsound.sci:        n=prod(size(w));
+sound/mapsound.sci:	[nl,nc]=size(M);
+tdcs/BInit.sci:usize=prod(size(uvect))
+tdcs/boucle.sci:[nn1,nn2]=size(tcal);
+tdcs/finit.sci:[n1,n2]=size(ukp1)
+tdcs/finit.sci:[n1,n2]=size(uk);
+tdcs/finit.sci:[n1,n2]=size(m2);
+tdcs/finit.sci:if prod(size(ialu))<>1 then ialu=ialu(2);
+tdcs/finit.sci:[q1,q2]=size(h)
+tdcs/gpeche.sci:[n1,n2]=size(uk);
+tdcs/mineInit.sci:usize=prod(size(uvect))
+tdcs/mineInit.sci:[n1,n2]=size(feed)
+tdcs/portr3d.sci:[nn1,n2]=size(x0);
+tdcs/portr3d.sci:       [nn1,n11]=size(y);
+tdcs/portrait.sci:[nn1,n2]=size(x0);
+tdcs/portrait.sci:       [nn1,n11]=size(y);
+util/bloc2exp.sci:nsyst=size(syst)
+util/bloc2exp.sci:[nt,mt]=size(t)
+util/bloc2exp.sci:nio=[prod(size(lentrees)),prod(size(lsorties))]
+util/bloc2exp.sci:nlignes=prod(size(lliens))
+util/bloc2exp.sci:    transfert=bloc(2);[no,ni]=size(transfert);
+util/bloc2exp.sci:      ni=prod(size(inti))
+util/bloc2exp.sci:      ne=prod(size(ext))
+util/bloc2exp.sci:nsyst=size(syst)
+util/bloc2exp.sci:  if type(obj)==15, if size(obj)>1 then
+util/bloc2exp.sci:            nobj=size(obj)
+util/bloc2exp.sci:nliens=prod(size(lliens))
+util/bloc2exp.sci:         nb=size(lien);
+util/bloc2exp.sci:         if prod(size(whi))>1 then nw=nw+1,where_x(nw)=whi,end
+util/bloc2exp.sci:         nb=size(lien);l=l+1;
+util/bloc2ss.sci:nsyst=size(syst)
+util/bloc2ss.sci:nio=[prod(size(lentrees)),prod(size(lsorties))]
+util/bloc2ss.sci:      [mok,mik]=size(transfert)
+util/bloc2ss.sci:      [msk,msk]=size([])
+util/bloc2ss.sci:      insize=[insize insize(inn)+mik];inn=inn+1
+util/bloc2ss.sci:      outsize=[outsize outsize(outn)+mok];outn=outn+1
+util/bloc2ss.sci:      [mok,mik]=size(transfert(5))
+util/bloc2ss.sci:      [msk,msk]=size(transfert(2))
+util/bloc2ss.sci:      insize=[insize insize(inn)+mik];inn=inn+1
+util/bloc2ss.sci:      outsize=[outsize outsize(outn)+mok];outn=outn+1
+util/bloc2ss.sci:k=0*ones(insize(inn)-1,outsize(outn)-1)
+util/bloc2ss.sci:  nnum=size(fil)-3
+util/bloc2ss.sci:  pdebut=debut(2:prod(size(debut))) // ports origines
+util/bloc2ss.sci:     fin=fil(4);pfin=fin(2:prod(size(fin)))
+util/bloc2ss.sci:       pdebut=1:prod(size(pfin))
+util/bloc2ss.sci:         pdebut=1:(insize(bfin+1)-insize(bfin))
+util/bloc2ss.sci:         pdebut=1:(outsize(bd+1)-outsize(bd))
+util/bloc2ss.sci:      np=prod(size(pdebut))
+util/bloc2ss.sci:      insize=[insize insize(inn)+np];inn=inn+1
+util/bloc2ss.sci:      outsize=[outsize outsize(outn)+np];outn=outn+1
+util/bloc2ss.sci:      fin=fin(2:prod(size(fin)))
+util/bloc2ss.sci:        fin=1:(insize(bfin+1)-insize(bfin))
+util/bloc2ss.sci:      in=[in, (insize(bfin)-1)*ones(fin)+fin]
+util/bloc2ss.sci:      pfin=fin(2:prod(size(fin)))
+util/bloc2ss.sci:        pfin=1:(insize(bfin+1)-insize(bfin))
+util/bloc2ss.sci:      iin=(insize(bfin)-1)*ones(pfin)+pfin
+util/bloc2ss.sci:      iou=(outsize(bdebut)-1)*ones(pdebut)+pdebut
+util/bloc2ss.sci:      k(iin,iou)=eye(prod(size(iin)),prod(size(iou)))
+util/bloc2ss.sci:      pfin=fin(2:prod(size(fin)))
+util/bloc2ss.sci:        pfin=1:prod(size(pdebut))
+util/bloc2ss.sci:      if prod(size(pfin))<>prod(size(pdebut)) then
+util/bloc2ss.sci:      out=[out, (outsize(bdebut)-1)*ones(pfin)+pdebut(pfin)]
+util/bloc2ss.sci:if or(size(d')<>size(k)) then
+util/bloc2ss.sci:nsyst=size(syst)
+util/bloc2ss.sci:  if type(obj)=15, if size(obj)>1 then
+util/bloc2ss.sci:            nobj=size(obj)
+util/cmb_lin.sci:n=prod(size(x));
+util/colnew.sci:mstar=prod(size(m))
+util/colnew.sci:if prod(size(ipar)) < 11  then write(%io(2),' ipar dimensioned at least 11');
+util/colnew.sci:if prod(size(ltol))<>ipar(4)  then write(%io(2),'ltol must be of size ipar(4)')
+util/colnew.sci:if prod(size(tol))<>ipar(4)  then write(%io(2),'tol must be of size ipar(4)');
+util/colnew.sci:if prod(size(fixpnt))<>ipar(11) then 
+util/eval.sci:[mz,nz]=size(z),
+util/evstr.sci:    for %l=1:size(%str,'r')
+util/evstr.sci:    %nstr=prod(size(%sexp)); %=list();
+util/g_diag.sci:  [m,n]=size(a)
+util/g_eye.sci:  [m,n]=size(a)
+util/g_eye.sci:  [m,n]=size(a)
+util/g_inv.sci:  [ma,na]=size(a)
+util/g_inv.sci:    [m,n]=size(d);
+util/g_ones.sci:  [m,n]=size(a)
+util/g_pow.sci:[m,n]=size(a)
+util/g_pow.sci:[mp,np]=size(p)
+util/g_rand.sci:  [m,n]=size(a)
+util/g_size.sci:function [m,n,nx]=g_size(x,flag)
+util/g_size.sci:      m=size(x(2));
+util/g_size.sci:      m=size(x(2),flag);
+util/g_size.sci:    [m,n]=size(x(2));
+util/g_size.sci:  [a,b,c,d]=x(2:5);[m,w]=size([c,d]),[w,n]=size([b;d]);
+util/g_size.sci:    [nx,nx]=size(a);
+util/g_sort.sci:  nn=size(v,'*');
+util/g_sort.sci:  v([1:size(first,'*'),nn-size(last,'*')+1:nn])=[sort(v(first));sort(v(last))];
+util/g_sort.sci:  nn=size(v,'*');
+util/g_sort.sci:  v([1:size(first,'*'),nn-size(last,'*')+1:nn])=[sort(v(first));sort(v(last))];
+util/g_tril.sci:  [m,n]=size(a)
+util/g_triu.sci:  [m,n]=size(a)
+util/getvalue.sci:n=prod(size(labels))
+util/getvalue.sci:if size(typ)<>2*n then
+util/getvalue.sci:      [mv,nv]=size(v)
+util/getvalue.sci:      nv=prod(size(v))
+util/getvalue.sci:      nv=prod(size(v))
+util/getvalue.sci:      [mv,nv]=size(v)
+util/getvalue.sci:      [mv,nv]=size(v)
+util/getvalue.sci:      for kk=1:size(spe,'*')
+util/getvalue.sci:      nv=prod(size(v))
+util/getvalue.sci:      nv=size(v)
+util/getvalue.sci:      [mv,nv]=size(v(2))
+util/lin.sci:[n,w]=size(x0);[m,w]=size(u0);mpn=m+n
+util/lin.sci:[p,w]=size(y);
+util/macrovar.sci:out=lst(2)',if prod(size(out))=0 then out =[],end
+util/macrovar.sci:ng=prod(size(getted))
+util/macrovar.sci:nl=prod(size(vars))
+util/po_sum.sci:[m,n]=size(a);
+util/pol2tex.sci:np=prod(size(p));ok=' ',tt=' ',
+util/sci2exp.sci:[m,n]=size(a),
+util/sci2exp.sci:if size(a,'*')==0 then t='[]',return,end
+util/sci2exp.sci:[m,n]=size(a);
+util/sci2exp.sci:[m,n]=size(a),var=' ';lvar=1
+util/sci2exp.sci:    [ny,my]=size(y)
+util/sci2exp.sci:  if size(t1,'*')==1&(lmax==0|maxi(length(t1))+length(t($))<lmax) then
+util/sci2exp.sci:  if size(t1,'*')==1&(lmax==0|maxi(length(t1))+length(t($))<lmax) then
+util/sci2exp.sci:[m,n]=size(a),
+util/sci2exp.sci:  a(k)=T(ones(size(k,'*'),1));
+util/sci2exp.sci:nt=size(text,'*')
+util/sci2map.sci:    [ma,na]=size(a),
+util/sci2map.sci:  if type(a)==15|type(a)==16 then ma=size(a), end,
+util/sci2map.sci:  t_ind__=[2:size(a)-1],
+util/sci2map.sci:  t__=list2map(nom,a,[1:size(a)]),
+util/sci2map.sci:    t_ind__=[2:size(a)-1],
+util/sci2map.sci:    t__=list2map(nom,a,[1:size(a)]),
+util/sci2map.sci:l_t_num_ = prod(size(t_num_)) ,t_num_(l_t_num_)=t_num_(l_t_num_) +' / '
+util/sci2map.sci:t__ = [ t_num_ ; t_den_(2:prod(size(t_den_))) ],
+util/sci2map.sci:[ma,na]=size(num_),
+util/solve.sci:[na,ma]=size(a),[mb,nb]=size(b)
+util/sp_sum.sci:[m,n]=size(a);
+util/sprintf.sci:if prod(size(fmt))<>1 then
+util/sprintf.sci:  if prod(size(str))>1 then
+util/sprintf.sci:    buf=[buf;str(2:prod(size(str)))];kbuf=kbuf+1
+util/sprintf.sci:nflags=prod(size(flags))
+util/sprintf.sci:    if prod(size(w))<>1 then
+util/sprintf.sci:    if prod(size(w))<>1 then
+util/sscanf.sci:if prod(size(fmt))<>1 then
+util/ssprint.sci:deff('[ta]=%cv(x)',['[m,n]=size(x);';
+util/ssprint.sci:na=size(a,'r')
+util/ssprint.sci:[nc,nb]=size(d)
+util/ssrand.sci:  [pp,qq]=size(a21);a21(p1+1:pp,1:nv)=0*a21(p1+1:pp,1:nv);
+util/ssrand.sci:  [pp,qq]=size(c1);c1(p2+1:pp,:)=0*c1(p2+1:pp,:);
+util/sysdiag.sci:[m1,n1]=size(a1);
+util/sysdiag.sci:  [mk,nk]=size(ak);
+util/syslin.sci:    if size(domain,'*')<>1 then
+util/syslin.sci:        [m1,n1]=size(domain);
+util/syslin.sci:        [n2,m2]=size(a);
+util/syslin.sci:        [n3,m3]=size(b);
+util/syslin.sci:        [m1,n1]=size(domain);
+util/syslin.sci:        [n2,m2]=size(a);
+util/syslin.sci:        [n3,m3]=size(b);
+util/syslin.sci:        [n4,m4]=size(c);
+util/syslin.sci:        [m1,n1]=size(domain);
+util/syslin.sci:        [n2,m2]=size(a);
+util/syslin.sci:        [n3,m3]=size(b);
+util/syslin.sci:        [n4,m4]=size(c);
+util/syslin.sci:        [n5,m5]=size(d);
+util/syslin.sci:  if size(domain,'*')<>1 then
+util/syslin.sci:  [ma,na]=size(a);[mb,nb]=size(b);[mc,nc]=size(c);
+util/syslin.sci:    [mx,nx]=size(x0),
+util/syslin.sci:    [md,nd]=size(d),
+util/syslin.sci:  if size(a)<>size(b) then
+util/syssize.sci:function [io,s]=syssize(sys)
+util/syssize.sci://  io=syssize(sys)
+util/syssize.sci://  [io,ns]=syssize(sys)
+util/syssize.sci:  io=size(sys)
+util/syssize.sci:    io=size(sys(5)),
+util/syssize.sci:    [s,s]=size(sys(2))
+util/syssize.sci:    io=size(sys(3))
+util/syssize.sci:    io=size(sys(5)),
+util/syssize.sci:    [s,s]=size(sys(2))
+util/syssize.sci:    io=size(sys(3))
+util/test2p.sci:   if size(n) <> [1 1] then error(89,1); end;
+util/texprint.sci:  [m,n]=size(a)
+util/texprint.sci:   [m,n]=size(a)
+util/texprint.sci:  [m,n]=size(a)
+util/texprint.sci:     [m,n]=size(a)
+util/trfmod.sci:  if size(h(2))<>[1 1] then
+util/trfmod.sci:  if size(h(5))<>[1 1] then
+util/trfmod.sci:nn=prod(size(fnum))
+util/trfmod.sci:nd=prod(size(fden))
+util/trfmod.sci:tden=txt(id+1:prod(size(txt)))
+util/trfmod.sci:for in=1:prod(size(tnum))
+util/trfmod.sci:      select prod(size(f))
+util/trfmod.sci:for id=1:prod(size(tden))
+util/trfmod.sci:      select prod(size(f))
+util/trianfml.sci:[mf,nf]=size(f)
+util/trianfml.sci:  [mf_tra,nf_tra]=size(f_tra)
+util/trianfml.sci:          ns=prod(size(sexp)),
+util/trisolve.sci:[n0,m]=size(b)
+util/trisolve.sci:ns=prod(size(sexp))
+util/unix_g.sci:if prod(size(cmd))<>1 then   error(55,1),end
+util/unix_g.sci:  if size(rep,'*')==0 then rep=[],end
+util/unix_s.sci:if prod(size(cmd))<>1 then   error(55,1),end
+util/unix_w.sci:if prod(size(cmd))<>1 then   error(55,1),end
+util/unix_x.sci:if prod(size(cmd))<>1 then   error(55,1),end
+util/whereami.sci:nn=prod(size(linn))
+util/whos.sci:n=size(nams,1)
+util/whos.sci:  if typ<=10 then execstr('sz=size('+nams(k)+');'),end
+util/whos.sci:	execstr('sz=size('+nams(k)+'(2)+)')
+util/whos.sci:	execstr('sz=size('+nams(k)+'(''D'')+)')
+util/whos.sci:	execstr('sz=size('+nams(k)+')')
+util/x_choices.sci:n=size(choices_l)
+util/x_choices.sci: [xxxl,xxxc]=size(l_ch(3));
+util/x_choices.sci: if prod(size(l_ch(2)))<>1 then 
+util/x_choices.sci:items=items(2:prod(size(items)))
+util/x_matrix.sci:[n1,n2]=size(x);
+xdess/Sfgrayplot.sci:p=prod(size(x));
+xdess/Sfgrayplot.sci:q=prod(size(y));
+xdess/Sfgrayplot.sci:[Ntr,vv]=size(xx);
+xdess/Sgrayplot.sci:p=prod(size(x));
+xdess/Sgrayplot.sci:q=prod(size(y));
+xdess/Sgrayplot.sci:[Ntr,vv]=size(xx);
+xdess/addcolor.sci:if size(c,'c')<>3 then
+xdess/addcolor.sci:ncol=size(cmap,'r')
+xdess/addcolor.sci:  for k=1:size(c,'r')
+xdess/black.sci:   frq=sl;sl=[];[mn,n]=size(frq);
+xdess/black.sci:[mn,n]=size(phi);
+xdess/black.sci:  if mini(abs(frq(:,ks(prod(size(ks))))-frq(:,kk))./frq(:,kk))>0.2 then
+xdess/bode.sci:   frq=sl;sl=[];[mn,n]=size(frq);
+xdess/bode.sci:[mn,n]=size(phi)
+xdess/chart.sci:select size(flags)
+xdess/chart.sci:for i = 1:prod(size(attenu)),
+xdess/chart.sci:  n=prod(size(w))
+xdess/chart.sci:  n=prod(size(w));
+xdess/drawmbar.sci:  ncol=size(cmap,'r')
+xdess/drawmbar.sci:nm=prod(size(menus))
+xdess/edit_curv.sci:if rhs==1 then y=x;x=(1:size(y,'*'))',end
+xdess/edit_curv.sci:if size(tit,'*')<3 then tit(3)=' ',end
+xdess/edit_curv.sci:[mx,nx]=size(x);x=x(:)
+xdess/edit_curv.sci:[my,ny]=size(y);y=y(:)
+xdess/edit_curv.sci:  [n1,n2]=size(x);npt=n1*n2
+xdess/edit_curv.sci:      mx=mini(prod(size(x)),prod(size(y)))
+xdess/edit_curv.sci:  npt=prod(size(x))
+xdess/edit_curv.sci:npt=prod(size(x))
+xdess/errbar.sci:[n1,n2]=size(x);
+xdess/eval3d.sci:  nx=prod(size(x));ny=prod(size(y))
+xdess/eval3d.sci:  nx=prod(size(x))
+xdess/eval3dp.sci:n1=prod(size(p1))
+xdess/eval3dp.sci:n2=prod(size(p2))
+xdess/eval3dp.sci:nx=prod(size(ind2))
+xdess/evans.sci:if prod(size(n))<>1 then
+xdess/evans.sci:  if prod(size(la))<>1 then
+xdess/evans.sci:[n1,n2]=size(racines);
+xdess/fac3d.sci:  '[n1,m1]=size(x1);';
+xdess/fac3d.sci:  '[n2,m2]=size(x2);';
+xdess/fac3d1.sci:  '[n1,m1]=size(x1);';
+xdess/fac3d1.sci:  '[n2,m2]=size(x2);';
+xdess/fchamp.sci:[p1,q1]=size(fch_xr);
+xdess/fchamp.sci:[p2,q2]=size(fch_yr);
+xdess/fcontour2d.sci:if rhs < 5,if prod(size(nz))=1 ; style=1:nz;else style=1:prod(size(nz)),end;end
+xdess/fplot2d.sci:[p1,p2]=size(xr);
+xdess/fplot2d.sci:if p1=1 , xr=xr';[p1,p2]=size(xr);end
+xdess/gainplot.sci:   frq=sl;sl=[];[mn,n]=size(frq);
+xdess/gainplot.sci:[mn,n]=size(phi)
+xdess/genfac3d.sci:[nr,nc]=size(zmat)
+xdess/genfac3d.sci:[nrl,nrc]=size(indx)
+xdess/genfac3d.sci:[nrl,nrc]=size(indx);
+xdess/getmenu.sci:n=size(datas,1)-3
+xdess/getmenu.sci:xclip(datas(size(datas,1)-2,:))
+xdess/getmenu.sci:xclip(datas(size(datas,1)-2,:))
+xdess/getmenu.sci:nm=prod(size(menus))
+xdess/getmenu.sci:nm=size(datas,1)-3
+xdess/gr_macros.sci:     to='rien';if size(obj)<>0 then to=obj(1);end,
+xdess/gr_macros.sci:       z=obj(2),[nw,npt]=size(z),
+xdess/gr_macros.sci:       z=obj(2),[nw,npt]=size(z),
+xdess/gr_macros.sci:       [nw,npt]=size(z),
+xdess/gr_macros.sci:       z=obj(2),[nw,npt]=size(z),
+xdess/gr_macros.sci:	[n1,n2]=size(z);z=smooth(z(:,n2:-1:1));
+xdess/gr_macros.sci:ksd=size(sd)
+xdess/gr_macros.sci:  if size(obj)<>0 then
+xdess/gr_macros.sci:  [nn,ll]=size(z);
+xdess/gr_menu.sci: ksd=prod(size(sd))
+xdess/graduate.sci://  rect=[1,ymn,prod(size(y),ymx];
+xdess/graduate.sci:kadm=[1,2,5];nadm=prod(size(kadm))
+xdess/hist3d.sci:	sx=prod(size(x));
+xdess/hist3d.sci:	sy=prod(size(y));
+xdess/hist3d.sci:	if [sx-1,sy-1]<>size(f) then 
+xdess/hist3d.sci:	[nl,nc]=size(f);
+xdess/hist3d.sci:	[nl,nc]=size(f);
+xdess/hist3d.sci:[nnl,nnc]=size(indx);
+xdess/histplot.sci:  p=prod(size(data))
+xdess/histplot.sci:  q=prod(size(n))
+xdess/histplot.sci:   n=prod(size(x));
+xdess/histplot.sci:   deff('[y]=f_hist(k)',['y=prod(size(find(data>x1(k)&data<=x1(k+1))))';
+xdess/histplot.sci:   nx=maxi(min(15,prod(size(x))-1),1);
+xdess/m_circle.sci: gain=matrix(gain,1,prod(size(gain)))
+xdess/m_circle.sci:for i=1:prod(size(gain))
+xdess/m_circle.sci:  n=prod(size(w))
+xdess/nyquist.sci:   frq=sl;sl=[];[mn,n]=size(frq);
+xdess/nyquist.sci:[mn,n]=size(repf)
+xdess/nyquist.sci:  if mini(abs(frq(:,ks(prod(size(ks))))-frq(:,kk))./frq(:,kk))>0.2 then
+xdess/plot.sci:     if prod(size(x))<>prod(size(y)),
+xdess/plot.sci:        [nl,nk]=size(x);
+xdess/plot.sci:        plot2d1("enn",1,matrix(x,prod(size(x)),1));
+xdess/plot.sci:           plot2d1("enn",1,matrix(x,prod(size(x)),1));
+xdess/plot.sci:           plot2d(matrix(x,prod(size(x)),1),matrix(y,prod(size(y)),1));
+xdess/plot.sci:           plot2d1("enn",1,matrix(x,prod(size(x)),-1));
+xdess/plot.sci:           plot2d(matrix(x,prod(size(x)),1),matrix(y,prod(size(y)),1));
+xdess/plot.sci:           plot2d1("enn",1,matrix(x,prod(size(x)),1));
+xdess/plot.sci:           plot2d(matrix(x,prod(size(x)),1),matrix(y,prod(size(y)),1));
+xdess/plot.sci:           plot2d(matrix(x,prod(size(x)),1),matrix(y,prod(size(y)),1));
+xdess/plotframe.sci:	select prod(size(r_legs)),
+xdess/plzr.sci:if prod(size(nr))<>0 then
+xdess/rotate.sci:[m,n]=size(xy)
+xdess/scaling.sci:[m,n]=size(xy)
+xdess/secto3d.sci:n=size(seclist)
+xdess/secto3d.sci:if prod(size(npas))=1 then
+xdess/secto3d.sci:nx=prod(size(x))
+xdess/secto3d.sci:  [ms,ns]=size(sec)
+xdess/sgrid.sci:	[rx,cx]=size(wn);[ry,cy]=size(zx);
+xdess/sgrid.sci:	[zr,zc] = size(z);
+xdess/sgrid.sci:	[rer,rec] = size(re)
+xdess/sgrid.sci:	[rx,cx]=size(wn);[ry,cy]=size(zeta);
+xdess/sgrid.sci:	[zr,zc] = size(z);
+xdess/sgrid.sci:	[rer,rec] = size(re)
+xdess/xbasc.sci:[n1,n2]=size(win_num);
+xdess/xbasimp.sci:n=prod(size(win_num))
+xdess/zgrid.sci:raci=exp(raci);[mr,nr]=size(raci);
+xdess/zgrid.sci:zw=exp(e_itheta*w0);[mz,nz]=size(zw)

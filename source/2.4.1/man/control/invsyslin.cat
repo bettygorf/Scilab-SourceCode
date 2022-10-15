@@ -1,0 +1,22 @@
+
+invsyslin(1)                   Scilab Function                   invsyslin(1)
+NAME
+  invsyslin - system inversion
+
+CALLING SEQUENCE
+  [sl2]=invsyslin(sl1)
+
+PARAMETERS
+
+  sl1,sl2
+       : syslin lists (linear systems in state space representation)
+
+DESCRIPTION
+  Utility function. Computes the state form of the inverse sl2 of the linear
+  system sl1 (which is also given in state form).
+
+  The D-matrix is supposed to be full rank. Old stuff used by inv(S) when S
+  is a syslin list.
+
+SEE ALSO
+  rowregul, inv

@@ -1,0 +1,66 @@
+
+
+
+sskf(1)                        Scilab Function                        sskf(1)
+
+
+
+
+
+
+NAME
+  sskf - steady-state Kalman filter
+
+CALLING SEQUENCE
+  [xe,pe]=sskf(y,f,h,q,r,x0)
+
+PARAMETERS
+
+  y         : data in form [y0,y1,...,yn], yk a column vector
+
+  f         : system matrix dim(NxN)
+
+  h         : observations matrix dim(NxM)
+
+  q         : dynamics noise matrix dim(NxN)
+
+  r         : observations noise matrix dim(MxM)
+
+  xe        : estimated state
+
+  pe        : steady-state error covariance
+
+DESCRIPTION
+  steady-state kalman filter
+
+AUTHOR
+  C. B.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

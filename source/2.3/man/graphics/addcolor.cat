@@ -1,0 +1,25 @@
+
+addcolor(1)                    Scilab Function                    addcolor(1)
+NAME
+  addcolor - add new colors to current colormap
+
+CALLING SEQUENCE
+  new=addcolor(c)
+
+PARAMETERS
+
+  c         : matrix with 3 column, RGB color definition
+
+  new       : index of the colors defined in c in the new color table
+
+DESCRIPTION
+  addcolor,  adds new colors given in the c argument to current colormap. c
+  must be a matrix with 3 columns [R G B] (R is red component, G is green
+  component, B is blue component). Each entry  in c must be a non negative
+  number less or equal to 1.
+
+  If a color defined in c is already present in current colormap it is not
+  added.
+
+SEE ALSO
+  colormap

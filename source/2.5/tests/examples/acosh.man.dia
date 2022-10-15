@@ -1,0 +1,10 @@
+ 
+clear;lines(0);
+ 
+x=[0,1,%i];
+ 
+cosh(acosh(x))
+ ans  =
+ 
+!   6.123D-17    1.    8.660D-17 + i   !
+ 

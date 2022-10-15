@@ -1,0 +1,35 @@
+.TH cheb1mag 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+cheb1mag -  response of Chebyshev type 1 filter
+.SH CALLING SEQUENCE
+.nf
+[h2]=cheb1mag(n,omegac,epsilon,sample)
+.fi
+.SH PARAMETERS
+.TP 10
+n
+: integer : filter order
+.TP
+omegac
+: real : cut-off frequency
+.TP
+epsilon
+: real : ripple in pass band
+.TP
+sample
+: vector of frequencies where \fVcheb1mag\fR is evaluated
+.TP
+h2
+: Chebyshev I filter values at sample points
+.SH DESCRIPTION
+Square magnitude response of a type 1 Chebyshev filter.
+.LP
+\fVomegac\fR=passband edge.
+.LP
+\fVepsilon\fR: such that \fV1/(1+epsilon^2)\fR=passband ripple.
+.LP
+\fVsample\fR: vector of frequencies where the square magnitude
+is desired.
+.SH AUTHOR
+F. D.

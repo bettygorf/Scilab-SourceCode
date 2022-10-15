@@ -1,0 +1,21 @@
+.TH netwindow 1 "September 1995" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+netwindow - chooses a Metanet window
+.SH CALLING SEQUENCE
+.nf
+netwindow(window)
+.fi
+.SH PARAMETERS
+.TP 7
+window
+: integer, window number
+.SH DESCRIPTION
+This function is used to change the Metanet window. Each Metanet
+window has a window number returned by the \fVmetanet\fR and \fVshow_graph\fR
+functions. To use 
+the Metanet window associated to window number \fVwindow\fR, use 
+\fVnetwindow(window)\fR. The numbers of existing windows are given by the 
+function \fVnetwindows\fR.
+.SH SEE ALSO
+metanet, netwindows, show_graph

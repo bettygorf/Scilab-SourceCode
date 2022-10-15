@@ -1,0 +1,54 @@
+.TH  1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+( ) - left and right parenthesis
+.SH CALLING SEQUENCE
+.nf
+(expression)
+[...]=func(e1,e2,...)
+x(i,j)
+v(i)
+[...]=l(i)
+.fi
+.SH PARAMETERS
+.TP 15
+x
+: matrix of any  possible type
+
+.TP 15
+v
+: row or column vector of any  possible type
+.TP 15
+l
+: list variable
+.TP 15
+func
+: any function or macro name
+.TP 15
+e1,e2,...
+: any possible type expression
+.SH DESCRIPTION
+Left and right parenthesis are used to specify evaluation order within 
+expressions, to form right-hand-side functions argument list and to 
+select elements within matrices and lists.
+.LP
+Within multiple rhs  arguments must be separated by comma.
+.LP
+For elements selection  \fVi\fR, \fVj\fR, may be real scalar or vectors 
+or then \fV : \fR symbol which stands for "all elements".
+.SH EXAMPLE
+.nf
+3^(-1)
+(x+10)/2
+i3=eye(3,3)
+a=[1 2 3;4 5 6;7 8 9],a(1,3),a([1 3],:),a(:,3)
+a(:,3)=[]
+w=ssrand(2,2,2); w(:,1), ss2tf(w(:,1)) 
+l=list(1,2,3,4)
+[a,b,c,d]=l(:)
+
+.fi
+.SH SEE ALSO
+colon, comma, brackets
+
+

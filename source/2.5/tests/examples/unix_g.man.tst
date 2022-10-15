@@ -1,0 +1,6 @@
+clear;lines(0);
+if MSDOS then unix_g('dir '+WSCI+'\demos');
+else unix_g("ls $SCI/demos"); end
+deff('wd=pwd()','if MSDOS then wd=unix_g(''cd'');..
+                 else wd=unix_g(''pwd''); end')
+wd=pwd()

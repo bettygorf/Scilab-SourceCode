@@ -1,0 +1,25 @@
+
+xsave(2)                       Scilab Function                       xsave(2)
+NAME
+  xsave - save graphics into a file
+
+CALLING SEQUENCE
+  xsave(file-name,[win-num])
+
+PARAMETERS
+
+  file-name  : string, name of the file.
+
+  win-num    : integer, the graphics window number.  If not given, the cur-
+             rent graphics window is used.
+
+DESCRIPTION
+  xsave saves the graphics contained in the graphics window win-num in the
+  binary file file-name.  The graphics are stored in a machine independent
+  way (using the xdr library) and can be reloaded with xload.
+
+SEE ALSO
+  xload
+
+AUTHOR
+  J.Ph.C.

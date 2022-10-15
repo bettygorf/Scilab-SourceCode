@@ -1,0 +1,21 @@
+ 
+clear;lines(0);
+ 
+h=uicontrol('string', 'Button');
+Sorry, TK has not been enabled this the session.
+
+ 
+// Opens a window with a  button.
+ 
+set(h,'position',[ 50 50 100 100]);
+Sorry, TK has not been enabled this the session.
+
+ 
+// set the geometric aspect of the button
+ 
+close();
+Sorry, TK has not been enabled this the session.
+
+ 
+// close figure
+ 

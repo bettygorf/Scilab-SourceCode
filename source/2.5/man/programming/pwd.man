@@ -1,0 +1,17 @@
+.TH pwd 1 "April 1998" "Scilab Group" "Scilab command"
+.so ../sci.an
+.SH NAME
+pwd - print Scilab current directory
+.SH CALLING SEQUENCE
+.nf
+pwd
+.fi
+.SH DESCRIPTION
+return in \fVans\fR the Scilab current directory.
+.SH EXAMPLE
+.nf
+pwd
+.fi
+.SH SEE ALSO
+getcwd, chdir, unix
+

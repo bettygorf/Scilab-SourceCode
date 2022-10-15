@@ -1,0 +1,12 @@
+
+EXPBLK_f(5)                     Scicos Block                      EXPBLK_f(5)
+NAME
+  EXPBLK_f - Scicos a^u block
+
+DIALOGUE PARAMETERS
+
+  a :  real positive scalar
+
+DESCRIPTION
+  This block realizes y(i)=a^u(i). The input and output port sizes are deter-
+  mined by the compiler.

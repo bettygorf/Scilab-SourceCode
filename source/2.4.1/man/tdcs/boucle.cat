@@ -1,0 +1,30 @@
+
+boucle(1)                      Scilab Function                      boucle(1)
+NAME
+  boucle - phase portrait of a dynamical system with observer
+
+CALLING SEQUENCE
+  []=boucle(fch,[abruit,xdim,npts,farrow])
+
+PARAMETERS
+
+  fch  : Scilab macro. fch is supposed to be an observed-controlled system
+       with noisy output of state dimension 4 ( [x;xchap] is of dimension 4).
+       fch can be created with the macro obscont1 or can be set to one of the
+       two following string which gives pre computed examples
+
+       "bcomp"   : for a non-linear competition model.
+
+       "lcomp"   : for a linear example.
+
+  abruit
+       : give the noise variance.
+
+  xdim,npts,farrow
+       : See portrait
+
+DESCRIPTION
+  Phase portrait of dynamical systems.
+
+SEE ALSO
+  portrait, ode, obscont1

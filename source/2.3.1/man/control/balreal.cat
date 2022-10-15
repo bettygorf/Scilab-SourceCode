@@ -1,0 +1,30 @@
+
+balreal(1)                     Scilab Function                     balreal(1)
+NAME
+  balreal - balanced realization
+
+CALLING SEQUENCE
+  [slb [,U] ] = balreal(sl)
+
+PARAMETERS
+
+  sl,slb
+       : linear systems (syslin lists)
+
+DESCRIPTION
+  Balanced realization of linear system sl=[A,B,C,D]. sl can be a
+  continuous-time or discrete-time state-space system. sl is assumed stable.
+  slb=[inv(U)*A*U ,inv(U)*B , C*U , D]
+  is the balanced realization.
+
+  slb is returned as a syslin list.
+
+EXAMPLE
+  A=diag([-1,-2,-3,-4,-5]);B=rand(5,2);C=rand(1,5);
+  sl=syslin('c',A,B,C);
+  [slb,U]=balreal(sl);
+  Wc=clean(ctr_gram(slb))
+  W0=clean(obs_gram(slb))
+
+SEE ALSO
+  ctr_gram, obs_gram, hankelsv, equil, equil1

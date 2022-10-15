@@ -1,0 +1,222 @@
+euler_equations:=proc(L,n)
+# Calculation of Euler's equation:
+# given the Lagragian L i.e an expression 
+# L(q[1],q[2],..,q[n],qd[1],qd[2],...qd[n]) of the state variables q
+# and their time derivative qd
+# this function returns a vector V[1],...,V[n], with 
+#          d  del (L)      del (L)
+#  V[k] =  -- ----     -   ----
+#          dt del q[k]     del qd[k]
+# V[k] is an expression V(q[1],...,q[n],qd[1],...,qd[n],qdd[1],...,qdd[n])
+# with qdd[k] 2nd time derivative of q[k]
+#
+local k:
+v:=array(1..n):
+for k to n do  
+           v[k]:=time_diff( diff(L,qd[k]),n)-diff(L,q[k] ):
+           od:
+op(v):
+end:
+
+mcomp:=proc(M,f,g)
+# Returns the matrix 
+#        [M ftranspose gtranspose]
+#        [f     0         0      ]
+#        [g     0         0      ]
+#           
+local col1,col2,col3:
+col1:=stack(M,f,g):
+col2:=stack(transpose(f),matrix(nf+ng,nf,0)):
+col3:=stack(transpose(g),matrix(nf+ng,ng,0)):
+concat(col1,col2,col3):
+end:
+
+vstack:=proc(v1,v2,v3)
+# Returns the vector 
+#            [v1]
+#            [v2]
+#            [v3]
+#
+convert(stack(convert(v1,matrix),
+              convert(v2,matrix),
+              convert(v3,matrix)),vector):
+end:
+
+time_diff:=proc(phi,n)
+# Given an expression 
+#            phi(q[1],q[2],..,q[n],qd[1],qd[2],...qd[n])
+# this procedure computes the time derivative of phi when the
+# arguments q[1],..,q[n],qd[1],..,qd[n] are time dependent functions
+# and each function qd[k](t) is interpreted as the time derivative of q[k](t).
+# The output is a function of 
+#             (q[1],...,q[n],qd[1],...,qd[n],qdd[1],...,qdd[n])
+# where qdd is the time derivative of qd.
+local phi_copy,k:
+phi_copy:=phi:
+for k to n do
+    phi_copy:=subs(q[k]=q[k](t),phi_copy):
+    phi_copy:=subs(qd[k]=qd[k](t),phi_copy):
+           od:
+diff_phi:=diff(phi_copy,t):
+for k to n do
+    diff_phi:=subs(diff(q[k](t),t)=qd[k],diff_phi):
+    diff_phi:=subs(diff(qd[k](t),t)=qdd[k],diff_phi):
+    diff_phi:=subs(q[k](t)=q[k],diff_phi):
+    diff_phi:=subs(qd[k](t)=qd[k],diff_phi):
+           od:
+end:
+
+
+
+make_fortran:=proc(filename,routinename,maplematrix,arguments)
+#
+#This procedure converts the maple matrix ``maplematrix'' into a fortran 
+#subroutine.
+#The fortran calling sequence is routinename(x1,x2,...,xn,matrix)
+#and the subroutine computes matrix(i,j) as a function of
+#the arguments x1,x2,...,xn.
+#Each argument can be a maple scalar or array which should be
+#in the list ``arguments''.
+#The subroutine is put into a file named filename (character string).
+#
+local flist,matr,listarg,m,k:
+read ``.libname.`/macrofort.m`:
+init_genfor():
+matr:=convert(maplematrix,matrix):
+listarg:=[]:
+for k in arguments do
+if type(op(k),table) then listarg:=[op(listarg),k[rowdim(convert(k,matrix))]] 
+                     else listarg:=[op(listarg),k] fi;
+                  od;
+
+flist:=[subroutinem,routinename,[op(arguments),fmat],
+           [
+            [ declaref,doubleprecision,listarg ],
+            [ declaref,`implicit doubleprecision`,[`(t)`] ],
+            [ declaref,doubleprecision,[fmat[rowdim(matr),coldim(matr)]] ],
+            [ matrixm,fmat,matr ] 
+           ]
+        ]:
+
+optimized:=true:
+writeto(filename):
+genfor(flist):
+writeto(terminal):
+end:
+
+
+make_scilab:=proc(filename,macroname,routinename,arguments,outputsize)
+# This procedure generates the scilab macro which calls
+# the fortran subroutine ``routinename''.
+#
+local k,kk,firstline,sndline,thrdline,forline,chain,i,nargs:
+#
+firstline:=cat(`(`,arguments[1]):
+k:=2:
+nargs:=nops(arguments):
+while k < nargs+1 do firstline:=cat(firstline,`,`,arguments[k]):
+k:=k+1:
+od:
+firstline:=cat(firstline,`)`):
+firstline:=cat(`function [var]=`,macroname,firstline):
+#
+sndline:=cat(`var=fort(`,`'`,routinename,`'`,`,...`):
+thrdline:=``:
+i:=1:
+for kk in arguments do chain:=cat(kk,`,`,i,`,`,`'d',`):
+thrdline:=cat(thrdline,chain):
+i:=i+1:
+od:
+thrdline:=cat(thrdline,`...`):
+forline:=`'sort',`:
+forline:=cat(forline,`[`,outputsize[1],`,`,outputsize[2],`],`,nargs+1,`,'d')`):
+writeto(filename):
+lprint(firstline):
+#lprint(`//!`):
+lprint(sndline):
+lprint(thrdline):
+lprint(forline):
+#lprint(`//end`):
+writeto(terminal):
+#
+end:
+
+maple2scilab:=proc(macroname,maplematrix,arguments)
+# Converts a maple matrix function into a scilab macro.
+# The maple matrix is a function of arguments as well as
+# the scilab macro.
+# 
+local fname,sname:
+maplematrix:=convert(maplematrix,matrix):
+fname:=cat(macroname,`.f`):
+sname:=cat(macroname,`.sci`):
+outputsize:=[rowdim(maplematrix),coldim(maplematrix)]:
+make_fortran(fname,macroname,maplematrix,arguments):
+make_scilab(sname,macroname,macroname,arguments,outputsize):
+end:
+
+
+sparse2scilab:=proc(macroname,sparsematrix,arguments)
+local ll,kk,first,w1,w:
+first:=0:
+for ll from 1 to rowdim(sparsematrix) do
+    for kk from 1 to coldim(sparsematrix) do
+     IIlk:=sparsematrix[ll,kk]:
+     if IIlk<>0 and first=1 then 
+          w:=stack(w,vector(2,[ll,kk])): w1:=stack(w1,vector(1,[IIlk])):
+     fi:
+     if IIlk<>0 and first=0 then 
+          w:=vector(2,[ll,kk]): first:=1: w1:=vector(1,[IIlk]):
+     fi:
+od:od:
+maple2scilab(macroname,w1,arguments):
+scilabname:=cat(macroname,`w`):
+toscilab(w,scilabname):
+end:
+
+
+sp_scilab:=proc(macroname,Aname,bname,arguments,dimension)
+# This procedure generates the scilab macro which solves
+# the sparse system of linear equations A x =b
+#
+local k,kk,firstline,sndline,thrdline,forline,chain,i,nargs,filename:
+#
+firstline:=cat(`(`,Aname):
+firstline:=cat(firstline,`,`):
+firstline:=cat(firstline,bname):
+firstline:=cat(firstline,`,`,arguments[1]):
+k:=2:
+nargs:=nops(arguments):
+while k < nargs+1 do firstline:=cat(firstline,`,`,arguments[k]):
+k:=k+1:
+od:
+firstline:=cat(firstline,`)`):
+firstline:=cat(`function [x]=`,macroname,firstline):
+argus:=`(`:
+argus:=cat(argus,arguments[1]):
+k:=2:
+nargs:=nops(arguments):
+while k < nargs+1 do argus:=cat(argus,`,`,arguments[k]):
+k:=k+1:
+od:
+argus:=cat(argus,`)`):
+#
+sndline:=cat(`A=list(`,`'`,sparse,`'`,`,...`):
+thrdline:=``:
+thrdline:=cat(thrdline,Aname,argus,`,`):
+thrdline:=cat(thrdline,Aname,`ww,`):
+thrdline:=cat(thrdline,dimension,`,`):
+thrdline:=cat(thrdline,`5000)`):
+forline:=`x=lusolve(`:
+forline:=cat(forline,bname,argus):
+forline:=cat(forline,`,A)`):
+filename:=cat(macroname,`.sci`):
+writeto(filename):
+lprint(firstline):
+#lprint(`//!`):
+lprint(sndline):
+lprint(thrdline):
+lprint(forline):
+writeto(terminal):
+#
+end:

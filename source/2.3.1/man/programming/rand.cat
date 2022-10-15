@@ -1,0 +1,48 @@
+
+rand(1)                        Scilab Function                        rand(1)
+NAME
+  rand - random number generator
+
+CALLING SEQUENCE
+  rand(m,n [,rtype])
+  rand(x [, rtype])
+  rand('key'[,n])
+
+DESCRIPTION
+  random matrix generator.
+
+  rand(m,n)           is a random matrix of dimension mxn.
+
+  rand(a)             is a random matrix of same size as a. rand(a) is com-
+                      plex if a is a complex matrix
+
+  rand('uniform')     The default random generator is set to a uniform random
+                      number generator.
+
+  rand('normal')      The default random generator is set to a Gaussian ran-
+                      dom number generator.
+
+  rand('seed')        returns the current value of the seed.
+
+  rand('seed',n)      puts the seed to n. (n=0 at first call).
+
+  str=rand('info')    return the type of the default random generator ('uni-
+                      form' or 'normal')
+
+  rand : with no arguments gives a scalar whose value changes each time it is
+  referenced.  By default, random numbers are uniformly distributed in the
+  interval (0,1). rand('normal') switches to a normal distribution with mean
+  0 and variance 1.  rand('uniform') switches back to the uniform distribu-
+  tion.
+
+  The type of the random generator can also be locally changed by the use of
+  the extra parameter rtype ( which can be 'uniform' or 'normal'
+
+EXAMPLE
+  x=rand(10,10,'uniform')
+  rand('normal')
+  rand('info')
+  y=rand(x,'normal');
+
+SEE ALSO
+  ssrand

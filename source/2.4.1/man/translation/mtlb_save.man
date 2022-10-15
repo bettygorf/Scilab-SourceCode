@@ -1,0 +1,47 @@
+.TH mtlb_save 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mtlb_save - save variables on file with matlab4 format.
+.SH CALLING SEQUENCE
+.nf 
+mtlb_save fname
+mtlb_save fname X
+mtlb_save fname X Y Z 
+mtlb_save fname X Y Z  -ascii
+mtlb_save fname X Y Z  -ascii -double 
+mtlb_save fname X Y Z  -ascii -double -tabs
+.fi
+.SH PARAMETERS
+.TP 10
+fname
+: a file name
+.TP
+X Y Z
+: variable names
+.SH DESCRIPTION
+mtlb_save   save variables on file with matlab4 formats.
+.TP 20
+\fVmtlb_save fname\fR saves all the current scilab variables which
+have corresponding matlab type to the binary "MAT-file" named
+\fVfname.mat\fR. The data may be retrieved with \fVmtlb_load\fR.
+.TP
+\fVmtlb_save fname X \fR 
+saves only variable \fVX\fR.
+.TP
+\fVmtlb_save fname X Y Z\fR 
+  saves variables \fVX\fR, \fVY\fR, and \fVZ\fR.
+.TP
+\fVmtlb_save fname X Y Z  -ascii\fR  
+uses 8-digit ASCII form instead
+of binary.
+.TP
+\fVmtlb_save fname X Y Z  -ascii -double\fR  
+uses 16-digit ASCII form.
+.TP
+\fVmtlb_save fname X Y Z  -ascii -double -tabs\fR  
+delimits with tabs.
+.TP
+ "stdio" value for  \fVfname\fR doesnt redirect save to standard output.
+.SH SEE ALSO
+mtlb_load, save, load
+

@@ -1,0 +1,32 @@
+.TH fac3di 2 "September 1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+fac3di - 3D complex surface plotting with interactive view selection
+.SH CALLING SEQUENCE
+.nf
+fac3di(x,y,z,theta,alpha,leg,flag,ebox)
+fac3di(x,y,z,theta,alpha,leg,[flag,ebox)]
+.fi
+.SH PARAMETERS
+see fac3d
+.SH DESCRIPTION
+Draw the surface  defined by a set of facets ( x(:,i), y(:,i), z(:,i))
+are the coordinates of ith facet
+
+Allow the user to change the view with the mouse :
+
+Pick a point within the graphic window (Left mouse button) and drag
+the mouse (theta
+increases for left to right move and alpha increases for down to up
+move). When view is ok click with the left button to have the surface
+drawn. click rigth button  to exit.
+
+
+For Pos and Fig drivers fac3di works just like fac3d
+.SH EXAMPLE
+enter the command  \fVfac3di()\fR
+to see a demo 
+.SH SEE ALSO
+eval3dp plot3d
+
+

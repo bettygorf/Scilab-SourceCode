@@ -1,0 +1,28 @@
+
+orth(1)                        Scilab Function                        orth(1)
+NAME
+  orth - orthogonal basis
+
+CALLING SEQUENCE
+  Q=orth(A)
+
+PARAMETERS
+
+  A    : real or complex matrix
+
+  Q    : real or complex matrix
+
+DESCRIPTION
+  Q=orth(A) returns Q, an orthogonal basis for the span of A.  Range(Q) =
+  Range(A) and Q'*Q=eye.
+
+  The number of columns of Q is the rank of A as determined by the QR algo-
+  rithm.
+
+EXAMPLE
+  A=rand(5,3)*rand(3,4);
+  [X,dim]=rowcomp(A);X=X';
+  svd([orth(A),X(:,1:dim)])
+
+SEE ALSO
+  qr, rowcomp, colcomp, range

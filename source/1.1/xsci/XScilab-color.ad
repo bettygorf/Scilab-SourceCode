@@ -1,0 +1,26 @@
+
+#include "XScilab"
+
+
+#ifdef  COLOR
+	! The two colors used for the graphic Window of Scilab
+	*scigraphic.background:white
+	*scigraphic.foreground:black
+	! The other Scilab widgets 
+	*vpane.messageWindow.background:lightblue
+	*vpane.Box.background:lightblue
+	*vpane.Box.Form.background:blue
+	*vpane.Box.Form.Command.background:yellow
+	*vpane*Command.background:yellow
+	*vpane.Box.Command.background:yellow
+	*Transient*Form*Command.background:yellow
+	*Form.background:lightblue
+	*Form.Command.background:yellow
+	*Label.background:lightblue
+	*Label.foreground:black
+	*Command.background:yellow
+#endif
+
+
+
+

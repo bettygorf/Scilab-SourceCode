@@ -1,0 +1,66 @@
+.TH "morlet" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+morlet -  Morlet wavelet
+.sp
+Author: Paulo Goncalves
+.sp
+Computes a Morlet wavelet.
+.sp
+.sp
+.SH Usage
+\f(CR[\fPwavelet,alpha\f(CR]\fP = morlet(nu,\f(CR[\fPN,analytic\f(CR]\fP) 
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBnu\fP :  real scalar between 0 and 1/2
+Central (reduced) frequency of the wavelet
+
+.TP
+o 
+\fBN\fP : Positive integer
+Half length of the wavelet transform. Default value corresponds to a
+total length of 4.5 periods.
+
+.TP
+o 
+\fBanalytic\fP : boolean (0\f(CR\fP/1) under Matalb or (%F\f(CR\fP/%T) under Scilab. 
+0 or %F : real Morlet wavelet
+1 or %T : analytic Morlet wavelet
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBwavelet\fP : real or complex vector \f(CR[\fP1,2*N+1\f(CR]\fP
+Morlet wavelet in time.
+
+.TP
+o 
+\fBalpha\fP : real scalar
+Attenuation exponent of the Gaussian enveloppe of the Morlet wavelet.
+.RE
+
+.SH See also:
+mexhat, contwt
+.SH Example:
+\fI wavelet synthesis \fP 
+.sp
+.ft CR
+.nf
+wavelet1 = morlet(0.1,64) ;
+wavelet2 = morlet(0.1) ;
+plot(wavelet1) ; pause 
+plot(wavelet2)
+.fi 
+.ec
+.ft P
+.sp

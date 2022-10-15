@@ -1,0 +1,48 @@
+.TH mrfit 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mrfit - frequency response fit
+.SH CALLING SEQUENCE
+.nf
+sys=mrfit(w,mag,order)
+[num,den]=mrfit(w,mag,order)
+sys=mrfit(w,mag,order,weight)
+[num,den]=mrfit(w,mag,order,weight)
+.fi
+.SH PARAMETERS
+.TP 10
+w
+: positive real vector of frequencies (rad/sec)
+.TP
+mag
+: real vector of frequency responses magnitude (same size as \fVw\fR)
+.TP
+order
+: integer (required order, degree of \fVden\fR)
+.TP
+weight
+: positive real vector (default value \fVones(w)\fR).
+.TP
+num,den
+: stable polynomials
+.SH DESCRIPTION
+\fVsys=mrfit(w,mag,order,weight)\fR returns a bi-stable transfer function
+\fVG(s)=sys=num/den\fR, of of given \fVorder\fR such that 
+its frequency response magnitude \fVabs(G(w(i)))\fR 
+matches \fVmag(i)\fR i.e. \fVabs(freq(num,den,%i*w))\fR should be 
+close to \fVmag\fR.
+\fVweight(i)\fR is the weigth given to \fVw(i)\fR.
+.SH EXAMPLE
+.nf
+w=0:0.1:5;s=poly(0,'s');G=2*(s^2+0.1*s+2)/(s^2+s+1)/(s^2+0.3*s+1);
+fresp=freq(G('num'),G('den'),%i*w);
+mag=abs(fresp);
+[num,den]=mrfit(w,mag,4);
+frespfit=freq(num,den,%i*w);
+plot2d([w',w'],[mag(:),abs(frespfit(:))])
+.fi
+.SH SEE ALSO
+cepstrum, frfit, freq, calfrq
+
+
+

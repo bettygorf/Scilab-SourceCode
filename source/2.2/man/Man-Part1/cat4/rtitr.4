@@ -1,0 +1,66 @@
+
+
+
+RTITR(G)                       Scilab Function                       RTITR(G)
+
+
+
+
+
+
+NAME
+  rtitr - discrete time response (transfer matrix)
+
+CALLING SEQUENCE
+  [y]=rtitr(Num,Den,u [,up,yp])
+
+PARAMETERS
+
+  Num,Den   : polynomial  matrices (resp. dimensions : nxm and nxn)
+
+  u         : real matrix (dimension mx(t+1)
+
+  up,yp     : real matrices (dimension m x (maxi(degree(Den))) (default
+            values=0)
+
+  y         : real matrix
+
+DESCRIPTION
+  y=rtitr(Num,Den,u [,up,yp]) returns the time response of the discrete time
+  linear system with transfer matrix Den^-1 Num for the input u, i.e y and u
+  are such that Den y = Num u at t=0,1,...
+
+  If d1=maxi(degree(Den)), and d2=maxi(degree(Num)) the polynomial matrices
+  Den(z) and Num(z) may be written respectively as:
+    D(z)= D_0  + D_1  z + ... + D_d1   z^d1
+    N(z)= N_0  + N_1  z + ... + N_d2   z^d2
+  and Den y = Num u is interpreted as the recursion:
+    D(0)y(t)+D(1)y(t+1)+...+ D(d1)y(t+d1)= N(0) u(t) +....+ N(d2) u(t+d2)
+  The columns of u are the inputs of the system at t=0,1,...,T:
+    u=[u(0) , u(1),...,u(T)]
+  The outputs at t=0,1,...,T+d1-d2 are the columns of the matrix y:
+    y=[y(0), y(1),  .... y(t+d1-d2)]
+  up and yp define the initial conditions for t < 0 i.e
+    up=[u(-d1), ..., u(-1)  ]
+    yp=[y(-d2), ...  y(-1)  ]
+  The default values of up and yp are zero: up = 0*ones(m,d1),
+  yp=0*ones(n,d2)
+
+EXAMPLE
+  z=poly(0,'z');
+  Num=1+z;Den=1+z;u=[1,2,3,4,5];
+  rtitr(Num,Den,u)-u
+
+SEE ALSO
+  ltitr, exp, flts.
+
+
+
+
+
+
+
+
+
+
+

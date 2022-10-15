@@ -1,0 +1,26 @@
+/**/include ../Path.incl
+#include "../Imake.incl"
+
+#define IHaveSubdirs
+#define PassCDebugFlags CDEBUGFLAGS='$(CDEBUGFLAGS)' FDEBUGFLAGS='$(FDEBUGFLAGS)'
+
+
+SCIDIRS=X11G system default interf system2 optim integ control signal\
+	poly calelm sparse sun xwindow  metanet intersci xsci comm \
+	lapack
+
+#if defined(WithLocalXaw)
+XAWDIRS=X11
+#else
+XAWDIRS=
+#endif
+
+#if defined(LinuxArchitecture)
+SUBDIRS=$(XAWDIRS) $(SCIDIRS) dld
+#else
+SUBDIRS=$(XAWDIRS) $(SCIDIRS) 
+#endif
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))
+DistCleanSubdirs($(SUBDIRS))

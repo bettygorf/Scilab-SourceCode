@@ -1,0 +1,11 @@
+// intg test 
+deff('[y]=f(x)','y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2))')
+exact=-2.5432596188;
+x=abs(exact-intg(0,2*%pi,f))
+if x>1.e-8 then  pause,end;
+//
+comp(f); x=abs(exact-intg(0,2*%pi,f))
+if x>1.e-6 then  pause,end;
+//
+x=abs(exact-intg(0,2*%pi,'toto'))
+if x>1.e-6 then  pause,end;

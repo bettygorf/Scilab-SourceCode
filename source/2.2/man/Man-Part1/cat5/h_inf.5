@@ -1,0 +1,132 @@
+
+
+
+H_inf(1)                       Scilab Function                       H_inf(1)
+
+
+
+
+
+
+NAME
+  h_inf - H-infinity (central) controller
+
+CALLING SEQUENCE
+  [Sk,ro]=h_inf(P,r,romin,romax,nmax)
+  [Sk,rk,ro]=h_inf(P,r,romin,romax,nmax)
+
+PARAMETERS
+
+  P              : syslin list : continuous-time linear system (``augmented''
+                 plant given in state-space form or in transfer form)
+
+  r              : size of the P22 plant i.e. 2-vector [#outputs,#inputs]
+
+  romin,romax    : a priori bounds on ro with ro=1/gama^2; (romin=0  usually)
+
+  nmax           : integer, maximum number of iterations in the gama-
+                 iteration.
+
+DESCRIPTION
+  h_inf computes H-infinity optimal controller for the continuous-time plant
+  P.
+
+  The partition of P into four sub-plants is given through the 2-vector r
+  which is the size of the 22 part of P.
+
+  P is given in state-space e.g. P=syslin('c',A,B,C,D) with A,B,C,D = con-
+  stant matrices or P=syslin('c',H) with H a transfer matrix.
+
+  [Sk,ro]=H_inf(P,r,romin,romax,nmax) returns ro in [romin,romax] and the
+  central controller Sk in the same representation as P.
+
+  (All calculations are made in state-space, i.e conversion to state-space is
+  done by the function, if necessary).
+
+  Invoked with three LHS parameters, [Sk,rk,ro]=H_inf(P,r,romin,romax,nmax)
+  returns ro and the parameterization of all stabilizing controllers:
+
+  a stabilizing controller K is obtained by K=lft(Sk,r,PHI) where PHI is a
+  linear system with dimensions r' and satisfy:
+
+  H_norm(PHI) < gamma.  rk (=r) is the size of the Sk22 block and ro =
+  1/gama^2 after nmax iterations.
+
+  Algorithm is adapted from Safonov-Limebeer. Note that P is assumed to be a
+  continuous-time plant.
+
+
+
+
+SEE ALSO
+  gamitg, ccontrg, leqr
+
+
+
+
+AUTHOR
+  F.D. (1990)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+.TH colinout 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+colinout - inner-outer factorization
+.SH CALLING SEQUENCE
+.nf
+[Inn,X,Gbar]=colinout(G)
+.fi
+.SH PARAMETERS
+.TP 4
+G  
+: linear system (\fVsyslin\fR list) \fV[A,B,C,D]\fR
+.TP 
+Inn
+:  inner factor (\fVsyslin\fR list)
+.TP 
+Gbar
+:  outer factor (\fVsyslin\fR list)
+.TP 
+X   
+:  row-compressor of \fVG\fR (\fVsyslin\fR list)
+.SH DESCRIPTION
+Inner-outer factorization (and column compression) of (lxp) \fVG =[A,B,C,D]\fR with l<=p.
+.LP
+\fVG\fR is assumed to be fat (\fVl<=p\fR) without zero on the imaginary axis
+and with a \fVD\fR matrix which is full row rank.
+.LP
+\fVG\fR must also be stable for having \fVGbar\fR stable.
+.LP
+Dual of \fVrowinout\fR.
+.SH SEE ALSO
+syslin, rowinout

@@ -1,0 +1,144 @@
+# maple2scilab Maple procedure
+#
+# Converts a Maple matrix "expr" into a Scilab function "name".
+# The Maple matrix can be a function of arguments as well as
+#   the Scilab function.
+#
+# Note that "expr" can also be an algebric expression.
+#
+# If there is a fourth argument, it is the pathname for the
+#   source code of the Scilab function and Fortran routine.
+#   If not the current directory is taken.
+#
+maple2scilab:=proc(name,expr,arguments)
+local fname,sname,maplematrix,outputsize,lpath,oname:
+global _scicall;
+#
+if type(expr,scalar) then 
+ maplematrix:=linalg[vector]([expr]):
+ maplematrix:=convert(maplematrix,matrix):
+else:
+ maplematrix:=convert(expr,matrix):
+fi:
+lpath:=``;
+if nargs=4 then lpath:=cat(args[4],`/`); fi;
+fname:=cat(``.lpath,name,`.f`):
+oname:=cat(``.lpath,name,`.o`):
+sname:=cat(``.lpath,name,`.sci`):
+outputsize:=[linalg[rowdim](maplematrix),linalg[coldim](maplematrix)]:
+make_fortran(fname,name,maplematrix,arguments):
+lprint(` `);
+lprint(`Fortran file created (to be compiled): `.fname):
+make_scilab(sname,name,name,arguments,outputsize):
+lprint(`Scilab file created: `.sname):
+lprint(` `);
+lprint(`Usage in Scilab: link('`.oname.`','`.name.`');`);
+lprint(`                 getf('`.sname.`');`);
+lprint(`                 `._scicall);
+end:
+
+# This procedure converts the maple matrix "maplematrix" into a Fortran 
+#   subroutine.
+# The Fortran calling sequence is routinename(x1,x2,...,xn,matrix)
+#   and the subroutine computes matrix(i,j) as a function of
+#   the arguments x1,x2,...,xn.
+# Each argument can be a maple scalar or array which should be
+#   in the list "arguments".
+# The subroutine is put into a file named filename (character string).
+#
+make_fortran:=proc(filename,routinename,maplematrix,arguments)
+global optimized:
+local flist,matr,listarg,m,k,aaarg,ll:
+# Maple V Release >= 3
+if not assigned(macrofor) then with(share):readshare(macrofor,numerics): fi;
+init_genfor():
+matr:=convert(maplematrix,matrix):
+listarg:=[]:
+aaarg:=arguments;
+ll:=NULL;
+if aaarg<>[] then
+  if not type(aaarg,list) then aaarg:=[aaarg]; fi;
+  for k in aaarg do
+    if type(op(k),vector) 
+     then listarg:=[op(listarg),k[linalg[rowdim](convert(k,matrix))]];
+     elif type(op(k),matrix) 
+      then listarg:=[op(listarg),k[linalg[rowdim](convert(k,matrix)),
+                                   linalg[coldim](convert(k,matrix))]];
+     else listarg:=[op(listarg),k];
+    fi;
+  od;
+  ll:=[ declaref,doubleprecision,listarg ];
+fi;
+flist:=[subroutinem,routinename,[op(aaarg),fmat],
+         [[declaref,`implicit doubleprecision`,[`(t)`]],
+          ll,
+          [declaref,doubleprecision,
+            [fmat[linalg[rowdim](matr),linalg[coldim](matr)]]],
+          [matrixm,fmat,matr]
+          ]
+        ]:
+optimized:=true:
+writeto(filename):
+genfor(flist):
+writeto(terminal):
+end:
+
+# This procedure generates the Scilab function which calls
+#   the fortran subroutine "routinename".
+#
+make_scilab:=proc(filename,name,routinename,arguments,outputsize)
+local k,kk,l1,l2,ff,first0,ss,snd0,thrd,forth,rest,chain,i,naargs,aaarg:
+global _scicall;
+#
+aaarg:=arguments;
+naargs:=nops(aaarg):
+ff:=`(`;
+if aaarg<>[] then
+  if not type(aaarg,list) then aaarg:=[aaarg]; fi;
+  ff:=cat(ff,aaarg[1]):
+  k:=2:
+  while k < naargs+1 do ff:=cat(ff,`,`,aaarg[k]):k:=k+1:od:
+fi;
+ff:=cat(ff,`)`):
+_scicall:=cat(`var=`,name,ff):
+ff:=cat(`function [var]=`,name,ff):
+l1:=0:
+rest:=first:
+if length(ff) > 70 then 
+ while length(rest) > 70 do
+  first.l1:=cat(substring(rest,1..70),`...`):
+  l1:=l1+1:
+  first.l1:=substring(rest,71..length(rest)):
+  rest:=first.l1:
+ od:
+ else
+ first.0:=ff:
+fi:
+#
+ss:=cat(`var=fort(`,`'`,routinename,`',`):
+i:=1:
+if aaarg<>[] then
+  for kk in aaarg do chain:=cat(kk,`,`,i,`,`,`'d',`):
+    ss:=cat(ss,chain):
+    i:=i+1:
+  od:
+fi;
+ss:=cat(ss,`'out',`):
+ss:=cat(ss,`[`,outputsize[1],`,`,outputsize[2],`],`,naargs+1,`,'d')`):
+l2:=0:
+rest:=ss:
+if length(ss) > 70 then 
+ while length(rest) > 70 do
+  snd.l2:=cat(substring(rest,1..70),`...`):
+  l2:=l2+1:
+  snd.l2:=substring(rest,71..length(rest)):
+  rest:=snd.l2:
+ od:
+ else
+ snd.0:=ss:
+fi:
+writeto(filename):
+for i from 0 to l1 do lprint(``.first.i):od:
+for i from 0 to l2 do lprint(``.snd.i):od:
+writeto(terminal):
+end:

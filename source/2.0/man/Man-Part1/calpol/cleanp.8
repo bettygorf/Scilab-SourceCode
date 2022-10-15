@@ -1,0 +1,36 @@
+.TH cleanp 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+cleanp - cleans a polynomial matrix
+.SH CALLING SEQUENCE
+.nf
+[X]=cleanp(Mp,[epsa,[epsr]]) 
+.fi
+.SH PARAMETERS
+.TP 12
+Mp
+: polynomial matrix
+.TP
+epsa, epsr
+: two (small) real nonnegative numbers
+.SH DESCRIPTION
+If \fVMp\fR is a polynomial matrix, \fVX=cleanp(Mp,[epsa,[epsr]])\fR 
+returns \fVX\fR, a polynomial matrix in which all the "small" 
+coefficients are set to zero.
+.LP
+\fVepsa\fR is a an absolute tolerance and \fVepsr\fR is a relative tolerance.
+.LP
+All coefficients lower than \fVepsa\fR are set to zero.
+.LP
+All coefficients lower than \fVepsr*nrm\fR are set to zero.
+(\fVnrm\fR = l1 norm of the coefficients of the matrix polynomial).
+.LP
+This very useful primitive should be used with care: for example,
+the polynomial \fV 1 + epsilon * s \fR has a root near infinity which may be 
+meaningful...
+.LP
+Default values of \fVepsa\fR and \fVepsr\fR are \fV0\fR.
+.SH SEE ALSO
+clean, simp, trfmod
+
+

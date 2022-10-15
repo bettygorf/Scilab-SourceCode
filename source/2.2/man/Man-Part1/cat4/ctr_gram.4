@@ -1,0 +1,66 @@
+
+
+
+ctr_gram(1)                    Scilab Function                    ctr_gram(1)
+
+
+
+
+
+
+NAME
+  ctr_gram - controllability gramian
+
+CALLING SEQUENCE
+  [Gc]=ctr_gram(A,B [,dom])
+  [Gc]=ctr_gram(sl)
+
+PARAMETERS
+
+  A,B       : two real matrices of appropriate dimensions
+
+  dom       : character string ('c' (default value) or 'd')
+
+  sl        : linear system, syslin list
+
+DESCRIPTION
+  Controllability gramian of (A,B) or sl (a syslin linear system).
+
+  dom character string giving the time domain : "d" for a discrete time sys-
+  tem and "c" for continuous time (default case).
+
+                    /+inf                             ---+inf
+                    [  At  ' A't                         k      k
+               Gc = | e  BB e   dt               Gc =  > A BB' A'
+                    ]                                 /
+                   /0                                 ---0
+
+
+
+
+
+
+SEE ALSO
+   cont_mat, cont_frm, contrss
+
+AUTHOR
+  S. Steer INRIA 1988
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

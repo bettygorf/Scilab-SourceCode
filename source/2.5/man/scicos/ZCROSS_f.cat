@@ -1,0 +1,15 @@
+
+ZCROSS_f(5)                      Scicos Block                     ZCROSS_f(5)
+NAME
+  ZCROSS_f - Scicos zero crossing detector
+
+DESCRIPTION
+  An output event is generated when all inputs (if more than one) cross zero
+  simultaneously.
+
+DIALOGUE PARAMETERS
+
+  Number of inputs    : a positive integer.
+
+SEE ALSO
+  POSTONEG_f, GENERAL_f

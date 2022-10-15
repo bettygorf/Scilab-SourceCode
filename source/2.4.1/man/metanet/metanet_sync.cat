@@ -1,0 +1,27 @@
+
+metanet_sync(1)                Scilab function                metanet_sync(1)
+NAME
+  metanet_sync - asynchronous or synchronous mode in Metanet
+
+CALLING SEQUENCE
+  res = metanet_sync([flag])
+
+PARAMETERS
+
+  res : integer
+
+  flag : integer
+
+DESCRIPTION
+  By default Metanet windows work with Scilab in asynchronous mode, ie Scilab
+  proceeds without waiting for graphics commands sent to Metanet window to
+  terminate: these commands are show_graph, show_arcs and show_nodes. This
+  mode is the most efficient. But when running a lots of such graphical com-
+  mands, problems can arise.
+
+  metanet_sync(0) changes to asynchronous mode (default).
+
+  metanet_sync(1) changes to synchronous mode.
+
+  metanet_sync() returns the current mode (0 = asynchronous, 1 = synchro-
+  nous).

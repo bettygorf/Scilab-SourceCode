@@ -1,0 +1,28 @@
+.TH CreateLink 1 "March 1997" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+CreateLink - creates a link between two applications
+.SH CALLING SEQUENCE
+.nf
+CreateLink(appli1,appli2)
+.fi
+.SH PARAMETERS
+.TP 7
+appli1, name of an application
+: string
+.TP 7
+appli2
+: string, name of an application
+.SH DESCRIPTION
+\fVCreateLink\fR creates a link from \fVappli1\fR to \fVappli2\fR.
+Note that this link is directed.
+This link being created, \fVappli1\fR can send messages to \fVappli2\fR and
+\fVappli2\fR can receive messages from \fVappli1\fR.
+
+If the name of \fVappli1\fR or \fVappli2\fR is \fV"SELF"\fR, it corresponds
+to the name of the application where we execute \fVCreateLink\fR.
+
+If the name of \fVappli1\fR or \fVappli2\fR is \fV"XGeCI"\fR, it corresponds
+to the name of the first Scilab application started.
+.SH SEE ALSO
+DestroyLink, GetMsg, SendMsg

@@ -1,0 +1,35 @@
+
+xpolys(2)                      Scilab Function                      xpolys(2)
+NAME
+  xpolys - draw a set of polylines
+
+CALLING SEQUENCE
+  []=xpolys(xpols,ypols,[draw])
+
+PARAMETERS
+
+  xpols, ypols   : matrices of size (p,n)
+
+  draw           : vector of size n
+
+DESCRIPTION
+  Draws a set of polyline using marks or dashed lines, each polyline points
+   are store in a column of xpols, ypols. xpols =[ xpol1;xpol2;...] '
+
+  The style is given by draw :
+
+  If draw(i) is negative the mark of id -draw(i) is used to draw the polyline
+  i ( marks are draw using the current pattern)
+
+  If draw(i) is strictly positive  the line style (or color) of id
+  abs(draw(i)) is used to draw the polyline i.
+
+EXAMPLES
+  plot2d(0,0,[-1],"012"," ",[0,0,1,1]);
+  rand('uniform');
+  xset('pattern',3)
+  xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
+  xset('default')
+
+AUTHOR
+  J.Ph.C.

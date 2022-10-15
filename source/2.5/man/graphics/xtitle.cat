@@ -1,0 +1,29 @@
+
+xtitle(2)                      Scilab Function                      xtitle(2)
+NAME
+  xtitle - add titles on a graphics window
+
+CALLING SEQUENCE
+  xtitle(xtit,[xax,yax,encad])
+
+PARAMETERS
+
+  xtit,xax,yax  : matrices of strings.
+
+  encad         : integer value. If it is 1, a box is drawn around each
+                title.
+
+DESCRIPTION
+  xtitle add titles on a 2D or 3D plot.  xtit is the general title, xax is
+  the title on the x-axis and yax is the title on the y-axis.  xtitle must be
+  called after a call to a high level plotting function (plot2d, plot3d,
+  ...).  If the arguments are matrices, each line of the matrices is dis-
+  played on a different line.
+
+  Enter the command xtitle() to see a demo.
+
+SEE ALSO
+  titlepage
+
+AUTHOR
+  J.Ph.C.

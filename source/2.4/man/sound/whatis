@@ -1,0 +1,4 @@
+analyze - frequency plot of a sound signal  
+loadwave - load a sound <<wav>> file into scilab  
+mapsound - plots a sound map  
+savewave - save data into a sound <<wav>> file.  

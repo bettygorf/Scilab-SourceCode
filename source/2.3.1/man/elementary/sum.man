@@ -1,0 +1,42 @@
+.TH sum 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+sum - sum (row sum, column sum) of vector/matrix entries
+.SH CALLING SEQUENCE
+.nf
+y=sum(x)
+y=sum(x,'r') or y=sum(x,2)
+
+y=sum(x,'c') or y=sum(x,1)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: vector or matrix (real, complex, sparse or polynomial)
+.TP 10
+y
+: scalar or vector
+.SH DESCRIPTION
+For a vector or a matrix \fVx\fR, \fVy=sum(x)\fR (or, equivalently,
+\fVy=sum(x,'*')\fR) returns in the scalar \fVy\fR the sum of all the entries
+of \fVx\fR.
+.LP
+\fVy=sum(x,'r')\fR (or, equivalently, \fVy=sum(x,2)\fR) is the rowwise sum. It returns in each 
+entry of the column vector \fVy\fR the sum of each row of \fVx\fR.
+.LP
+
+\fVy=sum(x,'c')\fR (or, equivalently, \fVy=sum(x,1)\fR) is the columnwise sum. It returns in each entry of the row vector 
+\fVy\fR the sum of each column  of \fVx\fR.
+.SH EXAMPLE
+.nf
+A=[1,2;3,4];
+trace(A)-sum(diag(A))
+sum(A,'r')-A*ones(2,1)
+sum(A+%i)
+A=sparse(A);sum(A,'r')-A*ones(2,1)
+s=poly(0,'s');
+M=[s,%i+s;s^2,1];
+sum(M),sum(M,2)
+.fi
+.SH SEE ALSO
+cumsum, prod

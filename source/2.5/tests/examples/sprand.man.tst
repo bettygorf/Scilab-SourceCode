@@ -1,0 +1,2 @@
+clear;lines(0);
+W=sprand(100,1000,0.001);

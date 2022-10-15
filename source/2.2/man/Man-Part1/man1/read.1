@@ -1,0 +1,65 @@
+.TH read 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+read - matrices read
+.SH CALLING SEQUENCE
+.nf
+[x]=read(file-desc,m,n,[format])   
+[x]=read(file-desc,m,n,k,format)
+.fi
+.SH PARAMETERS
+.TP 10
+file-desc
+: character string specifying the file name or integer value
+specifying logical unit (see file).
+.TP 10
+m, n
+: integers (dimensions of the matrix x). Set m=-1 if you dont know the
+numbers of rows, so the whole file is read.
+.TP 10
+format : character string, specifies a "fortran" format. This
+character string must begin with a right parenthesis and end with a
+left parenthesis.  Formats cannot mix floating point or character
+edition modes. 
+.TP 10
+k
+: integer
+.SH DESCRIPTION
+reads row after row
+the \fVmxn\fR matrix \fVx\fR (\fVn=1\fR for character chain) in the
+file \fVfile-desc\fR (string or integer).  Each row of the matrix \fVx\fR
+begin in a new line of \fVfile-desc\fR file. Depending on \fVformat\fR a
+given row of the \fVx\fR matrix may be read from more than one line
+of \fVfile-desc\fR file.
+.LP
+The type of the result will depend on the specified form. 
+If form is numeric \fV(d,e,f,g)\fR the matrix will be a scalar matrix
+and if form contains the character \fVa\fR the matrix will be a matrix of
+character strings. In this case n must be equal to 1.
+
+.LP
+Examples for \fVformat\fR: 
+.nf 
+(1x,e10.3,5x,3(f3.0))
+(10x,a20) 
+.LP 
+When format is omitted datas are read using numerical free format: 
+blank, comma and shash may be used as data separators, n*v may be use
+to represent n occurences of value n.
+
+.LP
+A direct access file can be used if using the parameter \fVk\fR which is 
+is the vector of record numbers to be read (one record per row),
+thus \fVm\fR must be \fVm=prod(size(k))\fR.
+.LP
+To read on the keyboard use \fVread(%io(1),...)\fR.
+.SH EXAMPLE
+.nf
+unix('rm foo')
+A=rand(3,5); write('foo',A);
+B=read('foo',3,5)
+B=read('foo',-1,5)
+read(%io(1),1,1,'(a)')  // waits for user's input
+.fi
+.SH SEE ALSO
+file, readb, write, %io, x_dialog, scanf

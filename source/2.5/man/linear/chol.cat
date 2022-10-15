@@ -1,0 +1,27 @@
+
+chol(2)                        Scilab Function                        chol(2)
+NAME
+  chol - Cholesky factorization
+
+CALLING SEQUENCE
+  [R]=chol(X)
+
+PARAMETERS
+
+  X    : a symmetric positive definite real or complex matrix.
+
+DESCRIPTION
+  If X is positive definite, then R = chol(X) produces an upper triangular
+  matrix R such that R'*R = X.
+
+  chol(X) uses only the diagonal and upper triangle of X.  The lower triangu-
+  lar is assumed to be the (complex conjugate) transpose of the upper.
+
+EXAMPLE
+  W=rand(5,5)+%i*rand(5,5);
+  X=W*W';
+  R=chol(X);
+  norm(R'*R-X)
+
+SEE ALSO
+  spchol, qr, svd, bdiag, fullrf

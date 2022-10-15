@@ -1,0 +1,24 @@
+.TH balreal 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+balreal - balanced realization
+.SH CALLING SEQUENCE
+.nf
+[slb [,U] ] = balreal(sl)
+.fi
+.SH PARAMETERS
+.TP
+sl,slb
+: linear systems (\fVsyslin\fR lists)
+.SH DESCRIPTION
+Balanced realization of linear system \fVsl=[A,B,C,D]\fR. \fVsl\fR
+can be a continuous-time or discrete-time state-space system. 
+.nf
+slb=[inv(U)*A*U ,inv(U)*B , C*U , D]
+.fi
+is the balanced realization.
+.LP
+\fVslb\fR is returned as a \fVsyslin\fR list.
+.SH SEE ALSO
+ctr_gram , obs_gram, hankelsv, equil, equil1
+

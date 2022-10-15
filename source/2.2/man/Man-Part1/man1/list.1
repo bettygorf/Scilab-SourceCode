@@ -1,0 +1,29 @@
+.TH list 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+"Scilab object: list" - list definition
+.SH CALLING SEQUENCE
+.nf
+list( a1,....an )  
+.fi
+.SH DESCRIPTION
+Creates a \fVlist\fR with elements \fVai\fR's which are arbitrary Scilab 
+objects (\fVmatrix, list,...\fR). Type of  \fVlist\fR objects is 15.
+.LP
+\fVlist()\fR is the empty \fVlist\fR (0 element).
+.LP
+Operations on lists:
+.IP extraction 12
+: \fV[x,y,z...]=l(v)\fR where \fVv\fR is a vector of indices; 
+\fV[x,y,z]=l(:)\fR extracts all the elements.
+.IP  insertion
+: \fVl(i)=a\fR
+.IP deletion
+: \fVl(i)=null()\fR removes the i-th element of the \fVlist l\fR.
+.SH EXAMPLE
+.nf 
+x=list(1,2,3);
+x(4)=10;
+.fi
+.SH SEE ALSO
+null, tlist

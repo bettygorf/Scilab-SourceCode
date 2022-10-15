@@ -1,0 +1,17 @@
+.TH unix 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+unix - shell (sh) command execution
+.SH CALLING SEQUENCE
+.nf
+unix(command-name)
+.fi
+.SH DESCRIPTION
+sends a string \fVcommand-name\fR to Unix for execution by the sh shell.
+.SH EXAMPLE
+.nf
+unix("ls $SCI/demos");
+unix("emacs $SCI/demos/wheel2/Makefile");
+.fi
+.SH SEE ALSO
+edit, manedit

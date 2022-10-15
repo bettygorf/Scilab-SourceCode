@@ -1,0 +1,27 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+
+#if defined(HPArchitecture)
+SUN_FORTRAN=  bashos.o basin.o basout.o \
+	cluni0.o clunit.o ctrlc.o dbasin.o  \
+	inffic.o inibrk.o sigbas.o \
+	getpro.o fgetarg-hp.o sync.o
+#else
+SUN_FORTRAN=  bashos.o basin.o basout.o \
+	cluni0.o clunit.o ctrlc.o dbasin.o  \
+	inffic.o inibrk.o sigbas.o \
+	getpro.o fgetarg.o sync.o
+#endif
+
+SUN_CSTS= slamch.o dlamch.o lsame.o
+
+SUN_C= getenvc.o link.o systemc.o zzledt.o  csignal.o getpidc.o timer.o \
+	flags.o
+
+SRCS=$(SUN_C:.o=.c)
+FSRCS =$(SUN_FORTRAN:.o=.f) $(SUN_CSTS:.o=.f)
+
+LibraryTarget($(PATHO)/sun.a,$(SUN_FORTRAN) $(SUN_CSTS) $(SUN_C))
+FortranDependTarget()
+DependTarget()

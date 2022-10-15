@@ -1,0 +1,15 @@
+
+readc_(3)                      Scilab Function                      readc_(3)
+NAME
+  readc_ - read a character string
+
+CALLING SEQUENCE
+  [c]=readc_(unit)
+  [c]=readc_()
+
+DESCRIPTION
+  readc_ reads a character string.  This function allows one to interrupt an
+  exec file without pause; the exec file stops until carriage return is made.
+
+SEE ALSO
+  read

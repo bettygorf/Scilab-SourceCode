@@ -1,0 +1,69 @@
+1 type
+type    string  3
+******************************
+2 vector of block addresses
+funptr	vector  nblk
+******************************
+3 description of state/block splitting
+stptr   vector	nblk1
+******************************
+4  description of input/block splitting
+inpptr	vector  nblk1
+******************************
+5  description of output/block splitting
+outptr	vector	nblk1
+******************************
+6 description of input/output connection
+cmat	vector	nout
+******************************
+7 vector of real parameters
+rpar	vector	nrpar
+******************************
+8 description of real parameters/block splitting
+rpptr	vector	nblk1
+******************************
+9 vector of integer parameters
+ipar	vector	nipar
+******************************
+10 description of integer parameters/block splitting
+ipptr	vector	nblk1
+******************************
+11 description of clock output/block splitting
+clkptr	vector	nblk1
+******************************
+12 
+ordptr	matrix	nclkpt	2
+******************************
+13 
+execlk	matrix	nexe	2
+******************************
+14
+ordclk	vector	nordcl
+******************************
+15
+cord 	vector	ncord
+******************************
+16
+iord 	vector	niord
+******************************
+17 total number of continuous blocks
+ncblk	scalar
+******************************
+18 number of continuous blocks with state
+nxblk	scalar
+************************************************************
+19 number of discrete blocks 
+ndblk	scalar
+******************************
+20 number of zero detection blocks 
+ndcblk	scalar
+******************************
+21 
+oord 	vector	noord
+******************************
+22 
+zord 	vector	nzord
+******************************
+23 
+critev 	vector	ncrit
+******************************

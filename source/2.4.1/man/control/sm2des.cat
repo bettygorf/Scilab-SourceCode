@@ -1,0 +1,22 @@
+
+sm2des(1)                      Scilab Function                      sm2des(1)
+NAME
+  sm2des - system matrix to descriptor
+
+CALLING SEQUENCE
+  [Des]=sm2des(Sm);
+
+PARAMETERS
+
+  Sm   : polynomial matrix (pencil system matrix)
+
+  Des  : descriptor system (list('des',A,B,C,D,E))
+
+DESCRIPTION
+  Utility function: converts the system matrix:
+   Sm = [-sE + A   B;
+        [    C     D]
+  to descriptor system Des=list('des',A,B,C,D,E)).
+
+SEE ALSO
+  ss2des, sm2ss

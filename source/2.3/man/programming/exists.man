@@ -1,0 +1,17 @@
+.TH exists 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+exists - checks variable  existence
+.SH CALLING SEQUENCE
+.nf
+exists('variable-name')
+.fi
+.SH DESCRIPTION
+returns \fV1\fR if the variable \fV'variable-name'\fR exists 
+and \fV0\fR otherwise. Caveats: a function which uses \fVexists\fR
+may return a result which depends on the environment!
+.SH SEE ALSO
+isdef, whereis, type, typeof, macrovar
+
+
+

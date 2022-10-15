@@ -1,0 +1,31 @@
+ 
+clear;lines(0);
+ 
+A=round(5*rand(10,1));
+ 
+B=round(5*rand(7,1));
+ 
+ 
+intersect(A,B)
+ ans  =
+ 
+!   1.    3.    4. !
+ 
+[N,ka,kb]=intersect(A,B)
+ kb  =
+ 
+!   4.    1.    3. !
+ ka  =
+ 
+!   1.    5.    2. !
+ N  =
+ 
+!   1.    3.    4. !
+ 
+ 
+intersect('a'+string(A),'a'+string(B))
+ ans  =
+ 
+!a4  a3  a1  !
+ 
+ 

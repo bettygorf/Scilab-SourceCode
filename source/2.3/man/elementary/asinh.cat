@@ -1,0 +1,23 @@
+
+asinh(1)                       Scilab Function                       asinh(1)
+NAME
+  asinh - hyperbolic sine inverse
+
+CALLING SEQUENCE
+  [t]=asinh(x)
+
+PARAMETERS
+
+  x         : real or complex vector/matrix
+
+  t         : real or complex vector/matrix
+
+DESCRIPTION
+  The entries of t are the hyperbolic sine inverse of the corresponding
+  entries of x.  Definition domain is ]-1,i[ It takes his values in sets
+
+    ]-inf,inf[ x ]-pi/2,pi/2[,
+    ]-inf,0[ x [-pi/2] and   [0,inf] x [pi/2] (real x imag)
+EXAMPLE
+  A=[1,2;2,3]
+  sinh(asinh(A))

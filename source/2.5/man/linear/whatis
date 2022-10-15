@@ -1,0 +1,64 @@
+aff2ab - linear (affine) function to a,b conversion   @aff2ab
+balanc - matrix or pencil balancing   @balanc
+bdiag - block diagonalization, generalized eigenvectors   @bdiag
+chfact - sparse cholesky factorization   @chfact
+chol - cholesky factorization   @chol
+chsolve - sparse cholesky solver   @chsolve
+coff - resolvent (cofactor method)   @coff
+colcomp - column compression, kernel, nullspace   @colcomp
+companion - companion matrix   @companion
+cond - condition number   @cond
+det - determinant   @det
+ereduc - computes matrix column echelon form by qz transformations   @ereduc
+exp - element-wise exponential   @exp
+expm - square matrix exponential   @expm
+fstair - computes pencil column echelon form by qz transformations   @fstair
+fullrf - full rank factorization   @fullrf
+fullrfk - full rank factorization of a^k   @fullrfk
+givens - givens transformation   @givens
+glever - inverse of matrix pencil   @glever
+gschur - generalized schur form (matrix pencils).   @gschur
+gspec - eigenvalues of matrix pencil   @gspec
+hess - hessenberg form   @hess
+householder - householder orthogonal reflexion matrix   @householder
+im_inv - inverse image   @im_inv
+inv - matrix inverse   @inv
+kernel - kernel, nullspace   @kernel
+kroneck - kronecker form of matrix pencil   @kroneck
+linsolve - linear equation solver   @linsolve
+lu - lu factors of gaussian elimination   @lu
+ludel - utility function used with lufact   @ludel
+lufact - sparse lu factorization   @lufact
+luget - sparse lu factorization   @luget
+lusolve - sparse linear system solver   @lusolve
+lyap - lyapunov equation   @lyap
+nlev - leverrier's algorithm   @nlev
+orth - orthogonal basis   @orth
+pbig - eigen-projection   @pbig
+pencan - canonical form of matrix pencil   @pencan
+penlaur - laurent coefficients of matrix pencil   @penlaur
+pinv - pseudoinverse   @pinv
+polar - polar form   @polar
+proj - projection   @proj
+projspec - spectral operators   @projspec
+psmall - spectral projection   @psmall
+qr - qr decomposition   @qr
+quaskro - quasi-kronecker form   @quaskro
+randpencil - random pencil   @randpencil
+range - range (span) of a^k   @range
+rank - rank   @rank
+rcond - inverse condition number   @rcond
+rowcomp - row compression, range   @rowcomp
+rowshuff - shuffle algorithm   @rowshuff
+rref - computes matrix row echelon form by lu transformations   @rref
+schur - [ordered] schur decomposition   @schur
+spaninter - subspace intersection   @spaninter
+spanplus - sum of subspaces   @spanplus
+spantwo - sum and intersection of subspaces   @spantwo
+spchol - sparse cholesky factorization   @spchol
+spec - eigenvalues   @spec
+sqroot - w*w' hermitian factorization   @sqroot
+sva - singular value approximation   @sva
+svd - singular value decomposition   @svd
+sylv - sylvester equation.   @sylv
+trace - trace   @trace

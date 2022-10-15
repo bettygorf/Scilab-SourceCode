@@ -1,0 +1,32 @@
+
+fft1d(2)                       Scilab Function                       fft1d(2)
+NAME
+  fft1d - Operates a column-wise direct or inverse FFT
+
+  Author: Paulo Goncalves
+
+  Operates a column-wise direct or inverse FFT on a matrix
+
+Usage
+
+  Y = fft1d(X,DirInv) ;
+Input parameters
+       o X : Real or complex valued matrix [rx,cx]
+       o DirInv : +1 / -1 flag -1  Direct Fast Fourier Transform +1  Inverse
+         Fast Fourier Transform
+Output parameters
+       o Y : Real or complex valued matrix [rx,cx] Each column of Y contains
+         the FFT (resp IFFT) of the corresponding column of X
+See also:
+  fft
+
+Example:
+   Matrix synthesis:
+
+  t = linspace( 0,1,128 ) ;
+  f0 = [4 8 16 32]
+  X = sin( 2*%pi*t(:)*f0 ) ;
+  Y = abs( fft1d( X , -1 ) ) ;
+  Y = [Y(65:128,:) ; Y(1:64,:)] ;
+  f = linspace(-64,63,128) ;
+  plot2d(f(ones(4,1),:)',Y) ;

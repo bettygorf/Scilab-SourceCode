@@ -1,0 +1,28 @@
+.TH xpoly 2 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+xpoly - draw a single polyline
+.SH CALLING SEQUENCE
+.nf
+[]=xpoly(xv,yv,dtype[,close])
+.fi
+.SH PARAMETERS 
+.TP 15
+xv, yv 
+: two matrices of the same size (p,n)  (points of the polyline) 
+.TP
+dtype
+: string (drawing style)
+.TP
+close
+: if close = 1, the polyline is closed. (default value is 0)
+.SH DESCRIPTION
+draws a single polyline described by \fV(xv,yv)\fR. If \fVxv\fR and \fVyv\fR are matrices 
+they are internally considered as a vector using the fortran internal storage convention.
+\fVdtype\fR can be \fV"lines"\fR for using the current line style or \fV"marks"\fR for using 
+the current mark to draw the polyline.
+.SH AUTHOR
+J.Ph.C. 
+
+
+

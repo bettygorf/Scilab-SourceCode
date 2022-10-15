@@ -1,0 +1,33 @@
+.TH standard_define  "Janvier 1997" "Scilab Group" "Scicos function"
+.so ../sci.an
+.SH NAME
+standard_define - Scicos block initial definition  function
+.SH CALLING SEQUENCE
+.nf
+o=standard_define(sz,model,dlg,gr_i)
+.fi
+.SH PARAMETERS
+.TP 10
+o
+: Scicos block data structure (see scicos_block)
+.TP
+sz
+: 2 vector, giving the initial block width and height 
+.TP
+model
+: initial model data structure definition (see scicos_model)
+.TP
+dlg
+: vector of character strings,initial parameters expressions
+.TP
+gr_i
+: vector of character strings, initial icon definition instructions 
+.SH DESCRIPTION
+This function creates the initial block data structure given the
+initial size \fV sz\fR, this initial model definition \fV model\fR, the
+initial parameters expressions \fV dlg\fR and initial icon definition
+instructions \fV gr_i\fR
+.SH SEE ALSO
+scicos_model
+
+

@@ -1,0 +1,14 @@
+#!/bin/csh
+#-----------------------------------------------------------
+# This script is used to create a file
+# which will contain all the distribution files 
+# Newer than the $1 file 
+#-----------------------------------------------------------
+alias sciex "find . \( ! -name '*.o' -a ! -name '*.a' -a ! -name '*.aux' -a ! -name '*.log' -a ! -name '*.bin' -a ! -name '*.dvi' -a ! -name 'lib' -a ! -name 'names' -a ! -name '*.tar' -a  ! -name '*.tar.Z' -a  ! -name 'TAGS' -a ! -type  d \) -newer $1 -exec echo {} \; "
+sciex >! /tmp/$$
+grep -v "/bin/" /tmp/$$ >! util/new-files
+\rm /tmp/$$
+
+
+
+

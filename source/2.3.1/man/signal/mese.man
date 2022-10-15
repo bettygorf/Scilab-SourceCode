@@ -1,0 +1,26 @@
+.TH mese 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mese - maximum entropy spectral estimation
+.SH CALLING SEQUENCE
+.nf
+[sm,fr]=mese(x [,npts]);
+.fi
+.SH PARAMETERS
+.TP
+x
+: Input sampled data sequence
+.TP
+npts
+: Optional parameter giving number of points of \fVfr\fR and \fVsm\fR
+(default is 256)
+.TP
+sm
+: Samples of spectral estimate on the frequency grid \fVfr\fR
+.TP
+fr
+: npts equally spaced frequency samples in \fV[0,.5)\fR
+.SH DESCRIPTION
+Calculate the maximum entropy spectral estimate of \fVx\fR
+.SH AUTHOR
+C. B.

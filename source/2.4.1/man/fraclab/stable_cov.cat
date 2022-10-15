@@ -1,0 +1,31 @@
+
+stable_cov(2)                  Scilab Function                  stable_cov(2)
+NAME
+  stable_cov - Covariation of two jointly symmetric Alpha-Stable random vari-
+  ables
+
+  Author: Lotfi Belkacem
+
+  This routine estimates the covariation of two jointly symmetric alpha-
+  stable random variables.
+
+Usage
+  [cov]=stable_cov(data1,data2)
+
+Input parameters
+       o data1 : real vector [size,1] corresponding to the the first data
+         sample.
+       o data2 : real vector [size,1] corresponding to the second data sam-
+         ple.
+Output parameters
+       o sm : real scalar corresponding to the estimation  the covariation of
+         data1 on data2.
+Description
+  The covariation of two jointly symmetric alpha stable random variables is
+  defined only for alpha between 1 and 2. It designed to replace the covari-
+  ance when the latter is not defined (alpha<2). Unfortunately, it lacks some
+  of the desirable properties of the covariance (not symmetric, ...). It is
+  however, a useful quantity and appears naturally in many settings, for
+  example, in the context of linear regression..SH Example for two given sig-
+  nals  S1 and S2, cov=stable_cov(S1,S2); estimates the covariation of S1 on
+  S2.

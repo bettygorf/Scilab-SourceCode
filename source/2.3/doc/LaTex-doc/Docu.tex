@@ -1,0 +1,47 @@
+\documentstyle[tr2latex/troffman,makeidx]{book}
+             \textheight=660pt 
+             \textwidth=15cm
+             \topmargin=-27pt 
+             \oddsidemargin=0.7cm
+             \evensidemargin=0.7cm
+             \marginparwidth=60pt
+\def\vector#1{\left( \begin{array}{c} #1  \end{array}\right)}
+\def\matrixq#1{\left( \begin{array}{cc} #1  \end{array}\right)}
+
+\makeindex 
+\includeonly{Chap1,Chap2,Chap3,Chap4,Chap5,Chap6,Chap7,Chap8,Chap2-1,Chap2-2,Chap2-3,Chap2-4,Chap2-5}
+%\includeonly{Chap1}
+
+\begin{document}
+
+\input{couvert.tex}
+
+\chapter{Programming}
+        \include{Chap1} 
+\chapter{Graphic Library }
+        \include{Chap2} 
+\chapter{Utilities and Elementary Functions}
+        \include{Chap3} 
+\chapter{General System and Control macros}
+        \include{Chap4} 
+\chapter{Robust control toolbox}
+        \include{Chap5} 
+\chapter{Non-linear tools (optimization and simulation) }
+        \include{Chap6} 
+\chapter{Signal Processing toolbox}
+        \include{Chap7} 
+        \include{Chap2-3}
+\chapter{Polynomial calculations}
+        \include{Chap8}
+\chapter{Linear Algebra}
+        \include{Chap2-1}
+\chapter{Metanet}
+        \include{Chap2-2}
+\chapter{Scicos} 
+        \include{Chap2-5}
+\chapter{Tools for dynamical systems}
+        \include{Chap2-4}
+
+
+\printindex
+\end{document}

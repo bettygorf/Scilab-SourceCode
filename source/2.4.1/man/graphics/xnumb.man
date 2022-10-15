@@ -1,0 +1,36 @@
+.TH xnumb 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xnumb - draw numbers on a graphic
+.SH CALLING SEQUENCE
+.nf
+xnumb(x,y,nums,[flag,angle])
+.fi
+.SH PARAMETERS
+.TP
+x,y,nums
+: vectors or matrices of same size 
+.TP
+flag 
+: an integer value
+.TP
+angle
+: a vector of the same size as \fVx,y,nums\fR
+.LP 
+.SH DESCRIPTION
+Displays the value of \fVnums[i]\fR using the current number format 
+at position \fVx[i],y[i]\fR in the current scale.
+if \fVflag\fR is 1 a frame box is added around the strings.
+if \fVangle\fR is present it's a vector. \fVangle[i]\fR gives the slope
+in degree (clockwise) to use  for the display of the string.
+.SH EXAMPLE 
+.nf
+plot2d([-100,500],[-100,600],[-1,-1],"022");
+x=0:100:200;
+xnumb(x,500*ones(x),[10,20,35],1);
+.fi
+.SH AUTHOR
+J.Ph.C.
+
+
+

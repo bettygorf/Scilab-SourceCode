@@ -1,0 +1,33 @@
+
+spzeros(1)                     Scilab Function                     spzeros(1)
+NAME
+  spzeros -  sparse zero matrix
+
+SYNTAX
+  sp=spzeros(nrows,ncols)
+
+  sp=spzeros(A)
+
+PARAMETERS
+
+  nrows   : integer (number of rows)
+
+  ncols   : integer (number os columns)
+
+  A       : sparse matrix
+
+  sp      : sparse zero matrix
+
+DESCRIPTION
+  sp=spzeros(nrows,ncols,fill) returns a sparse zero matrix sp with nrows
+  rows, ncols columns. (Equivalent to sparse([],[],[nrow,ncols]))
+
+  sp=spzeros(A) returns a sparse zero matrix with same dimensions as A. If
+  [m,n]=size(A), spzeros(m,n) and spzeros(A) are equivalent. In particular
+  spzeros(3) is not equivalent to spzeros(3,3).
+
+EXAMPLE
+  sum(spzeros(1000,1000))
+
+SEE ALSO
+  sparse, full, eye, speye, spones

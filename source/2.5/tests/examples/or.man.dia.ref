@@ -1,0 +1,18 @@
+ 
+clear;lines(0);
+ 
+or([%t %t %f])
+ ans  =
+ 
+  T  
+ 
+[%t %t %f]|[%f %t %t]
+ ans  =
+ 
+! T T T !
+ 
+[%t %t %f]|%f
+ ans  =
+ 
+! T T F !
+ 

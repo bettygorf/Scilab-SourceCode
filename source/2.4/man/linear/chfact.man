@@ -1,0 +1,24 @@
+.TH chfact G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+chfact - sparse Cholesky factorization
+.SH CALLING SEQUENCE
+.nf
+spcho=chfact(A)
+.fi
+.SH PARAMETERS
+.TP
+A
+: square symmetric positive sparse matrix
+.TP 
+spcho
+: list containing the Cholesky factors in coded form
+.SH DESCRIPTION
+\fVspcho=chfact(A)\fR computes the sparse Cholesky factors of sparse
+matrix \fVA\fR, assumed symmetric positive definite.
+This function is based on the Ng-Peyton programs (ORNL). See the
+Fortran programs for a complete description of the variables in
+\fVspcho\fR. This function is to be used with \fVchsolve\fR.
+.SH SEE ALSO
+chsolve, sparse, lufact, luget, spchol
+

@@ -1,0 +1,26 @@
+
+erfc(3)                        Scilab Function                        erfc(3)
+NAME
+  erfc -  The complementary error function.
+
+CALING SEQUENCE
+   y = erfc(x)
+
+PARAMETERS
+
+  x    : real vector
+
+  y    : real vector (of same size)
+
+DESCRIPTION
+   erfc computes the complementary error function:
+
+                        /inf
+       y = 2/sqrt(pi) *|  exp(-t^2) dt
+                       /x
+       y= 1 - erf(x)
+EXAMPLE
+  erf([0.5,0.2])+erfc([0.5,0.2])
+
+SEE ALSO
+  erf, erfcx, calerf

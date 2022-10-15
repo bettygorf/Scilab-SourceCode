@@ -1,0 +1,42 @@
+
+\documentstyle[tr2latex/troffman,makeidx]{book}
+             \title{\Huge\bf Scilab 1.0 \\ On line doc \\ Library reference manual}
+             \author{\huge Scilab Group}
+             \textheight=660pt 
+             \textwidth=470pt
+             \topmargin=-27pt 
+             \oddsidemargin=-1.2cm
+             \evensidemargin=0.7cm
+             \marginparwidth=60pt
+\def\vector#1{\left( \begin{array}{c} #1  \end{array}\right)}
+\def\matrixq#1{\left( \begin{array}{cc} #1  \end{array}\right)}
+
+\makeindex 
+\includeonly{Chap1,Chap2,Chap3,Chap4,Chap5,Chap6,Chap7,Chap8,Chapl,Chapn}
+
+\begin{document}\maketitle
+
+
+\chapter{Programming}
+	\include{Chap1} 
+\chapter{Graphic Library }
+	\include{Chap2} 
+\chapter{Utilities and Elementary Functions}
+	\include{Chap3} 
+\chapter{General System and Control macros}
+	\include{Chap4} 
+\chapter{Robust control toolbox}
+	\include{Chap5} 
+\chapter{Non-linear tools (optimization and simulation) }
+	\include{Chap6} 
+\chapter{Signal Processing toolbox}
+	\include{Chap7} 
+\chapter{Polynomial calculations}
+	\include{Chap8}
+\chapter{Linear Algebra}
+	\include{Chapl}
+\chapter{Metanet}
+	\include{Chapn}
+
+\printindex
+\end{document}

@@ -1,0 +1,17 @@
+.TH TEXT_f 5 "Janvier 1997" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+TEXT_f - Scicos  text drawing block
+.SH DIALOGUE PARAMETERS
+.TP 20
+txt
+: a character string, Text to be displayed
+.TP
+font
+: a positive integer less than 6, number of selected font (see xset)
+.TP
+siz
+: a positive integer, selected font size (see xset)
+.SH DESCRIPTION
+This special block is only use to add text at any point of the diagram
+window. It has no effect on the simulation.

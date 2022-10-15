@@ -1,0 +1,64 @@
+
+ode_root(G)                    Scilab Function                    ode_root(G)
+NAME
+  ode_root - ordinary differential equation solver with root finding
+
+CALLING SEQUENCE
+  [y,rd,w,iw]=ode('root',y0,t0,t [,rtol  [,atol]],f  [,jac],ng,g [,w,iw])
+
+PARAMETERS
+
+  y0        : real vector or matrix (initial conditions).
+
+  t0,       : real scalar (initial time).
+
+  t         : real vector (times at which the solution is computed).
+
+  f         : external i.e. function or character string or list.
+
+  rtol,atol : real constants or real vector of the same size as y.  as y.
+
+  jac       : external i.e. function or character string or list.
+
+  w,iw      : real vectors.
+
+  ng        : integer.
+
+  g         : external i.e. function or character string or list.
+
+DESCRIPTION
+  With this syntax (first argument equal to 'root') ode computes the solution
+  of the differential equation dy/dt=f(t,y) until the state y(t) crosses the
+  surface g(t,y)=0.
+
+  g should give the equation of the surface.  It is an external i.e. a func-
+  tion with specified syntax, or the name a Fortran subroutine or a C func-
+  tion (character string) with specified calling sequence or a list.
+
+  If g is function the syntax should be as follows:
+  z=g(t,y)
+  where t is a real scalar (time)  and y a real vector (state).  It returns a
+  vector of size ng which corresponds to the ng constraints. If g is a char-
+  acter string it refers to the name of a Fortran subroutine or a C function,
+  with the following calling sequence: g(n,t,y,ng,gout).  where ng is the
+  number of constraints and gout is the value of  g (output of the program).
+  If  is a list the same conventions as for f apply (see ode help).
+
+  Ouput rd is a 1xk vector. The first entry contains the stopping time. Other
+  entries indicate which components of g have changed sign. k larger than two
+  indicates that more than one surface (k-1) has been simultaneously
+  traversed.
+
+  Other arguments and other options are the same as for ode, see the ode
+  help.
+
+EXAMPLE
+  // Integration of the differential equation
+  // dy/dt=y , y(0)=1, and finds the minimum time t such that y(t)=2
+  deff('[ydot]=f(t,y)','ydot=y')
+  deff('[z]=g(t,y)','z=y-2')
+  y0=1;ng=1;
+  [y,rd]=ode('roots',y0,0,2,f,ng,g)
+
+SEE ALSO
+  dasrt, ode

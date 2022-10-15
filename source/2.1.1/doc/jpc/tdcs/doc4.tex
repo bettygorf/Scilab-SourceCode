@@ -1,0 +1,73 @@
+
+\documentstyle[modif.article]{article}
+\textheight=660pt 
+\textwidth=470pt 
+\topmargin=-27pt 
+\oddsidemargin=0pt 
+\evensidemargin=0pt 
+\title{Travaux dirig\'es 4}
+\author{J.Ph. Chancelier et E. Parent}
+\begin{document}
+\maketitle 
+\def\cmarg{\hspace{1cm}}
+
+\centerline{Le fichier des macros de la s\'eance de T.D. 4}
+
+\input{TdAuto4.tex}
+\Mhlp
+
+\Mfinit
+
+\section{Simulation de l'alunissage}
+
+\paragraph{}La macro {\bf sfusee} simule l'evolution de la dynamique 
+ de la fus\'ee soumise \`a une loi de commande bang-bang.
+\[
+    \left\{ \begin{array}{lcl}
+	\dot{h} & = & v \\
+	\dot{v} & = & k*u(t)/m(t) -\gamma\\
+	\dot{m} & = & - u(t) \end{array}\right.
+\]
+\begin{center}
+	{\bf Question}
+\end{center}
+A la main faire varier le point de commutation de la loi bang-bang de fa\c{c}on \`a realiser l'objectif suivant : se poser en h=0 avec une vitesse nulle en 
+ ayant consomm\'e le moins possible de carburant ( c'est \`a dire avec le $m(Tf)$ le plus grand possible.).
+
+\Msfusee
+
+\section{Recherche d'une loi de commande optimale par gradient}
+
+\begin{center}
+	{\bf Question}
+\end{center}
+
+On suppose ici que la date optimale pour se poser est connue ($tf=135$)
+et on se propose de minimiser par un m\'ethode de gradient le crit\`ere  
+$J(u)$~:
+\[
+	J(u)= -m(Tf) + {1\over \epsilon} (h(tf)^2+v(tf)^2)
+\]
+Expliquer l'utilisation de se crit\`ere et retrouver la formule de calcul 
+du gradient \`a utiliser. La macro {\bf fuseegrad} effectue des it\'erations 
+ de gradient \`a partir d'une loi de commande initiale. 
+ Chercher un pas de gradient qui fait diminuer le crit\`ere, regarder
+ l'influence de la p\'enalisation des conditions finales.
+
+\Mfuseegrad
+
+\Mequad
+
+\Mubang
+
+\Mfcout
+
+\Mfusee
+
+\Mpousse
+
+\Mtraj
+
+\Mfuseep
+
+\end{document}

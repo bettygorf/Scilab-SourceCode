@@ -1,0 +1,222 @@
+ 
+a =[1,2,3];b =[1,2,3;4,5,6];c =[10,11;12,13];
+ 
+//
+ 
+//short call: fortran instructions to be inserted in interf.f
+ 
+//      if(nom.eq.'bidon1') then
+ 
+//      ia =size(1,nla ,nca )
+ 
+//      ib =size(2,nlb ,nlc )
+ 
+//      ic =size(3,nlc ,ncc )
+ 
+//      id =ic
+ 
+//      nld=nlc
+ 
+//      ncd=ncc
+ 
+//      call alloc(1,ia ,nla ,nca ,'i')
+ 
+//      call alloc(2,ib ,nlb ,ncb ,'r')
+ 
+//      call alloc(3,ic ,nlc ,ncc ,'d')
+ 
+//      call alloc(4,id ,nld ,ncd ,'d')
+ 
+//      call alloc(5,id ,nld ,ncd ,'d')
+ 
+//      call bidon(stk(ll(1)),ia,stk(ll(2)),ib,stk(ll(3)),ic,
+ 
+//     *           stk(ll(4)),stk(ll(5)),ic)
+ 
+//      call back(1)
+ 
+//      call back(2)
+ 
+//      call back(3)
+ 
+//      call back(4)
+ 
+//      return
+ 
+//      endif
+ 
+//
+ 
+//fort call in scilab
+ 
+[as,bs,cs,ds]=fort('bidon1',a ,b ,c );
+ 
+as-2*a
+ ans  =
+ 
+!   0.    0.    0. !
+ 
+bs-2*b
+ ans  =
+ 
+!   0.    0.    0. !
+!   0.    0.    0. !
+ 
+cs-2*c
+ ans  =
+ 
+!   0.    0. !
+!   0.    0. !
+ 
+ds-(2*c+[1,3;2,4])
+ ans  =
+ 
+!   0.    0. !
+!   0.    0. !
+ 
+//
+ 
+//
+ 
+//Test no 2 : insert the following in interf.f:
+ 
+//      if(nom.eq.'bidon2') then
+ 
+//      call bidon(x1,x2,x3,x4,x5,x6,x7,x8,x9)
+ 
+//      return
+ 
+//      endif
+ 
+// calling from scilab:
+ 
+//a interf.
+ 
+[ma,na]=size(a);ia=ma*na;
+ 
+[mb,nb]=size(b);ib=mb*nb;
+ 
+[mc,nc]=size(c);ic=mc*nc;
+ 
+md=mc;nd=nc;
+ 
+[as,bs,cs,ds]=fort('bidon2',a,1,'i',ia,2,'i',b,3,'r',ib,4,'i',...
+                            c,5,'d',ic,6,'i',...
+                   'out',[ma,na],1,'i',[mb,nb],3,'r',[mc,nc],5,'d',...
+                          [md,nd],7,'d',[mc,nc],8,'d',[1,1],9,'i');
+ 
+as-2*a
+ ans  =
+ 
+!   0.    0.    0. !
+ 
+bs-2*b
+ ans  =
+ 
+!   0.    0.    0. !
+!   0.    0.    0. !
+ 
+cs-2*c
+ ans  =
+ 
+!   0.    0. !
+!   0.    0. !
+ 
+ds-(2*c+[1,3;2,4])
+ ans  =
+ 
+!   0.    0. !
+!   0.    0. !
+ 
+//other valid form
+ 
+[as,bs,cs,ds]=fort('bidon2',a,1,'i',ia,2,'i',b,3,'r',ib,4,'i',...
+                            c,5,'d',ic,6,'i',...
+                   'out',1,3,5,...
+                          [md,nd],7,'d',[mc,nc],8,'d',[1,1],9,'i');
+ 
+as-2*a
+ ans  =
+ 
+!   0.    0.    0. !
+ 
+bs-2*b
+ ans  =
+ 
+!   0.    0.    0. !
+!   0.    0.    0. !
+ 
+cs-2*c
+ ans  =
+ 
+!   0.    0. !
+!   0.    0. !
+ 
+ds-(2*c+[1,3;2,4])
+ ans  =
+ 
+!   0.    0. !
+!   0.    0. !
+ 
+//Test no 3 : insert in interf.f
+ 
+//
+ 
+//      if(nom.eq.'bidon3') then
+ 
+//      ia=size(1,nla,nca)
+ 
+//      ib=size(2,nlb,ncb)
+ 
+//      ic=size(3,nlc,ncc)
+ 
+//      call alloc(4,ic,nlc,ncc,'d')
+ 
+//      call alloc(5,ic,nlc,ncc,'d')
+ 
+//      call bidon(stk(ll(1)),ia,stk(ll(2)),ib,stk(ll(3)),ic,
+ 
+//     1           stk(ll(4)),stk(ll(5)),ic)
+ 
+//      call back(1)
+ 
+//      call back(2)
+ 
+//      call back(3)
+ 
+//      call back(4)
+ 
+//      return
+ 
+//      endif
+ 
+//
+ 
+// Call from scilab:
+ 
+[as,bs,cs,ds]=fort('bidon3',a,1,'i',b,2,'r',c,3,'d',...
+                   'out',1,2,3,4);
+ 
+as-2*a
+ ans  =
+ 
+!   0.    0.    0. !
+ 
+bs-2*b
+ ans  =
+ 
+!   0.    0.    0. !
+!   0.    0.    0. !
+ 
+cs-2*c
+ ans  =
+ 
+!   0.    0. !
+!   0.    0. !
+ 
+ds-(2*c+[1,3;2,4])
+ ans  =
+ 
+!   0.    0. !
+!   0.    0. !
+ 

@@ -1,0 +1,20 @@
+#include "../../../Imake.incl"
+
+ 
+OBJS= /tmp/wheel.o /tmp/wheelg.o
+
+#if defined(SparcArchitecture)
+FPL=  -Nl2000 -Nn6000
+#endif
+
+AllTarget($(OBJS))
+DependTarget()
+
+distclean:: clean
+
+/tmp/wheel.o : wheel.f 
+	$(FC) $(FFLAGS) $(FPL) -c wheel.f -o /tmp/wheel.o
+
+/tmp/wheelg.o : wheelg.f 
+	$(FC) $(FFLAGS) $(FPL) -c wheelg.f -o /tmp/wheelg.o
+

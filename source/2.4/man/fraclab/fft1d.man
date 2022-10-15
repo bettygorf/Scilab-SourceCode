@@ -1,0 +1,64 @@
+.TH "fft1d" 2 " July 3rd 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+fft1d - Operates a column-wise direct or inverse FFT
+.sp
+Author: Paulo Goncalves
+.sp
+Operates a column-wise direct or inverse FFT on a matrix
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+Y = fft1d(X,DirInv) ;
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBX\fP : Real or complex valued matrix \f(CR[\fPrx,cx\f(CR]\fP
+
+.TP
+o 
+\fBDirInv\fP : +1 / -1 flag 
+-1  Direct Fast Fourier Transform 
++1  Inverse Fast Fourier Transform
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBY\fP : Real or complex valued matrix \f(CR[\fPrx,cx\f(CR]\fP 
+Each column of \fIY\fP contains the FFT (resp IFFT) of the corresponding column of \fIX\fP
+.RE
+
+.SH See also:
+fft
+.SH Example:
+\fI Matrix synthesis: \fP 
+.sp
+.ft CR
+.nf
+t = linspace( 0,1,128 ) ;
+f0 = [4 8 16 32]
+X = sin( 2*%pi*t(:)*f0 ) ;
+Y = abs( fft1d( X , -1 ) ) ;
+Y = [Y(65:128,:) ; Y(1:64,:)] ;
+f = linspace(-64,63,128) ;
+plot2d(f(ones(4,1),:)',Y) ;
+.fi 
+.ec
+.ft P
+.sp

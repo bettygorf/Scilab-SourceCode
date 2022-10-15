@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+
+#include "connexion.h"
+
+int connexion(machine)
+char *machine;
+{
+    struct sockaddr_in nom;
+    struct hostent *hp;
+    int desc;
+    
+    char *display_ok;
+    
+    /* on autorise la machine distante a ecrire sur notre display 
+       display_ok=(char *) malloc (64);
+       sprintf(display_ok,"xhost +%s >/dev/null",machine);
+       system(display_ok);
+       free(display_ok);
+       */
+
+    /* Creation de la socket de type SOCK_STREAM (mode connecte), dans le
+       domaine INternet (AF_INET) */
+    if ((desc=socket(AF_INET,SOCK_STREAM,0)) == -1){
+	fprintf(stderr,"creation de la socket impossible\n");
+	return -1;
+    }
+     
+    /* Recherche de l'adresse Internet du serveur a partir du nom de la 
+       machine */
+    if ((hp=gethostbyname(machine))==NULL){
+	fprintf(stderr,"site inconnu\n");
+	return -1;
+    }
+  
+    /* Preparation de l'adresse de la socket destinataire */
+    bcopy(hp->h_addr,&nom.sin_addr,hp->h_length);
+    nom.sin_family=AF_INET;
+    nom.sin_port=htons(PORT);  
+    
+     /* Demande de connexion au demon */
+    if (connect(desc,&nom,sizeof(nom))== -1){
+      fprintf(stderr,"erreur de connection\n");
+      return -1;
+    }
+
+    return desc;
+}
+

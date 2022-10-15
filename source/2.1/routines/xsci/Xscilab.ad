@@ -1,0 +1,336 @@
+! Scilab Project : Resource File for Scilab 
+!---------------------------------------------------------------
+! Scilab Application Window 
+!---------------------------------------------------------------
+Xscilab*vpane.height: 500
+Xscilab*vpane.width:  650
+!---------------------------------------------------------------
+! Scilab Message Window
+!---------------------------------------------------------------
+Xscilab*vpane.msWindow.showGrip:False
+Xscilab*vpane.msWindow.min:20
+Xscilab*vpane.msWindow.logoWindow.borderWidth:0
+Xscilab*vpane.msWindow.messageWindow.fromHoriz:logoWindow
+!---------------------------------------------------------------
+! Scilab Buttons 
+!---------------------------------------------------------------
+Xscilab*vpane.commandWindow.*.Cursor: left_ptr
+Xscilab*vpane.commandWindow.showGrip:False
+Xscilab*vpane.commandWindow.Resume.label:Resume
+Xscilab*vpane.commandWindow.Abort.label:Abort
+Xscilab*vpane.commandWindow.Abort.fromHoriz:Resume
+Xscilab*vpane.commandWindow.Restart.label:Restart
+Xscilab*vpane.commandWindow.Restart.fromHoriz:Abort
+Xscilab*vpane.commandWindow.Stop.label:Stop
+Xscilab*vpane.commandWindow.Stop.fromHoriz:Restart
+Xscilab*vpane.commandWindow.File Operations.label:File Operations
+Xscilab*vpane.commandWindow.File Operations.fromHoriz:Stop
+Xscilab*vpane.commandWindow.Demos.label:Demos
+Xscilab*vpane.commandWindow.Demos.fromVert:Resume
+Xscilab*vpane.commandWindow.Quit.label:Quit
+Xscilab*vpane.commandWindow.Quit.fromVert:Resume
+Xscilab*vpane.commandWindow.Quit.fromHoriz:Demos
+Xscilab*vpane.commandWindow.Kill.label:Kill
+Xscilab*vpane.commandWindow.Kill.fromVert:Resume
+Xscilab*vpane.commandWindow.Kill.fromHoriz:Quit
+Xscilab*vpane.commandWindow.Help.label:Help
+Xscilab*vpane.commandWindow.Help.fromVert:Resume
+Xscilab*vpane.commandWindow.Help.fromHoriz:Kill
+Xscilab*vpane.commandWindow.Metanet.label:Metanet
+Xscilab*vpane.commandWindow.Metanet.fromHoriz:Help
+Xscilab*vpane.commandWindow.Metanet.fromVert:Resume
+Xscilab*vpane.commandWindow.Your Menu.label:Your Menu
+Xscilab*vpane.commandWindow.Your Menu.fromHoriz:Metanet
+Xscilab*vpane.commandWindow.Your Menu.fromVert:Resume
+!---------------------------------------------------------------
+! Scilab Graphic Windows Button
+!---------------------------------------------------------------
+Xscilab*vpane.GwinForm.*.Cursor: left_ptr
+Xscilab*vpane.GwinForm.showGrip:False
+Xscilab*vpane.GwinForm.SetwinCommand.label:Set (Create) Window
+Xscilab*vpane.GwinForm.RaisewinCommand.label:Raise (Create) Window
+Xscilab*vpane.GwinForm.RaisewinCommand.fromHoriz:SetwinCommand
+Xscilab*vpane.GwinForm.WinLabel.label: 0
+Xscilab*vpane.GwinForm.WinLabel.fromHoriz:RaisewinCommand
+Xscilab*vpane.GwinForm.PlusCommand.label: + 
+Xscilab*vpane.GwinForm.PlusCommand.fromHoriz:WinLabel
+Xscilab*vpane.GwinForm.MinusCommand.label: - 
+Xscilab*vpane.GwinForm.MinusCommand.fromHoriz:PlusCommand
+!---------------------------------------------------------------
+! Scilab xterm style menus 
+!---------------------------------------------------------------
+Xscilab*SimpleMenu*BackingStore: NotUseful
+Xscilab*SimpleMenu*menuLabel.font: -adobe-helvetica-bold-r-normal--*-120-*-*-*-*-iso8859-*
+Xscilab*SimpleMenu*menuLabel.vertSpace: 	100
+Xscilab*SimpleMenu*HorizontalMargins: 16
+Xscilab*SimpleMenu*Sme.height:	16
+Xscilab*SimpleMenu*Cursor: left_ptr
+!---------------------------------------------------------------
+! The scilab interactive window 
+!---------------------------------------------------------------
+Xscilab*vpane.Vtsci.font:		9x15
+Xscilab*vpane.Vtsci.font1:		9x13
+Xscilab*vpane.Vtsci.saveLines:	1024
+Xscilab*vpane.Vtsci.scrollBar:	on
+Xscilab*vpane.Vtsci.min:200
+Xscilab*vpane.Vtsci.mainMenu.Label:  Main Options
+Xscilab*vpane.Vtsci.mainMenu*redraw*Label:  Redraw Window
+Xscilab*vpane.Vtsci.vtMenu.Label:  VT Options
+Xscilab*vpane.Vtsci.vtMenu*scrollbar*Label:  Enable Scrollbar
+Xscilab*vpane.Vtsci.vtMenu*jumpscroll*Label:  Enable Jump Scroll
+Xscilab*vpane.Vtsci.vtMenu*reversevideo*Label:  Enable Reverse Video
+Xscilab*vpane.Vtsci.vtMenu*autowrap*Label:  Enable Auto Wraparound
+Xscilab*vpane.Vtsci.vtMenu*reversewrap*Label:  Enable Reverse Wraparound
+Xscilab*vpane.Vtsci.vtMenu*autolinefeed*Label:  Enable Auto Linefeed
+Xscilab*vpane.Vtsci.vtMenu*appcursor*Label:  Enable Application Cursor Keys
+Xscilab*vpane.Vtsci.vtMenu*appkeypad*Label:  Enable Application Keypad
+Xscilab*vpane.Vtsci.vtMenu*scrollkey*Label:  Scroll to Bottom on Key Press
+Xscilab*vpane.Vtsci.vtMenu*scrollttyoutput*Label:  Scroll to Bottom on Tty Output
+Xscilab*vpane.Vtsci.vtMenu*allow132*Label: Allow 80/132 Column Switching
+Xscilab*vpane.Vtsci.vtMenu*cursesemul*Label:  Enable Curses Emulation
+Xscilab*vpane.Vtsci.vtMenu*visualbell*Label:  Enable Visual Bell
+Xscilab*vpane.Vtsci.vtMenu*marginbell*Label:  Enable Margin Bell
+Xscilab*vpane.Vtsci.vtMenu*altscreen*Label:  Show Alternate Screen
+Xscilab*vpane.Vtsci.vtMenu*softreset*Label:  Do Soft Reset
+Xscilab*vpane.Vtsci.vtMenu*hardreset*Label:  Do Full Reset
+Xscilab*vpane.Vtsci.vtMenu*clearsavedlines*Label:  Reset and Clear Saved Lines
+Xscilab*vpane.Vtsci.vtMenu*vthide*Label:  Hide VT Window
+!
+Xscilab*vpane.Vtsci.fontMenu.Label:  VT Fonts
+Xscilab*vpane.Vtsci.fontMenu*fontdefault*Label:	Default
+Xscilab*vpane.Vtsci.fontMenu*font1*Label:	Unreadable
+Xscilab*vpane.Vtsci.font1:		9x13
+Xscilab*vpane.Vtsci.fontMenu*font2*Label:	Tiny
+Xscilab*vpane.Vtsci.font2:		5x7
+Xscilab*vpane.Vtsci.fontMenu*font3*Label:	Small
+Xscilab*vpane.Vtsci.font3:		6x10
+Xscilab*vpane.Vtsci.fontMenu*font4*Label:	Medium
+Xscilab*vpane.Vtsci.font4:		7x13
+Xscilab*vpane.Vtsci.fontMenu*font5*Label:	Large
+Xscilab*vpane.Vtsci.font5:		9x15
+Xscilab*vpane.Vtsci.fontMenu*font6*Label:	Huge
+Xscilab*vpane.Vtsci.font6:		10x20
+Xscilab*vpane.Vtsci.fontMenu*fontescape*Label:	Escape Sequence
+Xscilab*vpane.Vtsci.fontMenu*fontsel*Label:		Selection
+!---------------------------------------------------------------
+! The scilab Help Popup 
+!---------------------------------------------------------------
+Xscilab*helpShell.x:10
+Xscilab*helpShell.y:20
+Xscilab*helpShell.minHeight:300
+Xscilab*helpShell.minWidth:650
+Xscilab*helpShell.height:300
+Xscilab*helpShell.width:650
+Xscilab*helpShell*Viewport*allowVert:		True
+Xscilab*helpShell*Viewport*allowHoriz:		False
+Xscilab*helpShell*Viewport*forceBars:		True
+Xscilab*helpShell*Viewport.preferredPaneSize:	160
+Xscilab*helpShell*Viewport.vertical.width:	15
+Xscilab*helpShell*List*font:		*-fixed-medium-r-*-*-13-*-*-*-*-*-iso8859-*
+Xscilab*helpShell*List*verticalList:	True
+Xscilab*helpShell*List*height:		150
+Xscilab*helpShell*Grip*height:		5
+Xscilab*helpShell*Grip*width:		5
+Xscilab*helpShell*Label.borderWidth:		0
+Xscilab*helpShell*Label.internalWidth:		0
+Xscilab*helpShell*Text*Label.internalWidth:	1
+Xscilab*helpShell*Label.resize:			True
+Xscilab*helpShell*Label.resizable:		True
+Xscilab*helpShell.title:		Scilab Help Panel
+Xscilab*helpShell.translations:#override\n\
+	<Message>WM_PROTOCOLS:	help-done()\n
+Xscilab*helpShell.allowShellResize:		False
+Xscilab*helpShell.helpForm*Text*borderWidth:	1
+Xscilab*helpShell.helpForm*Label*resizable:	True
+Xscilab*helpShell.helpForm*helpLabel.borderWidth:	0
+Xscilab*helpShell.helpForm*helpViewport.fromVert:	helpLabel
+Xscilab*helpShell.helpForm*helpViewport.width:	650
+Xscilab*helpShell.helpForm*helpViewport.height:	150
+Xscilab*helpShell.helpForm*helpViewport.left:	chainLeft
+Xscilab*helpShell.helpForm*helpViewport.right:	chainLeft
+Xscilab*helpShell.helpForm*helpViewport1.fromVert:	helpViewport
+Xscilab*helpShell.helpForm*helpViewport1.width:	650
+Xscilab*helpShell.helpForm*helpViewport1.height:	50
+Xscilab*helpShell.helpForm*helpViewport1.left:	chainLeft
+Xscilab*helpShell.helpForm*helpViewport1.right:	chainLeft
+Xscilab*helpShell.helpForm*helpList.font:*-fixed-medium-r-*-*-13-*-*-*-*-*-iso8859-*
+Xscilab*helpShell.helpForm*helpList.verticalList:		true
+Xscilab*helpShell.helpForm*helpList.defaultColumns:	1
+Xscilab*helpShell.helpForm*helpList.forceColumns:		true
+Xscilab*helpShell.helpForm*helpList.maxSelectable: 	1
+Xscilab*helpShell.helpForm*helpList.height:		150
+Xscilab*helpShell.helpForm*helpList.width:		600
+Xscilab*helpShell.helpForm*helpList1.font:*-fixed-medium-r-*-*-13-*-*-*-*-*-iso8859-*
+Xscilab*helpShell.helpForm*helpList1.verticalList:		true
+Xscilab*helpShell.helpForm*helpList1.defaultColumns:	1
+Xscilab*helpShell.helpForm*helpList1.forceColumns:		true
+Xscilab*helpShell.helpForm*helpList1.maxSelectable: 	1
+Xscilab*helpShell.helpForm*helpList1.height:		150
+Xscilab*helpShell.helpForm*helpList1.width:		600
+Xscilab*helpShell.helpForm*helpDoneButton.label:		Done
+Xscilab*helpShell.helpForm*helpDoneButton.fromVert:	helpViewport1
+Xscilab*helpShell.helpForm*helpDoneButton.translations:#override\n\
+	<BtnDown>,<BtnUp>:	help-done() \n
+Xscilab*helpShell.helpForm.aproposLabel.label:		Apropos:
+Xscilab*helpShell.helpForm.aproposLabel.fromVert:	helpDoneButton
+Xscilab*helpShell.helpForm.aproposText.width:		410
+Xscilab*helpShell.helpForm.aproposText.height:		20
+Xscilab*helpShell.helpForm.aproposText.fromHoriz:	aproposLabel
+Xscilab*helpShell.helpForm.aproposText.fromVert:	helpDoneButton
+Xscilab*helpShell.helpForm.aproposText*editType: 	edit
+Xscilab*helpShell.helpForm.aproposText*translations:#override\n\
+	<Enter>:	display-caret(True) \n\
+	<Leave>:	display-caret(False) \n\
+	<Key>Return:	query-apropos() \n
+!---------------------------------------------------------------
+! Scilab x_message windows 
+!---------------------------------------------------------------
+Xscilab*messageShell.x:147
+Xscilab*messageShell.y:20
+Xscilab*messageShell.messageDialog*messageButton.label: OK
+Xscilab*messageShell.messageDialog*font:*-fixed-medium-r-*-*-13-*-*-*-*-*-iso8859-*
+!---------------------------------------------------------------
+! Scilab x_choose windows 
+!---------------------------------------------------------------
+Xscilab*chooseShell.x:147
+Xscilab*chooseShell.y:20
+Xscilab*chooseShell.title:					Scilab Choose Panel
+Xscilab*chooseShell.maxHeight:600
+Xscilab*chooseShell.maxWidth:600
+Xscilab*chooseShell.allowShellResize:				True
+Xscilab*chooseShell.chooseForm.chooseLabel.borderWidth:		0
+Xscilab*chooseShell.chooseForm.chooseLabel.internalWidth:	3
+Xscilab*chooseShell.chooseForm.chooseLabel.resize:		True
+Xscilab*chooseShell.chooseForm.chooseLabel.resizable:		True
+Xscilab*chooseShell.chooseForm.chooseViewport.allowVert:	True
+Xscilab*chooseShell.chooseForm.chooseViewport.allowHoriz:	True
+Xscilab*chooseShell.chooseForm.chooseViewport.forceBars:	False
+Xscilab*chooseShell.chooseForm.chooseViewport.vertical.width:	10
+Xscilab*chooseShell.chooseForm.chooseViewport.horizontal.height:10
+Xscilab*chooseShell.chooseForm.chooseViewport.fromVert:		chooseLabel
+Xscilab*chooseShell.chooseForm.chooseViewport.left:		chainLeft
+Xscilab*chooseShell.chooseForm.chooseViewport.right:		chainLeft
+Xscilab*chooseShell.chooseForm*chooseList.font:*-fixed-medium-r-*-*-13-*-*-*-*-*-iso8859-*
+Xscilab*chooseShell.chooseForm*chooseList.internalWidth:	15
+Xscilab*chooseShell.chooseForm*chooseList.internalHeight:	10
+Xscilab*chooseShell.chooseForm*chooseList.verticalList:		true
+Xscilab*chooseShell.chooseForm*chooseList.defaultColumns:	1
+Xscilab*chooseShell.chooseForm*chooseList.forceColumns:		true
+Xscilab*chooseShell.chooseForm*chooseList.maxSelectable: 	1
+Xscilab*chooseShell.chooseForm.cancelCommand.fromVert:		chooseViewport
+!---------------------------------------------------------------
+! Scilab x_mdialog windows 
+!---------------------------------------------------------------
+Xscilab*mdialogShell.x:147
+Xscilab*mdialogShell.y:20
+Xscilab*mdialogShell.title:				Scilab Mdialog Panel
+Xscilab*mdialogShell.maxHeight:800
+Xscilab*mdialogShell.maxWidth:800
+Xscilab*mdialogShell.allowShellResize:				True
+Xscilab*mdialogShell.mdForm.mdgLabel.borderWidth:		0
+Xscilab*mdialogShell.mdForm.mdgLabel.internalWidth:		3
+Xscilab*mdialogShell.mdForm.mdlForm.borderWidth:		0
+Xscilab*mdialogShell.mdForm.mdlForm.orientation:		horizontal
+Xscilab*mdialogShell.mdForm.mdlForm.mdlLabel.borderWidth:	0
+!Xscilab*mdialogShell.mdForm.mdlForm.mdlLabel.right:		chainLeft
+!Xscilab*mdialogShell.mdForm.mdlForm.mdlLabel.left:		chainLeft
+Xscilab*mdialogShell.mdForm.mdlForm.mdlLabel.top:		chainTop
+Xscilab*mdialogShell.mdForm.mdlForm.mdlLabel.bottom:		chainTop
+Xscilab*mdialogShell.mdForm.mdlForm.mdlAscii.horizDistance:	4
+!Xscilab*mdialogShell.mdForm.mdlForm.mdlAscii.right:		chainRight
+!Xscilab*mdialogShell.mdForm.mdlForm.mdlAscii.left:		chainRight
+Xscilab*mdialogShell.mdForm.mdlForm.mdlAscii.resizable: 	True
+Xscilab*mdialogShell.mdForm.mdlForm.mdlAscii.resize: 		True
+Xscilab*mdialogShell.mdForm.mdlForm.mdlAscii*editType: 		edit
+Xscilab*mdialogShell.mdForm.mdlForm.mdlAscii.scrollVertical: 	whenNeeded
+Xscilab*mdialogShell.mdForm.mdlForm.mdlAscii.scrollHorizontal: 	whenNeeded
+Xscilab*mdialogShell.mdForm.mdlForm.mdlAscii*Scrollbar.thickness: 5
+Xscilab*mdialogShell.mdForm.mdlForm.mdlAscii.bottomMargin:	7
+Xscilab*mdialogShell.mdForm.mdlForm.mdlAscii.leftMargin:	7
+Xscilab*mdialogShell.mdForm.mdlForm.mdlAscii.font:*-fixed-medium-r-*-*-13-*-*-*-*-*-iso8859-*
+Xscilab*mdialogShell.mdForm.lForm.borderWidth:			0
+Xscilab*mdialogShell.mdForm.lForm.okCommand.label:		Ok
+Xscilab*mdialogShell.mdForm.lForm.cancelCommand.fromHoriz:	okCommand
+Xscilab*mdialogShell.mdForm.lForm.cancelCommand.label:		Cancel
+!---------------------------------------------------------------
+! Scilab x_dialog windows 
+!---------------------------------------------------------------
+Xscilab*dialogShell.x:147
+Xscilab*dialogShell.y:20
+Xscilab*dialogShell.maxHeight:800
+Xscilab*dialogShell.maxWidth:800
+Xscilab*dialogShell.title:					Scilab Dialog Panel
+Xscilab*dialogShell.allowShellResize:				True
+Xscilab*dialogShell.dialogForm.dialogLabel.borderWidth:		0
+Xscilab*dialogShell.dialogForm.dialogLabel.internalWidth:	
+Xscilab*dialogShell.dialogForm.dialogLabel.resize:		True
+Xscilab*dialogShell.dialogForm.dialogLabel.resizable:		True
+Xscilab*dialogShell.dialogForm.dialogAscii.bottomMargin:	7
+Xscilab*dialogShell.dialogForm.dialogAscii.leftMargin:		7
+Xscilab*dialogShell.dialogForm.dialogAscii.*Scrollbar.thickness: 5
+Xscilab*dialogShell.dialogForm.dialogAscii.fromVert:		dialogLabel
+Xscilab*dialogShell.dialogForm.dialogAscii.resizable: 		True
+Xscilab*dialogShell.dialogForm.dialogAscii*editType: 		edit
+Xscilab*dialogShell.dialogForm.dialogAscii.scrollVertical: 	whenNeeded
+Xscilab*dialogShell.dialogForm.dialogAscii.scrollHorizontal: 	whenNeeded
+Xscilab*dialogShell.dialogForm.dialogAscii.left: 		chainLeft
+Xscilab*dialogShell.dialogForm.dialogAscii.right: 		chainRight
+Xscilab*dialogShell.dialogForm.dialogAscii.font:*-fixed-medium-r-*-*-13-*-*-*-*-*-iso8859-*
+Xscilab*dialogShell.dialogForm.dialogCommand.borderWidth:	0
+Xscilab*dialogShell.dialogForm.dialogCommand.fromVert:		dialogAscii
+Xscilab*dialogShell.dialogForm.dialogCommand.cancelCommand.fromHoriz:	okCommand
+!---------------------------------------------------------------
+! Scilab Graphic windows 
+!---------------------------------------------------------------
+Xscilab*scigForm.showGrip:False
+Xscilab*scigForm.min:20
+Xscilab*scigForm.Clear.Label:Clear 
+Xscilab*scigForm.Print.label:Print
+Xscilab*scigForm.Print.fromHoriz:Clear
+Xscilab*scigraphic.width:600
+Xscilab*scigraphic.height:400
+Xscilab*scigForm.scigraphic.fromVert:Clear
+!---------------------------------------------------------------
+! Colors
+! Resources for color displays should use "Xscilab*color".
+! For grayscale displays, use "Xscilab*gray".
+!---------------------------------------------------------------
+Xscilab.color.borderWidth:0
+Xscilab.color.internalWidth:0
+Xscilab.color.background:lightblue
+Xscilab.color*scigraphic.background:white
+Xscilab.color*scigraphic.foreground:black
+Xscilab.color.vpane.messageWindow.background:lightblue
+Xscilab.color.vpane.Box.background:lightblue
+Xscilab.color.vpane.Box.Form.background:blue
+Xscilab.color.vpane.Box.Form.Command.background:yellow
+Xscilab.color.vpane*Command.background:yellow
+Xscilab.color.vpane.Box.Command.background:yellow
+Xscilab.color*Transient*Form*Command.background:yellow
+Xscilab.color*Form.background:lightblue
+Xscilab.color*Form.Command.background:yellow
+Xscilab.color*Label.background:lightblue
+Xscilab.color*Label.foreground:black
+Xscilab.color*Command.background:yellow
+Xscilab.color*Scrollbar.background:green
+Xscilab.gray*scigraphic.background:white
+Xscilab.gray*scigraphic.foreground:black
+Xscilab.gray.vpane.messageWindow.background:gray10
+Xscilab.gray.vpane.Box.background:gray10
+Xscilab.gray.vpane.Box.Form.background:gray20
+Xscilab.gray.vpane.Box.Form.Command.background:gray5
+Xscilab.gray.vpane*Command.background:gray5
+Xscilab.gray.vpane.Box.Command.background:gray5
+Xscilab.gray*Transient*Form*Command.background:gray5
+Xscilab.gray*Form.background:gray10
+Xscilab.gray*Form.Command.background:gray5
+Xscilab.gray*Label.background:gray10
+Xscilab.gray*Label.foreground:black
+Xscilab.gray*Command.background:gray5 
+Xscilab.gray*Scrollbar.background:gray8
+
+
+
+
+
+

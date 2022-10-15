@@ -1,0 +1,29 @@
+.TH WaitMsg 1 "March 1997" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+WaitMsg - waits for a message
+.SH CALLING SEQUENCE
+.nf
+[type,msg] = WaitMsg(appli)
+.fi
+.SH PARAMETERS
+.TP 6
+appli
+: string, name of an application
+.TP 5
+type
+: string
+.TP 4
+msg
+: string
+.SH DESCRIPTION
+\fVWaitMsg\fR waits for a message sent by another application.
+As long as any message has not been sent, \fVWaitMsg\fR waits.
+This is a way to send and get messages in a synchronous way.
+The type of the message is \fVstring\fR and the message itself is
+\fVmsg\fR.
+
+By default the name of the first application (the one executed by GeCi) is
+"XGeCI".
+.SH SEE ALSO
+GetMsg, SendMsg

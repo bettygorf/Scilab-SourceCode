@@ -1,0 +1,52 @@
+.TH param3d1 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+param3d1 - 3D plot of curves
+.SH CALLING SEQUENCE
+.nf
+param3d1(x,y,z,[theta,alpha,leg,flag,ebox])
+param3d1(x,y,list(z,colors),[theta,alpha,leg,flag,ebox])
+.fi
+.SH PARAMETERS
+.TP 13
+x,y,z
+: matrices of the same size (nl,nc). Each column i of the 
+matrices corresponds to the coordinates of the ith curve.
+
+You can give a specific 
+color for each curve by using \fVlist(z,colors)\fR instead of \fVz\fR,
+where \fVcolors\fR is a vector of size \fVnc\fR. If \fVcolor(i)\fR is negative
+the curve is plotted using the mark with id 
+\fVabs(style(i))+1\fR; if \fVstyle(i)\fR is strictly positive, a plain line 
+with color id \fVstyle(i)\fR or a dashed line with dash id \fVstyle(i)\fR is 
+used. Use \fVxset()\fR to see the mark and color ids.
+.TP
+theta,alpha
+: real values giving in degree the  spherical coordinates of the 
+observation point.
+.TP
+leg
+: string defining the captions for each axis with @ as  a  field  separator,
+for  example "X@Y@Z".
+.TP
+flag=[type,box]
+: \fVtype\fR and \fVbox\fR have the same meaning as in \fVplot3d\fR.
+.TP
+ebox
+: used when \fVtype\fR in \fVflag\fR is 1. It specifies the boundaries
+of the plot as the vector \fV[xmin,xmax,ymin,ymax,zmin,zmax]\fR.
+.SH DESCRIPTION 
+\fVparam3d1\fR is used to plot 3D curves defined by their coordinates \fVx\fR,
+\fVy\fR and \fVz\fR.
+
+Enter the command \fVparam3d1()\fR to see a demo.
+.SH EXAMPLE 
+.nf
+t=[0:0.1:5*%pi]';
+param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],..
+	 list([t/10,sin(t)],[3,2]),35,45,"X@Y@Z",[2,3])
+.fi
+.SH SEE ALSO
+param3d, plot3d, xset
+.SH AUTHOR
+J.Ph.C.

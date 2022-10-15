@@ -1,0 +1,32 @@
+.TH splin G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+splin - spline function
+.SH CALLING SEQUENCE
+.nf
+splin(x,f [,'periodic'])
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real vector
+.TP
+f 
+: real vector of same size as \fVx\fR
+.TP
+'periodic' 
+: string flag (a periodic spline is looked for)
+.SH DESCRIPTION
+Given values \fVfi\fR of a function f at given points \fVxi\fR
+(\fVfi=f(xi)\fR) this primitive computes a third order spline
+function S which interpolates the function \fVf\fR.
+The components of \fVx\fR must be in increasing order.
+For a periodic spline \fVf(1)\fR must equal \fVf(n)\fR;
+S is defined through the triple \fV(x,f,d)\fR where \fVd=spline(x,f)\fR
+is the vector of the estimated derivatives of S at \fVxi\fR
+(\fVfi=S(xi),di=S'(xi)\fR).
+This function should be used in conjunction with \fVinterp\fR.
+.SH SEE ALSO
+interp, smooth
+
+

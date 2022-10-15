@@ -1,0 +1,15 @@
+.TH xbasr 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+xbasr - redraw a graphics window
+.SH CALLING SEQUENCE
+.nf
+xbasr(win_num)
+.fi
+.SH DESCRIPTION
+\fVxbasr\fR is used to redraw the content of the graphics
+window with id \fVwin_num\fR. It works only with the driver \fV"Rec"\fR.
+.SH SEE ALSO
+driver, replot, xtape
+.SH AUTHOR
+J.Ph.C.

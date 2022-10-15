@@ -1,0 +1,26 @@
+/**/include ../Path.incl
+#include "../Imake.incl"
+
+SBIN=$(SCIDIR)/bin
+IM=../Imake.incl ../Path.incl
+
+PROGRAMS= $(SBIN)/scilab $(SBIN)/xless $(SBIN)/Blatexpr $(SBIN)/Blatexpr2 \
+	$(SBIN)/Blatexprs $(SBIN)/Blpr $(SBIN)/BEpsf
+
+AllTarget($(PROGRAMS))
+
+ScilabScriptsTarget($(SBIN)/scilab,scilab.g,$(IM))
+
+ScilabScriptsTarget($(SBIN)/xless,xless.g,$(IM))
+
+ScilabScriptsTarget($(SBIN)/Blatexpr,Blatexpr.g,$(IM))
+
+ScilabScriptsTarget($(SBIN)/BEpsf,BEpsf.g,$(IM))
+
+ScilabScriptsTarget($(SBIN)/Blatexpr2,Blatexpr2.g,$(IM))
+
+ScilabScriptsTarget($(SBIN)/Blatexprs,Blatexprs.g,$(IM))
+
+ScilabScriptsTarget($(SBIN)/Blpr,Blpr.g,$(IM))
+
+DependTarget()

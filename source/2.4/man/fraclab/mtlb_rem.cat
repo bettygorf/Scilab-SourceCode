@@ -1,0 +1,21 @@
+
+mtlb_rem(2)                    Scilab Function                    mtlb_rem(2)
+NAME
+  mtlb_rem - Remainder after division
+
+  Author: Paulo Goncalves
+
+SYNTAX
+  leftover = mtlb_rem(x,q)
+
+PARAMETERS
+
+  x         : Real number
+
+  q         : Real number , Divider of x
+
+  leftover  : Real number , Remainder of the division of x by q
+
+DESCRIPTION
+  Remainder after division. MTLB_REM(x,y) is x - y.*int(x./y) if y ~= 0. The
+  input x and y must be real arrays of the same size, or real scalars.

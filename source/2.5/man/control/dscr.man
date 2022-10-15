@@ -1,0 +1,42 @@
+.TH dscr 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+dscr -  discretization of linear system
+.SH CALLING SEQUENCE
+.nf
+[sld [,r]]=dscr(sl,dt [,m])
+.fi
+.SH PARAMETERS
+.TP 10
+sl
+: \fVsyslin\fR list containing \fV[A,B,C,D]\fR.
+.TP
+dt
+: real number, sampling period
+.TP
+m 
+: covariance of the input noise (continuous time)(default value=0)
+.TP 
+r
+: covariance of the output noise (discrete time) given if \fVm\fR is 
+given as input
+.TP
+sld
+: sampled (discrete-time) linear system, \fVsyslin\fR list
+.SH DESCRIPTION
+Discretization of linear system. \fVsl\fR is a continuous-time system:
+.LP
+\fVdx/dt=A*x+B*u (+ noise)\fR.
+.LP
+\fVsld\fR is the discrete-time system obtained by 
+sampling \fVsl\fR with the sampling period \fVdt\fR.
+.SH EXAMPLE
+.nf
+s=poly(0,'s');
+Sys=syslin('c',[1,1/(s+1);2*s/(s^2+2),1/s])
+ss2tf(dscr(tf2ss(Sys),0.1))
+.fi
+.SH SEE ALSO
+syslin, flts, dsimul
+
+

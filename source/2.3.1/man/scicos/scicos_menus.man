@@ -1,0 +1,335 @@
+.TH scicos_menus  5 "Janvier 1996" "Scilab Group" "Scicos GUI"
+.so ../sci.an
+.SH NAME
+scicos_menu - Scicos menus description
+.SH DESCRIPTION
+Here is a list of operations available in Scicos:
+.TP 5
+Main menu
+: 
+.RS
+.TP 10
+Help 
+: To get help on an object or menu buttons, click first on Help
+button and then on the selected object or menu item.
+.TP
+Edit..
+: Click on this button to open the diagram edition menu.
+.TP
+Simulate..
+: Click on this  button to open the compilation/execution menu.
+.TP
+File..
+: Click on this button to open the file management menu.
+.TP
+Block..
+: Click on this button to open the block management menu.
+.TP
+Pal editor..
+: Click on this button to open the palette edition window and palette management menu.
+.TP
+View 
+: To shift the diagram to left, right, up or down, click first on the
+View button, then on a point in the diagram where you want to appear
+in the middle of the graphics window.
+.TP
+Exit 
+: Click on the Exit button to leave Scicos and return to Scilab
+session. Save your diagram before leaving Scicos or it will be lost.
+.RE
+.TP
+Diagram edition menu.
+: This menu allows to edit diagram and palettes
+.RS
+.TP 10
+Help 
+: To get help on an object or menu buttons,
+         click first on Help button and then on 
+  the selected object or menu item.
+.TP
+Window
+: opens up a dialogue where user may change the Scicos edition
+window size. Use this instead of standard window manager way.
+.TP
+Palettes
+: opens up a selection dialogue where user may select a desired
+palette among all defined palettes.
+.TP
+Context
+: opens up a dialogue where user may enter and modify Scilab
+instructions to be executed  when diagram is
+loaded (\fVEdit../Load\fR menu) or evaluated (\fVSimulate../Eval\fR
+menu) (of course instructions are also evaluated when dialogue
+returns).These instructions may be used to define Scilab variables
+whose names are used in the block parameters definition expressions.
+.TP
+Move 
+: To move a block in main Scicos window, click first on the Move
+button, then click on the selected block, drag the mouse to the
+desired block position and click again to fix the position.
+.TP
+Copy : 
+To copy a block in main Scicos window, click first on the Copy button,
+then click left on the to-be-copied block (in Scicos window or in a
+palette) , and finally click where you want the copy to be placed in
+Scicos window.
+
+To copy a region in main Scicos window, click first on the Copy
+button, then click right on a corner of the desired region (in Scicos
+window or in a palette) , drag to select the desired region, click to
+fix the selected region and finally click where you want the copy to
+be placed in Scicos window. If source diagram is a big region,
+selection may take a while.
+.TP
+Align 
+: To obtain nice diagrams, you can align ports of different blocks,
+vertically and horizontally.  Click first on the Align button, then on
+the first port and finally on the second port.  The block
+corresponding to the second port is moved. Connected blocks cannot
+be aligned.
+.TP
+AddNew
+: This button is exists in Palette edition mode.  To add a newly
+defined block to the current palette click first on this button, a
+dialogue box will pop up asking for the name of the GUI function
+associated with the block. If this function is not already loaded it
+is searched in the current directory. The user may then click at the
+desired position of the block in the palette.
+.TP
+Link 
+: This button is defined only in diagram edition mode.  To connect an
+output port to an input port, click first on the Link button, then on
+the intermediate points, if necessary, and finally on the input port.
+Scicos tries to draw horizontal and vertical lines to form links.
+
+To split a link, click first on the Link button, then on the link
+where the split should be placed, and finally on an input port.  Only
+one link can go from and to a port.  Link color can be changed
+directly by clicking on the link.
+.TP
+Delete 
+: To delete a block or a link, click first on the Delete button, then
+click left on the selected object.  If you delete a block all links
+connected to it are deleted as well.
+
+To delete a region in main Scicos window click first on the Delete
+button, then click right on a corner of the desired region (in Scicos
+window or in a palette), drag to select de desired region, click to
+fix the selected region. If source diagram is a big region,
+selection may take a while.
+.TP
+Flip 
+: To reverse the positions of the (regular) inputs and outputs of a
+block placed on its sides, click on the Flip button first and then on
+the selected block. This does not affect the order, nor the position
+of the input and output event ports which are numbered from left to
+right. A connected block cannot be flipped.
+.TP
+Save
+: See \fVSave\fR button in \fVFile..\fR menu below.
+.TP
+Undo 
+: Click on the Undo button to undo the last edit operation. 
+.TP
+Replot
+: Scicos window stores the complete history of the editing
+session. Click on the Replot button to erase the history and replot
+the diagram or palette. Replot diagram before printing or exporting
+Scicos diagrams.
+.TP
+View 
+: See the description of \fVView\fR in the main menu above.
+.TP
+Calc
+: When you click on this button you switch Scilab to 
+the pause mode (see the help on pause).
+In the Scilab main window and you may enter Scilab instructions
+to compute whatever you want.
+to go back to Scicos you need to enter ""return"" or
+"[...]=return(...)" Scilab instruction.
+'
+If you use "[...]=return(...)" Scilab instruction take care
+not to modify Scicos variables such as "scs_m","scs_gc",
+"menus","datam",...
+'
+If you have modified Scicos graphic window you may restore it 
+using the Scicos "Replot" menu.
+.TP
+Back 
+: go back to the main menu.
+.RE
+.TP 
+Simulation menu
+: 
+.RS
+.TP 10
+Help
+: See Help button above.
+.TP
+Setup
+: In the main Scicos window, clicking on the Setup button invokes a
+dialogue box that allows you to change integration parameters: absolute
+and relative error tolerances for the ode solver, the time tolerance
+(the smallest time interval for which the ode solver is used to update
+continuous states), and the maximum time increase realized by a single
+call to the ode solver.
+
+.TP
+Compile
+: This button need never be used since compilation is performed
+automatically, if necessary, before the beginning of every simulation
+(\fVRun\fR button).
+  
+Normally, a new compilation is not needed if only system parameters
+and internal states are modified.  In some cases however
+modifications are not correctly updated and a manual compilation may
+be needed before a Restart or a Continue. Click on this button to
+compile the block diagram.  Please report if you encounter such a
+case.
+.TP
+Context
+: See \fVContext\fR definition below.
+.TP
+Eval
+: blocks dialogues answers can be defined using  Scilab
+expressions. These expressions  are
+evaluated immediately and they are also stored as character
+strings. Click on the Eval button to have them re-evaluated according
+to the new values of underlying Scilab variables defined by context
+for example.
+.TP
+Run
+: To start the simulation.  If the system has already been simulated,
+a dialogue box appears where you can choose to Continue, Restart or End
+the simulation. You may interrupt the simulation by clicking on the
+"stop" button, change any of the block parameters and continue or
+restart the simulation with the new values.
+.TP
+Save
+: See \fVSave\fR button in \fVFile..\fR menu below.
+.TP
+Calc
+: See \fVCalc\fR button in \fVEdit..\fR menu above.
+.TP
+Back 
+: go back to the main menu.
+.RE
+.TP 
+File menu
+: 
+.RS  
+.TP 10
+Help
+: See \fVHelp\fR button in main menu above.
+.TP
+New
+: Clicking on the New button creates an empty diagram in the
+main Scicos window. If the previous content of the   
+window is not saved, it will be lost.
+.TP 
+Purge
+: Suppress deleted blocks out of Scicos data structure. This menu
+changes block indexing and implies compilation of the diagram before
+compilation.
+.TP 
+Rename
+: Click on this button to change the diagram or palette's name. A
+dialogue window will pop up.
+.TP 
+Newblk
+: Click on this button to save the Super Block as a new Scicos
+block. A Scilab function is generated and saved in
+<window_name>.sci file in the desired directory. <window_name> is the name
+of the Super Block appearing on top of the window.  A dialogue allows
+choosing the directory. This block may be added  to a
+palette using \fVPal editor../Edit/AddNew\fR menu.
+.TP
+Save
+: Saves the block diagram in the current binary file selected by a previous
+call to \fVSaveAs\fR or \fVLoad\fR button. If no current binary file,
+diagram is saved in the current directory as \fV<window_name>.cos\fR.
+.TP
+Save As
+: Saves the block diagram in a binary file. A file selection dialogue
+will pop up.
+.TP
+FSave 
+: Save the diagram in a formatted ascii file. A dialogue box
+allows choosing the file name which must have a .cosf extension.
+   
+Formatted save is slower than regular save but has the advantage that
+the generated file is system independent (usefull for exchanging data
+on different computers.
+     
+.TP
+Load : 
+Loads an ascii or binary file containing a saved block diagram.
+A file selection dialogue will pop up.
+.TP
+Back 
+: Go back to the main menu.
+.RE 
+.TP
+Block menu
+: 
+.RS
+.TP 10 
+Help 
+: See \fVHelp\fR button in main menu above.
+.TP
+Resize
+: 
+To change the size of a block , click first on this button,
+click next on the desired block. A dialogue appears that allows 
+you to change the width and/or height of the block shape.
+.TP
+Icon 
+: To change the icon of a block drawn by \fVstandard_draw\fR,
+click first on this button, click next on the desired block. A dialogue
+appears that allows you to enter Scilab instructions used to draw the
+icon. These instructions may refer to \fVorig\fR and \fVsz\fR
+variables and more generaly to the block data structure named \fVo\fR
+in this context (see \fVscicos_block\fR).
+If Icon description selects colors for drawing, it is necessary to get
+it through \fVscs_color\fR function to have \fVColor\fR
+button work properly. 
+.TP
+Color
+: To change the background  of a block drawn by \fVstandard_draw\fR, click first on this button, click next on the selected
+block. A color palette appears where user may select the block
+background color.
+.TP
+Label
+: To change or define the blocks label, click first on this button, click next
+on the desired block. A dialogue appears that allows you to enter 
+the desired label. Labels may be used within blocks computational
+functions as an identification (see \fVgetlabel\fR function).
+.TP
+Back
+: Go back to the main menu.  
+.RE
+.TP
+Pal editor menu
+: 
+The \fVPal editor..\fR menu is similar to the main Scicos
+menu. Clicking on this button opens a new Scicos window in which
+palettes can be edited. The \fVEdit..\fR, \fVFile..\fR, \fVBlock..\fR,
+\fVView\fR, and \fVExit\fR menus can be used to create, save, load and
+modify palettes. Palettes have same data structure as diagrams and
+menus act almost exactly the same way. The only differences are:
+.RS
+.TP
+Addnew
+: this button in \fVEdit..\fR menu allows user to add a new block in a
+palette. A dialogue box will appear where user may input the name of the
+interfacing function. If the required interfacing function is not
+already present in Scilab environment, Scicos opens up a file selection
+window to get the file containing the interfacing function.
+.TP
+Save and SaveAs
+: When a palette is saved, if necessary, Scicos proposes to add lines
+to the file \fV~/.scilab\fR which is the user Scilab startup file.
+.RE
+.SH SEE ALSO
+scicos
+

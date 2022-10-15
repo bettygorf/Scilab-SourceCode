@@ -1,0 +1,46 @@
+.TH yulewalk 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+yulewalk -  least-square filter design
+.SH CALLING SEQUENCE
+.nf
+Hz = yulewalk(N,frq,mag) 
+.fi
+.SH PARAMETERS
+.TP 10
+N
+: integer (order of desired filter)
+.TP
+frq
+: real row vector (non-decreasing order), frequencies.
+.TP
+mag
+: non negative real row vector (same size as frq), desired magnitudes.
+.TP
+Hz
+: filter \fVB(z)/A(z)\fR
+.SH DESCRIPTION
+Hz = yulewalk(N,frq,mag) finds the N-th order iir filter
+.nf
+                  n-1         n-2            
+      B(z)   b(1)z     + b(2)z    + .... + b(n)
+H(z)= ---- = ---------------------------------
+                n-1       n-2
+      A(z)    z   + a(1)z    + .... + a(n)
+.fi
+which matches the magnitude frequency response given by vectors frq and mag.
+Vectors frq and mag specify the frequency and magnitude of the desired
+frequency response. The frequencies in frq must be between 0.0 and 1.0,
+with 1.0 corresponding to half the sample rate. They must be in
+increasing order and start with 0.0 and end with 1.0. 
+.SH EXAMPLE
+.nf
+f=[0,0.4,0.4,0.6,0.6,1];H=[0,0,1,1,0,0];Hz=yulewalk(8,f,H);
+fs=1000;fhz = f*fs/2;  
+xbasc(0);xset('window',0);plot2d(fhz',H');
+xtitle('Desired Frequency Response (Magnitude)')
+[frq,repf]=repfreq(Hz,0:0.001:0.5);
+xbasc(1);xset('window',1);plot2d(fs*frq',abs(repf'));
+xtitle('Obtained Frequency Response (Magnitude)')
+.fi
+

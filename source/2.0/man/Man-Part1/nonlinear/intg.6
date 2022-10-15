@@ -1,0 +1,44 @@
+.TH intg G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+intg - definite integral
+.SH CALLING SEQUENCE
+.nf
+[v,err]=intg(a,b,f [,ea [,er])
+.fi
+.SH PARAMETERS
+.TP 10
+a,b 
+: real numbers
+.TP
+f
+: external (function or list or string)
+.TP
+ea, er 
+: real numbers
+.TP 10
+ea 
+: absolute error required on the result
+.TP
+er 
+: relative error required on the result
+.TP
+err 
+: estimated absolute error on the result.
+.SH DESCRIPTION
+\fVintg(a,b,f)\fR evaluates the definite integral  from \fVa\fR to \fVb\fR of \fVf(t)dt\fR.
+\fVf\fR is an external :
+.LP
+If \fVf\fR is function its definition must be as follows
+\fV y = f(t) \fR
+.LP
+If \fVf\fR is a list the list must be as follows:
+\fV list(f,x1,x2,...)\fR where \fVf\fR is a function with calling
+sequence \fVf(t,x1,x2,...)\fR.
+.LP
+If \fVf\fR is a string it refers to a the name
+of a Fortran subroutine (see source code of \fVfintg.f\fR)
+.SH SEE ALSO
+intc, intl
+
+

@@ -1,0 +1,39 @@
+.TH geom3d 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+geom3d - projection from 3D on 2D after a 3D plot
+.SH CALLING SEQUENCE
+.nf
+[x,y]=geom3d(x1,y1,z1)
+.fi
+.SH PARAMETERS 
+.TP 10
+x1,y1,z1
+: real vectors of the same size (points in 3D).
+.TP
+x,y 
+: real vectors of the same size as \fVx1\fR, \fVy1\fR and \fVz1\fR.
+.SH DESCRIPTION
+After having used a 3D plot function such as \fVplot3d\fR, \fVplot3d1\fR
+or \fVparam3d\fR, \fVgeom3d\fR gives the mapping
+between a point in 3D space \fV(x1(i),y1(i),z1(i))\fR
+and the corresponding point \fV(x(i),y(i))\fR in the projected 2D plan.
+Then all the 2D graphics primitives working on \fV(x,y)\fR can be used 
+for superposition on the 3D plot.
+.SH EXAMPLE
+.nf
+deff("[z]=surf(x,y)","z=sin(x)*cos(y)")
+t=%pi*(-10:10)/10;
+// 3D plot of the surface
+fplot3d(t,t,surf,35,45,"X@Y@Z")
+// now (t,t,sin(t).*cos(t)) is a curve on the surface
+// which can be drawn using geom3d and xpoly
+[x,y]=geom3d(t,t,sin(t).*cos(t));
+xpoly(x,y,"lines")
+// adding a comment 
+[x,y]=geom3d([0,0],[0,0],[5,0]);
+xsegs(x,y)
+xstring(x(1),y(1),"point (0,0,0)")
+.fi
+.SH AUTHOR
+J.Ph.C.

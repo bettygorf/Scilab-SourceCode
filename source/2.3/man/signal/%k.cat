@@ -1,0 +1,32 @@
+
+%k(1)                          Scilab Function                          %k(1)
+NAME
+  %k - Jacobi's complete elliptic integral
+
+CALLING SEQUENCE
+  [K]=%k(m)
+
+PARAMETERS
+
+  m         : parameter of the elliptic integral 0<m<1 (m can be a vector)
+
+  K         : value of the elliptic integral from 0 to 1 on the real axis
+
+DESCRIPTION
+  Calculates Jacobi's complete elliptic integral of the first kind :
+
+  K = integral from 0 to 1 of [(1-t^2)(1-m*t^2)]**(-1/2)
+
+EXAMPLE
+  m=0.4;
+  %asn(1,m)
+  %k(m)
+
+REFERENCES
+  Abramowitz and Stegun page 598
+
+SEE ALSO
+  %asn
+
+AUTHOR
+  F.D.

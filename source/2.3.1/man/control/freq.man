@@ -1,0 +1,47 @@
+.TH FREQ G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+freq - frequency response
+.SH CALLING SEQUENCE
+.nf
+[x]=freq(A,B,C [,D],f)
+[x]=freq(NUM,DEN,f)
+.fi
+.SH PARAMETERS
+.TP 15
+A, B, C, D 
+:  real matrices of respective dimensions \fVnxn, nxp, mxn, mxp\fR.
+.TP
+NUM,DEN
+: polynomial matrices of dimension \fVmxp\fR
+.TP
+x
+: real or complex matrix
+.SH DESCRIPTION
+\fVx=freq(A,B,C [,D],f)\fR returns a real or complex \fVmxp*t\fR matrix
+such that:
+.LP
+\fVx(:,k*p:(k+1)*p)= C*inv(f(k)*eye-A)*B + D\fR.
+.LP
+Thus, for \fVf\fR taking values along the imaginary axis or
+on the unit circle \fVx\fR is the continuous or discrete time 
+frequency response of \fV(A,B,C,D)\fR. 
+
+.LP
+\fVx=freq(NUM,DEN,f)\fR returns a real or complex matrix \fVx\fR such
+that columns \fVk*(p-1)+1\fR to \fVk*p\fR of \fVx\fR contain the matrix  
+\fVNUM(f(k))./DEN(f(k))\fR
+.SH EXAMPLE
+.nf
+s=poly(0,'s');
+sys=(s+1)/(s^3-5*s+4)
+rep=freq(sys("num"),sys("den"),[0,0.9,1.1,2,3,10,20])
+[horner(sys,0),horner(sys,20)]
+//
+Sys=tf2ss(sys);
+[A,B,C,D]=abcd(Sys);
+freq(A,B,C,[0,0.9,1.1,2,3,10,20])
+.fi
+.SH SEE ALSO
+repfreq, horner
+

@@ -1,0 +1,26 @@
+
+polfact(1)                     Scilab Function                     polfact(1)
+NAME
+  polfact - minimal factors
+
+CALLING SEQUENCE
+  [f]=polfact(p)
+
+PARAMETERS
+
+  p    : polynomial
+
+  f    : vector [f0 f1 ... fn] such that p=prod(f)
+
+       f0
+         : constant
+
+       fi
+         : polynomial
+
+DESCRIPTION
+  f=polfact(p) returns the minimal factors of p i.e. f=[f0 f1 ... fn] such
+  that p=prod(f)
+
+SEE ALSO
+  lcm, cmndred, factors

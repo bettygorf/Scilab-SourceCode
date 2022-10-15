@@ -1,0 +1,43 @@
+.TH param3d 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+param3d - 3D plot of a curve
+.SH CALLING SEQUENCE
+.nf
+param3d(x,y,z,[theta,alpha,leg,flag,ebox])
+.fi
+.SH PARAMETERS
+.TP 15
+x,y,z
+: three vectors of the same size (points of the parametric curve).
+.TP
+theta,alpha
+: real values giving in degree the  spherical coordinates of the 
+observation point.
+.TP
+leg
+: string defining the captions for each axis with @ as  a  field  separator,
+for  example "X@Y@Z".
+.TP
+flag=[type,box]
+: \fVtype\fR and \fVbox\fR have the same meaning as in \fVplot3d\fR.
+.TP
+ebox
+: used when \fVtype\fR in \fVflag\fR is 1. It specifies the boundaries
+of the plot as the vector \fV[xmin,xmax,ymin,ymax,zmin,zmax]\fR.
+.SH DESCRIPTION 
+\fVparam3d\fR is used to plot a 3D curve defined by its coordinates \fVx\fR,
+\fVy\fR and \fVz\fR.
+
+Use \fVparam3d1\fR to do multiple plots.
+
+Enter the command \fVparam3d()\fR to see a demo.
+.SH EXAMPLE 
+.nf
+t=0:0.1:5*%pi;
+param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
+.fi
+.SH SEE ALSO
+param3d1, plot3d
+.SH AUTHOR
+J.Ph.C.

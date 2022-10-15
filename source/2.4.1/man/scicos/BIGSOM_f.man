@@ -1,0 +1,21 @@
+.TH BIGSOM_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+BIGSOM_f - Scicos addition block
+.SH DIALOGUE PARAMETERS
+.TP 
+Input signs
+: a vector \fVsgn\fR of weights (generaly +1 or -1). The number of
+input signs fix the number of input ports.
+.SH DESCRIPTION
+This block realize weighted sum of the input vectors. The output is vector  \fVk\fRth component is
+the sum of the \fVk\fRth components of each input ports weighted by \fVsgn(k)\fR.
+.SH SEE ALSO
+GAIN_f, SOM_f
+
+
+
+
+
+
+

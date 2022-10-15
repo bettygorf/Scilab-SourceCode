@@ -1,0 +1,116 @@
+ 
+clear;lines(0);
+ 
+s='1 1.3'
+ s  =
+ 
+ 1 1.3   
+ 
+[n,a,b]=msscanf(s,"%i %e")
+ b  =
+ 
+    1.3  
+ a  =
+ 
+    1.  
+ n  =
+ 
+    2.  
+ 
+msscanf(s,"%i %e")
+ ans  =
+ 
+ 
+       ans(1)
+ 
+    1.  
+ 
+       ans(2)
+ 
+    1.3  
+ 
+ 
+ 
+msscanf(' 12\n','%c%c%c%c') //scan characters
+ ans  =
+ 
+ 
+       ans(1)
+ 
+     
+ 
+       ans(2)
+ 
+ 1   
+ 
+       ans(3)
+ 
+ 2   
+ 
+       ans(4)
+ 
+ !   
+ 
+ 
+msscanf('0xabc','%x') //scan with hexadecimal format
+ ans  =
+ 
+ 
+       ans(1)
+ 
+    2748.  
+ 
+ 
+ 
+msscanf('012345abczoo','%[0-9abc]%s')  //[] notation
+ ans  =
+ 
+ 
+       ans(1)
+ 
+ 012345abc   
+ 
+       ans(2)
+ 
+ zoo   
+ 
+ 
+//create a file with data
+ 
+u=mopen(TMPDIR+'/foo','w');
+ 
+t=0.5;mfprintf(u,'%6.3f %6.3f\n',t,sin(t))
+ 
+t=0.6;mfprintf(u,'%6.3f %6.3f\n',t,sin(t))
+ 
+mclose(u);
+ 
+//read the file
+ 
+u=mopen(TMPDIR+'/foo','r');
+ 
+[n,a,b]=mfscanf(u,'%e %e')
+ b  =
+ 
+    0.479  
+ a  =
+ 
+    0.5  
+ n  =
+ 
+    2.  
+ 
+l=mfscanf(u,'%e %e')
+ l  =
+ 
+ 
+       l(1)
+ 
+    0.6000000  
+ 
+       l(2)
+ 
+    0.565  
+ 
+mclose(u);
+ 

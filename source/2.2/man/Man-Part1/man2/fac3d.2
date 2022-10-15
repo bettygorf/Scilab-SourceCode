@@ -1,0 +1,24 @@
+.TH fac3d 2 "September 1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+fac3d - complex 3D surface plotting
+.SH CALLING SEQUENCE
+.nf
+fac3d(x,y,z[,theta,alpha,leg,flag,ebox])
+fac3d1(x,y,z[,theta,alpha,leg,flag,ebox])
+.fi
+.SH PARAMETERS
+.TP 15
+x,y,z
+: matrices of sizes (nf,n1) (facets coordinates). nf :facets size, n1:
+number of facets
+.TP 
+rest
+: see \fVplot3d\fR.
+.SH DESCRIPTION
+Draw the surface  defined by a set of \fVn1\fR facets of coordinates 
+x(:,i), y(:,i), z(:,i) i=1:n1
+
+Enter the command  \fVfac3d()\fR to see a demo.
+.SH SEE ALSO
+plot3d, eval3dp, genfac3d.

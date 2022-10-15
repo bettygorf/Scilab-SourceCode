@@ -1,0 +1,66 @@
+
+
+
+^(1)                           Scilab Function                           ^(1)
+
+
+
+
+
+
+NAME
+  ^  - power operation
+
+DESCRIPTION
+  For square matrices A^p is calculated by successive multiplication if p is
+  a positive integer, and by diagonalization if not.  For non-square matrices
+  the operation is done entry by entry.  Note that Kronecker product is noted
+  .*. (e.g.  A.*.2  returns the elementwise squared A matrix).
+
+  Note that ** can be used instead of ^.
+
+EXAMPLE
+  A=rand(2,3);A^2
+  A=rand(5,5);X=A^(0.2);X^5-A
+
+SEE ALSO
+  exp, function mpow in SCIDIR/macros/util
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

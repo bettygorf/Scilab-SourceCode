@@ -1,0 +1,197 @@
+% -*-LaTeX-*-
+% Converted automatically from troff to LaTeX by tr2tex on Wed Jul 16 16:49:17 1997
+% tr2tex was written by Kamal Al-Yahya at Stanford University
+% (Kamal%Hanauma@SU-SCORE.ARPA)
+
+
+%\documentstyle[troffman]{article}
+
+%
+% input file: example.1
+%
+\phead{ss2ss}{1}{April\ 1993}{Scilab\ Group}{Scilab\ Function}
+
+ 
+\Sdoc{ss2ss}{ state-space to state-space conversion, feedback, injection}\index{ss2ss}\label{ss2ss}
+
+\Shead{CALLING SEQUENCE}
+\begin{verbatim}
+[Sl1,right,left]=ss2ss(Sl,T, [F, [G , [flag]]])
+\end{verbatim}
+\Shead{PARAMETERS}
+\begin{scitem}
+\item[{\tt Sl}]
+: linear system (%
+\tt syslin %
+\rm list) in state-space form
+\item[{\tt T }]
+: square (non-singular) matrix
+\item[{\tt Sl1, right, left}]
+: linear systems (syslin lists) in state-space form
+\item[{\tt F}]
+: real matrix (state feedback gain)
+\item[{\tt G}]
+: real matrix (output injection gain)
+\end{scitem}% end Env
+\Shead{DESCRIPTION}
+Returns the linear system %
+\tt Sl1=[A1,B1,C1,D1] %
+\rm where %
+\tt A1=inv(T)*A*T, B1=inv(T)*B, C1=C*T, D1=D%
+\rm .
+\par\noindent
+Optional parameters %
+\tt F %
+\rm and %
+\tt G %
+\rm are state feedback
+and output injection respectively. 
+\par\noindent
+For example,
+%
+\tt Sl1=ss2ss(Sl,T,F) %
+\rm returns %
+\tt Sl1 %
+\rm with:
+\par\noindent
+\ignore{
+\begin{verbatim} 
+              | inv(T)*(A+B*F)*T  ,    inv(T)*B |
+        Sl1 = |                                 |
+              |     (C+D*F)*T     ,      D      |
+\end{verbatim}
+}
+ \[ \mbox{\verb+Sl1+} = \left( \begin{array}{cc} T^{-1}(A+BF)T & T^{-1} (B) \\	        (C+DF)T & D \end{array} \right) \] and %
+\tt right %
+\rm is a non singular linear system such that %
+\tt Sl1=Sl*right%
+\rm .
+\par\noindent
+%
+\tt Sl1*inv(right) %
+\rm is a factorization of %
+\tt Sl%
+\rm .
+\par\noindent
+\par\noindent
+%
+\tt Sl1=ss2ss(Sl,T,0*F,G) %
+\rm returns %
+\tt Sl1 %
+\rm with:
+\ignore{
+\begin{verbatim} 
+              | inv(T)*(A+G*C)*T  , inv(T)*(B+G*D) |
+        Sl1 = |                                    |
+              |      C*T          ,      D         |
+\end{verbatim}
+}
+ \[ \mbox{\verb+Sl1+} = \left( \begin{array}{cc} T^{-1}(A+GC)T & T^{-1} (B+GD) \\	        CT & D \end{array} \right) \] \par\noindent
+and %
+\tt left %
+\rm is a non singular linear system such that %
+\tt Sl1=left*Sl %
+\rm (%
+\tt right=Id %
+\rm if %
+\tt F=0%
+\rm ).
+
+When both %
+\tt F %
+\rm and %
+\tt G %
+\rm are given, %
+\tt Sl1=left*Sl*right%
+\rm .
+\begin{scitem}
+\item[{\tt -}]
+When %
+\tt flag %
+\rm is used and %
+\tt flag=1 %
+\rm an output injection 
+as follows is used 
+\ignore{
+\begin{verbatim}
+	 | inv(T)*(A + GC)*T  , inv(T)*(B+GD,-G) |
+	 |      C*T           ,       (D   , 0)  |
+\end{verbatim}
+}
+ \[ \mbox{\verb+Sl1+} = \left( \begin{array}{cc} T^{-1}(A+GC)T & 		T^{-1} \left(B+GD,-G\right) \\	        CT & \left(D , 0 \right)\end{array} \right) \] and then a feedback is performed, %
+\tt F %
+\rm must be of size %
+\tt (m+p,n) %
+\rm 
+\ignore{
+( x is in R\^{}n , y in R\^{}p, u in R\^{}m ). 
+}
+ ( $x$ is in $R^n$, $y$ in $R^p$, $u$ in $R^m$ ).%
+\tt right %
+\rm and %
+\tt left %
+\rm have the following property:
+\begin{verbatim}
+	 Sl1 =  left*sysdiag(sys,eye(p,p))*right 
+\end{verbatim}
+\item[{\tt -}]
+When %
+\tt flag %
+\rm is used and %
+\tt flag=2 %
+\rm a feedback (%
+\tt F %
+\rm must be of 
+size %
+\tt (m,n)%
+\rm ) is performed and then the above output injection is applied.
+%
+\tt right %
+\rm and %
+\tt left %
+\rm have 
+the following property:
+\begin{verbatim} 
+	 Sl1 = left*sysdiag(sys*right,eye(p,p)))
+\end{verbatim}
+
+\end{scitem}% end Env
+\Shead{EXAMPLE}
+\begin{verbatim}
+Sl=ssrand(2,2,5); trzeros(Sl)       // zeros are invariant:
+Sl1=ss2ss(Sl,rand(5,5),rand(2,5),rand(5,2)); 
+trzeros(Sl1), trzeros(rand(2,2)*Sl1*rand(2,2))
+// output injection [ A + GC, (B+GD,-G)]
+//                  [   C   , (D   , 0)]
+p=1,m=2,n=2; sys=ssrand(p,m,n);
+
+// feedback (m,n)  first and then output injection.
+
+F1=rand(m,n);
+G=rand(n,p);
+[sys1,right,left]=ss2ss(sys,rand(n,n),F1,G,2);
+
+// Sl1 equiv left*sysdiag(sys*right,eye(p,p)))
+
+res=clean(ss2tf(sys1) - ss2tf(left*sysdiag(sys*right,eye(p,p))))
+
+// output injection then feedback (m+p,n) 
+F2=rand(p,n); F=[F1;F2];
+[sys2,right,left]=ss2ss(sys,rand(n,n),F,G,1);
+
+// Sl1 equiv left*sysdiag(sys,eye(p,p))*right 
+
+res=clean(ss2tf(sys2)-ss2tf(left*sysdiag(sys,eye(p,p))*right))
+
+// when F2= 0; sys1 and sys2 are the same 
+F2=0*rand(p,n);F=[F1;F2];
+[sys2,right,left]=ss2ss(sys,rand(n,n),F,G,1);
+
+res=clean(ss2tf(sys2)-ss2tf(sys1))
+\end{verbatim}
+\Seealso{SEE ALSO}
+{\verb?projsl?} \pageref{projsl},{\verb? feedback?} \pageref{feedback}
+
+
+
+

@@ -1,0 +1,23 @@
+
+GetMsg(1)                      Scilab function                      GetMsg(1)
+NAME
+  GetMsg - gets a pending message
+
+CALLING SEQUENCE
+  [type,msg,appli] = GetMsg()
+
+PARAMETERS
+
+  type : string
+
+  msg : string
+
+  appli : string, name of an application
+
+DESCRIPTION
+  GetMsg gets, in an asynchronous way, a message sent by another application.
+  The type of the message is string and the message itself is msg.  The name
+  of the application which has sent the message is appli,
+
+SEE ALSO
+  SendMsg, WaitMsg

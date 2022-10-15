@@ -1,0 +1,34 @@
+.TH colcomp 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+kernel - kernel, nullspace
+.SH CALLING SEQUENCE
+.nf
+W=kernel(A [,tol,[,flag])
+.fi
+.SH PARAMETERS
+.TP 10
+A
+: full real or complex matrix or real sparse matrix
+.TP 10
+flag
+: character string \fV'svd'\fR (default) or \fV'qr'\fR
+.TP 10
+tol
+:
+real number
+.TP
+W
+: full column rank matrix 
+.SH DESCRIPTION
+\fVW=kernel(A)\fR returns the kernel of \fVA\fR.
+.LP
+\fVflag\fR and \fVtol\fR are optional parameters: \fVflag = 'qr'\fR 
+or \fV'svd'\fR (default is \fV'svd'\fR).
+.LP
+\fVtol\fR = tolerance parameter (of order \fV%eps\fR as default value).
+.SH SEE ALSO
+colcomp, fullrf, fullrfk, linsolve
+.SH AUTHOR
+F.D.
+

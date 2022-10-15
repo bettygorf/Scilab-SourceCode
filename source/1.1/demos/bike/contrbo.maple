@@ -1,0 +1,73 @@
+#              MAIN MAPLE PROGRAM FOR CONTROL
+#
+#                        Initialization
+#
+#read(`simul.maple`):         
+#             User input file
+read(`cost.dat`):
+# The file cost.dat should provide:
+#            -psi: final cost  (function of q,qd,paramopt)
+#            -c: integral cost (function of q,qd,u,paramopt)
+#            -mparo: size of paramopt
+#
+#
+# Preliminary calculations
+# ------------------------
+
+# Internal variables 
+matA:=stack(fq,gqd):
+lambda:=array(1..nf+ng):
+p1:=array(1..n):
+p2:=array(1..n):
+Idn:=array(identity,1..n,1..n):
+w4:=evalm(map(time_diff,M,n) &* qd):
+
+# E matrix
+col1:=stack(             M,
+            transpose(jacobian(evalm(M &* qd),q)),
+                        matA      ):
+col2:=stack(        matrix(n,n,0),
+            array(identity,1..n,1..n),
+                    matrix(nf+ng,n,0)   ):
+col3:=stack(       -transpose(matA),
+            -transpose(jacobian(evalm(matA &* qd),q)) ,
+                   matrix(nf+ng,nf+ng,0)    ):
+Emat:=concat(col1,col2,col3):
+Emat:=map(simplify,Emat);
+
+# RHS vector
+F:=evalm( phi+k ):
+w1:=evalm(-1 * transpose( jacobian(F,qd)  + jacobian(w4,qd) ) &* p2 
+          - p1 - grad(c,qd)):
+w2:=evalm(-1 * transpose(  jacobian(F,q) + jacobian(w4,q) 
+                         - jacobian(transpose(matA) &* lambda,q) ) &* p2 
+          - grad(c,q)  ):
+w3:=evalm(-1 * map(time_diff,matA,n) &* p2):
+
+Fvec:=vstack(w1,w2,w3):
+Fvec:=map(simplify,Fvec):
+#
+vecfin:=vstack(grad(psi,qd),grad(psi,q),vector(nf+ng,0)):
+vecfin:=map(simplify,vecfin):
+
+# hugem:=[Emat,Fvec]
+
+hugem:=concat(Emat,convert(Fvec,matrix)):
+
+# Gradient of cost w.r.t u
+hamu:=evalm(  transpose( convert(grad(c,u),matrix) ) 
+            + transpose( convert(p2,matrix) ) &* jacobian(F,u)  ):
+
+hamu:=map(simplify,transpose(hamu)):
+#
+c:=array(1..1,1..1,[[c]]):
+psi:=array(1..1,1..1,[[psi]]):
+maple2scilab(`c`,c,[q,qd,u,paramopt]):
+maple2scilab(`psi`,psi,[q,qd,paramopt]):
+#maple2scilab(`hugem`,hugem,[q,qd,u,lambda,p1,p2,param,paramopt]):
+maple2scilab(`vecfin`,vecfin,[q,qd,u,lambda,p1,p2,param,paramopt]):
+maple2scilab(`hamu`,hamu,[q,qd,u,lambda,p1,p2,param,paramopt]):
+maple2scilab(`fvec`,Fvec,[q,qd,u,lambda,p1,p2,param,paramopt]):
+sparse2scilab(`emat`,Emat,[q,qd,u,lambda,p1,p2,param,paramopt]):
+
+sp_scilab(efs,`emat`,`fvec`,[q,qd,u,lambda,p1,p2,param,paramopt],rowdim(Emat)):

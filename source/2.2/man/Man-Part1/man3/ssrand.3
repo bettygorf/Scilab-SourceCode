@@ -1,0 +1,70 @@
+.TH ssrand 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+ssrand - random system generator
+.SH CALLING SEQUENCE
+.nf
+sl=ssrand(nout,nin,nstate)
+[sl,U]=ssrand(nout,nin,nstate,flag)
+.fi
+.SH PARAMETERS
+.TP 10
+nout
+: integer (number of output)
+.TP
+nin
+: integer (number of input)
+.TP
+nstate
+: integer (dimension of state-space)
+.TP
+flag
+: list made of one character string and one or several integers
+.TP
+sl
+: list (\fVsyslin\fR list)
+.TP
+U square \fV(nstate x nstate)\fR nonsingular matrix
+.SH DESCRIPTION
+\fVsl=ssrand(nout,nin,nstate)\fR returns a random strictly proper 
+(\fVD=0\fR) state-space system of size \fV[nout,nint]\fR represented 
+by a \fVsyslin\fR list and with \fVnstate\fR state variables.
+.LP
+\fV[sl,U]=ssrand(nout,nin,nstate,flag)\fR returns a test linear system
+with given properties specified by \fVflag\fR.
+\fVflag\fR can be one of the following:
+.nf
+flag=list('co',dim_cont_subs)  
+flag=list('uo',dim_unobs_subs)
+flag=list('ncno',dim_cno,dim_ncno,dim_co,dim_nco)
+flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
+flag=list('dt',dim_inst_unob,dim_instb0,dim_unobs)
+flag=list('on',nr,ng,ng0,nv,rk)
+flag=list('ui',nw,nwu,nwui,nwuis,rk)
+.fi
+The complete description of the \fVSys\fR is given in the code
+of the \fVssrand\fR function (in \fVSCIDIR/macros/util\fR).
+For example with \fVflag=list('co',dim_cont_subs)\fR a non-controllable
+system is return and \fVdim_cont_subs\fR is the dimension
+of the controllable subspace of \fVSys\fR.
+The character strings \fV'co','uo','ncno','st','dt','on','ui'\fR
+stand for "controllable", "unobservable", "non-controllable-non-observable",
+"stabilizable","detectable","output-nulling","unknown-input".
+.SH EXAMPLE
+.nf
+//flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
+//dim_cont_subs<=dim_stab_subs<=dim_stab0  
+//pair (A,B) U-similar to:
+//    [*,*,*,*;     [*;    
+//    [0,s,*,*;     [0;
+//A=  [0,0,i,*;   B=[0;
+//    [0,0,0,u]     [0]
+//     
+// (A11,B1) controllable  s=stable matrix i=neutral matrix u=unstsble matrix
+// [Sl,U]=ssrand(2,3,8,list('st',2,5,5));
+// w=ss2ss(Sl,inv(U)) //undo the random change of basis => form as above
+// [n,nc,u,sl]=st_ility(Sl);n,nc
+.fi
+.SH SEE ALSO:
+syslin
+

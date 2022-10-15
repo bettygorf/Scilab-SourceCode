@@ -1,0 +1,42 @@
+
+printf(1)                      Scilab Function                      printf(1)
+NAME
+  printf - Emulator of C language printf function
+
+CALLING SEQUENCE
+  printf(format,value_1,..,value_n)
+
+PARAMETERS
+
+  format    : a Scilab string. Specifies a character string combining literal
+            characters with conversion specifications.
+
+  value_i   : Specifies the data to be converted according to the format
+            parameter.
+
+  str       : column vector of character strings
+
+  file      : a Scilab string specifying a file name or a logical unit number
+            (see file)
+
+DESCRIPTION
+  The printf function converts, formats, and writes its value parameters,
+  under control of the format parameter, to the standard output.
+
+  The format parameter is a character string that contains two types of
+  objects:
+
+  Literal characters
+            : which are copied to the output stream.
+
+  Conversion specifications
+            : each of which causes zero or more items to be fetched from the
+            value parameter list. see printf_conversion for details
+
+  If any values remain after the entire format has been processed, they are
+  ignored.
+EXAMPLES
+  printf('Result is:\nalpha=%f",0.535)
+
+SEE ALSO
+  string, print, write, format, disp, file, fprintf, sprintf

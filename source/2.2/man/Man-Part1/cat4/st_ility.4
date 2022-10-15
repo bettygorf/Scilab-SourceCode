@@ -1,0 +1,66 @@
+
+
+
+st_ility(1)                    Scilab Function                    st_ility(1)
+
+
+
+
+
+
+NAME
+  st_ility - stabilizability test
+
+CALLING SEQUENCE
+  [ns, [nc, [,U [,Slo] ]]]=st_ility(Sl [,tol])
+
+PARAMETERS
+
+  Sl        : syslin list (linear system)
+
+  ns        :  integer (dimension of stabilizable subspace)
+
+  nc        :  integer (dimension of controllable subspace nc <= ns)
+
+  U         : basis such that its ns (resp. nc) first components span the
+            stabilizable (resp. controllable) subspace
+
+  Slo       : a linear system (syslin list)
+
+  tol       : threshold for controllability detection (see contr)
+
+DESCRIPTION
+   Slo=( U'*A*U, U'*B, C*U, D, U'*x0 ) (syslin list) displays the stabiliz-
+  able form of Sl. Stabilizability means ns=nx (dim. of A matrix).
+           [*,*,*]            [*]
+  U'*A*U = [0,*,*]     U'*B = [0]
+           [0,0,*]            [0]
+  (where  (A11,B1)  is controllable and A22 is stable).  "Stable" means real
+  part of eigenvalues negative for a continuous linear system, and magnitude
+  of eigenvalues lower than one for a discrete-time system (as defined by
+  syslin).
+
+SEE ALSO
+  dt_ility, contr, stabil, ssrand
+
+AUTHOR
+  S. Steer INRIA 1988
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

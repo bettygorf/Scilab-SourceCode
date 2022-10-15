@@ -1,0 +1,59 @@
+
+figure(2)                      Scilab Function                      figure(2)
+NAME
+  figure - create a figure
+
+  Author: Bertrand Guiheneuf
+
+  This routine allows to create a tksci figure (window).
+
+Usage
+  figure([h[, [prop1, value1 [ ...)
+
+Input parameter
+
+  o    h : integer Handle of the window to create. If not specified, the
+       first free handle is used
+
+  o     prop{1, 2 ...} : character string name of a property to set
+
+  o     val{1, 2 ...} : scilab object value to give to the corresponding
+       property
+
+Output parameters
+  handle of the newly created window
+
+Description
+  This routine creates a tksci figure (toplevel window). If a handle is
+  given, the figure corresponding to this handle is created .  Otherwise, the
+  window is created with the first free handle, that is the lowest integer
+  not already used by a window.  The property named 'position' allows to con-
+  trol the geometrical aspect of the control.  It is a [ 1,4] real vector x y
+  w h where the letters stand for the x location of the left bottom corner,
+  the y location of the left bottom corner, the width and the height of the
+  uicontrol.
+
+  One can also set this property by giving a string where the fields are sep-
+  arated by a '|', ie "x|y|w|h".
+
+EXAMPLE
+  h=figure(3);
+  // creates  figure number 1.
+  uicontrol( h, 'style','text', ...
+   'string','This is a figure', ...
+   'position',[50 70 100 100], ...
+   'fontsize',15);
+  // put a  text in figure 3
+  figure();
+  // create figure 1
+  uicontrol( 'style','text', ...
+   'string','Another figure', ...
+   'position',[50 70 100 100], ...
+   'fontsize',15);
+  // put a text in figure 1
+  close();
+  // close the current graphic window (ie fig. 1)
+  close(h);
+  // close figure 3
+See also
+  close, gcf

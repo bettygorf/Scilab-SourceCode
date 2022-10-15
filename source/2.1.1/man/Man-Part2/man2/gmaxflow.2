@@ -1,0 +1,23 @@
+.TH gmaxflow 1 "October 1994" "Scilab Group" "Scilab Macro"
+.so man1/sci.an
+.SH NAME 
+gmaxflow - global maximum flow  
+.SH CALLING SEQUENCE
+.nf
+[v,f] = gmaxflow([g])
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP 2
+v
+: integer, value of the flow on the return arc (sink,source)
+.TP 2
+f
+: array of the flows on the arcs
+.SH DESCRIPTION
+\fVgmaxflow\fR returns the maximum flow from the source to the sink 
+for the directed graph \fVg\fR with only one source and one sink.
+.SH SEE ALSO
+maxflow

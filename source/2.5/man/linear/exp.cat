@@ -1,0 +1,21 @@
+
+exp(G)                         Scilab Function                         exp(G)
+NAME
+  exp - element-wise exponential
+
+CALLING SEQUENCE
+  exp(X)
+
+PARAMETERS
+
+  X    : scalar,vector or matrix with real or complex entries.
+
+DESCRIPTION
+  exp(X) is the (element-wise) exponential of the entries of X.
+EXAMPLE
+  x=[1,2,3+%i];
+  log(exp(x))  //element-wise
+  2^x
+  exp(x*log(2))
+SEE ALSO
+  coff, log, expm

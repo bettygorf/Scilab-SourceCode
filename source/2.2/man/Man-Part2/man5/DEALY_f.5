@@ -1,0 +1,30 @@
+.TH DELAY_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so man1/sci.an
+.SH NAME
+TANBLK - Scicos delay block
+.SH DIALOG PARAMETERS
+.TP 20
+Block label
+: A string defining the block label. This label is written under
+the block. 
+.TP
+Register initial condition
+: a vector. The initial condition of the regsiter used to store past
+values of the input.
+.TP
+Period
+: a scalar. The period of the clock which coresponds to the
+discretization step.
+.SH DESCRIPTION
+This block realizes an approximate delay operation. The output at t is
+a discretized (piecewise constant with discretization step equal to
+Period) version of the input at t-dt where dt equals Period times the
+size of the Register. 
+
+
+
+
+
+
+
+

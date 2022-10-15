@@ -1,0 +1,629 @@
+\chapter{Introduction}
+
+\section{What is Scilab}
+\index{signals!saving and loading}
+
+ Since the introduction of the ``classic'' (Fortran) MATLAB 
+by C. Moler in 1982 there have been a number of interactive scientific 
+
+
+software 
+packages which have been developed for system control and 
+signal processing applications.
+
+Developed at INRIA, Scilab which is one of the most elaborate of these packages
+is freely distributed in source code format (see the file {\tt notice.tex}). 
+and runs in Unix/Xwindow environments. 
+Its libraries and most of the interpreter are written in Fortran for 
+compatibility with numerical librairies. 
+The graphic facilities and the Unix interface are written in C. 
+Scilab is made of three distinct parts: an interpreter, 
+libraries of functions (Scilab procedures) and libraries of Fortran 
+and C routines. 
+These routines (which, strictly speaking, do not belong to Scilab but
+are interactively called by the interpreter) are of 
+independent interest and most of them are available through Netlib. 
+A few of them have been slightly modified for better compatibility
+with Scilab's interpreter.
+A useful tool distributed with Scilab is {\tt intersci} which
+is a set of routines that allow users to easily add new primitives to
+Scilab i.e. to add new modules of Fortran or C code into Scilab making
+it easy to customize.
+ 
+A key feature of the MATLAB syntax is its ability to handle matrices: 
+basic matrix manipulations such as concatenation, 
+extraction or transpose are immediately performed as well as basic operations
+such as addition or mutiplication. 
+Scilab's aims are the following: first to use the MATLAB syntax 
+for more complex objects than numerical matrices,
+(e.g. automatic control people may want to manipulate transfer matrices) and
+second to be an open interface to numerical libraries (e.g. a specific  
+routine can be either called dynamically from Scilab or included 
+in the package as a new primitive). 
+
+Scilab is an interactive, interpreted software package (with a syntax
+similar to the MATLAB one) which has a number of powerful features:
+%
+\begin{itemize}
+	\item lists
+	\item symbolic manipulation of polynomials and polynomial matrices
+        \item symbolic manipulation of linear and non-linear systems
+	\item non-linear calculation: simulation and optimization
+	\item easy interfacing with fortran and C codes
+\end{itemize}
+%
+
+ The list structure allows a natural symbolic representation of complicated
+mathematical objects such as transfer functions and linear systems
+(see Section~\ref{s2.5}).
+
+	Polynomials, polynomials matrices and transfer matrices 
+are also defined and 
+Scilab allows the definition and manipulation of these objects in a
+natural, symbolic fashion (see Section~\ref{s2.4}). 
+The syntax used for manipulating these matrices
+is identical to that used for manipulating constant vectors and matrices.
+
+	Scilab provides a variety of powerful primitives for
+the analysis of non-linear systems.  
+Integration of explicit and implicit systems can be accomplished 
+numerically.  There exist numerical optimization 
+facilities for non linear optimization (including
+non differentiable optimization), quadratic optimization and 
+linear optimization.
+
+	Scilab has an open programming environment where the
+creation of functions and libraries of functions is completely in the
+hands of the user (see Chapter~\ref{ch4}).    
+Functions are recognized as data objects in Scilab and, thus, can be 
+manipulated or created as other data objects.  For example, functions
+can be passed as arguments of other functions.
+
+In addition Scilab supports a character string data type 
+which, in particular, allows the automatic creation of functions.
+Matrices of character strings are also manipulated with the same
+syntax as ordinary matrices.
+	Finally, Scilab is easily interfaced with Fortran or C 
+subprograms.  This allows use of standardized 
+packages and libraries in the interpreted environment of Scilab.
+
+	The general philosophy of Scilab is to provide the following
+sort of computing environment:
+\begin{itemize}
+   \item To have data types which are varied and flexible.
+   \item To have a syntax which is natural and easy to use.
+   \item To provide a reasonable set of primitives which serve
+	   as a basis for a wide variety of calculations.
+   \item To have an open programming environment where new
+	   primitives are easily added.
+   \item To support library development through ``toolboxes'' of
+         functions devoted to specific
+	   applications (linear control, signal processing, 
+	   networks analysis, non-linear control, etc.)
+\end{itemize}
+
+	The objective of this introduction manual is to give the user 
+an idea of what Scilab can do. On line documentation on all
+Scilab functions is available.
+
+
+
+
+\section{Software Organization}
+
+Scilab is divided into a set of directories. The main directory
+\verb!SCIDIR! contains the files {\tt scilab.star} (startup file), the
+copyright file {\tt notice.tex}, and the file \verb!configure! 
+(see(\ref{install})).
+The subdirectories are the following:
+\begin{itemize}
+
+\item{{\tt bin} is the directory of the executable files.
+The executable code of Scilab, {\tt scilex}, is there. In
+particular, this directory contains Shell scripts 
+for managing or printing Postscript/\LaTeX~ files produced by Scilab }
+
+\item{{\tt demos} is the directory of Scilab demos. The file 
+{\tt alldems.dem} allows to add a new demo which can be run by 
+clicking in ``demo''. This directory contains the codes corresponding
+to various demos. They are often useful for inspiring new users.
+Note that running a graphic function without input parameter
+provides an example of use for this function (for instance {\tt
+plot2d()} displays an example for using {\tt plot2d}  function). }
+
+\item{{\tt doc} is the directory of the Scilab documentation: \LaTeX, dvi 
+and Postscript files. 
+This documentation is {\tt SCIDIR/doc/intro/intro.tex}. See 
+also the manual (on-line {\tt help}) in the directory {\tt SCIDIR/man}}
+
+\item{{\tt geci} contains source code and binaries for GeCI which is an 
+interactive communication manager created in order to
+manage remote executions of softwares and allow exchanges of messages
+beetwen those softwares. It offers the possibility to exploit numerous
+machines on a network, as a virtual computer, by creating a
+distributed group of independent softwares. GeCI is used for the link
+of Xmetanet with Scilab.}
+
+
+\item{{\tt imp} is the directory of the routines managing the Postscript files
+for print.}
+
+\item{{\tt libs} contains Scilab libraries (compiled code).}
+
+\item{{\tt macros} contains the libraries of Scilab functions
+which are available on-line. New libraries can easily be added 
+(see the Makefile). This directory is divided into a number of subdirectories
+which contain ``Toolboxes'' for control, signal processing, etc... Strictly
+speaking Scilab is not organized in toolboxes : functions of a specific
+subdirectory can call functions of other directories; so, for example, the 
+subdirectory ``signal'' is not self-contained but its functions are all devoted
+to signal processing.}
+
+\item{{\tt man} is the directory containing the manual (Unix manual), divided 
+into submanuals, corresponding to the on-line help and to 
+a \LaTeX format of the Scilab reference manual. The \LaTeX~ code is produced 
+by a 
+translation of the Unix format Scilab manual (see the subdirectory
+{\tt Man-General}).}
+To get information about an item enter {\tt help item} in Scilab
+or use the help window facility obtained with help button.
+To get functions corresponding to a key word enter {\tt apropos
+key-word} or use apropos in the help window.
+
+\item{{\tt maple} is the directory which contains the source code of Maple
+functions which allow the transfer of Maple objects
+into Scilab functions. For efficiency, the transfer
+is made through Fortran code generation.}
+
+\item{{\tt routines} is a directory with contains the source code of all
+the numerical routines. The subdirectory {\tt default} contains the
+source code of routines which are useful to customize Scilab.}
+In particular ``external'' routines for ODE/DAE solvers or optimization
+should be included here (see e.g. the file {\tt fydot.f}, interface
+Scilab-Fortran for ode simulation). Note that if, for example, you want
+to solve an ode, the right hand side function can be a Scilab function or a C 
+or 
+Fortran subroutine. This Fortran subroutine can be dynamically linked
+to Scilab or put into the specific file {\tt fydot.f} of the
+{\tt default} directory. This function is then inside your version of Scilab.
+
+\item{{\tt intersci} contains the facility provided for add new Fortran or C 
+primitives to Scilab.}
+
+
+\item{{\tt scripts} is the directory which contains the source code of 
+shell scripts files.}
+
+\item{{\tt tests} : this directory contains evaluation programs for testing 
+Scilab's installation on a machine. The file ``demos.tst'' tests all the 
+demos.}
+
+\item{{\tt tmp} : some examples written by users for courses ... have been
+added in this directory. }
+
+\item{{\tt util} contains some utility functions for calling Scilab as a
+fortran routine or for making the documentation }
+
+\item{{\tt xless} is a file browsing tool developped at Berkeley University.}
+
+\item{{\tt xmetanet} is the directory which contains {\tt xmetanet}, a 
+graphic display for networks. Type {\tt metanet()} in Scilab to use it.}
+
+
+\end{itemize}
+
+\section{Installing Scilab. System Requirements}
+\label{install}
+Scilab is distributed in source code format; binaries for several popular 
+Unix-XWindow systems are also available:
+Dec Alpha (OSF 3.0), Dec Mips (ULTRIX 4.2), Sun Sparc stations (Sun OS 4.1.3), 
+Sun Sparc stations (Sun Solaris 2.3), HP9000 (HP-UX 9.01),
+SGI Mips Irix 5.2, IBM-RS6000 (AIX 3.2), PC 486 (Slackware Linux 2.0.2 -- XFree86 3.1). 
+
+The installation requirements are the following :
+
+- for the source version: Scilab requires approximately 75Mb of 
+disk storage to unpack and install (all sources included). 
+You need X Window (X11R4 or X11R5, C compiler and Fortran
+compiler (or f2c). If you run X11R4, you also need Athena 
+Widgets libraries libXaw.a and libXmu.a.
+  
+- for the binary version: the minimum for running Scilab (without
+sources) is about 20 Mb when decompressed.
+The versions for Dec Alpha, Dec Mips, Sun OS, HP9000 and 
+IBM-RS6000 are statically linked and in principle
+do not require a fortran compiler.
+The versions for Sun Solaris, SGI and PC Linux are dynamically linked.
+
+The main part of the memory in Scilab is a pile corresponding to
+the usual Fortran behaviour. In some parts Scilab is using dynamic allocation 
+(in particular for the sparse matrices). 
+We have chosen 2 mega-words (double float) for the size of the pile. 
+Of course with the source code version a user can easily change this size and
+(decrease or) increase it up to the memory of his computer (parameter 
+{\tt vsiz} in the file {\tt routines/stack.h}).
+ 
+\section{Scilab at a Glance. A Tutorial}
+
+\subsection{Getting Started}
+
+Scilab is called by typing {\tt scilab} in the directory {\tt SCIDIR/bin}
+where {\tt SCIDIR} denotes the directory where Scilab is installed.
+Scilab can be launched in another directory with the same command and
+a corresponding search path.
+This shell script  runs Scilab 
+in an Xwindow environment (this script file can be invoked with
+specific parameters).
+You will immediatly get the Scilab window with the following banner and 
+prompt represented by the {\tt -->} : 
+
+
+\bigskip
+
+\begin{verbatim}
+                           ===========
+                           S c i l a b
+                           ===========
+ 
+ 
+                  Scilab-2.1  ( 10 February 1995 ) 
+                  Copyright (C) 1989-95 INRIA 
+ 
+ 
+Startup execution:
+  loading initial environment
+   
+ -->
+
+\end{verbatim}
+
+
+A first contact with Scilab can be made by clicking 
+on {\tt Demos} with the left mouse button and clicking then on 
+{\tt Introduction to SCILAB }: the 
+execution of the session is then done by entering empty lines and can be
+stopped with the buttons {\tt Stop} and {\tt Abort}.
+
+  Several libraries
+(see the {\tt SCIDIR/scilab.star} file) are automatically loaded.
+	
+To give the user an idea of some of the capabilities of Scilab
+we will give later a sample session in Scilab.\\
+
+\subsection{Editing a command line}
+
+Before the sample session, we briefly present how to edit a command line.
+You can enter a command line by typing after the prompt or clicking with the 
+mouse on a part on a window and recall it at the prompt in the Scilab
+window. At this moment you have the classical Emacs commands at your 
+disposal for modifying a command (Ctrl-$<$chr$>$  means hold the CONTROL key 
+while typing the character $<$chr$>$), for example:
+
+\bigskip
+
+
+%
+\begin{itemize}
+	\item Ctrl-p 	recall previous line
+	\item Ctrl-n  	recall next line
+	\item Ctrl-b  	move backward one character
+	\item Ctrl-f  	move forward one character
+	\item Delete  	delete previous character
+	\item Ctrl-h  	delete previous character
+	\item Ctrl-d  	delete one character (at cursor)
+	\item Ctrl-a  	move to beginning of line
+	\item Ctrl-e  	move to end of line
+	\item Ctrl-k  	delete to the end of the line
+	\item Ctrl-u  	cancel current line
+	\item Ctrl-y  	yank the text previously deleted
+	\item !prev   	recall the last command line which begins by prev
+	\item Ctrl-c  	interrupt Scilab and pause after carriage return. 
+	(Only functions can be interrupted). Clicking on the stop 
+	button enters a Ctrl-c.
+\end{itemize}
+%
+
+As said before you can also cut and paste using the mouse. This way will be
+useful if you type your Scilab  commands in an editor. Another way to ``load'' files
+containing Scilab statements
+is available with the {\tt File Operations} button.
+
+\subsection{Buttons}
+The Scilab window has the following buttons.\\
+
+%
+\begin{itemize}
+	 \item Stop  	interrupts execution of Scilab and enters in 
+{\tt pause} mode
+	\item Resume  	continues execution after a {\tt pause} entered as a command or generated by the {\tt Stop} button
+	\item Abort 	aborts execution after one (or several) {\tt pause}, 
+and returns to top-level prompt
+	\item Restart  	clears all variables and executes startup files
+	\item Quit  	quits Scilab
+	\item Kill  	kills Scilab shell script
+	\item Demos  	for interactive run of some demos
+	\item File Operations  	facility for loading functions or data into
+Scilab, or executing script files. Note the following change w.r.t. the
+previous release : using this button implied to 
+change the working directory to the directory of the location of the loaded
+file. This fact could be confusing and the use of this button does not
+change anymore the working directory.
+	\item Help : invokes on-line help with the tree of the man and the 
+names of the corresponding items. It is possible to type directly 
+{\tt help <item>} in the Scilab window.
+	\item +- : increases or decreases the number of the active window
+	\item Raise Window : exposes the window corresponding to the indicated number and creates one or several windows if necessary
+	\item Set Window : the window corresponding to the indicated number becomes active (and creates one or several windows if necessary)
+\end{itemize}
+%
+Note that the command {\tt SCIDIR/bin/scilab -nw} invokes Scilab
+in the ``no-window'' mode.
+
+\subsection{Customizing your Scilab}
+As usual for many softwares the parameters of the different windows opened by 
+Scilab can be easily changed. The way for doing that is to edit the files 
+contained in the sub-directory X11-defaults. The first possibility is 
+to directly change these files but the same modifications will be needed
+for the further releases. The right way is to copy the right lines with the
+modifications in the {\tt .Xdefaults} file of one's own home directory.
+These modifications are activated by starting again Xwindow or with the
+command {\tt xrdb .Xdefaults}. Scilab will read the {\tt .Xdefaults} file: 
+the lines of this
+file will cancel and replace the corresponding lines of X11-defaults.
+
+A simple example : 
+
+\begin{verbatim}
+Xscilab.color*Scrollbar.background:red
+Xscilab*vpane.height: 500
+Xscilab*vpane.width:  500
+\end{verbatim}
+
+in {\tt .Xdefaults} will change the 500x650 window to a square window of 
+500x500 and the  
+scrollbar background color changes from green to red.
+
+
+\subsection{Sample Session for Beginners}
+
+We present now some simple commands. A command ends with a semi-colon or a
+carriage return. At the carriage return all the commands typed since the last 
+prompt are interpreted. The semi-colon before the prompt is optional.  
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p1.dia}
+\end{verbatim}
+
+Give the values of 1 and 2 to the variables {\tt a} and { \tt A} .  The 
+semi-colon at the end of the command suppresses the display of the result.
+Note that Scilab is case-sensitive.
+Then two commands are processed and the second result is displayed because
+it is not followed by a semi-colon. The last command shows how to write a
+command on several lines by using ``{\tt ...}''. This sign is only needed
+in the on-line typing for avoiding the effect of the carriage return.
+ The chain of characters which follow the {\tt //} is not interpreted by
+Scilab (it is a comment line).
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p2.dia}
+\end{verbatim}
+
+We get the list of previously defined variables {\tt a b c A}  together
+with the initial environment composed of the different libraries and
+some specific ``permanent'' variables.
+
+Below is an example of an expression which mixes constants with existing
+variables.  The result is retained in the standard default variable 
+{\tt ans}\index{ans@{\tt ans}}.
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p3.dia}
+\end{verbatim}
+
+Calling a function (or primitive) with a vector argument.  The response
+is a complex vector.
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p4.dia}
+\end{verbatim}
+
+A  more complicated command which creates a polynomial. 
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p5.dia}
+\end{verbatim}
+
+Definition of a polynomial matrix. The syntax for polynomial matrices
+is the same as the one for matrices of constants. Calculation of the
+determinant of the polynomial matrix by the {\tt det} function. 
+
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p6.dia}
+\end{verbatim}
+
+Definition of a matrix of rational polynomials.  The internal representation
+of {\tt f} is a list {\tt list('r',num,den)} where {\tt num} and 
+{\tt den} are two matrix polynomials.
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p7.dia}
+\end{verbatim}
+
+
+Here we move into a new environment using the command 
+{\tt pause}\index{pause@{\tt pause}}
+and we obtain the new prompt {\tt -1->} which indicates the level
+of the new environment (level 1).  All variables that are available
+in the first environment are also available in the new environment.  Variables
+created in the new environment can be returned to the original environment
+by using {\tt return}\index{return@{\tt return}}.  
+Use of {\tt return} without an argument 
+destroys all the variables created in the new environment before returning
+to the old environment. The {\tt pause} facility is very useful 
+for debugging purposes.
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p8.dia}
+\end{verbatim}
+
+
+Definition of a rational polynomial by extraction of an element
+of the matrix {\tt f} defined above.  This is followed by the evaluation
+of the rational polynomial at the vector of complex frequency values defined
+by {\tt frequencies}.  The evaluation of the polynomial is done by
+the primitive {\tt freq}. {\tt numer(f21)} is the numerator
+polynomial and {\tt denom(f21)} is the denominator polynomial.
+The  visualization of the resulting evaluation
+is made by using the command {\tt plot2d} (see Figure~\ref{f1.1}).
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p9.dia}
+\end{verbatim}
+
+The function {\tt horner} allows the
+user to make a (possibly symbolic) change of variables for a polynomial (for example, to
+perform the bilinear transformation as seen above).
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p10.dia}
+\end{verbatim}
+
+Definition of a linear system in state-space representation.
+The function {\tt syslin} defines here the continuous time ({\tt 'c'}) system
+{\tt Sl} with state-space matrices ({\tt A,B,C}). The function
+{\tt ss2tf} transforms {\tt Sl} into transfer matrix representation.
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p11.dia}
+\end{verbatim}
+
+Definition of the rational matrix {\tt R}. {\tt Sl} is the
+continuous-time linear system with (improper) transfer matrix
+R. {\tt tf2ss} puts {\tt Sl} in state-space representation with a
+polynomial {\tt D} matrix. Note that linear systems are represented
+by special lists (with 7 entries).
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p12.dia}
+\end{verbatim}
+
+{\tt sl1} is the linear system in transfer matrix representation
+obtained by the parallel inter-connection of {\tt Sl} and {\tt 2*Sl +eye}.
+The same syntax is valid with {\tt Sl} in state-space representation.
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p13.dia}
+\end{verbatim}
+
+On-line definition of a function, called {\tt compen} which calculates the 
+state space representation
+({\tt Cl}) of a linear system controlled by an observer with gain {\tt Ko}
+and a controller with gain {\tt Kr}.  Note that matrices are constructed
+in block form using other matrices.  The function {\tt compen} is then
+compiled by {\tt comp}.
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p14.dia}
+\end{verbatim}
+
+Call to the function {\tt compen} defined above where the gains were
+calculated by a call to the primitive {\tt ppol} which performs pole
+placement.
+The resulting {\tt f} matrix is displayed and the placement
+of its poles is checked using the primitive {\tt spec} which calculates
+the eigenvalues of a matrix. (The function {\tt compen} is defined here
+on-line by {\tt deff} as an example of function which receive a linear system 
+({\tt Sl}) as input and returns a linear system ({\tt Cl}) as output.
+In general Scilab functions are defined in files and loaded in Scilab
+by {\tt getf}).
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p15.dia}
+\end{verbatim}
+
+Relation with the Unix environment and an error message: command is not 
+interpretable by the system since the
+variable {\tt q} is unknown.
+
+\noindent.\dotfill.
+
+
+\verbatok{\Diary d1p16.dia}
+\end{verbatim}
+
+Definition of a column vector of character strings defining a Fortran
+subroutine. The routine is compiled (needs a compiler), dynamically 
+linked to Scilab, and interactively called by the function {\tt myplus}.
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p17.dia}
+\end{verbatim}
+
+Definition of a function which calculates a first order vector differential
+{\tt f(t,y)}.  This is followed by the definition of the constant {\tt a}
+used in the function and the function is compiled.  The primitive {\tt ode}
+then integrates the differential equation defined by {\tt f(t,y)}
+for $y(0)=\langle 1;0\rangle$ at $t=0$ and where the solution is given
+at the time values $t=0,.02,.04,\ldots,20$.  The result is plotted in
+Figure~\ref{f1.2} where the first element of the integrated vector is 
+plotted against the second element of this vector.
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p18.dia}
+\end{verbatim}
+
+Definition of a matrix containing character strings. By default, the 
+operation of symbolic multiplication of two matrices of character
+strings is not defined in Scilab.  The (on-line)
+function definition for {\tt \%cmc} defines the multiplication of 
+matrices of character strings (note that the double quote is necessary
+because the body of the {\tt deff} contains quotes inside of quotes).
+The {\tt \%} which begins the function definition for {\tt \%cmc}
+allows the definition of an operation which did not previously 
+exist in Scilab, and the name {\tt cmc} means ``chain multiply chain''.
+This example is not very useful: it is simply given to show
+how operations can be defined on complex data structures.
+
+\noindent.\dotfill.
+
+\verbatok{\Diary d1p19.dia}
+\end{verbatim}
+
+A simple example which illustrates the passing of a function as an argument
+to another function. Scilab functions are objects which may be defined, loaded,
+or manipulated as other objects such as matrices or lists.
+
+\noindent.\dotfill.
+
+\begin{verbatim}
+-->quit
+\end{verbatim}
+
+Exit from Scilab.
+
+\noindent.\dotfill.
+\input{\Figdir d1-7.tex}
+\dessin{A Simple Response}{f1.1}
+
+\input{\Figdir d1-14.tex}
+\dessin{Phase Plot}{f1.2}
+
+

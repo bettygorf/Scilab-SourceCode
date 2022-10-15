@@ -1,0 +1,301 @@
+\documentstyle[11pt]{article}
+             \textheight=660pt 
+             \textwidth=15cm
+             \topmargin=-27pt 
+             \oddsidemargin=0.7cm
+             \evensidemargin=0.7cm
+             \marginparwidth=60pt
+             \title{Missile} 
+             \author{J.Ph. Chancelier\thanks{Cergrene. Ecole Nationale des Ponts et Chauss\'ees, La Courtine,  93167 Noisy le Grand C\'{e}dex }}
+	
+\begin{document}
+\maketitle
+\section{$plot2d$ The multiple curve plotter}
+\subsection{How to use $plot2d$ in Basile}
+
+$plot2d$ is used for ploting simultaneously multiple curves 
+with the same number of points. 
+ The curves are specified by vectors of points. It is also possible to 
+	make multiple  calls to $plot2d$ in order to superpose 
+	different curves on the same picture.
+\[
+  plot2d(x,y,[style,strf,leg,rect,nax])
+\]
+\begin{itemize}
+\item $x$ and $y$ are matrices which describe the curves. For example 
+$x=< 1:10;1:10>'$, $y= < \sin(1:10);\cos(1:10)>'$. The number of column 
+ gives the number of curve $n_c$.
+\item $style$ is a vector of size $n_c$ which gives the style to use for each curve.
+\begin{enumerate}
+\item   if $style[i]$ is positive, a mark is used. The mark number is given by $style[i]$ (see $xset$ for more informations).
+\item   if $style[i]$ is strictly negative, a dashed line is used.
+	 The dash style number  is given by  abs(style[i]).
+\item   if there is only one curve, $style$ is of type $<style,pos>$.
+          $pos$ gives in this case the legend position (1 to 6). This can be 
+	interesting  if you want to superpose curves with different legends by 
+        calling $plot2d$ more than once.
+\end{enumerate}
+\item $strf$ is a string of length 3 : "xyz".
+\begin{enumerate}
+\item   if $x=1$ then $plot2d$ adds legends  to the picture;
+        else, no legends are added. Legends are stored in the string
+	 $leg=$"leg1\verb+@+leg2\verb+@+\ldots". You can provide less legends
+	than the number of curve.
+\item If $y=1$ the values stored in $rect$ are used to set the range of the 
+        plot. $rect$ is a vector of size $4$ $rect=<xmin,ymin,xmax,ymax>$
+        . If $y=2$ the range of the plot is computed from data. In other 
+	cases, the values of the previous call or default values  are used.
+\item If $z=1$, then axis are added to the plot. $nax$ is a vector of size $4$.
+	For example if $nax=<3,7,2,8>$, 
+      the $x$-axis will be divided in $7$ large intervals with a number.
+      Each of the large interval will be 
+     divided in $3$ subintervals (resp. 8,2 for the $y$-axis).
+\end{enumerate}
+\end{itemize}
+
+Only the first $2$ arguments are required.
+ Some parameters of the plot depend on the graphic context, like 
+  the thickness of line, the font size and type \ldots 
+
+
+\def\dessin#1#2#3{
+\begin{figure}
+\center{
+\begin{picture}(300,212)
+\special{psfile=#1 hscale=1.0 vscale=1.0}
+\end{picture}}
+\caption{\label{#2}#3}
+\end{figure}
+}
+\paragraph{Example 1} In this example two curves are plotted using the 
+ $plot2d$ default values. See picture~(\ref{fig1}) to see the result.
+\def\cmarg{\hspace{1cm}}
+
+\begin{flushleft}
+{\sl 
+\cmarg driver("Pos")\\ 
+\cmarg xinit("fig1.ps")\\ 
+\cmarg x=0:0.1:2$\star$\%pi;\\ 
+\cmarg \verb@// using defaut values @\\ 
+\cmarg plot2d($<$x;x;x$>$',$<${\bf sin}(x);{\bf sin}(2$\star$x);{\bf sin}(3$\star$x)$>$')\\ 
+\cmarg \verb@// @\\ 
+\cmarg xend();\\ 
+}
+\end{flushleft}
+\dessin{'Test2D.ps'}{fig1}{plot2d example 1}
+
+\paragraph{Example 2:} In this example three curves are plotted and the result 
+ is given on picture~(\ref{fig2}).
+\begin{flushleft}
+{\sl 
+\cmarg xinit("fig2.ps")\\ 
+\cmarg plot2d($<$x;x;x$>$',$<${\bf sin}(x);{\bf sin}(2$\star$x);{\bf sin}(3$\star$x)$>$',$<$$-$1,$-$2,3$>$, ...\\ 
+\cmarg \hspace{1.8cm}"111","sin(x)@sin(2*x)@sin(3*x)",$<$0,$-$2,2$\star$\%pi,2$>$,$<$2,5,2,5$>$);\\ 
+\cmarg xend();}
+\end{flushleft}
+
+\dessin{Test2DF.ps}{fig2}{plot2d example 2}
+
+
+\subsection{How to use $plot2d$ from a programming language}
+
+The {\bf Basile} macro plot2d calls a $C$ function called $plot2d\_$ which 
+ can be called directly from any programming language. The following code 
+ gives an example of a call from the $C$ programming language, the picture generated is similar to picture~(\ref{fig1}). We only provide here the subroutine, 
+ see the annex to have the main program.
+
+\input Test2D-C.tex
+
+\paragraph{}Calling the same function from the Fortran programming language 
+	is provided now. The strings must be ended by the sequence $\backslash0$, and the ``\_'' at the end of functions or subroutines must be removed. 
+ The folowing example produce a picture like picture~(\ref{fig2}).
+
+\input Test2DF-F.tex 
+
+\section{$champ$ and $fchamp$ the 2-dimensionnal field plotter}
+
+$champ$ is used to plot a vector field of dimension 2, the field is given 
+ by two matrices which give the vector field component for points located on a regular grid. $champ$ can be called from  basile or from any programming language. $fchamp$ is devoted to the same purpose, but the field is defined 
+ by a Basile-macro. To provide compatibility with the primitive $ode$ of 
+ Basile, the field macro must be of type $<y>=f(t,x)$, x and y are vectors
+ of dimension 2.
+
+\[
+	fchamp(f,t,xr,yr,fax)
+\]
+\begin{itemize}
+\item $f$ is a macro name supposed to be of the form $<y>=f(t,x)$ ( see $ode$).
+\item $t$ is the time for which we want to plot the field.
+\item $xr$ and $yr$ are line vectors of type $min:step:max$  used to specify the grid on which we 
+ want to compute and draw the vector field.
+\item $fax$ is an optional argument. If present then $fchamp$ draws and axis.
+\end{itemize}
+
+\def\cmarg{\hspace{1cm}}
+
+The following code in $Basile$ gives the same picture as the example provided 
+ in $C$ language in a next paragraph (see picture~(\ref{fig4}).).
+\begin{flushleft}
+{\sl 
+\cmarg \hspace{1.2cm}{\bf deff}('$<$xdot$>$ = derpol(t,x)',$<$'xd1 = x(2)';\\ 
+\cmarg \hspace{1.2cm}'xd2 = $-$x(1) + (1 $-$ x(1)$\star$$\star$2)$\star$x(2)';\\ 
+\cmarg \hspace{1.2cm}'xdot = $<$ xd1 ; xd2 $>$'$>$);\\ 
+\cmarg \hspace{1.5cm}fchamp(derpol,0,$-$1:0.1:1,$-$1:0.1:1,1);\\ }
+\end{flushleft}
+
+\[ 
+   champ(fx,fy,rect)
+\]
+Draw a vector field of dimension 2
+\begin{itemize}
+\item $fx$ and $fy$ are (p,q) matrices which give the vector field 
+  on a regular grid. fx(i,j) is the value of the field along the x-axis
+  at point $X=(i,j)$.
+\item $rect$ is a vector of size 4. It is an optionnal argument, if present
+	 then an axis is drawn and $rect$ gives the numerical values 
+	which are to be drawn along the axis.
+\end{itemize}
+
+\subsection{How to use $champ$ from a programming language}
+The following code 
+ gives an example of a call from the $C$ programming language in order 
+ to plot the van der pol field. 
+
+\input TestCh-C.tex 
+
+The resulting plot is given on picture~(\ref{fig4}).
+
+\dessin{'TestCh.ps'}{fig4}{The van der pol field}
+
+The same program in Fortran mode~:
+
+\input TestChF-F.tex 
+
+\section{ $contour$ and $fcontour$ The level curve plotter}
+
+$contour$ and $fcontour$ are used to plot the level curves of a map defined 
+by $z=f(x,y)$. If $fcontour$ is used, the user gives the value of $f$ as a $Basile$ macro, else the values of $f$ on a grid are given as a $Basile$ matrix.
+ The grid is not supposed to be regular. 
+
+\[
+contour(xr,yr,z,nz)
+\]
+\[
+fcontour(f,xr,yr,nz)
+\]
+\begin{itemize}
+ \item z  is a (n1,n2) matrix which gives the values of $f$, $f(xr(i),yr(j))=z(i,j)$.
+ \item xr is a (1,n1) matrix which gives the grid on the x axis 
+ \item yr is a (1,n2) matrix  which gives the grid on the y axis 
+ \item nz is the number of level curves. Computed from min and max of z
+\end{itemize}
+
+\subsection{How to use $contour$ from a programming language}
+The general syntax is as  follows~:
+\[
+contour\_(float x[],float y[],float z[],float *n1,float *n2,float *nz)
+\]
+
+The following code 
+ gives an example of a call from the $C$ programming language. The result 
+ if on the picture~(\ref{fig5})
+
+\dessin{'TestC.ps'}{fig5}{Level curves}
+
+\input TestC-C.tex 
+
+The same program in Fortran mode~:
+
+\input TestCF-F.tex 
+
+
+\section{ $param3d$ Curve plotter in $R^3$}
+$param3d$ is used to draw a parametric curve in $R^3$.
+\[
+	param3d(x,y,z,teta,alpha,leg,[flag])
+\]
+\begin{itemize}
+\item $x$, $y$ and $z$ are {\bf row} vectors of same size giving the points 
+ of the curve.
+\item $teta$ and $alpha$ are  spherical angles which  define the view point
+\item $leg$ is s atring of type ``leg-X\@leg-Y\@leg-Z''
+\item if $flag$ =0 the mode is superpose mode, the scaling of the previous 
+ call are used. 
+\end{itemize}
+\subsection{How to call $param3d$ from a programing language}
+The following code 
+ gives an example of a call from the $C$ programming language. The result 
+ if on the picture~(\ref{fig6})
+\input TestP3D-C.tex 
+\dessin{'TestP3D.ps'}{fig6}{Parametric curves in $R^3$}
+
+The same program in Fortran mode~:
+
+\input TestP3DF-F.tex 
+
+\section{ $plot3d$ and $fplot3d$ Surface plotter}
+
+
+\[
+fplot3d(f,xr,yr,teta,alpha,leg,flag)
+\]
+\begin{itemize}
+  \item $f$  is a macro $f(x,y):=x^2+y^2$
+  \item $(xr,yr)$ : vectors to defines the arguments of f (the grid)
+  . For example  xr=0:0.1:1 , yr=0:0.1:1.
+\item $teta, alpha$ : spherical angles that define the view point
+\item $ flag=<mode,type>$, if $mode >=2$ plot with hiden parts eliminated 
+	(and gray surface according to the value of mode). if 
+    $mode = 1$ hiden parts are drawn.
+\item if $flag$ =0 the mode is superpose mode, the scaling of the previous 
+ call are used. 
+\end{itemize}
+\[
+plot3d(xr,yr,x,teta,alpha,leg,flag),
+\]
+
+\subsection{How to call $plot3d$ from a programming language}
+The result 
+ if on the picture~(\ref{fig7})
+\dessin{'Test3D.ps'}{fig7}{Surface}
+
+\input Test3D-C.tex 
+
+The same program in Fortran mode~:
+
+\input Test3DF-F.tex 
+
+\section{Some variations on Plot2d}
+\input Test2D2-C.tex 
+\dessin{'Test2D2.ps'}{fig8}{Plot2D2}
+\input Test2D3-C.tex 
+\dessin{'Test2D3.ps'}{fig9}{Plot2D3}
+\input Test2D4-C.tex 
+\dessin{'Test2D4.ps'}{fig10}{Plot2D4}
+
+\section{Main programs}
+
+\input debut-C.tex 
+
+\input debutF-F.tex 
+
+\section{How to print a Postscript File}
+The postscript file generated need a preamble in order to be correctly 
+ printed. A general program is used in order to generate a postscript file 
+ and send it to the laser printer from a set of file generated by the 
+ Postscript driver  
+\begin{verbatim}
+ Blpr string-title file1.ps file2.ps ... | lpr 
+\end{verbatim}
+
+\paragraph{}The $Blatexpr$ shell also provides an example of how to include 
+a Postscript file in a \LaTeX document. The command~:
+\begin{verbatim}
+ Blatexpr fig.ps [hscale vscale] 
+\end{verbatim}
+will create two files \verb+Nfig.ps+ and \verb+fig.tex+, you just insert the 
+\verb+fig.tex+ file in your \LaTeX document to get your picture 
+
+With the default value $hscale=vscale=1$ you'll get a (300,212) picture 
+
+\end{document}

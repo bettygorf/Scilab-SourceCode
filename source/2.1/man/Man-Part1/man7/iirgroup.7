@@ -1,0 +1,31 @@
+.TH iirgroup 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+iirlp - group delay Lp IIR filter optimization
+.SH CALLING SEQUENCE
+.nf
+[lt,grad]=iirgroup(p,r,theta,omega,wt,td)
+[cout,grad,ind]=iirlp(x,ind,p,[flag],lambda,omega,ad,wa,td,wt)
+.fi
+.SH PARAMETERS
+.TP 10
+r
+: vector of the module of the poles and the zeros of the filters
+.TP 10
+theta
+: vector of the argument of the poles and the zeros of the filters
+.TP 10
+omega
+: frequencies where the filter specifications are given
+.TP 10
+wt
+: weighting function for and the group delay
+.TP 10
+td
+: desired group delay
+.TP 10
+lt, grad
+: criterium and gradient values
+.SH DESCRIPTION
+optimization of IIR filters for the Lp criterium for the
+the group delay. (Rabiner & Gold pp270-273).

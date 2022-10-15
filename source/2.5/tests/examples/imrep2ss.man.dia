@@ -1,0 +1,90 @@
+ 
+clear;lines(0);
+ 
+s=poly(0,'s');
+ 
+H=[1/(s+0.5);2/(s-0.4)]   //strictly proper
+ H  =
+ 
+!      1     !
+!   -------  !
+!   0.5 + s  !
+!            !
+!      2     !
+!   -------  !
+! - 0.4 + s  !
+ 
+np=20;w=ldiv(H('num'),H('den'),np);
+ 
+rep=[w(1:np)';w(np+1:2*np)'];   //The impulse response
+ 
+H1=ss2tf(imrep2ss(rep))
+ H1  =
+ 
+!         1        !
+!   -------------  !
+!   0.4999986 + z  !
+!                  !
+!         2        !
+!   -------------  !
+! - 0.4000000 + z  !
+ 
+z=poly(0,'z');
+ 
+H=(2*z^2-3.4*z+1.5)/(z^2-1.6*z+0.8)     //Proper transfer function
+ H  =
+ 
+                   2  
+    1.5 - 3.4z + 2z   
+    ---------------   
+                  2   
+    0.8 - 1.6z + z    
+ 
+u=zeros(1,20);u(1)=1;
+ 
+rep=rtitr(H('num'),H('den'),u);   //Impulse rep.
+ 
+//   <=> rep=ldiv(H('num'),H('den'),20)
+ 
+w=z*imrep2ss(rep)   //Realization with shifted impulse response
+ w  =
+ 
+ 
+       w(1)   (state-space system:)
+ 
+!lss  A  B  C  D  X0  dt  !
+ 
+       w(2) = A matrix = 
+ 
+!   0.1831109    0.4516462  - 0.6769688 !
+! - 0.3169782    0.8422011    0.3319334 !
+! - 0.1868225  - 0.1348586    0.5221138 !
+ 
+       w(3) = B matrix = 
+ 
+! - 2.1798455 !
+!   0.3594529 !
+! - 0.2483085 !
+ 
+       w(4) = C matrix = 
+ 
+! - 0.0346832  - 0.5221613    0.3540419 !
+ 
+       w(5) = D matrix = 
+ 
+    2.  
+ 
+       w(6) = X0 (initial state) = 
+ 
+!   0. !
+!   0. !
+!   0. !
+ 
+       w(7) = Time domain = 
+ 
+ d   
+ 
+// i.e strictly proper to proper
+ 
+H2=ss2tf(w);
+ 

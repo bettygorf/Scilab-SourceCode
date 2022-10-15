@@ -1,0 +1,35 @@
+
+mopen(1)                       Scilab Function                       mopen(1)
+NAME
+  mopen - open a file
+
+CALLING SEQUENCE
+  [fd,err]=mopen(file [, mode,  swap ])
+
+PARAMETERS
+
+  file      : a character string. The pathname of the file to open.
+
+  mode      : a character string. The mode parameter can be "rb" for read
+            binary or "wb" for write binary or "ab" for append. The default
+            value is  "rb".
+
+  swap      : a scalar. If swap is present and swap=0 then automatic bytes
+            swap is disabled.
+
+  err       : a scalar. Error indicator
+
+  fd        : scalar. The fd parameter returned by the function mopen is used
+            as a file descriptor (it's a positive integer).
+DESCRIPTION
+  mopen may be used to open a file in a way compatible with the C fopen pro-
+  cedure. Without swap argument the file is supposed to be coded in "little
+  endian IEEE format" and data are swaped if necessary to match the IEEE for-
+  mat of the processor.
+
+  To open files in a way compatible with Fortran like functions use function
+  file.
+
+SEE ALSO
+  mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr,
+  mopen, mprintf, mput, mputstr, mscanf, mseek, mtell

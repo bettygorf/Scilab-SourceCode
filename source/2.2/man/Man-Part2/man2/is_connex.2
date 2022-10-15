@@ -1,0 +1,26 @@
+.TH is_connex 1 "September 1995" "Scilab Group" "Scilab function"
+.so man1/sci.an
+.SH NAME
+is_connex - connectivity test
+.SH CALLING SEQUENCE
+.nf
+[res] = isconnex(g)
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph-list
+.TP 4
+res
+: integer, result of the test
+.SH DESCRIPTION
+\fVis_connex\fR returns 1 if the graph \fVg\fR is connected and 0 otherwise.
+.SH EXAMPLE
+.nf
+g=make_graph('foo',1,3,[1,2,3,1],[2,3,1,3]);
+is_connex(g)
+g=make_graph('foo',1,4,[1,2,3,1],[2,3,1,3]);
+is_connex(g)
+.fi
+.SH SEE ALSO
+con_nodes, strong_connex

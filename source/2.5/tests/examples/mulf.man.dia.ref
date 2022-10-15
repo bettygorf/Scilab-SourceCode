@@ -1,0 +1,18 @@
+ 
+clear;lines(0);
+ 
+mulf('1','a')
+ ans  =
+ 
+ a   
+ 
+mulf('0','a')
+ ans  =
+ 
+ 0   
+ 
+'a'+'b'   //Caution...
+ ans  =
+ 
+ ab   
+ 

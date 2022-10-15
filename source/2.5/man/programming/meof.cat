@@ -1,0 +1,22 @@
+
+meof(1)                        Scilab Function                        meof(1)
+NAME
+  meof - check if end of file has been reached
+
+CALLING SEQUENCE
+  err=meof(fd)
+
+PARAMETERS
+
+  fd        : scalar. The fd parameter returned by the function mopen. -1
+            stands for last opened file. Default value is -1.
+
+  err       : scalar. Error indicator
+DESCRIPTION
+  The function meof will return a non null value if end of file has been
+  reached in a previous call to mget or mgetstr.  The function clearerr is
+  used to reset the error flag and EOF flag to zero.
+
+SEE ALSO
+  mclose, meof, mfprintf, fprintfMat, mfscanf, fscanfMat, mget, mgetstr,
+  mopen, mprintf, mput, mputstr, mscanf, mseek, mtell

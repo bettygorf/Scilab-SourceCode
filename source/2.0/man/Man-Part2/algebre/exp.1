@@ -1,0 +1,28 @@
+.TH exp G "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+exp - exponential, matrix exponential
+.SH CALLING SEQUENCE
+.nf
+exp(X)
+.fi
+.SH PARAMETERS
+.TP
+X
+: a vector or a square matrix with real or complex entries.
+.LP
+.SH DESCRIPTION
+If \fVX\fR is a vector (or a \fBnon-square\fR matrix)
+\fVexp(X)\fR is the (element-wise) exponential of the entries of \fVX\fR, 
+e to the \fVX\fR.
+.PP
+If \fVX\fR is a \fBsquare\fR matrix \fVexp(X)\fR is the matrix 
+.LA \[ exp(X) = I + X + X^2/2 + ... \]
+.IG
+exp(X) = I + X + X^2 /2 + ...
+.FI
+The computation is performed by first block-diagonalizing \fVX\fR 
+and then applying a Pade approximation on each block.
+.SH SEE ALSO
+bdiag, coff, log
+

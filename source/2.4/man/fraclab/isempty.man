@@ -1,0 +1,33 @@
+.TH "isempty" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+isempty - Checks if a matrix is empty
+.sp
+Author: Paulo Goncalves
+.sp
+\fIisempty\fP True for empty matrix.
+\fIisempty(x)\fP returns %T if x is an empty array and %F otherwise. An
+empty array has no elements, that is prod(size(X))==0.
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+isempty(x)
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBx\fP : Real or complex valued matrix \f(CR[\fPrx,cx\f(CR]\fP
+.RE
+
+.SH See also:
+all

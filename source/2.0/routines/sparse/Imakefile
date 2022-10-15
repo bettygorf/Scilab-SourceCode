@@ -1,0 +1,13 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+OBJS= lu.o spBuild.o spFortran.o spSolve.o spAllocate.o spFactor.o \
+	spOutput.o spUtils.o
+
+SRCS=$(OBJS:.o=.c)
+
+LibraryTarget($(PATHO)/sparse.a,$(OBJS))
+DependTarget()
+
+
+

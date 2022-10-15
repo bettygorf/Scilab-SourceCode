@@ -1,0 +1,32 @@
+.TH sensi 5 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+sensi - sensitivity functions
+.SH CALLING SEQUENCE
+.nf
+[Se,Re,Te]=sensi(G,Sk)
+.fi
+.SH PARAMETERS
+.TP 10
+G 
+: standard plant (\fVsyslin\fR list)
+.TP
+Sk 
+: compensator (\fVsyslin\fR list) 
+.TP
+Se
+: sensitivity function \fV(I+G*Sk)^-1\fR
+.TP
+Re
+: \fVK*Se\fR
+.TP
+Te
+: \fVG*Sk*Se\fR
+.SH DESCRIPTION
+computes sensitivity functions. Calculation is made by \fVlft\fR, e.g., 
+\fVSe\fR can be given by the commands 
+\fV P = augment(P,'S')\fR, \fVSe=lft(P,Sk)\fR.
+.SH SEE ALSO
+augment, lft, h_cl
+
+

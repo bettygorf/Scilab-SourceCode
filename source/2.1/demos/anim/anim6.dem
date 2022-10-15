@@ -1,0 +1,16 @@
+
+k_dr=driver();
+driver("Wdp");
+if flag1=1;xset("use color",1);end
+n_path="SCI/demos/npend";
+getf(n_path+'/macros.sci','c');
+getf(n_path+'/dessin.sci','c');
+getf('SCI/demos/anim/anim6.sci','c');
+
+n=10;
+r=1*ones(1,n);m=1*ones(1,n);j=1*ones(1,n);g=9.81;
+y0=0*ones(2*n,1);
+yt=read(n_path+'/yt.wrt',20,201);
+chaina(yt);
+
+driver(k_dr);

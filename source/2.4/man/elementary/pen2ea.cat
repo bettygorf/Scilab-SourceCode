@@ -1,0 +1,20 @@
+
+pen2ea(G)                      Scilab Function                      pen2ea(G)
+NAME
+  pen2ea - pencil to E,A conversion
+
+CALLING SEQUENCE
+  [E,A]=pen2ea(Fs)
+
+PARAMETERS
+
+  Fs   : matrix pencil s*E-A
+
+  E,A  : two matrices such that Fs=s*E-A
+
+DESCRIPTION
+  Utility function. Given the pencil Fs=s*E-A, returns the matrices E and A.
+
+EXAMPLE
+  E=[1,0];A=[1,2];s=poly(0,'s');
+  [E,A]=pen2ea(s*E-A)

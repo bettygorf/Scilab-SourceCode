@@ -1,0 +1,40 @@
+.TH xpolys 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+xpolys - draw a set of polylines
+.SH CALLING SEQUENCE
+.nf
+[]=xpolys(xpols,ypols,[draw])
+.fi
+.SH PARAMETERS 
+.TP 15
+xpols, ypols 
+: matrices of size (p,n)
+.TP
+draw 
+: vector of size n
+.SH DESCRIPTION
+Draws a set of polyline using marks or dashed lines, each polyline points
+ are store in a column of \fVxpols, ypols\fR. \fVxpols =[ xpol1;xpol2;...] '\fR
+.LP
+The style is given by \fVdraw\fR :
+.PP
+If \fVdraw(i)\fR is negative the mark of id \fV-draw(i)\fR is used to
+draw the polyline i ( marks are draw using the current pattern)
+.PP
+If \fVdraw(i)\fR is strictly positive  the line style (or color) of id \fVabs(draw(i))\fR is used to draw the 
+polyline i.
+.LP
+.SH EXAMPLES
+.nf
+plot2d(0,0,[-1],"012"," ",[0,0,1,1]);
+rand('uniform');
+xset('pattern',3)
+xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
+xset('default')
+.fi
+.SH AUTHOR
+J.Ph.C.
+
+
+

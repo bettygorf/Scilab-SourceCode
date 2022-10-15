@@ -1,0 +1,7 @@
+This directory contains utility functions:
+
+The Fortran routine callsci.f 
+    is an example of calling scilab as a subroutine of a user's Fortran main
+    program (callsci.f).
+    This main program send matrices (call matz) and commands 
+    (call matlab) to scilab and gets the results back (call matz).

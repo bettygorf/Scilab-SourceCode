@@ -1,0 +1,1148 @@
+%!
+%%TeXEpsf insertion 
+0 440 neg translate
+%!PS-Adobe-2.0 EPSF-1.2
+%%Creator:Cricket Draw 1.1
+%%Title:Poo.epsf
+%%CreationDate:12/4/90   2:50 PM
+%%DocumentFonts: Helvetica
+%%+ Helvetica-Bold
+%%BoundingBox:0 440 528 781 
+%%Pages:0
+%%EndComments
+/vmstate save def
+[] settransfer
+/$cricket 210 dict def
+$cricket begin 1 -1 scale
+0 -781  translate
+2 setlinecap
+/d /def load def
+/b {bind d}bind d
+/l {load d}b
+/e /exch l
+/x {e d}b
+/C /closepath l
+/CP /currentpoint l
+/SH /show l
+/g /gsave l
+/G /grestore l
+/i /if l
+/I /ifelse l
+/v /getinterval l
+/V /putinterval l
+/W /stringwidth l
+/SG /setgray l
+/N /newpath l
+/M /moveto l
+/L /lineto l
+/R /rlineto l
+/T /translate l
+/D /dup l
+/* /mul l
+/+ /add l
+/- /sub l
+/? /div l
+/ma {* +}b 
+/h {D * e D ma sqrt}d
+systemdict D /setpacking known D {/packstate currentpacking d D setpacking}i /pack? x
+begin /settransfer load /setscreen load end 
+/setscreen x /settransfer x
+/dt [ currenttransfer ] cvx d 
+/ds [ currentscreen D [ e ] cvx /devSpot x ] cvx d 
+/jp {e [ 3 1 roll aload pop counttomark -1 roll aload pop ] cvx}b 
+/settransfer {dt jp settransfer}b 
+/macvec dup where not { 256 array d 
+macvec 0 StandardEncoding
+0 128 getinterval putinterval
+macvec 16#27 /quotesingle put
+macvec 16#60 /grave put
+/Adieresis /Aring /Ccedilla /Eacute /Ntilde /Odieresis /Udieresis /aacute
+/agrave /acircumflex /adieresis /atilde /aring /ccedilla /eacute /egrave
+/ecircumflex /edieresis /iacute /igrave /icircumflex /idieresis /ntilde /oacute
+/ograve /ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex /udieresis
+/dagger /degree /cent /sterling /section /bullet /paragraph /germandbls
+/registersans /copyrightsans /trademarksans /acute /dieresis /notequal /AE /Oslash
+/infinity /plusminus /lessequal /greaterequal /yen /mu /partialdiff /summation
+/product /pi /integral /ordfeminine /ordmasculine /Omega /ae /oslash
+/questiondown /exclamdown /logicalnot /radical /florin /approxequal /Delta /guillemotleft
+/guillemotright /ellipsis /space /Aacute /Atilde /Otilde /OE /oe
+/endash /emdash /quotedblleft /quotedblright /quoteleft /quoteright /divide /lozenge
+/ydieresis /Ydieresis /fraction /currency /guilsinglleft /guilsinglright /fi /fl
+/daggerdbl /periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Agrave
+/Edieresis /Egrave /Iacute /Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex
+/apple /Ograve /Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde
+/macron /breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+macvec 128 128 v astore pop}{pop pop}I
+/ad {+ d}b 
+/sd {- d}b 
+/td {* d}b 
+/dd {? d}b
+/c {2 ? e 2 ? e}b 
+/n0 {D 0 eq {pop}}b
+/m1 matrix d /m2 matrix d /m3 matrix d
+/ct 0 d 
+/s+ 0 d 
+/po 0 d 
+/ts 40 string d
+/s1 (|______) d
+ts 0 s1 V
+/sp ( ) d
+/SM {/m3 m3 currentmatrix d}b 
+/RM {m3 setmatrix}b 
+/dpi 72 0 matrix defaultmatrix dtransform h d
+/inch {72 *}b
+/cm {28.3465 *}b
+/pi 3.1415923 d
+/fs 256 string d 
+/sh {m1 m2 copy 2 3 -1 roll sin put m2 concat}b 
+/fc {T n0 {rotate}I scale n0 {sh}I}b 
+/a {/ea x /sa x SM -1 * scale 0 0 1 sa ea 2 copy gt {arcn}{arc}I RM}b 
+/cn {SM T x1 y1 scale 0 0 1 ct 90 * D 90 + arc /ct ct 1 ad RM}b 
+/rr {/y1 x /x1 x /ct 0 d c y1 - /yr x x1 - /xr x N xr yr cn xr neg yr cn xr neg yr neg cn xr yr neg cn C}b 
+/dg 
+{/lc x clip rotate T /dy x /dx x
+0 eq {N 
+1 eq {1 10 lc ? 10{log dy * 0 e neg M dx 0 R}for lc 10 gt{dy 0 e neg M dx 0 R}i}
+{lc 1 eq {0 0 e neg M dx 0 R}{/st dy lc 1 - dd 0 1 lc 1 - {st * 0 e neg M dx 0 R}for}I}I
+stroke}
+{1 eq {/st 0 d /inc 10 lc 1 + dd dx dy lt {/rd dx d}{/rd dy d}I
+1 1 lc {/di st 1 + log 10 log ? rd td N dx di - dy di - 0 360 a C stroke /st st inc ad}for} 
+{dx dy lt {/st dx lc dd}{/st dy lc dd}I lc {N dx dy 0 360 a C stroke /dx dx st sd /dy dy st sd}repeat} I
+}I}b
+/sb {/ea x /ia x /sa x /yr x /xr x ea sa lt{/ia ia neg d}i N sa ia ea{D /x1 e cos xr td /y1 e sin yr * neg d x1 y1 M 0 0 L}for}b
+/bm {/y1 x /x1 x bitgray SG x1 y1 /md where {pop md /invertflag get not}{true}I 
+[x1 0 0 y1 0 0] {currentfile picstring readhexstring pop}imagemask}b
+/c1 .166667 d /c2 .833333 d /c3 .5 d
+/p3 {+ c3 *}b 
+/dc{/y2 x /x2 x x0 c1 * x1 c2 ma y0 c1 * y1 c2 ma x1 c2 * x2 c1 ma y1 c2 * y2 c1 ma x1 x2 p3 y1 y2 p3 curveto}b 
+/mp {/x0 x1 d /y0 y1 d /x1 x2 d /y1 y2 d}b
+/SPOLY_INIT
+{/SPOLY_SAVE save d /cls x
+/M {2 copy /y0 x /x0 x moveto /M /moveto load d}d
+/L {/y1 x /x1 x x0 x1 p3 y0 y1 p3
+cls {/yy y1 d /xx x1 d /C {mp xx yy dc systemdict /closepath get exec}d M}
+{lineto}I /L {{dc mp}stopped {/L {pop pop}d /noerr false d}i}d}d}d
+/SPOLY_END {SPOLY_SAVE restore}b
+/ah {g 2 copy T 3 -1 roll - 3 1 roll e - atan rotate os 0 M hl hw R 0 hw 2 * neg R C fill G}b
+/da 
+{g stroke G 
+g currentlinewidth D -10 * D /hl x -2 ? /os x 2 * /hw x /bp x /ep x
+.2 setlinewidth 0 setlinejoin 
+g flattenpath {}{}{}{} pathforall 
+count 8 eq {8 4 roll}i
+count 8 gt {count 4 roll mark count 8 - 1 roll cleartomark}i 
+count 6 eq {6 2 roll 2 copy 8 2 roll}i
+count 4 eq {4 copy}i G
+N bp {4 2 roll ah}{pop pop pop pop}I ep {ah}{clear}I G}b 
+/tp {sm0 transform}b 
+/sfp {} d 
+/op {{tp moveto}{tp lineto}{3{tp 6 2 roll}repeat curveto}{C} pathforall sfp stroke}b 
+/sm0 matrix d /sm1 matrix d
+/so 
+{SG /eg x /tg x /yt x /xt x 
+xt 0 ne yt 0 ne or {
+xt abs yt abs gt {/tt xt abs d}{/tt yt abs d}I
+tt 144 gt {/ct dpi 2 dd /sfp{g eofill G}d}
+{tt 72 gt {/ct dpi 4 dd /sfp{g eofill G}d}
+{/ct dpi 4 dd}I}I
+/ig tg eg - ct ? neg d
+/x1 xt ct ? neg d /y1 yt ct dd 
+1 0 0 1 xt yt sm0 astore pop 
+1 0 0 1 x1 y1 neg sm1 astore pop
+g op G
+1 1 ct{g ig * tg + SG sm0 D sm1 e concatmatrix pop op G}for}i}b
+/css {T 0 0 M xsp 0 32 Txt widthshow}b
+/sc 
+{g /xsp x /tg x /eg x /sg x /y1 x /x1 x /Txt x
+/sst dpi 4 dd /y2 y1 sst dd /x2 x1 neg sst dd
+eg sg eq {/sg sg .001 sd}i
+/ig eg sg - sst ? neg d 
+g tg SG x1 y1 neg css 
+eg ig + ig sg {SG x2 y2 css}for G 
+x2 y2 css G}b 
+/gbb {pathbbox /y1 x /x1 x /y2 x /x2 x /x3 x1 x2 sd /y3 y1 y2 sd}b 
+/radf 
+{/dn dpi 300 ? 8 * 24 ad /ig rg 255 ? dn dd
+sg 255 ? SG eoclip gbb 
+x2 x3 2 ? + y2 y3 2 ? + T N
+x3 y3 h 2 ? D dn ? neg 1 
+{0 0 3 -1 roll 0 360 arc C fill currentgray ig + SG}for}b
+/dof 
+{/ff x 
+eoclip 180 - rotate gbb
+x1 y1 T 180 rotate x3 y3 scale
+0 1 255 {fs e D 255 ? ff rg * sg + round cvi put}for
+1 256 8 [1 0 0 256 0 0] fs image}b
+/gft {radf {{} dof}{{1 e - 9 * 1 + log 1 e -}dof}}b
+/df 
+{g 2 copy eq {SG clear fill}{255 * e 255 * e 1 index - /rg x /sg x /gft load e get exec}I G}b 
+/oc
+{/tl x /ju x /di 0 d 
+g flattenpath
+{/y1 x /x1 x}{/y2 x /x2 x /dx x2 x1 sd /dy y2 y1 sd /di dx D * dy D ma sqrt di ad /x1 x2 d /y1 y2 d}
+{}{/y2 x /x2 x /dx x2 x1 sd /dy y2 y1 sd /di dx D * dy D ma sqrt d}pathforall
+ju 0 eq{/po 0 store}i
+ju 1 eq{/po di tl - 2 ? store}i
+ju 2 eq{/po di tl - store}i G}b
+/pt {/FM true d /os x /sr x /os os sr 0 1 v W pop 2 ? ad /pd 0 d /sl os d /ct 0 d g flattenpath {mtp}{ltp}{ctp}{cpp}pathforall G}b
+/mtp {/y1 x /x1 x /x2 x1 d /y2 y1 d /ovr FM {os /FM false d}{0}I d x1 y1 transform /cpy x /cpx x}b
+/ltp 
+{/x3 x1 d /y3 y1 d /y1 x /x1 x /dx x1 x3 sd /dy y1 y3 sd /di dx D * dy D ma sqrt d 
+/di 0 ne
+{/dsx dx di ? ovr td /dsy dy di ? ovr td x3 dsx + y3 dsy + transform
+/cpy x /cpx x /pd pd di ad {sl pd le {ct sr length lt{sch}{exit}I}{/ovr sl pd sd exit}I}loop}i}b
+/ctp {}b 
+/cpp {x2 y2 ltp x2 y2 mtp}b 
+/sch 
+{/ch sr ct 1 v d /ct ct 1 ad
+/cw ch W pop 2 dd 
+g cpx cpy itransform T dy dx atan rotate cw neg 0 M ch SH
+ct sr length lt{sr ct 1 v W pop 2 ? 0 rmoveto}i
+CP transform /cpy x /cpx x G
+/sl sl cw ad /po po cw 2 ma store ct sr length lt{/sl sl sr ct 1 v W pop 2 ? ad}i}b
+/cpd {/newslots x D length newslots + dict D 3 1 roll begin {1 index /FID ne {def}i}forall pop pop end}b
+/of 
+{/ui 0 d 
+/pw 1000 24 dd 
+/nn x 
+/bn x 
+ui 0 eq 
+{/ui bn findfont
+dup /UniqueID known 
+{/UniqueID get 1 add}{pop 1}ifelse
+def} if
+/bfd bn findfont def 
+/ct bfd maxlength 1 ad 
+bfd /UniqueID known not
+{/ct ct 1 ad} if
+/ofd ct dict def 
+bfd
+{ exch dup /FID ne
+{exch ofd 3 1 roll put}
+{pop pop} ifelse
+}forall
+ofd /FontName nn put
+ofd /PaintType 2 put
+ofd /StrokeWidth pw put
+ofd /UniqueID ui put
+nn ofd definefont pop}b
+/uf 
+{20 dict begin
+/ui x 
+e /BaseFont e findfont d
+ui 0 eq 
+{/ui BaseFont D /UniqueID known 
+{/UniqueID get 1 +}{pop 1}I d}i
+/FontType 3 d
+/Upos BaseFont /FontInfo 2 copy known
+{get /UnderlinePosition 2 copy known
+{get}{pop pop -100 }I}{ pop pop -100 }I d
+/Uwid BaseFont /FontInfo 2 copy known
+{get /UnderlineThickness 2 copy known
+{get}{pop pop 50}I}
+{pop pop 50}I d
+/FontMatrix BaseFont /FontMatrix get d
+/FontBBox BaseFont /FontBBox get
+D 1 get Upos gt {D 1 Upos put}i d
+/Encoding BaseFont /Encoding get d
+/theChar 1 string d
+/BuildChar
+{e begin
+theChar 0 3 -1 roll put
+BaseFont 1000 scalefont setfont
+theChar W FontBBox setcachedevice
+0 0 M
+theChar show
+0 Upos rmoveto 0 Upos L
+Uwid setlinewidth stroke
+end}d
+currentdict 
+end
+definefont pop}b
+/ns {g CP m3 currentmatrix nulldevice setmatrix T 0 0 M Txt CP pop G}b 
+/ft {/ftsave save d CP 3 1 roll + e T 0 0 M /show /myshow l Txt ftsave restore}b 
+/ls {/Txt x 0 ft}b 
+/cs {/Txt x ns 2 ? neg ft}b 
+/rs {/Txt x ns neg ft}b 
+/slp {/sproc x /sr x 0 1 sr length 1 - {sr e 1 v sproc}for}b 
+/ss 
+{/Txt x /fsave save d
+CP 2 copy T 0 0 M 
+/ffsave save d pop - /lw x ns /tw x /wsp lw tw sd /nsp 0 d
+/show {nsp e {sp eq {1 +}i}slp /nsp x}b 
+Txt 0 nsp 0 gt {wsp nsp ? +}i ffsave restore /s+ x
+/myshow load D systemdict /show get ne
+{D D length 1 - get cvlit /charshadow eq {[ e aload pop e pop s+ e ] cvx}i}
+{pop {s+ 0 32 4 -1 roll widthshow}}I
+/show x Txt fsave restore}b
+/cf{D /fn x length 7 + string /ts x ts 0 s1 V ts 7 fn V /fnm ts cvn d 
+FontDirectory fnm known not {fn cvn findfont 0 cpd /nfd x nfd D /FontName fnm put /Encoding macvec put fnm nfd definefont pop}i}b
+ 
+/JoinProcs {jp}d
+/fixcoordinates {fc}d
+/doarc {a}d
+/doroundrect {rr}d
+/dograte {dg}d
+/dorgrate {drg}d
+/pathoffset {po}d
+/pathtext {pt}d
+/dostarburst {sb}d
+/dobitmap {bm}d
+/strokearrow {da}d
+/shadow {so}d
+/charshadow {sc}d
+/fountain {df}d
+/offsetcalc {oc}d
+/MakeOutlineFont {of}d
+/MakeUnderlineFont {uf}d
+/leftshow {ls}d
+/rightshow {rs}d
+/centershow {cs}d
+/fullshow {ss}d
+/coordinatefont {cf}d
+ 
+ 
+%-----------------------------------
+%Encode PS Fonts to match Mac Fonts
+(Helvetica) coordinatefont
+(Helvetica-Bold) coordinatefont
+%-----------------------------------
+
+%----- Begin Main Program -----%
+
+gsave % Freehand Line
+0.000 1  1  0.000 454.500 154.000  fixcoordinates
+newpath
+-62.500 38.000  moveto
+-62.500 39.000 lineto
+-63.500 40.000 lineto
+-64.500 42.000 lineto
+-64.500 44.000 lineto
+-65.500 47.000 lineto
+-64.500 49.000 lineto
+-62.500 52.000 lineto
+-59.500 54.000 lineto
+-57.500 55.000 lineto
+-55.500 55.000 lineto
+-52.500 56.000 lineto
+-51.500 56.000 lineto
+-49.500 56.000 lineto
+-46.500 57.000 lineto
+-42.500 57.000 lineto
+-38.500 55.000 lineto
+-32.500 54.000 lineto
+-24.500 53.000 lineto
+-16.500 51.000 lineto
+-9.500 50.000 lineto
+-2.500 48.000 lineto
+5.500 43.000 lineto
+13.500 36.000 lineto
+20.500 31.000 lineto
+27.500 25.000 lineto
+30.500 21.000 lineto
+33.500 17.000 lineto
+35.500 13.000 lineto
+37.500 9.000 lineto
+39.500 5.000 lineto
+41.500 1.000 lineto
+45.500 -4.000 lineto
+48.500 -9.000 lineto
+53.500 -16.000 lineto
+57.500 -23.000 lineto
+60.500 -29.000 lineto
+63.500 -35.000 lineto
+64.500 -40.000 lineto
+65.500 -43.000 lineto
+65.500 -45.000 lineto
+65.500 -47.000 lineto
+65.500 -49.000 lineto
+64.500 -50.000 lineto
+63.500 -51.000 lineto
+62.500 -51.000 lineto
+61.500 -52.000 lineto
+61.500 -53.000 lineto
+61.500 -54.000 lineto
+61.500 -56.000 lineto
+60.500 -56.000 lineto
+58.500 -56.000 lineto
+59.500 -57.000 lineto
+58.500 -57.000 lineto
+57.500 -57.000 lineto
+57.500 -56.000 lineto
+55.500 -55.000 lineto
+53.500 -55.000 lineto
+51.500 -52.000 lineto
+51.500 -51.000 lineto
+51.500 -50.000 lineto
+51.500 -49.000 lineto
+51.500 -48.000 lineto
+51.500 -47.000 lineto
+51.500 -45.000 lineto
+50.500 -43.000 lineto
+49.500 -41.000 lineto
+49.500 -38.000 lineto
+48.500 -35.000 lineto
+47.500 -32.000 lineto
+46.500 -30.000 lineto
+45.500 -27.000 lineto
+45.500 -25.000 lineto
+44.500 -23.000 lineto
+43.500 -21.000 lineto
+43.500 -20.000 lineto
+41.500 -18.000 lineto
+40.500 -17.000 lineto
+38.500 -15.000 lineto
+37.500 -15.000 lineto
+36.500 -13.000 lineto
+34.500 -12.000 lineto
+33.500 -10.000 lineto
+31.500 -9.000 lineto
+30.500 -7.000 lineto
+29.500 -6.000 lineto
+27.500 -5.000 lineto
+24.500 -3.000 lineto
+21.500 -1.000 lineto
+18.500 1.000 lineto
+16.500 4.000 lineto
+13.500 6.000 lineto
+11.500 9.000 lineto
+10.500 10.000 lineto
+9.500 11.000 lineto
+6.500 13.000 lineto
+5.500 14.000 lineto
+4.500 15.000 lineto
+3.500 16.000 lineto
+1.500 18.000 lineto
+0.500 18.000 lineto
+-3.500 20.000 lineto
+-6.500 22.000 lineto
+-8.500 23.000 lineto
+-10.500 25.000 lineto
+-13.500 29.000 lineto
+-13.500 30.000 lineto
+-14.500 30.000 lineto
+-18.500 30.000 lineto
+-20.500 30.000 lineto
+-22.500 29.000 lineto
+-23.500 30.000 lineto
+-25.500 31.000 lineto
+-26.500 31.000 lineto
+-27.500 32.000 lineto
+-30.500 34.000 lineto
+-31.500 34.000 lineto
+-32.500 34.000 lineto
+-33.500 34.000 lineto
+-34.500 35.000 lineto
+-35.500 35.000 lineto
+-36.500 35.000 lineto
+-37.500 35.000 lineto
+-38.500 36.000 lineto
+-40.500 36.000 lineto
+-41.500 37.000 lineto
+-46.500 40.000 lineto
+-48.500 41.000 lineto
+-48.500 40.000 lineto
+-49.500 40.000 lineto
+-50.500 39.000 lineto
+-51.500 39.000 lineto
+-52.500 38.000 lineto
+-53.500 38.000 lineto
+-54.500 38.000 lineto
+-55.500 38.000 lineto
+-56.500 38.000 lineto
+-57.500 38.000 lineto
+-57.500 37.000 lineto
+-59.500 38.000 lineto
+-63.500 39.000 lineto
+closepath
+gsave 0.800 setgray eofill grestore
+grestore
+
+gsave % Freehand Line
+0.000 1  1  0.000 334.000 48.500  fixcoordinates
+newpath
+-173.000 -47.500  moveto
+-168.000 -44.500 lineto
+-158.000 -40.500 lineto
+-147.000 -37.500 lineto
+-136.000 -36.500 lineto
+-118.000 -33.500 lineto
+-103.000 -29.500 lineto
+-85.000 -25.500 lineto
+-70.000 -19.500 lineto
+-58.000 -13.500 lineto
+-50.000 -7.500 lineto
+-42.000 -3.500 lineto
+-32.000 0.500 lineto
+-18.000 3.500 lineto
+-5.000 5.500 lineto
+11.000 7.500 lineto
+28.000 9.500 lineto
+45.000 11.500 lineto
+51.000 12.500 lineto
+53.000 13.500 lineto
+57.000 14.500 lineto
+61.000 16.500 lineto
+64.000 17.500 lineto
+68.000 18.500 lineto
+74.000 19.500 lineto
+81.000 21.500 lineto
+89.000 23.500 lineto
+100.000 25.500 lineto
+111.000 28.500 lineto
+125.000 30.500 lineto
+131.000 31.500 lineto
+133.000 31.500 lineto
+136.000 33.500 lineto
+138.000 34.500 lineto
+141.000 36.500 lineto
+147.000 39.500 lineto
+152.000 40.500 lineto
+153.000 41.500 lineto
+156.000 42.500 lineto
+161.000 43.500 lineto
+164.000 44.500 lineto
+165.000 44.500 lineto
+168.000 45.500 lineto
+170.000 45.500 lineto
+171.000 46.500 lineto
+173.000 47.500 lineto
+2.000 setlinewidth 0.050 setgray stroke
+grestore
+
+gsave % Freehand Line
+0.000 1  1  0.000 225.500 130.500  fixcoordinates
+newpath
+-161.500 -59.500  moveto
+-155.500 -56.500 lineto
+-148.500 -52.500 lineto
+-141.500 -49.500 lineto
+-133.500 -47.500 lineto
+-122.500 -45.500 lineto
+-110.500 -43.500 lineto
+-101.500 -41.500 lineto
+-94.500 -38.500 lineto
+-86.500 -34.500 lineto
+-79.500 -30.500 lineto
+-66.500 -24.500 lineto
+-54.500 -17.500 lineto
+-43.500 -10.500 lineto
+-34.500 -4.500 lineto
+-24.500 -0.500 lineto
+-17.500 2.500 lineto
+-3.500 4.500 lineto
+9.500 9.500 lineto
+22.500 13.500 lineto
+35.500 16.500 lineto
+51.500 20.500 lineto
+63.500 24.500 lineto
+77.500 28.500 lineto
+93.500 32.500 lineto
+108.500 36.500 lineto
+118.500 39.500 lineto
+120.500 41.500 lineto
+123.500 43.500 lineto
+127.500 46.500 lineto
+132.500 49.500 lineto
+136.500 50.500 lineto
+141.500 51.500 lineto
+145.500 52.500 lineto
+148.500 53.500 lineto
+151.500 54.500 lineto
+154.500 56.500 lineto
+157.500 58.500 lineto
+158.500 58.500 lineto
+159.500 59.500 lineto
+160.500 59.500 lineto
+161.500 59.500 lineto
+2.000 setlinewidth 0.050 setgray stroke
+grestore
+
+gsave % Line
+0.000 1  1  0.000 450.000 141.500  fixcoordinates
+newpath
+-58.000 46.500  moveto
+58.000 -46.500 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Freehand Line
+0.000 1  1  0.000 447.000 145.500  fixcoordinates
+newpath
+-58.000 45.500  moveto
+-57.000 45.500 lineto
+-54.000 45.500 lineto
+-52.000 45.500 lineto
+-50.000 45.500 lineto
+-48.000 46.500 lineto
+-47.000 46.500 lineto
+-45.000 46.500 lineto
+-41.000 46.500 lineto
+-37.000 45.500 lineto
+-33.000 43.500 lineto
+-29.000 41.500 lineto
+-24.000 39.500 lineto
+-20.000 36.500 lineto
+-17.000 34.500 lineto
+-13.000 32.500 lineto
+-9.000 30.500 lineto
+-6.000 29.500 lineto
+-1.000 28.500 lineto
+7.000 22.500 lineto
+12.000 17.500 lineto
+14.000 15.500 lineto
+16.000 13.500 lineto
+20.000 10.500 lineto
+24.000 6.500 lineto
+27.000 3.500 lineto
+31.000 0.500 lineto
+33.000 -1.500 lineto
+37.000 -4.500 lineto
+41.000 -7.500 lineto
+45.000 -11.500 lineto
+47.000 -14.500 lineto
+49.000 -17.500 lineto
+50.000 -19.500 lineto
+51.000 -23.500 lineto
+53.000 -26.500 lineto
+53.000 -27.500 lineto
+54.000 -29.500 lineto
+54.000 -31.500 lineto
+55.000 -34.500 lineto
+55.000 -35.500 lineto
+55.000 -38.500 lineto
+56.000 -41.500 lineto
+56.000 -42.500 lineto
+57.000 -43.500 lineto
+57.000 -45.500 lineto
+58.000 -46.500 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Line
+0.000 1  1  0.000 49.000 102.500  fixcoordinates
+newpath
+28.000 -13.500  moveto
+-28.000 13.500 lineto
+4.000 setlinewidth 0.500 setgray false true strokearrow
+grestore
+
+gsave % Freehand Line
+0.000 1  1  0.000 266.500 111.000  fixcoordinates
+newpath
+-175.500 -29.000  moveto
+-174.500 -29.000 lineto
+-172.500 -30.000 lineto
+-168.500 -31.000 lineto
+-165.500 -32.000 lineto
+-160.500 -33.000 lineto
+-153.500 -35.000 lineto
+-147.500 -36.000 lineto
+-140.500 -37.000 lineto
+-131.500 -37.000 lineto
+-124.500 -37.000 lineto
+-115.500 -36.000 lineto
+-100.500 -33.000 lineto
+-87.500 -30.000 lineto
+-76.500 -27.000 lineto
+-64.500 -25.000 lineto
+-51.500 -23.000 lineto
+-40.500 -21.000 lineto
+-30.500 -19.000 lineto
+-19.500 -17.000 lineto
+-10.500 -15.000 lineto
+-0.500 -12.000 lineto
+6.500 -9.000 lineto
+15.500 -7.000 lineto
+25.500 -4.000 lineto
+32.500 -1.000 lineto
+37.500 0.000 lineto
+40.500 1.000 lineto
+43.500 1.000 lineto
+46.500 2.000 lineto
+49.500 3.000 lineto
+55.500 3.000 lineto
+61.500 5.000 lineto
+69.500 8.000 lineto
+74.500 9.000 lineto
+81.500 11.000 lineto
+88.500 13.000 lineto
+96.500 15.000 lineto
+103.500 17.000 lineto
+110.500 18.000 lineto
+113.500 19.000 lineto
+120.500 20.000 lineto
+127.500 22.000 lineto
+131.500 23.000 lineto
+137.500 24.000 lineto
+143.500 26.000 lineto
+147.500 27.000 lineto
+152.500 29.000 lineto
+156.500 31.000 lineto
+160.500 32.000 lineto
+164.500 34.000 lineto
+168.500 35.000 lineto
+169.500 36.000 lineto
+172.500 36.000 lineto
+173.500 37.000 lineto
+174.500 37.000 lineto
+175.500 37.000 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Freehand Line
+0.000 1  1  0.000 128.000 93.000  fixcoordinates
+newpath
+-20.000 -7.000  moveto
+-19.000 -7.000 lineto
+-15.000 -7.000 lineto
+-12.000 -7.000 lineto
+-9.000 -7.000 lineto
+-7.000 -7.000 lineto
+-5.000 -7.000 lineto
+-2.000 -7.000 lineto
+-1.000 -7.000 lineto
+0.000 -7.000 lineto
+3.000 -7.000 lineto
+5.000 -7.000 lineto
+7.000 -7.000 lineto
+11.000 -6.000 lineto
+15.000 -4.000 lineto
+17.000 -2.000 lineto
+18.000 -1.000 lineto
+19.000 1.000 lineto
+20.000 3.000 lineto
+20.000 4.000 lineto
+20.000 5.000 lineto
+20.000 6.000 lineto
+20.000 7.000 lineto
+19.000 7.000 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Line
+0.000 1  1  0.000 442.000 162.000  fixcoordinates
+newpath
+0.000 -13.000  moveto
+0.000 13.000 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Line
+0.000 1  1  0.000 429.000 171.500  fixcoordinates
+newpath
+0.000 -12.500  moveto
+0.000 12.500 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Line
+0.000 1  1  0.000 418.000 178.500  fixcoordinates
+newpath
+0.000 -10.500  moveto
+0.000 10.500 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Line
+0.000 1  1  0.000 407.000 186.000  fixcoordinates
+newpath
+0.000 -10.000  moveto
+0.000 10.000 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Line
+0.000 1  1  0.000 226.500 78.000  fixcoordinates
+newpath
+-52.500 36.000  moveto
+52.500 -36.000 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Freehand Line
+0.000 1  1  0.000 232.000 81.000  fixcoordinates
+newpath
+49.000 -39.000  moveto
+49.000 -38.000 lineto
+49.000 -36.000 lineto
+49.000 -35.000 lineto
+48.000 -33.000 lineto
+47.000 -30.000 lineto
+47.000 -27.000 lineto
+46.000 -25.000 lineto
+45.000 -23.000 lineto
+45.000 -21.000 lineto
+44.000 -19.000 lineto
+43.000 -17.000 lineto
+42.000 -15.000 lineto
+41.000 -13.000 lineto
+39.000 -12.000 lineto
+38.000 -11.000 lineto
+35.000 -9.000 lineto
+35.000 -8.000 lineto
+33.000 -6.000 lineto
+31.000 -3.000 lineto
+30.000 -2.000 lineto
+28.000 0.000 lineto
+27.000 1.000 lineto
+25.000 2.000 lineto
+24.000 3.000 lineto
+21.000 4.000 lineto
+19.000 5.000 lineto
+17.000 5.000 lineto
+15.000 7.000 lineto
+13.000 9.000 lineto
+11.000 11.000 lineto
+9.000 13.000 lineto
+6.000 16.000 lineto
+5.000 18.000 lineto
+2.000 20.000 lineto
+-1.000 23.000 lineto
+-4.000 25.000 lineto
+-7.000 27.000 lineto
+-10.000 28.000 lineto
+-13.000 29.000 lineto
+-15.000 29.000 lineto
+-17.000 30.000 lineto
+-21.000 30.000 lineto
+-23.000 30.000 lineto
+-25.000 31.000 lineto
+-28.000 32.000 lineto
+-30.000 34.000 lineto
+-32.000 35.000 lineto
+-35.000 36.000 lineto
+-37.000 37.000 lineto
+-38.000 38.000 lineto
+-40.000 39.000 lineto
+-41.000 39.000 lineto
+-42.000 39.000 lineto
+-44.000 39.000 lineto
+-45.000 39.000 lineto
+-46.000 39.000 lineto
+-47.000 39.000 lineto
+-48.000 39.000 lineto
+-48.000 38.000 lineto
+-49.000 38.000 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Freehand Line
+0.000 1  1  0.000 206.500 102.000  fixcoordinates
+newpath
+6.500 -13.000  moveto
+6.500 -12.000 lineto
+5.500 -12.000 lineto
+5.500 -11.000 lineto
+4.500 -11.000 lineto
+4.500 -10.000 lineto
+2.500 -10.000 lineto
+2.500 -9.000 lineto
+0.500 -8.000 lineto
+-0.500 -7.000 lineto
+-1.500 -7.000 lineto
+-2.500 -6.000 lineto
+-4.500 -4.000 lineto
+-5.500 -2.000 lineto
+-5.500 -1.000 lineto
+-6.500 1.000 lineto
+-6.500 3.000 lineto
+-6.500 5.000 lineto
+-5.500 6.000 lineto
+-5.500 8.000 lineto
+-5.500 9.000 lineto
+-5.500 10.000 lineto
+-5.500 11.000 lineto
+-5.500 12.000 lineto
+-4.500 12.000 lineto
+-4.500 13.000 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Freehand Line
+0.000 1  1  0.000 194.000 110.000  fixcoordinates
+newpath
+3.000 -10.000  moveto
+3.000 -9.000 lineto
+2.000 -9.000 lineto
+1.000 -8.000 lineto
+0.000 -7.000 lineto
+-1.000 -6.000 lineto
+-2.000 -5.000 lineto
+-3.000 -4.000 lineto
+-3.000 -3.000 lineto
+-3.000 -1.000 lineto
+-3.000 0.000 lineto
+-3.000 2.000 lineto
+-3.000 3.000 lineto
+-3.000 5.000 lineto
+-3.000 6.000 lineto
+-3.000 7.000 lineto
+-2.000 8.000 lineto
+-2.000 9.000 lineto
+-1.000 9.000 lineto
+-1.000 10.000 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Freehand Line
+0.000 1  1  0.000 118.000 145.000  fixcoordinates
+newpath
+0.000 0.000  moveto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Freehand Line
+0.000 1  1  0.000 184.500 113.500  fixcoordinates
+newpath
+1.500 -7.500  moveto
+1.500 -6.500 lineto
+1.500 -5.500 lineto
+0.500 -4.500 lineto
+-0.500 -3.500 lineto
+-0.500 -2.500 lineto
+-0.500 -1.500 lineto
+-1.500 -0.500 lineto
+-1.500 0.500 lineto
+-1.500 1.500 lineto
+-1.500 2.500 lineto
+-1.500 3.500 lineto
+-1.500 5.500 lineto
+-1.500 6.500 lineto
+-1.500 7.500 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Line
+0.000 1  1  0.000 334.500 106.000  fixcoordinates
+newpath
+57.500 -43.000  moveto
+-57.500 43.000 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Freehand Line
+0.000 1  1  0.000 340.500 111.500  fixcoordinates
+newpath
+-52.500 42.500  moveto
+-51.500 42.500 lineto
+-49.500 43.500 lineto
+-47.500 43.500 lineto
+-45.500 43.500 lineto
+-43.500 42.500 lineto
+-41.500 42.500 lineto
+-40.500 42.500 lineto
+-39.500 42.500 lineto
+-38.500 42.500 lineto
+-36.500 41.500 lineto
+-35.500 41.500 lineto
+-33.500 41.500 lineto
+-31.500 41.500 lineto
+-30.500 40.500 lineto
+-27.500 40.500 lineto
+-25.500 39.500 lineto
+-24.500 39.500 lineto
+-21.500 38.500 lineto
+-19.500 37.500 lineto
+-18.500 37.500 lineto
+-18.500 36.500 lineto
+-17.500 36.500 lineto
+-15.500 35.500 lineto
+-14.500 34.500 lineto
+-12.500 33.500 lineto
+-10.500 32.500 lineto
+-7.500 30.500 lineto
+-2.500 27.500 lineto
+0.500 25.500 lineto
+4.500 23.500 lineto
+6.500 21.500 lineto
+8.500 20.500 lineto
+10.500 19.500 lineto
+12.500 16.500 lineto
+13.500 15.500 lineto
+16.500 12.500 lineto
+21.500 10.500 lineto
+24.500 7.500 lineto
+25.500 6.500 lineto
+26.500 5.500 lineto
+30.500 2.500 lineto
+32.500 -0.500 lineto
+33.500 -1.500 lineto
+36.500 -4.500 lineto
+38.500 -7.500 lineto
+41.500 -10.500 lineto
+44.500 -13.500 lineto
+46.500 -16.500 lineto
+47.500 -18.500 lineto
+48.500 -18.500 lineto
+48.500 -19.500 lineto
+48.500 -20.500 lineto
+48.500 -21.500 lineto
+48.500 -22.500 lineto
+48.500 -23.500 lineto
+49.500 -24.500 lineto
+49.500 -26.500 lineto
+50.500 -27.500 lineto
+50.500 -28.500 lineto
+51.500 -29.500 lineto
+51.500 -30.500 lineto
+51.500 -32.500 lineto
+52.500 -32.500 lineto
+52.500 -33.500 lineto
+52.500 -35.500 lineto
+52.500 -38.500 lineto
+52.500 -40.500 lineto
+52.500 -41.500 lineto
+52.500 -42.500 lineto
+52.500 -43.500 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Line
+0.000 1  1  0.000 323.000 132.000  fixcoordinates
+newpath
+0.000 -17.000  moveto
+0.000 17.000 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Line
+0.000 1  1  0.000 301.000 143.500  fixcoordinates
+newpath
+0.000 -11.500  moveto
+0.000 11.500 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Line
+0.000 1  1  0.000 312.000 138.000  fixcoordinates
+newpath
+0.000 -15.000  moveto
+0.000 15.000 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Line
+0.000 1  1  0.000 290.000 146.500  fixcoordinates
+newpath
+0.000 -6.500  moveto
+0.000 6.500 lineto
+1.000 setlinewidth 0 setgray stroke
+grestore
+
+gsave % Line
+0.000 1  1  0.000 166.000 152.500  fixcoordinates
+newpath
+-81.000 -25.500  moveto
+81.000 25.500 lineto
+2.000 setlinewidth 0 setgray true true strokearrow
+grestore
+
+gsave % Line
+0.000 1  1  0.000 327.500 206.000  fixcoordinates
+newpath
+-64.500 -22.000  moveto
+64.500 22.000 lineto
+2.000 setlinewidth 0 setgray false true strokearrow
+grestore
+
+gsave % Line
+0.000 1  1  0.000 431.000 241.000  fixcoordinates
+newpath
+-37.000 -12.000  moveto
+37.000 12.000 lineto
+2.000 setlinewidth 0 setgray 
+0 setlinecap [4] 0 setdash
+stroke
+grestore
+
+gsave  % Text Block
+0.000 1  -1  17.000 162.000 194.500  fixcoordinates
+/myshow /show load def
+0 setgray 
+-98 23 moveto
+/|______Helvetica findfont 14 scalefont setfont
+{
+(Zone d'héterogéneisation) show
+} leftshow
+-98 8 moveto
+{
+(verticale) show
+} leftshow
+grestore
+
+gsave  % Text Block
+0.000 1  -1  17.000 401.000 276.298  fixcoordinates
+/myshow /show load def
+0 setgray 
+-98 22 moveto
+/|______Helvetica findfont 14 scalefont setfont
+{
+(Zone d'héterogéneisation) show
+} leftshow
+-98 7 moveto
+{
+(transverse) show
+} leftshow
+grestore
+
+gsave  % Text Block
+0.000 1  -1  17.000 145.500 210.500  fixcoordinates
+/myshow /show load def
+0 setgray 
+-70 7 moveto
+/|______Helvetica-Bold findfont 14 scalefont setfont
+{
+(Dispersion Tridi) show
+} leftshow
+grestore
+
+gsave  % Text Block
+0.000 1  -1  17.000 398.500 298.298  fixcoordinates
+/myshow /show load def
+0 setgray 
+-70 6 moveto
+/|______Helvetica-Bold findfont 14 scalefont setfont
+{
+(Dispersion  Bidi) show
+} leftshow
+grestore
+
+gsave % Line
+0.000 1  1  0.000 107.000 37.500  fixcoordinates
+newpath
+-26.000 -10.500  moveto
+26.000 10.500 lineto
+4.000 setlinewidth 0.500 setgray true false strokearrow
+grestore
+
+gsave % Line
+0.000 1  1  0.000 482.000 156.298  fixcoordinates
+newpath
+-26.000 -10.500  moveto
+26.000 10.500 lineto
+4.000 setlinewidth 0.500 setgray true false strokearrow
+grestore
+
+gsave  % Text Block
+0.000 1  -1  0.000 52.000 98.500  fixcoordinates
+/myshow /show load def
+0 setgray 
+-49 4 moveto
+/|______Helvetica /|______HelveticaO MakeOutlineFont
+/|______HelveticaO findfont 14 scalefont setfont
+{
+(REJET) show
+} leftshow
+grestore
+
+%------ End Main Program ------%
+
+end
+vmstate restore
+
+%%Trailer
+
+%%Pages:1
+

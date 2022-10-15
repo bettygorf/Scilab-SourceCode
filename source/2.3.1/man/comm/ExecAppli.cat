@@ -1,0 +1,32 @@
+
+ExecAppli(1)                   Scilab function                   ExecAppli(1)
+NAME
+  ExecAppli - executes an application
+
+CALLING SEQUENCE
+  ExecAppli(command,h,appli)
+
+PARAMETERS
+
+  command : string, command of the application
+
+  h : string, host name
+
+  appli : string, name of the application
+
+DESCRIPTION
+  ExecAppli executes the application described by command on the host h and
+  gives it the name appli.  Arguments of the application can be also given in
+  the string command.
+
+  After executing ExecAppli, it is necessary to create links with CreateLink
+  to be able to send messages between applications.
+
+EXAMPLE
+  h=unix_g("hostname")
+  ExecAppli(SCI+"/bin/scilex",h,"Scilab2")
+  CreateLink("SELF","Scilab2")
+  ExecAppli(SCI+"/bin/scilex -ns",h,"Scilab3")
+
+SEE ALSO
+  CreateLink, ExecScilab, ExeclScilab

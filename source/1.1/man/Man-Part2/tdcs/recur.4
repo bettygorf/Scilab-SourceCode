@@ -1,0 +1,22 @@
+.TH recur 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+recur
+.SH DESCRIPTION
+.nf
+[y]=recur(x0,var,k,n)
+.fi
+equation recurrente bilineaire
+x(i+1)=-x(i)*(k + sqrt(var)*br(i))
+partant de x0 et
+pilotee par un bruit gaussien de variance var.
+
+le programme dessine la trajectoire et
+retourne l'exposant de Liapunov empirique y
+( x(i) est peu different de exp(y*i) )
+.SH LOGR
+.nf
+[integr]=logr(k,var)
+.fi
+calcul theorique de l'exposant de Liapunov y
+

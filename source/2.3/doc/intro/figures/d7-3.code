@@ -1,0 +1,6 @@
+xinit('d7-3.ps');
+  t=(0:.05:1)';
+  ct=cos(2*%pi*t);
+  st=sin(2*%pi*t);
+  plot2d([t,t],[ct,st],[-1,-2],"121",'cos(t)@sin(t)');
+

@@ -1,0 +1,29 @@
+.TH comp 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+comp -  function compilation
+.SH CALLING SEQUENCE
+.nf
+comp(function-name)
+.fi
+.SH DESCRIPTION
+.Vb comp(function-name) 
+compiles the function \fVfunction-name\fR.
+Compiled and interpreted functions are equivalent but usually 
+compiled functions are much faster.
+The functions provided in the standard libraries are compiled.
+Un-compiled versions exist (entering a library-name returns the names of
+the un-compiled corresponding functions)
+.LP
+The command:
+.Vb getf('filename','c') 
+loads the functions in file \fV'filename'\fR and compiles them.
+.SH REMARKS
+commands 
+.Vb who, help, what 
+cannot be compiled.
+.SH SEE ALSO
+deff, getf, whereis, macr2lst, lib
+
+
+

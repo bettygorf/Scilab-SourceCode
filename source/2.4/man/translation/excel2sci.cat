@@ -1,0 +1,25 @@
+
+excel2sci(3)                   Scilab Function                   excel2sci(3)
+NAME
+  excel2sci - reads ascii Excel files
+
+CALLING SEQUENCE
+  M=excel2sci(fname [,sep])
+
+PARAMETERS
+
+  fname     : character string. The file path
+
+  sep       : character string. Excel separator used, default value is ","
+
+  M         : matrix of strings
+
+DESCRIPTION
+  Given an ascii  file created by Excel using "Text and comma" format
+  exel2sci(fname) returns the corresponding Scilab matrix of strings. Use
+  exel2sci(fname,sep ) for an other choice of separator.
+
+  Note: You may eval all or part ot M using function evstr.
+
+SEE ALSO
+  read, evstr

@@ -1,0 +1,29 @@
+
+trisolve(1)                    Scilab Function                    trisolve(1)
+NAME
+  trisolve - symbolic linear system solver
+
+CALLING SEQUENCE
+  [x [,sexp]] = trisolve(A,b [,sexp])
+
+PARAMETERS
+
+  A,b       : matrices of strings
+
+DESCRIPTION
+  symbolically solves A*x =b , A being assumed to be upper triangular.
+
+  sexp is a vector of common subexpressions in A, b, x.
+
+EXAMPLE
+  A=['x','y';'0','z'];b=['0';'1'];
+  w=trisolve(A,b)
+  x=5;y=2;z=4;
+  evstr(w)
+  inv(evstr(A))*evstr(b)
+
+SEE ALSO
+  trianfml, solve
+
+AUTHOR
+  F.D, S.S

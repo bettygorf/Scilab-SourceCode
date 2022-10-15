@@ -1,0 +1,136 @@
+
+\def\Mhlp{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$$>$=hlp()\\ 
+\cmarg \verb@//@ Travaux diriges : Probleme de peche \\ 
+\cmarg \verb@//@ Un probl\`eme de contr\^ole optimal \\ 
+\cmarg \verb@//@!\\ 
+\cmarg 0;\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mgpeche{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xk,ukp1$>$=gpeche(uk,pasg)\\ 
+\cmarg \verb@//@ pour une loi de commande uk\\ 
+\cmarg \verb@//@ calcule la trajectoire associee xk\\ 
+\cmarg \verb@//@ imprime le valeur du cout \\ 
+\cmarg \verb@//@ calcule une nouvelle valeur de commande \\ 
+\cmarg \verb@//@!\\ 
+\cmarg $<$xk,pk$>$=equad(uk);\\ 
+\cmarg tk=(1/(npts$-$1))$\star$(0:(npts$-$1));\\ 
+\cmarg xset("window",1)\\ 
+\cmarg {\bf if} xget("window")=0 , xinit('unix:0.0'),xset("window",1),{\bf end}\\ 
+\cmarg plot2d(tk',uk',$<$$-$1,1$>$,"121","commande");\\ 
+\cmarg x0=30;\\ 
+\cmarg gcout = {\bf sum}( uk.$\star$xk$-$c$\star$uk);\\ 
+\cmarg ppenco= gcout$-$ppen$\star$(xk(npts)$-$x0)$\star$$\star$2;\\ 
+\cmarg {\bf write}(\%io(2),gcout,'('' gain '',f7.2)')\\ 
+\cmarg {\bf write}(\%io(2),ppenco,'('' gain$-$penalise '',f7.2)')\\ 
+\cmarg grad =   xk$-$c$\star${\bf ones}(xk) $-$ pk.$\star$xk\\ 
+\cmarg \verb@//@gradient projete su [0,umax]\\ 
+\cmarg umax=10;\\ 
+\cmarg ukp1={\bf maxi}({\bf mini}(uk$-$ pasg$\star$grad,umax$\star${\bf ones}(1,npts)),0$\star${\bf ones}(1,npts));\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+
+\def\Mequad{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xk,pk$>$=equad(uk)\\ 
+\cmarg //$<$xk,pk$>$=equad(uk)\\ 
+\cmarg \verb@//@ pour une loi de commande u(t)  stockee dans uk, calcule \\ 
+\cmarg \verb@//@ la trajectoire xk associee et l'etat adjoint pk\\ 
+\cmarg \verb@//@!\\ 
+\cmarg tk=(1/(npts$-$1))$\star$(0:(npts$-$1));\\ 
+\cmarg x0=30\\ 
+\cmarg xk={\bf ode}(x0,0,tk,0.01,0.01,pop);\\ 
+\cmarg \verb@//@ xk est de taille npts\\ 
+\cmarg \verb@//@ \\ 
+\cmarg {\bf deff}('$<$y$>$=gg(t,x)','y=$-$pechep(1$-$t,x)');\\ 
+\cmarg \verb@//@ p(T)=dk-\\ 
+\cmarg pk={\bf ode}($-$2$\star$ppen$\star$(xk(npts)$-$x0) ,0,tk,0.01,0.01,gg);\\ 
+\cmarg pk=pk(npts:$-$1:1);\\ 
+\cmarg xset("window",0)\\ 
+\cmarg plot2d(tk',xk',$<$$-$1,1$>$,"121","trajectoire");\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mubang{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$uk$>$=ubang(tf,tcom)\\ 
+\cmarg \verb@//@!\\ 
+\cmarg uk=0$\star${\bf ones}(1,tf)\\ 
+\cmarg uk(tcom:tf)=1$\star${\bf ones}(1,tf$-$tcom+1);\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mpop{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xdot$>$=pop(t,x)\\ 
+\cmarg //$<$xdot$>$=pop(t,x)\\ 
+\cmarg \verb@//@ dynamique de la population de poissons\\ 
+\cmarg \verb@//@!\\ 
+\cmarg xdot= 10$\star$x$\star$(1$-$x/K)$-$ peche(t)$\star$x\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mpeche{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$ut$>$=peche(t)\\ 
+\cmarg //$<$ut$>$=peche(t)\\ 
+\cmarg \verb@//@ la loi de commande u(t) constante par morceaux \\ 
+\cmarg \verb@//@ construite sur la loi de comande discrete uk\\ 
+\cmarg \verb@//@!\\ 
+\cmarg $<$n1,n2$>$={\bf size}(uk);\\ 
+\cmarg ut=uk({\bf mini}({\bf maxi}({\bf ent}(t$\star$npts),1),n2));\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mtraj{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$xt$>$=traj(t)\\ 
+\cmarg //$<$xt$>$=traj(t)\\ 
+\cmarg \verb@//@ approximation constante par morceaux de l'evolution de la masse\\ 
+\cmarg \verb@//@ construite sur xk : trajectoire discrete.\\ 
+\cmarg \verb@//@! \\ 
+\cmarg $<$n1,n2$>$={\bf size}(xk);\\ 
+\cmarg xt=xk({\bf mini}({\bf maxi}({\bf ent}(t$\star$npts),1),n2));\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+\def\Mpechep{
+\begin{flushleft}
+{\sl 
+\cmarg //$<$pdot$>$=pechep(t,p)\\ 
+\cmarg //$<$pdot$>$=pechep(t,p)\\ 
+\cmarg \verb@//@equation adjointe\\ 
+\cmarg \verb@//@!\\ 
+\cmarg pdot=$-$p$\star$(10$\star$( 1 $-$2$\star$traj(t)/K) $-$ peche(t)) $-$ peche(t)\\ 
+\cmarg //end}
+\end{flushleft}}
+
+
+
+

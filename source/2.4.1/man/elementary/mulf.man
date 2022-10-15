@@ -1,0 +1,19 @@
+.TH mulf 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mulf -  symbolic multiplication
+.SH CALLING SEQUENCE
+.nf
+mulf('d','c')
+.fi
+.SH DESCRIPTION
+returns the string \fV'c*d'\fR
+Trivial simplifications such as \fV'1*c' = 'c'\fR are performed.
+.SH EXAMPLE
+.nf
+mulf('1','a')
+mulf('0','a')
+'a'+'b'   //Caution...
+.fi
+.SH SEE ALSO
+rdivf, addf, subf

@@ -1,0 +1,28 @@
+.TH part 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+part - extraction of strings
+.SH CALLING SEQUENCE
+.nf
+[c]=part(mp,v)
+.fi
+.SH PARAMETERS
+.TP 10
+mp,c
+: string matrices
+.TP 10
+v
+: integer vector.
+.SH DESCRIPTION
+Let \fVs[k]\fR stands for the \fVk\fR character of string \fVs\fR ( 
+or the empty character if \fVk >length(s)\fR).
+
+\fVpart\fR returns \fVc\fR, a matrix of character strings, such that 
+\fVc(i,j)\fR is the string \fV"s[v(1)]...s[v(n)]"\fR ( \fVs=mp(i,j)\fR ).
+.SH EXAMPLE
+.nf
+c=part(['a','abc','abcd'],[1,1,2])
+.fi 
+.SH SEE ALSO
+string, length
+

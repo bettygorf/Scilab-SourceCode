@@ -1,0 +1,32 @@
+.TH pvm_parent 1 "May 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_parent - returns the tid of the process that spawned
+the calling process.
+.SH CALLING SEQUENCE
+.nf
+tid = pvm_parrent()
+.fi
+.SH PARAMETERS
+.TP 4
+tid
+: integer, the task identifier of the parent of the calling
+process.
+.SH DESCRIPTION
+\fVpvm_parent\fR 
+returns the
+.I tid
+of the process
+that spawned the calling process.
+If the calling process was
+not created with pvm_spawn, then
+.I tid
+is set to
+PvmNoParent=-23
+
+.SH EXAMPLE
+.nf
+tid = pvm_parent()
+.fi
+.SH SEE ALSO
+pvm_spawn

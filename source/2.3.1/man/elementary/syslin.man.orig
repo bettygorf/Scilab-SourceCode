@@ -1,0 +1,93 @@
+.TH syslin 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+syslin - linear system definition
+.SH CALLING SEQUENCE
+.nf
+[sl]=syslin(dom,A,B,C [,D [,x0] ])
+[sl]=syslin(A,B,C [,D [,x0] ])
+[sl]=syslin(dom,N,D)
+[sl]=syslin(dom,H)
+.fi
+.SH PARAMETERS
+.TP 10
+dom 
+: character string (\fV'c'\fR, \fV'd'\fR), or \fV[]\fR or a scalar.
+(If omitted, \fVdom=[]\fR)
+.TP 10
+A,B,C,D
+: matrices of the state-space representation (\fVD\fR optional
+with default value zero matrix). For improper systems \fVD\fR is a polynomial
+matrix.
+.TP 10
+x0
+: vector (initial state; default value is \fV0\fR)
+.TP 10
+N, D
+: polynomial matrices
+.TP
+H
+: rational matrix
+.TP 10
+sl
+: tlist ("\fVsyslin\fR" list) representing the linear system
+.SH DESCRIPTION
+\fVsyslin\fR  defines a linear system as a list and checks consistency of data.
+.LP
+\fVdom\fR specifies the time domain of the system and can have the following values:
+.LP
+\fVdom='c'\fR for a continuous time system, \fVdom='d'\fR for a discrete time system,
+\fVn\fR for a sampled system with sampling period \fVn\fR (in seconds).
+.LP
+\fVdom=[]\fR if the time domain is undefined (\fVdom\fR can be omitted in
+the calling sequence)
+.LP
+State-space representation:
+.nf
+sl=syslin(dom,A,B,C [,D [,x0] ])
+.fi
+represents the system :
+.nf
+      s x  = A*x + B*u
+        y  = C*x + D*u
+      x(0) = x0
+.fi
+The output of \fVsyslin\fR is a list of the following form: 
+\fV
+sl=tlist(['lss','A','B','C','D','X0','dt'],A,B,C,D,x0,dom)
+\fR
+Note that \fVD\fR is allowed to be a polynomial matrix (improper systems).
+.LP
+Transfer matrix representation:
+.nf
+sl=syslin(dom,N,D) 
+sl=syslin(dom,H)
+.fi 
+The output of \fVsyslin\fR is a list of the following form :  
+\fVsl=tlist(['r','num','den','dt'],N,D,dom)\fR or \fVsl=tlist(['r','num','den','dt'],H(2),H(3),dom)\fR.
+.LP
+Linear systems defined as \fVsyslin\fR can be manipulated as
+usual matrices (concatenation, extraction, transpose, multiplication, etc)
+both in state-space or transfer representation.
+.LP
+Most of state-space control functions receive a \fVsyslin\fR list as input instead
+of the four matrices defining the system.
+.SH EXAMPLES
+.nf
+A=[0,1;0,0];B=[1;1];C=[1,1];
+S1=syslin('c',A,B,C)   //Linear system definition
+S1("A")    //Display of A-matrix
+s=poly(0,'s');
+D=s;
+S2=syslin('c',A,B,C,D)
+H1=(1+2*s)/s^2, S1bis=syslin('c',H1)
+H2=(1+2*s+s^3)/s^2, S2bis=syslin('c',H2)
+S1+S2
+[S1,S2]
+ss2tf(S1)-S1bis
+S1bis+S2bis
+S1*S2bis
+size(S1)
+.fi
+.SH SEE ALSO
+tlist, ssrand, ss2tf, tf2ss, dscr, abcd

@@ -1,0 +1,31 @@
+ 
+clear;lines(0);
+ 
+A=round(5*rand(10,1));
+ 
+B=round(5*rand(7,1));
+ 
+ 
+union(A,B)
+ ans  =
+ 
+!   0.    1.    2.    3.    4. !
+ 
+[N,ka,kb]=union(A,B)
+ kb  =
+ 
+     []
+ ka  =
+ 
+!   3.    1.    4.    5.    2. !
+ N  =
+ 
+!   0.    1.    2.    3.    4. !
+ 
+ 
+union('a'+string(A),'b'+string(B))
+ ans  =
+ 
+!a0  a1  a2  a3  a4  b1  b3  b4  !
+ 
+ 

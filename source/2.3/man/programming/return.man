@@ -1,0 +1,11 @@
+.TH return 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+return - return or resume 
+.SH DESCRIPTION
+In a function \fVreturn\fR stops the execution of the function.
+In \fVpause\fR mode, it allows to return to lower levels.
+.LP
+\fVresume\fR is equivalent to \fVreturn\fR.
+.SH SEE ALSO
+abort, break, pause

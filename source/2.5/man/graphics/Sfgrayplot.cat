@@ -1,0 +1,30 @@
+
+Sfgrayplot(2)                  Scilab Function                  Sfgrayplot(2)
+NAME
+  Sfgrayplot - smooth 2D plot of a surface defined by a function using colors
+
+CALLING SEQUENCE
+  Sfgrayplot(x,y,f,[strf,rect,nax])
+
+DESCRIPTION
+  Sfgrayplot is the same as fgrayplot but the plot is smoothed.  The function
+  fec is used for smoothing.  The surface is plotted assuming that it is lin-
+  ear on a set of triangles built from the grid:
+      ______
+      | /| /|
+      |/_|/_|
+      | /| /|
+      |/_|/_|
+
+  Enter the command Sfgrayplot() to see a demo.
+
+EXAMPLE
+  t=-1:0.1:1;
+  deff("[z]=surf(x,y)","z=x**2+y**2")
+  Sfgrayplot(t,t,surf,"111",[-2,-2,2,2])
+
+SEE ALSO
+  fec, fgrayplot, grayplot, Sgrayplot
+
+AUTHOR
+  J.Ph.C.

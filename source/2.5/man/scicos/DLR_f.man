@@ -1,0 +1,24 @@
+.TH DLR_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+DLR_f - Scicos discrete-time linear system (transfer function)
+
+.SH DIALOGUE PARAMETERS
+.TP 20
+Numerator
+: a polynomial in z.
+.TP
+Denominator
+: a polynomial in z.
+.SH DESCRIPTION
+This block realizes a SISO linear system represented by its rational
+transfer function (in the symbolic variable z).
+The rational function must be proper.
+.SH SEE ALSO
+DLSS_f, DLRADAPT_f
+
+
+
+
+
+

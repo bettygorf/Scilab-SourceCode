@@ -1,0 +1,14 @@
+
+COSBLK_f(5)                      Scicos Block                     COSBLK_f(5)
+NAME
+  COSBLK_f - Scicos cosine block
+
+DIALOGUE PARAMETERS
+  None.
+
+DESCRIPTION
+  This block realizes vector cosine operation. y(i)=cos(u(i)).  The port
+  input and output  port sizes are equal and determined by the context.
+
+SEE ALSO
+  SINBLK_f, GENSIN_f

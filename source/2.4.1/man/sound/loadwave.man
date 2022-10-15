@@ -1,0 +1,18 @@
+.TH loadwave 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+loadwave - load a sound <<wav>> file into scilab 
+.SH CALLING SEQUENCE
+.nf
+x=loadwave('file-name');
+.fi
+.SH PARAMETERS
+x
+: vector 
+.SH DESCRIPTION
+Read a wav sound file into Scilab. you can transform other sound files
+into wav file with the \fVsox\fR program.
+.SH SEE ALSO
+savewave,  analyze, mapsound
+
+

@@ -1,0 +1,25 @@
+
+pvm_get_timer(1)               Scilab function               pvm_get_timer(1)
+NAME
+  pvm_get_timer - Gets the  system's notion  of  the current time.
+
+CALLING SEQUENCE
+  [time] = pvm_get_timer()
+
+PARAMETERS
+
+  time : scalar
+
+DESCRIPTION
+  pvm_get_timer returns the  time elapsed since  the last  call of
+  pvm_get_timer or   the  last  call  of  pvm_set_timer.  The  time   is
+  expressed in elapsed microseconds.  The resolution of the system clock is
+  hardware  dependent; the  time may  be  updated continuously or in clock
+  ticks.  timer will be > 0.  If some error occurs then timer will be -1.
+EXAMPLE
+  B = rand(100,100);
+  A = rand(100,100);
+  pvm_set_timer();C=A*B;t=pvm_get_timer()
+
+SEE ALSO
+  pvm_set_timer

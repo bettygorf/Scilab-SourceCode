@@ -1,0 +1,93 @@
+
+pseudoAW(2)                    Scilab Function                    pseudoAW(2)
+NAME
+  pseudoAW -  Pseudo affine Wigner distribution
+
+  Author: Paulo Goncalves
+
+  Computes a  Pseudo Affine Wigner Distributions  of a 1-D signal (real or
+  complex).
+
+Usage
+  [tfr,scale,f,wt] = pseudoAW(x,K,[wave,smooth,fmin,fmax,N]);
+
+Input parameters
+       o x : Real or complex vector [1,nt] or [nt,1] Time samples of the sig-
+         nal to be analyzed.
+       o K : real scalar Parameter of the pseudo affine Wigner distributions.
+         K = -1  : pseudo Unterberger K = 0   : pseudo Bertrand K = 1/2 :
+         pseudo D-Flandrin K = 2   : pseudo affine Wigner-Ville, etc ...
+       o wvlt_length  : positive integer specifies the analyzing wavelet: 0:
+         Mexican hat wavelet (real) Positive real integer: real Morlet
+         wavelet of size 2*wvlt_length+1) at finest scale 1 Positive ima-
+         ginary integer: analytic Morlet wavelet of size 2*wvlt_length+1) at
+         finest scale 1 Default value is the Mexican hat wavelet (
+         wvlt_length  = 0 )
+       o  smooth  : positive integer half length of the time smoothing win-
+         dow. SMOOTH = 0 corresponds to the Pseudo affine Wigner distribution
+         with no time-smoothing. Default value is mooth = 0.
+       o fmin : real in  [0,0.5] Lower frequency bound of the analysis. When
+         not specified, this parameter forces the program to interactive
+         mode.
+       o fmax :  real in  [0,0.5] and fmax > Upper frequency bound of the
+         analysis. When not specified, this parameter forces the program to
+         interactive mode.
+       o N : positive integer. number of analyzing voices.  When not speci-
+         fied, this parameter forces the program to interactive mode.
+Output parameters
+       o tfr : Real matrix [N,nt] time-frequency distribution
+       o scale : real vector [1,N] analyzed scales
+       o f : real vector [1,N] analyzed frequencies
+       o wt : real or complex matrix [N,nt] matrix of the wavelet coeffi-
+         cients (intermediate step)
+Description
+
+Parameters
+       o K : fixes the function lambda_K(u) = K ( (exp(-u)-1)/(exp(-Ku)-1)
+         )(1/(k-1)) used in the generalized affine convolution to define the
+         K-order pseudo affine Wigner distribution.
+       o smooth : fixes the ammount of smooth in time of the distribution.
+         This ammount can vary continuously from an unsmoothed pseudo affine
+         Wigner distribution up to a maximum smoothness corresponding to a
+         scalogram (squared magnitude of the intermediate wavelet coeffi-
+         cients)
+       o N : number of analyzing voices geometrically sampled between minimum
+         scale fmax/fmax and maximum scale fmax/fmin.
+       o tfr : Samples of the pseudo affine Wigner distribution.  X-
+         coordinated corresponds to time (uniformly sampled), Y-coordinates
+         correspond to frequency (or scale) voices (geometrically sampled
+         between  fmax (resp. 1) and fmin (resp.  fmax / fmin ). First row of
+         tfr corresponds to the highest analyzed frequency (finest scale).
+       o scale : analyzed scales (geometrically sampled between 1  and  fmax
+         /fmin
+       o f : analyzed frequencies (geometrically sampled between
+          fmax  and  fmin . f corresponds to fmax/scale
+       o wt : coefficients of the intermediate-step wavelet transform. X-
+         coordinated corresponds to time (uniformly sampled), Y-coordinates
+         correspond to frequency (or scale) voices (geometrically sampled
+         between  fmax (resp. 1) and fmin (resp.  fmax / fmin ). First row of
+         wt corresponds to the highest analyzed frequency (finest scale).
+
+Algorithm details
+  A pseudo affine Wigner distribution requires to compute a continuous
+  wavelet transform first.  For each time, the corresponding column of the
+  wavelet transform is affine convolved (generalized affine convolution
+  defined through function lambda_K(u) ) with itself.
+
+See also:
+  contwt, cwt and lambdak
+
+Example:
+   Signal synthesis
+
+  x = morlet(0.35,32)+morlet(0.1,32) ;
+
+   K = -1 pseudo affine Wigner distribution with no time smoothing
+
+  [tfr,scale,f,wt] = pseudoAW(x,-1,12*i,0,0.01,0.5,128) ;
+  viewmat(tfr,1:length(x),f,[1 0 .5]) ;
+
+   K = -1 time smoothed pseudo affine Wigner distribution
+
+  [tfr,scale,f,wt] = pseudoAW(x,-1,12*i,3,0.01,0.5,128) ;
+  viewmat(tfr,1:length(x),f,[1 0 0]) ;

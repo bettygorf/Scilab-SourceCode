@@ -1,0 +1,9 @@
+Communications - communications with other applications using geci  
+CreateLink - creates a link between two applications  
+DestroyLink - destroys the link between two applications  
+ExecAppli - executes an application  
+ExecScilab - executes another local scilab  
+ExeclScilab - executes another linked local scilab  
+GetMsg - gets a pending message  
+SendMsg - sends a message  
+WaitMsg - waits for a message  

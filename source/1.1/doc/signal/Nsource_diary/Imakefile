@@ -1,0 +1,71 @@
+#include "../../../Imake.incl"
+
+
+CHAP1= rand.1.dia  poly.1.dia  poly.2.dia  poly.3.dia  poly.4.dia  sysrep.1.dia dscr.1.dia
+
+CHAP2=  group.1.dia  group.2.dia  group.3.dia  fft.1.dia  convol.2.dia  czt.2.dia  czt.3.dia  czt.4.dia  czt.5.dia  
+
+CHAP3= fstyp12.1.dia  fstyp12.2.dia  remez.3.dia  remez.4.dia  remez.5.dia  remez.6.dia  eqfir.1.dia  eqfir.2.dia  
+
+CHAP4= butt.dia  cheb2.dia  iir.6.dia  iir.7.dia  iir.8.dia  iir.9.dia  iir.10.dia  eqiir.1.dia  eqiir.2.dia  eqiir.3.dia  
+
+CHAP5= pspect.1.dia  
+
+CHAP6= kf.3.dia  kf.4.dia  kf.5.dia  
+
+CHAP7= optiir2.dia  optiir1.dia  optiir3.dia  optiir4.dia  optiir5.dia  
+
+CHAP8= spfact1.dia  spfact2.dia  spfact3.dia  spfact4.dia  simul1.dia  
+
+CHAP9= spfact1.dia
+
+
+SCILAB=$(SCIDIR)/bin/scilab
+
+.SUFFIXES: .dia .code .ps .tex   $(SUFFIXES) 
+
+
+AllTarget(chapters)
+
+chapters:
+	@for i in chap1 chap2 chap3 chap4 chap5 chap6 chap7 chap8 chap9 ;\
+	do \
+	(echo "Diary for chapter $$i"; $(MAKE) $(MFLAGS) $$i); \
+	done
+
+chap1:$(CHAP1) 
+
+chap2:$(CHAP2) 
+
+chap3:$(CHAP3) 
+
+chap4:$(CHAP4) 
+
+chap5:$(CHAP5)
+
+chap6:$(CHAP6)
+
+chap7:$(CHAP7)
+
+chap8:$(CHAP8)
+
+chap9:$(CHAP9)
+
+DependTarget()
+
+/* ScilabTestTarget() */
+.code.dia :
+	@$(SCIDIR)/util/scidem $(SCIDIR)/bin/scilab $*.code $*.dia
+
+clean ::
+
+distclean::
+	$(RM) *.dia
+
+spfact2.dia 	spfact4.dia 	spfact3.dia 	spfact1.dia :spfactg.dia
+
+
+spfactg.dia :	
+	@$(RM) spfact[1-4].dia
+	@$(SCIDIR)/util/scidem $(SCIDIR)/bin/scilab spfact.code spfact.dia
+	@ echo " " > spfactg.dia

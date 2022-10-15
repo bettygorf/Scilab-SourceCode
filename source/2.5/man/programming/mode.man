@@ -1,0 +1,36 @@
+.TH mode 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mode - select a mode in exec file
+.SH CALLING SEQUENCE
+.nf
+mode(k)
+k=mode() 
+.fi
+.SH DESCRIPTION
+Used inside an exec-file or a scilab function \fVmode(k)\fR allows to
+change the information displayed during the execution, depending on
+the value of \fVk\fR:
+.TP
+k=0 
+: The new variable values are displayed if required (see help on semi
+or comma).
+.TP
+k=-1 
+: the exec file or scilab function executes silently. (this is the
+default value for scilab functions)
+.TP
+k=1 or k=3
+: each line of instructions is echoed preceded of the prompt. The
+new variable values are displayed if required. This is
+the default for exec files.
+.TP
+k=7 
+: The new variable values are displayed if required, each line of
+instructions is echoed (if possible) and a prompt (>>) is issued after
+each line waiting for a carriage return.
+.LP
+line display is disable for compiled scilab function (see getf or comp)
+.SH SEE ALSO
+exec, getf, semi, comma
+

@@ -1,0 +1,27 @@
+
+gfare(1)                       Scilab Function                       gfare(1)
+NAME
+  gfare - filter Riccati equation
+
+CALLING SEQUENCE
+  [Z,H]=gfare(Sl)
+
+PARAMETERS
+
+  Sl      : linear system (syslin list)
+
+  Z       : symmetric matrix
+
+  H       : real matrix
+
+DESCRIPTION
+  Generalized Filter Algebraic Riccati Equation (GFARE).  Z = solution, H =
+  gain.
+
+  The GFARE for Sl=[A,B,C,D] is:
+  (A-B*D'*Ri*C)*Z+Z*(A-B*D'*Ri*C)'-Z*C'*Ri*C*Z+B*Si*B'=0
+  where S=(eye()+D'*D), Si=inv(S), R=(eye()+D*D'), Ri=inv(R) and
+  H=-(B*D'+Z*C')*Ri is such that A+H*C is stable.
+
+SEE ALSO
+  gcare

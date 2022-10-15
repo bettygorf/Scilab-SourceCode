@@ -1,0 +1,36 @@
+.TH macrovar 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+macrovar - variables of function
+.SH CALLING SEQUENCE
+.nf
+vars=macrovar(function)
+.fi
+.SH PARAMETERS
+.TP 10
+vars
+: list  \fVlist(in,out,globals,called,locals)\fR
+.TP 10
+function
+: name of a function
+.SH DESCRIPTION
+Returns in a list the set of variables used by a function.
+\fVvars\fR is a list made of five column vectors of character strings
+.LP
+\fVin\fR : input variables (\fVvars(1)\fR)
+.LP
+\fVout\fR : output variables (\fVvars(2)\fR)
+.LP
+\fVglobals\fR : global variables (\fVvars(3)\fR)
+.LP
+\fVcalled\fR : names of functions called (\fVvars(4)\fR)
+.LP
+\fVlocals\fR : local variables (\fVvars(5)\fR)
+.SH EXAMPLE
+.nf
+deff('y=f(x1,x2)','loc=1;y=a*x1+x2-loc')
+vars=macrovar(f)
+.fi
+.SH SEE ALSO
+string, macr2lst
+

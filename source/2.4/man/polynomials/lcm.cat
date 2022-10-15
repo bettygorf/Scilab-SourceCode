@@ -1,0 +1,31 @@
+
+lcm(8)                         Scilab Function                         lcm(8)
+NAME
+  lcm - least common multiple
+
+CALLING SEQUENCE
+  [pp,fact]=lcm(p)
+
+PARAMETERS
+
+  p    :
+
+  fact : polynomial vector
+
+  pp   : polynomial
+
+DESCRIPTION
+  pp=lcm(p) computes the lcm pp of polynomial vector p.
+
+  [pp,fact]=lcm(p) computes in addition the vector fact such that:
+
+  p.*fact=pp*ones(p)
+
+EXAMPLE
+  s=poly(0,'s');
+  p=[s,s*(s+1)^2,s^2*(s+2)];
+  [pp,fact]=lcm(p);
+  p.*fact, pp
+
+SEE ALSO
+  gcd, bezout

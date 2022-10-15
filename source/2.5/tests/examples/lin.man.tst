@@ -1,0 +1,3 @@
+clear;lines(0);
+deff('[y,xdot]=sim(x,u)','xdot=[u*sin(x);-u*x^2];y=xdot(1)+xdot(2)')
+sl=lin(sim,1,2);

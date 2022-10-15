@@ -1,0 +1,36 @@
+.TH rotate 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+rotate - rotation of a set of points  
+.SH CALLING SEQUENCE
+.nf
+xy1=rotate(xy,[theta,orig])
+.fi
+.SH PARAMETERS 
+.TP 7
+xy  
+: matrice of size (2,.).
+.TP
+xy1
+: matrice of size (2,.).
+.TP
+theta 
+: real, angle en radian; default value is 0.
+.TP
+orig 
+: center of the rotation; default value is [0;0].
+.SH DESCRIPTION
+\fVrotate\fR performs a rotation with angle \fVtheta\fR:
+
+\fVxy1(:,i) = M(theta) *xy (:,i) + orig\fR
+
+where \fVM\fR stands for the corresponding rotation matrix.
+.SH EXAMPLE 
+.nf 
+xsetech([0,0,1,1],[-1,-1,1,1])
+xy=[(0:0.1:10);sin(0:0.1:10)]/10;
+for i=2*%pi*(0:10)/10,
+  [xy1]=rotate(xy,i);
+  xpoly(xy1(1,:),xy1(2,:),"lines")
+end
+.fi

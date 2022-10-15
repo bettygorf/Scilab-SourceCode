@@ -1,0 +1,41 @@
+.TH cumprod 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+cumprod - cumulative product
+.SH CALLING SEQUENCE
+.nf
+y=cumprod(x)
+y=cumprod(x,'r')
+y=cumprod(x,'c')
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: vector or matrix (real or complex)
+.TP 10
+y
+: vector or matrix (real or complex)
+.SH DESCRIPTION
+For a vector or a matrix \fVx\fR, \fVy=cumprod(x)\fR (or, equivalently,
+\fVy=prod(x,'*')\fR) returns in \fVy\fR the cumulative product of all the 
+entries of \fVx\fR taken columnwise. 
+\fVy=cumprod(x,'r')\fR (or, equivalently, \fVy=cumprod(x,1)\fR) returns in 
+\fVy\fR the cumulative product of the rows of \fVx\fR.
+\fVy=cumprod(x,'c')\fR returns in \fVy\fR the cumulative product of the 
+columns of \fVx\fR.
+.SH EXAMPLE
+.nf
+A=[1,2;3,4];
+cumprod(A)
+cumprod(A,'r')
+cumprod(A,'c')
+rand('seed',0);
+a=rand(3,4);
+[m,n]=size(a);
+w=zeros(a);
+w(1,:)=a(1,:);
+for k=2:m;w(k,:)=w(k-1,:).*a(k,:);end;w-cumprod(a,'r')
+.fi
+.SH SEE ALSO
+cumprod, sum
+

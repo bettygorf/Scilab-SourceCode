@@ -1,0 +1,50 @@
+
+lib(1)                         Scilab Function                         lib(1)
+NAME
+  lib - library definition
+
+CALLING SEQUENCE
+  xlib=lib('lib_path')
+
+PARAMETERS
+
+  lib_path  : character string
+
+DESCRIPTION
+  lib_path is a character string defining the path of a directory containing
+  functions . This directory must contain the binary files names(i).bin and
+  an additional file names (which contains the names of the functions).
+  After the command lib all the functions of lib_path can be called interac-
+  tively by Scilab.
+
+  Such a binary file, for example foo.bin can be created by Scilab using the
+  command save(lib_path+'/foo.bin',foo).
+
+  Standard Scilab libraries are defined using lib on SCIDIR/macros/* subdi-
+  rectories
+
+EXAMPLE
+   deff('[z]=myplus(x,y)','z=x+y')
+   deff('[z]=yourplus(x,y)','x=x-y')
+  are two functions and lib_path is : lib_path='/usr/mymachine/mydirectory'
+
+  This directory contains the file names including myplus (first line of the
+  file) and yourplus (second line of the file).
+
+  myplus and yourplus are compiled functions respectively saved in the files
+
+  '/usr/mymachine/mydirectory/myplus.bin'
+
+  '/usr/mymachine/mydirectory/yourplus.bin'
+
+  by the command:
+   save(lib_path+'/myplus.bin',myplus)
+   save(lib_path+'/yourplus.bin',yourplus)
+  A library can now be created with the command:
+   xlib=lib(lib_path+'/')
+  xlib is then a Scilab variable which can be saved and loaded in a future
+  session of Scilab or defined on-line or put in the startup (.scilab) file.
+  The functions in this library are known by Scilab which automatically loads
+  them when necessary.
+SEE ALSO
+  genlib, save, deff, getf, whereis

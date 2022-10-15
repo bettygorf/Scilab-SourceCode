@@ -1,0 +1,28 @@
+
+standard_define(Janvier 1997)                   standard_define(Janvier 1997)
+NAME
+  standard_define - Scicos block initial definition  function
+
+CALLING SEQUENCE
+  o=standard_define(sz,model,dlg,gr_i)
+
+PARAMETERS
+
+  o         : Scicos block data structure (see scicos_block)
+
+  sz        : 2 vector, giving the initial block width and height
+
+  model     : initial model data structure definition (see scicos_model)
+
+  dlg       : vector of character strings,initial parameters expressions
+
+  gr_i      : vector of character strings, initial icon definition instruc-
+            tions
+
+DESCRIPTION
+  This function creates the initial block data structure given the initial
+  size  sz, this initial model definition  model, the initial parameters
+  expressions  dlg and initial icon definition instructions  gr_i
+
+SEE ALSO
+  scicos_model

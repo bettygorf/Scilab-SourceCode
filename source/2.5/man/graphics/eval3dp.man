@@ -1,0 +1,40 @@
+.TH eval3dp 2 "September 1994" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+eval3dp - compute facets of a 3D surface
+.SH CALLING SEQUENCE
+.nf
+[x,y,z]=eval3dp(fun,p1,p2)
+.fi
+.SH PARAMETERS
+.TP 7
+x,y,z 
+: matrices of size (4,n-1*m-1). \fVx(:,i)\fR ,\fVy(:,i) and \fVz(:,i)\fR 
+are respectively the x-axis, y-axis and z-axis coordinates of the 4 points of 
+the ith four sided facet.
+.TP
+fun
+: a Scilab function. 
+.TP
+p1 
+: a vector of size \fVn\fR.
+.TP
+p2
+: a vector of size \fVm\fR.
+.SH DESCRIPTION
+\fVeval3dp\fR computes a four sided facets representation of a 3D surface 
+defined by the function \fVfun\fR. \fVfun(p1,p2)\fR computes the 
+x-axis ,y-axis and z-axis coordinates of the corresponding points on the 
+surface, as [x(i),y(i),z(i)]=fun(p1(i),p2(i)). This is used for efficiency.
+.SH EXAMPLE
+.nf
+p1=linspace(0,2*%pi,10);
+p2=linspace(0,2*%pi,10);
+deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
+                            "y=p1.*cos(p1).*cos(p2)";..
+                            "z=p1.*sin(p2)"])
+[x,y,z]=eval3dp(scp,p1,p2);
+plot3d(x,y,z)
+.fi
+.SH SEE ALSO
+genfac3d, plot3d

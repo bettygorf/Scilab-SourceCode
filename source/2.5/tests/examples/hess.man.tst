@@ -1,0 +1,3 @@
+clear;lines(0);
+A=rand(3,3);[U,H]=hess(A);
+and( abs(U*H*U'-A)<1.d-10 )

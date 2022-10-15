@@ -1,0 +1,26 @@
+.TH anshp 1 "October 1994" "Scilab Group" "Scilab Macro"
+.so man1/sci.an
+.SH NAME 
+anshp - arc number shortest path  
+.SH CALLING SEQUENCE
+.nf
+[p,np] = anshp(i,j,[g])
+.fi
+.SH PARAMETERS
+.TP 4
+i,j 
+: integers, node numbers
+.TP 2
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP 2
+p
+: row vector of arc numbers
+.TP 3
+np
+: integer, length of vector p
+.SH DESCRIPTION
+\fVanshp\fR returns the shortest path \fVp\fR in arc numbers from 
+node\fVi\fR to node \fVj\fR. \fVnp\fR is the number of arcs of this path.
+.SH SEE ALSO
+anpath, lshp, ns2p

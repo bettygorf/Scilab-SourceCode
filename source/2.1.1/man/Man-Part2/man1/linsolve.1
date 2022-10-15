@@ -1,0 +1,40 @@
+.TH linsolve 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+linsolve - linear equation solver
+.SH CALLING SEQUENCE
+.nf
+[x0,kerA]=linsolve(A,b [,x0])
+.fi
+.SH PARAMETERS
+.TP 10
+A
+: a \fVna x ma\fR real matrix (possibly sparse)
+.TP
+b
+: a \fVna x 1\fR vector (same row dimension as \fVA\fR) 
+.TP
+x0
+: a real vector
+.TP
+kerA
+: a \fVma x k \fR real matrix
+.SH DESCRIPTION
+\fVlinsolve\fR  computes all the solutions to \fV A*x+b=0\fR.
+.LP
+\fVx0\fR is a particular solution (if any) and \fV kerA= \fRnullspace
+of \fVA\fR. Any \fVx=x0+kerA*w\fR with arbitrary \fVw\fR satisfies
+\fV A*x+b=0\fR.
+.LP
+If compatible \fVx0\fR is given on entry, \fVx0\fR is returned. If not
+a compatible \fVx0\fR, if any, is returned.
+.SH EXAMPLE
+.nf
+A=rand(5,3)*rand(3,8);
+b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   //compatible b
+b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   //uncompatible b
+A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x is unique
+.fi
+.SH SEE ALSO
+inv, pinv, colcomp, im_inv
+

@@ -1,0 +1,22 @@
+
+cosm(G)                        Scilab Function                        cosm(G)
+NAME
+  cosm -  matrix cosine function
+
+CALLING SEQUENCE
+  t=cosm(x)
+
+PARAMETERS
+
+  x         : real or complex square  matrix
+
+DESCRIPTION
+  cosm(x) is  the matrix cosine of the x matrix.
+  t=0.5*(expm(%i*x)+expm(-%i*x)).
+
+EXAMPLE
+  A=[1,2;3,4]
+  cosm(A)-0.5*(expm(%i*A)+expm(-%i*A))
+
+SEE ALSO
+  cos, expm

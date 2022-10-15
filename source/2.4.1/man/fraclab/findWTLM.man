@@ -1,0 +1,78 @@
+.TH "findWTLM" 2 " June 6th 1997" "Fractales Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+findWTLM -  Finds local maxima lines of a CWT
+.sp
+Author: Paulo Goncalves
+.sp
+Finds the local maxima of a continuous wavelet transform
+.sp
+.sp
+.SH Usage
+.sp
+.ft CR
+.nf
+[maxmap] = findWTLM(wt,scale[,depth])
+.fi 
+.ec
+.ft P
+.sp
+.SH Input parameters
+
+
+.RS
+
+.TP
+o 
+\fBwt\fP : Complex matrix  \f(CR[\fPN_scale,N\f(CR]\fP 
+Wavelet coefficients of a continuous wavelet transform (output of \fIFWT\fP or \fIcontwt\fP)
+
+.TP
+o 
+\fBscale\fP : real vector  \f(CR[\fP1,N_scale\f(CR]\fP
+Analyzed scale vector
+
+.TP
+o 
+\fBdepth\fP : real in \f(CR[\fP0,1\f(CR]\fP 
+maximum relative depth for the peaks search.
+Default value is 1 (all peaks found)
+.RE
+
+.SH Output parameters
+
+
+.RS
+
+.TP
+o 
+\fBmaxmap\fP : 0/1 matrix  \f(CR[\fPN_scale,N\f(CR]\fP
+If \fImaxmap\fP(m,n) = 0 : the coefficient \fIwt\fP(m,n) is not a local maximum 
+If \fImaxmap\fP(m,n) = 1 : the coefficient \fIwt\fP(m,n) is a local maximum 
+.RE
+
+.SH See also:
+contwt, cwt
+.SH Example:
+.sp
+.ft CR
+.nf
+N = 2048 ; H = 0.3 ; Q = linspace(-4,4,11) ;
+[x] = fbmlevinson(N,H) ;
+[wt,scale] = cwt(x,2^(-6),2^(-1),36,0) ;
+[maxmap] = findWTLM(wt,scale) ;
+.fi 
+.ec
+.ft P
+.sp
+\fI Vizualisation in Matlab: \fP
+.sp
+.ft CR
+.nf
+viewWTLM(maxmap,scale,wt) ,
+axis([1024 - 64 1024 + 64 0 log2(max(scale))]) ,
+.fi 
+.ec
+.ft P
+.sp
+\fI Vizualisation in Scilab: \fP\fB Not implemeted yet!... \fP

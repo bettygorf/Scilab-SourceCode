@@ -1,0 +1,30 @@
+.TH hilb 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an 
+.SH NAME
+hilb - Hilbert transform
+.SH CALLING SEQUENCE
+.nf
+[xh]=hilb(n[,wtype][,par])
+.fi
+.SH PARAMETERS
+.TP 10
+n
+: odd integer : number of points in filter
+.TP
+wtype
+: string : window type \fV('re','tr','hn','hm','kr','ch')\fR (default \fV='re'\fR)
+.TP
+par
+: window parameter for \fVwtype='kr' or 'ch'\fR
+default \fVpar=[0 0]\fR
+see the macro window for more help
+.TP
+xh
+: Hilbert transform
+.SH DESCRIPTION
+returns the first n points of the
+Hilbert transform centered around the origin.
+.LP
+That is, \fVxh=(2/(n*pi))*(sin(n*pi/2))^2\fR.
+.SH AUTHOR
+C. B.

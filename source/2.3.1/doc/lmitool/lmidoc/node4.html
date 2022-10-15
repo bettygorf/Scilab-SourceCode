@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<!--Converted with LaTeX2HTML 96.1 (Feb 5, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds -->
+<HTML>
+<HEAD>
+<TITLE>Syntax</TITLE>
+<META NAME="description" CONTENT="Syntax">
+<META NAME="keywords" CONTENT="lmidoc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<LINK REL=STYLESHEET HREF="lmidoc.css">
+</HEAD>
+<BODY LANG="EN">
+ <A NAME="tex2html106" HREF="node5.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www-rocq.inria.fr/scilab/icons/next_motif.gif"></A> <A NAME="tex2html104" HREF="node3.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www-rocq.inria.fr/scilab/icons/up_motif.gif"></A> <A NAME="tex2html98" HREF="node3.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www-rocq.inria.fr/scilab/icons/previous_motif.gif"></A> <A NAME="tex2html108" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www-rocq.inria.fr/scilab/icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html107" HREF="node5.html">Examples</A>
+<B>Up:</B> <A NAME="tex2html105" HREF="node3.html">Function lmisolver</A>
+<B> Previous:</B> <A NAME="tex2html99" HREF="node3.html">Function lmisolver</A>
+<BR> <P>
+<H2><A NAME="SECTION00031000000000000000">Syntax</A></H2>
+<P>
+<PRE>[XLISTF[,OPT]] = lmisolver(XLIST0,EVALFUNC[,options])</PRE>
+where
+<UL><LI> <TT>XLIST0:</TT> a list structure including matrices and/or list of matrices.
+It contains initial guess on the values of the unknown matrices. In general, the
+ith element of <TT>XLIST0</TT> is the initial guess on the value of the
+unknown matrix  <IMG WIDTH=18 HEIGHT=22 ALIGN=MIDDLE ALT="tex2html_wrap_inline610" SRC="img8.gif"  > . In some cases
+however it is more convenient to define one or more elements of
+<TT>XLIST0</TT> to be lists (of unknown matrices) themselves. This is a
+useful feature when the number of unknown matrices is not fixed a priori
+(see Example of Section&nbsp;<A HREF="node7.html#ex2">2.2.2</A>).
+<P>
+The values of the matrices in <TT>XLIST0</TT>, if compatible with the LME functions, 
+are used as intial condition for the optimization algorithm; they are
+ignored otherwise. The size and structure of <TT>XLIST0</TT> are used to
+set up the problem and determine the size and structure of the output <TT>XLISTF</TT>.<LI>
+<TT>EVALFUNC:</TT> a Scilab function called <EM>evaluation function</EM>
+(supplied by the user)
+which evaluates the LME, LMI and objective functions, given the values of the
+unknown matrices. The syntax is:
+<PRE>[LME,LMI,OBJ]=EVALFUNC(XLIST)</PRE>
+where
+<UL><LI> <TT>XLIST:</TT> a list, identical in size and structure to <TT>XLIST0</TT>.<LI> <TT>LME:</TT> a list of matrices containing values of the LME
+functions  <IMG WIDTH=16 HEIGHT=22 ALIGN=MIDDLE ALT="tex2html_wrap_inline578" SRC="img4.gif"  > 's
+for <I>X</I> values in <TT>XLIST</TT>. <TT>LME</TT> can be a matrix in case
+there is only one LME function to be evaluated (instead of a list
+containing this matrix as unique element). It can also be a list
+of a mixture of matrices and lists which in turn contain values of
+LME's, and so on.<LI> <TT>LMI:</TT> a list of matrices containing the values of the LMI
+functions  <IMG WIDTH=19 HEIGHT=22 ALIGN=MIDDLE ALT="tex2html_wrap_inline582" SRC="img5.gif"  > 's
+for <I>X</I> values in <TT>XLIST</TT>. <TT>LMI</TT> can also be a matrix (in case
+there is only one LMI function to be evaluated). It can also be a list
+of a mixture of matrices and lists which in turn contain values of
+of LMI's, and so on.<LI> <TT>OBJ:</TT> a scalar equal to the value of the objective function <I>f</I>
+for <I>X</I> values in <TT>XLIST</TT>.
+</UL>
+If the  <IMG WIDTH=9 HEIGHT=11 ALIGN=BOTTOM ALT="tex2html_wrap_inline590" SRC="img7.gif"  >  problem has no equality constraints then <TT>LME</TT>
+should be <TT>[]</TT>. Similarly for <TT>LMI</TT> and <TT>OBJ</TT>.<LI>
+<TT>options:</TT> a  <IMG WIDTH=34 HEIGHT=20 ALIGN=MIDDLE ALT="tex2html_wrap_inline626" SRC="img9.gif"  >  vector containing optimization
+parameters <TT>Mbound</TT>, <TT>abstol</TT>, <TT>nu</TT>, <TT>maxiters</TT>,
+and <TT>reltol</TT>, see  manual page for <TT>semidef</TT> for details (<TT>Mbound</TT>
+is a multiplicative coefficient for <TT>M</TT>). This argument is optional,
+if omitted, default parameters are used.<LI> <TT>XLISTF:</TT> a list, identical in size and structure to <TT>XLIST0</TT>
+containing the solution of the problem (optimal values of the unknown matrices).<LI> <TT>OPT:</TT> a scalar corresponding to the optimal value of the minimization
+problem  <IMG WIDTH=9 HEIGHT=11 ALIGN=BOTTOM ALT="tex2html_wrap_inline590" SRC="img7.gif"  > .
+</UL><HR><A NAME="tex2html106" HREF="node5.html"><IMG WIDTH=37 HEIGHT=24 ALIGN=BOTTOM ALT="next" SRC="http://www-rocq.inria.fr/scilab/icons/next_motif.gif"></A> <A NAME="tex2html104" HREF="node3.html"><IMG WIDTH=26 HEIGHT=24 ALIGN=BOTTOM ALT="up" SRC="http://www-rocq.inria.fr/scilab/icons/up_motif.gif"></A> <A NAME="tex2html98" HREF="node3.html"><IMG WIDTH=63 HEIGHT=24 ALIGN=BOTTOM ALT="previous" SRC="http://www-rocq.inria.fr/scilab/icons/previous_motif.gif"></A> <A NAME="tex2html108" HREF="node1.html"><IMG WIDTH=65 HEIGHT=24 ALIGN=BOTTOM ALT="contents" SRC="http://www-rocq.inria.fr/scilab/icons/contents_motif.gif"></A>  <BR>
+<B> Next:</B> <A NAME="tex2html107" HREF="node5.html">Examples</A>
+<B>Up:</B> <A NAME="tex2html105" HREF="node3.html">Function lmisolver</A>
+<B> Previous:</B> <A NAME="tex2html99" HREF="node3.html">Function lmisolver</A>
+<P><ADDRESS>
+Scilab Group
+</ADDRESS>
+</BODY>
+</HTML>

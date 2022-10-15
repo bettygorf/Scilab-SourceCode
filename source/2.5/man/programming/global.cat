@@ -1,0 +1,39 @@
+
+global(1)                      Scilab Function                      global(1)
+NAME
+  global  - Define global variable
+
+CALLING SEQUENCE
+  global('nam1',...,'namn')
+  global nam1 ... namn
+
+PARAMETERS
+
+  nam1,..., namn
+            : valid variable names
+DESCRIPTION
+  Ordinarily, each Scilab function, has its own local variables and can
+  "read" all variables created in the base workspace or by the calling func-
+  tions. The global allow to make variables read/write across functions. Any
+  assignment to that variable, in any function, is available to all the other
+  functions declaring it global.
+
+  If the global variable doesn't exist the first time you issue the global
+  statement, it will be initialized to the empty matrix.
+
+EXAMPLE
+  //first: calling environnment and a function share a variable
+  global a
+  a=1
+  deff('y=f1(x)','global a,a=x^2,y=a^2')
+  f1(2)
+  a
+  //second: three functions share variables
+  deff('initdata()','global A C ;A=10,C=30')
+  deff('letsgo()','global A C ;disp(A) ;C=70')
+  deff('letsgo1()','global C ;disp(C)')
+  initdata()
+  letsgo()
+  letsgo1()
+SEE ALSO
+  who, isglobal, clearglobal, gstacksize, resume

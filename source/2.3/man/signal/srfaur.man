@@ -1,0 +1,35 @@
+.TH srfaur 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+srfaur - square-root algorithm
+.SH CALLING SEQUENCE
+.nf
+[p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)
+.fi
+.SH PARAMETERS
+.TP 10
+h, f, g
+: convenient matrices of the state-space model.
+.TP
+r0
+: E(yk*yk').
+.TP
+n
+: number of iterations.
+.TP
+p
+: estimate of the solution after n iterations.
+.TP
+s, t, l
+: intermediate matrices for
+ successive iterations;
+.TP
+rt, tt
+: gain matrices of the filter model after \fVn\fR iterations.
+.TP
+p, s, t, l
+: may be given as input if more than one recursion
+is desired (evaluation of intermediate values of \fVp\fR).
+.SH DESCRIPTION
+square-root algorithm for the algebraic Riccati equation.
+

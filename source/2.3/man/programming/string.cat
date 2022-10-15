@@ -1,0 +1,38 @@
+
+string(1)                      Scilab Function                      string(1)
+NAME
+  string - conversion to string
+
+CALLING SEQUENCE
+  string(x)
+  [out,in,text]=string(x)
+
+PARAMETERS
+
+  x    : real matrix or function
+
+DESCRIPTION
+  converts a matrix into a matrix of strings.
+
+  If x is a function  [out,in,text]=string(x)  returns three vectors strings
+  : out is the vector of output variables, in is the vector of input vari-
+  ables, and text is the (column) vector of the source code of the function.
+
+  If  x is a lib variable, text is a character string column vector. The
+  first element contains the path of library file and the other the name of
+  functions it defines.
+
+  Character strings are defined as 'string' (between quotes) or "string"
+  (between doublequotes); matrices of strings are defined as usual constant
+  matrices.
+
+  Concatenation of strings is made by the + operation.
+
+EXAMPLES
+  string(rand(2,2))
+  deff('y=mymacro(x)','y=x+1')
+  [out,in,text]=string(mymacro)
+  x=123.356; 'Result is '+string(x)
+
+SEE ALSO
+  part, length, format, quote, pol2str, evstr, execstr

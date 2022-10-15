@@ -1,0 +1,56 @@
+.TH pvm_config 1 "May 1998" "Scilab // Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+pvm_config - sends a message
+.SH CALLING SEQUENCE
+.nf
+res =  pvm_config()
+.fi
+.SH PARAMETERS
+.TP 5
+res, list of 7 elements such that:
+.br
+.IP res(1): 
+integer returning the number of hosts (pvmds) in the virtual machine.
+.br
+.IP res(2): 
+integer returning the number of different data formats being used.
+.br
+.IP res(3): 
+integer returning pvmd task ID for host.
+.br
+.IP res(4): 
+character string returning name of host.
+.br
+.IP res(5): 
+character string returning architecture name of host
+.br
+.IP res(6): 
+integer returning relative speed of host. Default value is 1000.
+.br
+.IP res(7): 
+integer status code returned by the routine.
+
+.SH DESCRIPTION
+\fVpvm_config\fR returns information about
+the present virtual machine. The information returned is
+similar to that available from the console command
+.I conf.
+.PP
+The \fVpvm_config\fR function returns information about the entire
+virtual machine in one call.
+
+If pvm_config is successful,
+.I info
+will be 0.
+If some error occurs then
+.I info
+will be < 0.
+
+.SH EXAMPLE
+.nf
+res = pvm_config()
+.fi
+
+.SH SEE ALSO
+pvm_tasks

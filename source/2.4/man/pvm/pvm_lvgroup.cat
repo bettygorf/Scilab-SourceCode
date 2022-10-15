@@ -1,0 +1,30 @@
+
+pvm_lvgroup(1)                 Scilab function                 pvm_lvgroup(1)
+NAME
+  pvm_lvgroup - Unenrolls the calling process from a named group.
+
+CALLING SEQUENCE
+  [info] = pvm_lvgroup(group)
+
+PARAMETERS
+
+  group
+       : string, group name of an existing group.
+
+  info
+      : integer, status code returned by the routine.
+
+DESCRIPTION
+  pvm_lvgroup unenrolls the calling process from the group named group.  If
+  there is an error info will be negative.
+
+  If a process leaves a group by calling either pvm_lvgroup or pvm_exit, and
+  later rejoins the same group, the process may be assigned a new instance
+  number. Old instance numbers are reassigned to processes calling
+  pvm_joingroup.
+
+EXAMPLE
+  info = pvm_lvgroup( "worker" )
+
+SEE ALSO
+  pvm_joingroup

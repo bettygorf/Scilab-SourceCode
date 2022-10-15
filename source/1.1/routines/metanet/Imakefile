@@ -1,0 +1,22 @@
+#include "../../Imake.incl"
+
+OBJSF = arbor.o busack.o cfc.o chcm.o compc.o compfc.o cplmax.o dijkst.o \
+	dfs.o dfs1.o eclat.o euler.o flomax.o floqua.o ford.o \
+	frang.o frmtrs.o ftrans.o kilter.o kiltq.o johns.o match.o minty.o \
+	mintyq.o pcchna.o \
+	pccsc.o prim.o prim1.o tconex.o \
+	relax.o
+
+OBJSC = createg.o inisoc.o loadg.o send.o show.o \
+	compmat.o concom.o dmtree.o eulerc.o ladj.o maxcpl.o paths.o \
+	sconcom.o transc.o
+
+OBJS = $(OBJSC) $(OBJSF)
+
+FSRCS =$(OBJSF:.o=.f)
+SRCS =$(OBJSC:.o=.c)
+
+LibraryTarget($(PATHO)/metanet.a,$(OBJS))
+FortranDependTarget()
+DependTarget()
+

@@ -1,0 +1,396 @@
+#----------------------------------------------
+# Notation for Tex output 
+#----------------------------------------------
+
+texsub:={xd=`\\dot{x}`}:
+texsub:={op(texsub),xdd=`\\ddot{x}`}:
+texsub:={op(texsub),yd=`\\dot{y}`,ydd=`\\ddot{y}`}:
+texsub:={op(texsub),th=`\\theta`,thd=`\\dot{\\theta}`,thdd=`\\ddot{\\theta}`}:
+texwid:=120;
+
+readlib(tex):
+
+sortieinit:=proc(filename)
+	writeto(filename);
+	writeto(terminal);
+end:
+
+sorties:=proc(filename,comment,exp)
+	appendto(filename);
+	lprint(comment);
+	lprint(` `);
+	mtex(exp);
+	writeto(terminal);
+end:
+
+sortiesM:=proc(filename,comment,expr)
+	appendto(filename);
+	lprint(comment);
+	lprint(` `);
+	map(x -> mtex(x),expr);
+	writeto(terminal);
+end:
+
+sortieinit(`systeme.tex`);
+
+
+with(`linalg`):
+#-------------------------------------
+# Lagrangian for the N-link pendulum 
+# l[i] : length of links  r[i]:=l[i]/2;
+#--------------------------------------
+
+n:=10;
+
+Li:=proc(i)
+(1/2)*m[i]*( ( xd[i-1]- r[i] *sin(th[i])*thd[i])**2 + 
+	( yd[i-1]+ r[i]*cos(th[i])*thd[i])**2 ) + 1/2*J[i]*(thd[i])**2
+	-m[i]*g*(y[i-1]+r[i]*sin(th[i])):
+end:
+
+
+#---------------------------------------------------------------
+# functions for computing euler equations 
+#---------------------------------------------------------------
+
+mm:=3:
+
+euler_equations:=proc(L,n)
+ 	local k,m:
+	v:=matrix(mm*n,1,0);
+	for k to n do  
+           v[mm*(k-1)+1,1]:=LL(xd[k])=simplify(time_diff(diff(L,xd[k]),n)-diff(L,x[k]));
+           v[mm*(k-1)+2,1]:=LL(yd[k])=simplify(time_diff(diff(L,yd[k]),n)-diff(L,y[k]));
+           v[mm*(k-1)+3,1]:=LL(thd[k])=simplify(time_diff(diff(L,thd[k]),n)-diff(L,th[k]));
+	od;
+	eval(v):
+	end:
+
+#---------------------------------------------------------------
+# Time derivative computation in the Euler-Lagrange equations 
+#---------------------------------------------------------------
+
+time_diff:=proc(phi,n)
+	local phi_copy,k:
+	phi_copy:=phi:
+	for k to n do
+    		phi_copy:=subs(x[k]=x[k](t),phi_copy):
+    		phi_copy:=subs(xd[k]=xd[k](t),phi_copy):
+    		phi_copy:=subs(y[k]=y[k](t),phi_copy):
+    		phi_copy:=subs(yd[k]=yd[k](t),phi_copy):
+    		phi_copy:=subs(th[k]=th[k](t),phi_copy):
+    		phi_copy:=subs(thd[k]=thd[k](t),phi_copy):
+    		phi_copy:=subs(t.k=t.k(t),phi_copy):
+	od:
+	diff_phi:=diff(phi_copy,t):
+	for k to n do
+    		diff_phi:=subs(diff(x[k](t),t)=xd[k],diff_phi):
+    		diff_phi:=subs(diff(xd[k](t),t)=xdd[k],diff_phi):
+    		diff_phi:=subs(x[k](t)=x[k],diff_phi):
+    		diff_phi:=subs(xd[k](t)=xd[k],diff_phi):
+
+    		diff_phi:=subs(diff(y[k](t),t)=yd[k],diff_phi):
+    		diff_phi:=subs(diff(yd[k](t),t)=ydd[k],diff_phi):
+    		diff_phi:=subs(y[k](t)=y[k],diff_phi):
+    		diff_phi:=subs(yd[k](t)=yd[k],diff_phi):
+
+    		diff_phi:=subs(diff(th[k](t),t)=thd[k],diff_phi):
+    		diff_phi:=subs(diff(thd[k](t),t)=thdd[k],diff_phi):
+    		diff_phi:=subs(th[k](t)=th[k],diff_phi):
+    		diff_phi:=subs(thd[k](t)=thd[k],diff_phi):
+
+    		diff_phi:=subs(diff(t.k(t),t)=td[k],diff_phi):
+    		diff_phi:=subs(t.k(t)=t[k],diff_phi):
+	od:
+end:
+
+#---------------------------------------------------------------
+# Our Lagrangian 
+#---------------------------------------------------------------
+x[0]:=0:xd[0]:=0:
+y[0]:=0:yd[0]:=0:
+
+L:=sum( Li(j),j=1..n):
+
+sorties(`systeme.tex`,`Lagrangian`,L):
+
+# Lagrangian variables :
+q := [ seq (op([x[i],y[i],th[i]]),i=1..n)]:
+qd := [ seq (op([xd[i],yd[i],thd[i]]),i=1..n)]:
+qdd:= [ seq (op([xdd[i],ydd[i],thdd[i]]),i=1..n)]:
+
+# Lhs of Euler equations 
+
+EL:=euler_equations(L,n):
+E:=map((i)->rhs(i),EL):
+sortiesM(`systeme.tex`,`Lhs of Euler Equations`,EL):
+
+#-----------------------------------------------------
+# El= ME(q) dot dot q + CE(q) dotq^2 + RE(q)
+# Computation of ME,CE,RE 
+#-----------------------------------------------------
+
+ME:=genmatrix([seq(E[i,1],i=1..mm*n)],qdd):
+
+for k to n do
+    ME:=subs(m[k]*r[k]*cos(th[k])=mrc[k],eval(ME)):
+    ME:=subs(m[k]*r[k]*sin(th[k])=mrs[k],eval(ME)):
+od:
+
+sorties(`systeme.tex`,` $M(q)\\ddot{q}+...$ , M:`,ME);
+
+C:=proc(E,n)
+ 	local E_copy,k,q2d:
+	E_copy:=E:
+	q2d:= [ seq (op([x2d[i],y2d[i],th2d[i]]),i=1..n)];
+	for k to n do
+    		E_copy:=subs(xd[k]**2=x2d[k],eval(E_copy)):
+    		E_copy:=subs(yd[k]**2=y2d[k],eval(E_copy)):
+    		E_copy:=subs(thd[k]**2=th2d[k],eval(E_copy)):
+	od:
+	genmatrix([seq(E_copy[i,1],i=1..mm*n)],q2d);
+	end:
+
+CE:=C(E,n);
+
+sorties(`systeme.tex`,` $M(q)\\ddot{q}+C(q)\\dot{q}^2$ , C:`,CE);
+
+
+#------------------------------------------------
+# Constraints on the N-link Pendulum 
+#------------------------------------------------
+cont:=[ seq(op([ x[i]-x[i-1] -2*r[i]*cos(th[i]),y[i]-y[i-1] -2*r[i]*sin(th[i])]),i=1..n)]:
+
+sortiesM(`systeme.tex`,`Constraints `,cont);
+
+# derivative of constraints;
+
+cont1:=map ( (exp)->( time_diff(exp,n)),cont):
+
+# Derivatives of constraints are of type Aprim qd = 0 
+
+Aprim:=genmatrix(cont1,qd):
+
+sorties(`systeme.tex`,`Time derivative of contstraints : $A'(q)\\dot{q}$`,Aprim);
+
+
+#---------
+# Ec + Ep 
+#---------
+
+Ei:=proc(i)
+(1/2)*m[i]*( ( xd[i-1]- r[i] *sin(th[i])*thd[i])**2 + 
+	( yd[i-1]+ r[i]*cos(th[i])*thd[i])**2 ) + 1/2*J[i]*(thd[i])**2
+	+m[i]*g*(y[i-1]+r[i]*sin(th[i])):
+end:
+
+ET:=sum( Ei(j),j=1..n):
+Scont1:=solve({op(cont1)},{ seq (op([xd[i],yd[i]]),i=1..n)}):
+Scont2:=solve({op(cont)},{ seq (op([x[i],y[i]]),i=1..n)}):
+ET:=subs(Scont1,ET):
+ET:=subs(Scont2,ET):
+
+sorties(`systeme.tex`,`N-pendulum energy~:`,ET);
+
+#----------------------------------------------
+# Computing S(q);
+# S(q) will solve Aprim S(q) = 0 
+# int The Euler equations  Equ= A(q) lambda + u 
+# the term A(q)lambda can be eliminated 
+# if we multiply euler equations by S(q)
+#----------------------------------------------
+
+SS:=linsolve(Aprim,matrix(2*n,1,0)):
+
+
+#--------------------------------------
+# for the N-pend dotq=S(q)eta 
+# can be used to see that eta[i]=thd[i] ( eta is thd )
+# but the indices can be mixed and linsolve doesn't 
+# always return the same result 
+# We have to check the correspondance 
+# and to change SS to have a good corespondance 
+#--------------------------------------
+
+permut:={seq(SS[mm*i,1]=t_s[i],i=1..n)};
+SS:=subs(permut,eval(SS));
+permut:={seq(t_s[i]=t.i,i=1..n)};
+SS:=subs(permut,eval(SS));
+
+SS1:=[ seq( SS[i,1]=0,i=1..mm*n)]:
+S:= genmatrix(SS1, [seq( t.i,i=1..n)]);
+sorties(`systeme.tex`,`S(q), Kernel of A'`,S):
+
+#-----------------------------------------------------
+# this multiplication eliminates the term A(q) lambda 
+# in the Euler equations 
+#-----------------------------------------------------
+
+E1:=multiply(transpose(S),E):
+
+# sortiesM(`systeme.tex`,`$S(q)^T E$`,E1);
+
+#-----------------------------------------------------
+# comme Aprim(q) dotq=0 
+# dotq= S(q) eta ; ici eta = [t1,t2]
+# on derive cette expression pour trouver 
+# dotdotq 
+#-----------------------------------------------------
+
+qqdd:=map(proc(x,y) time_diff(x,y) end,eval(SS),n):
+
+# on sustitue dans E1 dotqdotq= d/dt [ S(q) eta] 
+# 
+
+E2:=E1:
+for k to n do
+    E2:=subs(xdd[k]=qqdd[mm*(k-1)+1,1],eval(E2)):
+    E2:=subs(ydd[k]=qqdd[mm*(k-1)+2,1],eval(E2)):
+    E2:=subs(thdd[k]=qqdd[mm*(k-1)+3,1],eval(E2)):
+od:
+
+#on sustitue dans E2 dotq= [ S(q) eta] 
+
+#sortiesM(`systeme.tex`,
+#	`$S(q)^T E$ simplified with time derivative of $\\dot{q}=S(q)\\eta$ `,
+#	E2);
+
+SSP:=SS:
+for k to n do
+    SSP:=subs(t.k=t[k],eval(SSP)):
+od:
+E3:=E2:
+for k to n do
+    E3:=subs(xd[k]=SSP[mm*(k-1)+1,1],eval(E3)):
+    E3:=subs(yd[k]=SSP[mm*(k-1)+2,1],eval(E3)):
+    E3:=subs(thd[k]=SSP[mm*(k-1)+3,1],eval(E3)):
+od:
+
+
+# Le systeme global est constitue
+# de E3 = 0 et de l'equation dotq= S(q) eta 
+
+E3:=map((x)-> simplify(x),E3):
+
+
+
+sortiesM(`systeme.tex`,
+	`$S(q)^T E$ simplified with  $\\dot{q}=S(q)\\eta $`,E3);
+
+
+
+ME3:=genmatrix([seq(E3[i,1],i=1..n)],[seq(td[k],k=1..n)]):
+
+ME3S:=map((i)->factor(combine(i,trig)),ME3):
+
+sorties(`systeme.tex`,` $M(\\theta)\\ddot{t}+...$ , M:`,ME3S);
+
+
+CE3:=proc(E,n)
+ 	local E_copy,k,q2d:
+	E_copy:=E:
+	q2d:= [ seq (tt[i],i=1..n)];
+	for k to n do
+    		E_copy:=subs(t[k]**2=tt[k],eval(E_copy)):
+	od:
+	genmatrix([seq(E_copy[i,1],i=1..n)],q2d);
+	end:
+
+CC3:=CE3(E3,n):
+
+CC3S:=map((i)->factor(combine(i,trig)),CC3):
+
+sorties(`systeme.tex`,` $M(q)\\dot{t}+C(q)t^2$ , C:`,CC3S);
+
+# Verification 
+
+R1:=multiply(ME3,matrix(n,1,[seq(td[k],k=1..n)])):
+R2:=multiply(CC3,matrix(n,1,[seq(t[k]**2,k=1..n)])):
+R3:=add(R1,R2):
+
+# Const doit decrire le terme constant qui reste dans le lagrangien simplifie
+
+Const:=map(simplify,add(E3,R3,1,-1));
+
+sorties(`systeme.tex`,` $M(q)\\dot{t}+C(q)t^2 + P(q)$ , P:`,Const);
+
+# New npend.f 
+
+read ``.libname.`/macrofort.m`;
+init_genfor();
+
+flist:=[subroutinem,`npend`,[`neq`,`t`,`th`,`ydot`],
+           [
+            [ parameterf,[`n=`.n]],
+            [ declaref,doubleprecision,[`t,th(2*n),ydot(2*n),r(n),j(n),m(n)`]],
+            [ declaref,doubleprecision,[`me3s(n,n),cc3s(n,n),const(n,1)`]],
+            [ declaref,doubleprecision,[`w(3*n),rcond	`]],
+            [ declaref,`implicit doubleprecision`,[`(t)`] ],
+            [ declaref,integer,[`i,k,neq,ierr`]],
+            [ declaref,`data g`,[`/ 9.81/`]],
+            [ declaref,`data r`,[`/ n*1.0/`] ],
+            [ declaref,`data m`,[`/ n*1.0/`] ],
+            [ declaref,`data j`,[`/ n*0.3/`] ],
+            [ matrixm,`me3s`,ME3S ] ,
+            [ matrixm,`cc3s`,CC3S ] ,
+            [ matrixm,`const`,Const ] ,
+	    [ dom , `i ` ,1,`n `,1,[ equalf,`ydot(i)`,`th(i+n)`]],
+	    [ dom , `i ` ,1,`n `,1,[
+		[ dom , `k ` ,1,`n `,1,
+			[[ equalf,`Const(i,1)`,
+				` Const(i,1)+CC3S(i,k)*(th(k+n)**2)`]]],
+		[ equalf,` Const(i,1)`,`-Const(i,1)`]]],
+	    [commentf,` il faut alors resoudre M z =const `],
+	    [commentf,` qui doit donner ydot((n+1)..2*n) `],
+	    [ callf , `dlslv`,[`ME3S,n,n,Const,n,1,w, rcond,ierr,1`]],
+	    [ if_then_m,ierr<>0,[
+		[writef,6,ff_w,[]],
+		[formatf,ff_w,[`'Matrice mal conditionnee'`]]]],
+	    [ dom , `i ` ,1,`n `,1,[ equalf,`ydot(n+i)`,`const(i,1)`]],
+	    [returnf]]]:
+
+optimized:=true:
+writeto(`npend.f`):
+genfor(flist):
+writeto(terminal):
+
+
+# New ener.f
+ET:=matrix(1,1,[ET]):
+init_genfor();
+
+flist:=[subroutinem,`ener`,[`th`,`e`],
+           [
+            [ parameterf,[`n=`.n]],
+            [ declaref,doubleprecision,[`th(2*n),thd(n),et(1,1),r(n),j(n),m(n)`]],
+            [ declaref,`implicit doubleprecision`,[`(t)`] ],
+            [ declaref,integer,[`i `]],
+            [ declaref,`data g`,[`/ 9.81/`]],
+            [ declaref,`data r`,[`/ n*1.0/`] ],
+            [ declaref,`data m`,[`/ n*1.0/`] ],
+            [ declaref,`data j`,[`/ n*0.3/`] ],
+	    [ dom , `i ` ,1,`n `,1,[ equalf,`thd(i)`,`th(i+n)`]],
+            [ matrixm,`et`,ET ] ,
+	    [ equalf,`e`,`et(1,1)`],
+	    [returnf]]]:
+
+optimized:=true:
+writeto(`ener.f`):
+genfor(flist):
+writeto(terminal):
+
+# New np.f 
+
+init_genfor();
+
+flist:=[subroutinem,`np`,[`i `],
+           [
+            [ declaref,integer,[`i `]],
+	    [ equalf,`i `,n],
+	    [returnf]]]:
+
+optimized:=true:
+writeto(`np.f`):
+genfor(flist):
+writeto(terminal):
+

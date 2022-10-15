@@ -1,0 +1,38 @@
+.TH diag 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+diag - diagonal including or extracting 
+.SH CALLING SEQUENCE
+.nf
+[y]=diag(vm, [k])
+.fi
+.SH PARAMETERS
+.TP 10
+vm
+: vector or matrix
+.TP 10
+k 
+: integer (default value 0)
+.TP 10
+y
+: vector or matrix
+.SH DESCRIPTION
+for \fVvm\fR a (row or column) n-vector \fVdiag(vm)\fR returns a diagonal
+matrix with entries of \fVvm\fR along the main diagonal.
+.LP
+\fVdiag(vm,k)\fR is a  \fV(n+abs(k))x(n+abs(k))\fR matrix with the entries 
+of \fVvm\fR  along the kth diagonal.  \fVk=0\fR  is the main diagonal \fVk>0\fR  
+is for upper diagonals and \fVk<0\fR for lower diagonals.
+.LP
+For a matrix \fVvm\fR, \fVdiag(vm,k)\fR is the column vector made of entries
+of the kth diagonal of \fVvm\fR.  \fVdiag(vm)\fR is the main diagonal of \fVvm\fR.
+\fVdiag(diag(x))\fR  is a diagonal matrix.
+.LP
+To construct a diagonal linear system, use \fVsysdiag\fR.
+.SH EXAMPLE
+.nf
+diag(-m:m) +  diag(ones(2*m,1),1) +diag(ones(2*m,1),-1)
+.fi
+gives a tri-diagonal matrix of order \fV2*m+1\fR
+.SH SEE ALSO
+sysdiag

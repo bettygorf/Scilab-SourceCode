@@ -1,0 +1,66 @@
+
+
+
+xgetech(2)                     Scilab Function                     xgetech(2)
+
+
+
+
+
+
+NAME
+  xgetech - get the current graphic 2d scale
+
+CALLING SEQUENCE
+  [frect1,frect,[logflag]]=xgetech()
+
+PARAMETERS
+
+  frect1, frect  : real vectors (rect. def)
+
+  logflag   : a string of size 2 "xy".
+
+DESCRIPTION
+  This function returns the current graphic scale.  If one uses the current
+  graphic scale, the points in the frect rectangle [xmin,ymin,xmax,ymax] will
+  be drawn in the the region of the current graphic window specified by
+  frect1.
+
+  frect1=[x,y,w,h] ( Upper-Left Width Height ) describes a region inside the
+  graphic window. The values in wrect1 are specified using proportion
+   of the width or height of the graphic window.
+
+  frect1=[0,0,1.0,1.0] means that all the graphic window will be used.
+
+  frect1=[0.5,0,0.5,1.0] means that the graphic region will be the right half
+  of the graphic window.  The logflag is a string of size 2 "xy", where x and
+  y can be "n" or "l". It gives information on the log scale status for the
+  current scale, "n" stands for normal and "l" for logscale. x is for the x-
+  axis and y for the y-axis.
+
+SEE ALSO
+  xsetech
+
+AUTHOR
+  J.Ph.C.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

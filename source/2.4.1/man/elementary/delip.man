@@ -1,0 +1,41 @@
+.TH delip 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+delip - elliptic integral
+.SH CALLING SEQUENCE
+.nf
+[r]=delip(x,ck) 
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real number (or real vector)
+.TP 10
+ck
+: real number between -1 and 1
+.TP 10
+r
+: real or complex number (or vector)
+.SH DESCRIPTION
+returns the value of the elliptic integral
+with parameter \fVck\fR :
+.IG
+.nf
+r=integral from 0 to x {dt / sqrt((1-t^2)*(1-ck^2*t^2))}
+.fi
+.FI
+\" This is for LaTeX 
+.LA  $$ r=\int_0^x { 1 \over \sqrt{(1-t^2)(1-{ck}^2 t^2)}} dx  $$
+\fVx\fR real and positive.
+When called with \fVx\fR a real vector \fVr\fR is evaluated for each
+entry of \fVx\fR.
+.SH EXAMPLE
+.nf
+ck=0.5;
+delip([1,2],ck)
+deff('y=f(t)','y=1/sqrt((1-t^2)*(1-ck^2*t^2))')
+intg(0,1,f)    //OK since real solution!
+.fi
+.SH SEE ALSO
+amell, %asn, %sn
+

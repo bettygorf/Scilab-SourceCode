@@ -1,0 +1,79 @@
+.TH plot2d1 2 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+plot2d1 - 2D plot (logarithmic axes)
+.SH CALLING SEQUENCE
+.nf
+plot2d1(str,x,y,[style,strf,leg,rect,nax])
+.fi
+.SH PARAMETERS
+.TP 5
+str
+: is a string of length three \fV"abc"\fR.
+.RS
+.TP 3
+a
+: can have the following values: \fVe\fR, \fVo\fR  or \fVg\fR.
+.RS
+.TP 3
+e
+: means "empty". Itspecifies the fact that the value of \fVx\fR is not used 
+(the \fVx\fR values are supposed to be regularly spaced, 
+ie 1:<number of rows of \fVy\fR>). The user must 
+anyway give a value for \fVx\fR, 1 for instance: 
+\fVplot2d1("enn",1,y)\fR.
+.TP
+o
+: means "one". If there are many curves, they all
+have the same x-values: \fVx\fR is a column vector of size nl and \fVy\fR
+is a matrix of size (nl,nc). For example :
+\fVx=[0:0.1:2*%pi]'; plot2d1("onn",x,[sin(x) cos(x)])\fR.
+.TP
+g 
+: means "general". \fVx\fR and \fVy\fR must have the same size (nl,nc). 
+Each column of \fVy\fR is plotted 
+with respect to the corresponding column of \fVx\fR. \fVnc\fR curves are 
+plotted using \fVnl\fR points.
+.RE
+.TP
+b, c
+: can have the values \fVn\fR (normal) or \fVl\fR (logarithmic).
+.RS
+.TP 5
+b=l 
+: a logarithmic axis is used on the x-axis
+.TP
+c=l
+: a logarithmic axis is used on the y-axis
+.RE
+.RE
+.TP
+x,y,[style,strf,leg,rect,nax]
+: these arguments have the same meaning as in the \fVplot2d\fV function.
+.SH DESCRIPTION
+\fVplot2d1\fR plots a set of 2D curves.
+It is the same as \fVplot2d\fR but with one more argument 
+\fVstr\fR
+which enables logarithmic axis. Moreover, it allows to specify only one column
+vector for \fVx\fR when it is the same for all the curves.
+
+By default, successive plots are superposed. To clear the previous plot, 
+use \fVxbasc\fR.
+
+Enter the command \fVplot2d1()\fR to see a demo.
+.SH EXAMPLE
+.nf
+// multiple plot without giving x
+x=[0:0.1:2*%pi]';
+plot2d1("enn",1,[sin(x) sin(2*x) sin(3*x)])
+// multiple plot using only one x
+xbasc()
+plot2d1("onn",x,[sin(x) sin(2*x) sin(3*x)])
+// logarithmic plot
+x=[0.1:0.1:3]'; xbasc()
+plot2d1("oll",x,[exp(x) exp(x^2) exp(x^3)])
+.fi
+.SH SEE ALSO
+plot2d, plot2d2, plot2d3, plot2d4, xbasc
+.SH AUTHOR
+J.Ph.C.

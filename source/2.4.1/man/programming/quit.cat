@@ -1,0 +1,10 @@
+
+quit(1)                        Scilab Function                        quit(1)
+NAME
+  quit - decrease the pause level or exit
+
+DESCRIPTION
+  quit terminates Scilab or decreases the pause level.
+
+SEE ALSO
+  pause, break, abort, exit

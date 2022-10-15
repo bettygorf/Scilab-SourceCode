@@ -1,0 +1,33 @@
+bezout - Bezout equation for polynomials
+clean - cleans matrices (round to zero small entries)  
+cmndred - common denominator form
+coffg - inverse of polynomial matrix
+colcompr - column compression of polynomial matrix
+denom - denominator
+derivat - rational matrix derivative
+determ - determinant of polynomial matrix
+detr - polynomial determinant
+diophant - diophantine (Bezout) equation
+factors - numeric real factorization
+gcd - gcd calculation
+hermit - Hermite form
+horner - polynomial/rational evaluation
+hrmt - gcd of polynomials
+htrianr - triangularization of polynomial matrix
+invr - inversion of (rational) matrix
+lcm - least common multiple
+ldiv - polynomial matrix long division
+numer - numerator
+pdiv - polynomial division
+pol2des - polynomial matrix to descriptor form
+pol2str - polynomial to string conversion
+polfact - minimal factors 
+residu - residue 
+roots - roots of polynomials
+routh_t - Routh's table
+rowcompr - row compression of polynomial matrix
+sfact - discrete time spectral factorization
+simp - rational simplification
+simp_mode - toggle rational simplification 
+sylm - Sylvester matrix
+systmat - system matrix

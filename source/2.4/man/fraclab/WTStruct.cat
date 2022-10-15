@@ -1,0 +1,42 @@
+
+WTStruct(2)                    Scilab Function                    WTStruct(2)
+NAME
+  WTStruct - Retrieve a 1D Discrete Wavelet Structure.
+
+  Author: Bertrand Guiheneuf
+
+  This routine retrieves the structure informations contained in a 1D
+  Wavelet Transform.
+
+Usage
+  [ScIndex, ScLength]=WT2DStruct(wt)
+
+Input parameters
+       o wt : real unidimensional matrix [1,n] Contains the wavelet transform
+         (obtained with FWT).
+Output parameters
+       o index : real matrix [1,NbIter] Contains the indexes (in wt) of the
+         projection of the signal on the multiresolution subspaces
+       o length : real matrix [1,NbIter] Contains the dimensions of each pro-
+         jection
+Description
+
+Introduction
+  This routine is used to retreive the structure information of a wavelet
+  transform. It must be used in all routine that might work on a wavelet
+  transform whose structure is not passed as an imput parameter. (That should
+  be the case of all routines taking a Wavelet Transform as input parameter
+  to minimize the input).
+
+Parameters
+  Input must be a real matrix. It's generally obtained with FWT. It contains
+  the wavelet transform.  index contains the indexes of the first coefficient
+  of each output.  The first "NbIter" indexes are the indexes (in wt) of the
+  "high-pass" subspaces projections (Wj), the last one is the last "low-pass"
+  projection (Vj); length contains the dimension  of each output.
+
+Example
+  a=rand(1,256); q=MakeQMF('daubechies',4); wt = FWT2D(a,8,q); wti,
+  wtl=WTStruct(wt); wtl
+See Also
+  FWT2D, IWT2D, WT2Dext, WT2DVisu

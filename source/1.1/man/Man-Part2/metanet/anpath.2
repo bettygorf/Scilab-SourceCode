@@ -1,0 +1,23 @@
+.TH anpath 1 "April 1993" "Scilab Group" "Scilab Macro"
+.so man1/sci.an
+.SH NAME 
+anpath -  path between two nodes
+.SH CALLING SEQUENCE
+.nf
+[p] = anpath(i,j,[g])
+.fi
+.SH PARAMETERS
+.TP 4
+i,j
+: integers, node numbers
+.TP
+g
+: graph list, optional argument with default value \fVthe_g\fR
+.TP
+p
+: row vector of arc numbers
+.SH DESCRIPTION
+\fVanpath\fR returns the path \fVp\fR from node \fVi\fR to node \fVj\fR 
+if it exists.
+.SH SEE ALSO
+anshp, lshp, ns2p

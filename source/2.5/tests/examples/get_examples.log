@@ -1,0 +1,1033 @@
+../../man/arma/arma.man NO EXAMPLE
+../../man/arma/arma2p.man PROCESSED
+../../man/arma/armac.man PROCESSED
+../../man/arma/armax.man PROCESSED
+../../man/arma/armax1.man NO EXAMPLE
+../../man/arma/arsimul.man NO EXAMPLE
+../../man/arma/narsimul.man NO EXAMPLE
+../../man/arma/noisegen.man PROCESSED
+../../man/arma/odedi.man NO EXAMPLE
+../../man/arma/prbs_a.man PROCESSED
+../../man/arma/reglin.man PROCESSED
+../../man/comm/Communications.man NO EXAMPLE
+../../man/comm/CreateLink.man NO EXAMPLE
+../../man/comm/DestroyLink.man NO EXAMPLE
+../../man/comm/ExecAppli.man PROCESSED
+../../man/comm/ExecScilab.man NO EXAMPLE
+../../man/comm/ExeclScilab.man NO EXAMPLE
+../../man/comm/GetMsg.man NO EXAMPLE
+../../man/comm/SendMsg.man NO EXAMPLE
+../../man/comm/WaitMsg.man NO EXAMPLE
+../../man/control/abcd.man PROCESSED
+../../man/control/abinv.man PROCESSED
+../../man/control/arhnk.man PROCESSED
+../../man/control/arl2.man PROCESSED
+../../man/control/balreal.man PROCESSED
+../../man/control/bilin.man PROCESSED
+../../man/control/cainv.man NO EXAMPLE
+../../man/control/calfrq.man PROCESSED
+../../man/control/canon.man PROCESSED
+../../man/control/cls2dls.man PROCESSED
+../../man/control/colregul.man NO EXAMPLE
+../../man/control/cont_frm.man PROCESSED
+../../man/control/cont_mat.man NO EXAMPLE
+../../man/control/contr.man PROCESSED
+../../man/control/contrss.man PROCESSED
+../../man/control/csim.man PROCESSED
+../../man/control/ctr_gram.man PROCESSED
+../../man/control/dbphi.man NO EXAMPLE
+../../man/control/ddp.man PROCESSED
+../../man/control/des2tf.man PROCESSED
+../../man/control/dscr.man PROCESSED
+../../man/control/dsimul.man PROCESSED
+../../man/control/dt_ility.man PROCESSED
+../../man/control/equil.man PROCESSED
+../../man/control/equil1.man PROCESSED
+../../man/control/feedback.man PROCESSED
+../../man/control/flts.man PROCESSED
+../../man/control/frep2tf.man PROCESSED
+../../man/control/freq.man PROCESSED
+../../man/control/freson.man PROCESSED
+../../man/control/g_margin.man PROCESSED
+../../man/control/gfrancis.man PROCESSED
+../../man/control/imrep2ss.man PROCESSED
+../../man/control/invsyslin.man NO EXAMPLE
+../../man/control/kpure.man PROCESSED
+../../man/control/krac2.man PROCESSED
+../../man/control/lin.man PROCESSED
+../../man/control/lqe.man NO EXAMPLE
+../../man/control/lqg.man NO EXAMPLE
+../../man/control/lqg2stan.man PROCESSED
+../../man/control/lqr.man PROCESSED
+../../man/control/ltitr.man PROCESSED
+../../man/control/markp2ss.man PROCESSED
+../../man/control/minreal.man PROCESSED
+../../man/control/minss.man PROCESSED
+../../man/control/obs_gram.man PROCESSED
+../../man/control/obscont.man PROCESSED
+../../man/control/observer.man PROCESSED
+../../man/control/obsv_mat.man NO EXAMPLE
+../../man/control/obsvss.man NO EXAMPLE
+../../man/control/p_margin.man PROCESSED
+../../man/control/pfss.man PROCESSED
+../../man/control/phasemag.man PROCESSED
+../../man/control/ppol.man PROCESSED
+../../man/control/projsl.man PROCESSED
+../../man/control/repfreq.man PROCESSED
+../../man/control/ricc.man PROCESSED
+../../man/control/rowregul.man PROCESSED
+../../man/control/rtitr.man PROCESSED
+../../man/control/sm2des.man NO EXAMPLE
+../../man/control/sm2ss.man NO EXAMPLE
+../../man/control/specfact.man PROCESSED
+../../man/control/ss2des.man PROCESSED
+../../man/control/ss2ss.man PROCESSED
+../../man/control/ss2tf.man PROCESSED
+../../man/control/st_ility.man PROCESSED
+../../man/control/stabil.man PROCESSED
+../../man/control/svplot.man PROCESSED
+../../man/control/syssize.man NO EXAMPLE
+../../man/control/tf2ss.man PROCESSED
+../../man/control/time_id.man PROCESSED
+../../man/control/trzeros.man PROCESSED
+../../man/control/ui_observer.man PROCESSED
+../../man/control/unobs.man PROCESSED
+../../man/control/zeropen.man NO EXAMPLE
+../../man/dcd/cdfbet.man NO EXAMPLE
+../../man/dcd/cdfbin.man NO EXAMPLE
+../../man/dcd/cdfchi.man NO EXAMPLE
+../../man/dcd/cdfchn.man NO EXAMPLE
+../../man/dcd/cdff.man NO EXAMPLE
+../../man/dcd/cdffnc.man NO EXAMPLE
+../../man/dcd/cdfgam.man NO EXAMPLE
+../../man/dcd/cdfnbn.man NO EXAMPLE
+../../man/dcd/cdfnor.man NO EXAMPLE
+../../man/dcd/cdfpoi.man NO EXAMPLE
+../../man/dcd/cdft.man NO EXAMPLE
+../../man/dcd/grand.man NO EXAMPLE
+../../man/elementary/G_make.man NO EXAMPLE
+../../man/elementary/abs.man PROCESSED
+../../man/elementary/acos.man PROCESSED
+../../man/elementary/acosh.man PROCESSED
+../../man/elementary/acoshm.man PROCESSED
+../../man/elementary/acosm.man PROCESSED
+../../man/elementary/addf.man PROCESSED
+../../man/elementary/addmenu.man PROCESSED
+../../man/elementary/adj2sp.man PROCESSED
+../../man/elementary/amell.man NO EXAMPLE
+../../man/elementary/asin.man PROCESSED
+../../man/elementary/asinh.man PROCESSED
+../../man/elementary/asinhm.man PROCESSED
+../../man/elementary/asinm.man PROCESSED
+../../man/elementary/atan.man PROCESSED
+../../man/elementary/atanh.man PROCESSED
+../../man/elementary/atanhm.man PROCESSED
+../../man/elementary/atanm.man PROCESSED
+../../man/elementary/besseli.man PROCESSED
+../../man/elementary/besselj.man PROCESSED
+../../man/elementary/besselk.man PROCESSED
+../../man/elementary/bessely.man PROCESSED
+../../man/elementary/bloc2exp.man NO EXAMPLE
+../../man/elementary/bloc2ss.man NO EXAMPLE
+../../man/elementary/c_link.man PROCESSED
+../../man/elementary/calerf.man PROCESSED
+../../man/elementary/cmb_lin.man NO EXAMPLE
+../../man/elementary/conj.man PROCESSED
+../../man/elementary/convstr.man PROCESSED
+../../man/elementary/cos.man PROCESSED
+../../man/elementary/cosh.man PROCESSED
+../../man/elementary/coshm.man PROCESSED
+../../man/elementary/cosm.man PROCESSED
+../../man/elementary/cotg.man PROCESSED
+../../man/elementary/coth.man PROCESSED
+../../man/elementary/cothm.man PROCESSED
+../../man/elementary/cumprod.man PROCESSED
+../../man/elementary/cumsum.man PROCESSED
+../../man/elementary/debug.man NO EXAMPLE
+../../man/elementary/dec2hex.man PROCESSED
+../../man/elementary/delip.man PROCESSED
+../../man/elementary/delmenu.man PROCESSED
+../../man/elementary/demos.man NO EXAMPLE
+../../man/elementary/diag.man PROCESSED
+../../man/elementary/dlgamma.man PROCESSED
+../../man/elementary/edit.man PROCESSED
+../../man/elementary/emptystr.man PROCESSED
+../../man/elementary/erf.man PROCESSED
+../../man/elementary/erfc.man PROCESSED
+../../man/elementary/erfcx.man NO EXAMPLE
+../../man/elementary/eval.man PROCESSED
+../../man/elementary/full.man PROCESSED
+../../man/elementary/gamma.man PROCESSED
+../../man/elementary/gammaln.man PROCESSED
+../../man/elementary/getvalue.man PROCESSED
+../../man/elementary/gsort.man PROCESSED
+../../man/elementary/halt.man NO EXAMPLE
+../../man/elementary/havewindow.man NO EXAMPLE
+../../man/elementary/hex2dec.man PROCESSED
+../../man/elementary/input.man PROCESSED
+../../man/elementary/integrate.man PROCESSED
+../../man/elementary/interp.man NO EXAMPLE
+../../man/elementary/interpln.man PROCESSED
+../../man/elementary/intersect.man PROCESSED
+../../man/elementary/intsplin.man PROCESSED
+../../man/elementary/inttrap.man PROCESSED
+../../man/elementary/isdef.man PROCESSED
+../../man/elementary/isinf.man PROCESSED
+../../man/elementary/isnan.man PROCESSED
+../../man/elementary/isreal.man PROCESSED
+../../man/elementary/kron.man PROCESSED
+../../man/elementary/ldivf.man PROCESSED
+../../man/elementary/lex_sort.man PROCESSED
+../../man/elementary/linspace.man PROCESSED
+../../man/elementary/log.man PROCESSED
+../../man/elementary/log10.man PROCESSED
+../../man/elementary/logm.man PROCESSED
+../../man/elementary/logspace.man PROCESSED
+../../man/elementary/macr2lst.man NO EXAMPLE
+../../man/elementary/macrovar.man PROCESSED
+../../man/elementary/manedit.man PROCESSED
+../../man/elementary/mean.man PROCESSED
+../../man/elementary/median.man PROCESSED
+../../man/elementary/modulo.man PROCESSED
+../../man/elementary/mps2linpro.man NO EXAMPLE
+../../man/elementary/mtlb_sparse.man PROCESSED
+../../man/elementary/mulf.man PROCESSED
+../../man/elementary/nnz.man PROCESSED
+../../man/elementary/norm.man PROCESSED
+../../man/elementary/pen2ea.man PROCESSED
+../../man/elementary/pertrans.man PROCESSED
+../../man/elementary/prod.man PROCESSED
+../../man/elementary/rdivf.man PROCESSED
+../../man/elementary/readc_.man NO EXAMPLE
+../../man/elementary/readmps.man PROCESSED
+../../man/elementary/sci2exp.man PROCESSED
+../../man/elementary/sci2map.man PROCESSED
+../../man/elementary/setmenu.man PROCESSED
+../../man/elementary/sin.man PROCESSED
+../../man/elementary/sinh.man PROCESSED
+../../man/elementary/sinhm.man PROCESSED
+../../man/elementary/sinm.man PROCESSED
+../../man/elementary/smooth.man PROCESSED
+../../man/elementary/solve.man PROCESSED
+../../man/elementary/sort.man PROCESSED
+../../man/elementary/sp2adj.man PROCESSED
+../../man/elementary/sparse.man PROCESSED
+../../man/elementary/spcompack.man PROCESSED
+../../man/elementary/speye.man PROCESSED
+../../man/elementary/spget.man PROCESSED
+../../man/elementary/splin.man PROCESSED
+../../man/elementary/spones.man PROCESSED
+../../man/elementary/sprand.man PROCESSED
+../../man/elementary/spzeros.man PROCESSED
+../../man/elementary/sqrt.man PROCESSED
+../../man/elementary/sqrtm.man PROCESSED
+../../man/elementary/squarewave.man PROCESSED
+../../man/elementary/ssprint.man PROCESSED
+../../man/elementary/ssrand.man PROCESSED
+../../man/elementary/st_deviation.man PROCESSED
+../../man/elementary/strcat.man PROCESSED
+../../man/elementary/strindex.man PROCESSED
+../../man/elementary/stripblanks.man PROCESSED
+../../man/elementary/strsubst.man PROCESSED
+../../man/elementary/subf.man PROCESSED
+../../man/elementary/sum.man PROCESSED
+../../man/elementary/sysconv.man PROCESSED
+../../man/elementary/sysdiag.man PROCESSED
+../../man/elementary/syslin.man PROCESSED
+../../man/elementary/tan.man PROCESSED
+../../man/elementary/tanh.man PROCESSED
+../../man/elementary/tanhm.man NO EXAMPLE
+../../man/elementary/tanm.man PROCESSED
+../../man/elementary/timer.man PROCESSED
+../../man/elementary/toeplitz.man PROCESSED
+../../man/elementary/trfmod.man NO EXAMPLE
+../../man/elementary/trianfml.man PROCESSED
+../../man/elementary/tril.man PROCESSED
+../../man/elementary/trisolve.man PROCESSED
+../../man/elementary/triu.man NO EXAMPLE
+../../man/elementary/typeof.man PROCESSED
+../../man/elementary/union.man PROCESSED
+../../man/elementary/unique.man PROCESSED
+../../man/elementary/unsetmenu.man PROCESSED
+../../man/elementary/x_choices.man PROCESSED
+../../man/elementary/x_choose.man PROCESSED
+../../man/elementary/x_dialog.man PROCESSED
+../../man/elementary/x_matrix.man PROCESSED
+../../man/elementary/x_mdialog.man PROCESSED
+../../man/elementary/x_message.man PROCESSED
+../../man/elementary/xgetfile.man PROCESSED
+../../man/elementary/zeros.man PROCESSED
+../../man/graphics/Graphics.man NO EXAMPLE
+../../man/graphics/Matplot.man PROCESSED
+../../man/graphics/Sfgrayplot.man PROCESSED
+../../man/graphics/Sgrayplot.man PROCESSED
+../../man/graphics/addcolor.man NO EXAMPLE
+../../man/graphics/black.man PROCESSED
+../../man/graphics/bode.man PROCESSED
+../../man/graphics/champ.man PROCESSED
+../../man/graphics/champ1.man PROCESSED
+../../man/graphics/chart.man PROCESSED
+../../man/graphics/colormap.man PROCESSED
+../../man/graphics/contour.man PROCESSED
+../../man/graphics/contour2d.man PROCESSED
+../../man/graphics/driver.man NO EXAMPLE
+../../man/graphics/edit_curv.man NO EXAMPLE
+../../man/graphics/errbar.man PROCESSED
+../../man/graphics/eval3d.man PROCESSED
+../../man/graphics/eval3dp.man PROCESSED
+../../man/graphics/evans.man PROCESSED
+../../man/graphics/fac3d.man NO EXAMPLE
+../../man/graphics/fchamp.man PROCESSED
+../../man/graphics/fcontour.man NO EXAMPLE
+../../man/graphics/fcontour2d.man NO EXAMPLE
+../../man/graphics/fec.man NO EXAMPLE
+../../man/graphics/fgrayplot.man PROCESSED
+../../man/graphics/fplot2d.man PROCESSED
+../../man/graphics/fplot3d.man NO EXAMPLE
+../../man/graphics/fplot3d1.man NO EXAMPLE
+../../man/graphics/gainplot.man PROCESSED
+../../man/graphics/genfac3d.man PROCESSED
+../../man/graphics/geom3d.man PROCESSED
+../../man/graphics/getcolor.man NO EXAMPLE
+../../man/graphics/getsymbol.man NO EXAMPLE
+../../man/graphics/gr_menu.man NO EXAMPLE
+../../man/graphics/graduate.man PROCESSED
+../../man/graphics/graycolormap.man PROCESSED
+../../man/graphics/grayplot.man PROCESSED
+../../man/graphics/hist3d.man NO EXAMPLE
+../../man/graphics/histplot.man NO EXAMPLE
+../../man/graphics/hotcolormap.man PROCESSED
+../../man/graphics/isoview.man PROCESSED
+../../man/graphics/locate.man NO EXAMPLE
+../../man/graphics/m_circle.man PROCESSED
+../../man/graphics/milk_drop.man PROCESSED
+../../man/graphics/nyquist.man PROCESSED
+../../man/graphics/param3d.man PROCESSED
+../../man/graphics/param3d1.man PROCESSED
+../../man/graphics/plot.man PROCESSED
+../../man/graphics/plot2d.man PROCESSED
+../../man/graphics/plot2d1.man PROCESSED
+../../man/graphics/plot2d2.man PROCESSED
+../../man/graphics/plot2d3.man PROCESSED
+../../man/graphics/plot2d4.man PROCESSED
+../../man/graphics/plot3d.man PROCESSED
+../../man/graphics/plot3d1.man PROCESSED
+../../man/graphics/plotframe.man PROCESSED
+../../man/graphics/plzr.man PROCESSED
+../../man/graphics/printing.man NO EXAMPLE
+../../man/graphics/replot.man PROCESSED
+../../man/graphics/rotate.man PROCESSED
+../../man/graphics/scaling.man NO EXAMPLE
+../../man/graphics/sd2sci.man NO EXAMPLE
+../../man/graphics/secto3d.man NO EXAMPLE
+../../man/graphics/sgrid.man PROCESSED
+../../man/graphics/square.man PROCESSED
+../../man/graphics/titlepage.man NO EXAMPLE
+../../man/graphics/winsid.man NO EXAMPLE
+../../man/graphics/xarc.man PROCESSED
+../../man/graphics/xarcs.man PROCESSED
+../../man/graphics/xarrows.man PROCESSED
+../../man/graphics/xaxis.man PROCESSED
+../../man/graphics/xbasc.man NO EXAMPLE
+../../man/graphics/xbasimp.man NO EXAMPLE
+../../man/graphics/xbasr.man NO EXAMPLE
+../../man/graphics/xchange.man PROCESSED
+../../man/graphics/xclea.man PROCESSED
+../../man/graphics/xclear.man NO EXAMPLE
+../../man/graphics/xclick.man NO EXAMPLE
+../../man/graphics/xclip.man PROCESSED
+../../man/graphics/xdel.man NO EXAMPLE
+../../man/graphics/xend.man PROCESSED
+../../man/graphics/xfarc.man PROCESSED
+../../man/graphics/xfarcs.man PROCESSED
+../../man/graphics/xfpoly.man PROCESSED
+../../man/graphics/xfpolys.man PROCESSED
+../../man/graphics/xfrect.man PROCESSED
+../../man/graphics/xget.man NO EXAMPLE
+../../man/graphics/xgetech.man NO EXAMPLE
+../../man/graphics/xgetmouse.man PROCESSED
+../../man/graphics/xgrid.man PROCESSED
+../../man/graphics/xinfo.man NO EXAMPLE
+../../man/graphics/xinit.man PROCESSED
+../../man/graphics/xlfont.man NO EXAMPLE
+../../man/graphics/xload.man NO EXAMPLE
+../../man/graphics/xname.man NO EXAMPLE
+../../man/graphics/xnumb.man PROCESSED
+../../man/graphics/xpause.man NO EXAMPLE
+../../man/graphics/xpoly.man PROCESSED
+../../man/graphics/xpolys.man PROCESSED
+../../man/graphics/xrect.man PROCESSED
+../../man/graphics/xrects.man PROCESSED
+../../man/graphics/xrpoly.man PROCESSED
+../../man/graphics/xs2fig.man NO EXAMPLE
+../../man/graphics/xsave.man NO EXAMPLE
+../../man/graphics/xsegs.man PROCESSED
+../../man/graphics/xselect.man NO EXAMPLE
+../../man/graphics/xset.man NO EXAMPLE
+../../man/graphics/xsetech.man PROCESSED
+../../man/graphics/xsetm.man NO EXAMPLE
+../../man/graphics/xstring.man PROCESSED
+../../man/graphics/xstringb.man PROCESSED
+../../man/graphics/xstringl.man PROCESSED
+../../man/graphics/xtape.man NO EXAMPLE
+../../man/graphics/xtitle.man NO EXAMPLE
+../../man/graphics/zgrid.man NO EXAMPLE
+../../man/linear/aff2ab.man PROCESSED
+../../man/linear/balanc.man PROCESSED
+../../man/linear/bdiag.man PROCESSED
+../../man/linear/chfact.man NO EXAMPLE
+../../man/linear/chol.man PROCESSED
+../../man/linear/chsolve.man PROCESSED
+../../man/linear/coff.man PROCESSED
+../../man/linear/colcomp.man PROCESSED
+../../man/linear/companion.man PROCESSED
+../../man/linear/cond.man PROCESSED
+../../man/linear/det.man PROCESSED
+../../man/linear/ereduc.man PROCESSED
+../../man/linear/exp.man PROCESSED
+../../man/linear/expm.man PROCESSED
+../../man/linear/fstair.man NO EXAMPLE
+../../man/linear/fullrf.man PROCESSED
+../../man/linear/fullrfk.man PROCESSED
+../../man/linear/givens.man PROCESSED
+../../man/linear/glever.man PROCESSED
+../../man/linear/gschur.man PROCESSED
+../../man/linear/gspec.man PROCESSED
+../../man/linear/hess.man PROCESSED
+../../man/linear/householder.man NO EXAMPLE
+../../man/linear/im_inv.man PROCESSED
+../../man/linear/inv.man PROCESSED
+../../man/linear/kernel.man PROCESSED
+../../man/linear/kroneck.man PROCESSED
+../../man/linear/linsolve.man PROCESSED
+../../man/linear/lu.man NO EXAMPLE
+../../man/linear/ludel.man NO EXAMPLE
+../../man/linear/lufact.man PROCESSED
+../../man/linear/luget.man PROCESSED
+../../man/linear/lusolve.man PROCESSED
+../../man/linear/lyap.man PROCESSED
+../../man/linear/nlev.man PROCESSED
+../../man/linear/orth.man PROCESSED
+../../man/linear/pbig.man PROCESSED
+../../man/linear/pencan.man PROCESSED
+../../man/linear/penlaur.man PROCESSED
+../../man/linear/pinv.man PROCESSED
+../../man/linear/polar.man PROCESSED
+../../man/linear/proj.man PROCESSED
+../../man/linear/projspec.man PROCESSED
+../../man/linear/psmall.man PROCESSED
+../../man/linear/qr.man PROCESSED
+../../man/linear/quaskro.man NO EXAMPLE
+../../man/linear/randpencil.man PROCESSED
+../../man/linear/range.man NO EXAMPLE
+../../man/linear/rank.man PROCESSED
+../../man/linear/rcond.man PROCESSED
+../../man/linear/rowcomp.man PROCESSED
+../../man/linear/rowshuff.man PROCESSED
+../../man/linear/rref.man PROCESSED
+../../man/linear/schur.man PROCESSED
+../../man/linear/spaninter.man PROCESSED
+../../man/linear/spanplus.man PROCESSED
+../../man/linear/spantwo.man PROCESSED
+../../man/linear/spchol.man PROCESSED
+../../man/linear/spec.man PROCESSED
+../../man/linear/sqroot.man PROCESSED
+../../man/linear/sva.man PROCESSED
+../../man/linear/svd.man PROCESSED
+../../man/linear/sylv.man PROCESSED
+../../man/linear/trace.man PROCESSED
+../../man/metanet/add_edge.man PROCESSED
+../../man/metanet/add_node.man PROCESSED
+../../man/metanet/adj_lists.man PROCESSED
+../../man/metanet/arc_graph.man PROCESSED
+../../man/metanet/arc_number.man NO EXAMPLE
+../../man/metanet/articul.man PROCESSED
+../../man/metanet/bandwr.man PROCESSED
+../../man/metanet/best_match.man PROCESSED
+../../man/metanet/chain_struct.man PROCESSED
+../../man/metanet/check_graph.man NO EXAMPLE
+../../man/metanet/circuit.man PROCESSED
+../../man/metanet/con_nodes.man PROCESSED
+../../man/metanet/connex.man PROCESSED
+../../man/metanet/contract_edge.man PROCESSED
+../../man/metanet/convex_hull.man PROCESSED
+../../man/metanet/cycle_basis.man PROCESSED
+../../man/metanet/delete_arcs.man PROCESSED
+../../man/metanet/delete_nodes.man PROCESSED
+../../man/metanet/edge_number.man NO EXAMPLE
+../../man/metanet/find_path.man PROCESSED
+../../man/metanet/gen_net.man PROCESSED
+../../man/metanet/girth.man PROCESSED
+../../man/metanet/glist.man NO EXAMPLE
+../../man/metanet/graph-list.man PROCESSED
+../../man/metanet/graph_2_mat.man PROCESSED
+../../man/metanet/graph_center.man PROCESSED
+../../man/metanet/graph_complement.man PROCESSED
+../../man/metanet/graph_diameter.man PROCESSED
+../../man/metanet/graph_power.man PROCESSED
+../../man/metanet/graph_simp.man PROCESSED
+../../man/metanet/graph_sum.man PROCESSED
+../../man/metanet/graph_union.man PROCESSED
+../../man/metanet/hamilton.man PROCESSED
+../../man/metanet/is_connex.man PROCESSED
+../../man/metanet/knapsack.man PROCESSED
+../../man/metanet/line_graph.man PROCESSED
+../../man/metanet/load_graph.man PROCESSED
+../../man/metanet/make_graph.man PROCESSED
+../../man/metanet/mat_2_graph.man PROCESSED
+../../man/metanet/max_cap_path.man PROCESSED
+../../man/metanet/max_clique.man PROCESSED
+../../man/metanet/max_flow.man PROCESSED
+../../man/metanet/mesh2d.man PROCESSED
+../../man/metanet/metanet.man NO EXAMPLE
+../../man/metanet/metanet_sync.man NO EXAMPLE
+../../man/metanet/min_lcost_cflow.man PROCESSED
+../../man/metanet/min_lcost_flow1.man PROCESSED
+../../man/metanet/min_lcost_flow2.man PROCESSED
+../../man/metanet/min_qcost_flow.man PROCESSED
+../../man/metanet/min_weight_tree.man PROCESSED
+../../man/metanet/neighbors.man PROCESSED
+../../man/metanet/netclose.man NO EXAMPLE
+../../man/metanet/netwindow.man NO EXAMPLE
+../../man/metanet/netwindows.man NO EXAMPLE
+../../man/metanet/node_number.man NO EXAMPLE
+../../man/metanet/nodes_2_path.man PROCESSED
+../../man/metanet/nodes_degrees.man PROCESSED
+../../man/metanet/path_2_nodes.man PROCESSED
+../../man/metanet/perfect_match.man PROCESSED
+../../man/metanet/pipe_network.man PROCESSED
+../../man/metanet/plot_graph.man PROCESSED
+../../man/metanet/predecessors.man PROCESSED
+../../man/metanet/qassign.man PROCESSED
+../../man/metanet/salesman.man PROCESSED
+../../man/metanet/save_graph.man PROCESSED
+../../man/metanet/shortest_path.man PROCESSED
+../../man/metanet/show_arcs.man PROCESSED
+../../man/metanet/show_graph.man PROCESSED
+../../man/metanet/show_nodes.man PROCESSED
+../../man/metanet/split_edge.man PROCESSED
+../../man/metanet/strong_con_nodes.man PROCESSED
+../../man/metanet/strong_connex.man PROCESSED
+../../man/metanet/subgraph.man PROCESSED
+../../man/metanet/successors.man PROCESSED
+../../man/metanet/supernode.man PROCESSED
+../../man/metanet/trans_closure.man PROCESSED
+../../man/nonlinear/bvode.man NO EXAMPLE
+../../man/nonlinear/colnew.man NO EXAMPLE
+../../man/nonlinear/dasrt.man PROCESSED
+../../man/nonlinear/dassl.man PROCESSED
+../../man/nonlinear/datafit.man PROCESSED
+../../man/nonlinear/fit_dat.man PROCESSED
+../../man/nonlinear/fsolve.man PROCESSED
+../../man/nonlinear/impl.man PROCESSED
+../../man/nonlinear/int2d.man PROCESSED
+../../man/nonlinear/int3d.man PROCESSED
+../../man/nonlinear/intc.man NO EXAMPLE
+../../man/nonlinear/intg.man PROCESSED
+../../man/nonlinear/intl.man NO EXAMPLE
+../../man/nonlinear/karmarkar.man PROCESSED
+../../man/nonlinear/leastsq.man PROCESSED
+../../man/nonlinear/linpro.man PROCESSED
+../../man/nonlinear/lmisolver.man PROCESSED
+../../man/nonlinear/lmitool.man NO EXAMPLE
+../../man/nonlinear/ode.man PROCESSED
+../../man/nonlinear/ode_discrete.man PROCESSED
+../../man/nonlinear/ode_root.man PROCESSED
+../../man/nonlinear/odedc.man PROCESSED
+../../man/nonlinear/odeoptions.man NO EXAMPLE
+../../man/nonlinear/optim.man PROCESSED
+../../man/nonlinear/quapro.man PROCESSED
+../../man/nonlinear/semidef.man PROCESSED
+../../man/polynomials/bezout.man PROCESSED
+../../man/polynomials/clean.man PROCESSED
+../../man/polynomials/cmndred.man NO EXAMPLE
+../../man/polynomials/coffg.man PROCESSED
+../../man/polynomials/colcompr.man PROCESSED
+../../man/polynomials/denom.man NO EXAMPLE
+../../man/polynomials/derivat.man PROCESSED
+../../man/polynomials/determ.man PROCESSED
+../../man/polynomials/detr.man NO EXAMPLE
+../../man/polynomials/diophant.man PROCESSED
+../../man/polynomials/factors.man PROCESSED
+../../man/polynomials/gcd.man PROCESSED
+../../man/polynomials/hermit.man PROCESSED
+../../man/polynomials/horner.man PROCESSED
+../../man/polynomials/hrmt.man PROCESSED
+../../man/polynomials/htrianr.man PROCESSED
+../../man/polynomials/invr.man PROCESSED
+../../man/polynomials/lcm.man PROCESSED
+../../man/polynomials/lcmdiag.man PROCESSED
+../../man/polynomials/ldiv.man PROCESSED
+../../man/polynomials/numer.man NO EXAMPLE
+../../man/polynomials/pdiv.man PROCESSED
+../../man/polynomials/pol2des.man PROCESSED
+../../man/polynomials/pol2str.man NO EXAMPLE
+../../man/polynomials/polfact.man NO EXAMPLE
+../../man/polynomials/residu.man PROCESSED
+../../man/polynomials/roots.man PROCESSED
+../../man/polynomials/routh_t.man NO EXAMPLE
+../../man/polynomials/rowcompr.man NO EXAMPLE
+../../man/polynomials/sfact.man PROCESSED
+../../man/polynomials/simp.man PROCESSED
+../../man/polynomials/simp_mode.man PROCESSED
+../../man/polynomials/sylm.man NO EXAMPLE
+../../man/polynomials/systmat.man NO EXAMPLE
+../../man/programming/%helps.man NO EXAMPLE
+../../man/programming/abort.man NO EXAMPLE
+../../man/programming/addinter.man NO EXAMPLE
+../../man/programming/and.man NO EXAMPLE
+../../man/programming/ans.man NO EXAMPLE
+../../man/programming/apropos.man PROCESSED
+../../man/programming/argn.man NO EXAMPLE
+../../man/programming/backslash.man PROCESSED
+../../man/programming/bool2s.man PROCESSED
+../../man/programming/boolean.man PROCESSED
+../../man/programming/brackets.man PROCESSED
+../../man/programming/break.man PROCESSED
+../../man/programming/call.man NO EXAMPLE
+../../man/programming/case.man NO EXAMPLE
+../../man/programming/ceil.man PROCESSED
+../../man/programming/chdir.man PROCESSED
+../../man/programming/clear.man NO EXAMPLE
+../../man/programming/clearfun.man NO EXAMPLE
+../../man/programming/clearglobal.man PROCESSED
+../../man/programming/code2str.man PROCESSED
+../../man/programming/coeff.man NO EXAMPLE
+../../man/programming/colon.man NO EXAMPLE
+../../man/programming/comma.man PROCESSED
+../../man/programming/comments.man NO EXAMPLE
+../../man/programming/comp.man NO EXAMPLE
+../../man/programming/date.man PROCESSED
+../../man/programming/deff.man PROCESSED
+../../man/programming/degree.man NO EXAMPLE
+../../man/programming/delbpt.man PROCESSED
+../../man/programming/diary.man NO EXAMPLE
+../../man/programming/disp.man PROCESSED
+../../man/programming/dispbpt.man NO EXAMPLE
+../../man/programming/dot.man PROCESSED
+../../man/programming/double.man PROCESSED
+../../man/programming/else.man NO EXAMPLE
+../../man/programming/elseif.man NO EXAMPLE
+../../man/programming/empty.man PROCESSED
+../../man/programming/end.man NO EXAMPLE
+../../man/programming/equal.man PROCESSED
+../../man/programming/errcatch.man NO EXAMPLE
+../../man/programming/errclear.man NO EXAMPLE
+../../man/programming/error.man NO EXAMPLE
+../../man/programming/evstr.man PROCESSED
+../../man/programming/exec.man PROCESSED
+../../man/programming/execstr.man PROCESSED
+../../man/programming/exists.man PROCESSED
+../../man/programming/exit.man NO EXAMPLE
+../../man/programming/external.man NO EXAMPLE
+../../man/programming/extraction.man PROCESSED
+../../man/programming/eye.man PROCESSED
+../../man/programming/feval.man PROCESSED
+../../man/programming/file.man PROCESSED
+../../man/programming/find.man PROCESSED
+../../man/programming/fix.man NO EXAMPLE
+../../man/programming/floor.man PROCESSED
+../../man/programming/for.man PROCESSED
+../../man/programming/format.man PROCESSED
+../../man/programming/fort.man NO EXAMPLE
+../../man/programming/fprintf.man PROCESSED
+../../man/programming/fprintfMat.man PROCESSED
+../../man/programming/fscanf.man NO EXAMPLE
+../../man/programming/fscanfMat.man PROCESSED
+../../man/programming/funcprot.man PROCESSED
+../../man/programming/function.man NO EXAMPLE
+../../man/programming/funptr.man NO EXAMPLE
+../../man/programming/genlib.man PROCESSED
+../../man/programming/getcwd.man PROCESSED
+../../man/programming/getd.man PROCESSED
+../../man/programming/getdate.man PROCESSED
+../../man/programming/getenv.man PROCESSED
+../../man/programming/getf.man PROCESSED
+../../man/programming/getfield.man PROCESSED
+../../man/programming/getpid.man PROCESSED
+../../man/programming/global.man PROCESSED
+../../man/programming/gstacksize.man NO EXAMPLE
+../../man/programming/hat.man PROCESSED
+../../man/programming/help.man NO EXAMPLE
+../../man/programming/host.man PROCESSED
+../../man/programming/hypermat.man PROCESSED
+../../man/programming/hypermatrices.man PROCESSED
+../../man/programming/iconvert.man PROCESSED
+../../man/programming/ieee.man PROCESSED
+../../man/programming/if.man PROCESSED
+../../man/programming/imag.man NO EXAMPLE
+../../man/programming/insertion.man PROCESSED
+../../man/programming/int.man NO EXAMPLE
+../../man/programming/int8.man PROCESSED
+../../man/programming/intersci.man NO EXAMPLE
+../../man/programming/inttype.man PROCESSED
+../../man/programming/inv_coeff.man PROCESSED
+../../man/programming/iserror.man NO EXAMPLE
+../../man/programming/isglobal.man PROCESSED
+../../man/programming/keyboard.man NO EXAMPLE
+../../man/programming/left.man PROCESSED
+../../man/programming/length.man NO EXAMPLE
+../../man/programming/less.man NO EXAMPLE
+../../man/programming/lib.man PROCESSED
+../../man/programming/lines.man NO EXAMPLE
+../../man/programming/link.man NO EXAMPLE
+../../man/programming/list.man PROCESSED
+../../man/programming/load.man PROCESSED
+../../man/programming/lsslist.man NO EXAMPLE
+../../man/programming/lstcat.man PROCESSED
+../../man/programming/macro.man NO EXAMPLE
+../../man/programming/matrices.man PROCESSED
+../../man/programming/matrix.man PROCESSED
+../../man/programming/max.man PROCESSED
+../../man/programming/maxi.man PROCESSED
+../../man/programming/mclearerr.man NO EXAMPLE
+../../man/programming/mclose.man NO EXAMPLE
+../../man/programming/meof.man NO EXAMPLE
+../../man/programming/mfprintf.man PROCESSED
+../../man/programming/mfscanf.man PROCESSED
+../../man/programming/mget.man PROCESSED
+../../man/programming/mgetstr.man NO EXAMPLE
+../../man/programming/min.man PROCESSED
+../../man/programming/mini.man PROCESSED
+../../man/programming/minus.man PROCESSED
+../../man/programming/mlist.man PROCESSED
+../../man/programming/mode.man NO EXAMPLE
+../../man/programming/mopen.man NO EXAMPLE
+../../man/programming/mprintf.man PROCESSED
+../../man/programming/mput.man PROCESSED
+../../man/programming/mputstr.man NO EXAMPLE
+../../man/programming/mscanf.man PROCESSED
+../../man/programming/mseek.man PROCESSED
+../../man/programming/mtell.man NO EXAMPLE
+../../man/programming/mtlb_mode.man NO EXAMPLE
+../../man/programming/names.man PROCESSED
+../../man/programming/newfun.man NO EXAMPLE
+../../man/programming/not.man PROCESSED
+../../man/programming/null.man PROCESSED
+../../man/programming/oldload.man PROCESSED
+../../man/programming/oldsave.man PROCESSED
+../../man/programming/ones.man NO EXAMPLE
+../../man/programming/or.man PROCESSED
+../../man/programming/overloading.man PROCESSED
+../../man/programming/parents.man PROCESSED
+../../man/programming/part.man PROCESSED
+../../man/programming/pause.man NO EXAMPLE
+../../man/programming/percent.man PROCESSED
+../../man/programming/plus.man PROCESSED
+../../man/programming/poly.man PROCESSED
+../../man/programming/power.man PROCESSED
+../../man/programming/predef.man NO EXAMPLE
+../../man/programming/print.man PROCESSED
+../../man/programming/printf.man PROCESSED
+../../man/programming/printf_conversion.man NO EXAMPLE
+../../man/programming/pwd.man PROCESSED
+../../man/programming/quit.man NO EXAMPLE
+../../man/programming/quote.man PROCESSED
+../../man/programming/rand.man PROCESSED
+../../man/programming/rat.man PROCESSED
+../../man/programming/rational.man PROCESSED
+../../man/programming/read.man PROCESSED
+../../man/programming/read4b.man NO EXAMPLE
+../../man/programming/readb.man NO EXAMPLE
+../../man/programming/real.man NO EXAMPLE
+../../man/programming/resume.man NO EXAMPLE
+../../man/programming/return.man NO EXAMPLE
+../../man/programming/rlist.man NO EXAMPLE
+../../man/programming/round.man PROCESSED
+../../man/programming/save.man PROCESSED
+../../man/programming/scanf.man NO EXAMPLE
+../../man/programming/scanf_conversion.man NO EXAMPLE
+../../man/programming/sciargs.man NO EXAMPLE
+../../man/programming/scilab.man NO EXAMPLE
+../../man/programming/scilink.man NO EXAMPLE
+../../man/programming/select.man NO EXAMPLE
+../../man/programming/semi.man PROCESSED
+../../man/programming/semicolumn.man PROCESSED
+../../man/programming/setbpt.man NO EXAMPLE
+../../man/programming/setfield.man PROCESSED
+../../man/programming/sign.man PROCESSED
+../../man/programming/signm.man PROCESSED
+../../man/programming/size.man PROCESSED
+../../man/programming/slash.man NO EXAMPLE
+../../man/programming/sprintf.man PROCESSED
+../../man/programming/sscanf.man NO EXAMPLE
+../../man/programming/stacksize.man NO EXAMPLE
+../../man/programming/star.man NO EXAMPLE
+../../man/programming/startup.man NO EXAMPLE
+../../man/programming/str2code.man PROCESSED
+../../man/programming/string.man PROCESSED
+../../man/programming/strings.man PROCESSED
+../../man/programming/symbols.man NO EXAMPLE
+../../man/programming/testmatrix.man NO EXAMPLE
+../../man/programming/then.man NO EXAMPLE
+../../man/programming/tilda.man NO EXAMPLE
+../../man/programming/tlist.man NO EXAMPLE
+../../man/programming/type.man NO EXAMPLE
+../../man/programming/typename.man NO EXAMPLE
+../../man/programming/ulink.man NO EXAMPLE
+../../man/programming/unix.man PROCESSED
+../../man/programming/unix_g.man PROCESSED
+../../man/programming/unix_s.man PROCESSED
+../../man/programming/unix_w.man PROCESSED
+../../man/programming/unix_x.man PROCESSED
+../../man/programming/user.man NO EXAMPLE
+../../man/programming/varargin.man PROCESSED
+../../man/programming/varargout.man PROCESSED
+../../man/programming/varn.man PROCESSED
+../../man/programming/warning.man NO EXAMPLE
+../../man/programming/what.man NO EXAMPLE
+../../man/programming/where.man NO EXAMPLE
+../../man/programming/whereami.man PROCESSED
+../../man/programming/whereis.man NO EXAMPLE
+../../man/programming/while.man PROCESSED
+../../man/programming/who.man NO EXAMPLE
+../../man/programming/whos.man NO EXAMPLE
+../../man/programming/writb.man NO EXAMPLE
+../../man/programming/write.man PROCESSED
+../../man/programming/write4b.man NO EXAMPLE
+../../man/robust/augment.man PROCESSED
+../../man/robust/bstap.man NO EXAMPLE
+../../man/robust/ccontrg.man NO EXAMPLE
+../../man/robust/colinout.man NO EXAMPLE
+../../man/robust/copfac.man NO EXAMPLE
+../../man/robust/dcf.man NO EXAMPLE
+../../man/robust/des2ss.man PROCESSED
+../../man/robust/dhnorm.man NO EXAMPLE
+../../man/robust/dtsi.man NO EXAMPLE
+../../man/robust/fourplan.man NO EXAMPLE
+../../man/robust/fspecg.man NO EXAMPLE
+../../man/robust/fstabst.man PROCESSED
+../../man/robust/gamitg.man NO EXAMPLE
+../../man/robust/gcare.man NO EXAMPLE
+../../man/robust/gfare.man NO EXAMPLE
+../../man/robust/gtild.man PROCESSED
+../../man/robust/h2norm.man NO EXAMPLE
+../../man/robust/h_cl.man NO EXAMPLE
+../../man/robust/h_inf.man NO EXAMPLE
+../../man/robust/h_inf_st.man NO EXAMPLE
+../../man/robust/h_norm.man NO EXAMPLE
+../../man/robust/hankelsv.man PROCESSED
+../../man/robust/lcf.man NO EXAMPLE
+../../man/robust/leqr.man NO EXAMPLE
+../../man/robust/lft.man PROCESSED
+../../man/robust/linf.man NO EXAMPLE
+../../man/robust/linfn.man NO EXAMPLE
+../../man/robust/lqg_ltr.man NO EXAMPLE
+../../man/robust/macglov.man NO EXAMPLE
+../../man/robust/nehari.man NO EXAMPLE
+../../man/robust/parrot.man NO EXAMPLE
+../../man/robust/ric_desc.man NO EXAMPLE
+../../man/robust/riccati.man NO EXAMPLE
+../../man/robust/rowinout.man NO EXAMPLE
+../../man/robust/sensi.man PROCESSED
+../../man/robust/tf2des.man PROCESSED
+../../man/scicos/ABSBLK_f.man NO EXAMPLE
+../../man/scicos/AFFICH_f.man NO EXAMPLE
+../../man/scicos/ANDLOG_f.man NO EXAMPLE
+../../man/scicos/ANIMXY_f.man NO EXAMPLE
+../../man/scicos/BIGSOM_f.man NO EXAMPLE
+../../man/scicos/CLINDUMMY_f.man NO EXAMPLE
+../../man/scicos/CLKINV_f.man NO EXAMPLE
+../../man/scicos/CLKIN_f.man NO EXAMPLE
+../../man/scicos/CLKOUTV_f.man NO EXAMPLE
+../../man/scicos/CLKOUT_f.man NO EXAMPLE
+../../man/scicos/CLKSOMV_f.man NO EXAMPLE
+../../man/scicos/CLKSOM_f.man NO EXAMPLE
+../../man/scicos/CLKSPLIT_f.man NO EXAMPLE
+../../man/scicos/CLOCK_f.man NO EXAMPLE
+../../man/scicos/CLR_f.man NO EXAMPLE
+../../man/scicos/CLSS_f.man NO EXAMPLE
+../../man/scicos/CONST_f.man NO EXAMPLE
+../../man/scicos/COSBLK_f.man NO EXAMPLE
+../../man/scicos/CURV_f.man NO EXAMPLE
+../../man/scicos/DELAYV_f.man NO EXAMPLE
+../../man/scicos/DELAY_f.man NO EXAMPLE
+../../man/scicos/DEMUX_f.man NO EXAMPLE
+../../man/scicos/DLRADAPT_f.man NO EXAMPLE
+../../man/scicos/DLR_f.man NO EXAMPLE
+../../man/scicos/DLSS_f.man NO EXAMPLE
+../../man/scicos/EVENTSCOPE_f.man NO EXAMPLE
+../../man/scicos/EVTDLY_f.man NO EXAMPLE
+../../man/scicos/EVTGEN_f.man NO EXAMPLE
+../../man/scicos/EXPBLK_f.man NO EXAMPLE
+../../man/scicos/GAINBLK_f.man NO EXAMPLE
+../../man/scicos/GAIN_f.man NO EXAMPLE
+../../man/scicos/GENERAL_f.man NO EXAMPLE
+../../man/scicos/GENERIC_f.man NO EXAMPLE
+../../man/scicos/GENSIN_f.man NO EXAMPLE
+../../man/scicos/GENSQR_f.man NO EXAMPLE
+../../man/scicos/HALT_f.man NO EXAMPLE
+../../man/scicos/IFTHEL_f.man NO EXAMPLE
+../../man/scicos/INTEGRAL_f.man NO EXAMPLE
+../../man/scicos/INTRP2BLK_f.man NO EXAMPLE
+../../man/scicos/INTRPLBLK_f.man NO EXAMPLE
+../../man/scicos/INVBLK_f.man NO EXAMPLE
+../../man/scicos/IN_f.man NO EXAMPLE
+../../man/scicos/LOGBLK_f.man NO EXAMPLE
+../../man/scicos/LOOKUP_f.man NO EXAMPLE
+../../man/scicos/MAX_f.man NO EXAMPLE
+../../man/scicos/MCLOCK_f.man NO EXAMPLE
+../../man/scicos/MFCLCK_f.man NO EXAMPLE
+../../man/scicos/MIN_f.man NO EXAMPLE
+../../man/scicos/MUX_f.man NO EXAMPLE
+../../man/scicos/NEGTOPOS_f.man NO EXAMPLE
+../../man/scicos/OUT_f.man NO EXAMPLE
+../../man/scicos/POSTONEG_f.man NO EXAMPLE
+../../man/scicos/POWBLK_f.man NO EXAMPLE
+../../man/scicos/PROD_f.man NO EXAMPLE
+../../man/scicos/QUANT_f.man NO EXAMPLE
+../../man/scicos/RAND_f.man NO EXAMPLE
+../../man/scicos/READC_f.man NO EXAMPLE
+../../man/scicos/REGISTER_f.man NO EXAMPLE
+../../man/scicos/RELAY_f.man NO EXAMPLE
+../../man/scicos/RFILE_f.man NO EXAMPLE
+../../man/scicos/SAMPLEHOLD_f.man NO EXAMPLE
+../../man/scicos/SAT_f.man NO EXAMPLE
+../../man/scicos/SAWTOOTH_f.man NO EXAMPLE
+../../man/scicos/SCOPE_f.man NO EXAMPLE
+../../man/scicos/SCOPXY_f.man NO EXAMPLE
+../../man/scicos/SELECT_f.man NO EXAMPLE
+../../man/scicos/SINBLK_f.man NO EXAMPLE
+../../man/scicos/SOM_f.man NO EXAMPLE
+../../man/scicos/SPLIT_f.man NO EXAMPLE
+../../man/scicos/STOP_f.man NO EXAMPLE
+../../man/scicos/SUPER_f.man NO EXAMPLE
+../../man/scicos/TANBLK_f.man NO EXAMPLE
+../../man/scicos/TCLSS_f.man NO EXAMPLE
+../../man/scicos/TEXT_f.man NO EXAMPLE
+../../man/scicos/TIME_f.man NO EXAMPLE
+../../man/scicos/TRASH_f.man NO EXAMPLE
+../../man/scicos/WFILE_f.man NO EXAMPLE
+../../man/scicos/WRITEC_f.man NO EXAMPLE
+../../man/scicos/ZCROSS_f.man NO EXAMPLE
+../../man/scicos/check_io.man NO EXAMPLE
+../../man/scicos/curblock.man NO EXAMPLE
+../../man/scicos/getblocklabel.man NO EXAMPLE
+../../man/scicos/getcurblock.man NO EXAMPLE
+../../man/scicos/getscicosvars.man NO EXAMPLE
+../../man/scicos/icon_edit.man NO EXAMPLE
+../../man/scicos/scicos.man NO EXAMPLE
+../../man/scicos/scicos_block.man NO EXAMPLE
+../../man/scicos/scicos_cpr.man NO EXAMPLE
+../../man/scicos/scicos_graphics.man NO EXAMPLE
+../../man/scicos/scicos_link.man NO EXAMPLE
+../../man/scicos/scicos_main.man NO EXAMPLE
+../../man/scicos/scicos_menus.man NO EXAMPLE
+../../man/scicos/scicos_model.man NO EXAMPLE
+../../man/scicos/scicosblock.man NO EXAMPLE
+../../man/scicos/scicosim.man NO EXAMPLE
+../../man/scicos/scifunc_block.man NO EXAMPLE
+../../man/scicos/setscicosvars.man NO EXAMPLE
+../../man/scicos/standard_define.man NO EXAMPLE
+../../man/scicos/standard_draw.man NO EXAMPLE
+../../man/scicos/standard_input.man NO EXAMPLE
+../../man/scicos/standard_origin.man NO EXAMPLE
+../../man/scicos/standard_output.man NO EXAMPLE
+../../man/signal/%asn.man PROCESSED
+../../man/signal/%k.man PROCESSED
+../../man/signal/%sn.man PROCESSED
+../../man/signal/Signal.man NO EXAMPLE
+../../man/signal/analpf.man PROCESSED
+../../man/signal/buttmag.man PROCESSED
+../../man/signal/casc.man PROCESSED
+../../man/signal/cepstrum.man PROCESSED
+../../man/signal/cheb1mag.man PROCESSED
+../../man/signal/cheb2mag.man PROCESSED
+../../man/signal/chepol.man PROCESSED
+../../man/signal/convol.man PROCESSED
+../../man/signal/corr.man PROCESSED
+../../man/signal/cspect.man PROCESSED
+../../man/signal/czt.man PROCESSED
+../../man/signal/dft.man PROCESSED
+../../man/signal/ell1mag.man PROCESSED
+../../man/signal/eqfir.man PROCESSED
+../../man/signal/eqiir.man PROCESSED
+../../man/signal/faurre.man NO EXAMPLE
+../../man/signal/ffilt.man NO EXAMPLE
+../../man/signal/fft.man PROCESSED
+../../man/signal/filter.man NO EXAMPLE
+../../man/signal/find_freq.man NO EXAMPLE
+../../man/signal/findm.man NO EXAMPLE
+../../man/signal/frfit.man PROCESSED
+../../man/signal/frmag.man NO EXAMPLE
+../../man/signal/fsfirlin.man PROCESSED
+../../man/signal/group.man PROCESSED
+../../man/signal/hank.man PROCESSED
+../../man/signal/hilb.man PROCESSED
+../../man/signal/iir.man PROCESSED
+../../man/signal/iirgroup.man NO EXAMPLE
+../../man/signal/iirlp.man NO EXAMPLE
+../../man/signal/intdec.man NO EXAMPLE
+../../man/signal/jmat.man NO EXAMPLE
+../../man/signal/kalm.man NO EXAMPLE
+../../man/signal/lattn.man NO EXAMPLE
+../../man/signal/lattp.man NO EXAMPLE
+../../man/signal/lev.man NO EXAMPLE
+../../man/signal/levin.man PROCESSED
+../../man/signal/lgfft.man NO EXAMPLE
+../../man/signal/lindquist.man NO EXAMPLE
+../../man/signal/mese.man NO EXAMPLE
+../../man/signal/mfft.man NO EXAMPLE
+../../man/signal/mrfit.man PROCESSED
+../../man/signal/phc.man PROCESSED
+../../man/signal/pspect.man PROCESSED
+../../man/signal/remez.man NO EXAMPLE
+../../man/signal/remezb.man PROCESSED
+../../man/signal/rpem.man NO EXAMPLE
+../../man/signal/sinc.man PROCESSED
+../../man/signal/sincd.man PROCESSED
+../../man/signal/srfaur.man NO EXAMPLE
+../../man/signal/srkf.man NO EXAMPLE
+../../man/signal/sskf.man NO EXAMPLE
+../../man/signal/system.man NO EXAMPLE
+../../man/signal/trans.man NO EXAMPLE
+../../man/signal/wfir.man NO EXAMPLE
+../../man/signal/wiener.man NO EXAMPLE
+../../man/signal/wigner.man NO EXAMPLE
+../../man/signal/window.man NO EXAMPLE
+../../man/signal/yulewalk.man PROCESSED
+../../man/signal/zpbutt.man NO EXAMPLE
+../../man/signal/zpch1.man NO EXAMPLE
+../../man/signal/zpch2.man NO EXAMPLE
+../../man/signal/zpell.man NO EXAMPLE
+../../man/sound/analyze.man PROCESSED
+../../man/sound/loadwave.man NO EXAMPLE
+../../man/sound/mapsound.man PROCESSED
+../../man/sound/savewave.man PROCESSED
+../../man/tdcs/artest.man NO EXAMPLE
+../../man/tdcs/bifish.man NO EXAMPLE
+../../man/tdcs/boucle.man NO EXAMPLE
+../../man/tdcs/chaintest.man NO EXAMPLE
+../../man/tdcs/fishing.man NO EXAMPLE
+../../man/tdcs/fusee.man NO EXAMPLE
+../../man/tdcs/lotest.man NO EXAMPLE
+../../man/tdcs/mine.man NO EXAMPLE
+../../man/tdcs/obscont1.man NO EXAMPLE
+../../man/tdcs/portr3d.man NO EXAMPLE
+../../man/tdcs/portrait.man PROCESSED
+../../man/tdcs/recur.man NO EXAMPLE
+../../man/tdcs/systems.man NO EXAMPLE
+../../man/tdcs/tangent.man NO EXAMPLE
+../../man/tdcs/tdinit.man NO EXAMPLE
+../../man/translation/ascii.man NO EXAMPLE
+../../man/translation/excel2sci.man NO EXAMPLE
+../../man/translation/mfile2sci.man PROCESSED
+../../man/translation/mtlb_load.man NO EXAMPLE
+../../man/translation/mtlb_save.man NO EXAMPLE
+../../man/translation/pol2tex.man PROCESSED
+../../man/translation/sci2for.man NO EXAMPLE
+../../man/translation/texprint.man PROCESSED
+../../man/translation/translatepaths.man NO EXAMPLE
+../../man/tksci/ScilabEval.man NO EXAMPLE
+../../man/tksci/TK_EvalFile.man NO EXAMPLE
+../../man/tksci/TK_EvalStr.man PROCESSED
+../../man/tksci/TK_GetVar.man PROCESSED
+../../man/tksci/TK_SetVar.man PROCESSED
+../../man/tksci/close.man PROCESSED
+../../man/tksci/figure.man PROCESSED
+../../man/tksci/findobj.man PROCESSED
+../../man/tksci/gcf.man PROCESSED
+../../man/tksci/get.man PROCESSED
+../../man/tksci/set.man PROCESSED
+../../man/tksci/uicontrol.man PROCESSED
+../../man/tksci/uimenu.man PROCESSED

@@ -1,0 +1,43 @@
+.TH type 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+type - variable type
+.SH CALLING SEQUENCE
+.nf
+[i]=type(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: Scilab object
+.TP 10
+i
+: integer
+.SH DESCRIPTION
+\fVtype(x)\fR  returns an integer which is the type of \fVx\fR as following :
+.IP 1 
+:  real or complex constant matrix.
+.IP 2 
+:  polynomial matrix.
+.IP 4 
+:  boolean matrix.
+.IP 5
+:  sparse matrix.
+.IP 10 
+:  matrix of character strings.
+.IP 11 
+:  un-compiled function.
+.IP 13 
+:  compiled function.
+.IP 14 
+:  function library.
+.IP 15 
+:  list.
+.IP 16 
+:  typed list (tlist)
+.IP 128
+: pointer
+.SH SEE ALSO
+typeof
+
+

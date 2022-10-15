@@ -1,0 +1,54 @@
+
+size(1)                        Scilab Function                        size(1)
+NAME
+  size - size of objects
+
+CALLING SEQUENCE
+  y=size(x [,sel])
+  [nr,nc]=size(x)
+
+PARAMETERS
+
+  x         : matrix (including transfer matrix) or list or linear system
+            (syslin)
+
+  y         :  1x2  integer vector or integer number
+
+  sel       : a scalar or a character string
+
+  nr,nc     : two integers
+
+DESCRIPTION
+  Size of a (constant, polynomial, string, boolean, rational) matrix x, y =
+  1x2 vector [number of rows, number of columns].
+
+  Called with LHS=2, returns nr,nc = [number of rows, number of columns].
+
+  sel may be used to specify what dimension to get:
+
+  1 or 'r'       : to get the number of rows
+
+  2 or 'c'       : to get the number of columns
+
+  : to get the product of rows and column numbers
+  Size (length) of ordinary list (number of elements). In this case the syn-
+  tax must be y=size(x)
+
+  Caution: if x is a syslin list representing a linear system, y=size(x)
+  returns in y the (row) vector [number of outputs, number if inputs] i.e.
+  the dimension of the corresponding transfer matrix.  The syntax
+  [nr,nc]=size(x) is also valid (with (nr,nc)=(y(1),y(2)).
+
+  If x is a syslin list representing a linear system in state-space form,
+  then  [nr,nc,nx]=size(x)  returns in addition the dimension nx of the A
+  matrix of x.
+
+EXAMPLES
+  [n,m]=size(rand(3,2))
+  [n,m]=size(['a','b';'c','d'])
+  x=ssrand(3,2,4);[ny,nu]=size(x)
+  [ny,nu]=size(ss2tf(x))
+  [ny,nu,nx]=size(x)
+
+SEE ALSO
+  length, syslin

@@ -1,0 +1,30 @@
+.TH x_choose 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+x_choose - interactive Xwindow choice
+.SH CALLING SEQUENCE
+.nf
+[num]=x_choose(items,title [,button]) 
+.fi
+.SH PARAMETERS
+.TP
+items 
+: column vector of string,  items to choose
+.TP
+title
+: column vector of string, comment for the dialog
+.TP
+button
+:  string, text to appear in the button. Default value is 'Cancel'
+.TP
+num 
+: integer, choosen item number or 0 if dialog resumed with "Cancel" button
+.SH DESCRIPTION
+Returns in \fVnum\fR the number of the chosen item.
+.SH EXAMPLE
+.nf
+n=x_choose(['item1';'item2';'item3'],['that is a comment';'for the dialog'])
+n=x_choose(['item1';'item2';'item3'],['that is a comment'],'Return')
+.fi
+.SH SEE ALSO
+x_choices, x_mdialog, getvalue, unix_g

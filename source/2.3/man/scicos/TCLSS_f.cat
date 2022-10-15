@@ -1,0 +1,30 @@
+
+TCLSS_f(5)                      Scicos Block                       TCLSS_f(5)
+NAME
+  TCLSS_f - Scicos jump continuous-time linear state-space system
+
+DESCRIPTION
+  This block realizes a continuous-time linear state-space system with the
+  possibility of jumps in the state. The number of inputs to this block is
+  two. The first input is the regular input of the linear system, the second
+  carries the new value of the state which is copied into the state when an
+  event arrives at the unique event input port of this block. That means the
+  state of the system jumps to the value present on the second input (of size
+  equal to that of the state).  The system is defined by the (A,B,C,D)
+  matrices and the initial state x0. The dimensions must be compatible. The
+  sizes of inputs and outputs are adjusted automatically.
+
+DIALOGUE PARAMETERS
+
+  A                   : square matrix. The A matrix
+
+  B                   : the B matrix
+
+  C                   : the C matrix
+
+  D                   : the D matrix
+
+  x0                  : vector. The initial state of the system.
+
+SEE ALSO
+  CLSS_f, CLR_f

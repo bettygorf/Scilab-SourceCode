@@ -1,0 +1,56 @@
+ 
+clear;lines(0);
+ 
+figure(5);
+          !--error     4 
+undefined variable : figure                  
+ 
+ 
+figure();
+         !--error     4 
+undefined variable : figure                  
+ 
+ 
+figure();
+         !--error     4 
+undefined variable : figure                  
+ 
+ 
+gcf()
+      !--error     4 
+undefined variable : gcf                     
+ 
+ 
+// returns 2
+ 
+close(gcf());
+            !--error     4 
+undefined variable : gcf                     
+ 
+ 
+// close figure 2
+ 
+gcf()
+      !--error     4 
+undefined variable : gcf                     
+ 
+ 
+// returns 1
+ 
+close(1);
+         !--error     4 
+undefined variable : close                   
+ 
+ 
+gcf()
+      !--error     4 
+undefined variable : gcf                     
+ 
+ 
+// returns 5
+ 
+close(5);
+         !--error     4 
+undefined variable : close                   
+ 
+ 

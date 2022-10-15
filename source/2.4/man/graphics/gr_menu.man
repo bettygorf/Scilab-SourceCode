@@ -1,0 +1,38 @@
+.TH gr_menu 2 "April 1993" "Scilab Group" "Scilab Function" 
+.so ../sci.an
+.SH NAME
+gr_menu - simple interactive graphic editor
+.SH CALLING SEQUENCE
+.nf
+[sd1]=gr_menu([sd,flag])
+.fi
+.SH PARAMETERS
+.TP 10
+sd 
+: list (output of \fVgr_menu\fR), or vector of 
+length four \fV[xmin,ymin,xmax,ymax]\fR (boundaries of the plot). 
+.TP
+sd1
+: list (graphical objects created under \fVgr_menu\fR
+.SH DESCRIPTION
+\fVgr_menu\fR is a simple interactive graphic editor.
+The created graphics are saved as a list which 
+can be given to \fVgr_menu\fR as an entry value.
+.TP 15
+\fV[sd]=gr_menu([xmin,ymin,xmax,ymax])\fR
+: enters \fVgr_menu\fR with a fixed frame
+.TP 
+\fV[sd]=gr_menu();\fR
+: enters \fVgr_menu\fR with the  fixed frame  [0 0 100 100].
+.TP
+\fV[sd]=gr_menu(sd)\fR
+: redraws the graphics stored in sd and enters interactive mode
+\fV[sd]=gr_menu(sd,1)\fR
+: only draws the graphics stored in \fVsd\fR. 
+.SH AUTHOR
+S.S. & J.Ph.C.
+
+
+
+
+

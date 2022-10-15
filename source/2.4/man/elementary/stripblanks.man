@@ -1,0 +1,22 @@
+.TH stripblanks G "April 1998" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+stripblanks - strips leading and trailing blanks of strings
+.SH CALLING SEQUENCE
+.nf
+txt=stripblanks(txt)
+.fi
+.SH PARAMETERS
+.TP
+txt 
+: string or matrix of strings
+.SH DESCRIPTION
+stripblanks strips leading and trailing blanks of strings
+.SH EXAMPLE
+.nf
+a='  123   ';
+'!'+a+'!'
+'!'+stripblanks(a)+'!'
+a=['  123   ',' xyz']
+strcat(stripblanks(a))
+.fi

@@ -1,0 +1,17 @@
+
+mtlb_isreal(2)                 Scilab Function                 mtlb_isreal(2)
+NAME
+  mtlb_isreal - Check is an rarry is real
+
+  Author: Paulo Goncalves
+
+  mtlb_isreal True for real array.  mtlb_isreal(x) returns %T if all elements
+  in x have zero imaginary part and %F otherwise.
+
+Usage
+
+  mtlb_isreal(x)
+Input parameters
+       o x : Real or complex valued matrix [rx,cx]
+See also:
+  isempty, real, imag

@@ -1,0 +1,20 @@
+.TH adj2l 1 "October 1994" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME 
+adj2l - from adjacency matrix to adjacency vectors
+.SH CALLING SEQUENCE
+.nf
+[lp,ls] = adj2l(a)
+.fi
+.SH PARAMETERS
+.TP 2
+a
+: adjacency matrix
+.TP 6
+lp,ls
+: vectors of the adjacency description, lp is the pointer array and 
+  ls is the node array
+.SH DESCRIPTION
+\fVadj2l\fR computes the adjacency vectors from the adjacency matrix.
+.SH SEE ALSO
+l2adj, l2g

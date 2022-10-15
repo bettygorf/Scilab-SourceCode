@@ -1,0 +1,17 @@
+.TH GAIN_f 5 "Janvier 1996" "Scilab Group" "Scicos Block"
+.so ../sci.an
+.SH NAME
+GAIN_f - Scicos gain block
+.SH DIALOGUE PARAMETERS
+.TP 15
+Gain
+: a real matrix. 
+.SH DESCRIPTION
+This block is a gain block. The output is the Gain times the
+regular input (vector). The dimensions of Gain determines the
+input (number of columns) and output (number of rows) port sizes.
+
+
+
+
+

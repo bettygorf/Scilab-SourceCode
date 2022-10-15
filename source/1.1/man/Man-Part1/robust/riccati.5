@@ -1,0 +1,33 @@
+.TH riccati 1 "April 1993" "Scilab Group" "Scilab Function"
+.so man1/sci.an
+.SH NAME
+riccati - Riccati equation
+.SH CALLING SEQUENCE
+.nf
+[X1,[X2]]=riccati(A,B,C,dom,[typ]
+.fi
+.SH PARAMETERS
+.TP 16
+A,B,C
+: real matrices nxn, b and  c symetric.
+.TP 
+dom 
+: \fV'c'\fR or \fV'd'\fR for the time domain (continuous or discrete)
+.TP
+typ 
+: string : \fV'eigen'\fR for block diagonalization or \fVschur'\fR for 
+Schur method.
+.SH DESCRIPTION
+Riccati solver \fVx=x1/x2\fR solves:
+.nf
+A'*X+X*A-X*B*X+C=0 
+.fi
+in continuous time case, or:
+.nf
+ A'*X*A-(A'*X*B1/(B2+B1'*X*B1))*(B1'*X*A)+C-X
+.fi
+ with \fVB=B1/B2*B1'\fR in the discrete time case.
+If called with \fVLHS=1\fR (one output argument) \fVriccati\fR returns \fVX\fR.
+.SH SEE ALSO
+ric_descr
+

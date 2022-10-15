@@ -1,0 +1,7 @@
+exec('bode.5.code')
+exec('bode.6.code')
+xinit('bode.7.ps')
+h2=ss2tf(sl)
+bode(h1*h2,.1,1000,.01);
+xend(),
+          

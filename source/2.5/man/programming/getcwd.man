@@ -1,0 +1,23 @@
+.TH getcwd 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+getcwd - get Scilab current directory
+.SH CALLING SEQUENCE
+.nf
+path=getcwd()
+pwd
+.fi
+.SH PARAMETERS
+.TP 15
+path
+: a string
+.SH DESCRIPTION
+return in \fVpath\fR the Scilab current directory.
+.SH EXAMPLE
+.nf
+p=getcwd();
+pwd
+.fi
+.SH SEE ALSO
+chdir, unix
+

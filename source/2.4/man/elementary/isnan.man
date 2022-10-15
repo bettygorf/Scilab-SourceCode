@@ -1,0 +1,27 @@
+.TH isnan G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+isnan -  check for "Not a Number" entries
+.SH CALLING SEQUENCE
+.nf
+r=isnan(x)
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real or complex vector or  matrix
+r
+: boolean vector or matrix 
+.SH DESCRIPTION
+\fVisnan(x)\fR returns a boolean vector or matrix which contains true
+entries corresponding with "Not a Number" \fVx\fR entries and false entries
+corresponding with regular \fVx\fR entries.
+.SH EXAMPLE
+.nf
+isnan([1 0.01 -%nan %inf-%inf])
+.fi
+.SH SEE ALSO
+isinf
+
+
+

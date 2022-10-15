@@ -1,0 +1,14 @@
+/**/include ../../Path.incl
+#include "../../Imake.incl"
+
+OBJS = dld.o find_exec.o define.o get_func.o get_symbol.o \
+	list_undef.o mk_dummy.o ref.o ul_file.o ul_symbol.o \
+	remove.o error.o
+
+SRCS=$(OBJS:.o=.c)
+
+LibraryTarget($(PATHO)/libdld.a,$(OBJS))
+
+DependTarget()
+
+

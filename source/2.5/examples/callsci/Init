@@ -1,0 +1,14 @@
+#!/bin/sh 
+config=`egrep "include[ ]*config" ../../Makefile | sed -e "s/include[ ]*//"`
+\rm -f -r config 
+mkdir config
+echo $config
+sed -e "s+bin/scilex+callsci+" -e 's/scilex-lib/$(OBJS)/' -e 's/$(DEFAULTS)/$(OBJS) $(DEFAULTS)/' $1/$config > config/Makefile
+
+# We remove the mainsci.o which contains the Main function 
+grep -v "mainsci.o" ../../Makefile.OBJ > config/Makefile.Top
+sed -e "s+@SCI@+$1+" callsci.sh.in > callsci.sh
+chmod +x callsci.sh
+
+
+

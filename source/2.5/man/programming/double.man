@@ -1,0 +1,33 @@
+.TH double 1 "October 99" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+double  - conversion from integer to double precision  representation
+
+.SH CALLING SEQUENCE
+.nf
+y=double(X)
+y=int16(X)
+y=int32(X)
+y=uint8(X)
+y=uint16(X)
+y=uint32(X)
+.fi
+.SH PARAMETERS
+.TP
+X 
+: matrix of floats or integers
+.TP
+y
+: matrix of floats
+.SH DESCRIPTION
+converts  data stored using  one, two or four bytes integers into
+double precision floating point representation. If \fVX\fR entries are already 
+double precision floats, nothing is done.
+.SH EXAMPLES
+.nf
+x=int8([0 12 140])
+double(x)
+.fi
+.SH SEE ALSO
+int8, inttype, type
+

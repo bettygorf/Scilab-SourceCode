@@ -1,0 +1,44 @@
+#!/bin/sh
+:
+# @(#) $Revision: 66.4 $    
+MERGE=no
+KEEP_OLD=no
+WDIR=$1
+dirs=$1
+TEMPZ=/tmp/whatiscompr
+
+for d in $dirs
+do
+	if [ -d $d ]
+	then
+ 		for i in $d/man[1-9]*
+	    	do
+			if [ -d $i ]
+			then
+				cd $i
+				case $i in
+					*.Z) find $i -type f -print 2> /dev/null | while read FILE
+					     do
+						uncompress -c < $FILE > $TEMPZ
+						/usr/lib/getNAME $TEMPZ
+					     done;;
+					*)   /usr/lib/getNAME *.*;;
+				esac
+			fi
+		done 
+	fi
+done |\
+sed -e 's/  */ /g' \
+    -e 's/[ 	]-[ 	]/ \\- /' \
+    -e 's/[ 	]\\-[ 	]/ \\- /' \
+    -e 's/[ 	]\\(em[ 	]/ \\- /' \
+    -e 's/[ 	]\\(mi[ 	]/ \\- /' \
+    -e 's/^\.TH [^ ]* \([^ 	]*\).*	\(.*\) \\- /\2(\1)	- /' |\
+deroff | tr -s ' ' ' ' |\
+expand -24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100 |\
+
+sort -u | unexpand -a > $WDIR/whatis
+
+chmod 644 $WDIR/whatis
+rm -f $TEMPZ /tmp/whatis$$ /tmp/whatis.m$$
+

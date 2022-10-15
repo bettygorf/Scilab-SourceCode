@@ -1,0 +1,58 @@
+.TH plotframe 2 "October 1994" "Scilab" ""
+.so man1/sci.an
+.SH NAME
+plotframe - graphic frame with scaling and grids
+.SH CALLING SEQUENCE
+.nf
+plotframe(rect,tics,flags,captions)
+.fi
+.SH PARAMETERS
+.TP 10
+rect
+:
+vector \fV[xmin,ymin,xmax,ymax]\fR made of x and y bounds.
+.TP
+tics
+:
+vector \fV[nx,mx,ny,my]\fR where \fVmx, nx\fR (resp. \fVmy, ny\fR) are
+the number of x-axis (resp. y-axis) intervals and subintervals.
+.TP
+flags
+:
+vector \fV[wantgrids,findbounds]\fR where \fVwantgrids\fR is a boolean
+variable (\fV%t\fR or \fV%f\fR) which indicates gridding.
+\fVfindbounds\fR is a boolean variable. If \fVfindbounds\fR is \fV%t\fR,
+the bounds given in \fVrect\fR are allowed to be slightly modified
+in order to have simpler graduations (then \fVtics(2),tics(4)\fR are ignored).
+.TP
+captions
+vector of 3 character strings \fV[title, x-leg, y-leg]\fR
+.SH DESCRIPTION
+This function is used with plotting functions \fVplot2d\fR,
+\fVplot2d1\fR,... to set a graphic frame. This function is
+used before \fVplot2d...\fR which should be invoked with
+the "000" superposition mode.
+.SH EXAMPLE
+.nf
+x=[-0.3:0.8:27.3]';
+y=rand(x);
+rect=[min(x),min(y),max(x),max(y)];
+tics=[4,10,2,5];    //4 x-intervals and 2 y-intervals
+xbasc();xbasc(1);xset("window",1);xselect();
+plotframe(rect,tics,[%f,%f],['My plot','x','y']);
+plot2d(x,y,-1,'000')
+xbasc(2);xset("window",2);xselect();
+plotframe(rect,tics,[%t,%f],['My plot with grids','x','y']);
+plot2d(x,y,-1,'000')
+xbasc(3);xset("window",3);xselect();
+plotframe(rect,tics,[%t,%t],...
+['My plot with grids and automatic bounds','x','y']);
+plot2d(x,y,-1,'000')
+xbasc(4);xset("window",4);xselect();
+plotframe(rect,tics,[%f,%t],...
+['My plot without grids but with automatic bounds','x','y']);
+plot2d(x,y,-1,'000')
+.fi
+.SH SEE ALSO
+plot2d, graduate, xtitle, plot2d1, plot2d2
+

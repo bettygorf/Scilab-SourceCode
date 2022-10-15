@@ -1,0 +1,24 @@
+This directory contains evaluation programs for testing Scilab's
+installation on your machine.
+
+1- to run a global test on various functions type "make tests"
+   in this directory. Results of the tests are compared to 
+   corresponding references. Failure of a test does not necessarily
+   imply bad installation. Failure may be due to small differences
+   in machine constants. This can happen in particular in "matopt.tst".
+
+2- to run test on a specific item, invoke Scilab in this directory
+   and  type "exec('<item>.tst')" at Scilab prompt.
+   or type 
+	make <name>.dia to run test on name 
+	ex : rm calelm.dia 
+	make calelm.dia 
+
+3- NT/WinXX with MSVC++ : Makefile.mak is not set up for testing Scilab 
+   	thus if you use nmake you must test each test file as pointed in 2.
+
+   	Anyway, you can run all the tests with make if you have cygwin tools. 
+	Edit Makefile and replace scidem by scidem-gcwin32 
+	then run <<make tests>> to make all the test for your MSVC++ compiled 
+	scilab 
+

@@ -1,0 +1,19 @@
+.TH node_number 1 "September 1996" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+node_number - number of nodes of a graph
+.SH CALLING SEQUENCE
+.nf
+n = node_number(g)
+.fi
+.SH PARAMETERS
+.TP 2
+g
+: graph list
+.TP 2
+n
+: integer, number of nodes
+.SH DESCRIPTION
+\fVnode_number\fR returns the number \fVn\fR of nodes of the graph.
+.SH SEE ALSO
+arc_number, edge_number

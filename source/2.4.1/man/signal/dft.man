@@ -1,0 +1,36 @@
+.TH dft 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+dft - discrete Fourier transform
+.SH CALLING SEQUENCE
+.nf
+[xf]=dft(x,flag);
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: input vector
+.TP
+flag
+: indicates dft (flag=-1)  or idft (flag=1)
+.TP
+xf
+: output vector
+.SH DESCRIPTION
+Function which computes dft of vector \fVx\fR.
+.SH EXAMPLE
+.nf
+n=8;omega = exp(-2*%pi*%i/n);
+j=0:n-1;F=omega.^(j'*j);  //Fourier matrix
+x=1:8;x=x(:);
+F*x
+fft(x,-1)
+dft(x,-1)
+inv(F)*x
+fft(x,1)
+dft(x,1)
+.fi
+.SH SEE ALSO
+fft
+.SH AUTHOR
+C. B.

@@ -1,0 +1,21 @@
+.TH date 1 "Jun 1999" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+date - Current date as date string
+.SH CALLING SEQUENCE
+.nf
+dt=date()
+.fi
+.SH PARAMETERS
+.TP
+dt
+: a string
+.SH DESCRIPTION
+dt=date() returns a string containing the date in dd-mmm-yyyy format.
+.SH EXAMPLES
+.nf
+date()
+.fi
+.SH SEE ALSO
+getdate, timer
+

@@ -1,0 +1,25 @@
+.TH DestroyLink 1 "March 1997" "Scilab Group" "Scilab function"
+.so ../sci.an
+.SH NAME
+DestroyLink - destroys the link between two applications
+.SH CALLING SEQUENCE
+.nf
+DestroyLink(appli1,appli2)
+.fi
+.SH PARAMETERS
+.TP 7
+appli1, name of an application
+: string
+.TP 7
+appli2
+: string, name of an application
+.SH DESCRIPTION
+\fVDestroyLink\fR destroys the link from \fVappli1\fR to \fVappli2\fR.
+
+If the name of \fVappli1\fR or \fVappli2\fR is \fV"SELF"\fR, it corresponds
+to the name of the application where we execute \fVDestroyLink\fR.
+
+If the name of \fVappli1\fR or \fVappli2\fR is \fV"XGeCI"\fR, it corresponds
+to the name of the first Scilab application started.
+.SH SEE ALSO
+CreateLink

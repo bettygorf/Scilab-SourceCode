@@ -1,0 +1,32 @@
+ 
+clear;lines(0);
+ 
+A=rand(5,2)*rand(2,4);   // 4 col. vectors, 2 independent.
+ 
+[X,dim]=rowcomp(A);Xp=X';
+ 
+svd([Xp(:,1:dim),A])     //span(A) = span(Xp(:,1:dim)
+ ans  =
+ 
+!   2.2850481 !
+!   1.0374315 !
+!   0.        !
+!   0.        !
+!   0.        !
+ 
+x=A*rand(4,1);      //x belongs to span(A)
+ 
+y=X*x
+ y  =
+ 
+! - 2.7224942 !
+!   0.0291219 !
+!   0.        !
+!   0.        !
+!   0.        !
+ 
+norm(y(dim+1:$))/norm(y(1:dim))    // small
+ ans  =
+ 
+    2.062D-16  
+ 

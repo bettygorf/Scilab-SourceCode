@@ -1,0 +1,36 @@
+.TH sylmX 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+sylm - Sylvester matrix
+.SH CALLING SEQUENCE
+.nf
+[S]=sylm(a,b)
+.fi
+.SH PARAMETERS
+.TP
+a,b
+: two polynomials
+.TP
+S
+: matrix
+.SH DESCRIPTION
+\fVsylm(a,b)\fR gives the Sylvester matrix associated to polynomials
+\fVa\fR and \fVb\fR, i.e. the matrix \fVS\fR such that:
+.LP
+\fVcoeff( a*x + b*y )' = S * [coeff(x)';coeff(y)']\fR.
+.LP
+Dimension of \fVS\fR is equal to \fVdegree(a)+degree(b)\fR.
+.LP
+If \fVa\fR and \fVb\fR are coprime polynomials then
+.LP
+\fVrank(sylm(a,b))=degree(a)+degree(b))\fR and the instructions
+.nf
+  u = sylm(a,b) \ eye(na+nb,1)
+  x = poly(u(1:nb),'z','coeff')
+  y = poly(u(nb+1:na+nb),'z','coeff')
+.fi
+compute Bezout factors \fVx\fR and \fVy\fR of minimal degree 
+such that \fVa*x+b*y = 1\fR
+
+
+

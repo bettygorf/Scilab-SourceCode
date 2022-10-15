@@ -1,0 +1,48 @@
+.TH des2tf 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+des2tf - descriptor to transfer function conversion
+.SH CALLING SEQUENCE
+.nf
+[S]=des2tf(sl)
+[Bfs,Bis,chis]=des2tf(sl)
+.fi
+.SH PARAMETERS
+.TP 12
+sl
+: list (linear system in descriptor form)
+.TP
+Bfs, Bis
+: two polynomial matrices
+.TP
+chis
+: polynomial
+.TP
+S
+: rational matrix
+.SH DESCRIPTION
+Given the linear system in descriptor form i.e.
+\fVSl=list('des',A,B,C,D,E)\fR, \fVdes2tf\fR converts \fVsl\fR into
+its transfer function representation: 
+.nf
+S=C*(s*E-A)^(-1)*B+D
+.fi
+Called with 3 outputs arguments \fVdes2tf\fR returns
+\fVBfs\fR and \fVBis\fR two polynomial matrices, and \fVchis\fR
+polynomial such that:
+.nf
+S=Bfs/chis - Bis
+.fi
+\fVchis\fR is the determinant of \fV(s*E-A)\fR (up to a xcative constant);
+.SH EXAMPLE
+.nf
+s=poly(0,'s');
+G=[1/(s+1),s;1+s^2,3*s^3];
+Descrip=tf2des(G);Tf1=des2tf(Descrip)
+Descrip2=tf2des(G,"withD");Tf2=des2tf(Descrip2)
+[A,B,C,D,E]=Descrip2(2:6);Tf3=C*inv(s*E-A)*B+D
+.fi
+.SH SEE ALSO
+glever, pol2des, tf2des, ss2tf, des2ss, rowshuff
+.SH AUTHOR
+F. D.

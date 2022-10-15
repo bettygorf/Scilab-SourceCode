@@ -1,0 +1,28 @@
+.TH gammaln 3 "September 1997" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+gammaln -  The logarithm of gamma function.
+.SH CALLING SEQUENCE
+.nf
+ y = gammaln(x)
+.fi
+.SH PARAMETERS
+.TP
+x
+: real vector 
+.TP
+y
+: real vector with same size.
+.SH DESCRIPTION
+\fVgammaln(x)\fR evaluates the logarithm of gamma function at all the
+elements of \fVx\fR, avoiding underflow and overflow. 
+\fVx\fR must be real.
+
+.SH EXAMPLE
+.nf
+gammaln(0.5)
+
+.fi
+.SH SEE ALSO
+gamma, dlgamma
+

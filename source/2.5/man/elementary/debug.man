@@ -1,0 +1,16 @@
+.TH debug 1 "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+debug - debugging level
+.SH CALLING SEQUENCE
+.nf
+debug(level-int)
+level-int=debug()
+.fi
+.SH PARAMETERS
+.TP 15
+level-int
+: integer (0 to 4)
+.SH DESCRIPTION
+For the values 0,1,2,3,4 of \fVlevel-int\fR , \fVdebug\fR defines
+various levels of debugging. (For Scilab experts only).

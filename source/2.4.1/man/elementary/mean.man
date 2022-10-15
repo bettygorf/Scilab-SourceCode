@@ -1,0 +1,36 @@
+.TH mean 1 "Januray 1998" "Scilab Group" "Scilab Function"
+.so ../sci.an
+.SH NAME
+mean - mean (row mean, column mean) of vector/matrix entries
+.SH CALLING SEQUENCE
+.nf
+y=mean(x)
+y=mean(x,'r')
+y=mean(x,'c')
+.fi
+.SH PARAMETERS
+.TP 10
+x
+: real vector or matrix 
+.TP 10
+y
+: scalar or vector
+.SH DESCRIPTION
+For a vector or a matrix \fVx\fR, \fVy=mean(x)\fR  returns in the
+scalar \fVy\fR the mean of all the entries of \fVx\fR.
+.LP
+\fVy=mean(x,'r')\fR (or, equivalently, \fVy=mean(x,2)\fR) is the rowwise mean. It returns in each 
+entry of the column vector \fVy\fR the mean of each row of \fVx\fR.
+.LP
+
+\fVy=mean(x,'c')\fR (or, equivalently, \fVy=mean(x,1)\fR) is the columnwise mean. It returns in each entry of the row vector 
+\fVy\fR the mean of each column  of \fVx\fR.
+.SH EXAMPLE
+.nf
+A=[1,2,10;7,7.1,7.01];
+mean(A)
+mean(A,'r')
+mean(A,'c')
+.fi
+.SH SEE ALSO
+sum, median,st_deviation

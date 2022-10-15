@@ -1,0 +1,11 @@
+
+INVBLK_f(5)                      Scicos Block                     INVBLK_f(5)
+NAME
+  INVBLK_f - Scicos inversion block
+
+DIALOGUE PARAMETERS
+  None.
+
+DESCRIPTION
+  This block computes y(i)=1/u(i). The input (output) size is determined by
+  the context

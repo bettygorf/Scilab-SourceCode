@@ -1,0 +1,34 @@
+
+curblock(Janvier 1997)                                 curblock(Janvier 1997)
+NAME
+  curblock - get current block index in a Scicos simulation function
+
+CALLING SEQUENCE
+  k=curblock()
+
+PARAMETERS
+
+  k    : integer, index of the block corresponding to the Scilab simulation
+       function where this function is called.
+
+DESCRIPTION
+  During simulation it may be interesting to get the index of the current
+  block to trace execution, to get its label, to animate the block icon
+  according to simulation...
+
+  For block with a computational function written in Scilab, Scilab primitive
+  function curblock()  allows to get the index of the current block in the
+  compiled data structure.
+
+  To obtain path to the block in the Scicos main structure user may uses the
+  corinv table (see scicos_cpr).
+
+  For block with a computational function written in C user may uses the C
+  function  k=C2F(getcurblock)(). Where C2F is the C compilation macro
+  defined in <SCIDIR>/routines/machine.h
+
+  For block with a computational function written in Fortran user may uses
+  the integer  function  k=getcurblock().
+
+SEE ALSO
+  getblocklabel, getscicosvars, setscicosvars, scicos_cpr, scicos_main

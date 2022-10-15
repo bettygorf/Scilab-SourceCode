@@ -1,0 +1,124 @@
+.TH impl G "April 1993" "Scilab Group" "Scilab Function"
+.so ../sci.an 
+.SH NAME
+impl - differential algebraic equation
+.SH DESCRIPTION
+.nf
+y=impl(['type',]y0,ydot0,t0,t1[,atol,[rtol]],res,adda[,jac])
+.fi
+.SH PARAMETERS
+.TP 10
+y0,ydot0   
+: real vectors
+.TP
+t0 
+: real number
+.TP
+t 
+: real row vector
+.TP 15
+res,adda,jac 
+: externals (function or list or string)
+.TP
+type 
+: string \fV'adams'\fR or \fV'stiff'\fR
+.TP
+atol,rtol 
+: real numbers or real vectors
+.SH DESCRIPTION
+Solution of the implicit differential equation
+.nf
+
+    A(t,y)ydot=g(t,y)
+    y(t0)=y0  and   ydot(t0)=ydot0
+
+.fi
+\fVt0\fR is the initial instant.
+.LP
+\fVy0\fR is the vector of initial conditions.
+.LP
+\fVydot0\fR is the vector of the time derivative of \fVy\fR at \fVt0\fR.
+.TP
+res
+: External
+.RS
+.TP
+a function
+its syntax must be r=res(t,y,ydot)
+and \fVres\fR must return r=g(t,y)-A(t,y)*ydot
+.TP
+a list 
+it must be : list(res,x1,x2,...)
+where the syntax of the function \fVres\fR is now
+.nf
+r=res(t,y,ydot,x1,x2,...)
+.fi
+\fVres\fR still returns \fVr=g(t,y)-A(t,y)*ydot\fR as a function of
+\fV(t,y,ydot,x1,x2,...)\fR.
+.TP
+a string
+.LP
+it refer to the name of
+a fortran subroutine or C procedure (see source code of \fVfres.f\fR).
+.RE
+.TP
+adda
+: External
+.RS
+.TP
+a function
+its syntax must be r=adda(t,y,p)
+and \fVadda\fR must return  \fVr=A(t,y)+p\fR
+.TP
+a list 
+it must be : list(adda,x1,x2,...)
+where the syntax of the function \fVadda\fR is now 
+.nf
+r=adda(t,y,x1,x2,...)
+.fi
+\fVadda\fR still returns \fVr=A(t,y)+p\fR as a function of
+\fV(t,y,x1,x2,...)\fR.
+.TP
+a string
+.LP
+it refer to the name of
+a fortran subroutine or C procedure (see source code of \fVfadda.f\fR).
+.RE
+jac
+: External
+.RS
+.TP
+a function
+its syntax must be j=jac(t,y,ydot)
+and \fVadda\fR must return  the jacobian of \fVr=g(t,y)-A(t,y)*ydot\fR
+.TP
+a list 
+it must be : list(jac,x1,x2,...)
+where the syntax of the function \fVjac\fR is now 
+.nf
+r=jac(t,y,ydot,x1,x2,...)
+.fi
+\fVjac\fR still returns the jacobian of \fVr=g(t,y)-A(t,y)*ydot\fR  as a function of
+\fV(t,y,ydot,x1,x2,...)\fR.
+.TP
+a string
+.LP
+it refer to the name of
+a fortran subroutine or C procedure (see source code of \fVfjac.f\fR).
+.RE
+
+.LP
+More details are provided in help \fVode\fR.
+
+fortran call (see \fVfres.f\fR and \fVfadda.f\fR \fVfjac.f\fR )
+.SH EXAMPLES
+.nf
+x=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
+// Using hot restart 
+//[x1,w,iw]=impl([1;0;0],[-0.04;0.04;0],0,0.2,'resid','aplusp');
+// hot start from previous call 
+//[x1]=impl([1;0;0],[-0.04;0.04;0],0.2,0.4,'resid','aplusp',w,iw);
+//maxi(abs(x1-x))
+.fi
+.SH SEE ALSO
+ode, external
